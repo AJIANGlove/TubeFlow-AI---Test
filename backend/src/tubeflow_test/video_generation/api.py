@@ -112,7 +112,8 @@ def create_group_video_router(
 class ManualH3Input(BaseModel):
     model_config = ConfigDict(extra="forbid")
     expected_storyboard_generation_id: UUID
-    # 实验用显式 seed（2026-11-03 用户决策 4）：仅当提供时覆盖派生 seed；取值范围与 _ladder_seed 一致。
+    # 实验用显式 seed（2026-11-03 用户决策 4）：仅当提供时覆盖派生 seed；
+    # 取值范围与 _ladder_seed 一致。
     seed: int | None = Field(default=None, ge=0, le=2**53 - 1)
 
 

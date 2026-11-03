@@ -2376,6 +2376,7 @@ def _authorize(
     seed 为调用方显式覆盖（实验用，见 ManualH3Input.seed），优先级最高；
     未提供时沿用故事板快照的 seed，最后才按幂等键派生。
     """
+    resolved: int | str | None
     if seed is not None:
         resolved = seed
     elif source.seed is not None:
@@ -3075,7 +3076,9 @@ def validate_reference_intent(
     generation = _authorize(
         source,
         idempotency_key=attempt.idempotency_key,
-        seed=recorded_seed if isinstance(recorded_seed, int) and not isinstance(recorded_seed, bool) else None,
+        seed=recorded_seed
+        if isinstance(recorded_seed, int) and not isinstance(recorded_seed, bool)
+        else None,
     )
     request = _request(
         generation, attempt.attempt_id, prompt=str(attempt.request.get("prompt", ""))
