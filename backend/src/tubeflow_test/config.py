@@ -82,7 +82,8 @@ class Settings(BaseSettings):
     video_prompt_provider_token: SecretStr = SecretStr("")
     video_prompt_provider_model: str = "deepseek-v4-flash"
     video_prompt_provider_timeout_seconds: float = Field(default=45.0, gt=0)
-    video_prompt_strategy: str = "tubeflow_storyboard_v3"
+    # 2026-11-03 A/B（Pending issues/2026-11-03/VIDEO_QUALITY_AB_RESULTS_20261103.md）后默认 v4。
+    video_prompt_strategy: str = "tubeflow_storyboard_v4_natural_motion"
     h3_single_panel_opt_in_enabled: bool = False
     h3_single_panel_project_ids: tuple[UUID, ...] = ()
     sentence_split_provider_url: str = "https://api.deepseek.com/v1"

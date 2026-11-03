@@ -132,12 +132,16 @@ def test_prompt_single_panel_has_no_grid() -> None:
     assert "Panel 1 (row 1, column 1)" in prompt
 
 
-def test_prompt_keeps_caption_labels_verbatim() -> None:
+def test_prompt_has_no_captions_and_forbids_readable_text() -> None:
+    # 2026-11-03（USER_DECISIONS §44）：不再绘制 SHOT 角标，图内禁止一切可读文字。
     prompt = _prompt(2)
-    assert 'Caption: "SHOT 1 · 0.0s–3.0s".' in prompt
-    assert 'Caption: "SHOT 2 · 3.0s–6.0s".' in prompt
-    assert "print its caption text exactly as quoted" in prompt
-    assert "must not contain any other text" in prompt
+    assert "Caption:" not in prompt
+    assert "SHOT 1 ·" not in prompt and "SHOT 2 ·" not in prompt
+    assert "print its caption" not in prompt
+    assert "Do not draw any readable text anywhere in the image" in prompt
+    assert "prices, currency signs" in prompt
+    assert "Show amounts, costs and comparisons through objects" in prompt
+    assert prompt.index("Panel 2 (row 1, column 2)") < prompt.index("Do not draw any readable")
 
 
 def test_prompt_drops_nonvisual_fields() -> None:
@@ -220,3 +224,32 @@ def test_prompt_safety_handles_plain_and_numeral_age_forms() -> None:
         "age_marker_zh_numeral",
         "sensational_wording",
     }
+
+
+POSE_CLAUSE = "保留原图人物特征、服装、姿势、表情、主体数量、场景布局和物品位置，仅转换画面艺术风格。"
+
+
+def test_prompt_safety_strips_reference_preservation_clause_from_style() -> None:
+    # 2026-11-03 A/B：该子句使故事板复制参考图托腮姿势；冻结快照不改写，只在拼装时移除。
+    style = "暖色水彩插画，" + POSE_CLAUSE + "柔和光线"
+    prompt = build_grid_sheet_prompt(
+        style=style,
+        aspect_ratio="16:9",
+        shots=_shots(1),
+        ranges=_ranges(1),
+        character_count=1,
+    )
+    assert POSE_CLAUSE in prompt
+
+    sanitized, applied = apply_prompt_safety(prompt)
+
+    assert applied == ("style_reference_preservation_conflict",)
+    assert "保留原图" not in sanitized and "仅转换" not in sanitized
+    assert "Art style for every panel: 暖色水彩插画，柔和光线." in sanitized
+    assert "Use the reference images only for identity" in sanitized
+    assert apply_prompt_safety(sanitized) == (sanitized, ())
+
+
+def test_prompt_safety_leaves_unrelated_preserve_wording_alone() -> None:
+    text = "Art style: 保留水彩质感，暖色调。"
+    assert apply_prompt_safety(text) == (text, ())

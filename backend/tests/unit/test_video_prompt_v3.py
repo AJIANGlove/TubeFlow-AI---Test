@@ -153,8 +153,9 @@ def _valid_v3_text(value: VideoPromptCompilerInput) -> str:
     )
 
 
-def test_config_defaults_to_v3_and_accepts_all_known_strategies() -> None:
-    assert Settings(_env_file=None).video_prompt_strategy == "tubeflow_storyboard_v3"
+def test_config_accepts_all_known_strategies() -> None:
+    # 2026-11-03 起默认为 v4（USER_DECISIONS §43）；v3 仍为合法配置。
+    assert Settings(_env_file=None).video_prompt_strategy == "tubeflow_storyboard_v4_natural_motion"
     for strategy in (
         "kinestack_v6_port",
         "tubeflow_enhanced_v1",

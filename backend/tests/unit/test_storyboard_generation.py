@@ -662,11 +662,14 @@ def test_post_send_submit_uncertainty_stays_unknown(tmp_path: Path) -> None:
     assert blocked.value.code == "remote_state_unresolved"
 
 
-def test_prompt_imprints_shot_time_labels_and_snapshot(tmp_path: Path) -> None:
+def test_prompt_has_no_shot_labels_but_snapshots_time_ranges(tmp_path: Path) -> None:
+    # 2026-11-03（USER_DECISIONS §44）：不再绘制 SHOT 角标；时间区间仍随生成持久化，
+    # 供视频提示词 cut_at 使用。
     repo, service, _, owner, group, revision = setup(tmp_path)
     generation = create(service, owner, group, revision.revision_id)
-    assert 'Caption: "SHOT 1 · 0.0s–3.0s".' in generation.prompt
-    assert "print its caption text exactly as quoted" in generation.prompt
+    assert "Caption:" not in generation.prompt
+    assert "SHOT 1 ·" not in generation.prompt
+    assert "Do not draw any readable text anywhere in the image" in generation.prompt
     ranges = generation.shot_time_ranges_snapshot
     assert [(value.shot_order, value.start_ms, value.end_ms) for value in ranges] == [(1, 0, 3000)]
     restored = repo.get_generation(owner, generation.generation_id)

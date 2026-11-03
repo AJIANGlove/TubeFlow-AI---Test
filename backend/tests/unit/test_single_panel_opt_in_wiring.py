@@ -24,10 +24,11 @@ from tubeflow_test.video_generation.factory import build_video_feature
 from tubeflow_test.video_generation.persistence import H3ProjectWorkflowRouteRecord
 
 
-def test_production_default_prompt_strategy_remains_composite_v3() -> None:
+def test_production_default_prompt_strategy_is_composite_v4() -> None:
     settings = Settings(_env_file=None)
 
-    assert settings.video_prompt_strategy == "tubeflow_storyboard_v3"
+    # 2026-11-03（USER_DECISIONS §43）：默认整图策略由 v3 改为 v4，单格参考仍为显式 opt-in。
+    assert settings.video_prompt_strategy == "tubeflow_storyboard_v4_natural_motion"
     assert settings.h3_single_panel_opt_in_enabled is False
     assert settings.h3_single_panel_project_ids == ()
     requested, allowed = single_panel_policy_settings(settings)

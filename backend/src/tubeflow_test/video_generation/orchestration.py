@@ -71,6 +71,7 @@ from tubeflow_test.video_generation.provider_audit import (
 )
 from tubeflow_test.video_prompt.compiler import VideoPromptCompiler
 from tubeflow_test.video_prompt.domain import (
+    V3_CONTRACT_STRATEGIES,
     CompiledVideoPrompt,
     SinglePanelPromptCompilerInput,
     SinglePanelReference,
@@ -2857,8 +2858,15 @@ def _ladder_seed(base: object, index: int, superseded: PersistentAttempt) -> int
 def _ladder_strategy(
     superseded: PersistentAttempt, index: int, default: VideoPromptStrategy
 ) -> VideoPromptStrategy | None:
-    """i=4 固定切换到 kinestack_v6_port；其余梯级沿用原编译策略（缺失时用配置策略）。"""
+    """i=4 切换策略；其余梯级沿用原编译策略（缺失时用配置策略）。
+
+    2026-11-03（USER_DECISIONS §43）：配置策略属于 v3 输出合同（v3／v4）时，i=4 改用配置策略；
+    kinestack_v6_port 要求按图写主体外观且无反网格规则，A/B 证实会引入换人与网格泄漏。
+    其他配置下保持原 kinestack_v6_port 行为。
+    """
     if index == _LADDER_STRATEGY_STEP:
+        if default in V3_CONTRACT_STRATEGIES:
+            return default
         try:
             return VideoPromptStrategy(_LADDER_STRATEGY_STEP_STRATEGY)
         except ValueError:

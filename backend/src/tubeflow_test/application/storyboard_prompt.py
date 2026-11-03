@@ -1,8 +1,9 @@
-"""故事板整图提示词构建：确定性网格布局声明 + 图像模型绘字（§7.19）。
+"""故事板整图提示词构建：确定性网格布局声明 + 逐格视觉字段。
 
 本模块是故事板生图提示词的唯一归属地。模板为英文脚手架（gpt-image 对英文
-指令遵循更稳），镜头字段值保持项目语言。角标文本与视频提示词节拍逐字一致，
-不得在此改动格式。提示词只包含视觉字段；句子 ID、叙事功能等非视觉信息
+指令遵循更稳），镜头字段值保持项目语言。2026-11-03 起（USER_DECISIONS §44）
+不再要求图像模型绘制 SHOT 角标，并禁止图内一切可读文字；镜头时间节拍只由
+视频提示词表达。提示词只包含视觉字段；句子 ID、叙事功能等非视觉信息
 不得进入图像提示词。
 
 另含提交前的「违禁/高风险表达识别与规避」（2026-10-14）：对拼装完成的
@@ -15,9 +16,9 @@ from __future__ import annotations
 import re
 
 from tubeflow_test.domain.storyboards import (
+    REFERENCE_PRESERVATION_CLAUSE,
     DirectorShot,
     ShotTimeRange,
-    format_shot_time_label,
     grid_layout_for,
     panel_row_column,
 )
@@ -28,7 +29,9 @@ from tubeflow_test.domain.storyboards import (
 # ③ 惊悚/病理渲染词（disturbing / graphic / gory …）。
 # 仅做确定性、可审计的最小替换；不改写镜头创意字段本身（数据库中的镜头字段
 # 保持原样，只有生图提示词文本被处理），替换记录随生成输入持久化。
-_PROMPT_SAFETY_RULE_VERSION = "storyboard-prompt-safety-v1"
+# v2（2026-11-03）：新增 style_reference_preservation_conflict，移除画面风格中
+# "保留原图……仅转换……风格"子句（见 domain.storyboards.REFERENCE_PRESERVATION_CLAUSE）。
+_PROMPT_SAFETY_RULE_VERSION = "storyboard-prompt-safety-v2"
 _SAFETY_RULES: tuple[tuple[str, re.Pattern[str], str], ...] = (
     ("age_marker_hyphenated", re.compile(r"\b(?:\d+|[A-Za-z]+)-year-old\b\s?", re.I), ""),
     ("age_marker_plain", re.compile(r"\b(?:\d+|[A-Za-z]+)\s+year[- ]old\b\s?", re.I), ""),
@@ -46,6 +49,7 @@ _SAFETY_RULES: tuple[tuple[str, re.Pattern[str], str], ...] = (
     ),
     ("body_ritual_wording", re.compile(r"\bbathed\b", re.I), "ceremonially cleansed"),
     ("body_ritual_wording", re.compile(r"\bbathing\b", re.I), "ceremonial cleansing"),
+    ("style_reference_preservation_conflict", REFERENCE_PRESERVATION_CLAUSE, ""),
 )
 
 
@@ -113,19 +117,24 @@ def build_grid_sheet_prompt(
             "one person; never draw more copies of a character than the panel's "
             "action calls for."
         )
-    for shot, shot_range in zip(shots, ranges, strict=True):
+    # ranges 仍参与长度校验（与镜头一一对应），但不再写入图像提示词。
+    for shot, _shot_range in zip(shots, ranges, strict=True):
         row, column = panel_row_column(shot.order, layout.cols)
         parts.append(
             f"Panel {shot.order} (row {row}, column {column}): {shot.shot_size}, "
             f"{shot.camera_viewpoint}. Scene: {shot.scene}. Action: "
-            f"{shot.subject_action_outcome}. Visual description: {shot.description}. "
-            f'Caption: "{format_shot_time_label(shot_range)}".'
+            f"{shot.subject_action_outcome}. Visual description: {shot.description}."
         )
+    # 2026-11-03（USER_DECISIONS §44）：不再要求图像模型绘制 SHOT 角标，并禁止一切可读文字。
+    # A/B 证据：故事板文字（含错误语言的金额）会被 H3 复制成乱码文字；角标为多格泄漏素材。
+    # 镜头时间节拍仍由视频提示词的 cut_at 表达，不依赖图内角标。
     parts.append(
-        "Inside every panel, print its caption text exactly as quoted above, in "
-        "a small clean white sans-serif label with a subtle dark backing, at the "
-        "top-left corner of that panel. The image must not contain any other "
-        "text, watermark, logo, or signature."
+        "Do not draw any readable text anywhere in the image: no captions, panel "
+        "numbers, labels, titles, words, letters, numbers, prices, currency signs, "
+        "charts or tables with labels or figures, signboards with lettering, logos, "
+        "watermarks or signatures. Show amounts, costs and comparisons through "
+        "objects, gestures and expressions instead, such as a tall or short stack "
+        "of coins, a thick or thin pile of bills, or a busy or empty shop."
     )
     return " ".join(parts)
 

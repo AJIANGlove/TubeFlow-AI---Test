@@ -11,6 +11,7 @@ from __future__ import annotations
 
 from tubeflow_test.domain.storyboards import (
     grid_layout_for,
+    strip_reference_preservation_clause,
     panel_row_column,
     shot_cut_point_text,
     shot_time_text,
@@ -334,7 +335,7 @@ def build_user_payload(
             "aspect_ratio": value.aspect_ratio,
         },
         "reference_roles": roles,
-        "visual_style": value.visual_style,
+        "visual_style": strip_reference_preservation_clause(value.visual_style),
         "shot_plan": shot_plan,
         "fixed_constraints": [
             "no_dialogue",
@@ -408,7 +409,7 @@ def build_single_panel_user_payload(
             "aspect_ratio": value.aspect_ratio,
         },
         "reference_roles": roles,
-        "visual_style": value.visual_style,
+        "visual_style": strip_reference_preservation_clause(value.visual_style),
         "shot_plan": shot_plan,
         "fixed_constraints": [
             "no_dialogue",

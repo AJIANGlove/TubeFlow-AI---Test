@@ -15,7 +15,11 @@ from __future__ import annotations
 import hashlib
 from collections.abc import Mapping
 from dataclasses import replace
+from types import SimpleNamespace
+from typing import cast
 from uuid import UUID, uuid4
+
+import pytest
 
 from tubeflow_test.auto_pipeline.ports import AutoPipelineFacts, VideoGroupFact
 from tubeflow_test.domain.common import AspectRatio, MediaAssetRef
@@ -45,6 +49,7 @@ from tubeflow_test.video_generation.orchestration import (
     PersistentAttempt,
     VideoMediaEvidence,
     _ladder_seed,
+    _ladder_strategy,
 )
 from tubeflow_test.video_generation.repository import InMemoryVideoRepository
 from tubeflow_test.video_prompt.domain import (
@@ -805,3 +810,29 @@ def test_auto_pipeline_facts_treat_defect_delivered_group_as_complete() -> None:
 
 def test_auto_resubmit_policy_default_budget_is_six() -> None:
     assert AutoResubmitPolicy().max_submissions == 6
+
+
+@pytest.mark.parametrize(
+    ("default", "expected"),
+    [
+        # 2026-11-03（USER_DECISIONS §43）：配置为 v3 输出合同时，i=4 使用配置策略。
+        (
+            VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_NATURAL_MOTION,
+            VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_NATURAL_MOTION,
+        ),
+        (VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3, VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3),
+        # 其他配置保持原 kinestack_v6_port 行为。
+        (VideoPromptStrategy.TUBEFLOW_ENHANCED_V1, VideoPromptStrategy.KINESTACK_V6_PORT),
+        (VideoPromptStrategy.TUBEFLOW_STORYBOARD_V2, VideoPromptStrategy.KINESTACK_V6_PORT),
+    ],
+)
+def test_ladder_step_four_uses_v3_contract_default(
+    default: VideoPromptStrategy, expected: VideoPromptStrategy
+) -> None:
+    superseded = cast(
+        PersistentAttempt,
+        SimpleNamespace(input_snapshot={"video_prompt": {"strategy": "tubeflow_storyboard_v3"}}),
+    )
+    assert _ladder_strategy(superseded, 4, default) is expected
+    # 其他梯级仍沿用被取代尝试的原策略。
+    assert _ladder_strategy(superseded, 3, default) is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3

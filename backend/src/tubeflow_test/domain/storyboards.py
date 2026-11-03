@@ -552,6 +552,19 @@ def shot_time_text(value: ShotTimeRange) -> str:
     return f"{value.start_text}s–{value.end_text}s"
 
 
+# 2026-11-03（USER_DECISIONS §42、§43）：画面风格中"保留原图……仅转换……风格"一类子句要求模型
+# 复制参考图的姿势、表情、布局与物品位置，与逐格分镜冲突；A/B 证实仅追加"只作身份参考"
+# 不足以压过它。冻结快照不改写，只在拼装故事板与视频提示词时确定性移除该子句。
+REFERENCE_PRESERVATION_CLAUSE = re.compile(
+    r"保留原图[^。；;!！?？\n]*?仅转换[^。；;!！?？\n]*?风格[。；;]?"
+)
+
+
+def strip_reference_preservation_clause(text: str) -> str:
+    """移除画面风格中要求保留参考图姿势/布局、仅转换艺术风格的子句（幂等）。"""
+    return REFERENCE_PRESERVATION_CLAUSE.sub("", text).strip()
+
+
 def format_shot_time_label(value: ShotTimeRange) -> str:
     """故事板格上印字与视频提示词节拍共用的镜头标签，如 "SHOT 1 · 0.0s–3.0s"。"""
     return f"SHOT {value.shot_order} · {shot_time_text(value)}"

@@ -79,8 +79,10 @@ def test_v4_shares_v3_output_contract_set() -> None:
     assert {V3, V4} == set(V3_CONTRACT_STRATEGIES)
 
 
-def test_config_accepts_v4_but_default_stays_v3() -> None:
-    assert Settings(_env_file=None).video_prompt_strategy == "tubeflow_storyboard_v3"
+def test_config_defaults_to_v4_and_still_accepts_v3() -> None:
+    assert Settings(_env_file=None).video_prompt_strategy == V4.value
+    explicit_v3 = Settings(_env_file=None, video_prompt_strategy=V3.value)
+    assert explicit_v3.video_prompt_strategy == V3.value
     settings = Settings(
         _env_file=None, video_prompt_strategy="tubeflow_storyboard_v4_natural_motion"
     )
@@ -241,3 +243,12 @@ def test_v4_example_subject_has_no_invented_appearance() -> None:
     for invented in ("gray", "navy", "apron", "shirt", "middle-aged", "beard"):
         assert invented not in character_lines[0]
     assert "duplicated characters" in FEW_SHOT_STORYBOARD_V4
+
+
+def test_compiler_payload_strips_reference_preservation_clause() -> None:
+    clause = "保留原图人物特征、服装、姿势、表情、主体数量、场景布局和物品位置，仅转换画面艺术风格。"
+    value = replace(_example_input(), visual_style="暖色水彩插画，" + clause + "柔和光线")
+    payload = build_user_payload(value)
+    assert payload["visual_style"] == "暖色水彩插画，柔和光线"
+    # 编译器输入指纹仍基于冻结风格原文（快照不改写）。
+    assert value.visual_style.endswith("柔和光线") and clause in value.visual_style
