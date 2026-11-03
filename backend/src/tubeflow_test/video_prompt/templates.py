@@ -127,10 +127,10 @@ retention_analysis:
 - Picture 2 — shot_plan_reference_only: retain its shot order, per-panel composition and style; never reproduce the grid layout, gutters, captions, or empty panels as image content.
 detailed_description:
 Natural live-action cinematography with soft window light, realistic skin and flour texture, gentle natural motion blur, and real-time movement speed. The camera is stable and unobtrusive; visible change comes from what the subject does, not from camera motion.
-[Shot 1] Panel 1 (row 1, column 1) opens on a wide view of (S2) from just inside the door. Static camera, 0% movement. (S1) pushes the door open with his shoulder, steps in, and flips the light switch; the ceiling lights flicker once and settle while dust drifts through the window light.
-[Shot 2] At 00:03.200, cut to Panel 2 (row 1, column 2), a medium close-up of his hands on the counter. Slow push-in of about 5% over the whole shot. He presses the heel of his palm into the dough, folds it toward himself, and turns it a quarter turn; flour puffs lightly and sticks to his knuckles.
-[Shot 3] At 00:06.500, cut to Panel 3 (row 2, column 1), a medium shot at the oven. Static camera, 0% movement. He opens the oven door, warm orange light spills across his face, he squints slightly, then closes the door with a soft push and wipes his hands on the apron.
-[Shot 4] At 00:09.400, cut to Panel 4 (row 2, column 2), a medium-wide shot from behind the counter toward the window. Slow pan of about 8 degrees following him. He walks to the window, rests one hand on the frame, breathes out, and looks at the quiet street as the light grows slightly warmer.
+[Shot 1] Panel 1 (row 1, column 1) opens on a wide view of (S2) from just inside the door. Static camera, 0% movement. (S1) pushes the door open with one shoulder, steps in, and flips the light switch; the ceiling lights flicker once and settle while dust drifts through the window light.
+[Shot 2] At 00:03.200, cut to Panel 2 (row 1, column 2), a medium close-up of the hands of (S1) on the counter. Slow push-in of about 5% over the whole shot. (S1) presses the heel of one palm into the dough, folds it inward, and turns it a quarter turn; flour puffs lightly and sticks to the knuckles.
+[Shot 3] At 00:06.500, cut to Panel 3 (row 2, column 1), a medium shot at the oven. Static camera, 0% movement. (S1) opens the oven door, warm orange light spills across the face, (S1) squints slightly, then closes the door with a soft push and wipes both hands on the apron.
+[Shot 4] At 00:09.400, cut to Panel 4 (row 2, column 2), a medium-wide shot from behind the counter toward the window. Slow pan of about 8 degrees following (S1). (S1) walks to the window, rests one hand on the frame, breathes out, and looks at the quiet street as the light grows slightly warmer.
 Maintain the identity of (S1) exactly as in character reference 1, one person only, the same bakery layout, consistent dawn lighting, correct five-finger hands, and grounded real-time body movement.
 No storyboard grid, panel borders, split screen, captions, on-screen text or numbers, signs with readable lettering, logos, watermarks, camera shake, jitter, morphing faces, warping hands, flickering textures, slow motion, extra people, or duplicated characters.
 overall_soundscape:
@@ -246,7 +246,8 @@ _V4_EXTRA_RULES = """\
 17. 画面自然度：人物动作使用真实速度（real-time, not slow motion），带自然的眨眼、呼吸、重心转移等微表演；人物不得长时间正对镜头凝视或摆拍静止，除非 shot_plan 明确要求；同一人物在全片保持同一张脸与同一套服装。
 18. 不得在画面中生成任何字幕、标题、数字、图表、标签、界面或可读文字；若 shot_plan 涉及金额、数据、时间或比较，改用实物、动作和表情表达（例如人物翻看一叠账单后皱眉、收银机抽屉弹开、空荡与拥挤的店面对比），不得要求文字或数字逐帧变化。shot_plan 明确要求的剧情实物（如价签、招牌）只能作为静态背景中不可辨读的实物出现。
 19. 不得把 visual_style 中的颗粒、噪点、闪烁、抖动类效果写成逐帧画面效果；只描述稳定的质感、色调与光线。
-20. 角色主体 (Sx) 的数量不得超过 role=CHARACTER 的参考图数量；同一张角色参考图即使包含正面、侧面、背面等多个视角，也只代表一个人。shot_plan 提到参考图之外的人物时，只能写成背景中的小尺寸、无面部特写的人物，不得为其分配 (Sx) 编号或描写外观；Maintain 清单必须写明每个角色主体与其 character reference 一致，负规则必须包含 extra people 与 duplicated characters。"""
+20. 角色主体 (Sx) 的数量不得超过 role=CHARACTER 的参考图数量；同一张角色参考图即使包含正面、侧面、背面等多个视角，也只代表一个人。shot_plan 提到参考图之外的人物时，只能写成背景中的小尺寸、无面部特写的人物，不得为其分配 (Sx) 编号或描写外观；Maintain 清单必须写明每个角色主体与其 character reference 一致，负规则必须包含 extra people 与 duplicated characters。
+21. 指代任何角色时只能写 (S1)、(S2) 等编号或 the person；全片任何位置都不得使用 he、she、him、her、his、hers 等性别代词，即使 shot_plan 的 scene、action_outcome 或 description 中出现了这些代词，也必须改写为 (Sx) 或 the person。"""
 
 
 def _v4_system_prompt() -> str:

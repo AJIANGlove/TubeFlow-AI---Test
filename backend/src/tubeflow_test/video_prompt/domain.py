@@ -266,6 +266,8 @@ def validate_compiled_prompt(text: str, *, expected: VideoPromptCompilerInput) -
         _validate_storyboard_v2(bodies, expected)
     if v3_contract:
         _validate_storyboard_v3(bodies, expected)
+    if expected.strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_NATURAL_MOTION:
+        _validate_v4_pronouns(bodies["detailed_description"])
     storyboard_ordinal = len(expected.reference_labels)
     for ordinal in range(1, storyboard_ordinal + 1):
         # v3 主体定义禁止图片来源指代：角色图用途由确定性绑定行表达，
@@ -486,6 +488,22 @@ def _validate_storyboard_v2(
         raise VideoPromptViolation("h3_prompt_consistency_checklist_missing")
     if "No storyboard grid" not in detailed or "split screen" not in detailed:
         raise VideoPromptViolation("h3_prompt_negative_rules_missing")
+
+
+_GENDERED_PRONOUN = re.compile(r"\b(?:he|she|him|her|his|hers)\b", re.IGNORECASE)
+
+
+def _validate_v4_pronouns(detailed_body: str) -> None:
+    """v4 角色只按 (Sx) 或 the person 指代（2026-11-03 用户决策 5）。
+
+    性别代词会让看不到图片的 H3 画错人（attempt ed495263 用 he 而参考图是女性）。
+    只作用于 v4；该错误码即编译修复原因（compiler 按错误码重试一次）。
+    """
+    match = _GENDERED_PRONOUN.search(detailed_body)
+    if match:
+        raise VideoPromptViolation(
+            f"h3_prompt_gendered_pronoun_forbidden: {match.group(0).lower()}"
+        )
 
 
 def _validate_storyboard_v3(
