@@ -377,7 +377,8 @@ def test_prompt_uses_section_context_plan_placeholder_and_quality_priorities() -
     # 2026-11-02：既有项目钉住 v8（本测试锁定 v8 文本），新项目默认 v9。
     assert unit.prompt_ref == PROJECT_DIRECTOR_LEGACY_PROMPT_REF
     assert PROJECT_DIRECTOR_LEGACY_PROMPT_REF.endswith("v8")
-    assert PROJECT_DIRECTOR_PROMPT_REF.endswith("v9")
+    # 2026-11-03（USER_DECISIONS §45）：新项目默认 v10。
+    assert PROJECT_DIRECTOR_PROMPT_REF.endswith("v10")
     assert PROJECT_DIRECTOR_PLAN_PROMPT_REF.endswith("v7")
     assert "Use at most 24 chapters" in plan.prompt_content
     assert PROJECT_DIRECTOR_UNITIZATION_VERSION.endswith("v4")

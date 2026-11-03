@@ -18,6 +18,7 @@ from tubeflow_test.application.project_director import (
     PROJECT_DIRECTOR_LEGACY_PROMPT_REF,
     PROJECT_DIRECTOR_PLAN_PROMPT_REF,
     PROJECT_DIRECTOR_PROMPT_REF,
+    PROJECT_DIRECTOR_V9_PROMPT_REF,
     ProjectDirectorService,
     _v9_unit_prompt,
 )
@@ -146,7 +147,7 @@ def _unit_prompts(ref: str) -> list[str]:
 
 
 def test_v9_replaces_single_shot_bias_with_pacing_and_broll_coverage() -> None:
-    for prompt in _unit_prompts(PROJECT_DIRECTOR_PROMPT_REF):
+    for prompt in _unit_prompts(PROJECT_DIRECTOR_V9_PROMPT_REF):
         assert "Return exactly one shot unless" not in prompt
         assert "If an additional shot cannot be justified" not in prompt
         assert "Do not invent unsupported rooms" not in prompt
@@ -235,7 +236,7 @@ def test_prompt_version_changes_canonical_input() -> None:
 # --- per-project pinning ---------------------------------------------------------------
 
 
-def test_new_project_without_runs_uses_v9() -> None:
+def test_new_project_without_runs_uses_newest_prompt() -> None:
     value = context(9)
     svc, repository, _clock = _service(value)
     run = create(svc, value, "new-project")
@@ -248,7 +249,7 @@ def test_new_project_without_runs_uses_v9() -> None:
     assert plan_refs == {PROJECT_DIRECTOR_PLAN_PROMPT_REF}
 
 
-def test_default_prepare_run_is_v9_for_narration_confirmation_path() -> None:
+def test_default_prepare_run_is_newest_prompt_for_narration_confirmation_path() -> None:
     value = context(6)
     svc, _repository, _clock = _service(value)
     _run, units = svc.prepare_run(
@@ -288,7 +289,8 @@ def test_existing_v8_project_stays_on_v8_and_keeps_canonical_input(
     }
 
 
-def test_project_started_on_v9_stays_on_v9() -> None:
+def test_project_started_on_newest_prompt_stays_on_it() -> None:
+    # 2026-11-03：新项目默认已是 v10；v9 成功运行的钉版另见 test_project_director_v10.py。
     value = context(9)
     svc, repository, clock = _service(value)
     first = create(svc, value, "v9-first")

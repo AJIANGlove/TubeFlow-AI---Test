@@ -60,10 +60,17 @@ from tubeflow_test.domain.storyboards import (
 # 2026-11-02 用户决定：v9（节奏优先、B-roll 式镜头覆盖）只用于新项目。项目在首轮导演运行时
 # 钉住单元提示词版本：已有任何未使用 v9 的导演运行的项目继续使用 v8（canonical 输入不变，
 # AUTO 恢复不触发 §15.13 整轮重跑）；尚无导演运行的项目使用 v9。
-PROJECT_DIRECTOR_PROMPT_REF = "project-director-unit-v9"
+# 2026-11-03（USER_DECISIONS §45）：v10 = v9 + 相邻多样性规则收紧（换物件镜头须同时换事件、
+# 同主体焦点同时刻同地点必然非法、一时一地单元允许单镜）。钉版规则见 _pinned_unit_prompt_ref。
+PROJECT_DIRECTOR_PROMPT_REF = "project-director-unit-v10"
+PROJECT_DIRECTOR_V9_PROMPT_REF = "project-director-unit-v9"
 PROJECT_DIRECTOR_LEGACY_PROMPT_REF = "project-director-unit-v8"
 PROJECT_DIRECTOR_UNIT_PROMPT_REFS = frozenset(
-    {PROJECT_DIRECTOR_PROMPT_REF, PROJECT_DIRECTOR_LEGACY_PROMPT_REF}
+    {
+        PROJECT_DIRECTOR_PROMPT_REF,
+        PROJECT_DIRECTOR_V9_PROMPT_REF,
+        PROJECT_DIRECTOR_LEGACY_PROMPT_REF,
+    }
 )
 PROJECT_DIRECTOR_PLAN_PROMPT_REF = "project-director-global-plan-v7"
 PROJECT_DIRECTOR_UNITIZATION_VERSION = "semantic-unit-global-plan-v4"
@@ -725,12 +732,22 @@ class ProjectDirectorService:
         return run, units
 
     def _pinned_unit_prompt_ref(self, owner_id: UUID, project_id: UUID) -> str:
-        """新项目（无导演运行）用 v9；最新运行未使用 v9 的既有项目钉住 v8。"""
+        """按项目最新导演运行钉住单元提示词版本。
+
+        - 无导演运行（新项目）或最新运行已用 v10 → v10；
+        - 最新运行用 v9 且已成功 → 保持 v9（canonical 不变，AUTO 恢复不整轮重跑）；
+        - 最新运行用 v9 但未成功（如 765dca11 因相邻多样性失败暂停）→ v10，尚无可复用成果；
+        - 其余（v8 及更早）→ v8。
+        """
         latest = self._repository.latest_run(owner_id, project_id)
         if latest is None:
             return PROJECT_DIRECTOR_PROMPT_REF
-        units = self._repository.list_units(owner_id, latest.run_id)
-        if any(item.prompt_ref == PROJECT_DIRECTOR_PROMPT_REF for item in units):
+        refs = {item.prompt_ref for item in self._repository.list_units(owner_id, latest.run_id)}
+        if PROJECT_DIRECTOR_PROMPT_REF in refs:
+            return PROJECT_DIRECTOR_PROMPT_REF
+        if PROJECT_DIRECTOR_V9_PROMPT_REF in refs:
+            if latest.status is ProjectDirectorRunStatus.SUCCEEDED:
+                return PROJECT_DIRECTOR_V9_PROMPT_REF
             return PROJECT_DIRECTOR_PROMPT_REF
         return PROJECT_DIRECTOR_LEGACY_PROMPT_REF
 
@@ -825,7 +842,7 @@ class ProjectDirectorService:
         if submitting is None:
             return self.status(owner_id, run_id)
         try:
-            result = self._model.generate(submitting)
+            result = self._model.generate(_provider_call_unit(submitting))
         except PermanentDirectorModelError as exc:
             return self._repository.fail_unit(
                 submitting,
@@ -1382,7 +1399,10 @@ class ProjectDirectorService:
         )
         if unit_prompt_ref == PROJECT_DIRECTOR_LEGACY_PROMPT_REF:
             return legacy
-        return _v9_unit_prompt(legacy, len(pack), shot_cap)
+        v9 = _v9_unit_prompt(legacy, len(pack), shot_cap)
+        if unit_prompt_ref == PROJECT_DIRECTOR_V9_PROMPT_REF:
+            return v9
+        return _v10_unit_prompt(v9, len(pack))
 
     def _validated_plan_document(
         self, payload: dict[str, object], unit: ProjectDirectorUnit
@@ -2086,6 +2106,95 @@ def _v9_unit_prompt(legacy: str, sentence_count: int, shot_cap: int) -> str:
     for old, new in replacements:
         if text.count(old) != 1:
             raise ValueError("project director v8 prompt passage drifted; v9 cannot be built")
+        text = text.replace(old, new)
+    return text
+
+
+# 2026-11-03（USER_DECISIONS §45）：本地出口校验拒收后的重试带上拒收原因。此前重试以同一
+# 提示词、temperature 0.0 与同一 Idempotency-Key 重发，3 次尝试实际等于 1 次。
+_RETRY_FEEDBACK_PREFIXES = ("director_output_", "director_response_")
+_ADJACENT_DIVERSITY_FAILURE = "director_output_adjacent_diversity_insufficient"
+
+
+def _repair_notice(failure_code: str) -> str:
+    if failure_code == _ADJACENT_DIVERSITY_FAILURE:
+        return (
+            "RETRY NOTICE: your previous answer for this TARGET was rejected with code "
+            f"{failure_code}: two adjacent shots changed only one of semantic_event, "
+            "subject_focus, time_relation and location_relation. Rewrite the unit so that "
+            "every adjacent pair changes at least two of them. When a shot cuts to an object, "
+            "evidence, tool, place or environment view, change subject_focus and semantic_event "
+            "together. Two adjacent shots with the same subject_focus that are both "
+            "SAME_MOMENT and SAME_LOCATION are always invalid. If TARGET shows one continuous "
+            "moment in one place and no second shot can differ in two dimensions, return "
+            "exactly one shot; this overrides any minimum shot count above. Never relabel "
+            "tokens without changing what the shot shows."
+        )
+    return (
+        f"RETRY NOTICE: your previous answer was rejected with code {failure_code}. Re-read "
+        "the output contract above, fix that problem, and check every rule again before "
+        "returning."
+    )
+
+
+def _provider_call_unit(unit: ProjectDirectorUnit) -> ProjectDirectorUnit:
+    """供应商调用用的单元视图：本地拒收后的重试附加拒收原因，并换用逐次幂等键。
+
+    持久化的单元（prompt_content、prompt_sha256、canonical 哈希）保持不变，因此不影响
+    canonical 输入、前缀复用与 AUTO 恢复判定；网络/HTTP 类失败的重试保持原样重发。
+    """
+    code = unit.last_failure_code
+    if not code or not code.startswith(_RETRY_FEEDBACK_PREFIXES):
+        return unit
+    key = hashlib.sha256(
+        f"{unit.provider_idempotency_key}:retry-feedback:{unit.attempt_count}".encode()
+    ).hexdigest()
+    return replace(
+        unit,
+        prompt_content=f"{unit.prompt_content}\n\n{_repair_notice(code)}",
+        provider_idempotency_key=key,
+    )
+
+
+def _v10_unit_prompt(v9: str, sentence_count: int) -> str:
+    """v10 = v9 文本仅替换三处（2026-11-03，765dca11 第 20 单元相邻多样性连续失败）。
+
+    ① 3 句以上单元的"至少两镜"改为"争取两镜；一时一地且找不到相差两轴的第二镜时允许单镜"；
+    ② 换到物件/证据/环境镜头时必须同时换 semantic_event（只换 subject_focus 仅算一轴）；
+    ③ 追加计数规则：同 subject_focus 且同为 SAME_MOMENT、SAME_LOCATION 的相邻两镜必然非法。
+    任一被替换段落缺失即抛错，防止 v9 文本漂移后静默生成错误的 v10。
+    """
+    replacements: list[tuple[str, str]] = [
+        (
+            "sentence mentions, which changes subject_focus and usually semantic_event) and "
+            "rewrite its prose to match; ",
+            "sentence mentions, and change semantic_event too, because changing subject_focus "
+            "alone is only one axis) and rewrite its prose to match; ",
+        ),
+        (
+            "because the second shot cuts to the object the sentence names. ",
+            "because the second shot cuts to the object the sentence names. Counting rule: "
+            "two adjacent shots that share the same subject_focus and are both SAME_MOMENT "
+            "and SAME_LOCATION can differ only in semantic_event, so they are always invalid; "
+            "for example REVEAL_EVIDENCE|OBJECT_OR_EVIDENCE|SAME_MOMENT|SAME_LOCATION followed "
+            "by ESTABLISH_CONTEXT|OBJECT_OR_EVIDENCE|SAME_MOMENT|SAME_LOCATION is invalid. ",
+        ),
+    ]
+    if sentence_count >= 3:
+        replacements.insert(
+            0,
+            (
+                f"; this unit of {sentence_count} sentences needs at least two shots",
+                f"; aim for at least two shots in this unit of {sentence_count} sentences, but "
+                "if TARGET shows one continuous moment in one place and no second shot can "
+                "differ from the first in at least two of the four controlled dimensions, "
+                "return one shot",
+            ),
+        )
+    text = v9
+    for old, new in replacements:
+        if text.count(old) != 1:
+            raise ValueError("project director v9 prompt passage drifted; v10 cannot be built")
         text = text.replace(old, new)
     return text
 
