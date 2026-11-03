@@ -106,7 +106,32 @@ def test_manual_h3_post_calls_writer_with_authenticated_owner(monkeypatch) -> No
         "group_id": group,
         "expected_storyboard_generation_id": generation,
         "idempotency_key": "manual-h3",
+        "seed": None,
     }
+
+    client = TestClient(app)
+    with_seed = client.post(
+        f"/group-videos/groups/{group}/generations",
+        headers={"Idempotency-Key": "manual-h3-seeded"},
+        json={
+            "expected_storyboard_generation_id": str(generation),
+            "seed": 798160553724158,
+        },
+    )
+    assert with_seed.status_code == 202, with_seed.text
+    assert writer.seen["seed"] == 798160553724158
+
+    # 2026-11-03 用户决策 4：seed 限定 0..2^53-1。
+    for invalid in (-1, 2**53):
+        rejected = client.post(
+            f"/group-videos/groups/{group}/generations",
+            headers={"Idempotency-Key": f"manual-h3-bad-{invalid}"},
+            json={
+                "expected_storyboard_generation_id": str(generation),
+                "seed": invalid,
+            },
+        )
+        assert rejected.status_code == 422, rejected.text
 
 
 def test_openapi_has_exactly_one_manual_h3_post(monkeypatch) -> None:  # type: ignore[no-untyped-def]

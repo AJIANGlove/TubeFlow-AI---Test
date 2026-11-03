@@ -565,7 +565,12 @@ class DurableGroupVideoOrchestrator:
                 raise VideoRuleViolation("persisted_provider_request_hash_mismatch")
             persisted = dict(existing.input_snapshot or {})
             persisted.pop("video_prompt", None)
-            fresh = _input_snapshot(source, generation, compiled=None)
+            # 兼容旧键：seed 记录上线前创建的 attempt 快照 seed 为 null，比较时必须同样不派生，
+            # 否则同一幂等键的合法重试会被误判为 idempotency_conflict（2026-11-03 用户决策 3）。
+            comparison_generation = (
+                _authorize(source) if persisted.get("seed") is None else generation
+            )
+            fresh = _input_snapshot(source, comparison_generation, compiled=None)
             if canonical_sha256(persisted) != canonical_sha256(fresh):
                 raise VideoRuleViolation("idempotency_conflict")
             return existing
@@ -2361,12 +2366,24 @@ def _parse_dt(value: str | None) -> datetime | None:
 
 
 def _authorize(
-    source: AuthoritativeGroupInput, *, idempotency_key: str | None = None
+    source: AuthoritativeGroupInput,
+    *,
+    idempotency_key: str | None = None,
+    seed: int | None = None,
 ) -> GroupVideoGeneration:
-    """权威输入 → 不可变 generation；无显式 seed 时按幂等键派生确定 seed。"""
-    seed = source.seed
-    if seed is None and idempotency_key is not None:
-        seed = _derived_seed(source.group_id, idempotency_key)
+    """权威输入 → 不可变 generation；无显式 seed 时按幂等键派生确定 seed。
+
+    seed 为调用方显式覆盖（实验用，见 ManualH3Input.seed），优先级最高；
+    未提供时沿用故事板快照的 seed，最后才按幂等键派生。
+    """
+    if seed is not None:
+        resolved = seed
+    elif source.seed is not None:
+        resolved = source.seed
+    elif idempotency_key is not None:
+        resolved = _derived_seed(source.group_id, idempotency_key)
+    else:
+        resolved = None
     if not source.snapshot_frozen:
         raise VideoRuleViolation("immutable_project_snapshot_required")
     count = len(source.sentence_text_sha256)
@@ -2490,7 +2507,7 @@ def _authorize(
         source.prompt,
         source.group_target_duration_ms,
         source.aspect_ratio,
-        seed,
+        resolved,
         source.workflow,
         source.storyboard_generation_id,
         source.storyboard_applied_revision_id,
@@ -2507,9 +2524,10 @@ def compile_video_prompt(
     *,
     attempt_id: UUID,
     idempotency_key: str | None = None,
+    seed: int | None = None,
 ) -> CompiledVideoPrompt:
     """意图创建路径的共享编译入口：权威输入 → 编译器输入 → LLM 编译。"""
-    generation = _authorize(source, idempotency_key=idempotency_key)
+    generation = _authorize(source, idempotency_key=idempotency_key, seed=seed)
     # §15.14：AUTO 项目输出不确定性校验失败可修复重试 2 次（含临时故障共享 3 次预算）；
     # MANUAL 维持既有"一次修复重试"。
     strategy = (
@@ -3013,11 +3031,12 @@ def prepare_manual_video_intent(
     *,
     compiled: CompiledVideoPrompt,
     idempotency_key: str | None = None,
+    seed: int | None = None,
 ) -> tuple[dict[str, object], str, dict[str, object], str]:
     """Build the exact immutable worker input and provider request before persistence."""
     if not source.authority_snapshot:
         raise VideoRuleViolation("authoritative_video_input_required")
-    generation = _authorize(source, idempotency_key=idempotency_key)
+    generation = _authorize(source, idempotency_key=idempotency_key, seed=seed)
     expected = _compiler_input(source, generation, compiled.strategy, attempt_id)
     if compiled.input_fingerprint != expected.fingerprint:
         raise VideoRuleViolation("video_prompt_compiler_input_changed")
@@ -3052,7 +3071,12 @@ def validate_reference_intent(
             or snapshot.get("reference_input_sha256") != source.reference_input_sha256
         ):
             raise VideoRuleViolation("video_reference_input_changed")
-    generation = _authorize(source, idempotency_key=attempt.idempotency_key)
+    recorded_seed = snapshot.get("seed")
+    generation = _authorize(
+        source,
+        idempotency_key=attempt.idempotency_key,
+        seed=recorded_seed if isinstance(recorded_seed, int) and not isinstance(recorded_seed, bool) else None,
+    )
     request = _request(
         generation, attempt.attempt_id, prompt=str(attempt.request.get("prompt", ""))
     )

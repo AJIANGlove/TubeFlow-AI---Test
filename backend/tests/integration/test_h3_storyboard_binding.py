@@ -793,3 +793,36 @@ def test_manual_intent_records_derived_seed_when_none_configured(
         assert row is not None
         assert row.input_snapshot_json["seed"] == expected
         assert row.request_json["parameters"]["seed"] == expected
+
+
+@pytest.mark.integration
+def test_manual_intent_explicit_seed_overrides_and_conflicts_on_change(
+    postgres_database: PostgresDatabase,
+    storyboard_parent_chain: tuple[ProductionParentChain, UUID],
+) -> None:
+    # 2026-11-03 用户决策 4：显式 seed 覆盖派生值并落库；同键换 seed 视为另一请求。
+    parents, generation_id = storyboard_parent_chain
+    _seed_current_media(postgres_database, parents, generation_id)
+    writer = _writer(postgres_database, seed=None)
+    explicit = 798160553724158
+    attempt_id = writer.create(
+        owner_id=parents.owner_id,
+        group_id=parents.group_id,
+        expected_storyboard_generation_id=generation_id,
+        idempotency_key="seed-explicit-manual",
+        seed=explicit,
+    )
+    with postgres_database.sessions.begin() as session:
+        row = session.get(VideoAttemptRecord, attempt_id)
+        assert row is not None
+        assert row.input_snapshot_json["seed"] == explicit
+        assert row.request_json["parameters"]["seed"] == explicit
+
+    with pytest.raises(DomainError, match="idempotency_conflict"):
+        writer.create(
+            owner_id=parents.owner_id,
+            group_id=parents.group_id,
+            expected_storyboard_generation_id=generation_id,
+            idempotency_key="seed-explicit-manual",
+            seed=explicit + 1,
+        )

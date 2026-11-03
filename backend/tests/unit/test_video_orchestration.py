@@ -25,11 +25,15 @@ from tubeflow_test.video_generation.orchestration import (
     AttemptStage,
     AuthoritativeGroupInput,
     DurableGroupVideoOrchestrator,
+    PersistentAttempt,
     RequestedAction,
     VideoMediaEvidence,
+    _authorize,
     _derived_seed,
     _generation_from_snapshot,
     _group_shot_ranges,
+    _input_snapshot,
+    canonical_sha256,
     compile_video_prompt,
     validate_reference_intent,
 )
@@ -1711,3 +1715,28 @@ def test_validate_reference_intent_keeps_derived_seed_hashes_consistent() -> Non
     source, _repository, _engine, _assets, service = setup(seed=None)
     attempt = service.trigger(source.owner_id, source.group_id, "click-validate")
     validate_reference_intent(source, attempt)
+
+
+def test_legacy_attempt_without_seed_remains_idempotent_for_same_key() -> None:
+    # 2026-11-03 用户决策 3：seed 记录上线前创建的键，快照 seed 为 null；重试不得报 idempotency_conflict。
+    source, repository, _engine, _assets, service = setup(seed=None)
+    attempt_id = uuid4()
+    legacy = _authorize(source)  # 不传幂等键 → 不派生 seed，等价于旧版快照
+    snapshot = _input_snapshot(source, legacy, compiled=None)
+    repository.create_attempt(
+        PersistentAttempt(
+            attempt_id,
+            source.owner_id,
+            source.project_id,
+            source.group_id,
+            source.generation_id,
+            "legacy-click",
+            canonical_sha256(snapshot),
+            canonical_sha256({}),
+            {},
+            input_snapshot=snapshot,
+        )
+    )
+    result = service.trigger(source.owner_id, source.group_id, "legacy-click")
+    assert result.attempt_id == attempt_id
+    assert (result.input_snapshot or {})["seed"] is None
