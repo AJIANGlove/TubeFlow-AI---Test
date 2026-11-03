@@ -374,3 +374,14 @@ ssh $SSHOPTS edy@192.168.110.200 'sudo docker run --rm -v tubeflowai-test_postgr
 - 部署前：AUTO RUNNING 0、非终态故事板 0、非终态视频 attempt 0。历史 10 个故事板 `REMOTE_STATE_UNKNOWN`（9-07/10-15）与 1 个导演 UNKNOWN 无恢复工作流，按不在途处理。
 - 部署后：`910fa912…` 最新导演运行仍为 `project-director-unit-v8`（91 单元），无新增运行、无 `auto_confirm_new_input` 审计。`TUBEFLOW_VIDEO_PROMPT_STRATEGY` 保持 `tubeflow_storyboard_v3`（A/B 期间临时切 v4 两次提交后已恢复，见 `Pending issues/2026-11-03/VIDEO_QUALITY_AB_RESULTS_20261103.md`）。
 - 回滚：compose 还原备份后 `up -d --no-build` 回 `sha256:705f9ddf3f76…`（`tubeflow-test:single-panel-lock-fix-20261103`），该镜像仍在部署机。
+
+## 33. 2026-11-03 默认 v4 + 故事板无文字 + 风格冲突子句移除（quality-followups-20261103）
+
+- 来源：PR #2 `3a421a2`（`claude/quality-followups-20261103`）+ ruff 修复 `3a421a2`，合并到 main（`bc90cad` 仅文档）。
+- 门禁：改动文件 ruff check、mypy --strict 通过；干净工作树单元 2208 passed / 0 failed / 10 skipped；集成 19 failed / 117 passed / 7 skipped（与 main 基线一致，缺 MinIO/Temporal/ffmpeg，非本次引入）。
+- 构建：部署机 `/home/edy/build-quality-followups2-20261103`（git archive of `bc90cad`，仅 LF/CRLF 差异已核对）。镜像 `sha256:35a2f3f2949cab3234da34d5aec0b5210384a0780ce3ef88f0a64b131363fc84`（`tubeflow-test:quality-followups-20261103`）。
+- 前置检查：AUTO RUNNING 0、在途故事板 0、非终态视频 attempt 0（项目 `765dca11` AUTO 处于 PAUSED，未触碰）。
+- 部署：compose 备份 `runtime/operations/quality-followups-20261103/docker-compose.yml.bak`、`.env` 备份 `env.bak`；三处 image 改钉；`TUBEFLOW_VIDEO_PROMPT_STRATEGY` 改为 `tubeflow_storyboard_v4_natural_motion`；`up -d --no-build --force-recreate web worker`。
+- 验证：web/worker healthy，`/health/live` 200，迁移保持 `0046`，两个容器内 `Settings().video_prompt_strategy` 均为 v4；`910fa912` 导演仍为 `project-director-unit-v8`（91 单元），无新增运行与审计。
+- 注意：项目 `765dca11`（AUTO PAUSED）恢复后生成的故事板将使用新提示词（无 SHOT 角标、禁文字、风格冲突句被移除），其 canonical 请求哈希与暂停时不同，属预期。
+- 回滚：还原 compose 与 `.env` 备份，`up -d --no-build --force-recreate web worker` 回 `sha256:424f4ae9ce1a…`。
