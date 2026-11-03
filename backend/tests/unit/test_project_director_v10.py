@@ -14,7 +14,7 @@ from dataclasses import replace
 import pytest
 from test_project_director import Result, complete, context, create
 from test_project_director_quality_contract import MultiShotModel, _base_payload, _director
-from test_project_director_v9 import _FixedClock, _fixed_context, _FixedIds
+from test_project_director_v9 import _fixed_context, _FixedClock, _FixedIds
 
 from tubeflow_test.application.project_director import (
     PROJECT_DIRECTOR_LEGACY_PROMPT_REF,
