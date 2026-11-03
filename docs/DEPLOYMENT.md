@@ -364,3 +364,13 @@ ssh $SSHOPTS edy@192.168.110.200 'sudo docker run --rm -v tubeflowai-test_postgr
 - 构建：上下文 `/home/edy/build-fix-20261029`（本地打包 3.9 MB，含 backend/src、migrations、frontend 与根三件套，另补传 `backend/Dockerfile`）；1m16s。**仅构建目录**把 pip 源由 tsinghua 改为 aliyun（tsinghua 对 `setuptools-84.2.1` 返回 403），仓库 Dockerfile 未改。镜像内核验：包内 250 文件 + 45 迁移与工作树逐一 sha256 相同。
 - 备份/回滚：`docker-compose.yml.bak` 还原后 `up -d --no-build` 回 `sha256:880b86002eb6…`；该旧镜像仍在本机。
 - 附：上线前已用 `docker diff` 确认全仓只有这 3 个文件存在热覆盖，无其它 overlay 遗留；本次未触发任何 provider 调用。
+
+## 32. 2026-11-03 故事板身份参考 + 视频 v4 自然运动上线（quality-v4-20261103）
+
+- 来源：PR #1 `4bde800`（`claude/video-quality-v4-v9`），fast-forward 合入 main 并推送。改动：故事板提示词追加「参考图只作身份参考」；新增可选策略 `tubeflow_storyboard_v4_natural_motion`（默认仍 v3）；导演单元提示词 v9（仅无历史运行的新项目，既有项目钉 v8）。
+- 门禁：改动 5 文件 ruff check 通过、mypy --strict 通过；`ruff format --check` 仍有 4 文件待格式化（基线本就有 5 个，非本次引入）。后端全量单元 2195 passed / 5 failed / 10 skipped（无 ffmpeg）；5 例在合并前基线同样失败、单独复跑全部通过，属既有全量顺序污染。新增测试 23 项。
+- 构建：本地打包 814 KB（排除 pyc/egg-info）→ 部署机 `/home/edy/build-quality-v4-20261103` → `docker build -f backend/Dockerfile`。镜像 `sha256:424f4ae9ce1a25fe22203c27f7f526425cc2f82bef59871e06a1e089d9aabb98`（`tubeflow-test:quality-v4-20261103`），镜像内 5 个文件 SHA-256 与 main 工作树逐字一致，迁移到 `0046`。
+- 部署：compose 备份 `runtime/operations/quality-v4-20261103/docker-compose.yml.bak`，三处 `image:` 改钉后 `up -d --no-build`；migrate 退出 0，`alembic 0046` 不变，web/worker healthy，`/health/live` 200。
+- 部署前：AUTO RUNNING 0、非终态故事板 0、非终态视频 attempt 0。历史 10 个故事板 `REMOTE_STATE_UNKNOWN`（9-07/10-15）与 1 个导演 UNKNOWN 无恢复工作流，按不在途处理。
+- 部署后：`910fa912…` 最新导演运行仍为 `project-director-unit-v8`（91 单元），无新增运行、无 `auto_confirm_new_input` 审计。`TUBEFLOW_VIDEO_PROMPT_STRATEGY` 保持 `tubeflow_storyboard_v3`（A/B 期间临时切 v4 两次提交后已恢复，见 `Pending issues/2026-11-03/VIDEO_QUALITY_AB_RESULTS_20261103.md`）。
+- 回滚：compose 还原备份后 `up -d --no-build` 回 `sha256:705f9ddf3f76…`（`tubeflow-test:single-panel-lock-fix-20261103`），该镜像仍在部署机。
