@@ -385,3 +385,12 @@ ssh $SSHOPTS edy@192.168.110.200 'sudo docker run --rm -v tubeflowai-test_postgr
 - 验证：web/worker healthy，`/health/live` 200，迁移保持 `0046`，两个容器内 `Settings().video_prompt_strategy` 均为 v4；`910fa912` 导演仍为 `project-director-unit-v8`（91 单元），无新增运行与审计。
 - 注意：项目 `765dca11`（AUTO PAUSED）恢复后生成的故事板将使用新提示词（无 SHOT 角标、禁文字、风格冲突句被移除），其 canonical 请求哈希与暂停时不同，属预期。
 - 回滚：还原 compose 与 `.env` 备份，`up -d --no-build --force-recreate web worker` 回 `sha256:424f4ae9ce1a…`。
+
+## 34. 2026-11-03 seed 记录 + v4 代词规则上线（seed-pronoun-20261103）
+
+- 来源：main `7263fe4`（合并 `b321bb1` seed 记录 + `979b996` v4 代词规则）。seed 分支门禁：单元 2214/0/10、ruff/mypy 通过、PostgreSQL 集成 `test_h3_storyboard_binding.py` 13/13 + 回放/媒体锁 7/7；合并树单元 2217/0/10、ruff 通过。
+- 构建：部署机 `/home/edy/build-seed-20261103`（git archive of 7263fe4）。镜像 `sha256:c031714fe190df1713a07023e13c88e6ae07e79e5ccc299e1e1156e5bfa7b19b`（`tubeflow-test:seed-pronoun-20261103`），镜像内含 `_derived_seed` 与代词校验。
+- 前置检查：AUTO RUNNING 0、在途故事板 0、非终态视频 0。compose 备份 `runtime/operations/seed-pronoun-20261103/docker-compose.yml.bak`，三处 image 改钉，`up -d --no-build`。
+- 验证：web/worker healthy，`/health/live` 200，迁移 `0046` 不变，策略仍为 v4（web+worker 实读），`_derived_seed` 与 `_GENDERED_PRONOUN` 在容器内可用，`910fa912` 导演 v8 不变、无新审计。
+- 同日：频道 `f28a0845`（韩国小生意经济财经）的 `default_visual_style` 已删除「保留原图人物特征、服装、姿势、表情、主体数量、场景布局和物品位置，仅转换画面艺术风格。」；原文备份 `runtime/operations/channel-style-20261103/default_visual_style.before.txt`。只影响新建项目快照。
+- 回滚：还原 compose 备份后 `up -d --no-build` 回 `sha256:35a2f3f2949c…`；频道风格还原用备份文件 UPDATE。
