@@ -29,6 +29,7 @@ from tubeflow_test.video_generation.orchestration import (
     AttemptStage,
     AuthoritativeGroupInput,
     DurableGroupVideoOrchestrator,
+    _derived_seed,
 )
 from tubeflow_test.video_generation.persistence import (
     H3NodeRecord,
@@ -47,7 +48,9 @@ class Probe:
         raise AssertionError("archive probe is outside this submit-path test")
 
 
-def _writer(database: PostgresDatabase) -> ManualH3IntentWriter:
+def _writer(
+    database: PostgresDatabase, *, seed: int | None = 1
+) -> ManualH3IntentWriter:
     repository = SqlAlchemyStoryboardRepository(lambda: pytest.fail("caller transaction only"))
 
     def load(session, owner_id: UUID, group_id: UUID) -> AuthoritativeGroupInput:  # type: ignore[no-untyped-def]
@@ -75,7 +78,7 @@ def _writer(database: PostgresDatabase) -> ManualH3IntentWriter:
             (1001, 1001), (True,) * 2, (asset,) * 2,
             ((0, 1001), (1001, 2001)), (0, 1), 0, 2001, 2001,
             (asset,), asset, "GRID_SHEET", True, generation.applied_revision_id,
-            generation.applied_revision_id, "fixture prompt", AspectRatio.LANDSCAPE, 1,
+            generation.applied_revision_id, "fixture prompt", AspectRatio.LANDSCAPE, seed,
             workflow, script, (0, 1), generation.version, (asset,) * 2, generation.id,
             asset.sha256, (24013,) * 2, (24000,) * 2,
             ((0, 24013), (24013, 48026)), 0, 48026, 24000,
@@ -765,3 +768,62 @@ def test_video_batch_job_repository_crud_and_resume_semantics(
     assert view.items[0].status == "queued" and view.items[0].attempt_id is not None
 
     assert repository.get_job(uuid4()) is None
+
+
+@pytest.mark.integration
+def test_manual_intent_records_derived_seed_when_none_configured(
+    postgres_database: PostgresDatabase,
+    storyboard_parent_chain: tuple[ProductionParentChain, UUID],
+) -> None:
+    # 2026-11-03 AB_REVIEW_AND_FOLLOWUPS §3：未配置 seed 时按 (group_id, idempotency_key) 派生并落库，
+    # 快照与 provider request 必须一致；不同幂等键得到不同 seed。
+    parents, generation_id = storyboard_parent_chain
+    _seed_current_media(postgres_database, parents, generation_id)
+    writer = _writer(postgres_database, seed=None)
+    key = "seed-derivation-manual"
+    attempt_id = writer.create(
+        owner_id=parents.owner_id,
+        group_id=parents.group_id,
+        expected_storyboard_generation_id=generation_id,
+        idempotency_key=key,
+    )
+    expected = _derived_seed(parents.group_id, key)
+    with postgres_database.sessions.begin() as session:
+        row = session.get(VideoAttemptRecord, attempt_id)
+        assert row is not None
+        assert row.input_snapshot_json["seed"] == expected
+        assert row.request_json["parameters"]["seed"] == expected
+
+
+@pytest.mark.integration
+def test_manual_intent_explicit_seed_overrides_and_conflicts_on_change(
+    postgres_database: PostgresDatabase,
+    storyboard_parent_chain: tuple[ProductionParentChain, UUID],
+) -> None:
+    # 2026-11-03 用户决策 4：显式 seed 覆盖派生值并落库；同键换 seed 视为另一请求。
+    parents, generation_id = storyboard_parent_chain
+    _seed_current_media(postgres_database, parents, generation_id)
+    writer = _writer(postgres_database, seed=None)
+    explicit = 798160553724158
+    attempt_id = writer.create(
+        owner_id=parents.owner_id,
+        group_id=parents.group_id,
+        expected_storyboard_generation_id=generation_id,
+        idempotency_key="seed-explicit-manual",
+        seed=explicit,
+    )
+    with postgres_database.sessions.begin() as session:
+        row = session.get(VideoAttemptRecord, attempt_id)
+        assert row is not None
+        assert row.input_snapshot_json["seed"] == explicit
+        assert row.request_json["parameters"]["seed"] == explicit
+
+    with pytest.raises(DomainError) as conflict:
+        writer.create(
+            owner_id=parents.owner_id,
+            group_id=parents.group_id,
+            expected_storyboard_generation_id=generation_id,
+            idempotency_key="seed-explicit-manual",
+            seed=explicit + 1,
+        )
+    assert conflict.value.code == "idempotency_conflict"

@@ -349,6 +349,7 @@ class ManualH3IntentWriter:
         expected_storyboard_generation_id: UUID,
         idempotency_key: str,
         request: dict[str, object] | None = None,
+        seed: int | None = None,
     ) -> UUID:
         # LLM 提示词编译放在写事务之外：只读预取 + 编译。预取失败不裁决——
         # 事务内按既有守卫顺序（purging/媒体/并发/血缘）复现 canonical 错误，
@@ -362,7 +363,11 @@ class ManualH3IntentWriter:
         except Exception:
             preview = None
         attempt_id = uuid4()
-        compiled = self._compile(preview, attempt_id) if preview is not None else None
+        compiled = (
+            self._compile(preview, attempt_id, idempotency_key, seed)
+            if preview is not None
+            else None
+        )
         try:
             return self._create_once(
                 owner_id=owner_id,
@@ -372,6 +377,7 @@ class ManualH3IntentWriter:
                 request=request,
                 compiled=compiled,
                 attempt_id=attempt_id,
+                seed=seed,
             )
         except IntegrityError:
             # Concurrent first-use races resolve through the owner/key unique row.
@@ -383,15 +389,28 @@ class ManualH3IntentWriter:
                 request=request,
                 compiled=compiled,
                 attempt_id=attempt_id,
+                seed=seed,
             )
 
-    def _compile(self, source: AuthoritativeGroupInput, attempt_id: UUID) -> CompiledVideoPrompt:
+    def _compile(
+        self,
+        source: AuthoritativeGroupInput,
+        attempt_id: UUID,
+        idempotency_key: str,
+        seed: int | None,
+    ) -> CompiledVideoPrompt:
         if self._prompt_compiler is None:
             raise DomainError(
                 "video_prompt_compiler_not_configured",
                 "Video prompt compiler is not configured",
             )
-        return compile_video_prompt(source, self._prompt_compiler, attempt_id=attempt_id)
+        return compile_video_prompt(
+            source,
+            self._prompt_compiler,
+            attempt_id=attempt_id,
+            idempotency_key=idempotency_key,
+            seed=seed,
+        )
 
     def get(self, owner_id: UUID, attempt_id: UUID) -> VideoAttemptRecord | None:
         with self._uow() as session:
@@ -412,6 +431,7 @@ class ManualH3IntentWriter:
         request: dict[str, object] | None,
         compiled: CompiledVideoPrompt | None,
         attempt_id: UUID,
+        seed: int | None = None,
     ) -> UUID:
         now = datetime.now(UTC)
         with self._uow() as session:
@@ -441,10 +461,13 @@ class ManualH3IntentWriter:
             if existing is not None:
                 snapshot = existing.input_snapshot_json or {}
                 existing_request = snapshot.get("manual_request", {})
+                # 显式 seed 参与幂等比较（2026-11-03 用户决策 4）：同键换 seed 视为另一请求；
+                # 未显式指定时保持既有语义（旧键不会因此冲突）。
                 if (
                     existing.group_id != group_id
                     or existing.generation_id != expected_storyboard_generation_id
                     or existing_request != (request or {})
+                    or (seed is not None and snapshot.get("seed") != seed)
                 ):
                     raise DomainError("idempotency_conflict", "H3 key is bound to another request")
                 return existing.attempt_id
@@ -546,7 +569,13 @@ class ManualH3IntentWriter:
                     "Video prompt compiler input changed before persistence",
                 )
             input_snapshot, generation_sha256, provider_request, request_sha256 = (
-                prepare_manual_video_intent(source, attempt_id, compiled=compiled)
+                prepare_manual_video_intent(
+                    source,
+                    attempt_id,
+                    compiled=compiled,
+                    idempotency_key=idempotency_key,
+                    seed=seed,
+                )
             )
             input_snapshot["manual_request"] = request or {}
             generation_sha256 = canonical_sha256(input_snapshot)

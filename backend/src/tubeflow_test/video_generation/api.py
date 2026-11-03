@@ -8,7 +8,7 @@ from uuid import UUID
 
 from fastapi import APIRouter, Depends, Header, HTTPException, Request, status
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 from tubeflow_test.domain.errors import DomainError
 from tubeflow_test.identity_project.domain import Account
@@ -112,6 +112,9 @@ def create_group_video_router(
 class ManualH3Input(BaseModel):
     model_config = ConfigDict(extra="forbid")
     expected_storyboard_generation_id: UUID
+    # 实验用显式 seed（2026-11-03 用户决策 4）：仅当提供时覆盖派生 seed；
+    # 取值范围与 _ladder_seed 一致。
+    seed: int | None = Field(default=None, ge=0, le=2**53 - 1)
 
 
 class ManualH3Writer(Protocol):
@@ -123,6 +126,7 @@ class ManualH3Writer(Protocol):
         expected_storyboard_generation_id: UUID,
         idempotency_key: str,
         request: dict[str, object] | None = None,
+        seed: int | None = None,
     ) -> UUID: ...
 
     def get(self, owner_id: UUID, attempt_id: UUID) -> PersistentAttempt | None: ...
@@ -175,6 +179,7 @@ def create_video_router(
                 group_id=group_id,
                 expected_storyboard_generation_id=body.expected_storyboard_generation_id,
                 idempotency_key=idempotency_key,
+                seed=body.seed,
             )
         except (DomainError, VideoRuleViolation) as exc:
             if isinstance(exc, VideoRuleViolation):

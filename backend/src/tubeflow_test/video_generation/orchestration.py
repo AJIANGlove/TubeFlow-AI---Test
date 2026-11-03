@@ -557,7 +557,7 @@ class DurableGroupVideoOrchestrator:
         source = self._repo.load_authoritative_group(owner_id, group_id)
         if self._write_guard is not None:
             self._write_guard(owner_id, source.project_id)
-        generation = _authorize(source)
+        generation = _authorize(source, idempotency_key=idempotency_key)
         existing = self._repo.find_attempt(owner_id, idempotency_key)
         if existing is not None:
             # LLM 编译产物不确定，幂等比较只看确定性输入事实（video_prompt 块除外）。
@@ -565,7 +565,12 @@ class DurableGroupVideoOrchestrator:
                 raise VideoRuleViolation("persisted_provider_request_hash_mismatch")
             persisted = dict(existing.input_snapshot or {})
             persisted.pop("video_prompt", None)
-            fresh = _input_snapshot(source, generation, compiled=None)
+            # 兼容旧键：seed 记录上线前创建的 attempt 快照 seed 为 null，比较时必须同样不派生，
+            # 否则同一幂等键的合法重试会被误判为 idempotency_conflict（2026-11-03 用户决策 3）。
+            comparison_generation = (
+                _authorize(source) if persisted.get("seed") is None else generation
+            )
+            fresh = _input_snapshot(source, comparison_generation, compiled=None)
             if canonical_sha256(persisted) != canonical_sha256(fresh):
                 raise VideoRuleViolation("idempotency_conflict")
             return existing
@@ -575,7 +580,10 @@ class DurableGroupVideoOrchestrator:
         attempt_id = uuid4()
         try:
             compiled = compile_video_prompt(
-                source, self._require_prompt_compiler(), attempt_id=attempt_id
+                source,
+                self._require_prompt_compiler(),
+                attempt_id=attempt_id,
+                idempotency_key=idempotency_key,
             )
         except DomainError as exc:
             # C3（2026-10-21）：AUTO 项目的意图阶段失败（提示词编译）不产生 attempt 行，
@@ -2357,7 +2365,26 @@ def _parse_dt(value: str | None) -> datetime | None:
     return parsed if parsed.tzinfo is not None else parsed.replace(tzinfo=UTC)
 
 
-def _authorize(source: AuthoritativeGroupInput) -> GroupVideoGeneration:
+def _authorize(
+    source: AuthoritativeGroupInput,
+    *,
+    idempotency_key: str | None = None,
+    seed: int | None = None,
+) -> GroupVideoGeneration:
+    """权威输入 → 不可变 generation；无显式 seed 时按幂等键派生确定 seed。
+
+    seed 为调用方显式覆盖（实验用，见 ManualH3Input.seed），优先级最高；
+    未提供时沿用故事板快照的 seed，最后才按幂等键派生。
+    """
+    resolved: int | str | None
+    if seed is not None:
+        resolved = seed
+    elif source.seed is not None:
+        resolved = source.seed
+    elif idempotency_key is not None:
+        resolved = _derived_seed(source.group_id, idempotency_key)
+    else:
+        resolved = None
     if not source.snapshot_frozen:
         raise VideoRuleViolation("immutable_project_snapshot_required")
     count = len(source.sentence_text_sha256)
@@ -2481,7 +2508,7 @@ def _authorize(source: AuthoritativeGroupInput) -> GroupVideoGeneration:
         source.prompt,
         source.group_target_duration_ms,
         source.aspect_ratio,
-        source.seed,
+        resolved,
         source.workflow,
         source.storyboard_generation_id,
         source.storyboard_applied_revision_id,
@@ -2497,9 +2524,11 @@ def compile_video_prompt(
     compiler: VideoPromptCompiler,
     *,
     attempt_id: UUID,
+    idempotency_key: str | None = None,
+    seed: int | None = None,
 ) -> CompiledVideoPrompt:
     """意图创建路径的共享编译入口：权威输入 → 编译器输入 → LLM 编译。"""
-    generation = _authorize(source)
+    generation = _authorize(source, idempotency_key=idempotency_key, seed=seed)
     # §15.14：AUTO 项目输出不确定性校验失败可修复重试 2 次（含临时故障共享 3 次预算）；
     # MANUAL 维持既有"一次修复重试"。
     strategy = (
@@ -2837,6 +2866,18 @@ def _shot_from_block(value: object) -> DirectorShot:
     )
 
 
+def _derived_seed(group_id: UUID, idempotency_key: str) -> int:
+    """无显式 seed 时的确定性 seed：由 (group_id, idempotency_key) 派生。
+
+    2026-11-03（AB_REVIEW_AND_FOLLOWUPS_20261103 §3）：首个 attempt 在未配置 seed 时也要记录
+    可复现的 seed，使 v3/v4 可单变量对照；不同幂等键仍得到不同 seed，因此“每次重新生成结果不同”
+    的语义不变。不得改用 attempt_id：trigger() 在分配 attempt_id 之前就用同一快照做幂等比较，
+    那样会让合法重试误报 idempotency_conflict。取值范围与 `_ladder_seed` 的 int 分支一致。
+    """
+    digest = hashlib.sha256(f"{group_id}:{idempotency_key}".encode()).digest()
+    return int.from_bytes(digest[:8], "big") % (2**53)
+
+
 def _ladder_seed(base: object, index: int, superseded: PersistentAttempt) -> int | str:
     """梯子确定性 seed 派生；结果必须过 GroupVideoGeneration 的 _validate_seed。
 
@@ -2986,12 +3027,17 @@ def _request(
 
 
 def prepare_manual_video_intent(
-    source: AuthoritativeGroupInput, attempt_id: UUID, *, compiled: CompiledVideoPrompt
+    source: AuthoritativeGroupInput,
+    attempt_id: UUID,
+    *,
+    compiled: CompiledVideoPrompt,
+    idempotency_key: str | None = None,
+    seed: int | None = None,
 ) -> tuple[dict[str, object], str, dict[str, object], str]:
     """Build the exact immutable worker input and provider request before persistence."""
     if not source.authority_snapshot:
         raise VideoRuleViolation("authoritative_video_input_required")
-    generation = _authorize(source)
+    generation = _authorize(source, idempotency_key=idempotency_key, seed=seed)
     expected = _compiler_input(source, generation, compiled.strategy, attempt_id)
     if compiled.input_fingerprint != expected.fingerprint:
         raise VideoRuleViolation("video_prompt_compiler_input_changed")
@@ -3026,7 +3072,14 @@ def validate_reference_intent(
             or snapshot.get("reference_input_sha256") != source.reference_input_sha256
         ):
             raise VideoRuleViolation("video_reference_input_changed")
-    generation = _authorize(source)
+    recorded_seed = snapshot.get("seed")
+    generation = _authorize(
+        source,
+        idempotency_key=attempt.idempotency_key,
+        seed=recorded_seed
+        if isinstance(recorded_seed, int) and not isinstance(recorded_seed, bool)
+        else None,
+    )
     request = _request(
         generation, attempt.attempt_id, prompt=str(attempt.request.get("prompt", ""))
     )
@@ -3048,8 +3101,8 @@ def prepare_frozen_single_panel_replay_intent(
     """Build an isolated replay without invoking or emulating the real prompt compiler."""
     if not source.authority_snapshot:
         raise VideoRuleViolation("authoritative_video_input_required")
-    generation = _authorize(source)
     replay_id = replay_id.strip()
+    generation = _authorize(source, idempotency_key=replay_id)
     if not generation.shot_panel_images:
         raise VideoRuleViolation("single_panel_reference_required")
     if not replay_id or len(replay_id) > 128:
@@ -3128,7 +3181,7 @@ def _input_snapshot(
         "target_sample_rate": generation.target_sample_rate,
         "aspect_ratio": source.aspect_ratio.value,
         "prompt": source.prompt,
-        "seed": source.seed,
+        "seed": generation.seed,
         "workflow_manifest_raw_sha256": source.workflow.workflow_manifest_sha256,
         "workflow_parameters_sha256": source.workflow.manifest_parameters_sha256,
         "workflow_manifest": json.loads(canonical_json(source.workflow.manifest)),
