@@ -818,7 +818,7 @@ def test_manual_intent_explicit_seed_overrides_and_conflicts_on_change(
         assert row.input_snapshot_json["seed"] == explicit
         assert row.request_json["parameters"]["seed"] == explicit
 
-    with pytest.raises(DomainError, match="idempotency_conflict"):
+    with pytest.raises(DomainError) as conflict:
         writer.create(
             owner_id=parents.owner_id,
             group_id=parents.group_id,
@@ -826,3 +826,4 @@ def test_manual_intent_explicit_seed_overrides_and_conflicts_on_change(
             idempotency_key="seed-explicit-manual",
             seed=explicit + 1,
         )
+    assert conflict.value.code == "idempotency_conflict"
