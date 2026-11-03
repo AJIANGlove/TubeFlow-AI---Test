@@ -362,7 +362,11 @@ class ManualH3IntentWriter:
         except Exception:
             preview = None
         attempt_id = uuid4()
-        compiled = self._compile(preview, attempt_id) if preview is not None else None
+        compiled = (
+            self._compile(preview, attempt_id, idempotency_key)
+            if preview is not None
+            else None
+        )
         try:
             return self._create_once(
                 owner_id=owner_id,
@@ -385,13 +389,20 @@ class ManualH3IntentWriter:
                 attempt_id=attempt_id,
             )
 
-    def _compile(self, source: AuthoritativeGroupInput, attempt_id: UUID) -> CompiledVideoPrompt:
+    def _compile(
+        self, source: AuthoritativeGroupInput, attempt_id: UUID, idempotency_key: str
+    ) -> CompiledVideoPrompt:
         if self._prompt_compiler is None:
             raise DomainError(
                 "video_prompt_compiler_not_configured",
                 "Video prompt compiler is not configured",
             )
-        return compile_video_prompt(source, self._prompt_compiler, attempt_id=attempt_id)
+        return compile_video_prompt(
+            source,
+            self._prompt_compiler,
+            attempt_id=attempt_id,
+            idempotency_key=idempotency_key,
+        )
 
     def get(self, owner_id: UUID, attempt_id: UUID) -> VideoAttemptRecord | None:
         with self._uow() as session:
@@ -546,7 +557,12 @@ class ManualH3IntentWriter:
                     "Video prompt compiler input changed before persistence",
                 )
             input_snapshot, generation_sha256, provider_request, request_sha256 = (
-                prepare_manual_video_intent(source, attempt_id, compiled=compiled)
+                prepare_manual_video_intent(
+                    source,
+                    attempt_id,
+                    compiled=compiled,
+                    idempotency_key=idempotency_key,
+                )
             )
             input_snapshot["manual_request"] = request or {}
             generation_sha256 = canonical_sha256(input_snapshot)

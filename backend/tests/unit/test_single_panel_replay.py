@@ -17,6 +17,7 @@ from tubeflow_test.video_generation.orchestration import (
     DurableGroupVideoOrchestrator,
     PersistentAttempt,
     _authorize,
+    _derived_seed,
     _input_snapshot,
     prepare_frozen_single_panel_replay_intent,
 )
@@ -251,3 +252,19 @@ def test_composite_storyboard_snapshot_does_not_gain_panel_state() -> None:
 
     assert "shot_panel_assets" not in snapshot
     assert snapshot["compiler_input"] is not None
+
+
+def test_replay_seed_derives_from_replay_id_not_attempt_id() -> None:
+    # 2026-11-03 AB_REVIEW_AND_FOLLOWUPS §3：冻结回放用 replay_id 派生 seed，
+    # attempt_id 每次不同也不得让 seed 漂移。
+    source, _repository, _engine, assets, _service = setup(seed=None)
+    source = _with_panels(source, assets)
+    first = _prepared_attempt(source)
+    second = _prepared_attempt(source)
+    assert first.attempt_id != second.attempt_id
+    assert first.input_snapshot is not None and second.input_snapshot is not None
+    assert first.input_snapshot["seed"] == second.input_snapshot["seed"]
+    assert first.input_snapshot["seed"] == _derived_seed(
+        source.group_id, "g1-r5-isolated-replay"
+    )
+    assert first.request["parameters"]["seed"] == first.input_snapshot["seed"]

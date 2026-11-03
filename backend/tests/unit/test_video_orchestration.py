@@ -27,8 +27,11 @@ from tubeflow_test.video_generation.orchestration import (
     DurableGroupVideoOrchestrator,
     RequestedAction,
     VideoMediaEvidence,
+    _derived_seed,
+    _generation_from_snapshot,
     _group_shot_ranges,
     compile_video_prompt,
+    validate_reference_intent,
 )
 from tubeflow_test.video_generation.repository import InMemoryVideoRepository
 from tubeflow_test.video_prompt.fake_compiler import (
@@ -77,6 +80,7 @@ def setup(
     workflow_id: str = "h3.community.reference-images-to-video",
     workflow_version: str = "1.1.0-mvp",
     probe: "Probe | None" = None,
+    seed: int | str | None = 2**53 - 1,
 ) -> tuple[
     AuthoritativeGroupInput,
     InMemoryVideoRepository,
@@ -127,7 +131,7 @@ def setup(
         revision,
         "group prompt",
         AspectRatio.LANDSCAPE,
-        2**53 - 1,
+        seed,
         workflow,
         script,
         (0,),
@@ -1664,3 +1668,46 @@ def test_trigger_maps_capacity_shortage_by_production_mode(monkeypatch) -> None:
     repository.groups[source.group_id] = replace(source, production_mode="MANUAL")
     with pytest.raises(VideoRuleViolation, match="no compatible H3 node has capacity"):
         orchestrator.trigger(source.owner_id, source.group_id, "capacity-manual")
+
+
+def test_derived_seed_is_deterministic_bounded_and_key_scoped() -> None:
+    # 2026-11-03 AB_REVIEW_AND_FOLLOWUPS §3：seed 由 (group_id, idempotency_key) 确定性派生。
+    group_id = uuid4()
+    first = _derived_seed(group_id, "click-seed")
+    assert first == _derived_seed(group_id, "click-seed")
+    assert 0 <= first < 2**53
+    assert first != _derived_seed(group_id, "click-other")
+    assert first != _derived_seed(uuid4(), "click-seed")
+
+
+def test_unseeded_trigger_records_derived_seed_and_reuses_it_on_retry() -> None:
+    source, _repository, _engine, _assets, service = setup(seed=None)
+    first = service.trigger(source.owner_id, source.group_id, "click-seed")
+    snapshot = first.input_snapshot or {}
+    seed = snapshot["seed"]
+    assert seed == _derived_seed(source.group_id, "click-seed")
+    assert first.request["parameters"]["seed"] == seed
+    # 同一幂等键重试：不冲突、同一 attempt、同一 seed（不得因 attempt_id 变化而漂移）。
+    second = service.trigger(source.owner_id, source.group_id, "click-seed")
+    assert second.attempt_id == first.attempt_id
+    assert (second.input_snapshot or {})["seed"] == seed
+
+
+def test_worker_rebuild_submits_the_snapshot_seed() -> None:
+    source, _repository, _engine, _assets, service = setup(seed=None)
+    attempt = service.trigger(source.owner_id, source.group_id, "click-rebuild")
+    generation = _generation_from_snapshot(attempt.input_snapshot or {})
+    assert generation.seed == (attempt.input_snapshot or {})["seed"]
+    assert generation.seed == _derived_seed(source.group_id, "click-rebuild")
+
+
+def test_explicit_seed_is_never_overridden_by_derivation() -> None:
+    source, _repository, _engine, _assets, service = setup(seed=123456789)
+    attempt = service.trigger(source.owner_id, source.group_id, "click-explicit")
+    assert (attempt.input_snapshot or {})["seed"] == 123456789
+
+
+def test_validate_reference_intent_keeps_derived_seed_hashes_consistent() -> None:
+    source, _repository, _engine, _assets, service = setup(seed=None)
+    attempt = service.trigger(source.owner_id, source.group_id, "click-validate")
+    validate_reference_intent(source, attempt)
