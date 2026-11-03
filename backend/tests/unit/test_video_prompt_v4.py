@@ -200,6 +200,13 @@ def test_v4_example_follows_its_own_motion_rules() -> None:
             lambda text: text.replace("At 00:06.500, cut to", "At 00:06.000, cut to"),
             "h3_prompt_cut_point_missing",
         ),
+        (
+            lambda text: text.replace(
+                "(S1) pushes the door open with one shoulder",
+                "He pushes the door open with his shoulder",
+            ),
+            "h3_prompt_gendered_pronoun_forbidden",
+        ),
     ],
 )
 def test_v4_enforces_v3_exit_validation(mutate: object, code: str) -> None:
@@ -246,9 +253,28 @@ def test_v4_example_subject_has_no_invented_appearance() -> None:
 
 
 def test_compiler_payload_strips_reference_preservation_clause() -> None:
-    clause = "保留原图人物特征、服装、姿势、表情、主体数量、场景布局和物品位置，仅转换画面艺术风格。"
+    clause = (
+        "保留原图人物特征、服装、姿势、表情、主体数量、场景布局和物品位置，"
+        "仅转换画面艺术风格。"
+    )
     value = replace(_example_input(), visual_style="暖色水彩插画，" + clause + "柔和光线")
     payload = build_user_payload(value)
     assert payload["visual_style"] == "暖色水彩插画，柔和光线"
     # 编译器输入指纹仍基于冻结风格原文（快照不改写）。
     assert value.visual_style.endswith("柔和光线") and clause in value.visual_style
+
+
+def test_v4_rules_forbid_gendered_pronouns_in_wording() -> None:
+    # 2026-11-03 用户决策 5：v4 规则明令角色只按 (Sx) 或 the person 指代。
+    prompt = build_system_prompt(V4, duration_seconds=12)
+    assert "he、she、him、her、his、hers" in prompt
+    assert "the person" in prompt
+
+
+def test_v4_example_has_no_gendered_pronouns() -> None:
+    import re
+
+    detailed = FEW_SHOT_STORYBOARD_V4.split("detailed_description:")[1].split(
+        "overall_soundscape:"
+    )[0]
+    assert re.search(r"\b(?:he|she|him|her|his|hers)\b", detailed, re.IGNORECASE) is None
