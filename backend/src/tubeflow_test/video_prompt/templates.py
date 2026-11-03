@@ -11,10 +11,10 @@ from __future__ import annotations
 
 from tubeflow_test.domain.storyboards import (
     grid_layout_for,
-    strip_reference_preservation_clause,
     panel_row_column,
     shot_cut_point_text,
     shot_time_text,
+    strip_reference_preservation_clause,
 )
 from tubeflow_test.video_prompt.domain import (
     V3_CONTRACT_STRATEGIES,
