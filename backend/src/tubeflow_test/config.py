@@ -210,6 +210,7 @@ class Settings(BaseSettings):
             "tubeflow_storyboard_v2",
             "tubeflow_storyboard_v3",
             "tubeflow_storyboard_v3_single_panel_opt_in_v1",
+            "tubeflow_storyboard_v4_natural_motion",
         }:
             raise ValueError("video prompt strategy must be a known template version")
         if self.h3_single_panel_project_ids and not self.h3_single_panel_opt_in_enabled:

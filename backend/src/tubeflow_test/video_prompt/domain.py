@@ -43,6 +43,18 @@ class VideoPromptStrategy(StrEnum):
     TUBEFLOW_STORYBOARD_V3_SINGLE_PANEL_OPT_IN_V1 = (
         "tubeflow_storyboard_v3_single_panel_opt_in_v1"
     )
+    # v4：输出合同与 v3 完全一致（同一出口校验、绑定行与格位），只改写系统提示词中的
+    # 运镜与画面自然度规则（运镜白名单、默认稳定机位、真实速度、禁止画内文字）。
+    TUBEFLOW_STORYBOARD_V4_NATURAL_MOTION = "tubeflow_storyboard_v4_natural_motion"
+
+
+# 共享 v3 输出合同（出口校验、绑定行、格位注入）的策略集合。
+V3_CONTRACT_STRATEGIES = frozenset(
+    {
+        VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3,
+        VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_NATURAL_MOTION,
+    }
+)
 
 
 class VideoPromptViolation(ValueError):
@@ -245,24 +257,20 @@ def validate_compiled_prompt(text: str, *, expected: VideoPromptCompilerInput) -
         raise VideoPromptViolation("h3_prompt_too_long")
     positions = _section_positions(text)
     bodies = _section_bodies(text, positions)
-    if expected.strategy not in (
-        VideoPromptStrategy.TUBEFLOW_STORYBOARD_V2,
-        VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3,
-    ):
+    v3_contract = expected.strategy in V3_CONTRACT_STRATEGIES
+    if expected.strategy is not VideoPromptStrategy.TUBEFLOW_STORYBOARD_V2 and not v3_contract:
         _validate_timeline_header(bodies["detailed_description"], expected.duration_seconds)
     if expected.strategy is VideoPromptStrategy.TUBEFLOW_ENHANCED_V1:
         _validate_shot_labels(bodies["detailed_description"], expected.shot_ranges)
     if expected.strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V2:
         _validate_storyboard_v2(bodies, expected)
-    if expected.strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3:
+    if v3_contract:
         _validate_storyboard_v3(bodies, expected)
     storyboard_ordinal = len(expected.reference_labels)
     for ordinal in range(1, storyboard_ordinal + 1):
         # v3 主体定义禁止图片来源指代：角色图用途由确定性绑定行表达，
         # 正文中只强制故事板 Picture N 出现（retention 条目另行强制其格式）。
-        if expected.strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3 and (
-            ordinal != storyboard_ordinal
-        ):
+        if v3_contract and ordinal != storyboard_ordinal:
             continue
         if f"Picture {ordinal}" not in text:
             raise VideoPromptViolation("h3_prompt_reference_missing")
@@ -273,7 +281,7 @@ def validate_compiled_prompt(text: str, *, expected: VideoPromptCompilerInput) -
 
 
 def render_binding_line(value: VideoPromptCompilerInput) -> str:
-    if value.strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3:
+    if value.strategy in V3_CONTRACT_STRATEGIES:
         # v3 绑定行表达用途：角色图仅身份参考；故事板按同号格映射到镜头。
         bindings = [
             f"Character reference {index} = {label} (identity reference only)"

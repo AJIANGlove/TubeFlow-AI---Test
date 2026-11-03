@@ -151,6 +151,12 @@ def test_prompt_binds_reference_characters_globally() -> None:
     prompt = _prompt(2, character_count=2)
     assert "Reference images 1 to 2 are the story characters" in prompt
     assert "identical face, hairstyle and clothing in every panel" in prompt
+    # 参考图只作身份参考，不得保留其姿势、构图与布局（2026-11-03 已接受修复方向）
+    assert "Use the reference images only for identity" in prompt
+    assert "Do not copy their pose, gesture, facial expression, framing" in prompt
+    assert "take priority over every non-identity feature" in prompt
+    assert prompt.index("only for identity") < prompt.index("Panel 1 (row 1, column 1)")
+    assert "is still one person" in prompt
 
 
 def test_prompt_omits_character_binding_without_references() -> None:

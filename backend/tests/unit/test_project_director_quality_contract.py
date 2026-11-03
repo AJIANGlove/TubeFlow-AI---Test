@@ -20,6 +20,7 @@ from test_project_director import (
 
 from tubeflow_test.application.project_director import (
     GLOBAL_PLAN_DOCUMENT_PLACEHOLDER,
+    PROJECT_DIRECTOR_LEGACY_PROMPT_REF,
     PROJECT_DIRECTOR_MATERIALIZATION_VERSION,
     PROJECT_DIRECTOR_PLAN_PROMPT_REF,
     PROJECT_DIRECTOR_PROMPT_REF,
@@ -312,6 +313,7 @@ def test_prompt_uses_section_context_plan_placeholder_and_quality_priorities() -
     run, units = director.prepare_run(
         context=value,
         idempotency_key="wide-context",
+        unit_prompt_ref=PROJECT_DIRECTOR_LEGACY_PROMPT_REF,
         trigger=ProjectDirectorTrigger.NARRATION_CONFIRMATION,
     )
     plan = units[0]
@@ -319,6 +321,7 @@ def test_prompt_uses_section_context_plan_placeholder_and_quality_priorities() -
     replay_run, replay_units = director.prepare_run(
         context=value,
         idempotency_key="wide-context-replay",
+        unit_prompt_ref=PROJECT_DIRECTOR_LEGACY_PROMPT_REF,
         trigger=ProjectDirectorTrigger.MANUAL_REGENERATE,
     )
     changed_sentence = replace(
@@ -333,6 +336,7 @@ def test_prompt_uses_section_context_plan_placeholder_and_quality_priorities() -
     changed_run, changed_units = director.prepare_run(
         context=changed_value,
         idempotency_key="wide-context-changed",
+        unit_prompt_ref=PROJECT_DIRECTOR_LEGACY_PROMPT_REF,
         trigger=ProjectDirectorTrigger.MANUAL_REGENERATE,
     )
 
@@ -370,7 +374,10 @@ def test_prompt_uses_section_context_plan_placeholder_and_quality_priorities() -
     assert "invalid because only semantic_event differs" in unit.prompt_content
     assert "Micro-movements" in unit.prompt_content
     assert "Link only TARGET sentence_ids" in unit.prompt_content
-    assert PROJECT_DIRECTOR_PROMPT_REF.endswith("v8")
+    # 2026-11-02：既有项目钉住 v8（本测试锁定 v8 文本），新项目默认 v9。
+    assert unit.prompt_ref == PROJECT_DIRECTOR_LEGACY_PROMPT_REF
+    assert PROJECT_DIRECTOR_LEGACY_PROMPT_REF.endswith("v8")
+    assert PROJECT_DIRECTOR_PROMPT_REF.endswith("v9")
     assert PROJECT_DIRECTOR_PLAN_PROMPT_REF.endswith("v7")
     assert "Use at most 24 chapters" in plan.prompt_content
     assert PROJECT_DIRECTOR_UNITIZATION_VERSION.endswith("v4")

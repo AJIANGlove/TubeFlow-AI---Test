@@ -16,6 +16,7 @@ from tubeflow_test.domain.storyboards import (
     shot_time_text,
 )
 from tubeflow_test.video_prompt.domain import (
+    V3_CONTRACT_STRATEGIES,
     SinglePanelPromptCompilerInput,
     VideoPromptCompilerInput,
     VideoPromptStrategy,
@@ -111,6 +112,31 @@ Steady rooftop wind, distant city traffic, faint urban hum, precise platform-hee
 non_diegetic_music:
 N/A"""
 
+# v4 示例：同 v3 输出合同（4 镜 16:9 为 2×2：镜头 1..4 → (1,1),(1,2),(2,1),(2,2)），
+# 只示范自然运动写法：每镜一条白名单运镜、主体动作驱动画面变化、真实速度、无画内文字。
+FEW_SHOT_STORYBOARD_V4 = """subject_definitions:
+- (S1): The shop owner, the person in character reference 1; reproduce that person's face, hair, body, and clothing exactly as in that image.
+- (S2): The same small neighborhood bakery before opening, with flour-dusted wooden counters, a steel oven, wire cooling racks, and pale blue dawn light through the front window.
+- Picture 2: The complete four-panel storyboard, used as the shot-order, composition, action, and style reference. Treat each panel as a separate chronological shot beat, not as one composite image.
+summary:
+A 12-second grounded morning routine following the four panels of Picture 2 from left to right and top to bottom: (S1) unlocks (S2), kneads dough, checks the oven, and pauses to look at the empty street.
+retention_analysis:
+- (S1) — fully_preserved: the same face, hair, body, and clothing as character reference 1 in every shot.
+- (S2) — fully_preserved: retain the counter layout, oven position, cooling racks, and dawn window light.
+- Picture 2 — shot_plan_reference_only: retain its shot order, per-panel composition and style; never reproduce the grid layout, gutters, captions, or empty panels as image content.
+detailed_description:
+Natural live-action cinematography with soft window light, realistic skin and flour texture, gentle natural motion blur, and real-time movement speed. The camera is stable and unobtrusive; visible change comes from what the subject does, not from camera motion.
+[Shot 1] Panel 1 (row 1, column 1) opens on a wide view of (S2) from just inside the door. Static camera, 0% movement. (S1) pushes the door open with his shoulder, steps in, and flips the light switch; the ceiling lights flicker once and settle while dust drifts through the window light.
+[Shot 2] At 00:03.200, cut to Panel 2 (row 1, column 2), a medium close-up of his hands on the counter. Slow push-in of about 5% over the whole shot. He presses the heel of his palm into the dough, folds it toward himself, and turns it a quarter turn; flour puffs lightly and sticks to his knuckles.
+[Shot 3] At 00:06.500, cut to Panel 3 (row 2, column 1), a medium shot at the oven. Static camera, 0% movement. He opens the oven door, warm orange light spills across his face, he squints slightly, then closes the door with a soft push and wipes his hands on the apron.
+[Shot 4] At 00:09.400, cut to Panel 4 (row 2, column 2), a medium-wide shot from behind the counter toward the window. Slow pan of about 8 degrees following him. He walks to the window, rests one hand on the frame, breathes out, and looks at the quiet street as the light grows slightly warmer.
+Maintain the identity of (S1) exactly as in character reference 1, one person only, the same bakery layout, consistent dawn lighting, correct five-finger hands, and grounded real-time body movement.
+No storyboard grid, panel borders, split screen, captions, on-screen text or numbers, signs with readable lettering, logos, watermarks, camera shake, jitter, morphing faces, warping hands, flickering textures, slow motion, extra people, or duplicated characters.
+overall_soundscape:
+A door latch, footsteps on a wooden floor, the hum of fluorescent lights, soft dough thumps on the counter, the oven door creak, and faint early-morning street ambience. No dialogue.
+non_diegetic_music:
+N/A"""
+
 _V2_RULES = """\
 你是 TubeFlow 的 MiniMax H3 结构化视频提示词编译器。必须只输出 JSON 对象，不要输出 Markdown。
 目标：将输入的分镜方案编译为符合 MiniMax H3 Base Prompt 规范的结构化英文提示词，驱动参考图生成连续全帧视频。
@@ -193,9 +219,53 @@ def _single_panel_system_prompt() -> str:
     return "\n".join(lines) + "\n"
 
 
+# v4 规则：输出合同同 v3；只改写第 8、9 条中运镜与负规则的写法，并追加画面自然度规则。
+# 依据 docs/VIDEO_JITTER_DIAGNOSIS_20261018.md §6.2：强制"每镜量化运镜"是抖动主因，
+# 画内数字/文字逐帧重绘是放大器。运镜仍逐镜量化（含 static 0%），满足 §7.18 量化要件。
+_V4_RULE_REPLACEMENTS = {
+    "8.": "8. detailed_description 先写一段全局摄影风格段（基于 visual_style 展开画面质感与光线，并写明 stable camera、natural motion blur、real-time movement speed）；随后按 shot_plan 逐镜成块：Shot 1 块以 \"[Shot 1] Panel 1 (row 1, column 1)\" 起笔，Shot 2 起每块以 \"[Shot n] At {cut_at}, cut to Panel n (row r, column c)\" 起笔（cut_at 与输入逐字一致，mm:ss.mmm 格式；Panel 编号与 row、column 逐字取自输入 shot_plan 条目的 panel 字段，不得自行换算）；每镜写清场景、主体的可见动作与恰好一条量化运镜。主体动作写成本镜时长内能以真实速度自然完成的完整小动作（起始姿态→动作→结束姿态，落到具体身体部位或物体），画面变化主要由主体动作、表情、光线与环境中的自然运动产生，而不是摄像机运动。运镜只能从白名单中选一种并写出数值：\"Static camera, 0% movement\"；\"Slow push-in of about N%\" 或 \"Slow pull-out of about N%\"（N 不超过 10）；\"Slow pan of about N degrees\" 或 \"Slow tilt of about N degrees\"（N 不超过 15，仅在跟随主体或揭示 shot_plan 中已有的事物时使用）；\"Gentle tracking at the subject's walking speed\"（仅当主体在移动）。全组至少一半镜头使用 Static camera 或 Slow push-in；相邻两镜不得使用同一种运镜；同一镜内不得组合多种运镜。禁止 orbit、环绕、旋转、Dutch angle、whip pan、crash zoom、handheld、快速推拉与任何超过上述幅度的运镜。镜头顺序与 shot_plan 一致，不得自行重排或改写切镜时刻与格位。镜头块数量必须与 shot_plan 条目数完全一致：shot_plan 有几条就只输出 [Shot 1] 至对应编号的几块，无论视频时长多长都不得拆分、新增或合并镜头块；shot_plan 只有 1 条时只输出一个 [Shot 1] 块，用 2–3 个前后衔接的自然小动作填满全片，而不是用持续运镜填满。",
+    "9.": "9. detailed_description 末尾必须依次输出两段收尾：一段以 \"Maintain \" 开头的一致性清单（面部身份、服装、场景几何、光线、风格、正确的手指数量与真实速度的肢体运动等逐条罗列）；紧接一段以 \"No storyboard grid\" 开头的负规则清单，至少包含 panel borders, split screen, captions, on-screen text or numbers, logos, watermarks, camera shake, jitter, morphing faces, warping hands, flickering textures, slow motion, extra people, duplicated characters。",
+}
+
+# 编译器只收到图片标签、看不到图片（Pending issues/2026-11-03/video-ip-inconsistency-evidence）：
+# v3 第 5 条要求"写纯外观定义"会让编译器臆造发型、服装与人数，压过正确的参考图。
+# v4 改为角色主体只按角色参考图序号指认身份，禁止任何外观描写与新增人物。
+_V4_SUBJECT_REPLACEMENTS = (
+    (
+        "为每个出场角色主体写一句纯外观与身份定义（五官身份、发型、体型、服装等）；",
+        "你看不到任何图片，因此严禁为角色主体描写任何外观（脸型、五官、发型、发色、年龄、体型、肤色、服装、配饰均不得出现），即使 shot_plan 的 scene、action_outcome 或 description 中写了这类外观也必须忽略；每个出场角色主体只写一句身份指认，格式为 \"- (S1): The <shot_plan 中的角色身份，如 shop owner>, the person in character reference 1; reproduce that person's face, hair, body, and clothing exactly as in that image.\"（character reference 的序号对应 reference_roles 中 role=CHARACTER 的顺序，只能写 \"character reference N\"，不得写 Picture）；",
+    ),
+    (
+        "每个角色主体与场景主体各一条，格式 \"- (S1) — fully_preserved: …\"；",
+        "每个角色主体与场景主体各一条，格式 \"- (S1) — fully_preserved: …\"，角色主体条目只能写 \"the same face, hair, body, and clothing as character reference N in every shot\"，不得列举任何具体外观；",
+    ),
+)
+
+_V4_EXTRA_RULES = """\
+17. 画面自然度：人物动作使用真实速度（real-time, not slow motion），带自然的眨眼、呼吸、重心转移等微表演；人物不得长时间正对镜头凝视或摆拍静止，除非 shot_plan 明确要求；同一人物在全片保持同一张脸与同一套服装。
+18. 不得在画面中生成任何字幕、标题、数字、图表、标签、界面或可读文字；若 shot_plan 涉及金额、数据、时间或比较，改用实物、动作和表情表达（例如人物翻看一叠账单后皱眉、收银机抽屉弹开、空荡与拥挤的店面对比），不得要求文字或数字逐帧变化。shot_plan 明确要求的剧情实物（如价签、招牌）只能作为静态背景中不可辨读的实物出现。
+19. 不得把 visual_style 中的颗粒、噪点、闪烁、抖动类效果写成逐帧画面效果；只描述稳定的质感、色调与光线。
+20. 角色主体 (Sx) 的数量不得超过 role=CHARACTER 的参考图数量；同一张角色参考图即使包含正面、侧面、背面等多个视角，也只代表一个人。shot_plan 提到参考图之外的人物时，只能写成背景中的小尺寸、无面部特写的人物，不得为其分配 (Sx) 编号或描写外观；Maintain 清单必须写明每个角色主体与其 character reference 一致，负规则必须包含 extra people 与 duplicated characters。"""
+
+
+def _v4_system_prompt() -> str:
+    lines = []
+    for line in _V3_RULES.splitlines():
+        prefix = next((key for key in _V4_RULE_REPLACEMENTS if line.startswith(key)), None)
+        lines.append(_V4_RULE_REPLACEMENTS[prefix] if prefix else line)
+    text = "\n".join(lines) + "\n" + _V4_EXTRA_RULES
+    for old, new in _V4_SUBJECT_REPLACEMENTS:
+        if text.count(old) != 1:
+            raise ValueError("v3 subject rule drifted; v4 prompt cannot be built")
+        text = text.replace(old, new)
+    return text
+
+
 def build_system_prompt(strategy: VideoPromptStrategy, *, duration_seconds: int) -> str:
     if strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3_SINGLE_PANEL_OPT_IN_V1:
         return _single_panel_system_prompt()
+    if strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_NATURAL_MOTION:
+        return _v4_system_prompt()
     if strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V2:
         return _V2_RULES
     if strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3:
@@ -231,7 +301,7 @@ def build_user_payload(
     shot_plan: list[dict[str, object]] = []
     layout = (
         grid_layout_for(len(value.shots), value.aspect_ratio)
-        if value.strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3
+        if value.strategy in V3_CONTRACT_STRATEGIES
         else None
     )
     for shot, shot_range in zip(value.shots, value.shot_ranges, strict=True):
@@ -246,10 +316,9 @@ def build_user_payload(
             "description": shot.description,
         }
         if (
-            value.strategy
-            in (
-                VideoPromptStrategy.TUBEFLOW_STORYBOARD_V2,
-                VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3,
+            (
+                value.strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V2
+                or value.strategy in V3_CONTRACT_STRATEGIES
             )
             and shot.order > 1
         ):
@@ -280,6 +349,8 @@ def build_user_payload(
         payload["format_example"] = FEW_SHOT_STORYBOARD_V2
     if value.strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3:
         payload["format_example"] = FEW_SHOT_STORYBOARD_V3
+    if value.strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_NATURAL_MOTION:
+        payload["format_example"] = FEW_SHOT_STORYBOARD_V4
     if repair_reason:
         payload["repair_reason"] = repair_reason
     return payload

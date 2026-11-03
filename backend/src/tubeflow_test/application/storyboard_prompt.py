@@ -100,6 +100,19 @@ def build_grid_sheet_prompt(
             "in the reference images with an identical face, hairstyle and "
             "clothing in every panel."
         )
+        # Pending issues/2026-11-03/STORYBOARD_REFERENCE_POSE_ROOT_CAUSE（用户已接受第 1 项）：
+        # 参考图只提供身份；姿势、手势、表情、构图、机位、布局与物品位置由各格分镜决定。
+        parts.append(
+            "Use the reference images only for identity: face, hairstyle, body "
+            "type and signature clothing. Do not copy their pose, gesture, facial "
+            "expression, framing, camera angle, background, scene layout or object "
+            "positions. Design each panel's pose, expression and composition anew "
+            "from its Action and Visual description; those panel instructions take "
+            "priority over every non-identity feature of the reference images. A "
+            "reference image that shows one character from several angles is still "
+            "one person; never draw more copies of a character than the panel's "
+            "action calls for."
+        )
     for shot, shot_range in zip(shots, ranges, strict=True):
         row, column = panel_row_column(shot.order, layout.cols)
         parts.append(
