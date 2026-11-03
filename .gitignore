@@ -1,0 +1,72 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+npm-debug.log*
+pnpm-debug.log*
+
+# Runtime data and generated media
+data/
+runtime/
+volumes/
+artifacts/
+outputs/
+exports/
+tmp/
+temp/
+*.mp3
+*.wav
+*.m4a
+*.aac
+*.mp4
+*.mov
+*.webm
+*.zip
+
+# Editors and operating system
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Codex local state
+.agents/
+.codex/
+
+# Test artifacts and local scratch
+.pytest-tmp/
+pytest-of-*/
+.codex-tmp/
+
+# WorkBuddy project state (contains local secrets)
+.workbuddy/
+
+# Local compose / env backups
+*.bak-*
+
+# Temporary preview page
+storyboard-preview-first-3.html
+
+# Deliverables: keep the source snapshot only (experiment/handoff bundles exceed 100MB)
+!deliverables/TubeFlow-video-generation-source-*.zip

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="TubeFlow AI ElevenLabs 号池管理" />
+    <title>TubeFlow AI · ElevenLabs 号池</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      body { overflow: auto; }
+      .el-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+      .el-table th, .el-table td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+      .el-table th { color: var(--muted); font-size: 11px; font-weight: 700; white-space: nowrap; }
+      .el-table .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; word-break: break-all; max-width: 260px; }
+      .el-table .actions { white-space: nowrap; }
+      .el-table .actions .ghost-button, .el-table .actions .danger-button { min-height: 30px; padding: 0 10px; margin-right: 6px; font-size: 11px; }
+      .quota-bar { display: inline-block; width: 120px; height: 8px; border-radius: 99px; background: #eceef2; overflow: hidden; vertical-align: middle; margin-right: 8px; }
+      .quota-fill { display: block; height: 100%; border-radius: 99px; background: var(--primary); }
+      .quota-text { font-size: 11px; }
+      .el-table small, .el-events small { color: var(--muted); }
+      .last-error { color: var(--red-strong); word-break: break-all; }
+      .empty-cell { color: var(--muted); text-align: center; }
+      .el-events { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 12px; }
+      .el-events code { font-size: 11px; color: var(--muted); }
+      .error-box { margin-bottom: 14px; padding: 10px 14px; border: 1px solid #f0cece; border-radius: 10px; color: var(--red-strong); background: #fff7f7; font-size: 12px; }
+      .add-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) auto; gap: 12px; align-items: end; }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="page-heading">
+        <div>
+          <h1>ElevenLabs 号池</h1>
+          <p>局域网测试管理页：添加、启停、删除 API key，查看配额与事件。</p>
+        </div>
+      </header>
+      <div id="error-box" class="error-box" hidden></div>
+      <section class="panel">
+        <div class="panel-head"><h2>添加 key</h2><p>提交前会先调用 ElevenLabs 免费订阅接口验证。</p></div>
+        <div class="panel-body">
+          <form id="add-form" class="add-grid">
+            <label class="field"><span>备注</span><input name="label" type="text" maxlength="200" placeholder="例如：主号" /></label>
+            <label class="field"><span>API key <em>*</em></span><input name="api_key" type="text" maxlength="512" required autocomplete="off" /></label>
+            <button type="submit" class="primary-button">添加</button>
+          </form>
+        </div>
+      </section>
+      <section class="panel">
+        <div class="panel-head"><h2>Keys</h2><p>当前配音使用最早添加的「可用」key。</p></div>
+        <div class="panel-body">
+          <table class="el-table">
+            <thead>
+              <tr><th>备注</th><th>API key</th><th>状态</th><th>字符配额</th><th>音色槽位</th><th>添加时间</th><th>操作</th></tr>
+            </thead>
+            <tbody id="keys-body"><tr><td colspan="7" class="empty-cell">加载中…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+      <section class="panel">
+        <div class="panel-head"><h2>最近事件</h2></div>
+        <div class="panel-body"><ul id="events-body" class="el-events"><li class="empty-cell">加载中…</li></ul></div>
+      </section>
+    </main>
+    <script type="module" src="/frontend/el-pool.js"></script>
+  </body>
+</html>

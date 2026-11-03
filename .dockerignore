@@ -1,0 +1,17 @@
+.env
+.env.*
+.git
+.agents
+.codex
+tmp
+temp
+**/__pycache__
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+*.orig
+node_modules
+runtime
+artifacts
+outputs
+exports

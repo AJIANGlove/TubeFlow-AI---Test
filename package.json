@@ -1,0 +1,15 @@
+﻿{
+  "name": "tubeflow-ai-web-prototype",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TubeFlow AI same-origin backend web client",
+  "scripts": {
+    "dev": "node dev-server.mjs",
+    "test": "node --test frontend/*.test.js",
+    "lint": "node --check app.js && node --check frontend/api-client.js && node --check frontend/narration-view.js && node --check frontend/video-defect.js && node --check frontend/voice-library.js && node --check frontend/step07-view.js && node --check frontend/auto-progress.js && node --check frontend/script-preview.js && node --check frontend/clipboard-copy.js && node --check frontend/project-list-display.js && node --check frontend/channel-persona.js && node --check frontend/dialog-rules.js && node --check frontend/cover-view.js && node --check frontend/cover-templates.js && node --check frontend/description-view.js && node --check frontend/el-pool.js && node --check frontend/el-voices.js && node --check frontend/locale-labels.js && node --check dev-server.mjs",
+    "typecheck": "node --check app.js && node --check frontend/api-client.js && node --check frontend/narration-view.js && node --check frontend/video-defect.js && node --check frontend/voice-library.js && node --check frontend/step07-view.js && node --check frontend/auto-progress.js && node --check frontend/script-preview.js && node --check frontend/clipboard-copy.js && node --check frontend/project-list-display.js && node --check frontend/channel-persona.js && node --check frontend/dialog-rules.js && node --check frontend/cover-view.js && node --check frontend/cover-templates.js && node --check frontend/description-view.js && node --check frontend/el-pool.js && node --check frontend/el-voices.js && node --check frontend/locale-labels.js",
+    "build": "node scripts/build.mjs",
+    "check": "npm run test && npm run lint && npm run typecheck && npm run build"
+  },
+  "type": "module"
+}

@@ -1,0 +1,178 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: sha256:705f9ddf3f76fd49b3220da16dd784164b2438e6c4f97f71f93faf75892a9347
+    pull_policy: never
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    env_file:
+      - path: .env
+        required: false
+    networks:
+      - default
+      - kinestack_control
+    environment:
+      TUBEFLOW_COSYVOICE_URL: ${TUBEFLOW_COSYVOICE_URL:-http://cosyvoice:8000}
+      TUBEFLOW_COSYVOICE_TOKEN: ${TUBEFLOW_COSYVOICE_TOKEN:-}
+      TUBEFLOW_COSYVOICE_MAX_CONCURRENCY: "4"
+      TUBEFLOW_PUBLIC_VOICE_CATALOG_PATH: /app/config/public_voice_library.zip
+      TUBEFLOW_ELEVENLABS_API_BASE: ${TUBEFLOW_ELEVENLABS_API_BASE:-https://api.elevenlabs.io}
+      TUBEFLOW_ELEVENLABS_PROXY: ${TUBEFLOW_ELEVENLABS_PROXY:-http://mihomo:7890}
+      TUBEFLOW_ELEVENLABS_TTS_MODEL: ${TUBEFLOW_ELEVENLABS_TTS_MODEL:-eleven_multilingual_v2}
+      TUBEFLOW_ELEVENLABS_PER_KEY_CONCURRENCY: ${TUBEFLOW_ELEVENLABS_PER_KEY_CONCURRENCY:-4}
+      TUBEFLOW_ELEVENLABS_DURATION_GUARD_SECONDS: ${TUBEFLOW_ELEVENLABS_DURATION_GUARD_SECONDS:-60}
+    volumes:
+      - type: bind
+        source: ${PUBLIC_VOICE_CATALOG_ARCHIVE:-./runtime/public-voice-catalog/public_voice_library.zip}
+        target: /app/config/public_voice_library.zip
+        read_only: true
+    ports:
+      - "${WEB_BIND_ADDRESS:-0.0.0.0}:${WEB_PORT:-8000}:8000"
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+      minio: {condition: service_healthy}
+      minio-init: {condition: service_completed_successfully}
+      temporal: {condition: service_healthy}
+      mihomo: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health/live')"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+  worker:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: sha256:705f9ddf3f76fd49b3220da16dd784164b2438e6c4f97f71f93faf75892a9347
+    pull_policy: never
+    command: ["tubeflow-test-worker"]
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    env_file:
+      - path: .env
+        required: false
+    networks:
+      - default
+      - kinestack_control
+    environment:
+      TUBEFLOW_ELEVENLABS_API_BASE: ${TUBEFLOW_ELEVENLABS_API_BASE:-https://api.elevenlabs.io}
+      TUBEFLOW_ELEVENLABS_PROXY: ${TUBEFLOW_ELEVENLABS_PROXY:-http://mihomo:7890}
+      TUBEFLOW_ELEVENLABS_TTS_MODEL: ${TUBEFLOW_ELEVENLABS_TTS_MODEL:-eleven_multilingual_v2}
+      TUBEFLOW_ELEVENLABS_PER_KEY_CONCURRENCY: ${TUBEFLOW_ELEVENLABS_PER_KEY_CONCURRENCY:-4}
+      TUBEFLOW_ELEVENLABS_DURATION_GUARD_SECONDS: ${TUBEFLOW_ELEVENLABS_DURATION_GUARD_SECONDS:-60}
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+      minio: {condition: service_healthy}
+      minio-init: {condition: service_completed_successfully}
+      temporal: {condition: service_healthy}
+      mihomo: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "test", "-f", "/tmp/tubeflow-worker-ready"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+  migrate:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: sha256:705f9ddf3f76fd49b3220da16dd784164b2438e6c4f97f71f93faf75892a9347
+    command: ["alembic", "upgrade", "head"]
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      TUBEFLOW_COSYVOICE_URL: ${TUBEFLOW_COSYVOICE_URL:-http://cosyvoice:8000}
+      TUBEFLOW_COSYVOICE_TOKEN: ${TUBEFLOW_COSYVOICE_TOKEN:-}
+      TUBEFLOW_COSYVOICE_MAX_CONCURRENCY: "4"
+    depends_on:
+      postgres: {condition: service_healthy}
+  postgres:
+    image: postgres:17-alpine
+    networks:
+      default:
+        aliases:
+          - tubeflow-postgres
+    environment:
+      POSTGRES_DB: tubeflow
+      POSTGRES_USER: tubeflow
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-tubeflow}
+    volumes: ["postgres_data:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tubeflow"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  minio:
+    image: minio/minio@sha256:14cea493d9a34af32f524e538b8346cf79f3321eff8e708c1e2960462bd8936e
+    command: server /data --console-address :9001
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-tubeflow}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-development-only-change-me}
+    volumes: ["minio_data:/data"]
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  minio-init:
+    image: minio/mc@sha256:a7fe349ef4bd8521fb8497f55c6042871b2ae640607cf99d9bede5e9bdf11727
+    depends_on:
+      minio: {condition: service_healthy}
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - >-
+        mc alias set local http://minio:9000
+        "$${MINIO_ROOT_USER:-tubeflow}" "$${MINIO_ROOT_PASSWORD:-development-only-change-me}" &&
+        mc mb --ignore-existing local/$${TUBEFLOW_MINIO_BUCKET:-tubeflow-private}
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-tubeflow}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-development-only-change-me}
+  temporal:
+    image: temporalio/auto-setup:1.27
+    environment:
+      DB: postgres12
+      DB_PORT: 5432
+      POSTGRES_USER: tubeflow
+      POSTGRES_PWD: ${POSTGRES_PASSWORD:-tubeflow}
+      POSTGRES_SEEDS: postgres
+    depends_on:
+      postgres: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "temporal", "operator", "cluster", "health", "--address", "temporal:7233"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+  mihomo:
+    image: metacubex/mihomo@sha256:bac1a74de365ea59270ba134016762c6be05654d55246518de256113bd1c225e
+    env_file:
+      - path: .env
+        required: false
+    networks:
+      - default
+    environment:
+      MIHOMO_SUBSCRIPTION_URL: ${MIHOMO_SUBSCRIPTION_URL:-}
+      MIHOMO_NODE_FILTER: ${MIHOMO_NODE_FILTER:-新加坡|Singapore|🇸🇬|SG}
+    entrypoint: ["/bin/sh", "/entrypoint.sh"]
+    volumes:
+      - type: bind
+        source: ./docker/mihomo/entrypoint.sh
+        target: /entrypoint.sh
+        read_only: true
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:9090/proxies"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+networks:
+  kinestack_control:
+    external: true
+    name: kinestack_control
+volumes:
+  postgres_data:
+  minio_data:
