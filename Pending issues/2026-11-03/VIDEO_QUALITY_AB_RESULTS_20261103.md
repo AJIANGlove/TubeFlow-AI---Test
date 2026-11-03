@@ -41,7 +41,7 @@
 | 16 | 3 格成本对比，第 2 格人物托腮 | 第 2 格仍是托腮；第 1 格出现无归属的手 | 未改变 |
 
 两张新故事板仍烧入 `SHOT n · 0.0s–x.xs` 角标，画面内仍有大量金额/表格文字（11 组「自营店/加盟店」、16 组韩文金额）。
-证据：`runtime/operations/quality-v4-20261103/evidence/sb_old11.png`、`sb_new11.png`、`sb_old16.png`、`sb_new16.png`。
+证据：`evidence/sb_old11.png`、`sb_new11.png`、`sb_old16.png`、`sb_new16.png`。
 
 **结论（已核实）**：在冻结快照仍含「保留原图人物特征、服装、姿势、表情、主体数量、场景布局和物品位置，仅转换画面艺术风格」时，仅追加「参考图只作身份参考」**不足以**改变人物姿势。§42 第 2 项（删除风格冲突句）不是可选项，是生效前提。
 
@@ -63,7 +63,7 @@
 | 16 | v3 | 0.241 | 1 | 0.317（speed 0.53） | 多为手部与账本，偶见后脑勺，面部基本不可判 |
 | 16 | v4 | 0.151 | 1 | 0.352（首 1.5 s） | 30 帧均为同一名女性，无多余人物 |
 
-关键帧拼图：`runtime/operations/quality-v4-20261103/evidence/AB_g11_v3_contact.png`、`AB_g11v4_contact.png`、`AB_g16_v3_contact.png`、`AB_g16v4_contact.png`（每 0.5 s 一帧，30 帧）。
+关键帧拼图：`evidence/AB_g11_v3_contact.png`、`AB_g11v4_contact.png`、`AB_g16_v3_contact.png`、`AB_g16v4_contact.png`（每 0.5 s 一帧，30 帧）。
 
 HF 方法：`docs/VIDEO_JITTER_DIAGNOSIS_20261018.md` 的 5 帧滑动均值残差 RMS，脚本 `tmp/diag/am4.py`，在容器内用 ffmpeg 解码到 528×304 灰度后计算，未改动算法。
 
