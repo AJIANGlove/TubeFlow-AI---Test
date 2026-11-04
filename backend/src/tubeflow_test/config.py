@@ -86,6 +86,9 @@ class Settings(BaseSettings):
     video_prompt_strategy: str = "tubeflow_storyboard_v4_natural_motion"
     h3_single_panel_opt_in_enabled: bool = False
     h3_single_panel_project_ids: tuple[UUID, ...] = ()
+    # USER_DECISIONS §46：尚无任何故事板的项目在首张故事板时钉网格 v2 + 逐格参考
+    # （crop-grid-v2 + v4 单格提示词）。只影响新钉版项目；已钉项目不随开关变化。
+    storyboard_single_panel_new_projects: bool = False
     sentence_split_provider_url: str = "https://api.deepseek.com/v1"
     sentence_split_provider_token: SecretStr = SecretStr("")
     sentence_split_provider_model: str = "deepseek-v4-flash"

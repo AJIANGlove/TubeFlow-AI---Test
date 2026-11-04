@@ -369,6 +369,18 @@ class InMemoryStoryboardRepository:
     def project_auto_budget_round(self, owner_id: UUID, project_id: UUID) -> int:
         return self.budget_rounds.get((owner_id, project_id), 1)
 
+    def project_grid_layout_version(self, owner_id: UUID, project_id: UUID) -> str | None:
+        with self._lock:
+            items = sorted(
+                (
+                    item
+                    for item in self.generations.values()
+                    if item.owner_id == owner_id and item.project_id == project_id
+                ),
+                key=lambda item: (item.created_at, str(item.generation_id)),
+            )
+        return items[0].grid_layout_version if items else None
+
     def save_generation_and_request_recovery(
         self, generation: StoryboardGeneration, event_id: UUID, now: datetime
     ) -> StoryboardGeneration:

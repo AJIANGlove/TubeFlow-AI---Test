@@ -31,6 +31,14 @@ _DEFAULT_GRID_ASPECT_RATIO = "16:9"
 _LANDSCAPE_GRIDS = {1: (1, 1), 2: (1, 2), 3: (1, 3), 4: (2, 2), 5: (2, 3), 6: (2, 3)}
 _PORTRAIT_GRIDS = {1: (1, 1), 2: (2, 1), 3: (3, 1), 4: (2, 2), 5: (3, 2), 6: (3, 2)}
 
+# 网格版式版本（USER_DECISIONS §46）。v1 = 上表，存量故事板永久使用；v2 只用于
+# 首张故事板生成时即钉住单格参考的新项目：16:9 下 2–4 镜一律 2×2（多余格留黑），
+# 每格约 830×465、接近 16:9，供逐镜裁切后单独作为 H3 参考。9:16 两版相同。
+GRID_LAYOUT_V1 = "grid-v1"
+GRID_LAYOUT_V2 = "grid-v2"
+GRID_LAYOUT_VERSIONS = frozenset({GRID_LAYOUT_V1, GRID_LAYOUT_V2})
+_LANDSCAPE_GRIDS_V2 = {1: (1, 1), 2: (2, 2), 3: (2, 2), 4: (2, 2), 5: (2, 3), 6: (2, 3)}
+
 
 @dataclass(frozen=True, slots=True)
 class GridLayout:
@@ -39,10 +47,14 @@ class GridLayout:
     empty_panels: tuple[int, ...] = ()
 
 
-def grid_layout_for(panel_count: int, aspect_ratio: str) -> GridLayout:
+def grid_layout_for(
+    panel_count: int, aspect_ratio: str, version: str = GRID_LAYOUT_V1
+) -> GridLayout:
     ratio = aspect_ratio or _DEFAULT_GRID_ASPECT_RATIO
+    if version not in GRID_LAYOUT_VERSIONS:
+        raise ValueError(f"unsupported grid layout version: {version!r}")
     if ratio == "16:9":
-        table = _LANDSCAPE_GRIDS
+        table = _LANDSCAPE_GRIDS_V2 if version == GRID_LAYOUT_V2 else _LANDSCAPE_GRIDS
     elif ratio == "9:16":
         table = _PORTRAIT_GRIDS
     else:
@@ -660,8 +672,12 @@ class StoryboardGeneration:
     recovery_failure_count: int = 0
     unknown_origin_stage: str | None = None
     unknown_origin_code: str | None = None
+    # §46：网格版式版本。v1 = 历史版式（输入 JSON 无此键）；v2 仅写入新项目的生成输入。
+    grid_layout_version: str = GRID_LAYOUT_V1
 
     def __post_init__(self) -> None:
+        if self.grid_layout_version not in GRID_LAYOUT_VERSIONS:
+            raise ValueError("storyboard grid layout version is not supported")
         if self.version < 1 or not 1 <= len(self.shots_snapshot) <= DIRECTOR_GROUP_SHOT_LIMIT:
             raise ValueError("storyboard version or shot snapshot is invalid")
         if self.state_revision < 0:

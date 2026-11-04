@@ -43,6 +43,7 @@ from tubeflow_test.application.storyboards import (
 )
 from tubeflow_test.config import Settings
 from tubeflow_test.identity_project.domain import Account
+from tubeflow_test.video_generation.panel_images import check_storyboard_panel_layout
 from tubeflow_test.workflows.storyboard_runner import SupervisedStoryboardRunner
 from tubeflow_test.workflows.storyboards import (
     StoryboardActivities,
@@ -167,6 +168,8 @@ def create_storyboard_runtime_router(
         clock,
         work_dir,
         failover_policy,
+        single_panel_new_projects=settings.storyboard_single_panel_new_projects,
+        panel_layout_check=check_storyboard_panel_layout,
     )
     batch = StoryboardBatchService(repository, director, generations, project_director, ids)
     if batch_out is not None:
@@ -262,6 +265,8 @@ async def create_storyboard_supervised_runner(
         clock,
         work_dir,
         failover_policy,
+        single_panel_new_projects=settings.storyboard_single_panel_new_projects,
+        panel_layout_check=check_storyboard_panel_layout,
     )
     client = temporal_client or await Client.connect(settings.temporal_target)
     activities = StoryboardActivities(director, grids, project_director, auto_kick=auto_kick)

@@ -16,6 +16,8 @@ from __future__ import annotations
 import re
 
 from tubeflow_test.domain.storyboards import (
+    GRID_LAYOUT_V1,
+    GRID_LAYOUT_V2,
     REFERENCE_PRESERVATION_CLAUSE,
     DirectorShot,
     ShotTimeRange,
@@ -75,12 +77,29 @@ def build_grid_sheet_prompt(
     shots: tuple[DirectorShot, ...],
     ranges: tuple[ShotTimeRange, ...],
     character_count: int,
+    layout_version: str = GRID_LAYOUT_V1,
 ) -> str:
-    layout = grid_layout_for(len(shots), aspect_ratio)
+    layout = grid_layout_for(len(shots), aspect_ratio, layout_version)
     parts: list[str] = []
     if layout.rows * layout.cols == 1:
         parts.append(
             "Generate exactly one storyboard image as a single full-frame panel with no grid lines."
+        )
+    elif layout_version == GRID_LAYOUT_V2:
+        # §46：v2 每格会被逐格裁切为独立参考图；要求纯黑等宽分隔、无白框装饰线，
+        # 以便确定性裁切（fa3a0b30 实测：手绘墨线、白黑相间边框会使旧裁切失败）。
+        rows_text = _count(layout.rows, "row")
+        cols_text = _count(layout.cols, "column")
+        parts.append(
+            f"Generate exactly one storyboard image laid out as a strict grid of "
+            f"{rows_text} and {cols_text} of equal-sized panels. The panels are read "
+            "left-to-right, top-to-bottom, and are separated by straight solid black "
+            "gutters about 12 pixels wide. Do not draw white frames, borders, outlines "
+            "or decorative lines around or inside the gutters; each panel's picture "
+            "runs right up to the black gutter."
+        )
+        parts.extend(
+            f"Panel {panel} must stay completely black and empty." for panel in layout.empty_panels
         )
     else:
         rows_text = _count(layout.rows, "row")

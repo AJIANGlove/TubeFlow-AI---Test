@@ -55,6 +55,8 @@ from tubeflow_test.domain.narration import (
     segment_pasted_script,
 )
 from tubeflow_test.domain.storyboards import (
+    GRID_LAYOUT_V1,
+    GRID_LAYOUT_V2,
     SHOT_TIMING_PROJECTION_V1,
     DirectorShot,
     ShotSentenceLink,
@@ -78,6 +80,7 @@ from tubeflow_test.video_generation.orchestration import (
     DELIVER_WITH_DEFECT_MARKER,
     AuthoritativeGroupInput,
 )
+from tubeflow_test.video_generation.panel_images import CROP_GRID_V2
 from tubeflow_test.video_generation.persistence import (
     GroupCurrentVideoRecord,
     VideoAttemptRecord,
@@ -229,6 +232,12 @@ class SqlCanonicalCompositionInputs:
         ).load(project_id, owner_id)
 
 
+# §46：网格 v2 故事板的固定参考策略。
+GRID_V2_REFERENCE_POLICY = ReferencePolicy(
+    ReferenceStrategy.SINGLE_PANEL_V1, {"version": CROP_GRID_V2}
+)
+
+
 class PanelDerivationService(Protocol):
     def derive(
         self,
@@ -263,17 +272,23 @@ class SqlCanonicalVideoGroupLoader:
         *,
         for_intent: bool,
     ) -> AuthoritativeGroupInput:
-        requested = (
-            self._reference_policy(narration.project_id)
-            if callable(self._reference_policy)
-            else self._reference_policy
-        )
+        if narration.storyboard_grid_layout_version == GRID_LAYOUT_V2:
+            # §46：v2 网格只为逐格参考而画；整图参考不适用，因此无需 allowlist。
+            requested = GRID_V2_REFERENCE_POLICY
+            allowed = True
+        else:
+            requested = (
+                self._reference_policy(narration.project_id)
+                if callable(self._reference_policy)
+                else self._reference_policy
+            )
+            allowed = self._single_panel_allowed(narration.project_id)
         selected = resolve_reference_policy(
             session,
             narration.project_id,
             requested,
             for_intent=for_intent,
-            single_panel_allowed=self._single_panel_allowed(narration.project_id),
+            single_panel_allowed=allowed,
         )
         if selected.strategy is ReferenceStrategy.COMPOSITE:
             return narration
@@ -575,6 +590,9 @@ class SqlCanonicalVideoGroupLoader:
             production_mode=project.production_mode,
             storyboard_shot_ranges=storyboard_shot_ranges,
             shot_time_ranges_algorithm=str(inputs.get("shot_time_ranges_algorithm") or ""),
+            storyboard_grid_layout_version=str(
+                inputs.get("grid_layout_version") or GRID_LAYOUT_V1
+            ),
             authority_snapshot={
                 "project": {
                     "id": str(project.id),

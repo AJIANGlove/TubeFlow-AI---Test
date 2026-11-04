@@ -17,6 +17,7 @@ from tubeflow_test.domain.storyboards import (
     strip_reference_preservation_clause,
 )
 from tubeflow_test.video_prompt.domain import (
+    SINGLE_PANEL_STRATEGIES,
     V3_CONTRACT_STRATEGIES,
     SinglePanelPromptCompilerInput,
     VideoPromptCompilerInput,
@@ -263,7 +264,81 @@ def _v4_system_prompt() -> str:
     return text
 
 
+# §46：v4 单格提示词 = 单格规则 4、6、7 + 第 5 条合并 v4 身份指认 + v4 第 8 条运镜白名单
+# （镜头块起笔换成单格 <Picture m>）+ v4 第 9 条负规则 + v4 第 17–21 条 + 第 22 条。
+_V4_SINGLE_PANEL_RULE_5 = (
+    "5. subject_definitions 中：" + _V4_SUBJECT_REPLACEMENTS[0][1]
+    + "禁止 from/shown in Picture N 等角色图片来源指代；每个 SHOT_PANEL 参考各写一条 "
+    "'- Picture N: The single-panel storyboard reference for Shot K, used as the "
+    "composition, action, and style reference for Shot K only.'；不得生成完整多格故事板条目，"
+    "不得给参考图分配 (Sx) 编号。"
+)
+_V4_RULE_8_PANEL_PREFIX = (
+    "Shot 1 块以 \"[Shot 1] Panel 1 (row 1, column 1)\" 起笔，Shot 2 起每块以 "
+    "\"[Shot n] At {cut_at}, cut to Panel n (row r, column c)\" 起笔（cut_at 与输入逐字一致，"
+    "mm:ss.mmm 格式；Panel 编号与 row、column 逐字取自输入 shot_plan 条目的 panel 字段，"
+    "不得自行换算）"
+)
+_V4_SINGLE_PANEL_RULE_8_PREFIX = (
+    "Shot 1 块以 \"[Shot 1] <Picture m>:\" 起笔，Shot 2 起每块以 "
+    "\"[Shot n] At {cut_at}, cut to <Picture m>:\" 起笔（Picture m 逐字使用该镜 "
+    "shot_plan.reference；cut_at 与输入逐字一致，mm:ss.mmm 格式；不得换参考、"
+    "跨镜头复用参考或把单格参考重新拼成网格）"
+)
+_V4_SINGLE_PANEL_EXTRA_RULES = """\
+22. 每镜只表现该镜单格参考中出现的人物与物件：单格参考中没有的人物不得出现在该镜；同一人物在同一画面中只能出现一次，不得出现镜像、倒影或分身形式的第二个同一人物。"""
+
+
+def _v4_single_panel_system_prompt() -> str:
+    single = {
+        "4.": "4. 不要分析图片内容；以 reference_roles 中的稳定名称 Picture 1、Picture 2……指代输入参考图。role=CHARACTER 的 Picture 仅作角色身份参考；每个 role=SHOT_PANEL 的 Picture 只作同号镜头的构图、动作和风格参考，禁止跨镜头复用或把单格参考重新拼成网格。",
+        "6.": "6. summary 用一到两句概括全片，并明确按全部 single-panel references 的 shot order 推进，不得写成复制整张网格或 from left to right and top to bottom 的网格阅读指令。",
+        "7.": "7. retention_analysis 用逐条清单：" + _V4_SUBJECT_REPLACEMENTS[1][1] + "每个 SHOT_PANEL 各一条 '- Picture N — shot_plan_reference_only: retain Shot K composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.'；禁止把任何单格参考写成 fully_preserved。",
+    }
+    rule_8 = _V4_RULE_REPLACEMENTS["8."]
+    if rule_8.count(_V4_RULE_8_PANEL_PREFIX) != 1:
+        raise ValueError("v4 rule 8 drifted; v4 single-panel prompt cannot be built")
+    replacements = {
+        **single,
+        "5.": _V4_SINGLE_PANEL_RULE_5,
+        "8.": rule_8.replace(_V4_RULE_8_PANEL_PREFIX, _V4_SINGLE_PANEL_RULE_8_PREFIX)
+        .replace("不得自行重排或改写切镜时刻与格位", "不得自行重排或改写切镜时刻与参考"),
+        "9.": _V4_RULE_REPLACEMENTS["9."],
+    }
+    lines = []
+    for line in _V3_RULES.splitlines():
+        prefix = next((key for key in replacements if line.startswith(key)), None)
+        lines.append(replacements[prefix] if prefix else line)
+    return "\n".join(lines) + "\n" + _V4_EXTRA_RULES + "\n" + _V4_SINGLE_PANEL_EXTRA_RULES
+
+
+FEW_SHOT_SINGLE_PANEL_V4 = """subject_definitions:
+- (S1): The florist, the person in character reference 1; reproduce that person's face, hair, body, and clothing exactly as in that image.
+- (S2): A small flower shop with wooden shelves, buckets of fresh flowers and a wide front window.
+- Picture 2: The single-panel storyboard reference for Shot 1, used as the composition, action, and style reference for Shot 1 only.
+- Picture 3: The single-panel storyboard reference for Shot 2, used as the composition, action, and style reference for Shot 2 only.
+summary:
+A florist gets the shop ready for the day, advancing through the single-panel references in shot order.
+retention_analysis:
+- (S1) — fully_preserved: the same face, hair, body, and clothing as character reference 1 in every shot.
+- (S2) — fully_preserved: retain the shelf layout, the flower buckets and the soft window light.
+- Picture 2 — shot_plan_reference_only: retain Shot 1 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+- Picture 3 — shot_plan_reference_only: retain Shot 2 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+detailed_description:
+Soft watercolor illustration with warm morning light, stable camera, natural motion blur, real-time movement speed.
+[Shot 1] <Picture 2>: Inside the shop, (S1) lifts a bucket of tulips from the floor, sets it on the front shelf and straightens one stem. Static camera, 0% movement.
+[Shot 2] At 00:04.200, cut to <Picture 3>: (S1) opens the front door wide and steps back to look at the window display. Slow push-in of about 5%.
+Maintain (S1)'s face, hair and clothing as character reference 1, the shelf layout, the warm light, the correct finger count and real-time body movement.
+No storyboard grid, panel borders, split screen, captions, on-screen text or numbers, logos, watermarks, camera shake, jitter, morphing faces, warping hands, flickering textures, slow motion, extra people, duplicated characters.
+overall_soundscape:
+Quiet shop room tone, a bucket set down on wood, a door swinging open, no voices.
+non_diegetic_music:
+N/A"""
+
+
 def build_system_prompt(strategy: VideoPromptStrategy, *, duration_seconds: int) -> str:
+    if strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL:
+        return _v4_single_panel_system_prompt()
     if strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3_SINGLE_PANEL_OPT_IN_V1:
         return _single_panel_system_prompt()
     if strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_NATURAL_MOTION:
@@ -287,7 +362,7 @@ def build_user_payload(
 ) -> dict[str, object]:
     if isinstance(value, SinglePanelPromptCompilerInput):
         return build_single_panel_user_payload(value, repair_reason=repair_reason)
-    if value.strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3_SINGLE_PANEL_OPT_IN_V1:
+    if value.strategy in SINGLE_PANEL_STRATEGIES:
         raise VideoPromptViolation("single_panel_reference_required")
     roles: list[dict[str, object]] = [
         {"label": label, "picture": f"Picture {index}", "role": "CHARACTER"}
@@ -422,6 +497,8 @@ def build_single_panel_user_payload(
         ],
         "format_example": FEW_SHOT_SINGLE_PANEL_OPT_IN_V1,
     }
+    if value.strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL:
+        payload["format_example"] = FEW_SHOT_SINGLE_PANEL_V4
     if repair_reason:
         payload["repair_reason"] = repair_reason
     return payload

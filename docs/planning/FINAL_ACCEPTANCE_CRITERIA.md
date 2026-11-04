@@ -608,3 +608,17 @@
 - [ ] 新项目单元为 `project-director-unit-v10`；v9 成功项目保持 v9 且 canonical 不变；v9 未成功项目改用 v10；v8 项目保持 v8。
 - [ ] 相邻多样性拒收后第 2 次调用的提示词含拒收原因与改法、幂等键与首次不同；持久化单元提示词不含该附加文本；传输类失败重试原样重发。
 - [ ] 真实新项目：每组镜头数分布、`director_output_adjacent_diversity_insufficient` 重试次数与因其暂停的运行数（未验证）。
+
+## 42. 2026-11-04 新项目默认逐格参考验收（USER_DECISIONS §46）
+
+- [x] 本地：v1 故事板提示词（1–6 镜 × 16:9/9:16）、v3 单格/v3/v4 整图系统提示词、v3 单格载荷与指纹与改动前（main 3af818d）黄金值逐字一致（单元测试）。
+- [x] 本地：网格 v2 表、v2 提示词、项目钉版（开关开/关、已钉不随开关变化、已有 v1 故事板保持 v1）、`input_json` 仅 v2 写键（单元测试）。
+- [x] 本地：`crop-grid-v2` 对纯黑、白黑框、墨线分隔、行间错位、外框、留黑空格、JPEG 源均正确裁切；分隔偏离、格内多余分隔判失败；浅色长直线不误判；fa3a0b30 13 张整图按 v1 版式 13/13 裁切，6 个错版式全部拒收（单元测试）。
+- [x] 本地：v2 故事板不可裁切 → `storyboard_panel_layout_unreadable` 并生成后继；v1 不校验；未配置校验 fail-closed（单元测试）。
+- [x] 本地：v2 故事板绑定 `single_panel_v1` + `crop-grid-v2` 无需 allowlist；v1 默认整图；composite 已绑定时 fail-closed；v4 单格编译、性别代词拒收；生产逐格梯子第 2–6 级均可构建且第 3/4/6 级以 v4 单格重编译；隔离重放仍拒绝（单元测试）。
+- [x] 第 0 关：H3 工作流核对（2026-11-04 通过，`Pending issues/2026-11-04/h3_workflow/`）。
+- [ ] 第 1 关：对 d5c1a12 之后全部无角标故事板原始字节做 `crop-grid-v2` 离线演练，通过率 ≥90%。
+- [ ] 第 2 关：开关关闭部署后，既有项目无新故事板/视频生成，抽查一组 v1 故事板提示词哈希不变。
+- [ ] 第 3–4 关：开关开启的新测试项目（复用 fa3a0b30 文案、标题与角色）全部组为 v2；每次视频请求无 STORYBOARD 角色、每镜一个 SHOT_PANEL；策略为 `tubeflow_storyboard_v4_single_panel`；记录各组 `storyboard_panel_layout_unreadable` 次数与留黑格状态。
+- [ ] 第 5 关：1 fps 全组复核，分屏/网格帧 0 组；同一人物同框少于 fa3a0b30（2 组）；有角色的组身份全部正确；HF 抖动逐组记录；梯子替代尝试无 `single_panel_automatic_resubmit_not_supported`。
+- [ ] PostgreSQL 集成测试、ruff、mypy 全量通过（实施方执行）。

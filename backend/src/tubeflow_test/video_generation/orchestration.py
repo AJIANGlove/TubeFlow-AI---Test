@@ -14,6 +14,7 @@ from uuid import UUID, uuid4
 from tubeflow_test.domain.common import AspectRatio, MediaAssetRef
 from tubeflow_test.domain.errors import DomainError
 from tubeflow_test.domain.storyboards import (
+    GRID_LAYOUT_V1,
     SHOT_TIMING_PROJECTION_V1,
     DirectorLocationRelation,
     DirectorSemanticEvent,
@@ -62,6 +63,7 @@ from tubeflow_test.video_generation.native_size import (
     expected_native_size,
     workflow_identity,
 )
+from tubeflow_test.video_generation.panel_images import CROP_GRID_V2
 from tubeflow_test.video_generation.provider_audit import (
     ProviderAuditEvent,
     canonical_redacted_receipt,
@@ -71,6 +73,7 @@ from tubeflow_test.video_generation.provider_audit import (
 )
 from tubeflow_test.video_prompt.compiler import VideoPromptCompiler
 from tubeflow_test.video_prompt.domain import (
+    SINGLE_PANEL_STRATEGIES,
     V3_CONTRACT_STRATEGIES,
     CompiledVideoPrompt,
     SinglePanelPromptCompilerInput,
@@ -209,6 +212,8 @@ class AuthoritativeGroupInput:
     shot_panel_images: tuple[ShotPanelImage, ...] = ()
     reference_policy: ReferencePolicy | None = None
     reference_input_sha256: str | None = None
+    # §46：故事板生成输入记录的网格版式版本（无键 = v1）；决定逐格裁切与参考策略。
+    storyboard_grid_layout_version: str = GRID_LAYOUT_V1
 
 
 @dataclass(frozen=True, slots=True)
@@ -994,7 +999,8 @@ class DurableGroupVideoOrchestrator:
         snapshot = superseded.input_snapshot
         if not snapshot:
             raise VideoRuleViolation("immutable_video_input_changed")
-        if snapshot.get("shot_panel_assets"):
+        if snapshot.get("shot_panel_assets") and not _production_single_panel_snapshot(snapshot):
+            # 隔离重放（无真实编译输入、无项目参考策略）仍禁止自动重提。
             raise VideoRuleViolation("single_panel_automatic_resubmit_not_supported")
         index = next_attempt_index
         snapshot = dict(snapshot)
@@ -2532,7 +2538,7 @@ def compile_video_prompt(
     # §15.14：AUTO 项目输出不确定性校验失败可修复重试 2 次（含临时故障共享 3 次预算）；
     # MANUAL 维持既有"一次修复重试"。
     strategy = (
-        VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3_SINGLE_PANEL_OPT_IN_V1
+        single_panel_strategy(source.reference_policy)
         if source.reference_policy is not None
         else compiler.strategy
     )
@@ -2566,7 +2572,7 @@ def _compiler_input(
         raise VideoRuleViolation("video_prompt_compiler_input_incomplete")
     references = generation.references
     if generation.shot_panel_images:
-        if strategy is not VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3_SINGLE_PANEL_OPT_IN_V1:
+        if strategy not in SINGLE_PANEL_STRATEGIES:
             raise VideoRuleViolation("single_panel_prompt_strategy_required")
         panel_references = references[len(source.character_images) :]
         return SinglePanelPromptCompilerInput(
@@ -2592,8 +2598,9 @@ def _compiler_input(
             generation.aspect_ratio.value,
             source.visual_style,
             f"video-prompt:{attempt_id}",
+            strategy,
         )
-    if strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3_SINGLE_PANEL_OPT_IN_V1:
+    if strategy in SINGLE_PANEL_STRATEGIES:
         raise VideoRuleViolation("single_panel_reference_required")
     return VideoPromptCompilerInput(
         tuple(reference.prompt_label for reference in references[:-1]),
@@ -2742,10 +2749,10 @@ def _compiler_input_from_snapshot(
 ) -> VideoPromptCompilerInput | SinglePanelPromptCompilerInput:
     """仅从持久化快照重建编译输入（梯子重编译不读库）；旧快照缺块或块无效时显式失败。"""
     if generation.shot_panel_images:
-        if strategy is not VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3_SINGLE_PANEL_OPT_IN_V1:
+        if strategy not in SINGLE_PANEL_STRATEGIES:
             raise VideoRuleViolation("single_panel_prompt_strategy_required")
-        return _single_panel_input_from_snapshot(snapshot, generation, attempt_id)
-    if strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3_SINGLE_PANEL_OPT_IN_V1:
+        return _single_panel_input_from_snapshot(snapshot, generation, attempt_id, strategy)
+    if strategy in SINGLE_PANEL_STRATEGIES:
         raise VideoRuleViolation("single_panel_reference_required")
     block = snapshot.get("compiler_input")
     if not isinstance(block, dict):
@@ -2785,6 +2792,7 @@ def _single_panel_input_from_snapshot(
     snapshot: dict[str, object],
     generation: GroupVideoGeneration,
     attempt_id: UUID,
+    strategy: VideoPromptStrategy,
 ) -> SinglePanelPromptCompilerInput:
     block = snapshot.get("compiler_input")
     if not isinstance(block, dict):
@@ -2813,6 +2821,7 @@ def _single_panel_input_from_snapshot(
             generation.aspect_ratio.value,
             visual_style,
             f"video-prompt:{attempt_id}",
+            strategy,
         )
     except (KeyError, TypeError, ValueError) as exc:
         raise VideoRuleViolation("video_compiler_input_snapshot_invalid") from exc
@@ -2905,6 +2914,10 @@ def _ladder_strategy(
     kinestack_v6_port 要求按图写主体外观且无反网格规则，A/B 证实会引入换人与网格泄漏。
     其他配置下保持原 kinestack_v6_port 行为。
     """
+    snapshot = superseded.input_snapshot or {}
+    if snapshot.get("shot_panel_assets"):
+        # §46：逐格参考的每一级（含第 4 级）都沿用快照记录的单格策略；整图策略无法使用逐格输入。
+        return _snapshot_single_panel_strategy(snapshot)
     if index == _LADDER_STRATEGY_STEP:
         if default in V3_CONTRACT_STRATEGIES:
             return default
@@ -2912,7 +2925,6 @@ def _ladder_strategy(
             return VideoPromptStrategy(_LADDER_STRATEGY_STEP_STRATEGY)
         except ValueError:
             return None
-    snapshot = superseded.input_snapshot or {}
     block = snapshot.get("video_prompt")
     raw = block.get("strategy") if isinstance(block, dict) else None
     if isinstance(raw, str):
@@ -2921,6 +2933,39 @@ def _ladder_strategy(
         except ValueError:
             pass
     return default
+
+
+def single_panel_strategy(policy: ReferencePolicy) -> VideoPromptStrategy:
+    """§46：crop-grid-v2 派生 → v4 单格；其余（allowlist 的 crop-title54-*）→ v3 单格。"""
+    derivation = policy.derivation_payload or {}
+    if derivation.get("version") == CROP_GRID_V2:
+        return VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL
+    return VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3_SINGLE_PANEL_OPT_IN_V1
+
+
+def _production_single_panel_snapshot(snapshot: dict[str, object]) -> bool:
+    """生产逐格快照：带项目参考策略与真实编译输入块，且不是隔离重放。"""
+    return (
+        isinstance(snapshot.get("reference_policy"), dict)
+        and isinstance(snapshot.get("compiler_input"), dict)
+        and "isolated_replay" not in snapshot
+    )
+
+
+def _snapshot_single_panel_strategy(snapshot: dict[str, object]) -> VideoPromptStrategy | None:
+    block = snapshot.get("video_prompt")
+    raw = block.get("strategy") if isinstance(block, dict) else None
+    try:
+        recorded = VideoPromptStrategy(raw) if isinstance(raw, str) else None
+    except ValueError:
+        recorded = None
+    if recorded in SINGLE_PANEL_STRATEGIES:
+        return recorded
+    policy = snapshot.get("reference_policy")
+    derivation = policy.get("derivation") if isinstance(policy, dict) else None
+    if isinstance(derivation, dict) and derivation.get("version") == CROP_GRID_V2:
+        return VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL
+    return None
 
 
 def _content_qc_repair_reason(probe_evidence: dict[str, object] | None) -> str | None:

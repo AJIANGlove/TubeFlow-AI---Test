@@ -76,6 +76,7 @@ class ShotPanelAssetService:
             panel_count=len(source.director_shots),
             aspect_ratio=source.aspect_ratio.value,
             derivation=policy.derivation or {},
+            layout_version=source.storyboard_grid_layout_version,
         )
         if len(source.character_images) + len(panels) > 9:
             raise VideoRuleViolation("video reference image limit exceeded")

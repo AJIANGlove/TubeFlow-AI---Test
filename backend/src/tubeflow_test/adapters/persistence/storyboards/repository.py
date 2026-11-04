@@ -45,6 +45,7 @@ from tubeflow_test.domain.director_generation import (
 from tubeflow_test.domain.errors import DomainError
 from tubeflow_test.domain.narration import frozen_script_sha256
 from tubeflow_test.domain.storyboards import (
+    GRID_LAYOUT_V1,
     STORYBOARD_AUTO_MAX_SUBMISSIONS,
     CharacterAssetSnapshot,
     ContinuousObservationApproval,
@@ -1225,6 +1226,24 @@ class SqlAlchemyStoryboardRepository:
             )
             return int(value or 1)
 
+    def project_grid_layout_version(self, owner_id: UUID, project_id: UUID) -> str | None:
+        with self._uow() as session:
+            inputs = session.scalar(
+                select(StoryboardGenerationRow.input_json)
+                .where(
+                    StoryboardGenerationRow.owner_id == owner_id,
+                    StoryboardGenerationRow.project_id == project_id,
+                )
+                .order_by(
+                    StoryboardGenerationRow.created_at.asc(),
+                    StoryboardGenerationRow.id.asc(),
+                )
+                .limit(1)
+            )
+            if inputs is None:
+                return None
+            return _grid_layout_version(inputs)
+
     def save_generation_and_request_recovery(
         self, generation: StoryboardGeneration, event_id: UUID, now: datetime
     ) -> StoryboardGeneration:
@@ -2338,6 +2357,9 @@ def _copy_generation(row: StoryboardGenerationRow, value: StoryboardGeneration) 
             else None
         ),
     }
+    # §46：仅非 v1 版式写键；历史行与 v1 新行的输入 JSON 字节不变。
+    if value.grid_layout_version != GRID_LAYOUT_V1:
+        row.input_json["grid_layout_version"] = value.grid_layout_version
     if value.shot_time_ranges_snapshot:
         row.input_json["shot_time_ranges"] = [
             {
@@ -2560,4 +2582,12 @@ def _generation(session: Session, row: StoryboardGenerationRow) -> StoryboardGen
         recovery_failure_count=cast(int, checkpoint.get("recovery_failure_count", 0)),
         unknown_origin_stage=cast(str | None, checkpoint.get("unknown_origin_stage")),
         unknown_origin_code=cast(str | None, checkpoint.get("unknown_origin_code")),
+        grid_layout_version=_grid_layout_version(inputs),
     )
+
+
+def _grid_layout_version(inputs: object) -> str:
+    """§46：输入 JSON 无键即历史 v1 版式。"""
+    if not isinstance(inputs, dict):
+        return GRID_LAYOUT_V1
+    return str(inputs.get("grid_layout_version") or GRID_LAYOUT_V1)
