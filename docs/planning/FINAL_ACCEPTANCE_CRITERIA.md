@@ -617,7 +617,7 @@
 - [x] 本地：v2 故事板不可裁切 → `storyboard_panel_layout_unreadable` 并生成后继；v1 不校验；未配置校验 fail-closed（单元测试）。
 - [x] 本地：v2 故事板绑定 `single_panel_v1` + `crop-grid-v2` 无需 allowlist；v1 默认整图；composite 已绑定时 fail-closed；v4 单格编译、性别代词拒收；生产逐格梯子第 2–6 级均可构建且第 3/4/6 级以 v4 单格重编译；隔离重放仍拒绝（单元测试）。
 - [x] 第 0 关：H3 工作流核对（2026-11-04 通过，`Pending issues/2026-11-04/h3_workflow/`）。
-- [ ] 第 1 关：对 d5c1a12 之后全部无角标故事板原始字节做 `crop-grid-v2` 离线演练，通过率 ≥90%。（2026-11-04 首轮 78.835% 未通过，口径与算法按 USER_DECISIONS §47 修订后重跑，见 §43。）
+- [x] 第 1 关：对 d5c1a12 之后全部无角标故事板原始字节做 `crop-grid-v2` 离线演练，通过率 ≥90%。（2026-11-04 首轮 78.835% 未通过，口径与算法按 USER_DECISIONS §47 修订后重跑，见 §43；重跑 539/548 = 98.3577% 通过。）
 - [x] 第 2 关：开关关闭部署后，既有项目无新故事板/视频生成，抽查一组 v1 故事板提示词哈希不变。（2026-11-04 17:45:08–17:45:40 部署 `sha256:238bd9ea…`（`crop-grid-v2-rev-20261104`），`TUBEFLOW_STORYBOARD_SINGLE_PANEL_NEW_PROJECTS=false`；观察 30 分钟：`grid_layout_version` 键 0 条、新增故事板 0 条，4348 组中 4129 个已有当前成片的组无一条新尝试；未新增故事板行，故 v1 提示词逐字不变，抽查 `146ae08c` 版本 1 两条 `prompt` md5 `c9893523…`、`b0167115…` 记录在 `Pending issues/2026-11-04/singlepanel_test/gate2_rerun/`。）
 - [ ] 第 3–4 关：开关开启的新测试项目（复用 fa3a0b30 文案、标题与角色）全部组为 v2；每次视频请求无 STORYBOARD 角色、每镜一个 SHOT_PANEL；策略为 `tubeflow_storyboard_v4_single_panel`；记录各组 `storyboard_panel_layout_unreadable` 次数与留黑格状态。
 - [ ] 第 5 关：1 fps 全组复核，分屏/网格帧 0 组；同一人物同框少于 fa3a0b30（2 组）；有角色的组身份全部正确；HF 抖动逐组记录；梯子替代尝试无 `single_panel_automatic_resubmit_not_supported`。
@@ -628,5 +628,5 @@
 - [x] 本地：取消格内分隔核验后，格内另有一条分隔的整图不再拒收；浅色长直线、桌沿类内容不影响裁切（单元测试）。
 - [x] 本地：格子宽窄不均（分隔偏离约 60–130 px）可裁切且边界误差 ≤6 px；放宽后任一格 <60% 等分尺寸判失败；两条边框线夹白缝合并为一条分隔；白色页边被剪去；2752×1536 大图按比例识别 60 px 分隔；“上二下一”等不同版式的半高分隔仍判 `shot_panel_gutter_not_found`（单元测试）。
 - [x] 本地：Gate 1 诊断原图 15 张中 13 张按目视判断应可裁切的全部裁切成功、目视边界正确，2 张不同版式（d41d087c、62cbdcef）仍拒收；fa3a0b30 13/13 仍裁切，边界与上一版一致（仅 g1 第 3 格左缘因合并白黑边框右移 9 px）；fa3a0b30 按错误镜头数裁切的 8 种情形仍全部拒收（单元测试）。
-- [ ] 第 1 关重跑：仅统计提示词含 “Do not draw any readable text anywhere in the image” 的成功故事板，通过率 ≥90%；另按项目、镜头数、失败码给出分布，并对全部失败与 36 张随机通过样本出诊断图供目视复核（通过样本须无错切）。
-- [ ] PostgreSQL 集成测试、ruff、mypy 相对 main 无新增（实施方执行）。
+- [x] 第 1 关重跑：仅统计提示词含 “Do not draw any readable text anywhere in the image” 的成功故事板，通过率 ≥90%；另按项目、镜头数、失败码给出分布，并对全部失败与 36 张随机通过样本出诊断图供目视复核（通过样本须无错切）。（2026-11-04：548 张 / 6 项目，539 通过 = 98.3577%，失败码仅 `shot_panel_gutter_not_found` 9 条；目视复核 36 张通过样本无错切，其中 4 张边缘误差 33–50 px，记录待第 5 关观察；9 张失败均为安全拒收。见 `Pending issues/2026-11-04/singlepanel_test/gate1_rerun/VISUAL_REVIEW.md`。）
+- [x] PostgreSQL 集成测试、ruff、mypy 相对 main 无新增（实施方执行）。（PR #5 @ `571e122` 对 main `c5e369a`：集成测试 19 条失败逐条相同，ruff 15 条、mypy 12 条输出逐字节相同；`Pending issues/2026-11-04/singlepanel_test/gateA_pr5/`。）
