@@ -554,7 +554,7 @@ def _v2_region_mean(
         return None
     box = (lo, a, hi, b) if axis == "x" else (a, lo, b, hi)
     region = luminance.crop(box).resize((1, 1), Image.Resampling.BOX)
-    return float(region.getpixel((0, 0)))
+    return float(array("f", region.tobytes())[0])
 
 
 def check_storyboard_panel_layout(
