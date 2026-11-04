@@ -280,3 +280,32 @@ Pending issues/2026-11-04/
         ├── 08_api_storyboards_auto_resume_on_save.py
         └── 09_frontend_app_resume_handler.js
 ```
+
+---
+
+## 11. 临时修复已执行（2026-11-04 22:14–22:16 CST）
+
+用户明确指令「直接帮我改，然后恢复」后执行，**未改代码、未重建镜像、未重启容器**，只动了一行候选数据并做了一次标准恢复。详细记录与前后快照见 `evidence/autoresume_group08/fix_applied/`（`README.md`、`group08_candidate.before.json`、`group08_candidate.after.json`、`after_state.txt`、`run.before.txt`）。
+
+变更（恰好 1 行，已备份）：
+
+```sql
+update project_director_group_candidates
+set shots_json = jsonb_set(shots_json::jsonb, '{5,camera_viewpoint}', '"EYE_LEVEL"'::jsonb)::json
+where project_id='2c291aba-085d-499d-bd32-b3a4d75f252f' and group_sequence=8;
+```
+
+第 6 镜视角 `OVERHEAD` → `EYE_LEVEL`，与第 1、5 镜的三元组不再重复；复算 `composition 非相邻重复 = []`。
+
+恢复：容器内调用产品同一实现 `SqlAutoPipelineRunRepository.resume_paused`（等价 resume API），`authorization_round` 8 → 9，随后调度器自动推进：
+
+| 时间 (UTC) | 事实 |
+| --- | --- |
+| 14:15:41 | 运行 RUNNING |
+| 14:15:43 | 第 8 组草稿生成：`d89c8794-43fb-473f-90a6-386bad1fc390`，`kind=APPLIED`、`review_state=NOT_REQUIRED` |
+| 14:16:03–14:16:14 | 107 组生成记录创建，107 个 `GridSheetGenerationWorkflow` 启动 |
+| 14:16:14 | phase `storyboard_drafts` → `storyboard`，无新暂停 |
+
+校验：草稿 106 → **107**、`REQUIRED=0`；第 8 组应用修订的第 6 镜确为 `EYE_LEVEL`；生成进度 22:32 CST 为 `SUBMITTED 28 / SUBMITTING 8 / INTENT_PERSISTED 71` 且仍在增长。
+
+遗留：§5 的代码缺陷仍在（物化校验被 `not blocking` 短路、resume 对不可自愈原因码仍是空转），其他同型数据仍可能复现；候选行已与 `project_director_materializations` 快照不再严格对应。

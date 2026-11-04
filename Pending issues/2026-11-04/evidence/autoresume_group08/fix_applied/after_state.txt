@@ -1,0 +1,27 @@
+=== 运行行（恢复后） ===
+-[ RECORD 1 ]-------+-------------------------------------
+id                  | 78a56ed9-599e-4df1-ac90-a01d68be0ecf
+state               | RUNNING
+reason_code         | 
+authorization_round | 9
+phase               | storyboard
+updated_at          | 2026-11-04 14:16:14.928687+00
+
+=== 第 8 组草稿 ===
+-[ RECORD 1 ]---+-------------------------------------
+id              | d89c8794-43fb-473f-90a6-386bad1fc390
+revision_number | 1
+kind            | APPLIED
+review_state    | NOT_REQUIRED
+created_at      | 2026-11-04 14:15:43.324028+00
+
+=== 草稿总数 ===
+drafts|required
+107|0
+(1 row)
+=== 故事板生成进度 ===
+status|count
+INTENT_PERSISTED|71
+SUBMITTED|28
+SUBMITTING|8
+(3 rows)

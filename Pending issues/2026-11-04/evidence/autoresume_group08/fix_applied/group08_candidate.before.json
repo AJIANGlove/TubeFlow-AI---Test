@@ -1,0 +1,187 @@
+{
+    "id": "e634a051-7e83-44b8-85ac-838b990ef52b",
+    "group_id": "eca42932-c8aa-58fe-9330-3a32db38c554",
+    "owner_id": "fb294c02-5f32-4597-b1e9-f7348ac9734a",
+    "links_json": [
+        {
+            "shot_id": "137dcc45-6aab-45eb-b2e1-9b1b8c52539d",
+            "sentence_id": "93a8d115-8454-5468-9290-82143c1ba591"
+        },
+        {
+            "shot_id": "787311eb-affd-4aa4-a1db-a35831da9687",
+            "sentence_id": "e4a6c65d-ea4e-5b79-8cf0-02eb2edb1ad5"
+        },
+        {
+            "shot_id": "59c0d209-b98f-44ec-8c03-3b5bec6920b3",
+            "sentence_id": "cf71de74-04ed-50b4-8b7b-552eed9d6584"
+        },
+        {
+            "shot_id": "952d73a0-1086-4880-a1c2-4aa40b4087a6",
+            "sentence_id": "3e4f1cf6-dec6-5cef-b76a-cbf1d9e13c50"
+        },
+        {
+            "shot_id": "952d73a0-1086-4880-a1c2-4aa40b4087a6",
+            "sentence_id": "2e291093-6c33-5dfb-9bf6-93579889499d"
+        },
+        {
+            "shot_id": "e264bcb8-4a1d-4f97-bc15-a87fb8535515",
+            "sentence_id": "70421928-74aa-5665-84cd-3e22466ac8a9"
+        },
+        {
+            "shot_id": "f4ef2ca4-26b5-44aa-bbd7-bf034fa832c0",
+            "sentence_id": "10a5c918-6c7a-574d-8260-344ea8bb88be"
+        }
+    ],
+    "project_id": "2c291aba-085d-499d-bd32-b3a4d75f252f",
+    "shots_json": [
+        {
+            "order": 1,
+            "scene": "빙수점 - 계산대 장부",
+            "shot_id": "137dcc45-6aab-45eb-b2e1-9b1b8c52539d",
+            "shot_size": "CLOSE_UP",
+            "description": "계산대 장부에 남은 780만 원 아래로 카드 수수료를 계산할 빈 줄이 보인다. 손이 펜을 대며 다음 차감 항목을 시작한다.",
+            "subject_focus": "PROCESS",
+            "time_relation": "LATER",
+            "semantic_event": "PERFORM_ACTION",
+            "camera_viewpoint": "OVERHEAD",
+            "location_relation": "SAME_LOCATION",
+            "narrative_function": "앞선 배달 수수료 차감에 이어 카드 수수료가 두 번째 비용으로 더해짐을 연결한다.",
+            "subject_action_outcome": "소형 빙수점 계산대에서 매출 장부의 남은 금액 옆에 카드 수수료 항목을 적는다. → 계산 흐름이 카드 수수료 항목으로 넘어간다."
+        },
+        {
+            "order": 2,
+            "scene": "빙수점 - 카드 단말기 옆",
+            "shot_id": "787311eb-affd-4aa4-a1db-a35831da9687",
+            "shot_size": "EXTREME_CLOSE_UP",
+            "description": "카드 단말기 옆 영수증에 결제액과 별도로 작게 표시된 수수료가 보인다. 글자는 읽을 수 없는 형태로 처리하고, 차감되는 금액만 선과 숫자 표식으로 구분한다.",
+            "subject_focus": "OBJECT_OR_EVIDENCE",
+            "time_relation": "SAME_MOMENT",
+            "semantic_event": "REVEAL_EVIDENCE",
+            "camera_viewpoint": "OBJECTIVE",
+            "location_relation": "SAME_LOCATION",
+            "narrative_function": "두 번째 차감의 구체적인 근거인 카드 수수료를 보여준다.",
+            "subject_action_outcome": "장부 옆 카드 단말기와 영수증을 클로즈업해 결제 금액에서 빠지는 수수료를 시각화한다. → 카드 결제마다 수수료가 발생한다는 사실이 드러난다."
+        },
+        {
+            "order": 3,
+            "scene": "빙수점 - 계산대 앞",
+            "shot_id": "59c0d209-b98f-44ec-8c03-3b5bec6920b3",
+            "shot_size": "MEDIUM",
+            "description": "현금 트레이는 비어 있고 카드 단말기에는 결제 대기 표시가 켜져 있다. 매장 안쪽 계산대 공간이 함께 보여 현금보다 카드가 일상적인 결제 수단이 된 분위기를 전한다.",
+            "subject_focus": "ENVIRONMENT",
+            "time_relation": "SAME_MOMENT",
+            "semantic_event": "EXPRESS_UNCERTAINTY",
+            "camera_viewpoint": "EYE_LEVEL",
+            "location_relation": "SAME_LOCATION",
+            "narrative_function": "현금 결제가 드문 상황이라는 질문을 매장의 결제 환경으로 구체화한다.",
+            "subject_action_outcome": "계산대 앞 빈 현금 트레이와 카드 단말기를 한 화면에 담는다. → 현금보다 카드 결제가 일반적이라는 뉘앙스가 나타난다."
+        },
+        {
+            "order": 4,
+            "scene": "빙수점 - 카드 결제대",
+            "shot_id": "952d73a0-1086-4880-a1c2-4aa40b4087a6",
+            "shot_size": "CLOSE_UP",
+            "description": "점주의 어깨 너머로 카드 단말기에 카드가 닿는 순간을 담는다. 계산대 위에는 주문 영수증이 놓여 있고 현금은 사용되지 않는다. 키오스크 화면의 결제 선택부와 옆에 놓인 정산 내역을 위에서 내려다본다. 정산표의 2% 수수료 비율을 선명하게 표시하되 다른 문구는 넣지 않는다.",
+            "subject_focus": "PRIMARY_SUBJECT",
+            "time_relation": "LATER",
+            "semantic_event": "PERFORM_ACTION",
+            "camera_viewpoint": "OVER_SHOULDER",
+            "location_relation": "SAME_LOCATION",
+            "narrative_function": "대부분의 주문이 카드 결제로 처리되는 행동을 보여준다.",
+            "subject_action_outcome": "점주가 카드 단말기에 결제 카드를 대고 주문 결제를 마친다. → 결제가 카드로 진행된다. 키오스크 결제 화면과 연결된 카드 결제 정산 내역을 나란히 보여준다. → 평균 수수료 2%가 비용으로 확인된다."
+        },
+        {
+            "order": 5,
+            "scene": "빙수점 - 계산대 장부 위",
+            "shot_id": "e264bcb8-4a1d-4f97-bc15-a87fb8535515",
+            "shot_size": "CLOSE_UP",
+            "description": "계산대 장부의 남은 금액 옆에 2% 수수료 표시가 놓여 있다. 작은 비율을 가리키는 손가락과 비교해 실제 매출에서 반복 차감될 항목임을 암시한다.",
+            "subject_focus": "ABSTRACT_CONCEPT",
+            "time_relation": "SAME_MOMENT",
+            "semantic_event": "EXPRESS_UNCERTAINTY",
+            "camera_viewpoint": "OVERHEAD",
+            "location_relation": "SAME_LOCATION",
+            "narrative_function": "작은 비율이 무시할 수 없는 비용인지 되묻는 순간을 시각화한다.",
+            "subject_action_outcome": "장부 위 남은 금액과 작게 적힌 2% 수수료 표시를 함께 비춘다. → 2%가 작아 보이더라도 매출에서 빠지는 비용이라는 의문이 남는다."
+        },
+        {
+            "order": 6,
+            "scene": "빙수점 - 계산대 장부",
+            "shot_id": "f4ef2ca4-26b5-44aa-bbd7-bf034fa832c0",
+            "shot_size": "CLOSE_UP",
+            "description": "소형 빙수 배달점의 계산대 장부에 월 매출 1,200만 원이 적혀 있고, 계산기가 그 옆에 놓여 있다. 저채도 황토색의 손그림 배경과 부드러운 셀 애니메이션 음영으로 연출한다.",
+            "subject_focus": "OBJECT_OR_EVIDENCE",
+            "time_relation": "SAME_MOMENT",
+            "semantic_event": "ESTABLISH_CONTEXT",
+            "camera_viewpoint": "OVERHEAD",
+            "location_relation": "SAME_LOCATION",
+            "narrative_function": "계산을 시작하는 기준이 되는 월 매출을 제시한다.",
+            "subject_action_outcome": "월 매출 1,200만 원이 표시된 장부 옆에 계산기가 놓여 있다. → 1,200만 원 매출이 다음 계산의 출발점으로 남는다."
+        }
+    ],
+    "review_state": "REQUIRED",
+    "conflicts_json": [
+        {
+            "code": "source_preplan_quality_conflict",
+            "shot_ids": [
+                "137dcc45-6aab-45eb-b2e1-9b1b8c52539d",
+                "f4ef2ca4-26b5-44aa-bbd7-bf034fa832c0"
+            ],
+            "sentence_ids": [
+                "93a8d115-8454-5468-9290-82143c1ba591",
+                "10a5c918-6c7a-574d-8260-344ea8bb88be"
+            ]
+        },
+        {
+            "code": "source_preplan_quality_conflict",
+            "shot_ids": [
+                "f4ef2ca4-26b5-44aa-bbd7-bf034fa832c0"
+            ],
+            "sentence_ids": [
+                "10a5c918-6c7a-574d-8260-344ea8bb88be"
+            ]
+        },
+        {
+            "code": "source_preplan_quality_conflict",
+            "shot_ids": [
+                "e264bcb8-4a1d-4f97-bc15-a87fb8535515"
+            ],
+            "sentence_ids": [
+                "70421928-74aa-5665-84cd-3e22466ac8a9"
+            ]
+        }
+    ],
+    "group_sequence": 8,
+    "final_revision_id": null,
+    "materialization_id": "a78f3daf-8964-43ce-8293-35d512591334",
+    "source_shot_links_json": [
+        {
+            "source_shot_id": "bdeabbd3-1a01-4248-bc64-8253931aeb9b",
+            "candidate_shot_id": "137dcc45-6aab-45eb-b2e1-9b1b8c52539d"
+        },
+        {
+            "source_shot_id": "db913bf4-c7d0-4106-9b2e-e058c9831259",
+            "candidate_shot_id": "787311eb-affd-4aa4-a1db-a35831da9687"
+        },
+        {
+            "source_shot_id": "9bf8dbb6-dea8-41ce-8822-a8c876c5fa3d",
+            "candidate_shot_id": "59c0d209-b98f-44ec-8c03-3b5bec6920b3"
+        },
+        {
+            "source_shot_id": "9df9513f-ac34-467e-9d0e-79e4deefcca2",
+            "candidate_shot_id": "952d73a0-1086-4880-a1c2-4aa40b4087a6"
+        },
+        {
+            "source_shot_id": "fc0398c4-5502-4fbf-9f59-418260c887e5",
+            "candidate_shot_id": "952d73a0-1086-4880-a1c2-4aa40b4087a6"
+        },
+        {
+            "source_shot_id": "668aa824-cbd0-4993-a8c5-68cff19b47e0",
+            "candidate_shot_id": "e264bcb8-4a1d-4f97-bc15-a87fb8535515"
+        },
+        {
+            "source_shot_id": "9316a613-d6ca-4940-b9fd-f701a7f7c1a0",
+            "candidate_shot_id": "f4ef2ca4-26b5-44aa-bbd7-bf034fa832c0"
+        }
+    ]
+}
