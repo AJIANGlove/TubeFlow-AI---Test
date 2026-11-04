@@ -31,6 +31,7 @@ from io import BytesIO
 from pathlib import Path
 
 from PIL import Image, ImageDraw
+
 from tubeflow_test.domain.storyboards import grid_layout_for
 from tubeflow_test.video_generation import panel_images as pi
 from tubeflow_test.video_generation.domain import VideoRuleViolation
@@ -55,116 +56,64 @@ def _fetch(row: dict, local_dir: Path | None) -> bytes:
         response.release_conn()
 
 
-def _candidates(means, expected: float, radius: int, lo: int, hi: int) -> list[dict]:
-    start = max(lo + 1, math.floor(expected - radius - 3 * pi._V2_BAND_MAX))
-    end = min(hi - 1, math.ceil(expected + radius + 3 * pi._V2_BAND_MAX))
-    runs = pi._v2_runs(pi._v2_extreme(means, start, end), start, end)
-    return [
-        {
-            "start": run[0],
-            "end": run[1],
-            "width": run[1] - run[0] + 1,
-            "offset": round((run[0] + run[1]) / 2 - expected, 1),
-            "mean": round(sum(means[run[0] : run[1] + 1]) / (run[1] - run[0] + 1), 1),
-        }
-        for run in runs
-    ]
-
-
-def _spans(trace, means, lo, hi, total, used, axis, offset, label):  # type: ignore[no-untyped-def]
-    cell = (hi - lo) / total
-    radius = max(pi._V2_RADIUS_MIN, math.ceil(cell * pi._V2_RADIUS_FRACTION))
-    separators = []
-    for index in range(1, used):
-        expected = lo + cell * index
-        trace["expected"].append({"axis": axis, "at": expected, "offset": offset, "label": label})
-        try:
-            found = pi._v2_separator(means, expected, radius, lo, hi)
-        except VideoRuleViolation as exc:
-            trace["failure"] = {
-                "step": f"{label} separator {index}", "axis": axis, "expected": round(expected, 1),
-                "radius": radius, "code": str(exc), "offset": offset,
-                "candidates": _candidates(means, expected, radius, lo, hi),
-            }
-            raise
-        if found is None:
-            trace["failure"] = {
-                "step": f"{label} separator {index}", "axis": axis, "expected": round(expected, 1),
-                "radius": radius, "code": "shot_panel_gutter_not_found", "offset": offset,
-                "candidates": _candidates(means, expected, radius, lo, hi),
-            }
-            raise VideoRuleViolation("shot_panel_gutter_not_found")
-        trace["bands"].append({"axis": axis, "start": found[0], "end": found[1], "offset": offset})
-        separators.append(found)
-    end = hi
-    if used < total:
-        expected = lo + cell * used
-        trace["expected"].append({"axis": axis, "at": expected, "offset": offset, "label": label})
-        found = pi._v2_separator(means, expected, radius, lo, hi)
-        if found is not None:
-            trace["bands"].append({"axis": axis, "start": found[0], "end": found[1], "offset": offset})
-            end = found[0]
-        else:
-            try:
-                end = pi._v2_dark_tail(means, expected, radius, lo, hi, cell)
-                trace["dark_tails"].append({"axis": axis, "start": end, "end": hi, "offset": offset})
-            except VideoRuleViolation:
-                trace["failure"] = {
-                    "step": f"{label} dark tail", "axis": axis, "expected": round(expected, 1),
-                    "radius": radius, "code": "shot_panel_gutter_not_found", "offset": offset,
-                    "candidates": _candidates(means, expected, radius, lo, hi),
-                }
-                raise
-    return pi._segments(lo, end, tuple(separators))
-
-
-def _interior(crop: Image.Image) -> dict | None:
-    luminance = crop.convert("L").convert("F")
-    for axis in ("x", "y"):
-        means = pi._v2_means(luminance, axis)
-        size = len(means)
-        lo = math.ceil(size * pi._V2_INTERIOR_MARGIN)
-        hi = math.floor(size * (1 - pi._V2_INTERIOR_MARGIN))
-        for start, end in pi._v2_runs(pi._v2_extreme(means, lo, hi), lo, hi):
-            width = end - start + 1
-            if 2 <= width <= pi._V2_BAND_MAX and pi._v2_is_gutter_band(luminance, axis, start, end):
-                return {"axis": axis, "start": start, "end": end, "width": width}
-    return None
-
-
 def trace_one(content: bytes, shots: int) -> dict:
+    """Run the real crop with recording wrappers around its search steps (§47 algorithm)."""
     trace: dict = {"expected": [], "bands": [], "dark_tails": [], "boxes": [], "failure": None}
     with Image.open(BytesIO(content)) as opened:
         image = opened.convert("RGB")
     trace["size"] = list(image.size)
     layout = grid_layout_for(shots, "16:9", "grid-v1")
     trace["layout"] = [layout.rows, layout.cols]
-    luminance = image.convert("L").convert("F")
-    x0, x1 = pi._v2_outer(pi._v2_means(luminance, "x"))
-    y0, y1 = pi._v2_outer(pi._v2_means(luminance, "y"))
-    trace["outer"] = [x0, y0, x1, y1]
+    originals = (pi._v2_spans, pi._v2_separator, pi._v2_wide_separator, pi._v2_dark_tail)
+    context = {"axis": "y", "offset": 0, "row_tops": [], "last": None}
+
+    def spans(region, axis, lo, hi, total, used, pixels):  # type: ignore[no-untyped-def]
+        context["axis"] = axis
+        context["offset"] = context["row_tops"].pop(0) if axis == "x" and context["row_tops"] else 0
+        result = originals[0](region, axis, lo, hi, total, used, pixels)
+        if axis == "y":
+            context["row_tops"] = [top for top, _bottom in result]
+        return result
+
+    def record(kind, expected, window, found):  # type: ignore[no-untyped-def]
+        item = {"axis": context["axis"], "at": expected, "offset": context["offset"], "kind": kind}
+        trace["expected"].append(item)
+        context["last"] = {**item, "radius": window}
+        if found is not None:
+            trace["bands"].append(
+                {"axis": context["axis"], "start": found[0], "end": found[1],
+                 "offset": context["offset"], "kind": kind}
+            )
+
+    def separator(means, expected, radius, lo, hi, pixels):  # type: ignore[no-untyped-def]
+        found = originals[1](means, expected, radius, lo, hi, pixels)
+        record("strict", expected, radius, found)
+        return found
+
+    def wide(region, axis, means, expected, window, lo, hi, pixels):  # type: ignore[no-untyped-def]
+        found = originals[2](region, axis, means, expected, window, lo, hi, pixels)
+        record("wide", expected, window, found)
+        return found
+
+    def tail(means, expected, radius, lo, hi, cell, pixels):  # type: ignore[no-untyped-def]
+        start = originals[3](means, expected, radius, lo, hi, cell, pixels)
+        trace["dark_tails"].append(
+            {"axis": context["axis"], "start": start, "end": hi, "offset": context["offset"]}
+        )
+        return start
+
+    pi._v2_spans, pi._v2_separator, pi._v2_wide_separator, pi._v2_dark_tail = (
+        spans, separator, wide, tail
+    )
     try:
-        shot_rows = math.ceil(shots / layout.cols)
-        last = shots - (shot_rows - 1) * layout.cols
-        full = layout.cols if shot_rows == 1 else min(layout.cols, last)
-        strip = luminance.crop((x0, 0, round(x0 + (x1 - x0) / layout.cols * full), luminance.height))
-        rows = _spans(trace, pi._v2_means(strip, "y"), y0, y1, layout.rows, shot_rows, "y", 0, "row")
-        for row_index, (top, bottom) in enumerate(rows):
-            cells = min(layout.cols, shots - row_index * layout.cols)
-            band = luminance.crop((0, top, luminance.width, bottom))
-            for left, right in _spans(
-                trace, pi._v2_means(band, "x"), x0, x1, layout.cols, cells, "x", top, f"row {row_index + 1} column"
-            ):
-                box = (left + pi._V2_INSET, top + pi._V2_INSET, right - pi._V2_INSET, bottom - pi._V2_INSET)
-                trace["boxes"].append(list(box))
-        for order, box in enumerate(trace["boxes"], 1):
-            found = _interior(image.crop(tuple(box)))
-            if found is not None:
-                trace["failure"] = {"step": f"panel {order} interior", "code": "shot_panel_layout_mismatch", "box": box, **found}
-                break
-    except VideoRuleViolation:
-        pass
+        trace["boxes"] = [list(box) for box in pi.grid_v2_panel_boxes(image, layout, shots)]
+    except VideoRuleViolation as exc:
+        trace["failure"] = {"code": str(exc), **(context["last"] or {})}
+    finally:
+        pi._v2_spans, pi._v2_separator, pi._v2_wide_separator, pi._v2_dark_tail = originals
     trace["status"] = "failed" if trace["failure"] else "passed"
+    if trace["failure"]:
+        trace["failure"]["step"] = f"{trace['failure'].get('axis', '?')} {trace['failure'].get('kind', '')}"
     return trace
 
 
@@ -198,8 +147,8 @@ def preview(content: bytes, trace: dict) -> Image.Image:
                 draw.rectangle((box[0] + failure["start"], box[1], box[0] + failure["end"], box[3]), fill=(255, 0, 0))
             else:
                 draw.rectangle((box[0], box[1] + failure["start"], box[2], box[1] + failure["end"]), fill=(255, 0, 0))
-        elif "expected" in failure:
-            at, radius = failure["expected"], failure["radius"]
+        elif "at" in failure:
+            at, radius = failure["at"], failure["radius"]
             if failure["axis"] == "x":
                 draw.rectangle((at - radius, failure["offset"], at + radius, height), outline=(255, 0, 0), width=6)
             else:
