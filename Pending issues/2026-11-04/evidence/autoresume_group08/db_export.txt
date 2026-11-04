@@ -1,0 +1,95 @@
+=== [1] project ===
+-[ RECORD 1 ]-------+--------------------------------------------------
+id                  | 2c291aba-085d-499d-bd32-b3a4d75f252f
+title               | 여름 메뉴인 줄 알았지? 빙수 장사의 진짜 수익 구조
+channel_id          | f28a0845-6ddf-4111-ae2d-f5de595a5fd6
+production_state    | ACTIVE
+production_revision | 1
+draft_revision      | 1
+locale              | ko-KR
+aspect_ratio        | 16:9
+created_at          | 2026-11-04 03:28:42.813248+00
+
+=== [2] auto_pipeline_runs ===
+-[ RECORD 1 ]-------+-------------------------------------
+id                  | 78a56ed9-599e-4df1-ac90-a01d68be0ecf
+owner_id            | fb294c02-5f32-4597-b1e9-f7348ac9734a
+project_id          | 2c291aba-085d-499d-bd32-b3a4d75f252f
+state               | PAUSED
+reason_code         | director_validation_failed
+authorization_round | 7
+created_at          | 2026-11-04 03:28:43.597503+00
+updated_at          | 2026-11-04 07:19:54.443654+00
+
+=== [3] run payload ===
+{
+    "phase": "storyboard_drafts",
+    "failure_code": "director_output_adjacent_diversity_insufficient",
+    "paused_at_ms": 1793776794443,
+    "run_paused_ms": 8054190,
+    "run_started_ms": 1793762923597,
+    "group_sequences": [
+        8
+    ],
+    "phase_paused_ms": 1178004,
+    "failure_messages": {
+        "8": "director plan repeats an event or composition across the group"
+    },
+    "phase_elapsed_ms": {
+        "narration": 1099739,
+        "director_preplan": 4714170
+    },
+    "phase_started_ms": 1793775613692,
+    "timing_from_phase": "narration",
+    "director_failed_run_id": "8ff8975f-2b45-45c3-8d42-796c35bb6c1f"
+}
+=== [4] director materialization ===
+-[ RECORD 1 ]----------+-----------------------------------------------------------------
+id                     | a78f3daf-8964-43ce-8293-35d512591334
+preplan_revision_id    | 5b7808d6-e9bb-45e0-9863-fbd700b6f271
+snapshot_revision      | 1
+algorithm_version      | controlled-semantic-lineage-remap-v5
+canonical_input_sha256 | b4614921923cdae7d3cf537cb23700c831cbfb6e287f3f861ca9e6854d9b8bfa
+status                 | REVIEW_REQUIRED
+created_at             | 2026-11-04 07:00:09.12843+00
+
+=== [5] candidate counts by review_state ===
+review_state,count
+NOT_REQUIRED,66
+REQUIRED,41
+=== [6] storyboard_director_revisions by kind/review_state ===
+kind,review_state,count
+DRAFT,APPROVED,10
+DRAFT,NOT_REQUIRED,96
+=== [7] storyboard_generations by status ===
+status,count
+=== [8] video batch items / composition versions counts ===
+t,count
+video_batch_items,0
+composition_versions,0
+=== [9] director_generation_attempts (project) by status/failure_code ===
+failure_code,status,count
+=== [10] director_generation_attempts for group 8 (expect 0) ===
+attempts_group8
+0
+=== [11] narration group 8 ===
+-[ RECORD 1 ]-----------------------------------
+id        | eca42932-c8aa-58fe-9330-3a32db38c554
+sequence  | 8
+sentences | 7
+
+=== [12] group 8 shot key fields ===
+shot_order,shot_id,scene,shot_size,camera_viewpoint,subject_focus,semantic_event,time_relation
+1,137dcc45-6aab-45eb-b2e1-9b1b8c52539d,빙수점 - 계산대 장부,CLOSE_UP,OVERHEAD,PROCESS,PERFORM_ACTION,LATER
+2,787311eb-affd-4aa4-a1db-a35831da9687,빙수점 - 카드 단말기 옆,EXTREME_CLOSE_UP,OBJECTIVE,OBJECT_OR_EVIDENCE,REVEAL_EVIDENCE,SAME_MOMENT
+3,59c0d209-b98f-44ec-8c03-3b5bec6920b3,빙수점 - 계산대 앞,MEDIUM,EYE_LEVEL,ENVIRONMENT,EXPRESS_UNCERTAINTY,SAME_MOMENT
+4,952d73a0-1086-4880-a1c2-4aa40b4087a6,빙수점 - 카드 결제대,CLOSE_UP,OVER_SHOULDER,PRIMARY_SUBJECT,PERFORM_ACTION,LATER
+5,e264bcb8-4a1d-4f97-bc15-a87fb8535515,빙수점 - 계산대 장부 위,CLOSE_UP,OVERHEAD,ABSTRACT_CONCEPT,EXPRESS_UNCERTAINTY,SAME_MOMENT
+6,f4ef2ca4-26b5-44aa-bbd7-bf034fa832c0,빙수점 - 계산대 장부,CLOSE_UP,OVERHEAD,OBJECT_OR_EVIDENCE,ESTABLISH_CONTEXT,SAME_MOMENT
+=== [13] project_director_current ===
+-[ RECORD 1 ]---+-------------------------------------
+owner_id        | fb294c02-5f32-4597-b1e9-f7348ac9734a
+project_id      | 2c291aba-085d-499d-bd32-b3a4d75f252f
+revision_id     | 5b7808d6-e9bb-45e0-9863-fbd700b6f271
+pointer_version | 1
+

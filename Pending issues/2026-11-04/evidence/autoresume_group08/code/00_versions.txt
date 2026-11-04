@@ -1,0 +1,17 @@
+image: sha256:8278db3ed79d93f24d3e7f644884022d3926649790f7bff18f85cc2fdd4e0567
+built: 2026-11-04T00:17:23Z
+alembic: 0046
+web container: tubeflowai-test-web-1
+worker container: tubeflowai-test-worker-1
+
+== 引用文件行数（容器内 wc -l） ==
+763 /usr/local/lib/python3.12/site-packages/tubeflow_test/auto_pipeline/service.py
+322 /usr/local/lib/python3.12/site-packages/tubeflow_test/application/storyboard_batch.py
+750 /usr/local/lib/python3.12/site-packages/tubeflow_test/domain/storyboards.py
+2288 /usr/local/lib/python3.12/site-packages/tubeflow_test/application/project_director.py
+562 /usr/local/lib/python3.12/site-packages/tubeflow_test/adapters/persistence/auto_pipeline.py
+944 /usr/local/lib/python3.12/site-packages/tubeflow_test/identity_project/router.py
+574 /usr/local/lib/python3.12/site-packages/tubeflow_test/api/storyboards.py
+8720 /app/frontend/app.js
+
+== 镜像内 site-packages 与 /app/src 是否一致（同一文件 diff 摘要） ==

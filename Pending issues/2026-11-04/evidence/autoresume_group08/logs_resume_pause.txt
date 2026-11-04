@@ -1,0 +1,39 @@
+# 暂停 / 恢复 日志摘录（2026-11-04，UTC）
+#
+# 说明：本文件是对部署机 docker logs 输出的逐字转录（排查时实时读取），
+#       不是自动抓取的原始文件。复现命令见本文末尾。
+#       web  = tubeflowai-test-web-1（compose 服务 web）
+#       worker = tubeflowai-test-worker-1
+#       项目 project_id = 2c291aba-085d-499d-bd32-b3a4d75f252f
+
+## web 容器
+
+2026-11-04T06:08:45.008743010Z INFO:     192.168.110.2:55576 - "POST /identity/projects/2c291aba-085d-499d-bd32-b3a4d75f252f/auto-pipeline/resume HTTP/1.1" 200 OK
+2026-11-04T06:53:41.919640760Z INFO:     192.168.110.2:57324 - "POST /identity/projects/2c291aba-085d-499d-bd32-b3a4d75f252f/auto-pipeline/resume HTTP/1.1" 200 OK
+2026-11-04T07:16:09.840478083Z auto pipeline paused: project=2c291aba-085d-499d-bd32-b3a4d75f252f reason=director_validation_failed phase=storyboard_drafts
+2026-11-04T07:16:09.843935076Z INFO:     192.168.110.49:61959 - "POST /identity/projects/2c291aba-085d-499d-bd32-b3a4d75f252f/auto-pipeline/resume HTTP/1.1" 200 OK
+2026-11-04T07:17:20.752294754Z auto pipeline paused: project=2c291aba-085d-499d-bd32-b3a4d75f252f reason=director_validation_failed phase=storyboard_drafts
+2026-11-04T07:17:20.755989023Z INFO:     192.168.110.2:59580 - "POST /identity/projects/2c291aba-085d-499d-bd32-b3a4d75f252f/auto-pipeline/resume HTTP/1.1" 200 OK
+2026-11-04T07:19:54.443911051Z auto pipeline paused: project=2c291aba-085d-499d-bd32-b3a4d75f252f reason=director_validation_failed phase=storyboard_drafts
+2026-11-04T07:19:54.451160513Z INFO:     192.168.110.2:60006 - "POST /identity/projects/2c291aba-085d-499d-bd32-b3a4d75f252f/auto-pipeline/resume HTTP/1.1" 200 OK
+
+## worker 容器
+
+2026-11-04T06:38:41.272784474Z auto pipeline paused: project=2c291aba-085d-499d-bd32-b3a4d75f252f reason=director_preplan_failed phase=director_preplan
+2026-11-04T07:00:13.692672591Z auto pipeline paused: project=2c291aba-085d-499d-bd32-b3a4d75f252f reason=director_validation_failed phase=storyboard_drafts
+
+## 复现命令（部署机 /home/edy/tubeflowai-test）
+
+    docker logs -t --since 2026-11-04T06:00:00Z tubeflowai-test-web-1 2>&1 \
+      | grep -E "auto pipeline paused: project=2c291aba|POST /identity/projects/2c291aba-085d-499d-bd32-b3a4d75f252f/auto-pipeline/resume"
+
+    docker logs -t --since 2026-11-04T06:00:00Z tubeflowai-test-worker-1 2>&1 \
+      | grep -E "auto pipeline paused: project=2c291aba"
+
+## 判读要点
+
+- 06:08:45 与 06:53:41 两次 resume 之后，项目分别继续运行了约 30 分钟和 6 分钟，
+  说明恢复接口本身可用、授权轮次机制正常。
+- 07:16:09 / 07:17:20 / 07:19:54 三次 resume：暂停行比同一请求的 200 行早 3.5 / 3.7 / 7.2 ms，
+  且暂停行来自 web 进程自身（auto_pipeline/service.py:745），
+  证明「重新暂停」发生在 resume 请求线程内，不是 worker 的定时 sweep。

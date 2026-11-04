@@ -1,0 +1,16 @@
+group_sequence = 8
+review_state   = REQUIRED
+final_revision = None
+shots          = 6
+
+  #1 scene='빙수점 - 계산대 장부' size=CLOSE_UP vp=OVERHEAD
+  #2 scene='빙수점 - 카드 단말기 옆' size=EXTREME_CLOSE_UP vp=OBJECTIVE
+  #3 scene='빙수점 - 계산대 앞' size=MEDIUM vp=EYE_LEVEL
+  #4 scene='빙수점 - 카드 결제대' size=CLOSE_UP vp=OVER_SHOULDER
+  #5 scene='빙수점 - 계산대 장부 위' size=CLOSE_UP vp=OVERHEAD
+  #6 scene='빙수점 - 계산대 장부' size=CLOSE_UP vp=OVERHEAD
+
+composition 非相邻重复: [(0, 5, ('빙수점-계산대장부', 'close_up', 'overhead'))]
+event       非相邻重复: []
+
+domain 校验结论: 抛 ValueError（与线上一致）
