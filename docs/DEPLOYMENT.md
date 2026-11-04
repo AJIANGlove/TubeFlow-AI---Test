@@ -394,3 +394,13 @@ ssh $SSHOPTS edy@192.168.110.200 'sudo docker run --rm -v tubeflowai-test_postgr
 - 验证：web/worker healthy，`/health/live` 200，迁移 `0046` 不变，策略仍为 v4（web+worker 实读），`_derived_seed` 与 `_GENDERED_PRONOUN` 在容器内可用，`910fa912` 导演 v8 不变、无新审计。
 - 同日：频道 `f28a0845`（韩国小生意经济财经）的 `default_visual_style` 已删除「保留原图人物特征、服装、姿势、表情、主体数量、场景布局和物品位置，仅转换画面艺术风格。」；原文备份 `runtime/operations/channel-style-20261103/default_visual_style.before.txt`。只影响新建项目快照。
 - 回滚：还原 compose 备份后 `up -d --no-build` 回 `sha256:35a2f3f2949c…`；频道风格还原用备份文件 UPDATE。
+
+## 35. 2026-11-04 导演 v10 + 重试带原因上线（director-v10-20261104）
+
+- 来源：main `0e832f6`（合并 PR #3 `1fe137e`）。门禁：干净工作树单元 2231 passed / 0 failed / 10 skipped；集成 19 failed / 119 passed / 7 skipped（19 条与 main 基线同源）；ruff/mypy 通过。
+- 前置检查一度被新项目 `d725172f`（director_preplan）挡住；按用户决策先暂停该项目 AUTO（`manual_deploy_pause`），部署后恢复（`resume_paused`）。
+- 构建：部署机 `/home/edy/build-v10-20261104`（git archive of 0e832f6）。镜像 `sha256:8278db3ed79d93f24d3e7f644884022d3926649790f7bff18f85cc2fdd4e0567`（`tubeflow-test:director-v10-20261104`），镜像内含 `project-director-unit-v10`。
+- 部署：compose 备份 `runtime/operations/director-v10-20261104/docker-compose.yml.bak`，三处 image 改钉，`up -d --no-build`。
+- 验证：web/worker healthy，`/health/live` 200，迁移 `0046` 不变，策略仍为 v4（web+worker 实读），`PROJECT_DIRECTOR_PROMPT_REF = project-director-unit-v10`；`910fa912` 导演仍为 v8（91 单元）、`146ae08c` 最新成功运行仍为 v9（56 单元）且 canonical 不变；`765dca11` AUTO 已为 COMPLETED（此前由用户自行处理）。
+- 恢复后实测：`d725172f` 的恢复运行 `74cb474b`（00:25:38 UTC）77 个单元全部为 v10，符合 §45.2/§45.4；`765dca11` 若恢复同样将用 v10。
+- 回滚：还原 compose 备份后 `up -d --no-build` 回 `sha256:c031714fe190…`。
