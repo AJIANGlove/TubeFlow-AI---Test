@@ -601,6 +601,10 @@
 7. 视频提示词：`crop-grid-v2` 使用新策略 `tubeflow_storyboard_v4_single_panel`（单格规则 + v4 身份指认、运镜白名单、负规则与第 17–21 条 + 第 22 条“每镜只表现本格出现的人物，同一人物同一画面只出现一次”），校验追加 v4 性别代词禁令。allowlist 项目仍用 v3 单格，提示词与指纹逐字不变。
 8. AUTO 梯子：生产逐格尝试（快照含项目参考策略与编译输入、非隔离重放）可自动重提；各级（含第 4 级）沿用快照记录的单格策略，复用已归档的逐格资产与 `reference_input_sha256`，预算与 seed 梯度不变。隔离重放仍禁止自动重提。
 9. 验收门槛 D5：第 1 关离线裁切通过率低于 90% 即停止。不在本节范围：清晰度/HD 工作流（用户 2026-11-03 决定延后）、故事板内容质检、视频内容质检、v4 运动规则补充、导演 v11。
+10. 推进方式（2026-11-04，用户原话：“Gate 3 now. The other affected projects can be left aside for now. Just make a record of them. We'll handle them later. Right now, we need to complete the testing and launch a usable version as soon as possible.”）：
+    - 不与 v4 运动规则补充、故事板手臂/同格一次规则、导演 v11 捆绑；以已部署镜像 `sha256:238bd9ea…` 开启开关，直接进入第 3 关。
+    - 开关开启需要重启，重启不等待既有项目排空（不再适用 DEPLOYMENT 的 AUTO RUNNING=0 等前置条件）。
+    - 受影响的既有项目只做记录，后续再处理，记录见 `Pending issues/2026-11-04/DEFERRED_EXISTING_PROJECTS_20261104.md`。受影响项目包括两类：重启时仍在运行的项目；以及已钉 v1、继续走整图参考、不受本节修复的项目。
 
 ## 47. 2026-11-04 crop-grid-v2 按 Gate 1 结果修订：取消格内分隔核验，放宽分隔定位
 
