@@ -1,0 +1,178 @@
+E501 Line too long (110 > 100)
+   --> src\tubeflow_test\adapters\audio_qc.py:509:101
+    |
+507 |         normalized, output_qc, preflight = self._render_and_verify(
+508 |             input_path,
+509 |             directory / ("normalized-long-preflight.wav" if long_audio else "normalized-short-preflight.wav"),
+    |                                                                                                     ^^^^^^^^^^
+510 |             fallback_filter,
+511 |             output_recipe,
+    |
+
+E501 Line too long (105 > 100)
+   --> src\tubeflow_test\application\narration.py:251:101
+    |
+249 |             # 2026-10-27：阶段与真实错误码落到日志，避免下次只能靠上机复现归因。
+250 |             logger.warning(
+251 |                 "narration unit processing failed: project=%s sequence=%s phase=%s code=%s error=%s: %s",
+    |                                                                                                     ^^^^^
+252 |                 request.project_id,
+253 |                 request.sentence.sequence,
+    |
+
+E501 Line too long (102 > 100)
+   --> tests\integration\test_h3_storyboard_binding.py:778:90
+    |
+776 |     storyboard_parent_chain: tuple[ProductionParentChain, UUID],
+777 | ) -> None:
+778 |     # 2026-11-03 AB_REVIEW_AND_FOLLOWUPS §3：未配置 seed 时按 (group_id, idempotency_key) 派生并落库，
+    |                                                                                                     ^^
+779 |     # 快照与 provider request 必须一致；不同幂等键得到不同 seed。
+780 |     parents, generation_id = storyboard_parent_chain
+    |
+
+E501 Line too long (105 > 100)
+   --> tests\unit\test_audio_normalizer_contract.py:430:101
+    |
+428 |     """分析固定返回低响度长句；渲染按脚本返回门判定结果。"""
+429 |
+430 |     def __init__(self, measured: dict[str, float], render_reports: tuple[dict[str, float], ...]) -> None:
+    |                                                                                                     ^^^^^
+431 |         super().__init__("ffmpeg", ffmpeg_version="test-version")
+432 |         self._measured = measured
+    |
+
+E501 Line too long (101 > 100)
+   --> tests\unit\test_auto_pipeline.py:290:101
+    |
+288 |             }:
+289 |                 reopened += 1
+290 |                 items.append(VideoBatchItemView(item.group_id, item.sequence, "PENDING", None, None))
+    |                                                                                                     ^
+291 |             else:
+292 |                 items.append(item)
+    |
+
+E501 Line too long (108 > 100)
+   --> tests\unit\test_composition.py:161:101
+    |
+159 |         "p",
+160 |         "a" * 64,
+161 |         (GroupInput("g0", 0, "video0", (NarrationSegmentInput("s0", "tts0", 1001, 48048, 48_000),), 1001),),
+    |                                                                                                     ^^^^^^^^
+162 |         (SentenceTiming("s", 0, "多语言\n安全", text_hash("多语言\n安全"), 0, 1001),),
+163 |         AspectRatio.LANDSCAPE,
+    |
+
+E501 Line too long (104 > 100)
+   --> tests\unit\test_composition.py:174:101
+    |
+172 |     runner = Runner(item)
+173 |     _, manifest = FFmpegComposer(runner, Resolver(tmp_path)).compose(item)
+174 |     assert "scale=1920:1080:force_original_aspect_ratio=increase:flags=lanczos" in manifest.filter_graph
+    |                                                                                                     ^^^^
+175 |     assert "crop=1920:1080" in manifest.filter_graph
+176 |     assert "unsharp=5:5:0.4:5:5:0.0" in manifest.filter_graph
+    |
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests\unit\test_cover_workflows.py:185:9
+    |
+183 |       task_queue = f"cover-analysis-{uuid4()}"
+184 |       with ThreadPoolExecutor(max_workers=2) as executor:
+185 | /         async with await WorkflowEnvironment.start_time_skipping() as environment:
+186 | |             async with create_cover_worker(environment.client, task_queue, activities, executor):
+    | |_________________________________________________________________________________________________^
+187 |                   # 顺利路径
+188 |                   channel_id = uuid4()
+    |
+help: Combine `with` statements
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests\unit\test_cover_workflows.py:244:9
+    |
+242 |       task_queue = f"cover-prompt-{uuid4()}"
+243 |       with ThreadPoolExecutor(max_workers=4) as executor:
+244 | /         async with await WorkflowEnvironment.start_time_skipping() as environment:
+245 | |             async with create_cover_worker(environment.client, task_queue, activities, executor):
+    | |_________________________________________________________________________________________________^
+246 |                   project_id = uuid4()
+247 |                   repo.set_project_state(owner_id, project_id, "ACTIVE")
+    |
+help: Combine `with` statements
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests\unit\test_cover_workflows.py:289:9
+    |
+287 |       task_queue = f"cover-image-{uuid4()}"
+288 |       with ThreadPoolExecutor(max_workers=2) as executor:
+289 | /         async with await WorkflowEnvironment.start_time_skipping() as environment:
+290 | |             async with create_cover_worker(environment.client, task_queue, activities, executor):
+    | |_________________________________________________________________________________________________^
+291 |                   project_id = uuid4()
+292 |                   repo.set_project_state(owner_id, project_id, "ACTIVE")
+    |
+help: Combine `with` statements
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests\unit\test_cover_workflows.py:352:9
+    |
+350 |       task_queue = f"cover-card-analysis-{uuid4()}"
+351 |       with ThreadPoolExecutor(max_workers=2) as executor:
+352 | /         async with await WorkflowEnvironment.start_time_skipping() as environment:
+353 | |             async with create_cover_worker(environment.client, task_queue, activities, executor):
+    | |_________________________________________________________________________________________________^
+354 |                   # 顺利路径：解析结果覆盖卡文本并置 source=analysis。
+355 |                   channel_id = uuid4()
+    |
+help: Combine `with` statements
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests\unit\test_elevenlabs_adapter.py:236:5
+    |
+234 |           )
+235 |
+236 | /     with caplog.at_level("WARNING", logger="tubeflow_test.adapters.elevenlabs"):
+237 | |         with pytest.raises(DomainError) as captured:
+    | |____________________________________________________^
+238 |               await _make_client(handler).synthesize(
+239 |                   "super-secret-key", "v", "\u200b", model_id="m"
+    |
+help: Combine `with` statements
+
+E501 Line too long (102 > 100)
+   --> tests\unit\test_storyboard_prompt.py:229:59
+    |
+229 | POSE_CLAUSE = "保留原图人物特征、服装、姿势、表情、主体数量、场景布局和物品位置，仅转换画面艺术风格。"
+    |                                                                                                      ^
+
+UP037 [*] Remove quotes from type annotation
+  --> tests\unit\test_video_orchestration.py:86:12
+   |
+84 |     workflow_id: str = "h3.community.reference-images-to-video",
+85 |     workflow_version: str = "1.1.0-mvp",
+86 |     probe: "Probe | None" = None,
+   |            ^^^^^^^^^^^^^^
+87 |     seed: int | str | None = 2**53 - 1,
+88 | ) -> tuple[
+   |
+help: Remove quotes
+   |
+85 |     workflow_version: str = "1.1.0-mvp",
+   -     probe: "Probe | None" = None,
+86 +     probe: Probe | None = None,
+87 |     seed: int | str | None = 2**53 - 1,
+   |
+
+E501 Line too long (106 > 100)
+    --> tests\unit\test_video_orchestration.py:1721:77
+     |
+1720 | def test_legacy_attempt_without_seed_remains_idempotent_for_same_key() -> None:
+1721 |     # 2026-11-03 用户决策 3：seed 记录上线前创建的键，快照 seed 为 null；重试不得报 idempotency_conflict。
+     |                                                                                                     ^^^^^^
+1722 |     source, repository, _engine, _assets, service = setup(seed=None)
+1723 |     attempt_id = uuid4()
+     |
+
+Found 15 errors.
+[*] 1 fixable with `--fix`.
