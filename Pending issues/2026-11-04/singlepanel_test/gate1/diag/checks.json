@@ -1,0 +1,150 @@
+{
+ "gate1_rows": 515,
+ "gate1_status_counts": {
+  "passed": 406,
+  "failed": 109
+ },
+ "gate1_failure_counts": {
+  "shot_panel_layout_mismatch": 42,
+  "shot_panel_gutter_not_found": 66,
+  "shot_panel_gutter_ambiguous": 1
+ },
+ "trace_rows": 145,
+ "trace_status_counts": {
+  "failed": 109,
+  "passed": 36
+ },
+ "trace_error_records": 0,
+ "trace_error_codes": {},
+ "source_bytes_sha_mismatch_count": 0,
+ "source_bytes_sha_mismatch_ids": [],
+ "gate1_rows_with_expected_sha256": 515,
+ "trace_duplicate_generation_ids": [],
+ "trace_unknown_generation_ids": [],
+ "failed_results_missing_from_trace": [],
+ "traced_failed": 109,
+ "traced_passed": 36,
+ "traced_failed_but_gate1_passed": [],
+ "traced_passed_but_gate1_failed": [],
+ "passed_sample_size": 36,
+ "gate1_status_vs_trace_status": {
+  "failed->failed": 109,
+  "passed->passed": 36
+ },
+ "gate1_code_vs_trace_code": {
+  "shot_panel_layout_mismatch->shot_panel_layout_mismatch": 42,
+  "shot_panel_gutter_not_found->shot_panel_gutter_not_found": 66,
+  "shot_panel_gutter_ambiguous->shot_panel_gutter_ambiguous": 1,
+  "None->None": 36
+ },
+ "status_mismatch_count": 0,
+ "status_mismatch": [],
+ "failure_code_mismatch_count": 0,
+ "failure_code_mismatch": [],
+ "cross_check_against_gate1_row_mismatch_count": 0,
+ "cross_check_against_gate1_row_mismatch": [],
+ "failed_without_failure_object": [],
+ "files": {
+  "previews": 145,
+  "sheets": 14,
+  "originals": 15,
+  "trace_jsonl": 1
+ },
+ "previews_missing_for_traced_ids": [],
+ "previews_without_traced_id": [],
+ "originals_not_traced": [],
+ "originals_not_failed": [],
+ "sheet_pages": [
+  "failed_shot_panel_gutter_ambiguous_01.jpg",
+  "failed_shot_panel_gutter_not_found_01.jpg",
+  "failed_shot_panel_gutter_not_found_02.jpg",
+  "failed_shot_panel_gutter_not_found_03.jpg",
+  "failed_shot_panel_gutter_not_found_04.jpg",
+  "failed_shot_panel_gutter_not_found_05.jpg",
+  "failed_shot_panel_gutter_not_found_06.jpg",
+  "failed_shot_panel_layout_mismatch_01.jpg",
+  "failed_shot_panel_layout_mismatch_02.jpg",
+  "failed_shot_panel_layout_mismatch_03.jpg",
+  "failed_shot_panel_layout_mismatch_04.jpg",
+  "passed_sample_01.jpg",
+  "passed_sample_02.jpg",
+  "passed_sample_03.jpg"
+ ],
+ "sizes_bytes": {
+  "previews": {
+   "files": 145,
+   "bytes": 15534408
+  },
+  "sheets": {
+   "files": 14,
+   "bytes": 14150169
+  },
+  "originals": {
+   "files": 15,
+   "bytes": 38522896
+  },
+  "trace.jsonl": {
+   "files": 1,
+   "bytes": 103470
+  },
+  "diag_total": {
+   "files": 175,
+   "bytes": 68310943
+  }
+ },
+ "failed_shots_distribution": {
+  "4": 9,
+  "5": 6,
+  "3": 47,
+  "6": 4,
+  "2": 43
+ },
+ "passed_shots_distribution": {
+  "4": 7,
+  "5": 2,
+  "3": 8,
+  "1": 5,
+  "6": 3,
+  "2": 11
+ },
+ "failed_layout_distribution": {
+  "[2, 2]": 9,
+  "[2, 3]": 10,
+  "[1, 3]": 47,
+  "[1, 2]": 43
+ },
+ "failure_step_counts": {
+  "panel 2 interior": 15,
+  "panel 1 interior": 16,
+  "row 1 column separator 1": 60,
+  "panel 4 interior": 4,
+  "row 1 column separator 2": 5,
+  "row 2 column separator 1": 2,
+  "panel 3 interior": 6,
+  "panel 6 interior": 1
+ },
+ "failed_projects_per_code": {
+  "shot_panel_layout_mismatch": {
+   "146ae08c-8412-49de-acd6-6ddaae2eb201": 8,
+   "17d2b9e9-f70c-4450-a1d6-9b13727126a7": 2,
+   "765dca11-b2fe-4e48-bc3d-9c0695f91263": 24,
+   "d725172f-bffa-4795-9554-8761a197fa08": 8
+  },
+  "shot_panel_gutter_not_found": {
+   "146ae08c-8412-49de-acd6-6ddaae2eb201": 10,
+   "17d2b9e9-f70c-4450-a1d6-9b13727126a7": 51,
+   "765dca11-b2fe-4e48-bc3d-9c0695f91263": 2,
+   "d725172f-bffa-4795-9554-8761a197fa08": 3
+  },
+  "shot_panel_gutter_ambiguous": {
+   "146ae08c-8412-49de-acd6-6ddaae2eb201": 1
+  },
+  "None": {
+   "146ae08c-8412-49de-acd6-6ddaae2eb201": 11,
+   "765dca11-b2fe-4e48-bc3d-9c0695f91263": 10,
+   "d725172f-bffa-4795-9554-8761a197fa08": 13,
+   "17d2b9e9-f70c-4450-a1d6-9b13727126a7": 1,
+   "fa3a0b30-9222-4ca4-a475-3bfd6cc57220": 1
+  }
+ }
+}
