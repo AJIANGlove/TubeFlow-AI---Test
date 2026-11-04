@@ -18,21 +18,30 @@ TITLE_BAND_PIXELS = 54
 _DARK_CHANNEL_MAX = 16
 _SEPARATOR_FRACTION = 0.85
 
-# USER_DECISIONS §46：crop-grid-v2。无角标带；按"行均值显著偏离邻域中位数"识别分隔带，
-# 可识别纯黑、白黑相间边框与手绘墨线类分隔（fa3a0b30 13 张整图实测，旧裁切 2/13）。
+# USER_DECISIONS §46/§47：crop-grid-v2。无角标带；按"行/列均值显著偏离邻域中位数"识别分隔带，
+# 可识别纯黑、白黑相间边框与手绘墨线类分隔。2026-11-04 Gate 1（515 张既有故事板）后修订（§47）：
+# 去掉格内暗线核验（31/42 为桌沿、地平线等画面内容误判）；分隔偏离等分位置时在 ±25% 单格范围内
+# 找贯穿全长的分隔带；两条边框线夹浅色缝合并为一条分隔；先剪去白色页边；像素常量随图幅等比放大。
 CROP_GRID_V2 = "crop-grid-v2"
-_V2_DELTA = 40.0  # 分隔线行/列亮度均值与 ±40 px 邻域中位数之差下限
+_V2_REFERENCE_SIZE = (1672, 941)  # 像素常量按此 16:9 故事板尺寸标定，更大的图等比放大
+_V2_DELTA = 40.0  # 分隔线行/列亮度均值与邻域中位数之差下限
 _V2_NEIGHBOURHOOD = 40
 _V2_GAP = 2  # 同一分隔带内允许的非分隔行/列间隙
-_V2_BAND_MAX = 32  # 分隔带（含外框）最大宽度
+_V2_BAND_MAX = 32  # 单条分隔带（含外框）最大宽度
+_V2_FRAMED_MAX = 48  # 两条边框线夹浅色缝合并后的最大总宽
 _V2_RADIUS_MIN = 16  # 分隔带中心距期望网格线的最小容差（px）
 _V2_RADIUS_FRACTION = 0.04  # 容差占单格尺寸比例
+_V2_WIDE_FRACTION = 0.25  # 严格容差内找不到时的放宽搜索范围（占单格尺寸）
+_V2_MIN_CELL_FRACTION = 0.6  # 放宽搜索得到的每格尺寸不得小于等分尺寸的 60%
 _V2_INSET = 3  # 每格四边内缩，去除抗锯齿残边
-_V2_INTERIOR_MARGIN = 0.1  # 版式核验：每格两侧各 10% 之外的中段不得出现完整分隔带
+_V2_WHITE_MIN = 240.0  # 白色页边：整行/列均值不低于此值
+_V2_MARGIN_MAX_FRACTION = 0.15  # 每边最多剪去 15% 的白色页边
 _V2_SOURCE_FORMATS = frozenset({"PNG", "JPEG", "WEBP"})
-# "暗线"上限：中段版式核验只认暗色分隔（门框、柱子等浅色长直线不会误判，fa3a0b30 g7 第 1 格
-# 门框即为反例）；同一上限也用于识别留黑空格与分隔合并后的暗尾。
-_V2_INTERIOR_DARK_MAX = 64.0
+# 暗尾上限：识别留黑空格与分隔合并后的暗尾。
+_V2_DARK_MAX = 64.0
+_V2_BAND_SEGMENTS = 16
+_V2_BAND_SEGMENT_SHARE = 0.9
+_V2_BAND_SIDE = (4, 16)  # 分隔带两侧对照条：距带 4–16 px
 
 
 @dataclass(frozen=True, slots=True)
@@ -297,7 +306,38 @@ def _assert_content_present(image: Image.Image) -> None:
         raise VideoRuleViolation("shot_panel_empty")
 
 
-# --- crop-grid-v2 (USER_DECISIONS §46) ------------------------------------------------
+# --- crop-grid-v2 (USER_DECISIONS §46, revised by §47) --------------------------------
+
+
+@dataclass(frozen=True, slots=True)
+class _V2Pixels:
+    """crop-grid-v2 pixel constants scaled to the sheet size."""
+
+    neighbourhood: int
+    gap: int
+    band_max: int
+    framed_max: int
+    radius_min: int
+    inset: int
+    side: tuple[int, int]
+
+    @classmethod
+    def for_image(cls, image: Image.Image) -> _V2Pixels:
+        reference_width, reference_height = _V2_REFERENCE_SIZE
+        factor = max(1.0, min(image.width / reference_width, image.height / reference_height))
+
+        def scaled(value: int) -> int:
+            return max(1, round(value * factor))
+
+        return cls(
+            scaled(_V2_NEIGHBOURHOOD),
+            scaled(_V2_GAP),
+            scaled(_V2_BAND_MAX),
+            scaled(_V2_FRAMED_MAX),
+            scaled(_V2_RADIUS_MIN),
+            scaled(_V2_INSET),
+            (scaled(_V2_BAND_SIDE[0]), scaled(_V2_BAND_SIDE[1])),
+        )
 
 
 def _derive_grid_v2(
@@ -311,7 +351,9 @@ def _derive_grid_v2(
     """Crop each shot panel of a grid sheet whose gutters may be black, framed or inked.
 
     Only shot panels are returned; empty grid cells are never sent to H3, so their
-    content is not inspected (§46 decision D3).
+    content is not inspected (§46 decision D3). The inside of a panel is not checked
+    for further dividing lines (§47): picture content such as table edges and horizons
+    cannot be told apart from a drawn sub-panel border by a line profile.
     """
     try:
         layout = grid_layout_for(panel_count, aspect_ratio, layout_version)
@@ -332,7 +374,6 @@ def _derive_grid_v2(
     for order, box in enumerate(boxes, 1):
         crop = image.crop(box)
         _assert_content_present(crop)
-        _assert_no_interior_gutter(crop)
         derivative = crop
         gamma = gamma_by_shot.get(order)
         suffix = ""
@@ -353,16 +394,17 @@ def grid_v2_panel_boxes(
 ) -> tuple[tuple[int, int, int, int], ...]:
     """Boxes of the shot panels 1..panel_count in reading order (row-major).
 
-    Row gutters are located first, using only the columns that hold a shot in every
-    shot row; column gutters are then located inside each row band, so rows whose
-    gutters do not line up still crop. Empty trailing cells are not cropped: when they
-    are black they merge with the gutter, so the shot edge is taken where the dark
-    tail of the row (or of the sheet) begins.
+    White page margins and an outer frame are trimmed first. Row gutters are then
+    located using only the columns that hold a shot in every shot row; column gutters
+    are located inside each row band, so rows whose gutters do not line up still crop.
+    Empty trailing cells are not cropped: when they are black they merge with the
+    gutter, so the shot edge is taken where the dark tail of the row (or sheet) begins.
     """
+    pixels = _V2Pixels.for_image(image)
     luminance = image.convert("L").convert("F")
-    x0, x1 = _v2_outer(_v2_means(luminance, "x"))
-    y0, y1 = _v2_outer(_v2_means(luminance, "y"))
-    if x1 - x0 < 2 * _V2_BAND_MAX or y1 - y0 < 2 * _V2_BAND_MAX:
+    x0, x1 = _v2_outer(_v2_means(luminance, "x"), pixels)
+    y0, y1 = _v2_outer(_v2_means(luminance, "y"), pixels)
+    if x1 - x0 < 2 * pixels.band_max or y1 - y0 < 2 * pixels.band_max:
         raise VideoRuleViolation("shot_panel_crop_unsafe")
     shot_rows = math.ceil(panel_count / layout.cols)
     last_row_cells = panel_count - (shot_rows - 1) * layout.cols
@@ -371,13 +413,14 @@ def grid_v2_panel_boxes(
     column_strip = luminance.crop(
         (x0, 0, round(x0 + column_width * full_columns), luminance.height)
     )
-    row_spans = _v2_spans(_v2_means(column_strip, "y"), y0, y1, layout.rows, shot_rows)
+    row_spans = _v2_spans(column_strip, "y", y0, y1, layout.rows, shot_rows, pixels)
     boxes: list[tuple[int, int, int, int]] = []
     for row_index, (top, bottom) in enumerate(row_spans):
         cells = min(layout.cols, panel_count - row_index * layout.cols)
         band = luminance.crop((0, top, luminance.width, bottom))
-        for left, right in _v2_spans(_v2_means(band, "x"), x0, x1, layout.cols, cells):
-            box = (left + _V2_INSET, top + _V2_INSET, right - _V2_INSET, bottom - _V2_INSET)
+        for left, right in _v2_spans(band, "x", x0, x1, layout.cols, cells, pixels):
+            inset = pixels.inset
+            box = (left + inset, top + inset, right - inset, bottom - inset)
             if box[0] >= box[2] or box[1] >= box[3]:
                 raise VideoRuleViolation("shot_panel_crop_unsafe")
             boxes.append(box)
@@ -385,25 +428,43 @@ def grid_v2_panel_boxes(
 
 
 def _v2_spans(
-    means: Sequence[float], lo: int, hi: int, total: int, used: int
+    region: Image.Image,
+    axis: str,
+    lo: int,
+    hi: int,
+    total: int,
+    used: int,
+    pixels: _V2Pixels,
 ) -> tuple[tuple[int, int], ...]:
-    """Spans of the first `used` of `total` equal cells between lo and hi."""
+    """Spans of the first `used` of `total` cells between lo and hi along `axis`."""
+    means = _v2_means(region, axis)
     cell = (hi - lo) / total
-    radius = max(_V2_RADIUS_MIN, math.ceil(cell * _V2_RADIUS_FRACTION))
-    separators = []
+    radius = max(pixels.radius_min, math.ceil(cell * _V2_RADIUS_FRACTION))
+    wide = max(radius, math.ceil(cell * _V2_WIDE_FRACTION))
+    separators: list[tuple[int, int]] = []
     for index in range(1, used):
-        separator = _v2_separator(means, lo + cell * index, radius, lo, hi)
+        expected = lo + cell * index
+        separator = _v2_separator(means, expected, radius, lo, hi, pixels)
+        if separator is None:
+            separator = _v2_wide_separator(region, axis, means, expected, wide, lo, hi, pixels)
         if separator is None:
             raise VideoRuleViolation("shot_panel_gutter_not_found")
         separators.append(separator)
     end = hi
     if used < total:
         expected = lo + cell * used
-        boundary = _v2_separator(means, expected, radius, lo, hi)
-        end = boundary[0] if boundary is not None else _v2_dark_tail(
-            means, expected, radius, lo, hi, cell
+        boundary = _v2_separator(means, expected, radius, lo, hi, pixels)
+        if boundary is None:
+            boundary = _v2_wide_separator(region, axis, means, expected, wide, lo, hi, pixels)
+        end = (
+            boundary[0]
+            if boundary is not None
+            else _v2_dark_tail(means, expected, radius, lo, hi, cell, pixels)
         )
-    return _segments(lo, end, tuple(separators))
+    spans = _segments(lo, end, tuple(separators))
+    if any(stop - start < cell * _V2_MIN_CELL_FRACTION for start, stop in spans):
+        raise VideoRuleViolation("shot_panel_crop_unsafe")
+    return spans
 
 
 def _v2_means(luminance: Image.Image, axis: str) -> list[float]:
@@ -413,18 +474,23 @@ def _v2_means(luminance: Image.Image, axis: str) -> list[float]:
     return [float(value) for value in array("f", reduced.tobytes())]
 
 
-def _v2_extreme(means: Sequence[float], lo: int, hi: int) -> list[bool]:
+def _v2_extreme(
+    means: Sequence[float], lo: int, hi: int, pixels: _V2Pixels
+) -> list[bool]:
     marks = [False] * len(means)
     for position in range(max(0, lo), min(len(means), hi)):
-        start = max(0, position - _V2_NEIGHBOURHOOD)
-        end = min(len(means), position + _V2_NEIGHBOURHOOD + 1)
+        start = max(0, position - pixels.neighbourhood)
+        end = min(len(means), position + pixels.neighbourhood + 1)
         marks[position] = (
             abs(means[position] - statistics.median(means[start:end])) >= _V2_DELTA
         )
     return marks
 
 
-def _v2_runs(marks: Sequence[bool], lo: int, hi: int) -> list[tuple[int, int]]:
+def _v2_runs(
+    marks: Sequence[bool], lo: int, hi: int, pixels: _V2Pixels
+) -> list[tuple[int, int]]:
+    """Runs of marked lines; two frame lines around a light gap become one gutter."""
     runs: list[tuple[int, int]] = []
     start: int | None = None
     last = lo
@@ -433,39 +499,94 @@ def _v2_runs(marks: Sequence[bool], lo: int, hi: int) -> list[tuple[int, int]]:
             continue
         if start is None:
             start = position
-        elif position - last - 1 > _V2_GAP:
+        elif position - last - 1 > pixels.gap:
             runs.append((start, last))
             start = position
         last = position
     if start is not None:
         runs.append((start, last))
-    return runs
+    merged: list[tuple[int, int]] = []
+    for run in runs:
+        if (
+            merged
+            and merged[-1][1] - merged[-1][0] + 1 <= pixels.band_max
+            and run[1] - run[0] + 1 <= pixels.band_max
+            and run[1] - merged[-1][0] + 1 <= pixels.framed_max
+        ):
+            merged[-1] = (merged[-1][0], run[1])
+        else:
+            merged.append(run)
+    return merged
 
 
-def _v2_outer(means: Sequence[float]) -> tuple[int, int]:
-    """Trim an outer frame (at most _V2_BAND_MAX px per edge)."""
+def _v2_outer(means: Sequence[float], pixels: _V2Pixels) -> tuple[int, int]:
+    """Trim white page margins (at most 15% per edge), then an outer frame."""
     size = len(means)
-    marks = _v2_extreme(means, 0, size)
+    limit = math.floor(size * _V2_MARGIN_MAX_FRACTION)
     low = 0
-    while low < min(_V2_BAND_MAX, size - 1) and (marks[low] or marks[low + 1]):
+    while low < limit and means[low] >= _V2_WHITE_MIN:
         low += 1
     high = size
-    while size - high < _V2_BAND_MAX and high - 2 > low and (marks[high - 1] or marks[high - 2]):
+    while size - high < limit and means[high - 1] >= _V2_WHITE_MIN:
         high -= 1
-    return low, high
+    marks = _v2_extreme(means, low, high, pixels)
+    frame_low, frame_high = low, high
+    while frame_low - low < pixels.band_max and frame_low + 1 < high and (
+        marks[frame_low] or marks[frame_low + 1]
+    ):
+        frame_low += 1
+    while high - frame_high < pixels.band_max and frame_high - 2 > frame_low and (
+        marks[frame_high - 1] or marks[frame_high - 2]
+    ):
+        frame_high -= 1
+    return frame_low, frame_high
 
 
 def _v2_separator(
-    means: Sequence[float], expected: float, radius: int, lo: int, hi: int
+    means: Sequence[float],
+    expected: float,
+    radius: int,
+    lo: int,
+    hi: int,
+    pixels: _V2Pixels,
 ) -> tuple[int, int] | None:
     """The gutter band nearest the expected grid line, or None when there is none."""
-    start = max(lo + 1, math.floor(expected - radius - _V2_BAND_MAX))
-    end = min(hi - 1, math.ceil(expected + radius + _V2_BAND_MAX))
+    start = max(lo + 1, math.floor(expected - radius - pixels.framed_max))
+    end = min(hi - 1, math.ceil(expected + radius + pixels.framed_max))
     candidates = [
         run
-        for run in _v2_runs(_v2_extreme(means, start, end), start, end)
-        if run[1] - run[0] + 1 <= _V2_BAND_MAX and abs((run[0] + run[1]) / 2 - expected) <= radius
+        for run in _v2_runs(_v2_extreme(means, start, end, pixels), start, end, pixels)
+        if run[1] - run[0] + 1 <= pixels.framed_max
+        and abs((run[0] + run[1]) / 2 - expected) <= radius
     ]
+    return _v2_nearest(candidates, expected)
+
+
+def _v2_wide_separator(
+    region: Image.Image,
+    axis: str,
+    means: Sequence[float],
+    expected: float,
+    wide: int,
+    lo: int,
+    hi: int,
+    pixels: _V2Pixels,
+) -> tuple[int, int] | None:
+    """A gutter off the equal-grid position: only bands that run the whole length count."""
+    start = max(lo + 1, math.floor(expected - wide))
+    end = min(hi - 1, math.ceil(expected + wide))
+    candidates = [
+        run
+        for run in _v2_runs(_v2_extreme(means, start, end, pixels), start, end, pixels)
+        if run[1] - run[0] + 1 <= pixels.framed_max
+        and _v2_is_gutter_band(region, axis, run[0], run[1], pixels)
+    ]
+    if len(candidates) > 1:
+        raise VideoRuleViolation("shot_panel_gutter_ambiguous")
+    return candidates[0] if candidates else None
+
+
+def _v2_nearest(candidates: list[tuple[int, int]], expected: float) -> tuple[int, int] | None:
     if not candidates:
         return None
     distances = [abs((run[0] + run[1]) / 2 - expected) for run in candidates]
@@ -479,48 +600,35 @@ def _v2_separator(
 
 
 def _v2_dark_tail(
-    means: Sequence[float], expected: float, radius: int, lo: int, hi: int, cell: float
+    means: Sequence[float],
+    expected: float,
+    radius: int,
+    lo: int,
+    hi: int,
+    cell: float,
+    pixels: _V2Pixels,
 ) -> int:
     """Where a black empty tail (gutter + empty cells) begins; it must start at the grid line."""
     start = hi
-    while start > lo and means[start - 1] <= _V2_INTERIOR_DARK_MAX:
+    while start > lo and means[start - 1] <= _V2_DARK_MAX:
         start -= 1
-    if hi - start < cell / 2 or abs(start - expected) > radius + _V2_BAND_MAX:
+    if hi - start < cell / 2 or abs(start - expected) > radius + pixels.band_max:
         raise VideoRuleViolation("shot_panel_gutter_not_found")
     return start
 
 
-def _assert_no_interior_gutter(crop: Image.Image) -> None:
-    """Layout check: a crop must not contain another gutter band in its middle 80%.
+def _v2_is_gutter_band(
+    luminance: Image.Image, axis: str, start: int, end: int, pixels: _V2Pixels
+) -> bool:
+    """True when, along almost the whole length, some line of the band stands out from both
+    of its sides in the same direction (darker or lighter).
 
-    A sheet drawn with more panels than the requested grid shows up here instead of
-    leaking two shots into one reference.
-    """
-    luminance = crop.convert("L").convert("F")
-    for axis in ("x", "y"):
-        means = _v2_means(luminance, axis)
-        size = len(means)
-        lo = math.ceil(size * _V2_INTERIOR_MARGIN)
-        hi = math.floor(size * (1 - _V2_INTERIOR_MARGIN))
-        marks = _v2_extreme(means, lo, hi)
-        for start, end in _v2_runs(marks, lo, hi):
-            width = end - start + 1
-            if 2 <= width <= _V2_BAND_MAX and _v2_is_gutter_band(luminance, axis, start, end):
-                raise VideoRuleViolation("shot_panel_layout_mismatch")
-
-
-_V2_BAND_SEGMENTS = 16
-_V2_BAND_SEGMENT_SHARE = 0.9
-_V2_BAND_SIDE = (4, 16)  # neighbour strip on each side of a band: from 4 to 16 px away
-
-
-def _v2_is_gutter_band(luminance: Image.Image, axis: str, start: int, end: int) -> bool:
-    """True when, along almost the whole length, some dark line is darker than both sides.
-
-    Testing single lines (not the band mean) keeps black/white "sandwich" frames detectable.
+    Testing single lines (not the band mean) keeps black/white "sandwich" frames detectable;
+    a dividing line that covers only part of the length (a half-height gutter of a different
+    layout, a pillar, a tally mark) fails.
     """
     length = luminance.height if axis == "x" else luminance.width
-    near, far = _V2_BAND_SIDE
+    near, far = pixels.side
     hits = 0
     for index in range(_V2_BAND_SEGMENTS):
         a = length * index // _V2_BAND_SEGMENTS
@@ -533,12 +641,11 @@ def _v2_is_gutter_band(luminance: Image.Image, axis: str, start: int, end: int) 
             continue
         for line in range(start, end + 1):
             value = _v2_region_mean(luminance, axis, line, line + 1, a, b)
-            if (
-                value is not None
-                and value <= _V2_INTERIOR_DARK_MAX
-                and before - value >= _V2_DELTA
-                and after - value >= _V2_DELTA
-            ):
+            if value is None:
+                continue
+            darker = before - value >= _V2_DELTA and after - value >= _V2_DELTA
+            lighter = value - before >= _V2_DELTA and value - after >= _V2_DELTA
+            if darker or lighter:
                 hits += 1
                 break
     return hits >= math.ceil(_V2_BAND_SEGMENTS * _V2_BAND_SEGMENT_SHARE)
