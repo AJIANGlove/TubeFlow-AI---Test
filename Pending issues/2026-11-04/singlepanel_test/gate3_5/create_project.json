@@ -1,0 +1,62 @@
+{
+  "project_id": "faf27eb5-23d4-43e7-8269-029336e38167",
+  "production_mode": "AUTO",
+  "production_state": "ACTIVE",
+  "comparison": {
+    "title": {
+      "equal": true,
+      "source": "사장님 없는 무인 아이스크림 가게, 정말 돈이 될까?",
+      "new": "사장님 없는 무인 아이스크림 가게, 정말 돈이 될까?"
+    },
+    "channel_id": {
+      "equal": true,
+      "source": "f28a0845-6ddf-4111-ae2d-f5de595a5fd6",
+      "new": "f28a0845-6ddf-4111-ae2d-f5de595a5fd6"
+    },
+    "character_image_ids": {
+      "equal": true,
+      "source": "[UUID('500c0519-94fe-448b-8410-15152629a6cd')]",
+      "new": "[UUID('500c0519-94fe-448b-8410-15152629a6cd')]"
+    },
+    "visual_style": {
+      "equal": true,
+      "source": "欧美二维手绘动画、半写实卡通人物、复古历史绘本背景、暖色历史科普纪录片风格、低饱和赭石配色、柔和赛璐璐阴影、细腻手绘线条、自然人物比例、轻微胶片颗粒、淡淡纸张纹理、柔和环境光、朦胧空气透视、电影级构图。避免3D渲染、照片写实、日式动漫、夸张大眼睛、高饱和色彩、文字和水印。",
+      "new": "欧美二维手绘动画、半写实卡通人物、复古历史绘本背景、暖色历史科普纪录片风格、低饱和赭石配色、柔和赛璐璐阴影、细腻手绘线条、自然人物比例、轻微胶片颗粒、淡淡纸张纹理、柔和环境光、朦胧空气透视、电影级构图。避免3D渲染、照片写实、日式动漫、夸张大眼睛、高饱和色彩、文字和水印。"
+    },
+    "locale": {
+      "equal": true,
+      "source": "ko-KR",
+      "new": "ko-KR"
+    },
+    "aspect_ratio": {
+      "equal": true,
+      "source": "16:9",
+      "new": "16:9"
+    },
+    "expected_duration_seconds": {
+      "equal": true,
+      "source": "None",
+      "new": "None"
+    },
+    "tts_provider": {
+      "equal": true,
+      "source": "elevenlabs",
+      "new": "elevenlabs"
+    },
+    "cloned_voice_id": {
+      "equal": true,
+      "source": "8c529fdd-cd89-4430-a76d-43c986547d89",
+      "new": "8c529fdd-cd89-4430-a76d-43c986547d89"
+    },
+    "voice_version_id": {
+      "equal": true,
+      "source": "None",
+      "new": "None"
+    },
+    "script_sha256": {
+      "equal": true,
+      "source": "4dc63e1cb26ab816effc68e461a3e90c8523d352db4b2578b29888513fde37d1",
+      "new": "4dc63e1cb26ab816effc68e461a3e90c8523d352db4b2578b29888513fde37d1"
+    }
+  }
+}

@@ -23,4 +23,31 @@
 
 由实施方按第 3 关指令在下方追加：完整的 A、B、C 三类名单，以及重启后 10 分钟内既有项目出现的 FAILED、REMOTE_STATE_UNKNOWN、QC_FAILED 或 local_integrity_blocked。
 
-（待追加）
+### 3.1 开关开启（T_on = 2026-11-04T13:41:55Z / 21:41:55+0800，完成 13:42:27Z）
+
+镜像未变（`sha256:238bd9ea…`），无迁移（`alembic 0046`），仅把部署机 `.env` 的 `TUBEFLOW_STORYBOARD_SINGLE_PANEL_NEW_PROJECTS` 由 `false` 改为 `true` 后 `up -d --no-build`。按用户决定未等待既有项目排空。备份 `.env.bak-single-panel-on-20261104`。
+
+### 3.2 A/B/C 名单（重启前快照，52 个项目）
+
+判定：A = 重启时有 RUNNING/PAUSED 运行或有在途工作；B = 已有故事板；C = 故事板行数为 0。完整表见 `singlepanel_test/gate3_5/pre_restart.json` 的 `projects`。
+
+| 项目 | 类别 | AUTO | 故事板行/成功 | 在途 | 备注 |
+| --- | --- | --- | --- | --- | --- |
+| `a0e52ea0-0ef7-4a95-9c76-d87c947c38a0` | B+A | PAUSED r6 `video_failed:intent_rejected` | 131 / 122 | 视频 2（RUNNING） | 重启时正在出片，两尝试在 10 分钟内转为 ARCHIVED/COMPLETE |
+| `fd3bf04d-…`（19:51 新建） | C+A | RUNNING r2（导演阶段） | 0 / 0 | 无 | 尚无故事板；开关开启后其首张故事板将钉 `grid-v2`（§46 第 2 项预期） |
+| `2c291aba-085d-499d-bd32-b3a4d75f252f` | C+A | PAUSED r7 `director_validation_failed` | 0 / 0 | 无 | 同上，若被恢复则首板钉 `grid-v2` |
+| `1142cd90-f7dd-4455-8d7b-45ceae6ccf09` | B+A | 无运行行 | 822 / — | 故事板 6 | 非终态故事板为历史遗留行，本轮不处理 |
+| `ca6f47d6-1824-4298-aaf8-c1d4a1011715` | B+A | 无运行行 | 98 / — | 故事板 4 | 同上 |
+| 其余 47 个项目 | B | COMPLETED 或无运行行 | > 0 | 无 | 已钉 v1，继续整图参考 |
+
+纯 C 类（仅有故事板为 0、且当前完全空闲）的项目：**无**。
+
+### 3.3 重启后 10 分钟（T_on 起至 2026-11-04T13:51:09Z）
+
+- 视频尝试被触碰：**2 条**，全部属 `a0e52ea0`，stage 由 RUNNING 变为 `ARCHIVED`，`archive_stage=COMPLETE`。
+- 触发标记（FAILED / REMOTE_STATE_UNKNOWN / `archive_stage=QC_FAILED` / `local_integrity_blocked`）：**0 条**。
+- 新增故事板：**0 条**；其中带 `grid_layout_version` 的 **0 条**，`grid-v2` **0 条**。
+- 结论（事实）：B 类项目未出现 `grid_layout_version` 键；C 类项目在窗口内尚未生成故事板。`web`/`worker` 重启后 healthy，`/health/live` 200。
+
+证据：`singlepanel_test/gate3_5/post_restart.json`（SQL 见同目录 `post_restart.sql`）。
+

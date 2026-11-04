@@ -1,0 +1,20 @@
+{
+    "t0": "2026-11-04T13:41:55Z",
+    "captured_at": "2026-11-04T13:51:09Z",
+    "new_storyboards": [
+    ],
+    "attempts_flagged": [
+    ],
+    "attempts_touched": [
+        {
+            "n": 2,
+            "stage": "ARCHIVED",
+            "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0",
+            "archive_stage": "COMPLETE"
+        }
+    ],
+    "new_storyboards_total": 0,
+    "attempts_touched_total": 2,
+    "new_storyboards_with_v2": 0,
+    "new_storyboards_with_any_key": 0
+}

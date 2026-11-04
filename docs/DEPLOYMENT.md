@@ -416,3 +416,12 @@ ssh $SSHOPTS edy@192.168.110.200 'sudo docker run --rm -v tubeflowai-test_postgr
 - Gate 2（观察 30 分钟，T0 `2026-11-04T09:45:08Z`，T+30 `10:15:24Z`）：`grid_layout_version` 键 0 条（部署前后均 0），窗口内新增故事板 0 条；4348 组快照对比，4129 个已有当前成片的组 `sb_rows/sb_version_max/attempt_rows/intent_max` 全部不变；变化的 15 组全部为部署前未完成的组（`a0e52ea0` 13 组各 +1 次尝试，`d725172f` 2 组各 +1 次尝试），期间 `d725172f` AUTO 由 PAUSED(round 9) 被外部恢复为 RUNNING(round 10)，非本次部署动作。证据 `Pending issues/2026-11-04/singlepanel_test/gate2_rerun/`。
 - 开关**未**开启，未创建测试项目；第 3–5 关未执行。
 - 回滚：还原 compose 备份后 `up -d --no-build` 回 `sha256:8278db3ed79d…`；`.env` 还原备份（或删除该行）。
+
+## 37. 2026-11-04 第 3 关开关开启（crop-grid-v2，镜像不变）
+
+- 决定依据：USER_DECISIONS §46 第 10 条（用户原话「Gate 3 now…」）。不捆绑其他改动，用已部署镜像 `sha256:238bd9ea…` 开开关；按用户决定**未等待既有项目排空**（不再适用 AUTO RUNNING=0 等前置）。
+- 操作：`.env` 备份 `.env.bak-single-panel-on-20261104`，仅把 `TUBEFLOW_STORYBOARD_SINGLE_PANEL_NEW_PROJECTS=false` 改为 `true`，`docker compose up -d --no-build`。T_on 2026-11-04T13:41:55Z（21:41:55+0800），13:42:27Z 完成。镜像未变、无迁移（`0046`）。
+- 校验：web/worker healthy（web 启动约 80 秒），`/health/live` 200，两容器 `Settings().storyboard_single_panel_new_projects is True` 且 `env` 实读 `true`，镜像仍 `sha256:238bd9ea…`，`alembic 0046`。`migrate` 一次性容器 Exited(0)，`mihomo` 随 `.env` 变更重建（healthy）。
+- 重启影响（事后 10 分钟快照）：视频尝试更新 2 条（`a0e52ea0`，RUNNING→ARCHIVED/COMPLETE），无 FAILED / REMOTE_STATE_UNKNOWN / QC_FAILED / local_integrity_blocked；新增故事板 0 条，带 `grid_layout_version` 0 条。既有项目只记录，见 `Pending issues/2026-11-04/DEFERRED_EXISTING_PROJECTS_20261104.md` 第 3 节。
+- 第 3–4 关：新建测试项目 `faf27eb5-23d4-43e7-8269-029336e38167`（21:51 创建并确认配音）后，旁白作业停在 `DISPATCHED`（0 句、50 分钟无进展），AUTO 仍 RUNNING，未取得第 3–4 关证据；未重启、未恢复。记录 `Pending issues/2026-11-04/singlepanel_test/gate3_5/STALL.md`。
+- 回滚：`.env` 还原 `.env.bak-single-panel-on-20261104` 后 `up -d --no-build`（镜像无需变更）。
