@@ -25,6 +25,8 @@ from tubeflow_test.domain.common import MediaAssetRef
 from tubeflow_test.domain.director_generation import DirectorSentenceSnapshot
 from tubeflow_test.domain.errors import DomainError
 from tubeflow_test.domain.storyboards import (
+    GRID_LAYOUT_V1,
+    GRID_LAYOUT_V2,
     SHOT_TIMING_PROJECTION_V1,
     STORYBOARD_AUTO_MAX_SUBMISSIONS,
     CharacterAssetSnapshot,
@@ -201,6 +203,10 @@ class StoryboardRepository(Protocol):
         """当前预算轮次（projects.auto_budget_round）；MANUAL 恒为 1。"""
         ...
 
+    def project_grid_layout_version(self, owner_id: UUID, project_id: UUID) -> str | None:
+        """项目最早一次故事板生成的网格版式版本；尚无任何生成时为 None（§46 钉版）。"""
+        ...
+
     def save_generation_and_request_recovery(
         self, generation: StoryboardGeneration, event_id: UUID, now: datetime
     ) -> StoryboardGeneration: ...
@@ -330,6 +336,21 @@ class ProviderSubmitThrottledError(Exception):
 
 class StoryboardAspectRatioError(ValueError):
     """最终图片画幅不符合固定横屏合同。"""
+
+
+class StoryboardPanelLayoutError(ValueError):
+    """§46：网格版式 v2 的故事板无法被确定性逐格裁切（按可重试输出波动处理）。"""
+
+
+STORYBOARD_PANEL_LAYOUT_UNREADABLE = "storyboard_panel_layout_unreadable"
+
+
+class StoryboardPanelLayoutCheck(Protocol):
+    """对已下载、已过技术质检的整图做逐格裁切演练；无法安全裁切时抛 ValueError。"""
+
+    def __call__(
+        self, path: Path, *, panel_count: int, aspect_ratio: str, layout_version: str
+    ) -> None: ...
 
 
 class StoryboardTechnicalQc(Protocol):
@@ -541,9 +562,15 @@ class StoryboardGenerationService:
         clock: Clock,
         work_dir: Path,
         failover_policy: StoryboardFailoverPolicy,
+        *,
+        single_panel_new_projects: bool = False,
+        panel_layout_check: StoryboardPanelLayoutCheck | None = None,
     ) -> None:
         self._repo, self._provider, self._storage, self._qc = repo, provider, storage, qc
         self._ids, self._clock, self._work_dir, self._policy = ids, clock, work_dir, failover_policy
+        # §46：开关只决定"尚无任何故事板"的项目钉哪一版网格；已钉项目永远沿用。
+        self._single_panel_new_projects = single_panel_new_projects
+        self._panel_layout_check = panel_layout_check
 
     def create(
         self,
@@ -562,12 +589,14 @@ class StoryboardGenerationService:
         if applied.revision_id != expected_applied_revision_id:
             raise DomainError("revision_conflict", "Applied director revision changed")
         ranges = self._shot_time_ranges(applied, context)
+        layout_version = self._grid_layout_version(owner_id, context.project_id)
         prompt = build_grid_sheet_prompt(
             style=context.style,
             aspect_ratio=context.aspect_ratio,
             shots=applied.shots,
             ranges=ranges,
             character_count=len(context.character_assets),
+            layout_version=layout_version,
         )
         # 违禁/高风险表达识别与规避（storyboard-prompt-safety-v1）：规则命中时对
         # 生图提示词做确定性最小替换并留档；镜头字段快照不因此改变。
@@ -633,6 +662,7 @@ class StoryboardGenerationService:
             failover_route_index=position.route_index,
             failover_model_attempt=position.model_attempt,
             failover_total_attempt=position.total_attempt,
+            grid_layout_version=layout_version,
         )
         created = self._repo.create_generation(generation)
         if created.canonical_request_sha256 != canonical:
@@ -900,6 +930,9 @@ class StoryboardGenerationService:
                 digest, width, height, mime, size = self._qc.inspect(
                     path, generation.expected_sha256
                 )
+                self._check_panel_layout(generation, path)
+            except StoryboardPanelLayoutError as exc:
+                return self._retry_panel_layout_failure(generation, exc)
             except StoryboardAspectRatioError as exc:
                 # 画幅不符是 Provider 单次输出波动（同模型同参数下其余组均正常），
                 # 按可重试失败进入既有换路预算；预算耗尽才终态，避免整条流水线等人恢复。
@@ -947,6 +980,9 @@ class StoryboardGenerationService:
                 digest, width, height, mime, size = self._qc.inspect(
                     path, generation.expected_sha256
                 )
+                self._check_panel_layout(generation, path)
+            except StoryboardPanelLayoutError as exc:
+                return self._retry_panel_layout_failure(generation, exc)
             except StoryboardAspectRatioError as exc:
                 # 画幅不符是 Provider 单次输出波动（同模型同参数下其余组均正常），
                 # 按可重试失败进入既有换路预算；预算耗尽才终态，避免整条流水线等人恢复。
@@ -1132,6 +1168,51 @@ class StoryboardGenerationService:
             failure_code=failure_code,
             retry_after_seconds=retry_after_seconds,
             exhausted_failure_code=STORYBOARD_SUBMISSION_BUDGET_EXHAUSTED_FAILURE,
+        )
+
+    def _grid_layout_version(self, owner_id: UUID, project_id: UUID) -> str:
+        """§46 钉版：沿用项目最早一次生成的版式；首张故事板按开关选 v2 或 v1。"""
+        pinned = self._repo.project_grid_layout_version(owner_id, project_id)
+        if pinned is not None:
+            return pinned
+        return GRID_LAYOUT_V2 if self._single_panel_new_projects else GRID_LAYOUT_V1
+
+    def _check_panel_layout(self, generation: StoryboardGeneration, path: Path) -> None:
+        """v2 故事板必须能被逐格裁切；v1 不检查（存量行为不变）。"""
+        if generation.grid_layout_version != GRID_LAYOUT_V2:
+            return
+        if self._panel_layout_check is None:
+            raise DomainError(
+                "storyboard_panel_layout_check_not_configured",
+                "Grid layout v2 requires the panel layout check",
+            )
+        try:
+            self._panel_layout_check(
+                path,
+                panel_count=len(generation.shots_snapshot),
+                aspect_ratio="16:9",
+                layout_version=generation.grid_layout_version,
+            )
+        except ValueError as exc:
+            raise StoryboardPanelLayoutError(str(exc)) from exc
+
+    def _retry_panel_layout_failure(
+        self, failed: StoryboardGeneration, exc: StoryboardPanelLayoutError
+    ) -> StoryboardGeneration:
+        """§46：不可裁切的整图与画幅不符同等处理——进入既有故障转移链（至多 14 次）。"""
+        logger.warning(
+            "storyboard_panel_layout_rejected project=%s group=%s generation=%s reason=%s",
+            failed.project_id,
+            failed.group_id,
+            failed.generation_id,
+            exc,
+        )
+        return self._auto_resubmit(
+            failed,
+            failure_stage="download_or_qc",
+            failure_code=STORYBOARD_PANEL_LAYOUT_UNREADABLE,
+            retry_after_seconds=None,
+            exhausted_failure_code=STORYBOARD_PANEL_LAYOUT_UNREADABLE,
         )
 
     def _retry_aspect_ratio_failure(self, failed: StoryboardGeneration) -> StoryboardGeneration:

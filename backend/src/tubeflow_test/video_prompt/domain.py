@@ -46,6 +46,8 @@ class VideoPromptStrategy(StrEnum):
     # v4：输出合同与 v3 完全一致（同一出口校验、绑定行与格位），只改写系统提示词中的
     # 运镜与画面自然度规则（运镜白名单、默认稳定机位、真实速度、禁止画内文字）。
     TUBEFLOW_STORYBOARD_V4_NATURAL_MOTION = "tubeflow_storyboard_v4_natural_motion"
+    # §46：逐格参考 + v4 规则（身份只按角色参考图序号指认、运镜白名单、禁性别代词）。
+    TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL = "tubeflow_storyboard_v4_single_panel"
 
 
 # 共享 v3 输出合同（出口校验、绑定行、格位注入）的策略集合。
@@ -53,6 +55,17 @@ V3_CONTRACT_STRATEGIES = frozenset(
     {
         VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3,
         VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_NATURAL_MOTION,
+    }
+)
+
+
+_V3_SINGLE_PANEL = VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3_SINGLE_PANEL_OPT_IN_V1
+
+# 逐格参考（SinglePanelPromptCompilerInput）可用的策略集合。
+SINGLE_PANEL_STRATEGIES = frozenset(
+    {
+        VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3_SINGLE_PANEL_OPT_IN_V1,
+        VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL,
     }
 )
 
@@ -166,8 +179,12 @@ class SinglePanelPromptCompilerInput:
     aspect_ratio: str
     visual_style: str
     idempotency_key: str
+    # 默认 v3 单格：既有 opt-in 输入的指纹（含 strategy 值）保持不变。
+    strategy: VideoPromptStrategy = _V3_SINGLE_PANEL
 
     def __post_init__(self) -> None:
+        if self.strategy not in SINGLE_PANEL_STRATEGIES:
+            raise VideoPromptViolation("single_panel_prompt_strategy_required")
         if not 1 <= len(self.character_labels) <= 8:
             raise VideoPromptViolation("video_prompt_compiler_input_incomplete")
         if not self.panels or not self.shots or not self.shot_ranges:
@@ -190,10 +207,6 @@ class SinglePanelPromptCompilerInput:
             raise VideoPromptViolation("video_prompt_compiler_input_incomplete")
         if not self.idempotency_key.strip():
             raise VideoPromptViolation("video_prompt_compiler_input_incomplete")
-
-    @property
-    def strategy(self) -> VideoPromptStrategy:
-        return VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3_SINGLE_PANEL_OPT_IN_V1
 
     @property
     def fingerprint(self) -> str:
@@ -417,6 +430,8 @@ def validate_single_panel_compiled_prompt(
         raise VideoPromptViolation("h3_prompt_music_forbidden")
     if not bodies["overall_soundscape"].strip():
         raise VideoPromptViolation("h3_prompt_audio_constraints_invalid")
+    if expected.strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL:
+        _validate_v4_pronouns(detailed)
 
 
 def _section_positions(text: str) -> dict[str, re.Match[str]]:
