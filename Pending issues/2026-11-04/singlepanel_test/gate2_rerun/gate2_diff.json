@@ -1,0 +1,263 @@
+{
+ "groups_before": 4348,
+ "groups_after": 4348,
+ "completed_groups_before": 4129,
+ "completed_groups_changed": [],
+ "completed_groups_changed_count": 0,
+ "completed_groups_losing_current_video": [],
+ "groups_new_after_deploy": [],
+ "all_changed_groups": [
+  {
+   "group_id": "e75f27ff-105b-53c8-bbf4-4419ea037c2f",
+   "project_id": "d725172f-bffa-4795-9554-8761a197fa08",
+   "has_current_before": 0,
+   "has_current_after": 1,
+   "changed": {
+    "attempt_rows": [
+     2,
+     3
+    ],
+    "intent_max": [
+     0,
+     1
+    ]
+   }
+  },
+  {
+   "group_id": "1702cdeb-f554-5e11-af26-77af07afba37",
+   "project_id": "d725172f-bffa-4795-9554-8761a197fa08",
+   "has_current_before": 0,
+   "has_current_after": 0,
+   "changed": {
+    "attempt_rows": [
+     1,
+     2
+    ]
+   }
+  },
+  {
+   "group_id": "e9792da9-c0ea-5523-9777-71c4ad7fd945",
+   "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0",
+   "has_current_before": 0,
+   "has_current_after": 0,
+   "changed": {
+    "attempt_rows": [
+     0,
+     1
+    ]
+   }
+  },
+  {
+   "group_id": "d648db4d-c146-5805-87b0-33d18a22d6cf",
+   "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0",
+   "has_current_before": 0,
+   "has_current_after": 1,
+   "changed": {
+    "attempt_rows": [
+     0,
+     1
+    ]
+   }
+  },
+  {
+   "group_id": "ce3ceeb3-a551-5744-8c3a-eef14eecc5cc",
+   "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0",
+   "has_current_before": 0,
+   "has_current_after": 1,
+   "changed": {
+    "attempt_rows": [
+     0,
+     1
+    ]
+   }
+  },
+  {
+   "group_id": "567ca9a1-762b-54b0-9401-79de95f52aaf",
+   "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0",
+   "has_current_before": 0,
+   "has_current_after": 1,
+   "changed": {
+    "attempt_rows": [
+     0,
+     1
+    ]
+   }
+  },
+  {
+   "group_id": "4f2c0e70-a7eb-5a6d-852d-04448e76dded",
+   "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0",
+   "has_current_before": 0,
+   "has_current_after": 1,
+   "changed": {
+    "attempt_rows": [
+     0,
+     1
+    ]
+   }
+  },
+  {
+   "group_id": "a3aab17c-ba91-5355-b3eb-2c0b8ff6f9ea",
+   "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0",
+   "has_current_before": 0,
+   "has_current_after": 1,
+   "changed": {
+    "attempt_rows": [
+     0,
+     1
+    ]
+   }
+  },
+  {
+   "group_id": "8a203fcd-40c0-5013-a0e5-f680c799ec47",
+   "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0",
+   "has_current_before": 0,
+   "has_current_after": 1,
+   "changed": {
+    "attempt_rows": [
+     0,
+     1
+    ]
+   }
+  },
+  {
+   "group_id": "68cd03a4-d15c-5d4d-9263-081fa02818a2",
+   "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0",
+   "has_current_before": 0,
+   "has_current_after": 0,
+   "changed": {
+    "attempt_rows": [
+     0,
+     1
+    ]
+   }
+  },
+  {
+   "group_id": "a3e986b7-8434-5b28-a7d5-c18512c7f2b2",
+   "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0",
+   "has_current_before": 0,
+   "has_current_after": 0,
+   "changed": {
+    "attempt_rows": [
+     0,
+     1
+    ]
+   }
+  },
+  {
+   "group_id": "c4067d6f-4aa0-59f6-b5dc-a40bb60a9272",
+   "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0",
+   "has_current_before": 0,
+   "has_current_after": 0,
+   "changed": {
+    "attempt_rows": [
+     0,
+     1
+    ]
+   }
+  },
+  {
+   "group_id": "9d6fc0f5-b9ac-554e-9f9a-e5af4d24b79a",
+   "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0",
+   "has_current_before": 0,
+   "has_current_after": 0,
+   "changed": {
+    "attempt_rows": [
+     0,
+     1
+    ]
+   }
+  },
+  {
+   "group_id": "4d41dc85-7277-5d97-9f13-8853117af420",
+   "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0",
+   "has_current_before": 0,
+   "has_current_after": 0,
+   "changed": {
+    "attempt_rows": [
+     0,
+     1
+    ]
+   }
+  },
+  {
+   "group_id": "6b1b247e-6af9-55c9-bc1c-9fb0ecc0b84d",
+   "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0",
+   "has_current_before": 0,
+   "has_current_after": 0,
+   "changed": {
+    "attempt_rows": [
+     0,
+     1
+    ]
+   }
+  }
+ ],
+ "all_changed_groups_count": 15,
+ "changed_split": {
+  "was_complete": 0,
+  "was_incomplete": 15
+ },
+ "window": {
+  "t0": "2026-11-04T09:45:08Z",
+  "auto_runs": [
+   {
+    "round": 10,
+    "state": "RUNNING",
+    "reason": null,
+    "project_id": "d725172f-bffa-4795-9554-8761a197fa08",
+    "updated_at": "2026-11-04T10:04:16.196796+00:00"
+   },
+   {
+    "round": 5,
+    "state": "RUNNING",
+    "reason": null,
+    "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0",
+    "updated_at": "2026-11-04T07:59:41.84309+00:00"
+   },
+   {
+    "round": 7,
+    "state": "PAUSED",
+    "reason": "director_validation_failed",
+    "project_id": "2c291aba-085d-499d-bd32-b3a4d75f252f",
+    "updated_at": "2026-11-04T07:19:54.443654+00:00"
+   }
+  ],
+  "captured_at": "2026-11-04T10:15:26Z",
+  "new_storyboards": 0,
+  "attempts_touched_by_stage": [
+   {
+    "n": 12,
+    "stage": "ARCHIVED",
+    "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0"
+   },
+   {
+    "n": 5,
+    "stage": "CREATED",
+    "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0"
+   },
+   {
+    "n": 3,
+    "stage": "RUNNING",
+    "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0"
+   },
+   {
+    "n": 1,
+    "stage": "ARCHIVED",
+    "project_id": "d725172f-bffa-4795-9554-8761a197fa08"
+   },
+   {
+    "n": 1,
+    "stage": "RUNNING",
+    "project_id": "d725172f-bffa-4795-9554-8761a197fa08"
+   },
+   {
+    "n": 1,
+    "stage": "SUCCEEDED",
+    "project_id": "d725172f-bffa-4795-9554-8761a197fa08"
+   }
+  ],
+  "new_storyboards_by_project": [],
+  "storyboards_touched_by_project": [],
+  "new_storyboards_with_grid_layout_version": 0
+ }
+}

@@ -618,7 +618,7 @@
 - [x] 本地：v2 故事板绑定 `single_panel_v1` + `crop-grid-v2` 无需 allowlist；v1 默认整图；composite 已绑定时 fail-closed；v4 单格编译、性别代词拒收；生产逐格梯子第 2–6 级均可构建且第 3/4/6 级以 v4 单格重编译；隔离重放仍拒绝（单元测试）。
 - [x] 第 0 关：H3 工作流核对（2026-11-04 通过，`Pending issues/2026-11-04/h3_workflow/`）。
 - [ ] 第 1 关：对 d5c1a12 之后全部无角标故事板原始字节做 `crop-grid-v2` 离线演练，通过率 ≥90%。（2026-11-04 首轮 78.835% 未通过，口径与算法按 USER_DECISIONS §47 修订后重跑，见 §43。）
-- [ ] 第 2 关：开关关闭部署后，既有项目无新故事板/视频生成，抽查一组 v1 故事板提示词哈希不变。
+- [x] 第 2 关：开关关闭部署后，既有项目无新故事板/视频生成，抽查一组 v1 故事板提示词哈希不变。（2026-11-04 17:45:08–17:45:40 部署 `sha256:238bd9ea…`（`crop-grid-v2-rev-20261104`），`TUBEFLOW_STORYBOARD_SINGLE_PANEL_NEW_PROJECTS=false`；观察 30 分钟：`grid_layout_version` 键 0 条、新增故事板 0 条，4348 组中 4129 个已有当前成片的组无一条新尝试；未新增故事板行，故 v1 提示词逐字不变，抽查 `146ae08c` 版本 1 两条 `prompt` md5 `c9893523…`、`b0167115…` 记录在 `Pending issues/2026-11-04/singlepanel_test/gate2_rerun/`。）
 - [ ] 第 3–4 关：开关开启的新测试项目（复用 fa3a0b30 文案、标题与角色）全部组为 v2；每次视频请求无 STORYBOARD 角色、每镜一个 SHOT_PANEL；策略为 `tubeflow_storyboard_v4_single_panel`；记录各组 `storyboard_panel_layout_unreadable` 次数与留黑格状态。
 - [ ] 第 5 关：1 fps 全组复核，分屏/网格帧 0 组；同一人物同框少于 fa3a0b30（2 组）；有角色的组身份全部正确；HF 抖动逐组记录；梯子替代尝试无 `single_panel_automatic_resubmit_not_supported`。
 - [ ] PostgreSQL 集成测试、ruff、mypy 全量通过（实施方执行）。

@@ -404,3 +404,15 @@ ssh $SSHOPTS edy@192.168.110.200 'sudo docker run --rm -v tubeflowai-test_postgr
 - 验证：web/worker healthy，`/health/live` 200，迁移 `0046` 不变，策略仍为 v4（web+worker 实读），`PROJECT_DIRECTOR_PROMPT_REF = project-director-unit-v10`；`910fa912` 导演仍为 v8（91 单元）、`146ae08c` 最新成功运行仍为 v9（56 单元）且 canonical 不变；`765dca11` AUTO 已为 COMPLETED（此前由用户自行处理）。
 - 恢复后实测：`d725172f` 的恢复运行 `74cb474b`（00:25:38 UTC）77 个单元全部为 v10，符合 §45.2/§45.4；`765dca11` 若恢复同样将用 v10。
 - 回滚：还原 compose 备份后 `up -d --no-build` 回 `sha256:c031714fe190…`。
+
+## 36. 2026-11-04 crop-grid-v2 修订上线（开关关闭，crop-grid-v2-rev-20261104）
+
+- 来源：main `1707d85`（合并 PR #5 `571e122`，USER_DECISIONS §47）。PR #5 只改 `video_generation/panel_images.py` 与其单元测试、Gate 1 诊断脚本与两份规划文档；无前端、无迁移、无 settings/compose 变更。
+- 门禁：分支 `571e122` 与 main `c5e369a` 四项逐项比对——单元 2342 passed / 2319 passed，两侧 0 失败（分支多 23 条新用例）；集成两侧均 19 failed / 119 passed / 7 skipped 且失败集合逐条相同（既有 0039-vs-0046 期望差异）；ruff 15 条、mypy 12 条两侧逐字节相同。无分支独有失败。
+- Gate 1 重跑（只读）：口径改为提示词含 “Do not draw any readable text anywhere in the image” 的故事板，冻结点 548 张 / 6 项目；通过 539、失败 9（全部 `shot_panel_gutter_not_found`）= 98.3577%，≥90%。证据 `Pending issues/2026-11-04/singlepanel_test/gate1_rerun/`（commit `588cb2f`）。
+- 构建：部署机 `/home/edy/build-pr5-20261104`（`git archive` of `1707d85`，只含 backend/frontend/根三件套，1.4 MB）。镜像 `sha256:238bd9ead5f33a2f186c838210da1ec13da93f59ef857b05e11fdd3d8b468b57`（`tubeflow-test:crop-grid-v2-rev-20261104`）；容器内 `panel_images.py` LF 归一 sha256 `5b6cfa16…` 与 `HEAD:backend/src/.../panel_images.py` 逐字一致，`_V2_WIDE_FRACTION=0.25`、`_V2_MIN_CELL_FRACTION=0.6`、`_V2_FRAMED_MAX=48`、`_V2_WHITE_MIN=240.0`，`_v2_wide_separator` 在、`_assert_no_interior_gutter` 已移除；`/app/frontend/frontend` 40 个模块、`/app/migrations/versions` 46 个。
+- 部署：compose 备份 `runtime/operations/crop-grid-v2-rev-20261104/docker-compose.yml.bak`，`.env` 备份 `.env.bak-single-panel-off-20261104`；三处 image 改钉，`.env` 追加 `TUBEFLOW_STORYBOARD_SINGLE_PANEL_NEW_PROJECTS=false`（对所有 backend 服务生效），`up -d --no-build`，17:45:08–17:45:40。
+- 验证：web/worker healthy（web 启动约 2.5 分钟，启动期 `/health/live` 000，之后 200），迁移 `0046` 不变，web 与 worker 容器内 `Settings().storyboard_single_panel_new_projects is False` 且 `env` 实读为 `false`，两容器镜像均为 `sha256:238bd9ea…`。`migrate` 一次性容器 Exited(0)。`.env` 变更使 `mihomo` 一并重建（healthy）。
+- Gate 2（观察 30 分钟，T0 `2026-11-04T09:45:08Z`，T+30 `10:15:24Z`）：`grid_layout_version` 键 0 条（部署前后均 0），窗口内新增故事板 0 条；4348 组快照对比，4129 个已有当前成片的组 `sb_rows/sb_version_max/attempt_rows/intent_max` 全部不变；变化的 15 组全部为部署前未完成的组（`a0e52ea0` 13 组各 +1 次尝试，`d725172f` 2 组各 +1 次尝试），期间 `d725172f` AUTO 由 PAUSED(round 9) 被外部恢复为 RUNNING(round 10)，非本次部署动作。证据 `Pending issues/2026-11-04/singlepanel_test/gate2_rerun/`。
+- 开关**未**开启，未创建测试项目；第 3–5 关未执行。
+- 回滚：还原 compose 备份后 `up -d --no-build` 回 `sha256:8278db3ed79d…`；`.env` 还原备份（或删除该行）。

@@ -1,0 +1,40 @@
+{
+    "v2_keys": 0,
+    "auto_runs": [
+        {
+            "phase": "video",
+            "round": 9,
+            "state": "PAUSED",
+            "reason": "video_failed:intent_rejected",
+            "project_id": "d725172f-bffa-4795-9554-8761a197fa08",
+            "updated_at": "2026-11-04T09:06:05.67396+00:00"
+        },
+        {
+            "phase": "video",
+            "round": 5,
+            "state": "RUNNING",
+            "reason": null,
+            "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0",
+            "updated_at": "2026-11-04T07:59:41.84309+00:00"
+        },
+        {
+            "phase": "storyboard_drafts",
+            "round": 7,
+            "state": "PAUSED",
+            "reason": "director_validation_failed",
+            "project_id": "2c291aba-085d-499d-bd32-b3a4d75f252f",
+            "updated_at": "2026-11-04T07:19:54.443654+00:00"
+        }
+    ],
+    "captured_at": "2026-11-04T09:44:57Z",
+    "storyboard_rows": 5482,
+    "v2_keys_non_null": 0,
+    "active_storyboards": {
+        "count": 10
+    },
+    "non_terminal_video": {
+        "count": 97
+    },
+    "video_attempt_rows": 4383,
+    "storyboard_succeeded": 4248
+}

@@ -1,0 +1,55 @@
+{
+    "t0": "2026-11-04T09:45:08Z",
+    "auto_runs": [
+        {
+            "round": 9,
+            "state": "PAUSED",
+            "reason": "video_failed:intent_rejected",
+            "project_id": "d725172f-bffa-4795-9554-8761a197fa08",
+            "updated_at": "2026-11-04T09:06:05.67396+00:00"
+        },
+        {
+            "round": 5,
+            "state": "RUNNING",
+            "reason": null,
+            "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0",
+            "updated_at": "2026-11-04T07:59:41.84309+00:00"
+        },
+        {
+            "round": 7,
+            "state": "PAUSED",
+            "reason": "director_validation_failed",
+            "project_id": "2c291aba-085d-499d-bd32-b3a4d75f252f",
+            "updated_at": "2026-11-04T07:19:54.443654+00:00"
+        }
+    ],
+    "captured_at": "2026-11-04T09:56:22Z",
+    "new_storyboards": 0,
+    "attempts_touched_by_stage": [
+        {
+            "n": 5,
+            "stage": "ARCHIVED",
+            "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0"
+        },
+        {
+            "n": 4,
+            "stage": "CREATED",
+            "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0"
+        },
+        {
+            "n": 3,
+            "stage": "RUNNING",
+            "project_id": "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0"
+        },
+        {
+            "n": 1,
+            "stage": "RUNNING",
+            "project_id": "d725172f-bffa-4795-9554-8761a197fa08"
+        }
+    ],
+    "new_storyboards_by_project": [
+    ],
+    "storyboards_touched_by_project": [
+    ],
+    "new_storyboards_with_grid_layout_version": 0
+}
