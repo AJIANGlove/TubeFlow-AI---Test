@@ -31,7 +31,6 @@ from io import BytesIO
 from pathlib import Path
 
 from PIL import Image, ImageDraw
-
 from tubeflow_test.domain.storyboards import grid_layout_for
 from tubeflow_test.video_generation import panel_images as pi
 from tubeflow_test.video_generation.domain import VideoRuleViolation
