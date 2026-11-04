@@ -1,0 +1,95 @@
+progress 25/548
+progress 50/548
+progress 75/548
+progress 100/548
+progress 125/548
+progress 150/548
+progress 175/548
+progress 200/548
+progress 225/548
+progress 250/548
+progress 275/548
+progress 300/548
+progress 325/548
+progress 350/548
+progress 375/548
+progress 400/548
+progress 425/548
+progress 450/548
+progress 475/548
+progress 500/548
+progress 525/548
+{
+  "baseline_total": 548,
+  "total": 548,
+  "passed": 539,
+  "failed": 9,
+  "pass_rate": 0.983577,
+  "by_project": {
+    "146ae08c-8412-49de-acd6-6ddaae2eb201": {
+      "total": 112,
+      "passed": 108,
+      "failed": 4
+    },
+    "31e00d87-5332-4b60-88e9-8b6dd8d475e7": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "765dca11-b2fe-4e48-bc3d-9c0695f91263": {
+      "total": 147,
+      "passed": 147,
+      "failed": 0
+    },
+    "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0": {
+      "total": 122,
+      "passed": 117,
+      "failed": 5
+    },
+    "d725172f-bffa-4795-9554-8761a197fa08": {
+      "total": 152,
+      "passed": 152,
+      "failed": 0
+    },
+    "fa3a0b30-9222-4ca4-a475-3bfd6cc57220": {
+      "total": 13,
+      "passed": 13,
+      "failed": 0
+    }
+  },
+  "by_failure_code": {
+    "shot_panel_gutter_not_found": 9
+  },
+  "by_shots": {
+    "2": {
+      "total": 129,
+      "passed": 129,
+      "failed": 0
+    },
+    "4": {
+      "total": 123,
+      "passed": 118,
+      "failed": 5
+    },
+    "5": {
+      "total": 62,
+      "passed": 61,
+      "failed": 1
+    },
+    "3": {
+      "total": 162,
+      "passed": 159,
+      "failed": 3
+    },
+    "1": {
+      "total": 33,
+      "passed": 33,
+      "failed": 0
+    },
+    "6": {
+      "total": 39,
+      "passed": 39,
+      "failed": 0
+    }
+  }
+}
