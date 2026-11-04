@@ -1,0 +1,963 @@
+{
+  "baseline_total": 515,
+  "tested": 515,
+  "passed": 406,
+  "failed": 109,
+  "pass_rate": 0.78835,
+  "max_final_pass_rate_if_remaining_all_pass": 0.78835,
+  "by_project": {
+    "Egypt Is Just a River With a Flag": {
+      "total": 112,
+      "passed": 93,
+      "failed": 19,
+      "pass_rate": 0.830357
+    },
+    "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside": {
+      "total": 89,
+      "passed": 36,
+      "failed": 53,
+      "pass_rate": 0.404494
+    },
+    "“과일에 설탕만 입히면 된다더니…” 탕후루 가게의 숨은 인건비": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0,
+      "pass_rate": 1.0
+    },
+    "How Did Sailors Survive Scurvy and Storms at Sea?": {
+      "total": 147,
+      "passed": 121,
+      "failed": 26,
+      "pass_rate": 0.823129
+    },
+    "The Wind That Decides Whether India Eats": {
+      "total": 152,
+      "passed": 141,
+      "failed": 11,
+      "pass_rate": 0.927632
+    },
+    "사장님 없는 무인 아이스크림 가게, 정말 돈이 될까?": {
+      "total": 13,
+      "passed": 13,
+      "failed": 0,
+      "pass_rate": 1.0
+    }
+  },
+  "by_failure_code": {
+    "shot_panel_layout_mismatch": 42,
+    "shot_panel_gutter_not_found": 66,
+    "shot_panel_gutter_ambiguous": 1
+  },
+  "by_shots": {
+    "2": {
+      "total": 157,
+      "passed": 114,
+      "failed": 43,
+      "pass_rate": 0.726115
+    },
+    "4": {
+      "total": 86,
+      "passed": 77,
+      "failed": 9,
+      "pass_rate": 0.895349
+    },
+    "5": {
+      "total": 34,
+      "passed": 28,
+      "failed": 6,
+      "pass_rate": 0.823529
+    },
+    "3": {
+      "total": 161,
+      "passed": 114,
+      "failed": 47,
+      "pass_rate": 0.708075
+    },
+    "1": {
+      "total": 59,
+      "passed": 59,
+      "failed": 0,
+      "pass_rate": 1.0
+    },
+    "6": {
+      "total": 18,
+      "passed": 14,
+      "failed": 4,
+      "pass_rate": 0.777778
+    }
+  },
+  "failed_generations": [
+    {
+      "generation_id": "61ff3c90-64ef-44ac-93b6-f2cafe8e0c47",
+      "project_id": "146ae08c-8412-49de-acd6-6ddaae2eb201",
+      "project_title": "Egypt Is Just a River With a Flag",
+      "group_id": "18fc9bcc-bfbb-5c9e-8598-58f1652cf7a7",
+      "shots": 4,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "b29ae730-fc57-4543-9c4f-7b103e739573",
+      "project_id": "146ae08c-8412-49de-acd6-6ddaae2eb201",
+      "project_title": "Egypt Is Just a River With a Flag",
+      "group_id": "20a6ee3b-ce88-56b5-9f3c-05242126a124",
+      "shots": 5,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "32f97765-520d-4ade-b063-442e8a46ff8e",
+      "project_id": "146ae08c-8412-49de-acd6-6ddaae2eb201",
+      "project_title": "Egypt Is Just a River With a Flag",
+      "group_id": "3a8bbd7f-dfdb-53e6-9477-c4f8653eb969",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "5fc9dfab-fc05-46bd-8967-bbc2468fd3b2",
+      "project_id": "146ae08c-8412-49de-acd6-6ddaae2eb201",
+      "project_title": "Egypt Is Just a River With a Flag",
+      "group_id": "392521ad-cf83-56b2-88d4-5658386a70ec",
+      "shots": 6,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "9b90e36c-e617-4973-9dad-ab7619855a92",
+      "project_id": "146ae08c-8412-49de-acd6-6ddaae2eb201",
+      "project_title": "Egypt Is Just a River With a Flag",
+      "group_id": "d93c1739-4c05-562d-adaa-ca9c04782184",
+      "shots": 2,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "6f27f613-632d-4b98-bf8c-0a3d5e440562",
+      "project_id": "146ae08c-8412-49de-acd6-6ddaae2eb201",
+      "project_title": "Egypt Is Just a River With a Flag",
+      "group_id": "da3e45f6-1d8c-5705-a8fd-b71d156d712c",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "b8db7e4a-115d-43e0-acea-2d887f79c6ad",
+      "project_id": "146ae08c-8412-49de-acd6-6ddaae2eb201",
+      "project_title": "Egypt Is Just a River With a Flag",
+      "group_id": "e73dcc8a-bafc-5027-be90-500512f8ef98",
+      "shots": 4,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "6978df89-0aba-4a08-b2ab-467a28384d0c",
+      "project_id": "146ae08c-8412-49de-acd6-6ddaae2eb201",
+      "project_title": "Egypt Is Just a River With a Flag",
+      "group_id": "bdab9765-fde2-5382-974a-b63af467e72a",
+      "shots": 5,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "48bf74e6-9ed8-4fcf-adda-e89585a6a4d8",
+      "project_id": "146ae08c-8412-49de-acd6-6ddaae2eb201",
+      "project_title": "Egypt Is Just a River With a Flag",
+      "group_id": "f35e4f14-b27a-5f5e-9c1e-c367629799fa",
+      "shots": 4,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "1edd3c5a-b75e-48ee-bf48-a35ffa9006f5",
+      "project_id": "146ae08c-8412-49de-acd6-6ddaae2eb201",
+      "project_title": "Egypt Is Just a River With a Flag",
+      "group_id": "f80dc60a-07a2-5e4c-82bf-5ba6876f3286",
+      "shots": 4,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "9f01cf74-e835-458d-b3ff-151816249a9c",
+      "project_id": "146ae08c-8412-49de-acd6-6ddaae2eb201",
+      "project_title": "Egypt Is Just a River With a Flag",
+      "group_id": "9bec9c1f-8041-5d21-a43d-44f2bbc64989",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "57f29042-af84-4737-b2c5-4994e2c61148",
+      "project_id": "146ae08c-8412-49de-acd6-6ddaae2eb201",
+      "project_title": "Egypt Is Just a River With a Flag",
+      "group_id": "f09d587c-fa17-5dbb-8933-1d04e9364a6f",
+      "shots": 5,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "719aa0a7-df17-4d77-8aed-b3b085d59050",
+      "project_id": "146ae08c-8412-49de-acd6-6ddaae2eb201",
+      "project_title": "Egypt Is Just a River With a Flag",
+      "group_id": "ba7479db-0ba2-5141-9065-a3b0c033110c",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "d6cfd7d2-f643-402e-a788-d15cab1922d8",
+      "project_id": "146ae08c-8412-49de-acd6-6ddaae2eb201",
+      "project_title": "Egypt Is Just a River With a Flag",
+      "group_id": "38800a59-f09a-5992-82a2-eda0e4a1408a",
+      "shots": 3,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "99e738ce-b8d3-48a5-97bf-f5063df3aef9",
+      "project_id": "146ae08c-8412-49de-acd6-6ddaae2eb201",
+      "project_title": "Egypt Is Just a River With a Flag",
+      "group_id": "2a132bf3-a86c-5027-92fa-87b7b0f36d63",
+      "shots": 4,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "758f7fac-1c44-4e4a-9d90-919a0ec866f6",
+      "project_id": "146ae08c-8412-49de-acd6-6ddaae2eb201",
+      "project_title": "Egypt Is Just a River With a Flag",
+      "group_id": "2e3f9589-41fd-50e3-8f22-061b4587ebc3",
+      "shots": 4,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "5ea4923e-f29c-414a-aa00-267e3782ad63",
+      "project_id": "146ae08c-8412-49de-acd6-6ddaae2eb201",
+      "project_title": "Egypt Is Just a River With a Flag",
+      "group_id": "c027ad43-6064-55f7-b030-72cc9f9f0952",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_ambiguous"
+    },
+    {
+      "generation_id": "b13bc354-b2c0-4162-bac4-b8005375f3a5",
+      "project_id": "146ae08c-8412-49de-acd6-6ddaae2eb201",
+      "project_title": "Egypt Is Just a River With a Flag",
+      "group_id": "d2e40c0d-2d80-5f54-b1ba-5d559fe1955e",
+      "shots": 4,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "dd83c6f5-681d-4bfb-9452-959825a27b0c",
+      "project_id": "146ae08c-8412-49de-acd6-6ddaae2eb201",
+      "project_title": "Egypt Is Just a River With a Flag",
+      "group_id": "7c4f2152-4611-59fe-901e-85fe4199e5b5",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "d41d087c-f7c5-45f5-8746-e37818224e4d",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "0918ca70-9799-5e9c-90b5-2397433e692c",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "62cbdcef-aef9-4154-8142-849f52fde5b0",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "0918ca70-9799-5e9c-90b5-2397433e692c",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "a6bf5a62-2cd0-413b-8b25-78784d99d7d3",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "f3f96b28-9fb4-57f7-9f7e-2a73e96c521c",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "40b642ee-2c08-41ac-9bc0-87f95cb47e7e",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "f9f47966-4c8e-5c74-8a18-2dd121b0aac2",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "be9258f6-0992-46db-a149-089ad61c733c",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "f71e4c96-722f-5ee9-96c2-320af4a6a6e5",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "b79a6c35-6a26-4eec-bd4b-03b4224c2b6a",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "000ea3d3-6c14-50f6-b05c-141d6017b540",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "c36c9913-a4db-46ca-9eef-4af011e5914f",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "557d1d92-a254-5e87-a553-ed0d6e6c649d",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "912b4aaf-2b09-4bdf-baa3-cf106e2b62be",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "846d31c8-91bf-5ae3-8152-4498d6b887b3",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "460ebd21-bb16-47fd-8f54-70480a4f6a0e",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "6aa66438-5094-5219-9f6e-85841f58fa4c",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "e1948609-fe01-471a-9397-3e5b40904db3",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "d8566b7c-b7c0-5fcd-861d-68225d180a8d",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "74681ee8-3333-4d3f-b830-a3a9606411ac",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "e03f5c14-1d87-5050-a368-8ef5283bdbdb",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "cda69c04-f6c2-468e-acee-88e95b8b48b0",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "9d38f8bf-0800-59ef-b202-9794b3e53a9c",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "667425a6-5d8d-4725-bc0d-ee1d82589549",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "60451453-ae51-563e-9ded-332887e122c2",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "a9552295-0569-4233-8dcf-6bcb8d532ed1",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "c5825764-1b10-5a04-92f1-300bcd8a002f",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "a251d781-dbd6-463d-a74a-2c239ece9d6d",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "d309146e-1e59-57cb-8a2e-72121ed593ec",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "e027b67b-30cc-45ef-879f-e19947635a75",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "c444b857-d45b-5011-9058-7f2eb622edea",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "554888a4-8714-4c38-9895-47ace8d1a41a",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "3c0a8825-6b17-51cb-b229-97dfe69561b7",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "bfee6d68-dfa3-4a8a-8fc7-a283043a86f1",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "af33d093-8df5-534c-9a4c-9de822bdcdce",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "e310a4ff-1634-4217-a1c7-53dc739f65c9",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "338eab46-75a6-546b-9d30-8a8471491f3a",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "1f3f36e1-d0f0-4393-85c8-607f83bc7ee4",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "6695b753-a79a-5f65-970f-961f6cac3e2b",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "fc29e9ab-a7d1-4c55-a0d1-c5b0dfdc8f1a",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "af9d7ec1-6f1f-5519-a323-c071e9a8e7d6",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "6af6be0d-97e7-4d94-a22c-a853aa9f05c0",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "66d3ca68-4234-5818-8754-225218d9ff70",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "d743d3c9-7f88-4a4f-98b9-dabcb3e71a36",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "a60c0a7e-071d-5969-bdaa-c56f14b0ff84",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "129a4fc8-b0a3-4f4a-968d-576078f3b073",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "f733ec47-f7f5-5645-81e4-82217750e0d4",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "52e7eab0-26b6-4023-9df5-b17a7e567435",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "d63260b8-a44a-5305-a5af-ae33edd0ef9c",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "dc10d26e-afa3-41cd-b1a4-8292b7125066",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "607c8ec5-2ede-543e-92a7-a1820bdb74cf",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "3f226027-1c4a-4db6-a6ed-a873db89a8a1",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "968cd048-5a76-560f-bca8-3a9233cbca56",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "d2ae1cf7-1017-4205-9953-11fcd5326cc0",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "bdd645ec-561f-554e-b8ef-78ba3001f18b",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "6aeac5fb-43d4-4d0c-9256-3d84ec1640c9",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "0b65be84-2d1e-58cd-af1e-98526d40d12c",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "0efce8a1-15bf-46fe-a4fa-458204f2ad97",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "6f19ab03-cb8c-5a4d-be45-e1551e025e53",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "82735a12-043f-401a-916c-5988587d1efc",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "2a3ea4bf-ee81-56bf-af5e-678e8f96ba0d",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "ea370181-c0d2-471a-b0a6-b83c5e25acd2",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "1b697502-18c2-5b3c-9e8b-a987703939e6",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "998a2517-1629-4122-8a42-362ba790821d",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "71bd2028-4994-542d-bdc0-167fc2a434eb",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "2b018729-0d6e-4ab0-a7cb-e727cd33ff84",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "430a9a78-c8fe-53b6-970b-561a6c240dd6",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "f2b76920-e8e3-432c-b87d-ee6a794f548c",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "babfb37b-f8cb-510e-84ab-ceb27cb9920c",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "b18e951d-162b-4d55-a13f-172ad0fa4542",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "818ccb24-525f-5397-9bf9-656ee733e3d9",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "85af4671-132e-4a1f-b915-2fad2f250ad5",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "89d0b0c5-2c29-5710-b86b-54b9c27a8cc1",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "4e5b176a-f379-435a-91c6-2b7f29d83cf2",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "027b31b2-019c-5f71-b3ad-a67e5285f7c0",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "5d543ea5-e67b-453a-abc6-b55ae4dd63a6",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "ef82cff7-47d3-5b1f-9f7b-6e3bcfedcc75",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "0a7988ea-c627-479a-8209-f47cbfa249de",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "76bc35cf-3af7-5122-9854-3407505d31ed",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "746b40b9-562d-4e99-a5e0-9f7d61efd508",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "d8e4e9b9-9911-51a9-a211-56c5671312be",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "de150282-9891-4ca5-8496-6601e1334600",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "ee527e82-4c26-5348-bd90-abd385fe3a4c",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "8eea8022-3b7a-431b-b352-7707d8f07d96",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "ac0a5100-c06d-5794-b914-a4479407971a",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "4e60a02e-5b4c-48ed-ab1e-105e8bf3a50d",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "8fde4363-c86c-5640-be9a-5a4d10c7f427",
+      "shots": 3,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "fdadbe3f-d264-4722-a5d3-c644f4a562d0",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "3fed6406-e78d-5491-800a-b794ccb39e35",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "ed52f8e7-bfa4-4627-a9eb-b37c1f5133e5",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "fdbd59b2-cbb1-51c5-bed3-77fdfd7a27b2",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "d09ffec9-2523-4323-9394-e22a3d734ef2",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "2a4002f7-1f7e-5b37-b615-d3381d6205c9",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "b110fb04-4fe5-4b81-9642-fd2f6b0d2ee6",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "a4bcc4d1-ecd6-5ef3-9421-182e7f75d697",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "0ecf67d2-6ecd-440c-9e82-1425b76a51fe",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "6c3784c8-6bb5-5b31-b4a8-4a33bad8c652",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "7ef464fe-2c68-4494-9e18-6ebc5ee29d34",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "0a683204-9dd7-5de0-b6de-f397fc542239",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "24f71949-097d-4761-bbd4-566b322e97df",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "7d30fd10-5083-556d-a9f0-7a9a58a2bef3",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "0ddb76a2-23c2-4663-85af-6690ef4f5180",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "e9b6a05e-4aa2-540e-a2e9-a4a984cf91c5",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "39e8f05f-a6be-4f5e-969d-d333ca5b21ef",
+      "project_id": "17d2b9e9-f70c-4450-a1d6-9b13727126a7",
+      "project_title": "When Did Ancient Humans Start Hiding in Caves During Storms — Did They Know What Was Already Living Inside",
+      "group_id": "d29febb4-291a-54bb-ae7a-e68fcae027d3",
+      "shots": 2,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "f42f9602-48c4-4f02-bc22-75aca38fa528",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "c384c4ad-7cec-53a7-803a-6c87b74cd61c",
+      "shots": 3,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "4181daf7-0ace-4c42-8008-832837234460",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "e5da2e1f-3417-5bcc-9e60-b81f362e0394",
+      "shots": 2,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "9a1a522b-4471-416e-a602-ea204c11c95d",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "e985be01-df26-5330-abe8-058fcc581f86",
+      "shots": 3,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "4c547a57-d3ff-44ae-bcf3-657ad5e7ad63",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "251ac4a0-9b4a-5534-82f5-b3a09d56dd41",
+      "shots": 6,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "f8ed05cf-a6c8-457b-960c-d247d1502342",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "b6f72a57-df3e-5c0c-b1e6-9ea19084aa82",
+      "shots": 6,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "375130d1-d07e-4017-837d-209d286ca939",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "1afbab61-31a8-5f54-bd76-d3bc31509985",
+      "shots": 2,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "6c72b69a-f162-4ef1-8982-607edf131bdf",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "22d569c4-0901-55e6-9498-4b9d8c218be3",
+      "shots": 3,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "484f04ef-fac5-4c06-938e-3280a9cd508d",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "fe087426-1866-567d-aa2d-cec4a07c6c40",
+      "shots": 5,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "722c1f42-1515-43b1-83ca-72e5bad3f685",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "14cd7ee3-8863-56ed-a5e1-cf43007956f6",
+      "shots": 5,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "6049b4b2-bf5e-4711-a3ea-dd89c73339db",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "9c0377ef-48e5-5f4d-84cf-3969cab5a4f2",
+      "shots": 3,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "a4a3ce47-cb22-4e23-864b-b12bd7899ef4",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "9fae39ca-848b-5744-bafd-96af9b2aaa96",
+      "shots": 3,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "4669adac-6e2e-464f-8630-b0ca4263d9ee",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "bea5bf97-f7cb-5a1b-88e2-2f6c93002c6d",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "6711db2e-9eda-41fe-82f1-c1c3e6dcf09d",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "20c2f7c2-d054-5d70-a75a-a638a5f4f822",
+      "shots": 5,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "56ba11f8-a653-41cb-ac8f-894dfc009f50",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "e0e75740-11c8-5688-ac4f-9c04bbe0522f",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "b5796282-4b91-4c47-b274-877e88c0a80f",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "c0f22290-ea5d-5e0d-a018-0002dee82135",
+      "shots": 3,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "fccf3294-177b-4de6-8f52-fc0fb6a02e04",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "8f4852ad-c11c-5019-ad92-0f4b814ae30c",
+      "shots": 6,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "a32d0992-5bec-4f24-945f-4e66e449aaae",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "122d8eba-f07c-5bc8-ad24-aa37da596816",
+      "shots": 4,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "a33ac65e-c502-4cfc-af16-317740967151",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "a7fb0a5b-28d4-5733-a566-8e0fff2715e4",
+      "shots": 3,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "38982ace-5f99-4829-b6b5-d23e32638c0b",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "c044cef7-5c86-528c-9c51-0642f11bc06e",
+      "shots": 3,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "7c2d361a-bb79-4497-8516-d3d032eaa34c",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "948ccac5-60f0-5954-a5db-d574770f8b8a",
+      "shots": 3,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "7ca09440-c247-4c06-ae71-595e8c97e847",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "c57ca48c-cbc1-53a0-87bc-1040b5ab2052",
+      "shots": 3,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "fe373caa-018c-49c0-bd1d-86cbbcba9587",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "e8aa482e-5d56-563f-80f8-f613afa1942b",
+      "shots": 3,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "e6d0f720-fc52-4fb4-9926-b9b462b1f0a2",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "974439be-9283-5919-95fa-e30bce088990",
+      "shots": 3,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "5ee9c2d2-35f3-44d1-b98b-9931d868959c",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "cb1672cd-8fb6-558b-964b-62d2b3b28f48",
+      "shots": 3,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "f32a94a0-52e9-4850-8f7f-a8f0d59aa6db",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "a0f4ac20-902a-5507-9e9f-3770f3094f35",
+      "shots": 4,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "8e314156-5fb8-496e-8d20-4d683cf82efb",
+      "project_id": "765dca11-b2fe-4e48-bc3d-9c0695f91263",
+      "project_title": "How Did Sailors Survive Scurvy and Storms at Sea?",
+      "group_id": "ace02bae-731a-5db0-b1fd-6273c76079f9",
+      "shots": 3,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "1301ce7f-850e-4425-9624-e479ce0a58e4",
+      "project_id": "d725172f-bffa-4795-9554-8761a197fa08",
+      "project_title": "The Wind That Decides Whether India Eats",
+      "group_id": "5607b8f0-5ed1-5812-b29f-0e90b75b54fa",
+      "shots": 3,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "cbb85175-824c-46e1-b84b-64aeaa90f6ae",
+      "project_id": "d725172f-bffa-4795-9554-8761a197fa08",
+      "project_title": "The Wind That Decides Whether India Eats",
+      "group_id": "8cfd463d-cb48-5d75-888a-c184623499d3",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "af33d266-5955-4c1a-9ac6-e19c943a853d",
+      "project_id": "d725172f-bffa-4795-9554-8761a197fa08",
+      "project_title": "The Wind That Decides Whether India Eats",
+      "group_id": "3eddb064-c21a-567e-a16f-c3848d89a3e5",
+      "shots": 2,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "8326817a-f051-416b-98ea-fc75c58fe0a6",
+      "project_id": "d725172f-bffa-4795-9554-8761a197fa08",
+      "project_title": "The Wind That Decides Whether India Eats",
+      "group_id": "c9ac2d13-4a80-59d1-a424-cc79ac67a7dd",
+      "shots": 2,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "a767f257-d7f3-48c6-bab3-a6c0289309d3",
+      "project_id": "d725172f-bffa-4795-9554-8761a197fa08",
+      "project_title": "The Wind That Decides Whether India Eats",
+      "group_id": "ca933872-9293-5235-b305-1f08ed5243ad",
+      "shots": 2,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "e3d6aee7-4f65-4b5d-8c8a-125f08c0c1cb",
+      "project_id": "d725172f-bffa-4795-9554-8761a197fa08",
+      "project_title": "The Wind That Decides Whether India Eats",
+      "group_id": "7eb438d9-d56e-5cc6-8235-7d364dc29960",
+      "shots": 3,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "a059e32e-2cc0-4b29-b89d-910d66a970c1",
+      "project_id": "d725172f-bffa-4795-9554-8761a197fa08",
+      "project_title": "The Wind That Decides Whether India Eats",
+      "group_id": "7210e3cb-a420-56f7-919b-abc22dd60365",
+      "shots": 2,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "27560ace-7d48-49ea-84be-1be70393658b",
+      "project_id": "d725172f-bffa-4795-9554-8761a197fa08",
+      "project_title": "The Wind That Decides Whether India Eats",
+      "group_id": "0cc0c0b5-4475-5bad-a341-622a32678e28",
+      "shots": 3,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "612605d8-e9be-462b-aa0a-7776edaf796a",
+      "project_id": "d725172f-bffa-4795-9554-8761a197fa08",
+      "project_title": "The Wind That Decides Whether India Eats",
+      "group_id": "d3275fd7-8b1c-594e-9545-4f6dab02cfff",
+      "shots": 3,
+      "failure_code": "shot_panel_layout_mismatch"
+    },
+    {
+      "generation_id": "09453794-5699-497e-a8f1-4eaa536439d4",
+      "project_id": "d725172f-bffa-4795-9554-8761a197fa08",
+      "project_title": "The Wind That Decides Whether India Eats",
+      "group_id": "5c07ef2b-aac3-515c-ad6e-ecb04fa0002f",
+      "shots": 3,
+      "failure_code": "shot_panel_gutter_not_found"
+    },
+    {
+      "generation_id": "ef4ec4cc-d653-4dee-8e02-8814fd02f52b",
+      "project_id": "d725172f-bffa-4795-9554-8761a197fa08",
+      "project_title": "The Wind That Decides Whether India Eats",
+      "group_id": "b33a1d4a-a617-5854-bd7a-24eee110d70b",
+      "shots": 2,
+      "failure_code": "shot_panel_layout_mismatch"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+src\tubeflow_test\adapters\audio_qc.py:509:101: E501 Line too long (110 > 100)
+src\tubeflow_test\application\narration.py:251:101: E501 Line too long (105 > 100)
+tests\integration\test_h3_storyboard_binding.py:778:90: E501 Line too long (102 > 100)
+tests\unit\test_audio_normalizer_contract.py:430:101: E501 Line too long (105 > 100)
+tests\unit\test_auto_pipeline.py:290:101: E501 Line too long (101 > 100)
+tests\unit\test_composition.py:161:101: E501 Line too long (108 > 100)
+tests\unit\test_composition.py:174:101: E501 Line too long (104 > 100)
+tests\unit\test_cover_workflows.py:185:9: SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+tests\unit\test_cover_workflows.py:244:9: SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+tests\unit\test_cover_workflows.py:289:9: SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+tests\unit\test_cover_workflows.py:352:9: SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+tests\unit\test_elevenlabs_adapter.py:236:5: SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+tests\unit\test_storyboard_prompt.py:229:59: E501 Line too long (102 > 100)
+tests\unit\test_video_orchestration.py:86:12: UP037 [*] Remove quotes from type annotation
+tests\unit\test_video_orchestration.py:1721:77: E501 Line too long (106 > 100)
+Found 15 errors.
+[*] 1 fixable with `--fix`.

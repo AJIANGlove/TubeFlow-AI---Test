@@ -1,0 +1,76 @@
+{
+  "baseline_total": 515,
+  "total": 515,
+  "passed": 406,
+  "failed": 109,
+  "pass_rate": 0.78835,
+  "by_project": {
+    "146ae08c-8412-49de-acd6-6ddaae2eb201": {
+      "total": 112,
+      "passed": 93,
+      "failed": 19
+    },
+    "17d2b9e9-f70c-4450-a1d6-9b13727126a7": {
+      "total": 89,
+      "passed": 36,
+      "failed": 53
+    },
+    "31e00d87-5332-4b60-88e9-8b6dd8d475e7": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "765dca11-b2fe-4e48-bc3d-9c0695f91263": {
+      "total": 147,
+      "passed": 121,
+      "failed": 26
+    },
+    "d725172f-bffa-4795-9554-8761a197fa08": {
+      "total": 152,
+      "passed": 141,
+      "failed": 11
+    },
+    "fa3a0b30-9222-4ca4-a475-3bfd6cc57220": {
+      "total": 13,
+      "passed": 13,
+      "failed": 0
+    }
+  },
+  "by_failure_code": {
+    "shot_panel_layout_mismatch": 42,
+    "shot_panel_gutter_not_found": 66,
+    "shot_panel_gutter_ambiguous": 1
+  },
+  "by_shots": {
+    "2": {
+      "total": 157,
+      "passed": 114,
+      "failed": 43
+    },
+    "4": {
+      "total": 86,
+      "passed": 77,
+      "failed": 9
+    },
+    "5": {
+      "total": 34,
+      "passed": 28,
+      "failed": 6
+    },
+    "3": {
+      "total": 161,
+      "passed": 114,
+      "failed": 47
+    },
+    "1": {
+      "total": 59,
+      "passed": 59,
+      "failed": 0
+    },
+    "6": {
+      "total": 18,
+      "passed": 14,
+      "failed": 4
+    }
+  }
+}
