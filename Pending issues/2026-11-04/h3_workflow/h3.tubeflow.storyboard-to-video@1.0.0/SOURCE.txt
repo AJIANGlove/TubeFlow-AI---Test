@@ -1,0 +1,62 @@
+H3 workflow evidence source
+==========================
+
+Collected: 2026-11-04T04:31Z-04:45Z (UTC), read-only.
+
+Engine node containers (KineStack Engine API):
+- kinestack-h3-clones-h3-engine-new-1-1
+- kinestack-h3-clones-h3-engine-new-2-1
+- kinestack-h3-clones-h3-engine-new-3-1
+Image: sha256:88c0df224d3a95808ae961142b4bc8588ca6c6ead71ab8a4895e2c811d0aa801
+       (tag: kinestack-h3-clones-base:20260919)
+Engine env: H3_WORKFLOW_PROFILE=candidate-hd (all three containers).
+
+Files copied from /app/app/workflows/ and /app/app/h3_workflows.py:
+
+h3.tubeflow.storyboard-to-video@1.0.0
+  manifest.json
+    source: /app/app/workflows/h3-tubeflow-storyboard.manifest.json
+    sha256: 65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9
+  workflow.json
+    source: /app/app/workflows/h3-tubeflow-storyboard.json
+    sha256: 7cd7fc3439d015ce41e508bff6f8deb912c3f11ee40db763b49fc71fccbe0c7c
+  engine_h3_workflows.py
+    source: /app/app/h3_workflows.py
+    sha256: 3116697eec31668f04fe7677bf831ecdf0d4e25adfc77f2d78d8982ec6e668d5
+
+h3.community.reference-images-to-video@1.1.0-mvp
+  manifest.json
+    source: /app/app/workflows/h3-r2v-images.manifest.json
+    sha256: a8b0461398da3c6a585279e9af0f154caadb853b3d1d99154b08ef2b0ae86e30
+  workflow.json
+    source: /app/app/workflows/h3-r2v-images.json
+    sha256: 0a3f4a1a403f2978ccea71b451a0a88fe9c37c539d0ee7ab267ab6278b5fc122
+  engine_h3_workflows.py
+    same engine file as above (sha256 3116697eec31668f04fe7677bf831ecdf0d4e25adfc77f2d78d8982ec6e668d5)
+
+All three engine containers returned identical sha256 values for every file above.
+
+Implementing node code (ComfyUI on GPU hosts):
+- Host 2cop10ldfhkcmhwx.ssh.x-gpu.com:36906 (app node h3-new-3, instance 2cop10ldfhkcmhwx)
+- Host ob6kefgwgyqkpy33.ssh.x-gpu.com:45208 (app node h3-new-2, instance ob6kefgwgyqkpy33)
+- Host 8kdu1z040qlsjb9v.ssh.x-gpu.com:45991 (app node h3-new-1, instance 8kdu1z040qlsjb9v): SSH kex_exchange_identification failure; no files read.
+
+Files under _node_code/ (copied from 2cop10ldfhkcmhwx; ob6kefgwgyqkpy33 returned identical sha256):
+  nodes.py                         fcbcd3aec5a15b33b6adcb76e701db54c49ed7ccb56fb8c2ed63150887f61cb0
+  conditioning.py                  e15d95454ffd60076ffadeca5c205b9608ae225606ed955a09aad95f0212c9e4
+  prompt_tags.py                   a9dc3e7e1a50ae3eb1498d7450a648938c396a31f73b1fd5918724bdb3f08400
+  core.py                          359ba1c75319b375717f809bad8295d8c3d9b5122c91620c276774c445afff3a
+  meta.json                        123aab4f864ecfde3a29682fd05e594f910198c4200d146cbfeaffd4bcebb78b
+  comfy_utils.py                   f3ee59baf72f6910b7662224854e372c713ba3ad01c89739ba092e5ee22460e6
+  legacy_nodes_minimax_h3.py       0570b1cbf3dce6177e4fbfc712332bb3bac36b2189146b4c2142af97fda09d3c
+
+Source paths on GPU host:
+  /root/ComfyUI/custom_nodes/comfyui-minimax-h3-audio-T8/nodes.py
+  /root/ComfyUI/custom_nodes/comfyui-minimax-h3-audio-T8/conditioning.py
+  /root/ComfyUI/custom_nodes/comfyui-minimax-h3-audio-T8/prompt_tags.py
+  /root/ComfyUI/custom_nodes/comfyui-minimax-h3-audio-T8/core.py
+  /root/ComfyUI/custom_nodes/comfyui-minimax-h3-audio-T8/meta.json
+  /root/ComfyUI/comfy/utils.py
+  /root/ComfyUI/comfy_extras/nodes_minimax_h3.py
+
+No file was written to any engine or GPU node. All copies were streamed via stdout.

@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0",
+  "workflow_id": "h3.tubeflow.storyboard-to-video",
+  "workflow_version": "1.0.0",
+  "capability": "video.reference_images_to_video",
+  "engine_api_version": "0.2.0",
+  "model": {
+    "model_key": "minimax-h3-community",
+    "model_version": "2026-08-13-community-duration-v1",
+    "weight_manifest_sha256": "6bceada5dec4fd9a43fecf5e651774ea1ca5f03eb9dd62c1b8c2a22b25bc6dea"
+  },
+  "api_workflow": {
+    "relative_path": "h3-tubeflow-storyboard.json",
+    "sha256": "7cd7fc3439d015ce41e508bff6f8deb912c3f11ee40db763b49fc71fccbe0c7c"
+  },
+  "bindings": [
+    {
+      "source": "prompt.final",
+      "target": {
+        "node_id": "condition",
+        "input_name": "prompt"
+      },
+      "value_type": "string"
+    },
+    {
+      "source": "parameters.width",
+      "target": {
+        "node_id": "condition",
+        "input_name": "width"
+      },
+      "value_type": "integer"
+    },
+    {
+      "source": "parameters.height",
+      "target": {
+        "node_id": "condition",
+        "input_name": "height"
+      },
+      "value_type": "integer"
+    },
+    {
+      "source": "parameters.length",
+      "target": {
+        "node_id": "condition",
+        "input_name": "length"
+      },
+      "value_type": "integer"
+    },
+    {
+      "source": "parameters.seed",
+      "target": {
+        "node_id": "noise",
+        "input_name": "noise_seed"
+      },
+      "value_type": "integer"
+    },
+    {
+      "source": "references.ordered_images",
+      "target": {
+        "node_id": "condition",
+        "input_name": "ref_images"
+      },
+      "value_type": "staged_asset"
+    }
+  ],
+  "dependencies": [
+    {
+      "kind": "comfyui",
+      "name": "ComfyUI",
+      "version": "0.34.1",
+      "source": "https://github.com/comfyanonymous/ComfyUI",
+      "license": "GPL-3.0"
+    },
+    {
+      "kind": "custom_node",
+      "name": "comfyui-minimax-h3-audio-T8",
+      "version": "1.3.2",
+      "source": "installed candidate machine; nodes.py, conditioning.py, sampling.py, audio_ops.py audited"
+    },
+    {
+      "kind": "custom_node",
+      "name": "ComfyUI-KJNodes",
+      "version": "1.4.8",
+      "source": "installed candidate machine; existing Sage attention patch retained"
+    },
+    {
+      "kind": "weight",
+      "name": "MiniMax H3 REF2VA INT8 ConvRot",
+      "version": "2026-08-02",
+      "source": "MiniMaxAI/MiniMax-H3",
+      "sha256": "9eef934046a0671bc8a5daf87100705e1478419c574cfde70c50fbe6885f76a9",
+      "license": "MiniMax H3 Community License"
+    }
+  ],
+  "limits": {
+    "max_reference_images": 9,
+    "max_outputs": 1,
+    "supported_aspect_ratios": [
+      "16:9",
+      "9:16",
+      "1:1",
+      "4:3",
+      "3:4"
+    ],
+    "supported_resolution_presets": [
+      "preview"
+    ],
+    "duration_seconds": {
+      "minimum": 3,
+      "maximum": 15,
+      "step": 1,
+      "default": 5
+    }
+  },
+  "outputs": [
+    {
+      "media_type": "video/mp4",
+      "role": "primary"
+    }
+  ],
+  "notes": "TubeFlow AI - Test storyboard group video. Candidate workflow for ComfyUI 0.34.1 only. Preserves approved main model, text encoder, VAE weights, original 3-15 second nearest-17k+5 mapping, aspect ratios and 24 fps. T8 native audio, dual-clock Euler 8 steps with video/audio shifts 12/3, AV decode, sRGB 8-bit H.264 CRF 19. REF2VA without LoRA. No EasyCache: its skipped steps reuse both video and audio residuals; candidate computes every sampling step. Ordered references and storyboard timing/prompt are supplied by TubeFlow; no TTS, audio-reference or first-frame injection. No upscaler, first/last-frame, reference-video or reference-audio inputs. Output remains native generated audio."
+}

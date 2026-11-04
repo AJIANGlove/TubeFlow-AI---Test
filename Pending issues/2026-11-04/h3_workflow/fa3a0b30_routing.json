@@ -1,0 +1,695 @@
+{
+    "route": {
+        "profile": "candidate",
+        "bound_at": "2026-11-04T02:10:11.691075+00:00",
+        "project_id": "fa3a0b30-9222-4ca4-a475-3bfd6cc57220",
+        "reference_strategy": "composite",
+        "workflow_snapshot_json": {
+            "manifest": {
+                "model_key": "minimax-h3-community",
+                "capability": "video.reference_images_to_video",
+                "workflow_id": "h3.tubeflow.storyboard-to-video",
+                "model_version": "2026-08-13-community-duration-v1",
+                "workflow_version": "1.0.0",
+                "resolution_preset": "preview"
+            },
+            "model_key": "minimax-h3-community",
+            "workflow_id": "h3.tubeflow.storyboard-to-video",
+            "model_version": "2026-08-13-community-duration-v1",
+            "workflow_version": "1.0.0",
+            "resolution_preset": "preview",
+            "workflow_manifest_sha256": "65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9"
+        },
+        "reference_derivation_json": null
+    },
+    "groups": [
+        {
+            "stage": "ARCHIVED",
+            "node_id": "h3-new-2",
+            "group_id": "77fd929c-3a4b-5b16-86f7-84fe419f2baf",
+            "sequence": 1,
+            "attempt_id": "b0b7f438-dc6b-41ff-a78c-46718ec7d8ef",
+            "references": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "asset_sha256": "ef4afa3b005a72393c9c036ff31c43387334ee3e86bf34785aee339797cc3bca"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "asset_sha256": "436dcc5107f990ef27cf372fbd2e9659f25b3741272ba2972041dc602d7127c5"
+                }
+            ],
+            "archive_stage": "COMPLETE",
+            "reference_count": 2,
+            "references_source": "input_snapshot_json.logical_request.references",
+            "request_json_workflow": {
+                "model_key": "minimax-h3-community",
+                "capability": "video.reference_images_to_video",
+                "workflow_id": "h3.tubeflow.storyboard-to-video",
+                "model_version": "2026-08-13-community-duration-v1",
+                "workflow_version": "1.0.0",
+                "workflow_manifest_sha256": "65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9"
+            },
+            "superseded_attempt_id": null,
+            "request_json_staged_assets": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "staged_asset_id": "1c964838-7148-4117-bd78-506f30792f91"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "staged_asset_id": "7de3c212-a49a-47c5-b722-415b8a0f03fd"
+                }
+            ],
+            "request_json_top_level_keys": [
+                "attempt_id",
+                "parameters",
+                "prompt",
+                "staged_assets",
+                "workflow"
+            ],
+            "group_current_videos_updated_at": "2026-11-04T02:15:24.599132+00:00"
+        },
+        {
+            "stage": "ARCHIVED",
+            "node_id": "h3-new-3",
+            "group_id": "5a94e466-0f9e-5f57-95cb-9dca286ab120",
+            "sequence": 2,
+            "attempt_id": "e2ddd4e8-fd18-46a9-96e3-85d949f3f02d",
+            "references": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "asset_sha256": "ef4afa3b005a72393c9c036ff31c43387334ee3e86bf34785aee339797cc3bca"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "asset_sha256": "942d1472bc64b9aa2cccde1fe85637271d3fd36b1020efe2120ee4c7f3dcb305"
+                }
+            ],
+            "archive_stage": "COMPLETE",
+            "reference_count": 2,
+            "references_source": "input_snapshot_json.logical_request.references",
+            "request_json_workflow": {
+                "model_key": "minimax-h3-community",
+                "capability": "video.reference_images_to_video",
+                "workflow_id": "h3.tubeflow.storyboard-to-video",
+                "model_version": "2026-08-13-community-duration-v1",
+                "workflow_version": "1.0.0",
+                "workflow_manifest_sha256": "65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9"
+            },
+            "superseded_attempt_id": null,
+            "request_json_staged_assets": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "staged_asset_id": "0fcfa946-a9a9-4b76-ba33-50ad8acb8617"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "staged_asset_id": "75a7c304-1019-4295-a711-d497a3ec74e3"
+                }
+            ],
+            "request_json_top_level_keys": [
+                "attempt_id",
+                "parameters",
+                "prompt",
+                "staged_assets",
+                "workflow"
+            ],
+            "group_current_videos_updated_at": "2026-11-04T02:16:00.559199+00:00"
+        },
+        {
+            "stage": "ARCHIVED",
+            "node_id": "h3-new-2",
+            "group_id": "74ab5e15-7410-5674-be3b-35a1e87ac87d",
+            "sequence": 3,
+            "attempt_id": "eeec446c-7df1-458b-ba89-7bae14f745ab",
+            "references": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "asset_sha256": "ef4afa3b005a72393c9c036ff31c43387334ee3e86bf34785aee339797cc3bca"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "asset_sha256": "3015ee34d3b8d7a92417eed710c34681a33d06f457ab38d62abe82dfee6e625e"
+                }
+            ],
+            "archive_stage": "COMPLETE",
+            "reference_count": 2,
+            "references_source": "input_snapshot_json.logical_request.references",
+            "request_json_workflow": {
+                "model_key": "minimax-h3-community",
+                "capability": "video.reference_images_to_video",
+                "workflow_id": "h3.tubeflow.storyboard-to-video",
+                "model_version": "2026-08-13-community-duration-v1",
+                "workflow_version": "1.0.0",
+                "workflow_manifest_sha256": "65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9"
+            },
+            "superseded_attempt_id": null,
+            "request_json_staged_assets": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "staged_asset_id": "add719be-85a1-4e02-8bf1-e7bacde8ae71"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "staged_asset_id": "57f2ec75-832b-4429-81de-cc633e5ecc4c"
+                }
+            ],
+            "request_json_top_level_keys": [
+                "attempt_id",
+                "parameters",
+                "prompt",
+                "staged_assets",
+                "workflow"
+            ],
+            "group_current_videos_updated_at": "2026-11-04T02:19:07.067616+00:00"
+        },
+        {
+            "stage": "ARCHIVED",
+            "node_id": "h3-new-3",
+            "group_id": "84813a9e-672f-5c00-9c76-e3988f04bfdf",
+            "sequence": 4,
+            "attempt_id": "a76d33fd-b0d6-48a8-af63-5409c1ea0a7f",
+            "references": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "asset_sha256": "ef4afa3b005a72393c9c036ff31c43387334ee3e86bf34785aee339797cc3bca"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "asset_sha256": "b08f48d2c5eb16d793e7f38bcb4981c218dcb59053f0acb7bf1e01652b42d1d6"
+                }
+            ],
+            "archive_stage": "COMPLETE",
+            "reference_count": 2,
+            "references_source": "input_snapshot_json.logical_request.references",
+            "request_json_workflow": {
+                "model_key": "minimax-h3-community",
+                "capability": "video.reference_images_to_video",
+                "workflow_id": "h3.tubeflow.storyboard-to-video",
+                "model_version": "2026-08-13-community-duration-v1",
+                "workflow_version": "1.0.0",
+                "workflow_manifest_sha256": "65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9"
+            },
+            "superseded_attempt_id": null,
+            "request_json_staged_assets": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "staged_asset_id": "0cc698cc-a322-4d6c-9ebc-4ba41d859abd"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "staged_asset_id": "a03a73a3-a0a8-4604-a002-7f68f62f8232"
+                }
+            ],
+            "request_json_top_level_keys": [
+                "attempt_id",
+                "parameters",
+                "prompt",
+                "staged_assets",
+                "workflow"
+            ],
+            "group_current_videos_updated_at": "2026-11-04T02:20:21.46232+00:00"
+        },
+        {
+            "stage": "ARCHIVED",
+            "node_id": "h3-new-2",
+            "group_id": "c1935df1-5012-5b64-82d0-47edcf4e9ebe",
+            "sequence": 5,
+            "attempt_id": "aa442edc-9259-4c99-9f5f-402f773c885f",
+            "references": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "asset_sha256": "ef4afa3b005a72393c9c036ff31c43387334ee3e86bf34785aee339797cc3bca"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "asset_sha256": "02f0959efd5923236e2be23fe2a5d5e018accdb00e55b229e7e8d0eab1620760"
+                }
+            ],
+            "archive_stage": "COMPLETE",
+            "reference_count": 2,
+            "references_source": "input_snapshot_json.logical_request.references",
+            "request_json_workflow": {
+                "model_key": "minimax-h3-community",
+                "capability": "video.reference_images_to_video",
+                "workflow_id": "h3.tubeflow.storyboard-to-video",
+                "model_version": "2026-08-13-community-duration-v1",
+                "workflow_version": "1.0.0",
+                "workflow_manifest_sha256": "65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9"
+            },
+            "superseded_attempt_id": null,
+            "request_json_staged_assets": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "staged_asset_id": "90516126-62be-4b94-80cb-6acef0d6c407"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "staged_asset_id": "c5594dde-9297-4d92-a204-e5f4826d6bcc"
+                }
+            ],
+            "request_json_top_level_keys": [
+                "attempt_id",
+                "parameters",
+                "prompt",
+                "staged_assets",
+                "workflow"
+            ],
+            "group_current_videos_updated_at": "2026-11-04T02:36:24.408735+00:00"
+        },
+        {
+            "stage": "ARCHIVED",
+            "node_id": "h3-new-3",
+            "group_id": "a60a76c5-39bf-5747-9b2e-75e5fdb18d42",
+            "sequence": 6,
+            "attempt_id": "459314e3-c6d1-404e-aa2e-369b6b8a3c9e",
+            "references": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "asset_sha256": "ef4afa3b005a72393c9c036ff31c43387334ee3e86bf34785aee339797cc3bca"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "asset_sha256": "b61853ca6f3b2ae39a4530133053cc4c9970d432d38442cb32badbd94c26bae3"
+                }
+            ],
+            "archive_stage": "COMPLETE",
+            "reference_count": 2,
+            "references_source": "input_snapshot_json.logical_request.references",
+            "request_json_workflow": {
+                "model_key": "minimax-h3-community",
+                "capability": "video.reference_images_to_video",
+                "workflow_id": "h3.tubeflow.storyboard-to-video",
+                "model_version": "2026-08-13-community-duration-v1",
+                "workflow_version": "1.0.0",
+                "workflow_manifest_sha256": "65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9"
+            },
+            "superseded_attempt_id": null,
+            "request_json_staged_assets": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "staged_asset_id": "bc862c7d-3e0b-42ec-a71f-f34241ffa042"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "staged_asset_id": "e9962126-077c-4922-bf44-be52317c0868"
+                }
+            ],
+            "request_json_top_level_keys": [
+                "attempt_id",
+                "parameters",
+                "prompt",
+                "staged_assets",
+                "workflow"
+            ],
+            "group_current_videos_updated_at": "2026-11-04T02:32:59.671642+00:00"
+        },
+        {
+            "stage": "ARCHIVED",
+            "node_id": "h3-new-3",
+            "group_id": "87312cbd-027b-502c-a371-b4f31ea2d070",
+            "sequence": 7,
+            "attempt_id": "2a8227d5-1179-4c5b-9c9f-d733234db4cd",
+            "references": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "asset_sha256": "ef4afa3b005a72393c9c036ff31c43387334ee3e86bf34785aee339797cc3bca"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "asset_sha256": "1251b4bfa2863cf01f8d3170caed0d65083ac8fe11c4cf2a9bffc2a9462e0d27"
+                }
+            ],
+            "archive_stage": "COMPLETE",
+            "reference_count": 2,
+            "references_source": "input_snapshot_json.logical_request.references",
+            "request_json_workflow": {
+                "model_key": "minimax-h3-community",
+                "capability": "video.reference_images_to_video",
+                "workflow_id": "h3.tubeflow.storyboard-to-video",
+                "model_version": "2026-08-13-community-duration-v1",
+                "workflow_version": "1.0.0",
+                "workflow_manifest_sha256": "65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9"
+            },
+            "superseded_attempt_id": null,
+            "request_json_staged_assets": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "staged_asset_id": "f4783682-1de8-4cee-a25a-dbeb525342a1"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "staged_asset_id": "5d0128b0-fd7c-40eb-8cd6-051e6111693c"
+                }
+            ],
+            "request_json_top_level_keys": [
+                "attempt_id",
+                "parameters",
+                "prompt",
+                "staged_assets",
+                "workflow"
+            ],
+            "group_current_videos_updated_at": "2026-11-04T02:37:07.728365+00:00"
+        },
+        {
+            "stage": "ARCHIVED",
+            "node_id": "h3-new-2",
+            "group_id": "e6429e41-87f4-567b-b43d-80fef7cdc270",
+            "sequence": 8,
+            "attempt_id": "0032e093-1d10-4c72-83c9-bc1ed475c209",
+            "references": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "asset_sha256": "ef4afa3b005a72393c9c036ff31c43387334ee3e86bf34785aee339797cc3bca"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "asset_sha256": "d8b2dc111a34febc5a921630323e8cf52d922f30195b0b694a80d5bb5be0a493"
+                }
+            ],
+            "archive_stage": "COMPLETE",
+            "reference_count": 2,
+            "references_source": "input_snapshot_json.logical_request.references",
+            "request_json_workflow": {
+                "model_key": "minimax-h3-community",
+                "capability": "video.reference_images_to_video",
+                "workflow_id": "h3.tubeflow.storyboard-to-video",
+                "model_version": "2026-08-13-community-duration-v1",
+                "workflow_version": "1.0.0",
+                "workflow_manifest_sha256": "65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9"
+            },
+            "superseded_attempt_id": null,
+            "request_json_staged_assets": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "staged_asset_id": "27e4b2b8-bdbd-4e07-80ae-8072baa72a34"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "staged_asset_id": "283ed1de-756c-402f-b999-e85796a32163"
+                }
+            ],
+            "request_json_top_level_keys": [
+                "attempt_id",
+                "parameters",
+                "prompt",
+                "staged_assets",
+                "workflow"
+            ],
+            "group_current_videos_updated_at": "2026-11-04T02:32:39.801773+00:00"
+        },
+        {
+            "stage": "ARCHIVED",
+            "node_id": "h3-new-2",
+            "group_id": "d6723e76-6913-5b05-aeef-575278074b7d",
+            "sequence": 9,
+            "attempt_id": "bdb263c7-f3bf-4e0b-863d-1e8afbefa5bf",
+            "references": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "asset_sha256": "ef4afa3b005a72393c9c036ff31c43387334ee3e86bf34785aee339797cc3bca"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "asset_sha256": "62eb284acd748d74dab195c5dcf0ff5dd38ae8a054b7768931a5d841d19740f6"
+                }
+            ],
+            "archive_stage": "COMPLETE",
+            "reference_count": 2,
+            "references_source": "input_snapshot_json.logical_request.references",
+            "request_json_workflow": {
+                "model_key": "minimax-h3-community",
+                "capability": "video.reference_images_to_video",
+                "workflow_id": "h3.tubeflow.storyboard-to-video",
+                "model_version": "2026-08-13-community-duration-v1",
+                "workflow_version": "1.0.0",
+                "workflow_manifest_sha256": "65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9"
+            },
+            "superseded_attempt_id": null,
+            "request_json_staged_assets": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "staged_asset_id": "0b7a5542-cd46-438a-a202-f3808f96a444"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "staged_asset_id": "04fb304c-821f-490a-a9f0-dd4ee40fe3cd"
+                }
+            ],
+            "request_json_top_level_keys": [
+                "attempt_id",
+                "parameters",
+                "prompt",
+                "staged_assets",
+                "workflow"
+            ],
+            "group_current_videos_updated_at": "2026-11-04T02:27:48.472522+00:00"
+        },
+        {
+            "stage": "ARCHIVED",
+            "node_id": "h3-new-3",
+            "group_id": "4eb9de07-e638-559b-aa21-a9cec218e93e",
+            "sequence": 10,
+            "attempt_id": "f8391854-4f24-4196-ba84-2d2a44d1bc52",
+            "references": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "asset_sha256": "ef4afa3b005a72393c9c036ff31c43387334ee3e86bf34785aee339797cc3bca"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "asset_sha256": "e611322a1877ba5713dcadda9a6f43dd81e09c9320c8adc7bfd974483bb6b301"
+                }
+            ],
+            "archive_stage": "COMPLETE",
+            "reference_count": 2,
+            "references_source": "input_snapshot_json.logical_request.references",
+            "request_json_workflow": {
+                "model_key": "minimax-h3-community",
+                "capability": "video.reference_images_to_video",
+                "workflow_id": "h3.tubeflow.storyboard-to-video",
+                "model_version": "2026-08-13-community-duration-v1",
+                "workflow_version": "1.0.0",
+                "workflow_manifest_sha256": "65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9"
+            },
+            "superseded_attempt_id": null,
+            "request_json_staged_assets": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "staged_asset_id": "d308d69a-83cf-4b00-a53c-cc286554ddb4"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "staged_asset_id": "ffbc4187-2794-4100-bb1e-58a11e960071"
+                }
+            ],
+            "request_json_top_level_keys": [
+                "attempt_id",
+                "parameters",
+                "prompt",
+                "staged_assets",
+                "workflow"
+            ],
+            "group_current_videos_updated_at": "2026-11-04T02:28:20.606124+00:00"
+        },
+        {
+            "stage": "ARCHIVED",
+            "node_id": "h3-new-3",
+            "group_id": "4268331f-ac92-5271-af18-24f3c86db864",
+            "sequence": 11,
+            "attempt_id": "c0dfa94e-2ff6-4e32-ab41-9a4e063ebd23",
+            "references": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "asset_sha256": "ef4afa3b005a72393c9c036ff31c43387334ee3e86bf34785aee339797cc3bca"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "asset_sha256": "dcc8adcf0337a6441b48e9c6331612ddc8c551529803923e2bc59f6fcc3f7c86"
+                }
+            ],
+            "archive_stage": "COMPLETE",
+            "reference_count": 2,
+            "references_source": "input_snapshot_json.logical_request.references",
+            "request_json_workflow": {
+                "model_key": "minimax-h3-community",
+                "capability": "video.reference_images_to_video",
+                "workflow_id": "h3.tubeflow.storyboard-to-video",
+                "model_version": "2026-08-13-community-duration-v1",
+                "workflow_version": "1.0.0",
+                "workflow_manifest_sha256": "65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9"
+            },
+            "superseded_attempt_id": null,
+            "request_json_staged_assets": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "staged_asset_id": "759f3995-ee0a-4fa5-8078-c6c8b077e136"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "staged_asset_id": "f9b288e9-3ff7-4acb-b3d4-a868f6d0d74e"
+                }
+            ],
+            "request_json_top_level_keys": [
+                "attempt_id",
+                "parameters",
+                "prompt",
+                "staged_assets",
+                "workflow"
+            ],
+            "group_current_videos_updated_at": "2026-11-04T02:24:53.739338+00:00"
+        },
+        {
+            "stage": "ARCHIVED",
+            "node_id": "h3-new-2",
+            "group_id": "8036273e-8600-5826-b25b-9e074f511c0c",
+            "sequence": 12,
+            "attempt_id": "f36b67f2-58ce-4231-b04e-1fa4f80e05a0",
+            "references": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "asset_sha256": "ef4afa3b005a72393c9c036ff31c43387334ee3e86bf34785aee339797cc3bca"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "asset_sha256": "ec2f9fd680cbaeb5513c59f185cbf5fe04c1126df520d0977485c8bee73ec3fb"
+                }
+            ],
+            "archive_stage": "COMPLETE",
+            "reference_count": 2,
+            "references_source": "input_snapshot_json.logical_request.references",
+            "request_json_workflow": {
+                "model_key": "minimax-h3-community",
+                "capability": "video.reference_images_to_video",
+                "workflow_id": "h3.tubeflow.storyboard-to-video",
+                "model_version": "2026-08-13-community-duration-v1",
+                "workflow_version": "1.0.0",
+                "workflow_manifest_sha256": "65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9"
+            },
+            "superseded_attempt_id": "cee0bcc6-36c7-4082-b7f2-c5e39e7a295f",
+            "request_json_staged_assets": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "staged_asset_id": "20b775fb-63c2-4c3e-9bec-3ef6438171ea"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "staged_asset_id": "a2fae8a6-4dce-433d-aa9b-c0f08124a050"
+                }
+            ],
+            "request_json_top_level_keys": [
+                "attempt_id",
+                "parameters",
+                "prompt",
+                "staged_assets",
+                "workflow"
+            ],
+            "group_current_videos_updated_at": "2026-11-04T02:41:16.423609+00:00"
+        },
+        {
+            "stage": "ARCHIVED",
+            "node_id": "h3-new-3",
+            "group_id": "2e5b4233-8d81-56f7-b585-06f95dc4fd3e",
+            "sequence": 13,
+            "attempt_id": "44ed264a-05c3-4808-8dc7-b8d2fb8b3904",
+            "references": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "asset_sha256": "ef4afa3b005a72393c9c036ff31c43387334ee3e86bf34785aee339797cc3bca"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "asset_sha256": "06634a36dcf5dd30527e726f2e360f24a47da84dbb9490d2ecc5421c7b0bf8c7"
+                }
+            ],
+            "archive_stage": "COMPLETE",
+            "reference_count": 2,
+            "references_source": "input_snapshot_json.logical_request.references",
+            "request_json_workflow": {
+                "model_key": "minimax-h3-community",
+                "capability": "video.reference_images_to_video",
+                "workflow_id": "h3.tubeflow.storyboard-to-video",
+                "model_version": "2026-08-13-community-duration-v1",
+                "workflow_version": "1.0.0",
+                "workflow_manifest_sha256": "65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9"
+            },
+            "superseded_attempt_id": null,
+            "request_json_staged_assets": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "staged_asset_id": "b780dad6-072c-48f4-9a76-01f48d52d531"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "staged_asset_id": "c2b71a8b-b466-4300-96f6-086b59622d63"
+                }
+            ],
+            "request_json_top_level_keys": [
+                "attempt_id",
+                "parameters",
+                "prompt",
+                "staged_assets",
+                "workflow"
+            ],
+            "group_current_videos_updated_at": "2026-11-04T02:22:05.337408+00:00"
+        }
+    ],
+    "project_id": "fa3a0b30-9222-4ca4-a475-3bfd6cc57220",
+    "exported_at": "2026-11-04T04:31:44Z",
+    "group_count": 13,
+    "missing_groups": [
+    ]
+}

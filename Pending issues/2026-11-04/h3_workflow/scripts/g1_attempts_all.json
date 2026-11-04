@@ -1,0 +1,316 @@
+{
+    "attempts": [
+        {
+            "stage": "ARCHIVED",
+            "node_id": "h3-new-2",
+            "group_id": "e899aa30-c342-53d3-8411-ce8812c1a8c4",
+            "attempt_id": "81394ede-c63e-41c4-b50f-7ccfd115b9a3",
+            "references": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "asset_sha256": "e507047ae11ffe04fd9aeee010f7884b5542cd8f6e6b91ffeac13eebef25e740"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "asset_sha256": "1f2ec028681fe095227eb634a98e6ae16b866354dc84e438f0a86a3b875d4680"
+                },
+                {
+                    "ordinal": 3,
+                    "binding_key": "reference_image_3",
+                    "asset_sha256": "848334b2f0a16aef1093d0b40c4570b4891d5f2dcc339eb24a0161be60f1115f"
+                },
+                {
+                    "ordinal": 4,
+                    "binding_key": "reference_image_4",
+                    "asset_sha256": "df93c834c5a826ca379bde68338e13b5b507c6ecbc0d7008ac5187a418ee7081"
+                },
+                {
+                    "ordinal": 5,
+                    "binding_key": "reference_image_5",
+                    "asset_sha256": "b0ead19bd5fa6a95b3b57f09e60e7c7dfced453fbd55d51b00a62dad6f3ba7cd"
+                },
+                {
+                    "ordinal": 6,
+                    "binding_key": "reference_image_6",
+                    "asset_sha256": "cb3ef350c6b784063534d96cd08a8a7bf628d71454f49b0c0e5aae88c1df5bf0"
+                }
+            ],
+            "archive_stage": "COMPLETE",
+            "last_event_at": "2026-11-03T03:53:29.617384+00:00",
+            "first_event_at": "2026-11-03T03:47:51.962572+00:00",
+            "reference_count": 6,
+            "audit_workflow_id": "h3.tubeflow.storyboard-to-video",
+            "references_source": "input_snapshot_json.logical_request.references",
+            "request_json_workflow": {
+                "model_key": "minimax-h3-community",
+                "capability": "video.reference_images_to_video",
+                "workflow_id": "h3.tubeflow.storyboard-to-video",
+                "model_version": "2026-08-13-community-duration-v1",
+                "workflow_version": "1.0.0",
+                "workflow_manifest_sha256": "65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9"
+            },
+            "audit_workflow_version": "1.0.0",
+            "reference_binding_keys": [
+                "reference_image_1",
+                "reference_image_2",
+                "reference_image_3",
+                "reference_image_4",
+                "reference_image_5",
+                "reference_image_6"
+            ],
+            "request_json_parameters": {
+                "seed": 798160553724158,
+                "aspect_ratio": "16:9",
+                "duration_seconds": 15,
+                "resolution_preset": "preview"
+            },
+            "reference_derivation_json": {
+                "version": "crop-title54-v1"
+            },
+            "reference_policy_strategy": "single_panel_v1",
+            "request_json_staged_assets": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "staged_asset_id": "7d56a773-a3e5-49a0-81e5-be57fa1d6597"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "staged_asset_id": "c539dfc3-4475-492e-9b8e-ebc3b7f7f817"
+                },
+                {
+                    "ordinal": 3,
+                    "binding_key": "reference_image_3",
+                    "staged_asset_id": "cee0cb5f-2e9a-4ee4-8caa-c9a5350aadbb"
+                },
+                {
+                    "ordinal": 4,
+                    "binding_key": "reference_image_4",
+                    "staged_asset_id": "a774cee8-6f69-4ed2-a503-d229b46e468e"
+                },
+                {
+                    "ordinal": 5,
+                    "binding_key": "reference_image_5",
+                    "staged_asset_id": "e008e227-915b-4681-9b5e-dfe0c038c2b1"
+                },
+                {
+                    "ordinal": 6,
+                    "binding_key": "reference_image_6",
+                    "staged_asset_id": "8dd77453-b650-4ce9-952b-b6ceee1daf67"
+                }
+            ]
+        },
+        {
+            "stage": "ARCHIVED",
+            "node_id": "h3-new-2",
+            "group_id": "e899aa30-c342-53d3-8411-ce8812c1a8c4",
+            "attempt_id": "80f465e0-195b-44df-8a53-145172420e72",
+            "references": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "asset_sha256": "e507047ae11ffe04fd9aeee010f7884b5542cd8f6e6b91ffeac13eebef25e740"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "asset_sha256": "1f2ec028681fe095227eb634a98e6ae16b866354dc84e438f0a86a3b875d4680"
+                },
+                {
+                    "ordinal": 3,
+                    "binding_key": "reference_image_3",
+                    "asset_sha256": "848334b2f0a16aef1093d0b40c4570b4891d5f2dcc339eb24a0161be60f1115f"
+                },
+                {
+                    "ordinal": 4,
+                    "binding_key": "reference_image_4",
+                    "asset_sha256": "df93c834c5a826ca379bde68338e13b5b507c6ecbc0d7008ac5187a418ee7081"
+                },
+                {
+                    "ordinal": 5,
+                    "binding_key": "reference_image_5",
+                    "asset_sha256": "b0ead19bd5fa6a95b3b57f09e60e7c7dfced453fbd55d51b00a62dad6f3ba7cd"
+                },
+                {
+                    "ordinal": 6,
+                    "binding_key": "reference_image_6",
+                    "asset_sha256": "cb3ef350c6b784063534d96cd08a8a7bf628d71454f49b0c0e5aae88c1df5bf0"
+                }
+            ],
+            "archive_stage": "COMPLETE",
+            "last_event_at": "2026-11-03T04:04:36.463914+00:00",
+            "first_event_at": "2026-11-03T03:58:58.52857+00:00",
+            "reference_count": 6,
+            "audit_workflow_id": "h3.tubeflow.storyboard-to-video",
+            "references_source": "input_snapshot_json.logical_request.references",
+            "request_json_workflow": {
+                "model_key": "minimax-h3-community",
+                "capability": "video.reference_images_to_video",
+                "workflow_id": "h3.tubeflow.storyboard-to-video",
+                "model_version": "2026-08-13-community-duration-v1",
+                "workflow_version": "1.0.0",
+                "workflow_manifest_sha256": "65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9"
+            },
+            "audit_workflow_version": "1.0.0",
+            "reference_binding_keys": [
+                "reference_image_1",
+                "reference_image_2",
+                "reference_image_3",
+                "reference_image_4",
+                "reference_image_5",
+                "reference_image_6"
+            ],
+            "request_json_parameters": {
+                "seed": 798160553724159,
+                "aspect_ratio": "16:9",
+                "duration_seconds": 15,
+                "resolution_preset": "preview"
+            },
+            "reference_derivation_json": {
+                "version": "crop-title54-v1"
+            },
+            "reference_policy_strategy": "single_panel_v1",
+            "request_json_staged_assets": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "staged_asset_id": "1c4b5b84-a0e5-4e2d-a8b3-09e53f5e7670"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "staged_asset_id": "ec8f5702-a01f-4288-ac14-4df9426c6b48"
+                },
+                {
+                    "ordinal": 3,
+                    "binding_key": "reference_image_3",
+                    "staged_asset_id": "aad37d58-daed-410d-b008-abe56240cbf7"
+                },
+                {
+                    "ordinal": 4,
+                    "binding_key": "reference_image_4",
+                    "staged_asset_id": "4be2ab64-5d0c-43df-9029-9628e9f64dc2"
+                },
+                {
+                    "ordinal": 5,
+                    "binding_key": "reference_image_5",
+                    "staged_asset_id": "3c4ac2fc-aa3a-4f24-aaba-6ec020bd02b9"
+                },
+                {
+                    "ordinal": 6,
+                    "binding_key": "reference_image_6",
+                    "staged_asset_id": "17da810f-06e4-4a98-b3c8-eb82b7c21ec4"
+                }
+            ]
+        },
+        {
+            "stage": "ARCHIVED",
+            "node_id": "h3-new-3",
+            "group_id": "e899aa30-c342-53d3-8411-ce8812c1a8c4",
+            "attempt_id": "5464693b-07f7-4023-af5f-4f6cb0a6dfe9",
+            "references": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "asset_sha256": "e507047ae11ffe04fd9aeee010f7884b5542cd8f6e6b91ffeac13eebef25e740"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "asset_sha256": "1f2ec028681fe095227eb634a98e6ae16b866354dc84e438f0a86a3b875d4680"
+                },
+                {
+                    "ordinal": 3,
+                    "binding_key": "reference_image_3",
+                    "asset_sha256": "848334b2f0a16aef1093d0b40c4570b4891d5f2dcc339eb24a0161be60f1115f"
+                },
+                {
+                    "ordinal": 4,
+                    "binding_key": "reference_image_4",
+                    "asset_sha256": "df93c834c5a826ca379bde68338e13b5b507c6ecbc0d7008ac5187a418ee7081"
+                },
+                {
+                    "ordinal": 5,
+                    "binding_key": "reference_image_5",
+                    "asset_sha256": "b0ead19bd5fa6a95b3b57f09e60e7c7dfced453fbd55d51b00a62dad6f3ba7cd"
+                },
+                {
+                    "ordinal": 6,
+                    "binding_key": "reference_image_6",
+                    "asset_sha256": "cb3ef350c6b784063534d96cd08a8a7bf628d71454f49b0c0e5aae88c1df5bf0"
+                }
+            ],
+            "archive_stage": "COMPLETE",
+            "last_event_at": "2026-11-03T04:17:08.378462+00:00",
+            "first_event_at": "2026-11-03T04:11:30.821486+00:00",
+            "reference_count": 6,
+            "audit_workflow_id": "h3.tubeflow.storyboard-to-video",
+            "references_source": "input_snapshot_json.logical_request.references",
+            "request_json_workflow": {
+                "model_key": "minimax-h3-community",
+                "capability": "video.reference_images_to_video",
+                "workflow_id": "h3.tubeflow.storyboard-to-video",
+                "model_version": "2026-08-13-community-duration-v1",
+                "workflow_version": "1.0.0",
+                "workflow_manifest_sha256": "65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9"
+            },
+            "audit_workflow_version": "1.0.0",
+            "reference_binding_keys": [
+                "reference_image_1",
+                "reference_image_2",
+                "reference_image_3",
+                "reference_image_4",
+                "reference_image_5",
+                "reference_image_6"
+            ],
+            "request_json_parameters": {
+                "seed": 798160553724158,
+                "aspect_ratio": "16:9",
+                "duration_seconds": 15,
+                "resolution_preset": "preview"
+            },
+            "reference_derivation_json": {
+                "version": "crop-title54-v1"
+            },
+            "reference_policy_strategy": "single_panel_v1",
+            "request_json_staged_assets": [
+                {
+                    "ordinal": 1,
+                    "binding_key": "reference_image_1",
+                    "staged_asset_id": "73f4f0da-6587-4c57-a1db-c6f7f207a103"
+                },
+                {
+                    "ordinal": 2,
+                    "binding_key": "reference_image_2",
+                    "staged_asset_id": "8e405e91-de71-4016-a880-c00948f500c7"
+                },
+                {
+                    "ordinal": 3,
+                    "binding_key": "reference_image_3",
+                    "staged_asset_id": "7091196b-8af5-4a2c-bfcd-87ff8adf49f1"
+                },
+                {
+                    "ordinal": 4,
+                    "binding_key": "reference_image_4",
+                    "staged_asset_id": "0ec7d275-4034-4f2d-82f0-e8c8c897dc6c"
+                },
+                {
+                    "ordinal": 5,
+                    "binding_key": "reference_image_5",
+                    "staged_asset_id": "9f4ef2e2-b8db-4030-ad7e-cd763c231ee0"
+                },
+                {
+                    "ordinal": 6,
+                    "binding_key": "reference_image_6",
+                    "staged_asset_id": "3a4a84d0-70a1-42ff-ad10-f00319389726"
+                }
+            ]
+        }
+    ],
+    "project_id": "dd4f88ef-bbe4-5ee4-ac00-bede0e5a507f",
+    "exported_at": "2026-11-04T04:34:09Z",
+    "attempt_count": 3
+}

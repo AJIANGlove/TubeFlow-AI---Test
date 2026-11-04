@@ -1,0 +1,12 @@
+{
+  "_probe": {
+    "node_id": "5baad724-6e27-4a14-84c6-4be4607a0bb5",
+    "profile": "legacy",
+    "base_url": "http://h3-engine-3:8000",
+    "capacity": 2,
+    "http_status": null,
+    "fetched_at": "2026-11-04T04:32:06.332595+00:00",
+    "probe_error": "URLError: <urlopen error [Errno -3] Temporary failure in name resolution>"
+  },
+  "response": null
+}

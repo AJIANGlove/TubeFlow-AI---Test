@@ -1,0 +1,409 @@
+{
+  "project_id": "dd4f88ef-bbe4-5ee4-ac00-bede0e5a507f",
+  "exported_at": "2026-11-04T04:34:00.900230+00:00",
+  "groups": [
+    {
+      "label": "2026-10-30_independent_experiment",
+      "source": "runtime/operations/h3_visual_quality_experiments_20261027/default_strategy_pilot/real_compiler_review/h3_replication_submission/",
+      "date_note": "Three direct ComfyUI API experiment submissions; production video_generation_attempts remained 0 for this project on 2026-10-30 per H3_REPLICATION_RESULT.md.",
+      "run_count": 3,
+      "runs": [
+        {
+          "run": "node1_baseline",
+          "source_file": "runtime/operations/h3_visual_quality_experiments_20261027/default_strategy_pilot/real_compiler_review/h3_replication_submission/attempts/G1_node1_baseline_attempt.json",
+          "date": "2026-10-30",
+          "node_role": "first_ssh_node",
+          "node": {
+            "host": "2cop10ldfhkcmhwx.ssh.x-gpu.com",
+            "port": 36906,
+            "node_id": "h3-new-3",
+            "instance_identity": "2cop10ldfhkcmhwx"
+          },
+          "seed": 798160553724158,
+          "prompt_id": "4c5527d5-7850-4c1a-9ce8-9d323e43a828",
+          "status": "COMPLETED",
+          "remote_terminal_status": "success",
+          "workflow_id": "not found",
+          "workflow_version": "not found",
+          "workflow_identity_note": "direct ComfyUI API graph; no TubeFlow/KineStack workflow identity recorded in h3_candidate_manifest.json or the attempt records",
+          "candidate_graph_sha256": "7f1d34cef6bbaca0bba5d7cc06248403ca86ec1395f18705a88d79751fbbb759",
+          "candidate_prompt_sha256": "d29f74dc44e89961dd330ee56b72ccece0f7751df75c64d074d5f3c3bd255f58",
+          "output_sha256": "16fcae09390864f9c4f630aceed1f60c807fcc1777a1b4a9197112bd6f343529",
+          "reference_count": 6,
+          "references": [
+            {
+              "ordinal": 1,
+              "binding_key": "not found",
+              "reference_name": "tubeflow-test/g1_real_compiler_2bdf6aa7_character.png",
+              "asset_sha256": "e507047ae11ffe04fd9aeee010f7884b5542cd8f6e6b91ffeac13eebef25e740"
+            },
+            {
+              "ordinal": 2,
+              "binding_key": "not found",
+              "reference_name": "tubeflow-test/g1_real_compiler_2bdf6aa7_shot_1.png",
+              "asset_sha256": "629c17f438a360871f5df5c1478bcde3a3edc88a35b6c7b9625075238c1eb0fb"
+            },
+            {
+              "ordinal": 3,
+              "binding_key": "not found",
+              "reference_name": "tubeflow-test/g1_real_compiler_2bdf6aa7_shot_2.png",
+              "asset_sha256": "d963882b98be3baaac552ab6ed07be860358ec15648acf861e515a230fa7cee1"
+            },
+            {
+              "ordinal": 4,
+              "binding_key": "not found",
+              "reference_name": "tubeflow-test/g1_real_compiler_2bdf6aa7_shot_3.png",
+              "asset_sha256": "334e2774156de9f2d46ca76feb0c5300ea329bef99c91f1e66e5950b68395856"
+            },
+            {
+              "ordinal": 5,
+              "binding_key": "not found",
+              "reference_name": "tubeflow-test/g1_real_compiler_2bdf6aa7_shot_4.png",
+              "asset_sha256": "6b6a2e5a7d07e99a3480c9a25b81ece816faec3f5f0107d69907cdbff9c38144"
+            },
+            {
+              "ordinal": 6,
+              "binding_key": "not found",
+              "reference_name": "tubeflow-test/g1_real_compiler_2bdf6aa7_shot_5.png",
+              "asset_sha256": "2514fe8e048c4b52f3a4b585f734deda474ebc46d7520f587ddb5880d9519a98"
+            }
+          ],
+          "attempt_id": "not found",
+          "node_id": "h3-new-3"
+        },
+        {
+          "run": "node1_second",
+          "source_file": "runtime/operations/h3_visual_quality_experiments_20261027/default_strategy_pilot/real_compiler_review/h3_replication_submission/attempts/G1_node1_second_attempt.json",
+          "date": "2026-10-30",
+          "node_role": "first_ssh_node",
+          "node": {
+            "host": "2cop10ldfhkcmhwx.ssh.x-gpu.com",
+            "port": 36906,
+            "node_id": "h3-new-3",
+            "instance_identity": "2cop10ldfhkcmhwx"
+          },
+          "seed": 798160553724159,
+          "prompt_id": "e05beca5-6cf2-496b-be7c-114f377274de",
+          "status": "COMPLETED",
+          "remote_terminal_status": "success",
+          "workflow_id": "not found",
+          "workflow_version": "not found",
+          "workflow_identity_note": "direct ComfyUI API graph; no TubeFlow/KineStack workflow identity recorded in h3_candidate_manifest.json or the attempt records",
+          "candidate_graph_sha256": "86531cb8ba6690a0853d329455ee754328fea72626d6e3aec8c133a8e896bbbd",
+          "candidate_prompt_sha256": "d29f74dc44e89961dd330ee56b72ccece0f7751df75c64d074d5f3c3bd255f58",
+          "output_sha256": "4f7cfb20e68f5ed355aae3bc6ad38b93fd0a4509d9a02ca891b5ca9f54a49560",
+          "reference_count": 6,
+          "references": [
+            {
+              "ordinal": 1,
+              "binding_key": "not found",
+              "reference_name": "tubeflow-test/g1_real_compiler_2bdf6aa7_character.png",
+              "asset_sha256": "e507047ae11ffe04fd9aeee010f7884b5542cd8f6e6b91ffeac13eebef25e740"
+            },
+            {
+              "ordinal": 2,
+              "binding_key": "not found",
+              "reference_name": "tubeflow-test/g1_real_compiler_2bdf6aa7_shot_1.png",
+              "asset_sha256": "629c17f438a360871f5df5c1478bcde3a3edc88a35b6c7b9625075238c1eb0fb"
+            },
+            {
+              "ordinal": 3,
+              "binding_key": "not found",
+              "reference_name": "tubeflow-test/g1_real_compiler_2bdf6aa7_shot_2.png",
+              "asset_sha256": "d963882b98be3baaac552ab6ed07be860358ec15648acf861e515a230fa7cee1"
+            },
+            {
+              "ordinal": 4,
+              "binding_key": "not found",
+              "reference_name": "tubeflow-test/g1_real_compiler_2bdf6aa7_shot_3.png",
+              "asset_sha256": "334e2774156de9f2d46ca76feb0c5300ea329bef99c91f1e66e5950b68395856"
+            },
+            {
+              "ordinal": 5,
+              "binding_key": "not found",
+              "reference_name": "tubeflow-test/g1_real_compiler_2bdf6aa7_shot_4.png",
+              "asset_sha256": "6b6a2e5a7d07e99a3480c9a25b81ece816faec3f5f0107d69907cdbff9c38144"
+            },
+            {
+              "ordinal": 6,
+              "binding_key": "not found",
+              "reference_name": "tubeflow-test/g1_real_compiler_2bdf6aa7_shot_5.png",
+              "asset_sha256": "2514fe8e048c4b52f3a4b585f734deda474ebc46d7520f587ddb5880d9519a98"
+            }
+          ],
+          "attempt_id": "not found",
+          "node_id": "h3-new-3"
+        },
+        {
+          "run": "node2_baseline",
+          "source_file": "runtime/operations/h3_visual_quality_experiments_20261027/default_strategy_pilot/real_compiler_review/h3_replication_submission/attempts/G1_node2_baseline_attempt.json",
+          "date": "2026-10-30",
+          "node_role": "second_ssh_node",
+          "node": {
+            "host": "ob6kefgwgyqkpy33.ssh.x-gpu.com",
+            "port": 45208,
+            "node_id": "h3-new-2",
+            "instance_identity": "ob6kefgwgyqkpy33"
+          },
+          "seed": 798160553724158,
+          "prompt_id": "6056bf74-bd35-4eb6-b893-58609ed33669",
+          "status": "COMPLETED",
+          "remote_terminal_status": "success",
+          "workflow_id": "not found",
+          "workflow_version": "not found",
+          "workflow_identity_note": "direct ComfyUI API graph; no TubeFlow/KineStack workflow identity recorded in h3_candidate_manifest.json or the attempt records",
+          "candidate_graph_sha256": "b38213ba051fc5ed59e8e0844db86cab9412aa3507114ccf4e6b92506f843649",
+          "candidate_prompt_sha256": "d29f74dc44e89961dd330ee56b72ccece0f7751df75c64d074d5f3c3bd255f58",
+          "output_sha256": "b2086f68f903bed240c255fe1c8a44c8b219a3af16a9530018d2730891b2e76d",
+          "reference_count": 6,
+          "references": [
+            {
+              "ordinal": 1,
+              "binding_key": "not found",
+              "reference_name": "tubeflow-test/g1_real_compiler_2bdf6aa7_character.png",
+              "asset_sha256": "e507047ae11ffe04fd9aeee010f7884b5542cd8f6e6b91ffeac13eebef25e740"
+            },
+            {
+              "ordinal": 2,
+              "binding_key": "not found",
+              "reference_name": "tubeflow-test/g1_real_compiler_2bdf6aa7_shot_1.png",
+              "asset_sha256": "629c17f438a360871f5df5c1478bcde3a3edc88a35b6c7b9625075238c1eb0fb"
+            },
+            {
+              "ordinal": 3,
+              "binding_key": "not found",
+              "reference_name": "tubeflow-test/g1_real_compiler_2bdf6aa7_shot_2.png",
+              "asset_sha256": "d963882b98be3baaac552ab6ed07be860358ec15648acf861e515a230fa7cee1"
+            },
+            {
+              "ordinal": 4,
+              "binding_key": "not found",
+              "reference_name": "tubeflow-test/g1_real_compiler_2bdf6aa7_shot_3.png",
+              "asset_sha256": "334e2774156de9f2d46ca76feb0c5300ea329bef99c91f1e66e5950b68395856"
+            },
+            {
+              "ordinal": 5,
+              "binding_key": "not found",
+              "reference_name": "tubeflow-test/g1_real_compiler_2bdf6aa7_shot_4.png",
+              "asset_sha256": "6b6a2e5a7d07e99a3480c9a25b81ece816faec3f5f0107d69907cdbff9c38144"
+            },
+            {
+              "ordinal": 6,
+              "binding_key": "not found",
+              "reference_name": "tubeflow-test/g1_real_compiler_2bdf6aa7_shot_5.png",
+              "asset_sha256": "2514fe8e048c4b52f3a4b585f734deda474ebc46d7520f587ddb5880d9519a98"
+            }
+          ],
+          "attempt_id": "not found",
+          "node_id": "h3-new-2"
+        }
+      ]
+    },
+    {
+      "label": "2026-11-03_production_single_panel",
+      "source": "PostgreSQL video_generation_attempts + input_snapshot_json.logical_request.references",
+      "date_note": "All three attempts are ARCHIVED/COMPLETE; provider_audit_events.occurred_at values are 2026-11-03 UTC (2026-11-03 +08).",
+      "run_count": 3,
+      "runs": [
+        {
+          "attempt_id": "81394ede-c63e-41c4-b50f-7ccfd115b9a3",
+          "group_id": "e899aa30-c342-53d3-8411-ce8812c1a8c4",
+          "node_id": "h3-new-2",
+          "first_event_at": "2026-11-03T03:47:51.962572+00:00",
+          "last_event_at": "2026-11-03T03:53:29.617384+00:00",
+          "stage": "ARCHIVED",
+          "archive_stage": "COMPLETE",
+          "workflow_id": "h3.tubeflow.storyboard-to-video",
+          "workflow_version": "1.0.0",
+          "request_json_workflow": {
+            "model_key": "minimax-h3-community",
+            "capability": "video.reference_images_to_video",
+            "workflow_id": "h3.tubeflow.storyboard-to-video",
+            "model_version": "2026-08-13-community-duration-v1",
+            "workflow_version": "1.0.0",
+            "workflow_manifest_sha256": "65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9"
+          },
+          "references_source": "input_snapshot_json.logical_request.references",
+          "reference_count": 6,
+          "references": [
+            {
+              "ordinal": 1,
+              "binding_key": "reference_image_1",
+              "asset_sha256": "e507047ae11ffe04fd9aeee010f7884b5542cd8f6e6b91ffeac13eebef25e740"
+            },
+            {
+              "ordinal": 2,
+              "binding_key": "reference_image_2",
+              "asset_sha256": "1f2ec028681fe095227eb634a98e6ae16b866354dc84e438f0a86a3b875d4680"
+            },
+            {
+              "ordinal": 3,
+              "binding_key": "reference_image_3",
+              "asset_sha256": "848334b2f0a16aef1093d0b40c4570b4891d5f2dcc339eb24a0161be60f1115f"
+            },
+            {
+              "ordinal": 4,
+              "binding_key": "reference_image_4",
+              "asset_sha256": "df93c834c5a826ca379bde68338e13b5b507c6ecbc0d7008ac5187a418ee7081"
+            },
+            {
+              "ordinal": 5,
+              "binding_key": "reference_image_5",
+              "asset_sha256": "b0ead19bd5fa6a95b3b57f09e60e7c7dfced453fbd55d51b00a62dad6f3ba7cd"
+            },
+            {
+              "ordinal": 6,
+              "binding_key": "reference_image_6",
+              "asset_sha256": "cb3ef350c6b784063534d96cd08a8a7bf628d71454f49b0c0e5aae88c1df5bf0"
+            }
+          ],
+          "reference_binding_keys": [
+            "reference_image_1",
+            "reference_image_2",
+            "reference_image_3",
+            "reference_image_4",
+            "reference_image_5",
+            "reference_image_6"
+          ],
+          "reference_policy_strategy": "single_panel_v1",
+          "reference_derivation_json": {
+            "version": "crop-title54-v1"
+          },
+          "run": "attempt_1"
+        },
+        {
+          "attempt_id": "80f465e0-195b-44df-8a53-145172420e72",
+          "group_id": "e899aa30-c342-53d3-8411-ce8812c1a8c4",
+          "node_id": "h3-new-2",
+          "first_event_at": "2026-11-03T03:58:58.52857+00:00",
+          "last_event_at": "2026-11-03T04:04:36.463914+00:00",
+          "stage": "ARCHIVED",
+          "archive_stage": "COMPLETE",
+          "workflow_id": "h3.tubeflow.storyboard-to-video",
+          "workflow_version": "1.0.0",
+          "request_json_workflow": {
+            "model_key": "minimax-h3-community",
+            "capability": "video.reference_images_to_video",
+            "workflow_id": "h3.tubeflow.storyboard-to-video",
+            "model_version": "2026-08-13-community-duration-v1",
+            "workflow_version": "1.0.0",
+            "workflow_manifest_sha256": "65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9"
+          },
+          "references_source": "input_snapshot_json.logical_request.references",
+          "reference_count": 6,
+          "references": [
+            {
+              "ordinal": 1,
+              "binding_key": "reference_image_1",
+              "asset_sha256": "e507047ae11ffe04fd9aeee010f7884b5542cd8f6e6b91ffeac13eebef25e740"
+            },
+            {
+              "ordinal": 2,
+              "binding_key": "reference_image_2",
+              "asset_sha256": "1f2ec028681fe095227eb634a98e6ae16b866354dc84e438f0a86a3b875d4680"
+            },
+            {
+              "ordinal": 3,
+              "binding_key": "reference_image_3",
+              "asset_sha256": "848334b2f0a16aef1093d0b40c4570b4891d5f2dcc339eb24a0161be60f1115f"
+            },
+            {
+              "ordinal": 4,
+              "binding_key": "reference_image_4",
+              "asset_sha256": "df93c834c5a826ca379bde68338e13b5b507c6ecbc0d7008ac5187a418ee7081"
+            },
+            {
+              "ordinal": 5,
+              "binding_key": "reference_image_5",
+              "asset_sha256": "b0ead19bd5fa6a95b3b57f09e60e7c7dfced453fbd55d51b00a62dad6f3ba7cd"
+            },
+            {
+              "ordinal": 6,
+              "binding_key": "reference_image_6",
+              "asset_sha256": "cb3ef350c6b784063534d96cd08a8a7bf628d71454f49b0c0e5aae88c1df5bf0"
+            }
+          ],
+          "reference_binding_keys": [
+            "reference_image_1",
+            "reference_image_2",
+            "reference_image_3",
+            "reference_image_4",
+            "reference_image_5",
+            "reference_image_6"
+          ],
+          "reference_policy_strategy": "single_panel_v1",
+          "reference_derivation_json": {
+            "version": "crop-title54-v1"
+          },
+          "run": "attempt_2"
+        },
+        {
+          "attempt_id": "5464693b-07f7-4023-af5f-4f6cb0a6dfe9",
+          "group_id": "e899aa30-c342-53d3-8411-ce8812c1a8c4",
+          "node_id": "h3-new-3",
+          "first_event_at": "2026-11-03T04:11:30.821486+00:00",
+          "last_event_at": "2026-11-03T04:17:08.378462+00:00",
+          "stage": "ARCHIVED",
+          "archive_stage": "COMPLETE",
+          "workflow_id": "h3.tubeflow.storyboard-to-video",
+          "workflow_version": "1.0.0",
+          "request_json_workflow": {
+            "model_key": "minimax-h3-community",
+            "capability": "video.reference_images_to_video",
+            "workflow_id": "h3.tubeflow.storyboard-to-video",
+            "model_version": "2026-08-13-community-duration-v1",
+            "workflow_version": "1.0.0",
+            "workflow_manifest_sha256": "65bf745305377b97d167b191f5e61a25ecd8142e236768e062c768ce7bd249e9"
+          },
+          "references_source": "input_snapshot_json.logical_request.references",
+          "reference_count": 6,
+          "references": [
+            {
+              "ordinal": 1,
+              "binding_key": "reference_image_1",
+              "asset_sha256": "e507047ae11ffe04fd9aeee010f7884b5542cd8f6e6b91ffeac13eebef25e740"
+            },
+            {
+              "ordinal": 2,
+              "binding_key": "reference_image_2",
+              "asset_sha256": "1f2ec028681fe095227eb634a98e6ae16b866354dc84e438f0a86a3b875d4680"
+            },
+            {
+              "ordinal": 3,
+              "binding_key": "reference_image_3",
+              "asset_sha256": "848334b2f0a16aef1093d0b40c4570b4891d5f2dcc339eb24a0161be60f1115f"
+            },
+            {
+              "ordinal": 4,
+              "binding_key": "reference_image_4",
+              "asset_sha256": "df93c834c5a826ca379bde68338e13b5b507c6ecbc0d7008ac5187a418ee7081"
+            },
+            {
+              "ordinal": 5,
+              "binding_key": "reference_image_5",
+              "asset_sha256": "b0ead19bd5fa6a95b3b57f09e60e7c7dfced453fbd55d51b00a62dad6f3ba7cd"
+            },
+            {
+              "ordinal": 6,
+              "binding_key": "reference_image_6",
+              "asset_sha256": "cb3ef350c6b784063534d96cd08a8a7bf628d71454f49b0c0e5aae88c1df5bf0"
+            }
+          ],
+          "reference_binding_keys": [
+            "reference_image_1",
+            "reference_image_2",
+            "reference_image_3",
+            "reference_image_4",
+            "reference_image_5",
+            "reference_image_6"
+          ],
+          "reference_policy_strategy": "single_panel_v1",
+          "reference_derivation_json": {
+            "version": "crop-title54-v1"
+          },
+          "run": "attempt_3"
+        }
+      ]
+    }
+  ]
+}

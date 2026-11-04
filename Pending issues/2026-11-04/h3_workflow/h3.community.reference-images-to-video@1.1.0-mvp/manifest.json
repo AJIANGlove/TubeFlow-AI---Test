@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "workflow_id": "h3.community.reference-images-to-video",
+  "workflow_version": "1.1.0-mvp",
+  "capability": "video.reference_images_to_video",
+  "engine_api_version": "0.2.0",
+  "model": {
+    "model_key": "minimax-h3-community",
+    "model_version": "2026-08-13-community-duration-v1",
+    "weight_manifest_sha256": "6bceada5dec4fd9a43fecf5e651774ea1ca5f03eb9dd62c1b8c2a22b25bc6dea"
+  },
+  "api_workflow": {
+    "relative_path": "h3-r2v-images.json",
+    "sha256": "0a3f4a1a403f2978ccea71b451a0a88fe9c37c539d0ee7ab267ab6278b5fc122"
+  },
+  "bindings": [
+    { "source": "prompt.final", "target": { "node_id": "condition", "input_name": "prompt" }, "value_type": "string" },
+    { "source": "parameters.width", "target": { "node_id": "condition", "input_name": "width" }, "value_type": "integer" },
+    { "source": "parameters.height", "target": { "node_id": "condition", "input_name": "height" }, "value_type": "integer" },
+    { "source": "parameters.length", "target": { "node_id": "condition", "input_name": "length" }, "value_type": "integer" },
+    { "source": "parameters.seed", "target": { "node_id": "noise", "input_name": "noise_seed" }, "value_type": "integer" },
+    { "source": "references.ordered_images", "target": { "node_id": "condition", "input_name": "ref_images" }, "value_type": "staged_asset" }
+  ],
+  "dependencies": [
+    { "kind": "comfyui", "name": "ComfyUI", "version": "0.30.1", "source": "https://github.com/comfyanonymous/ComfyUI", "license": "GPL-3.0" },
+    { "kind": "custom_node", "name": "ComfyUI-KJNodes EasyCache and Sage patch", "version": "community-mvp", "source": "installed community image", "license": "Unresolved exact revision; internal temporary use only" },
+    { "kind": "weight", "name": "MiniMax H3 REF2VA INT8 ConvRot", "version": "2026-08-02", "source": "MiniMaxAI/MiniMax-H3", "sha256": "9eef934046a0671bc8a5daf87100705e1478419c574cfde70c50fbe6885f76a9", "license": "MiniMax H3 Community License" }
+  ],
+  "limits": {
+    "max_reference_images": 9,
+    "max_outputs": 1,
+    "supported_aspect_ratios": ["16:9", "9:16", "1:1", "4:3", "3:4"],
+    "supported_resolution_presets": ["preview"],
+    "duration_seconds": { "minimum": 3, "maximum": 15, "step": 1, "default": 5 }
+  },
+  "outputs": [{ "media_type": "video/mp4", "role": "primary" }],
+  "notes": "Temporary internal image-only reference workflow with integer durations from about 3 through 15 seconds. Reference video and reference audio inputs are deliberately absent."
+}
