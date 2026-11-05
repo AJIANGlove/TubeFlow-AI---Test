@@ -1,0 +1,187 @@
+{
+    "id": "a08a6c59-9cde-4f8d-8ded-2a4205be47c7",
+    "group_id": "252f7ca8-6952-5fa5-bd31-9643d5ee9036",
+    "owner_id": "fb294c02-5f32-4597-b1e9-f7348ac9734a",
+    "links_json": [
+        {
+            "shot_id": "d2378fcb-18a2-4e6e-819e-1d91729177da",
+            "sentence_id": "cc7c3563-e120-5e3f-b895-8bd769ddd7e9"
+        },
+        {
+            "shot_id": "d2378fcb-18a2-4e6e-819e-1d91729177da",
+            "sentence_id": "a8b8261f-eb99-5de0-bc13-dd31c5a8966b"
+        },
+        {
+            "shot_id": "74447c50-0a7c-4076-bdd7-1bbaffb0f4bd",
+            "sentence_id": "a17e71a5-0495-5ed9-b1e6-c63f6e9ce4f5"
+        },
+        {
+            "shot_id": "2abd9d38-cf66-46ab-a1a7-02b6bd8204c5",
+            "sentence_id": "409ecd3c-48ab-50b2-b6fe-2b7681939b3d"
+        },
+        {
+            "shot_id": "c11c7b41-68f2-4ef3-b930-2f6cfc181cee",
+            "sentence_id": "29e40d3a-cadc-5d12-91c5-4c02d3da20be"
+        },
+        {
+            "shot_id": "47c338c3-c4fa-4538-bd9c-8281133e3523",
+            "sentence_id": "fb890538-0d7f-5360-932c-a19774a1e29b"
+        },
+        {
+            "shot_id": "c3f0a67d-f165-486a-b4d4-8aeebca41684",
+            "sentence_id": "9a08d304-0a69-5d75-a7ab-f1c8497d3a69"
+        }
+    ],
+    "project_id": "23c59183-7165-4c33-a161-7ecf28964c78",
+    "shots_json": [
+        {
+            "order": 1,
+            "scene": "popina - shared table",
+            "shot_id": "d2378fcb-18a2-4e6e-819e-1d91729177da",
+            "shot_size": "MEDIUM",
+            "description": "At the tavern table, the resident raises a plain cup while the meal remains nearby; use flat colors, thick black outlines, and minimal detail. A plain cup sits beside a small jug of water, a vinegar vessel, and a few herbs on the tavern table, arranged as a clear ingredient still life.",
+            "subject_focus": "PRIMARY_SUBJECT",
+            "time_relation": "SAME_MOMENT",
+            "semantic_event": "PERFORM_ACTION",
+            "camera_viewpoint": "EYE_LEVEL",
+            "location_relation": "SAME_LOCATION",
+            "narrative_function": "Show the resident tasting the drink introduced in the narration.",
+            "subject_action_outcome": "The resident lifts a cup of posca and takes a careful sip. → The cup is lifted for a taste. Hold on the cup and its simple ingredients: water and vinegar, with a small herb sprig nearby. → The drink's vinegar-and-water composition is made legible."
+        },
+        {
+            "order": 2,
+            "scene": "popina - table edge",
+            "shot_id": "74447c50-0a7c-4076-bdd7-1bbaffb0f4bd",
+            "shot_size": "MEDIUM",
+            "description": "From beside the resident, frame the cup in the foreground and a small, restrained tasting gesture beyond it; keep the expression simple and cartoony.",
+            "subject_focus": "PRIMARY_SUBJECT",
+            "time_relation": "SAME_MOMENT",
+            "semantic_event": "EXPLAIN_CAUSE",
+            "camera_viewpoint": "OVER_SHOULDER",
+            "location_relation": "SAME_LOCATION",
+            "narrative_function": "Convey the narrated sour, slightly herbal impression through the taster's response.",
+            "subject_action_outcome": "The resident pauses after tasting, holding the cup with a slight reaction to its sharp flavor. → The resident registers the drink's sharp, herbal taste."
+        },
+        {
+            "order": 3,
+            "scene": "popina - dining table",
+            "shot_id": "2abd9d38-cf66-46ab-a1a7-02b6bd8204c5",
+            "shot_size": "CLOSE_UP",
+            "description": "At the table, the cup is set down beside the partly eaten lucanica, with a few cool droplets on its outside; use a spare flat-color cartoon style.",
+            "subject_focus": "PROCESS",
+            "time_relation": "LATER",
+            "semantic_event": "SHOW_CONSEQUENCE",
+            "camera_viewpoint": "LOW_ANGLE",
+            "location_relation": "SAME_LOCATION",
+            "narrative_function": "Show the cold drink as a contrast to the fatty meal, matching the narrated effect without claiming more than the script states.",
+            "subject_action_outcome": "The resident takes a drink, then lowers the cup beside the greasy sausage. → The cold posca is paired with the rich sausage as a refreshing contrast."
+        },
+        {
+            "order": 4,
+            "scene": "popina - back corner",
+            "shot_id": "c11c7b41-68f2-4ef3-b930-2f6cfc181cee",
+            "shot_size": "WIDE",
+            "description": "A wider view reveals the gladiator at the room's edge while the tavern table and cups occupy the foreground; keep the figure non-detailed and consistent with the character reference.",
+            "subject_focus": "ENVIRONMENT",
+            "time_relation": "SAME_MOMENT",
+            "semantic_event": "ESTABLISH_CONTEXT",
+            "camera_viewpoint": "OBJECTIVE",
+            "location_relation": "SAME_LOCATION",
+            "narrative_function": "Introduce the gladiator in the corner, setting up the adjacent narration about his scarred arms and the mason.",
+            "subject_action_outcome": "A gladiator sits apart in the corner of the tavern, near the shared table. → The gladiator's place in the tavern becomes clear."
+        },
+        {
+            "order": 5,
+            "scene": "popina - gladiator's place at the table",
+            "shot_id": "47c338c3-c4fa-4538-bd9c-8281133e3523",
+            "shot_size": "CLOSE_UP",
+            "description": "A rough, flat-color tavern illustration centers the gladiator's place at the table; a few bold scar-like marks are shown as a visual cue, not as a close view of the body.",
+            "subject_focus": "OBJECT_OR_EVIDENCE",
+            "time_relation": "SAME_MOMENT",
+            "semantic_event": "REVEAL_EVIDENCE",
+            "camera_viewpoint": "OBJECTIVE",
+            "location_relation": "SAME_LOCATION",
+            "narrative_function": "Carry the reference to the gladiator's scars without inventing details about his appearance.",
+            "subject_action_outcome": "Frame the gladiator's place at the tavern table with a simple scar-mark motif beside it, without depicting bodily details. → The scarred-arms detail is suggested while the gladiator remains identified only by role."
+        },
+        {
+            "order": 6,
+            "scene": "popina - shared table",
+            "shot_id": "c3f0a67d-f165-486a-b4d4-8aeebca41684",
+            "shot_size": "MEDIUM",
+            "description": "A simple, chunky cartoon view establishes the gladiator and mason side by side at a plain tavern table.",
+            "subject_focus": "MULTIPLE_SUBJECTS",
+            "time_relation": "SAME_MOMENT",
+            "semantic_event": "ESTABLISH_CONTEXT",
+            "camera_viewpoint": "HIGH_ANGLE",
+            "location_relation": "SAME_LOCATION",
+            "narrative_function": "Establish who is beside the gladiator.",
+            "subject_action_outcome": "Show the gladiator seated beside the mason at the tavern table. → The mason is clearly positioned next to the gladiator."
+        }
+    ],
+    "review_state": "REQUIRED",
+    "conflicts_json": [
+        {
+            "code": "source_preplan_quality_conflict",
+            "shot_ids": [
+                "d2378fcb-18a2-4e6e-819e-1d91729177da"
+            ],
+            "sentence_ids": [
+                "cc7c3563-e120-5e3f-b895-8bd769ddd7e9"
+            ]
+        },
+        {
+            "code": "source_preplan_quality_conflict",
+            "shot_ids": [
+                "d2378fcb-18a2-4e6e-819e-1d91729177da",
+                "c3f0a67d-f165-486a-b4d4-8aeebca41684"
+            ],
+            "sentence_ids": [
+                "cc7c3563-e120-5e3f-b895-8bd769ddd7e9",
+                "9a08d304-0a69-5d75-a7ab-f1c8497d3a69"
+            ]
+        },
+        {
+            "code": "source_preplan_quality_conflict",
+            "shot_ids": [
+                "c3f0a67d-f165-486a-b4d4-8aeebca41684"
+            ],
+            "sentence_ids": [
+                "9a08d304-0a69-5d75-a7ab-f1c8497d3a69"
+            ]
+        }
+    ],
+    "group_sequence": 36,
+    "final_revision_id": null,
+    "materialization_id": "f786ff7d-3ce1-4d75-a200-2f3ef0a395ac",
+    "source_shot_links_json": [
+        {
+            "source_shot_id": "d06a9bce-94c7-409f-a69d-4607a330108f",
+            "candidate_shot_id": "d2378fcb-18a2-4e6e-819e-1d91729177da"
+        },
+        {
+            "source_shot_id": "c2f60ef2-59d0-4c30-80c2-40859da44258",
+            "candidate_shot_id": "d2378fcb-18a2-4e6e-819e-1d91729177da"
+        },
+        {
+            "source_shot_id": "6704c263-5442-466f-a4c3-0f1527325a3b",
+            "candidate_shot_id": "74447c50-0a7c-4076-bdd7-1bbaffb0f4bd"
+        },
+        {
+            "source_shot_id": "a296a2bc-8eea-422a-b511-0dc3ba565d5f",
+            "candidate_shot_id": "2abd9d38-cf66-46ab-a1a7-02b6bd8204c5"
+        },
+        {
+            "source_shot_id": "a6d7cd9f-4afe-4d5a-9c1b-336e9ddd8721",
+            "candidate_shot_id": "c11c7b41-68f2-4ef3-b930-2f6cfc181cee"
+        },
+        {
+            "source_shot_id": "b2fff814-cf3d-4151-9a21-816596a533bb",
+            "candidate_shot_id": "47c338c3-c4fa-4538-bd9c-8281133e3523"
+        },
+        {
+            "source_shot_id": "c3baa0e2-3c01-4ba1-8d4b-66b41ca2c7a2",
+            "candidate_shot_id": "c3f0a67d-f165-486a-b4d4-8aeebca41684"
+        }
+    ]
+}

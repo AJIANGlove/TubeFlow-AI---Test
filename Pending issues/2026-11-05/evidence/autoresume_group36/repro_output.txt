@@ -1,0 +1,11 @@
+group_sequence = 36
+shots = 6
+  #1 'popina - shared table' MEDIUM EYE_LEVEL
+  #2 'popina - table edge' MEDIUM OVER_SHOULDER
+  #3 'popina - dining table' CLOSE_UP LOW_ANGLE
+  #4 'popina - back corner' WIDE OBJECTIVE
+  #5 "popina - gladiator's place at the table" CLOSE_UP OBJECTIVE
+  #6 'popina - shared table' MEDIUM HIGH_ANGLE
+composition 非相邻重复: []
+event       非相邻重复: []
+verdict: PASS

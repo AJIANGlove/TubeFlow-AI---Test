@@ -149,8 +149,22 @@ def test_v2_prompt_asks_for_solid_black_gutters_and_blank_cells() -> None:
     two = _prompt(2, "16:9", GRID_LAYOUT_V2)
     assert "Panel 3 must stay completely black and empty." in two
     assert "Panel 4 must stay completely black and empty." in two
-    # One shot stays a single full-frame panel.
-    assert _prompt(1, "16:9", GRID_LAYOUT_V2) == _prompt(1, "16:9")
+    # One shot stays a single full-frame panel (plus the v2 in-panel composition rule).
+    single_v1, single_v2 = _prompt(1, "16:9"), _prompt(1, "16:9", GRID_LAYOUT_V2)
+    assert single_v2.startswith(single_v1 + " ")
+    assert "single full-frame panel" in single_v2
+
+
+@pytest.mark.parametrize("count", [1, 2, 3, 4, 5, 6])
+def test_v2_prompt_forbids_split_panels_and_graphic_overlays(count: int) -> None:
+    # 72a22f0a group 9: a summer/winter side-by-side panel became a split-screen video shot;
+    # group 3: a coins->ice-cream arrow diagram left a ghost figure and a floating arrow.
+    prompt = _prompt(count, "16:9", GRID_LAYOUT_V2)
+    assert "one continuous camera view of a single moment in a single place" in prompt
+    assert "no split screen, side-by-side or before-and-after comparison" in prompt
+    assert "Do not draw diagrams, arrows, floating icons, symbols" in prompt
+    assert prompt.endswith("people, objects and places a camera could film.")
+    assert "continuous camera view" not in _prompt(count, "16:9", GRID_LAYOUT_V1)
 
 
 # --- per-project pin ----------------------------------------------------------------
