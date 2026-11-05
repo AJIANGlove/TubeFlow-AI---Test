@@ -43,7 +43,10 @@ from tubeflow_test.application.storyboards import (
 )
 from tubeflow_test.config import Settings
 from tubeflow_test.identity_project.domain import Account
-from tubeflow_test.video_generation.panel_images import check_storyboard_panel_layout
+from tubeflow_test.video_generation.panel_images import (
+    check_storyboard_panel_layout,
+    recut_panel_distances,
+)
 from tubeflow_test.workflows.storyboard_runner import SupervisedStoryboardRunner
 from tubeflow_test.workflows.storyboards import (
     StoryboardActivities,
@@ -145,7 +148,6 @@ def create_storyboard_runtime_router(
         minio, settings.minio_bucket, SqlAlchemyAssetCatalog(database.unit_of_work)
     )
     ids, clock = UuidFactory(), SystemClock()
-    director = DirectorPlanService(repository, ids, clock)
     director_model = OpenAiCompatibleDirectorModel(
         settings.director_provider_url,
         settings.director_provider_token.get_secret_value(),
@@ -170,6 +172,13 @@ def create_storyboard_runtime_router(
         failover_policy,
         single_panel_new_projects=settings.storyboard_single_panel_new_projects,
         panel_layout_check=check_storyboard_panel_layout,
+        # §48.4/§48.5：回切开关默认关；阈值须经用户看图确认，未配置即不放行。
+        composition_recut=settings.director_composition_recut,
+        recut_similarity_check=recut_panel_distances,
+        recut_min_distance=settings.director_composition_recut_min_distance,
+    )
+    director = DirectorPlanService(
+        repository, ids, clock, composition_recut_allowed=generations.composition_recut_allowed
     )
     batch = StoryboardBatchService(repository, director, generations, project_director, ids)
     if batch_out is not None:
@@ -227,11 +236,35 @@ async def create_storyboard_supervised_runner(
         minio, settings.minio_bucket, SqlAlchemyAssetCatalog(database.unit_of_work)
     )
     ids, clock = UuidFactory(), SystemClock()
-    plans = DirectorPlanService(repository, ids, clock)
     director_model = OpenAiCompatibleDirectorModel(
         settings.director_provider_url,
         settings.director_provider_token.get_secret_value(),
         settings.director_provider_timeout_seconds,
+    )
+    try:
+        providers, failover_policy = _grid_sheet_providers(settings)
+    except BaseException:
+        director_model.close()
+        raise
+    grids = StoryboardGenerationService(
+        repository,
+        providers,
+        storage,
+        PillowStoryboardTechnicalQc(),
+        ids,
+        clock,
+        work_dir,
+        failover_policy,
+        single_panel_new_projects=settings.storyboard_single_panel_new_projects,
+        panel_layout_check=check_storyboard_panel_layout,
+        # §48.4/§48.5：回切开关默认关；阈值须经用户看图确认，未配置即不放行。
+        composition_recut=settings.director_composition_recut,
+        recut_similarity_check=recut_panel_distances,
+        recut_min_distance=settings.director_composition_recut_min_distance,
+    )
+    # §48.3：回切推导要知道项目有效网格（与故事板生成同一口径），故 plans 在 grids 之后构造。
+    plans = DirectorPlanService(
+        repository, ids, clock, composition_recut_allowed=grids.composition_recut_allowed
     )
     director = DirectorGenerationService(
         repository,
@@ -250,23 +283,6 @@ async def create_storyboard_supervised_runner(
         clock,
         model_name=settings.director_provider_model,
         parameters={"temperature": 0.0},
-    )
-    try:
-        providers, failover_policy = _grid_sheet_providers(settings)
-    except BaseException:
-        director_model.close()
-        raise
-    grids = StoryboardGenerationService(
-        repository,
-        providers,
-        storage,
-        PillowStoryboardTechnicalQc(),
-        ids,
-        clock,
-        work_dir,
-        failover_policy,
-        single_panel_new_projects=settings.storyboard_single_panel_new_projects,
-        panel_layout_check=check_storyboard_panel_layout,
     )
     client = temporal_client or await Client.connect(settings.temporal_target)
     activities = StoryboardActivities(director, grids, project_director, auto_kick=auto_kick)

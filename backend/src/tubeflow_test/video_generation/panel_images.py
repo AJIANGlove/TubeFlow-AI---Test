@@ -786,3 +786,54 @@ def check_storyboard_panel_layout(
         derivation={"version": CROP_GRID_V2},
         layout_version=layout_version,
     )
+
+
+_RECUT_THUMBNAIL = (64, 36)
+
+
+def recut_panel_distances(
+    path: Path,
+    *,
+    panel_count: int,
+    aspect_ratio: str,
+    layout_version: str,
+    pairs: Sequence[tuple[int, int]],
+) -> tuple[float, ...]:
+    """§48.5 recut check (recut-similarity-v1): one distance per (earlier, later) shot pair.
+
+    Both panels are cropped with the same boxes as crop-grid-v2, reduced to 64×36
+    grayscale and compared by 1 − Pearson correlation: 0 for identical pictures, about 1
+    for unrelated ones, up to 2 for inverted ones. Raises VideoRuleViolation when the
+    sheet cannot be cropped.
+    """
+    with Image.open(path) as opened:
+        if opened.format not in _V2_SOURCE_FORMATS:
+            raise VideoRuleViolation("shot_panel_source_invalid")
+        opened.load()
+        image = opened.convert("RGB")
+    try:
+        layout = grid_layout_for(panel_count, aspect_ratio, layout_version)
+    except ValueError as exc:
+        raise VideoRuleViolation("shot_panel_layout_invalid") from exc
+    boxes = grid_v2_panel_boxes(image, layout, panel_count)
+    return tuple(
+        panel_distance(image.crop(boxes[earlier - 1]), image.crop(boxes[later - 1]))
+        for earlier, later in pairs
+    )
+
+
+def panel_distance(first: Image.Image, second: Image.Image) -> float:
+    """recut-similarity-v1 distance between two panel crops (see recut_panel_distances)."""
+    a = _recut_thumbnail(first)
+    b = _recut_thumbnail(second)
+    flat_a, flat_b = statistics.pstdev(a) == 0, statistics.pstdev(b) == 0
+    if flat_a or flat_b:
+        # Correlation is undefined for a flat picture: identical flat panels are "same".
+        same = flat_a and flat_b and abs(statistics.fmean(a) - statistics.fmean(b)) < 1
+        return 0.0 if same else 1.0
+    return 1.0 - statistics.correlation(a, b)
+
+
+def _recut_thumbnail(panel: Image.Image) -> list[float]:
+    small = panel.convert("L").resize(_RECUT_THUMBNAIL, Image.Resampling.BOX)
+    return [float(value) for value in small.tobytes()]

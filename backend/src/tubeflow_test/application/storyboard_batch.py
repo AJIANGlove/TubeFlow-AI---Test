@@ -297,6 +297,22 @@ class StoryboardBatchService:
             )
         draft = self._storyboards.get_draft_revision(owner_id, group_id)
         applied = self._storyboards.get_applied_revision(owner_id, group_id)
+        revision = draft if draft is not None else applied
+        if (
+            revision is not None
+            and revision.composition_recut_approvals
+            and not self._generations.composition_recut_allowed(owner_id, revision.project_id)
+        ):
+            # §48.3 第二道闸：回切放行的条件（开关、grid-v2）已不成立 → 交人工改构图，不提交。
+            return StoryboardBatchGenerateResult(
+                group_id,
+                sequence,
+                "needs_review",
+                message=(
+                    "组内构图回切已不再允许（回切开关已关闭或项目网格不是 grid-v2），"
+                    "请在第 07 步修改重复构图的镜头"
+                ),
+            )
         if draft is not None:
             if not draft.may_apply:
                 return StoryboardBatchGenerateResult(group_id, sequence, "needs_review")

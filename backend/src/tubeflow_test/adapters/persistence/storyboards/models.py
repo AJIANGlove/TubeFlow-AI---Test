@@ -50,6 +50,10 @@ class DirectorRevisionRow(Base):
     review_state: Mapped[str] = mapped_column(String(16))
     continuous_observation_approvals_json: Mapped[list[dict[str, str]]] = mapped_column(JSON)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    # §48.3（迁移 0047）：系统放行的组内非相邻构图回切；存量行为空列表。
+    composition_recut_approvals_json: Mapped[list[dict[str, str]]] = mapped_column(
+        JSON, default=list, server_default="[]"
+    )
 
 
 class DirectorPointerRow(Base):
