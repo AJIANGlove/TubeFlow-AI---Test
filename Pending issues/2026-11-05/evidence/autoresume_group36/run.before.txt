@@ -1,0 +1,11 @@
+-[ RECORD 1 ]-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+id                  | 863939ce-fc16-4bd6-88e6-32157461fbfa
+owner_id            | fb294c02-5f32-4597-b1e9-f7348ac9734a
+project_id          | 23c59183-7165-4c33-a161-7ecf28964c78
+state               | PAUSED
+reason_code         | director_validation_failed
+authorization_round | 7
+payload             | {"phase": "storyboard_drafts", "failure_code": "director_output_adjacent_diversity_insufficient", "paused_at_ms": 1793851520726, "run_paused_ms": 40832113, "run_started_ms": 1793802624947, "group_sequences": [36], "phase_paused_ms": 419618, "failure_messages": {"36": "director plan repeats an event or composition across the group"}, "phase_elapsed_ms": {"narration": 802338, "director_preplan": 7260668}, "phase_started_ms": 1793851100448, "timing_from_phase": "narration", "director_failed_run_id": "9f8b93d7-f4c3-4692-89f9-848d219ba7db"}
+created_at          | 2026-11-04 14:30:24.947572+00
+updated_at          | 2026-11-05 04:05:20.726918+00
+
