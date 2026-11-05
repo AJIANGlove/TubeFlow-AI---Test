@@ -155,6 +155,17 @@ def build_grid_sheet_prompt(
         "objects, gestures and expressions instead, such as a tall or short stack "
         "of coins, a thick or thin pile of bills, or a busy or empty shop."
     )
+    if layout_version == GRID_LAYOUT_V2:
+        # v2 每格单独作为一镜参考：格内的对比分屏、示意图箭头会被 H3 原样复现
+        # （72a22f0a 第 9 组夏/冬左右对比分屏、第 3 组硬币→冰淇淋箭头图）。
+        parts.append(
+            "Each panel is one continuous camera view of a single moment in a single "
+            "place, like a frame from a film. Never divide a panel into two halves or "
+            "several parts: no split screen, side-by-side or before-and-after "
+            "comparison, inset picture or picture-in-picture inside a panel. Do not "
+            "draw diagrams, arrows, floating icons, symbols or other graphic overlays; "
+            "show every idea only through people, objects and places a camera could film."
+        )
     return " ".join(parts)
 
 
