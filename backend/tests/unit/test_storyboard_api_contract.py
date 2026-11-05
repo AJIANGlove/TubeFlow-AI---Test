@@ -95,6 +95,7 @@ def test_zero_based_snapshot_character_history_is_empty_instead_of_422(
     project = SimpleNamespace(
         id=project_id,
         production_state="ACTIVE",
+        production_mode="MANUAL",
         snapshot_script="",
         snapshot_confirmed_at=object(),
         snapshot_visual_style="documentary",

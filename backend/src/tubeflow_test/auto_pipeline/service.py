@@ -150,10 +150,18 @@ class AutoPipelineService:
             return updated
 
     def resume(self, owner_id: UUID, project_id: UUID) -> AutoPipelineRun:
-        """用户恢复 = 新一轮授权：预算轮次 +1、清原因、置 RUNNING 并立即踢 advance。"""
+        """用户恢复 = 新一轮授权：预算轮次 +1、清原因、置 RUNNING 并立即推进一步。
+
+        返回推进之后的真实运行（§48.1）：问题未修复时同一请求内会再次暂停，调用方必须
+        看到 PAUSED 与原因码，而不是推进前的 RUNNING。推进异常与 kick 一样只记日志。
+        """
         run = self._runs.resume_paused(owner_id, project_id, now=self._clock())
-        self.kick(owner_id, project_id)
-        return run
+        try:
+            after = self.advance(owner_id, project_id)
+        except Exception:
+            logger.exception("auto pipeline kick failed for project %s", project_id)
+            return run
+        return after or run
 
     def resume_if_paused_for(self, owner_id: UUID, project_id: UUID, *, reason_code: str) -> bool:
         """修正保存即续跑（§20）：仅当暂停原因码匹配时才恢复并踢 advance。

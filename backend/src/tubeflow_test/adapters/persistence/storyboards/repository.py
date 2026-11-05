@@ -48,6 +48,7 @@ from tubeflow_test.domain.storyboards import (
     GRID_LAYOUT_V1,
     STORYBOARD_AUTO_MAX_SUBMISSIONS,
     CharacterAssetSnapshot,
+    CompositionRecutApproval,
     ContinuousObservationApproval,
     DirectorLocationRelation,
     DirectorPlanRevision,
@@ -168,6 +169,7 @@ class SqlAlchemyStoryboardRepository:
                 tuple(sentence_snapshots),
                 project.snapshot_locale or "",
                 project.snapshot_aspect_ratio or "",
+                production_mode=project.production_mode or "",
             )
 
     def activate_storyboards(self, owner_id: UUID, project_id: UUID) -> None:
@@ -2252,6 +2254,19 @@ def _revision(row: DirectorRevisionRow) -> DirectorPlanRevision:
             for item in row.continuous_observation_approvals_json
         ),
         row.created_at,
+        composition_recut_approvals=_composition_recut_approvals(row),
+    )
+
+
+def _composition_recut_approvals(
+    row: DirectorRevisionRow,
+) -> tuple[CompositionRecutApproval, ...]:
+    """§48.3：迁移 0047 之前的行为空列表（server default），读出为空元组。"""
+    return tuple(
+        CompositionRecutApproval(
+            UUID(item["previous_shot_id"]), UUID(item["next_shot_id"]), item["reason"]
+        )
+        for item in row.composition_recut_approvals_json or ()
     )
 
 
@@ -2279,6 +2294,14 @@ def _revision_row(value: DirectorPlanRevision) -> DirectorRevisionRow:
             for item in value.continuous_observation_approvals
         ],
         created_at=value.created_at,
+        composition_recut_approvals_json=[
+            {
+                "previous_shot_id": str(item.previous_shot_id),
+                "next_shot_id": str(item.next_shot_id),
+                "reason": item.reason,
+            }
+            for item in value.composition_recut_approvals
+        ],
     )
 
 

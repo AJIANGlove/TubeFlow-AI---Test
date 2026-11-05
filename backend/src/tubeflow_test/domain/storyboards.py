@@ -214,6 +214,20 @@ class ContinuousObservationApproval:
 
 
 @dataclass(frozen=True, slots=True)
+class CompositionRecutApproval:
+    """组内非相邻构图回切的系统放行记录（USER_DECISIONS §48.3），随不可变修订留痕。"""
+
+    previous_shot_id: UUID
+    next_shot_id: UUID
+    reason: str
+
+    def __post_init__(self) -> None:
+        _normalized(self.reason, "composition recut reason")
+        if self.previous_shot_id == self.next_shot_id:
+            raise ValueError("composition recut approval must bind two shots")
+
+
+@dataclass(frozen=True, slots=True)
 class DirectorShot:
     shot_id: UUID
     order: int
@@ -307,6 +321,76 @@ class DirectorShot:
         )
 
 
+# §48.3 回切条件（2026-11-04 用户确认「按推荐进行」）：受控语义至少差 2 维且事件键不同；
+# 两镜之间至少隔 2 个镜头；每组至多 1 对；同一构图组内至多出现 2 次。
+COMPOSITION_RECUT_MIN_SEMANTIC_CHANGES = 2
+COMPOSITION_RECUT_MIN_POSITION_GAP = 3
+COMPOSITION_RECUT_MAX_PAIRS = 1
+COMPOSITION_RECUT_MAX_OCCURRENCES = 2
+# §48.5 回切两格差异算法：两格裁切图缩为 64×36 灰度后 1 − Pearson 相关系数（0 = 相同，
+# 越大越不同）。阈值只能由离线标定 + 用户看图确认后经配置给出，代码中不设生效默认值。
+RECUT_SIMILARITY_V1 = "recut-similarity-v1"
+
+
+def composition_key(shot: DirectorShot) -> tuple[str, str, str]:
+    """构图判定键：归一化后的场景、景别、机位。"""
+    return (
+        _normalized(shot.scene, "scene"),
+        _normalized(shot.shot_size, "size"),
+        _normalized(shot.camera_viewpoint, "viewpoint"),
+    )
+
+
+def non_adjacent_composition_repeats(
+    shots: Sequence[DirectorShot],
+) -> tuple[tuple[DirectorShot, DirectorShot], ...]:
+    """组内构图相同、位置不相邻的镜头对（同一构图的相继两次出现，按出现顺序）。"""
+    last: dict[tuple[str, str, str], int] = {}
+    pairs: list[tuple[DirectorShot, DirectorShot]] = []
+    for index, shot in enumerate(shots):
+        key = composition_key(shot)
+        previous = last.get(key)
+        if previous is not None and index - previous > 1:
+            pairs.append((shots[previous], shot))
+        last[key] = index
+    return tuple(pairs)
+
+
+def composition_recut_pairs(
+    shots: Sequence[DirectorShot],
+) -> tuple[tuple[UUID, UUID], ...] | None:
+    """§48.3 回切资格的唯一判定（应用层推导与修订校验共用）。
+
+    返回组内全部非相邻构图重复对的镜头 ID；任一对或整组不满足回切条件时返回 None。
+    无非相邻构图重复时返回空元组。只看受控语义，不走 changes_from 的文本回退：回切对
+    三项构图字段必然相同，文本回退会把动作/功能文本的差异误算为满足条件。
+    """
+    pairs = non_adjacent_composition_repeats(shots)
+    if not pairs:
+        return ()
+    if len(pairs) > COMPOSITION_RECUT_MAX_PAIRS:
+        return None
+    positions = {shot.shot_id: index for index, shot in enumerate(shots)}
+    occurrences: dict[tuple[str, str, str], int] = {}
+    for shot in shots:
+        key = composition_key(shot)
+        occurrences[key] = occurrences.get(key, 0) + 1
+    for earlier, later in pairs:
+        if occurrences[composition_key(earlier)] > COMPOSITION_RECUT_MAX_OCCURRENCES:
+            return None
+        if positions[later.shot_id] - positions[earlier.shot_id] < (
+            COMPOSITION_RECUT_MIN_POSITION_GAP
+        ):
+            return None
+        if not (earlier.has_controlled_semantics and later.has_controlled_semantics):
+            return None
+        if later.changes_from(earlier) < COMPOSITION_RECUT_MIN_SEMANTIC_CHANGES:
+            return None
+        if later.event_repeat_key() == earlier.event_repeat_key():
+            return None
+    return tuple((earlier.shot_id, later.shot_id) for earlier, later in pairs)
+
+
 @dataclass(frozen=True, slots=True)
 class DirectorPlanRevision:
     revision_id: UUID
@@ -321,6 +405,8 @@ class DirectorPlanRevision:
     review_state: ReviewState
     continuous_observation_approvals: tuple[ContinuousObservationApproval, ...]
     created_at: datetime
+    # §48.3：组内非相邻构图回切的系统放行；为空时校验与改动前逐字一致。
+    composition_recut_approvals: tuple[CompositionRecutApproval, ...] = ()
 
     def __post_init__(self) -> None:
         if self.revision_number < 1 or not 1 <= len(self.shots) <= DIRECTOR_GROUP_SHOT_LIMIT:
@@ -348,14 +434,6 @@ class DirectorPlanRevision:
         if linked_sentences != set(self.group_sentence_ids):
             raise ValueError("every sentence in the group must be covered")
         event_keys = [shot.event_repeat_key() for shot in self.shots]
-        composition_keys = [
-            (
-                _normalized(shot.scene, "scene"),
-                _normalized(shot.shot_size, "size"),
-                _normalized(shot.camera_viewpoint, "viewpoint"),
-            )
-            for shot in self.shots
-        ]
 
         def repeats_non_adjacent(values: Sequence[tuple[str, ...]]) -> bool:
             positions: dict[tuple[str, ...], int] = {}
@@ -366,8 +444,24 @@ class DirectorPlanRevision:
                 positions[value] = index
             return False
 
-        if repeats_non_adjacent(event_keys) or repeats_non_adjacent(composition_keys):
+        repeated_compositions = {
+            (earlier.shot_id, later.shot_id)
+            for earlier, later in non_adjacent_composition_repeats(self.shots)
+        }
+        recuts = {
+            (item.previous_shot_id, item.next_shot_id) for item in self.composition_recut_approvals
+        }
+        if len(recuts) != len(self.composition_recut_approvals):
+            raise ValueError("composition recut approvals must be unique")
+        if not recuts.issubset(repeated_compositions):
+            raise ValueError(
+                "composition recut approval must bind a non-adjacent composition repeat"
+            )
+        # 事件重复（§22.6）不因回切放行；未被回切放行的非相邻构图重复照旧拒绝。
+        if repeats_non_adjacent(event_keys) or repeated_compositions - recuts:
             raise ValueError("director plan repeats an event or composition across the group")
+        if recuts and set(composition_recut_pairs(self.shots) or ()) != recuts:
+            raise ValueError("composition recut does not meet the recut conditions")
         approved_pairs = {
             (item.previous_shot_id, item.next_shot_id)
             for item in self.continuous_observation_approvals

@@ -66,6 +66,7 @@ from tubeflow_test.domain.project_director import (
 )
 from tubeflow_test.domain.storyboards import (
     CharacterAssetSnapshot,
+    CompositionRecutApproval,
     ContinuousObservationApproval,
     DirectorLocationRelation,
     DirectorPlanRevision,
@@ -1662,6 +1663,14 @@ def _director_revision_row(value: DirectorPlanRevision) -> DirectorRevisionRow:
             for item in value.continuous_observation_approvals
         ],
         created_at=value.created_at,
+        composition_recut_approvals_json=[
+            {
+                "previous_shot_id": str(item.previous_shot_id),
+                "next_shot_id": str(item.next_shot_id),
+                "reason": item.reason,
+            }
+            for item in value.composition_recut_approvals
+        ],
     )
 
 
@@ -1684,6 +1693,19 @@ def _director_revision(row: DirectorRevisionRow) -> DirectorPlanRevision:
             for item in row.continuous_observation_approvals_json
         ),
         created_at=row.created_at,
+        composition_recut_approvals=_composition_recut_approvals(row),
+    )
+
+
+def _composition_recut_approvals(
+    row: DirectorRevisionRow,
+) -> tuple[CompositionRecutApproval, ...]:
+    """§48.3：迁移 0047 之前的行为空列表（server default），读出为空元组。"""
+    return tuple(
+        CompositionRecutApproval(
+            UUID(item["previous_shot_id"]), UUID(item["next_shot_id"]), item["reason"]
+        )
+        for item in row.composition_recut_approvals_json or ()
     )
 
 

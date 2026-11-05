@@ -5,7 +5,7 @@ import json
 import logging
 import os
 import re
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass, replace
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -27,9 +27,11 @@ from tubeflow_test.domain.errors import DomainError
 from tubeflow_test.domain.storyboards import (
     GRID_LAYOUT_V1,
     GRID_LAYOUT_V2,
+    RECUT_SIMILARITY_V1,
     SHOT_TIMING_PROJECTION_V1,
     STORYBOARD_AUTO_MAX_SUBMISSIONS,
     CharacterAssetSnapshot,
+    CompositionRecutApproval,
     ContinuousObservationApproval,
     DirectorLocationRelation,
     DirectorPlanRevision,
@@ -47,6 +49,8 @@ from tubeflow_test.domain.storyboards import (
     StoryboardAssetKind,
     StoryboardGeneration,
     VideoStoryboardBinding,
+    composition_recut_pairs,
+    non_adjacent_composition_repeats,
     projected_shot_time_ranges_ms,
     storyboard_auto_retry_delay_seconds,
 )
@@ -75,6 +79,8 @@ class StoryboardContext:
     sentences: tuple[DirectorSentenceSnapshot, ...] = ()
     locale: str = ""
     aspect_ratio: str = ""
+    # §48.3：回切只在 AUTO 项目推导；空值（未知）按非 AUTO 处理。
+    production_mode: str = ""
 
 
 @dataclass(frozen=True, slots=True)
@@ -345,6 +351,32 @@ class StoryboardPanelLayoutError(ValueError):
 STORYBOARD_PANEL_LAYOUT_UNREADABLE = "storyboard_panel_layout_unreadable"
 
 
+class StoryboardRecutTooSimilarError(ValueError):
+    """§48.5：回切两格画得过于相似（按可重试输出波动处理，进入故障转移链）。"""
+
+
+STORYBOARD_RECUT_PANELS_TOO_SIMILAR = "storyboard_recut_panels_too_similar"
+COMPOSITION_RECUT_NOT_ALLOWED = "composition_recut_not_allowed"
+# §48.3：AUTO 回切的系统放行理由，如实写明是系统策略。
+AUTO_COMPOSITION_RECUT_REASON = (
+    "AUTO 全链路系统策略：组内非相邻构图回切按 USER_DECISIONS §48.3 条件放行，非人工批准。"
+)
+
+
+class StoryboardRecutSimilarityCheck(Protocol):
+    """§48.5：对回切两格的裁切图计算距离（越小越相似）；无法裁切时抛 ValueError。"""
+
+    def __call__(
+        self,
+        path: Path,
+        *,
+        panel_count: int,
+        aspect_ratio: str,
+        layout_version: str,
+        pairs: tuple[tuple[int, int], ...],
+    ) -> tuple[float, ...]: ...
+
+
 class StoryboardPanelLayoutCheck(Protocol):
     """对已下载、已过技术质检的整图做逐格裁切演练；无法安全裁切时抛 ValueError。"""
 
@@ -409,6 +441,15 @@ def _not_found() -> DomainError:
     return DomainError("not_found", "Storyboard resource was not found")
 
 
+def _recut_orders(revision: DirectorPlanRevision) -> tuple[tuple[int, int], ...]:
+    """回切放行对的镜头序号（前一镜、回切镜），供生图提示词使用。"""
+    orders = {shot.shot_id: shot.order for shot in revision.shots}
+    return tuple(
+        (orders[item.previous_shot_id], orders[item.next_shot_id])
+        for item in revision.composition_recut_approvals
+    )
+
+
 def _all_semantics_unspecified(shot: DirectorShot) -> bool:
     return (
         shot.semantic_event is DirectorSemanticEvent.UNSPECIFIED
@@ -419,8 +460,17 @@ def _all_semantics_unspecified(shot: DirectorShot) -> bool:
 
 
 class DirectorPlanService:
-    def __init__(self, repo: StoryboardRepository, ids: IdentifierFactory, clock: Clock) -> None:
+    def __init__(
+        self,
+        repo: StoryboardRepository,
+        ids: IdentifierFactory,
+        clock: Clock,
+        *,
+        composition_recut_allowed: Callable[[UUID, UUID], bool] | None = None,
+    ) -> None:
         self._repo, self._ids, self._clock = repo, ids, clock
+        # §48.3：(owner_id, project_id) → 回切开关开启且项目有效网格为 grid-v2；未注入即不推导。
+        self._composition_recut_allowed = composition_recut_allowed
 
     def edit_draft(
         self,
@@ -520,8 +570,27 @@ class DirectorPlanService:
             review,
             continuous_observation_approvals,
             self._clock.now(),
+            composition_recut_approvals=self._composition_recut_approvals(owner_id, context, shots),
         )
         return revision
+
+    def _composition_recut_approvals(
+        self, owner_id: UUID, context: StoryboardContext, shots: tuple[DirectorShot, ...]
+    ) -> tuple[CompositionRecutApproval, ...]:
+        """§48.3：服务端推导回切放行（PUT 合同不新增字段）。
+
+        仅 AUTO 项目、开关开启且有效网格为 grid-v2 时推导；不满足或镜头不合格时返回空，
+        修订校验按原规则拒绝非相邻构图重复。
+        """
+        if self._composition_recut_allowed is None or context.production_mode != "AUTO":
+            return ()
+        pairs = composition_recut_pairs(shots)
+        if not pairs or not self._composition_recut_allowed(owner_id, context.project_id):
+            return ()
+        return tuple(
+            CompositionRecutApproval(previous, following, AUTO_COMPOSITION_RECUT_REASON)
+            for previous, following in pairs
+        )
 
     def apply_draft(
         self, *, owner_id: UUID, group_id: UUID, expected_draft_revision_id: UUID
@@ -565,12 +634,25 @@ class StoryboardGenerationService:
         *,
         single_panel_new_projects: bool = False,
         panel_layout_check: StoryboardPanelLayoutCheck | None = None,
+        composition_recut: bool = False,
+        recut_similarity_check: StoryboardRecutSimilarityCheck | None = None,
+        recut_min_distance: float | None = None,
     ) -> None:
         self._repo, self._provider, self._storage, self._qc = repo, provider, storage, qc
         self._ids, self._clock, self._work_dir, self._policy = ids, clock, work_dir, failover_policy
         # §46：开关只决定"尚无任何故事板"的项目钉哪一版网格；已钉项目永远沿用。
         self._single_panel_new_projects = single_panel_new_projects
         self._panel_layout_check = panel_layout_check
+        # §48.4/§48.5：回切开关默认关闭；阈值须经用户看图确认后配置，未配置即不放行。
+        self._composition_recut = composition_recut
+        self._recut_similarity_check = recut_similarity_check
+        self._recut_min_distance = recut_min_distance
+
+    def composition_recut_allowed(self, owner_id: UUID, project_id: UUID) -> bool:
+        """§48.3：回切开关开启、阈值已配置且项目有效网格为 grid-v2 时才放行回切。"""
+        if not self._composition_recut or self._recut_min_distance is None:
+            return False
+        return self._grid_layout_version(owner_id, project_id) == GRID_LAYOUT_V2
 
     def create(
         self,
@@ -590,6 +672,16 @@ class StoryboardGenerationService:
             raise DomainError("revision_conflict", "Applied director revision changed")
         ranges = self._shot_time_ranges(applied, context)
         layout_version = self._grid_layout_version(owner_id, context.project_id)
+        if applied.composition_recut_approvals and not (
+            self._composition_recut
+            and self._recut_min_distance is not None
+            and layout_version == GRID_LAYOUT_V2
+        ):
+            # §48.3 第二道闸：放行时的条件（开关、grid-v2）现已不成立，不提交。
+            raise DomainError(
+                COMPOSITION_RECUT_NOT_ALLOWED,
+                "Composition recut is no longer allowed for this project; change the shot",
+            )
         prompt = build_grid_sheet_prompt(
             style=context.style,
             aspect_ratio=context.aspect_ratio,
@@ -597,6 +689,7 @@ class StoryboardGenerationService:
             ranges=ranges,
             character_count=len(context.character_assets),
             layout_version=layout_version,
+            recut_pairs=_recut_orders(applied),
         )
         # 违禁/高风险表达识别与规避（storyboard-prompt-safety-v1）：规则命中时对
         # 生图提示词做确定性最小替换并留档；镜头字段快照不因此改变。
@@ -931,8 +1024,11 @@ class StoryboardGenerationService:
                     path, generation.expected_sha256
                 )
                 self._check_panel_layout(generation, path)
+                self._check_recut_similarity(generation, path)
             except StoryboardPanelLayoutError as exc:
                 return self._retry_panel_layout_failure(generation, exc)
+            except StoryboardRecutTooSimilarError as exc:
+                return self._retry_recut_similarity_failure(generation, exc)
             except StoryboardAspectRatioError as exc:
                 # 画幅不符是 Provider 单次输出波动（同模型同参数下其余组均正常），
                 # 按可重试失败进入既有换路预算；预算耗尽才终态，避免整条流水线等人恢复。
@@ -981,8 +1077,11 @@ class StoryboardGenerationService:
                     path, generation.expected_sha256
                 )
                 self._check_panel_layout(generation, path)
+                self._check_recut_similarity(generation, path)
             except StoryboardPanelLayoutError as exc:
                 return self._retry_panel_layout_failure(generation, exc)
+            except StoryboardRecutTooSimilarError as exc:
+                return self._retry_recut_similarity_failure(generation, exc)
             except StoryboardAspectRatioError as exc:
                 # 画幅不符是 Provider 单次输出波动（同模型同参数下其余组均正常），
                 # 按可重试失败进入既有换路预算；预算耗尽才终态，避免整条流水线等人恢复。
@@ -1213,6 +1312,67 @@ class StoryboardGenerationService:
             failure_code=STORYBOARD_PANEL_LAYOUT_UNREADABLE,
             retry_after_seconds=None,
             exhausted_failure_code=STORYBOARD_PANEL_LAYOUT_UNREADABLE,
+        )
+
+    def _check_recut_similarity(self, generation: StoryboardGeneration, path: Path) -> None:
+        """§48.5：含回切的 v2 故事板，回切两格不得近乎相同；其余组不检查。
+
+        回切对由镜头快照确定：修订校验保证非相邻构图重复只能以回切放行的形式存在。
+        """
+        if generation.grid_layout_version != GRID_LAYOUT_V2:
+            return
+        pairs = tuple(
+            (earlier.order, later.order)
+            for earlier, later in non_adjacent_composition_repeats(generation.shots_snapshot)
+        )
+        if not pairs:
+            return
+        if self._recut_similarity_check is None or self._recut_min_distance is None:
+            raise DomainError(
+                "storyboard_recut_check_not_configured",
+                "Composition recut requires the recut similarity check and its threshold",
+            )
+        try:
+            distances = self._recut_similarity_check(
+                path,
+                panel_count=len(generation.shots_snapshot),
+                aspect_ratio="16:9",
+                layout_version=generation.grid_layout_version,
+                pairs=pairs,
+            )
+        except ValueError as exc:
+            # 裁切失败与逐格裁切演练失败同等处理（可重试输出波动）。
+            raise StoryboardPanelLayoutError(str(exc)) from exc
+        if len(distances) != len(pairs):
+            raise ValueError("recut similarity check returned a distance per pair")
+        too_similar = [
+            f"{earlier}-{later}:{distance:.4f}"
+            for (earlier, later), distance in zip(pairs, distances, strict=True)
+            if distance < self._recut_min_distance
+        ]
+        if too_similar:
+            raise StoryboardRecutTooSimilarError(
+                f"recut panels too similar ({RECUT_SIMILARITY_V1} "
+                f"{', '.join(too_similar)}; min {self._recut_min_distance})"
+            )
+
+    def _retry_recut_similarity_failure(
+        self, failed: StoryboardGeneration, exc: StoryboardRecutTooSimilarError
+    ) -> StoryboardGeneration:
+        """§48.5：回切两格过于相似按可重试输出波动处理，进入既有故障转移链（至多 14 次）。"""
+        logger.warning(
+            "storyboard_recut_rejected project=%s group=%s generation=%s reason=%s",
+            failed.project_id,
+            failed.group_id,
+            failed.generation_id,
+            exc,
+        )
+        return self._auto_resubmit(
+            failed,
+            failure_stage="download_or_qc",
+            failure_code=STORYBOARD_RECUT_PANELS_TOO_SIMILAR,
+            retry_after_seconds=None,
+            exhausted_failure_code=STORYBOARD_RECUT_PANELS_TOO_SIMILAR,
         )
 
     def _retry_aspect_ratio_failure(self, failed: StoryboardGeneration) -> StoryboardGeneration:

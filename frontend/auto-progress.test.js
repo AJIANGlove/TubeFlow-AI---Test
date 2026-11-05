@@ -11,6 +11,7 @@ import {
   autoPipelineStateLabel,
   autoPhaseLabel,
   autoResumeAllowed,
+  autoResumeFailureMessage,
   autoStageRows,
   autoStageTiming,
   formatElapsedMs,
@@ -438,6 +439,26 @@ test("resume action is gated on RESUME_AUTO_PIPELINE and goes through the resume
   assert.match(source, /allowed_actions 不含 RESUME_AUTO_PIPELINE/);
   assert.match(source, /api\.autoPipelineResume\(state\.project\.id\)/);
   assert.match(source, /runManualAction/);
+  // §48.1：响应仍为 PAUSED 时刷新事实并抛错（红色提示），不弹成功。
+  assert.match(source, /const failure = autoResumeFailureMessage\(result\)/);
+  assert.match(source, /await refreshProjectFacts\(\);\s*renderProjectWorkspace\(\);\s*throw new Error\(failure\)/);
+});
+
+test("resume that pauses again in the same request is reported as a failure", () => {
+  const message = autoResumeFailureMessage({
+    state: "PAUSED",
+    reason_code: "director_validation_failed",
+    authorization_round: 9,
+  });
+  assert.match(message, /恢复后立即再次暂停/);
+  assert.match(message, /原因码 director_validation_failed/);
+  assert.match(message, /本次恢复已消耗 1 轮授权/);
+  assert.match(message, /第 07 步/);
+  assert.match(autoResumeFailureMessage({ state: "PAUSED", reason_code: null }), /原因码未知/);
+  for (const state of ["RUNNING", "COMPLETED"]) {
+    assert.equal(autoResumeFailureMessage({ state, reason_code: null, authorization_round: 2 }), "");
+  }
+  assert.equal(autoResumeFailureMessage(undefined), "");
 });
 
 test("completed view embeds the current composition and reuses the formal ZIP export", () => {
@@ -471,4 +492,17 @@ test("locally hardcoded generation entries lock while the auto pipeline is busy"
   assert.match(stage08, /toast\(generateBlockedReason \|\| "后端当前未允许生成组级视频。", true\)/);
   // 既有门禁链保持原样，AUTO 锁定只是叠加在最前。
   assert.match(stage08, /generateDisabledReason = videoService\?\.available !== true/);
+});
+
+test("§48: recut failure code has a label and step 07 shows system recut approvals read-only", () => {
+  assert.equal(
+    autoPauseReasonLabel("storyboard_failed:storyboard_recut_panels_too_similar"),
+    "故事板生成失败：回切两格画得过于相似，备用渠道已按序重试仍未通过",
+  );
+  const notice = productionFunction("directorRecutNotice");
+  assert.match(notice, /draft\?\.composition_recut_approvals/);
+  assert.match(notice, /系统回切放行：\$\{escapeHtml\(item\.reason \|\| ""\)\}/);
+  assert.match(productionFunction("directorApprovalEditor"), /\$\{directorRecutNotice\(shots, draft\)\}/);
+  // PUT 合同不新增字段：保存草稿时不回传回切放行。
+  assert.doesNotMatch(productionFunction("readDirectorDraftForm"), /composition_recut_approvals/);
 });

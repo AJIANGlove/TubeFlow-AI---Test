@@ -78,6 +78,7 @@ def build_grid_sheet_prompt(
     ranges: tuple[ShotTimeRange, ...],
     character_count: int,
     layout_version: str = GRID_LAYOUT_V1,
+    recut_pairs: tuple[tuple[int, int], ...] = (),
 ) -> str:
     layout = grid_layout_for(len(shots), aspect_ratio, layout_version)
     parts: list[str] = []
@@ -166,6 +167,15 @@ def build_grid_sheet_prompt(
             "draw diagrams, arrows, floating icons, symbols or other graphic overlays; "
             "show every idea only through people, objects and places a camera could film."
         )
+    # §48.5：回切格（后一镜）回到前一镜的同一地点与机位，必须画出本格的新内容；
+    # 无回切的组不追加任何文字，提示词与 canonical 哈希逐字不变。
+    parts.extend(
+        f"Panel {later} returns to the same place and camera position as panel "
+        f"{earlier}. Keep the place recognisable, but show only panel {later}'s own "
+        f"action and objects, so that panels {earlier} and {later} look clearly "
+        "different from each other."
+        for earlier, later in recut_pairs
+    )
     return " ".join(parts)
 
 

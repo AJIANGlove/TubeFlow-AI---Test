@@ -89,6 +89,11 @@ class Settings(BaseSettings):
     # USER_DECISIONS §46：尚无任何故事板的项目在首张故事板时钉网格 v2 + 逐格参考
     # （crop-grid-v2 + v4 单格提示词）。只影响新钉版项目；已钉项目不随开关变化。
     storyboard_single_panel_new_projects: bool = False
+    # USER_DECISIONS §48.3–§48.6：AUTO 组内非相邻构图回切。默认关闭；开启必须同时给出
+    # 由离线标定 + 用户目视确认的最小差异阈值（recut-similarity-v1，1 − 相关系数）。
+    # 不设默认阈值；只对钉 grid-v2 的项目生效。
+    director_composition_recut: bool = False
+    director_composition_recut_min_distance: float | None = Field(default=None, gt=0, le=2)
     sentence_split_provider_url: str = "https://api.deepseek.com/v1"
     sentence_split_provider_token: SecretStr = SecretStr("")
     sentence_split_provider_model: str = "deepseek-v4-flash"
@@ -221,6 +226,8 @@ class Settings(BaseSettings):
             raise ValueError("single-panel project allowlist requires the opt-in switch")
         if self.h3_single_panel_opt_in_enabled and not self.h3_single_panel_project_ids:
             raise ValueError("single-panel opt-in requires an explicit project allowlist")
+        if self.director_composition_recut and self.director_composition_recut_min_distance is None:
+            raise ValueError("composition recut requires a confirmed minimum panel distance")
         if self.storyboard_provider_quality not in {"auto", "low", "medium", "high"}:
             raise ValueError("Storyboard Provider quality must be auto, low, medium, or high")
         if self.storyboard_pix_provider_configured:

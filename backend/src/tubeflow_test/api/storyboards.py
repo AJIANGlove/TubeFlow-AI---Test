@@ -524,6 +524,15 @@ def create_storyboard_router(
                 }
                 for item in revision.continuous_observation_approvals
             ],
+            # §48.3：系统放行的组内非相邻构图回切（只读；PUT 合同不新增字段）。
+            "composition_recut_approvals": [
+                {
+                    "previous_shot_id": item.previous_shot_id,
+                    "next_shot_id": item.next_shot_id,
+                    "reason": item.reason,
+                }
+                for item in revision.composition_recut_approvals
+            ],
             "created_at": revision.created_at,
             **_director_revision_public_state(revision).as_dict(),
         }
@@ -566,6 +575,15 @@ def create_storyboard_router(
                     "reason": item.reason,
                 }
                 for item in revision.continuous_observation_approvals
+            ],
+            # §48.3：系统放行的组内非相邻构图回切（只读；PUT 合同不新增字段）。
+            "composition_recut_approvals": [
+                {
+                    "previous_shot_id": item.previous_shot_id,
+                    "next_shot_id": item.next_shot_id,
+                    "reason": item.reason,
+                }
+                for item in revision.composition_recut_approvals
             ],
             "created_at": revision.created_at,
             **_director_revision_public_state(revision).as_dict(),

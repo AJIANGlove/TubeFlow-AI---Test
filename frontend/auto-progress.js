@@ -119,6 +119,8 @@ const AUTO_PAUSE_SUBCODE_LABELS = Object.freeze({
   failover_budget_exhausted: "备用渠道与模型已按序尝试，仍未成功（每组 14 次、每模型最多 2 次）",
   remote_state_unknown_exhausted: "远端状态未知且重提预算已用尽",
   intent_rejected: "生成意图被既定拒绝",
+  // §48.5：回切两格画得近乎相同，备用渠道按序重试（至多 14 次）仍未通过。
+  storyboard_recut_panels_too_similar: "回切两格画得过于相似，备用渠道已按序重试仍未通过",
 });
 
 export function autoPauseReasonLabel(code) {
@@ -130,6 +132,19 @@ export function autoPauseReasonLabel(code) {
     }
   }
   return null;
+}
+
+// §48.1：恢复接口返回推进之后的真实状态。同一请求内再次暂停说明问题尚未修复，
+// 必须如实提示失败（含原因码），不得显示「已恢复」。其余状态返回空串（按成功处理）。
+export function autoResumeFailureMessage(result) {
+  if (result?.state !== "PAUSED") return "";
+  const code = typeof result.reason_code === "string" ? result.reason_code.trim() : "";
+  const label = autoPauseReasonLabel(code);
+  const reason = code ? `${label ? `${label}，` : ""}原因码 ${code}` : "原因码未知";
+  return (
+    `恢复后立即再次暂停（${reason}）：问题尚未修复，本次恢复已消耗 1 轮授权。` +
+    "请按暂停说明先修正（导演方案问题在第 07 步修正对应分组）后再恢复。"
+  );
 }
 
 // 暂停原因展示模型：code 取 auto_pipeline.reason_code，回退顶层 blocking_reason；
