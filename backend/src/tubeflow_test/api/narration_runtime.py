@@ -234,7 +234,10 @@ class SqlProjectSnapshotAdapter:
                 ).encode()
             ).hexdigest()
             job = NarrationJob(
-                f"narration_{snapshot_hash}",
+                # 作业 ID 即 Temporal 工作流 ID（REJECT_DUPLICATE，重复启动静默吞掉），
+                # 必须按项目唯一：只取内容哈希时，内容相同的两个项目共用同一 ID，
+                # 后确认的项目永远停在 DISPATCHED。
+                f"narration_{project_id}_{snapshot_hash}",
                 owner_id,
                 project_id,
                 tuple(
