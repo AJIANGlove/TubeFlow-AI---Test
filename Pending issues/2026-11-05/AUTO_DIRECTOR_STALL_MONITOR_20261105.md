@@ -3,8 +3,8 @@
 > 本文档由 `runtime/operations/director-stall-monitor-20261105/monitor.py` 自动生成。
 > `<!-- BEGIN/END AUTO-GENERATED -->` 之间为受管区，脚本会重写；之外为人工批注，脚本不改动。
 
-- 最近一次结构性更新：2026-11-05T11:28:15.990Z / 2026-11-05 19:28:15 CST（仅当事件/恢复/阶段变化时才重写本区）
-- 数据库时钟（采集时）：2026-11-05T11:28:33.548Z
+- 最近一次结构性更新：2026-11-05T11:33:20.107Z / 2026-11-05 19:33:20 CST（仅当事件/恢复/阶段变化时才重写本区）
+- 数据库时钟（采集时）：2026-11-05T11:33:41.883Z
 - 监控脚本：`runtime/operations/director-stall-monitor-20261105/monitor.py`
 - 采样：常驻进程 5 分钟一轮；会话结束后由每小时兜底任务接力（精度降为 60 分钟）
 
@@ -12,7 +12,7 @@
 
 ## 0. 一句话结论
 
-截至 2026-11-05T11:28:15.990Z / 2026-11-05 19:28:15 CST：3 个监控对象中，2 个已跳出导演阶段，1 个停在导演阶段且已暂停，0 个需要人工关注；累计执行恢复 2 次，累计记录中断事件 2 个。
+截至 2026-11-05T11:33:20.107Z / 2026-11-05 19:33:20 CST：3 个监控对象中，2 个已跳出导演阶段，1 个停在导演阶段且已暂停，0 个需要人工关注；累计执行恢复 2 次，累计记录中断事件 2 个。
 
 ## 1. 监控对象与授权
 
@@ -22,7 +22,7 @@
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `ff67c5e9-1db8-49c6-8f49-c96d9d0e140e` | Every Level of a Medieval Merchant | 4 | director_preplan | RUNNING | storyboard | 0/3 | EXITED |
 | `7cf2e79d-4d9d-48fa-8639-dde4100b6469` | Why Everyone Keeps Stealing Ukraine's Soil | 1 | storyboard | PAUSED | video | 0/3 | EXITED |
-| `f881122d-1846-4d18-8f8b-4b89b0cbc0db` | You're a Crew Member on the Mary Celeste | 4 | director_preplan | PAUSED | director_preplan | 1/3 | PAUSED_DIRECTOR |
+| `f881122d-1846-4d18-8f8b-4b89b0cbc0db` | You're a Crew Member on the Mary Celeste | 4 | director_preplan | PAUSED | director_preplan | 2/3 | PAUSED_DIRECTOR |
 
 ### 1.2 授权范围
 
@@ -195,7 +195,7 @@
 | round 变化 | 5 → 6 |
 | 调用结果 | accepted |
 | 立即复核 | {"state": "RUNNING", "round": 6, "phase": "director_preplan", "paused_at_ms_present": false} |
-| 新 run 验证 | {"state": "awaiting_new_run"} |
+| 新 run 验证 | {"state": "verified", "run_id": "be6678d5-ae14-410c-a2ed-bccf121a9dfd", "verified_at_utc": "2026-11-05T11:33:19.549Z"} |
 
 证据：`Pending issues/2026-11-05/evidence/auto_director_stall_monitor/incidents/E02_f881122d_2026-11-05T112811.203Z.json`
 
@@ -224,13 +224,13 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | Every Level of a Medieval Merchant | 4 | 4 | 0 | 3 | EXITED | — |
 | Why Everyone Keeps Stealing Ukraine's Soil | 1 | 1 | 0 | 3 | EXITED | — |
-| You're a Crew Member on the Mary Celeste | 4 | 5 | 1 | 2 | PAUSED_DIRECTOR | 2026-11-05T11:28:13.394Z |
+| You're a Crew Member on the Mary Celeste | 4 | 6 | 2 | 1 | PAUSED_DIRECTOR | 2026-11-05T11:28:13.394Z |
 
 ### 5.2 失败码频次（最新 run 的单元级）
 
 | failure_code | 次数 |
 | --- | --- |
-| director_output_adjacent_diversity_insufficient | 1 |
+| director_output_sentence_coverage_invalid | 1 |
 
 ### 5.3 需要人工介入
 

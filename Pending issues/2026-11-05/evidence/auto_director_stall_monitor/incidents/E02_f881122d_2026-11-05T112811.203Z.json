@@ -75,7 +75,9 @@
       "paused_at_ms_present": false
     },
     "verification": {
-      "state": "awaiting_new_run"
+      "state": "verified",
+      "run_id": "be6678d5-ae14-410c-a2ed-bccf121a9dfd",
+      "verified_at_utc": "2026-11-05T11:33:19.549Z"
     },
     "resume_evidence": "Pending issues/2026-11-05/evidence/auto_director_stall_monitor/resumes/E02_f881122d_2026-11-05T112815966Z.json"
   },
