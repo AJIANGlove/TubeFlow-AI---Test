@@ -1,0 +1,11 @@
+--- 6 格样张：邻域扫描（Δ 固定 40）
+  neighbourhood=65: REJECT shot_panel_gutter_not_found
+  neighbourhood=120: REJECT shot_panel_gutter_not_found
+  neighbourhood=160: REJECT shot_panel_gutter_not_found
+  neighbourhood=220: REJECT shot_panel_gutter_not_found
+  neighbourhood=300: REJECT shot_panel_gutter_not_found
+
+--- 4 格白分隔对照：同扫描
+  neighbourhood=65: OK boxes=4 sizes=[(1285, 704), (1285, 706)]
+  neighbourhood=120: OK boxes=4 sizes=[(1285, 697), (1285, 704)]
+  neighbourhood=300: OK boxes=4 sizes=[(1275, 696), (1276, 696), (1285, 704)]

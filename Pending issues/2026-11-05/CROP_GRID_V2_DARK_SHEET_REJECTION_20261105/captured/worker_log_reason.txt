@@ -1,0 +1,40 @@
+host: <deploy-host>  date: 2026-11-05T13:34:07+08:00
+
+=== 容器与起始时间（决定日志可见范围） ===
+tubeflowai-test-web-1	edee542dda35	3 hours ago
+tubeflowai-test-worker-1	edee542dda35	3 hours ago
+tubeflowai-test-mihomo-1	bac1a74de365	16 hours ago
+tubeflow-contract-pg	postgres:17-alpine	46 hours ago
+tubeflowai-test-temporal-1	temporalio/auto-setup:1.27	6 weeks ago
+tubeflowai-test-postgres-1	postgres:17-alpine	6 weeks ago
+tubeflowai-test-minio-1	14cea493d9a3	6 weeks ago
+tubeflowai-test-worker-1 started: 2026-11-05T02:41:39.727120727Z  logcfg: {"Type":"json-file","Config":{}}
+tubeflowai-test-web-1 started: 2026-11-05T02:41:39.985100496Z  logcfg: {"Type":"json-file","Config":{}}
+
+=== worker：storyboard_panel_layout_rejected 计数与 reason（容器全量） ===
+1111
+   1111 shot_panel_gutter_not_found
+
+=== worker：按项目 ===
+   1111 247462a4-e719-4488-ae14-aab962de1a27
+
+=== web（cgpq-dor-2）：同标记 ===
+0
+
+=== 样例：首 2 条 / 末 2 条（含 generation 与 group） ===
+storyboard_panel_layout_rejected project=247462a4-e719-4488-ae14-aab962de1a27 group=b4d2c17e-e298-59a5-9071-7f06621a791a generation=06e411ae-73db-4b6a-bbdb-9371db3378b4 reason=shot_panel_gutter_not_found
+storyboard_panel_layout_rejected project=247462a4-e719-4488-ae14-aab962de1a27 group=b9879982-6f40-50a8-a33c-4fe378e6bc03 generation=79d0c767-f8f4-45cf-9cc2-25a67062071c reason=shot_panel_gutter_not_found
+storyboard_panel_layout_rejected project=247462a4-e719-4488-ae14-aab962de1a27 group=e459d954-a01c-55dc-9455-573d558382d8 generation=82f7a53d-8b59-4d76-b6bf-6f7ffd898564 reason=shot_panel_gutter_not_found
+storyboard_panel_layout_rejected project=247462a4-e719-4488-ae14-aab962de1a27 group=ce321800-128a-594b-8032-f6dc75688d15 generation=37562a3e-db55-4ef8-a36b-b4a1cc8a72af reason=shot_panel_gutter_not_found
+
+=== 自动流水线暂停记录 ===
+auto pipeline paused: project=247462a4-e719-4488-ae14-aab962de1a27 reason=storyboard_failed:storyboard_panel_layout_unreadable phase=storyboard
+auto pipeline paused: project=23c59183-7165-4c33-a161-7ecf28964c78 reason=director_preplan_failed phase=director_preplan
+auto pipeline paused: project=23c59183-7165-4c33-a161-7ecf28964c78 reason=director_validation_failed phase=storyboard_drafts
+auto pipeline paused: project=247462a4-e719-4488-ae14-aab962de1a27 reason=storyboard_failed:provider_quota_exhausted phase=storyboard
+auto pipeline paused: project=247462a4-e719-4488-ae14-aab962de1a27 reason=storyboard_failed:storyboard_panel_layout_unreadable phase=storyboard
+
+=== 本项目其它错误（排除 gutter 拒收，前 160 字符去重） ===
+      2 auto pipeline paused: project=247462a4-e719-4488-ae14-aab962de1a27 reason=storyboard_failed:storyboard_panel_layout_unreadable phase=storyboard
+      2 auto pipeline kick failed for project 247462a4-e719-4488-ae14-aab962de1a27
+      1 auto pipeline paused: project=247462a4-e719-4488-ae14-aab962de1a27 reason=storyboard_failed:provider_quota_exhausted phase=storyboard

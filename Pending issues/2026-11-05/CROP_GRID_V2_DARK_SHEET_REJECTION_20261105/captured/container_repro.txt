@@ -1,0 +1,11 @@
+host: <deploy-host>  date: 2026-11-05T13:33:48+08:00
+worker image: sha256:edee542dda35ceadd8b3688ee690838419f620d3b32197d99237406f81db6336
+--- deployed module ---
+/usr/local/lib/python3.12/site-packages/tubeflow_test/video_generation/panel_images.py
+lines 679
+--- check_storyboard_panel_layout (业务代码原样调用) ---
+PIL 12.3.0
+e459d954_6panels_25931.jpg panels=6 sha256=3818ea6baddb19b0a657b55129394edae7a9dc083152a8055549b07c5756273e REJECT VideoRuleViolation: shot_panel_gutter_not_found
+ce321800_4panels_30023.jpg panels=4 sha256=9ba03ab153fe2feed56c0645683dbdc6399f1e1023c2d5a099b71f11ee4ddebe REJECT VideoRuleViolation: shot_panel_gutter_not_found
+1a04e778_4panels_25915.jpg panels=4 sha256=520bce426be57996ad3d827a47fbc9d3bf84c9d87fd63579ca7b302b23d0a1a3 REJECT VideoRuleViolation: shot_panel_gutter_not_found
+313b41c6_5panels_25923.jpg panels=5 sha256=700a49cebe84af819c089eea2080b34d944b2a10ad9c11ee20b98ec4778871c3 REJECT VideoRuleViolation: shot_panel_gutter_not_found

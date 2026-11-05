@@ -1,0 +1,66 @@
+=== 1. AUTO 运行状态 ===
+state|reason_code|authorization_round|phase|paused_utc|failure_code|group_sequences|updated_at
+PAUSED|storyboard_failed:storyboard_panel_layout_unreadable|7|storyboard|2026-11-05 04:55:19|storyboard_panel_layout_unreadable|[5]|2026-11-05 04:55:19.353933+00
+(1 row)
+=== 2. 故事板生成计数 ===
+status|kind|count|min|max
+FAILED|GRID_SHEET|2553|2026-11-05 00:30:45.501543+00|2026-11-05 04:58:06.042688+00
+SUCCEEDED|GRID_SHEET|13|2026-11-05 01:06:38.995156+00|2026-11-05 04:43:26.449649+00
+(2 rows)
+=== 3. 失败码分布 ===
+code|stage|count|min|max
+storyboard_panel_layout_unreadable|download_or_qc|2385|2026-11-05 00:30:45.573298+00|2026-11-05 04:58:06.042688+00
+aspect_ratio_not_supported|download_or_qc|68|2026-11-05 00:30:49.328339+00|2026-11-05 04:43:21.99469+00
+provider_quota_exhausted|submit|44|2026-11-05 04:01:25.114589+00|2026-11-05 04:03:38.311757+00
+generate image failed|provider|24|2026-11-05 00:30:45.501543+00|2026-11-05 04:20:34.481244+00
+ProviderReconcileUnsupportedError|reconcile|10|2026-11-05 00:30:45.680108+00|2026-11-05 03:37:38.494335+00
+We are so sorry, but the prompt may violate our content policies. If you think we got it wrong, please retry or edit your prompt|provider|9|2026-11-05 00:30:45.882499+00|2026-11-05 04:15:03.20703+00
+非常抱歉，该提示可能违反了我们的内容政策。如果你认为此判断有误，请重试或修改提示语。（已退款）|provider|7|2026-11-05 01:12:05.610835+00|2026-11-05 04:48:04.311064+00
+get image url failed|provider|5|2026-11-05 00:35:38.969192+00|2026-11-05 04:21:54.035898+00
+remote_state_unknown_exhausted|reconcile|1|2026-11-05 02:41:03.856674+00|2026-11-05 02:41:03.856674+00
+(9 rows)
+=== 4. 分组结果（成功/失败/预算是否打光） ===
+groups|with_success|no_success|exhausted
+53|13|40|40
+(1 row)
+=== 5. 按 provider/model 的成功与拒收 ===
+status|provider|model|n|unreadable
+FAILED|grsai|gpt-image-2|390|334
+FAILED|grsai|gpt-image-2.5|390|340
+FAILED|grsai|nano-banana-2|387|384
+FAILED|grsai|nano-banana-pro|373|366
+FAILED|pix|tt-image-2.5|366|361
+FAILED|pix|tt-image-2|357|323
+FAILED|pix|banana-2.1|290|277
+SUCCEEDED|grsai|nano-banana-pro|8|0
+SUCCEEDED|grsai|nano-banana-2|3|0
+SUCCEEDED|pix|banana-2.1|2|0
+(10 rows)
+=== 6. 单组 4 条 14 次预算链（恢复次数证据） ===
+chain|n|t0|t1
+e759f5b7|14|11-05 08:30|11-05 09:16
+fa581b58|14|11-05 09:47|11-05 10:42
+6002137b|13|11-05 10:54|11-05 12:02
+567e3044|14|11-05 12:05|11-05 12:56
+(4 rows)
+=== 7. 本次取样的四张失败整图 ===
+generation|grp|provider|model|panels|token_tail|created
+9db53796|313b41c6|pix|banana-2.1|5|5125923_18e50d6741b5d75b4515.jpg|11-05 12:57:52
+3177db75|1a04e778|pix|banana-2.1|4|5125915_18e50d65708670e85129.jpg|11-05 12:57:53
+37562a3e|ce321800|pix|banana-2.1|4|5130023_18e50d7517bd27f3c979.jpg|11-05 12:58:00
+82f7a53d|e459d954|pix|banana-2.1|6|5125931_18e50d692f62b8feced3.jpg|11-05 12:58:06
+(4 rows)
+=== 8. 取样的两张通过整图 ===
+grp|asset_id|panels|w|h|mime|created
+88e0c7a8|79ec5d16-9f2a-5ffc-be82-7e8c5a4e5d7a|4|2752|1536|image/png|11-05 12:43:26
+b95676db|01395826-0c1e-5730-a6d9-7c21b58b94e7|4|2752|1536|image/png|11-05 12:36:30
+8db80fff|8adf43ab-d62a-5f0b-8b92-edfff195c871|4|2752|1536|image/png|11-05 12:32:30
+(3 rows)
+=== 9. 近 7 天同码影响面（按项目） ===
+id|title|n|min|max
+247462a4-e719-4488-ae14-aab962de1a27|You're the Explorer Who Found Mach|2385|2026-11-05 00:30:45.573298+00|2026-11-05 04:58:06.042688+00
+2c291aba-085d-499d-bd32-b3a4d75f252f|여름 메뉴인 줄 알았지? 빙수 장사의 진짜 수익 구조|2|2026-11-04 14:16:09.558679+00|2026-11-04 14:16:14.1891+00
+fd3bf04d-d703-4054-bf53-baa7081ed0e8|만두만 팔던 가게가 전국으로 파는 이유, 숨겨진 수익구조|1|2026-11-04 14:24:59.901216+00|2026-11-04 14:24:59.901216+00
+(3 rows)
+=== 10. 开关取值（部署机 .env，非库内） ===
+见 README「环境」一节：TUBEFLOW_STORYBOARD_SINGLE_PANEL_NEW_PROJECTS=true

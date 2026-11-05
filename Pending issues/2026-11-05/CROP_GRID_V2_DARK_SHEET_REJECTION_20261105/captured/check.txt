@@ -1,0 +1,9 @@
+### 四张失败样本
+1a04e778_4panels_25915.jpg panels=4 REJECT VideoRuleViolation: shot_panel_gutter_not_found
+313b41c6_5panels_25923.jpg panels=5 REJECT VideoRuleViolation: shot_panel_gutter_not_found
+ce321800_4panels_30023.jpg panels=4 REJECT VideoRuleViolation: shot_panel_gutter_not_found
+e459d954_6panels_25931.jpg panels=6 REJECT VideoRuleViolation: shot_panel_gutter_not_found
+
+### 两张通过样本
+79ec5d16_4panels.png panels=4 PASS
+cc1ced3d_4panels.png panels=4 PASS

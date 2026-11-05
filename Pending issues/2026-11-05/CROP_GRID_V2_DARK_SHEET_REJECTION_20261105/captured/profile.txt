@@ -1,0 +1,27 @@
+--- 1a04e778_4panels_25915.jpg cols=2 rows=2
+image=1a04e778_4panels_25915.jpg size=(2752, 1536) neighbourhood=65 delta_threshold=40.0 band_max=52 framed_max=78
+  y split1: expected=768 sheet_median=50.4 darkest_in_band=16.7 max_deviation=11.9@749 -> BELOW
+  x split1: expected=1376 sheet_median=58.2 darkest_in_band=11.4 max_deviation=3.8@1402 -> BELOW
+--- 313b41c6_5panels_25923.jpg cols=3 rows=2
+image=313b41c6_5panels_25923.jpg size=(2752, 1536) neighbourhood=65 delta_threshold=40.0 band_max=52 framed_max=78
+  y split1: expected=768 sheet_median=33.8 darkest_in_band=0.4 max_deviation=16.1@765 -> BELOW
+  x split1: expected=917 sheet_median=34.0 darkest_in_band=0.3 max_deviation=28.9@896 -> BELOW
+  x split2: expected=1835 sheet_median=34.0 darkest_in_band=0.4 max_deviation=11.9@1825 -> BELOW
+--- ce321800_4panels_30023.jpg cols=2 rows=2
+image=ce321800_4panels_30023.jpg size=(2752, 1536) neighbourhood=65 delta_threshold=40.0 band_max=52 framed_max=78
+  y split1: expected=768 sheet_median=53.1 darkest_in_band=0.4 max_deviation=16.8@759 -> BELOW
+  x split1: expected=1376 sheet_median=51.5 darkest_in_band=0.2 max_deviation=12.3@1387 -> BELOW
+--- e459d954_6panels_25931.jpg cols=3 rows=2
+image=e459d954_6panels_25931.jpg size=(2752, 1536) neighbourhood=65 delta_threshold=40.0 band_max=52 framed_max=78
+  y split1: expected=768 sheet_median=47.6 darkest_in_band=0.2 max_deviation=15.3@765 -> BELOW
+  x split1: expected=917 sheet_median=44.9 darkest_in_band=0.2 max_deviation=24.6@924 -> BELOW
+  x split2: expected=1835 sheet_median=44.9 darkest_in_band=0.2 max_deviation=22.9@1845 -> BELOW
+
+--- 79ec5d16_4panels.png cols=2 rows=2
+image=79ec5d16_4panels.png size=(2752, 1536) neighbourhood=65 delta_threshold=40.0 band_max=52 framed_max=78
+  y split1: expected=768 sheet_median=50.8 darkest_in_band=15.2 max_deviation=227.5@748 -> MEETS
+  x split1: expected=1376 sheet_median=51.0 darkest_in_band=17.7 max_deviation=220.6@1389 -> MEETS
+--- cc1ced3d_4panels.png cols=2 rows=2
+image=cc1ced3d_4panels.png size=(2752, 1536) neighbourhood=65 delta_threshold=40.0 band_max=52 framed_max=78
+  y split1: expected=768 sheet_median=67.4 darkest_in_band=18.4 max_deviation=196.8@751 -> MEETS
+  x split1: expected=1376 sheet_median=63.6 darkest_in_band=18.7 max_deviation=218.7@1393 -> MEETS

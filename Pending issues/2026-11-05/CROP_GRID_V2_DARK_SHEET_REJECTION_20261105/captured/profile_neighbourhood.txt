@@ -1,0 +1,11 @@
+--- e459d954_6panels_25931.jpg neighbourhood=300
+image=e459d954_6panels_25931.jpg size=(2752, 1536) neighbourhood=300 delta_threshold=40.0 band_max=52 framed_max=78
+  y split1: expected=768 sheet_median=47.6 darkest_in_band=0.2 max_deviation=47.7@765 -> MEETS
+  x split1: expected=917 sheet_median=44.9 darkest_in_band=0.2 max_deviation=45.4@913 -> MEETS
+  x split2: expected=1835 sheet_median=44.9 darkest_in_band=0.2 max_deviation=34.2@1845 -> BELOW
+
+--- e459d954_6panels_25931.jpg neighbourhood=120
+image=e459d954_6panels_25931.jpg size=(2752, 1536) neighbourhood=120 delta_threshold=40.0 band_max=52 framed_max=78
+  y split1: expected=768 sheet_median=47.6 darkest_in_band=0.2 max_deviation=24.1@765 -> BELOW
+  x split1: expected=917 sheet_median=44.9 darkest_in_band=0.2 max_deviation=27.2@913 -> BELOW
+  x split2: expected=1835 sheet_median=44.9 darkest_in_band=0.2 max_deviation=26.2@1845 -> BELOW
