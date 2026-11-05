@@ -1,0 +1,140 @@
+{
+ "groups": 13,
+ "all_groups_v2": true,
+ "every_attempt_single_panel": true,
+ "attempts_total": 13,
+ "attempts_without_snapshot": 0,
+ "attempts_failing_checks": [],
+ "strategies": {
+  "tubeflow_storyboard_v4_single_panel": 13
+ },
+ "ladder_error_count": 0,
+ "layout_unreadable_by_group": {
+  "1": 0,
+  "2": 0,
+  "3": 0,
+  "4": 0,
+  "5": 0,
+  "6": 0,
+  "7": 0,
+  "8": 0,
+  "9": 0,
+  "10": 0,
+  "11": 0,
+  "12": 0,
+  "13": 0
+ },
+ "empty_cells_by_group": {
+  "1": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "2": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "3": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "5": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "7": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "9": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "10": [
+   {
+    "cell": 4,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "11": [
+   {
+    "cell": 3,
+    "mean": 0.1,
+    "dark": true
+   },
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "12": [
+   {
+    "cell": 3,
+    "mean": 0.1,
+    "dark": true
+   },
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "13": [
+   {
+    "cell": 3,
+    "mean": 0.1,
+    "dark": true
+   },
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ]
+ },
+ "auto": [
+  {
+   "state": "COMPLETED",
+   "authorization_round": 1,
+   "reason_code": null,
+   "payload": {
+    "phase": "completed",
+    "completed_ms": 1793862877055,
+    "run_paused_ms": 0,
+    "run_started_ms": 1793857539746,
+    "phase_paused_ms": 0,
+    "phase_elapsed_ms": {
+     "video": 4586087,
+     "narration": 122658,
+     "storyboard": 172982,
+     "composition": 66866,
+     "director_preplan": 368500,
+     "storyboard_drafts": 20216
+    },
+    "phase_started_ms": null,
+    "timing_from_phase": "narration",
+    "video_batch_job_id": "83f75692-8c77-4896-921e-ab7f5d330a84",
+    "video_batch_job_round": 1
+   }
+  }
+ ]
+}

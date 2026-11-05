@@ -1,0 +1,1247 @@
+[
+ {
+  "sequence": 1,
+  "group_id": "ddebe38a-c808-5a83-8052-bef243dfde99",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "3a4fceff-543a-43b8-adb6-b40317f830e6",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 05:54:08.832243+00:00"
+   }
+  ],
+  "current_storyboard": "3a4fceff-543a-43b8-adb6-b40317f830e6",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "3528f397-c8a3-43d6-b758-3c7c81f9a153",
+    "generation_id": "3a4fceff-543a-43b8-adb6-b40317f830e6",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": true,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "3528f397-c8a3-43d6-b758-3c7c81f9a153",
+  "panel_sizes": [
+   [
+    827,
+    457
+   ],
+   [
+    823,
+    457
+   ],
+   [
+    827,
+    459
+   ]
+  ],
+  "video_sha256": "89c0f5ab16f623c153ef314ede5c7bf7b4e366dc329c6e9cb251c305caa4fdc8",
+  "hf": {
+   "seq": "v_1",
+   "frames": 311,
+   "shots": 3,
+   "jitter_hf": 0.721,
+   "worst": {
+    "start": 97,
+    "end": 186,
+    "frames": 84,
+    "jitter_hf": 1.185,
+    "speed": 1.361
+   },
+   "shaky_shots": 3,
+   "max_speed": 1.361
+  }
+ },
+ {
+  "sequence": 2,
+  "group_id": "f7feb4fc-b78d-51cf-aa67-e190346a9efd",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "786fb497-81e6-477c-b0b0-8215b922d8dd",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 05:54:08.888718+00:00"
+   }
+  ],
+  "current_storyboard": "786fb497-81e6-477c-b0b0-8215b922d8dd",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "1dfc913d-7fa4-4a41-8d89-6098e7309357",
+    "generation_id": "786fb497-81e6-477c-b0b0-8215b922d8dd",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": true,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "1dfc913d-7fa4-4a41-8d89-6098e7309357",
+  "panel_sizes": [
+   [
+    826,
+    460
+   ],
+   [
+    826,
+    460
+   ],
+   [
+    826,
+    460
+   ]
+  ],
+  "video_sha256": "f81ebff5cdcc36ee83802d55a565a03549efc03d0ac68d2d7cedd58eddbce195",
+  "hf": {
+   "seq": "v_2",
+   "frames": 362,
+   "shots": 3,
+   "jitter_hf": 0.062,
+   "worst": {
+    "start": 0,
+    "end": 102,
+    "frames": 97,
+    "jitter_hf": 0.115,
+    "speed": 0.14
+   },
+   "shaky_shots": 0,
+   "max_speed": 0.14
+  }
+ },
+ {
+  "sequence": 3,
+  "group_id": "4a54e6dd-50c6-5f7f-970e-6a2470f4c2fb",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 2,
+  "storyboard_failure_codes": {
+   "aspect_ratio_not_supported": 1
+  },
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "5f88e01b-f7f2-4a1b-bf7b-99daa348ee79",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "aspect_ratio_not_supported",
+    "created_at": "2026-11-05 05:54:08.939610+00:00"
+   },
+   {
+    "id": "e5af91c0-03ff-4d09-b7b2-74251cad5632",
+    "version": 2,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": null,
+    "created_at": "2026-11-05 05:56:09.939433+00:00"
+   }
+  ],
+  "current_storyboard": "e5af91c0-03ff-4d09-b7b2-74251cad5632",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "90c4a4e7-2115-4235-b389-df2471608eed",
+    "generation_id": "e5af91c0-03ff-4d09-b7b2-74251cad5632",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": true,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "90c4a4e7-2115-4235-b389-df2471608eed",
+  "panel_sizes": [
+   [
+    825,
+    459
+   ],
+   [
+    824,
+    459
+   ],
+   [
+    825,
+    459
+   ]
+  ],
+  "video_sha256": "fde70c84384b78d23cd1a494a61718659712e56197508eb66080bf00a7ab84d6",
+  "hf": {
+   "seq": "v_3",
+   "frames": 311,
+   "shots": 3,
+   "jitter_hf": 0.127,
+   "worst": {
+    "start": 112,
+    "end": 165,
+    "frames": 48,
+    "jitter_hf": 0.172,
+    "speed": 0.204
+   },
+   "shaky_shots": 0,
+   "max_speed": 0.204
+  }
+ },
+ {
+  "sequence": 4,
+  "group_id": "20fde8df-eff7-5622-804a-c14e26c3816d",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "b38c60f5-139e-48a3-bc2b-0cebbb4b40ab",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 05:54:09.005702+00:00"
+   }
+  ],
+  "current_storyboard": "b38c60f5-139e-48a3-bc2b-0cebbb4b40ab",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "593b1111-98f5-4986-8cd4-f93e00097172",
+    "generation_id": "b38c60f5-139e-48a3-bc2b-0cebbb4b40ab",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": true,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "593b1111-98f5-4986-8cd4-f93e00097172",
+  "panel_sizes": [
+   [
+    824,
+    458
+   ],
+   [
+    824,
+    458
+   ],
+   [
+    824,
+    459
+   ],
+   [
+    824,
+    459
+   ]
+  ],
+  "video_sha256": "09d37f28d60be70ff7f47378813256e6a2991d123b314ef18dcc7d0ff7276364",
+  "hf": {
+   "seq": "v_4",
+   "frames": 362,
+   "shots": 4,
+   "jitter_hf": 0.095,
+   "worst": {
+    "start": 237,
+    "end": 362,
+    "frames": 120,
+    "jitter_hf": 0.123,
+    "speed": 0.226
+   },
+   "shaky_shots": 0,
+   "max_speed": 0.226
+  }
+ },
+ {
+  "sequence": 5,
+  "group_id": "f3d668ce-682d-543b-87b9-e0957872cb5e",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "3069d694-85dd-499f-808e-83b53943aa94",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 05:54:09.149240+00:00"
+   }
+  ],
+  "current_storyboard": "3069d694-85dd-499f-808e-83b53943aa94",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "3c2cbd72-56c1-43d6-8049-acb6848f2b9e",
+    "generation_id": "3069d694-85dd-499f-808e-83b53943aa94",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": true,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "3c2cbd72-56c1-43d6-8049-acb6848f2b9e",
+  "panel_sizes": [
+   [
+    826,
+    460
+   ],
+   [
+    825,
+    460
+   ],
+   [
+    758,
+    459
+   ]
+  ],
+  "video_sha256": "7780198b3aeee346e00811878587f290bae93802bc879198ff7014a9f3486076",
+  "hf": {
+   "seq": "v_5",
+   "frames": 328,
+   "shots": 2,
+   "jitter_hf": 0.04,
+   "worst": {
+    "start": 97,
+    "end": 328,
+    "frames": 226,
+    "jitter_hf": 0.046,
+    "speed": 0.047
+   },
+   "shaky_shots": 0,
+   "max_speed": 0.047
+  }
+ },
+ {
+  "sequence": 6,
+  "group_id": "5a677f32-739a-568f-aed6-3fedce6824bf",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "91ef38b6-aa1b-4294-b522-0ecdc0685943",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 05:54:09.259133+00:00"
+   }
+  ],
+  "current_storyboard": "91ef38b6-aa1b-4294-b522-0ecdc0685943",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "66caf257-da03-4506-bee9-9d9fa3f25b0b",
+    "generation_id": "91ef38b6-aa1b-4294-b522-0ecdc0685943",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": true,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "66caf257-da03-4506-bee9-9d9fa3f25b0b",
+  "panel_sizes": [
+   [
+    824,
+    458
+   ],
+   [
+    824,
+    458
+   ],
+   [
+    825,
+    461
+   ],
+   [
+    825,
+    461
+   ]
+  ],
+  "video_sha256": "cd1dccb7b886f8dc82ed81fe9275d451939221ae28978a2a2340b18d80759c98",
+  "hf": {
+   "seq": "v_6",
+   "frames": 362,
+   "shots": 4,
+   "jitter_hf": 0.369,
+   "worst": {
+    "start": 73,
+    "end": 153,
+    "frames": 75,
+    "jitter_hf": 0.787,
+    "speed": 1.052
+   },
+   "shaky_shots": 1,
+   "max_speed": 1.052
+  }
+ },
+ {
+  "sequence": 7,
+  "group_id": "4a0973ab-342f-5b6f-a47f-5e0cd92814fd",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 2,
+  "storyboard_failure_codes": {
+   "aspect_ratio_not_supported": 1
+  },
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "0fd0855c-e02d-4796-a3e1-bd54dc41a522",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "aspect_ratio_not_supported",
+    "created_at": "2026-11-05 05:54:09.310515+00:00"
+   },
+   {
+    "id": "03382957-c8be-4156-b464-22da80408a78",
+    "version": 2,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": null,
+    "created_at": "2026-11-05 05:55:23.252707+00:00"
+   }
+  ],
+  "current_storyboard": "03382957-c8be-4156-b464-22da80408a78",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "fc6e97b8-23ca-4ea6-852a-d718dd71d4a0",
+    "generation_id": "03382957-c8be-4156-b464-22da80408a78",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": true,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "fc6e97b8-23ca-4ea6-852a-d718dd71d4a0",
+  "panel_sizes": [
+   [
+    826,
+    460
+   ],
+   [
+    825,
+    460
+   ],
+   [
+    827,
+    460
+   ]
+  ],
+  "video_sha256": "c59ec3963eafc35a3e98f51fbef74b02984e2a2f4cb7a99a25fb23f8adba0bee",
+  "hf": {
+   "seq": "v_7",
+   "frames": 328,
+   "shots": 3,
+   "jitter_hf": 0.262,
+   "worst": {
+    "start": 93,
+    "end": 186,
+    "frames": 88,
+    "jitter_hf": 0.48,
+    "speed": 0.6
+   },
+   "shaky_shots": 1,
+   "max_speed": 0.6
+  }
+ },
+ {
+  "sequence": 8,
+  "group_id": "793424a8-2913-546a-87af-a190834d81cf",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 2,
+  "storyboard_failure_codes": {
+   "aspect_ratio_not_supported": 1
+  },
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "b30cb361-b0df-4ce6-8c86-471977185363",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "aspect_ratio_not_supported",
+    "created_at": "2026-11-05 05:54:09.377462+00:00"
+   },
+   {
+    "id": "f3ee5355-ffde-4ad7-86fe-e0b6a0420aa0",
+    "version": 2,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": null,
+    "created_at": "2026-11-05 05:55:23.482155+00:00"
+   }
+  ],
+  "current_storyboard": "f3ee5355-ffde-4ad7-86fe-e0b6a0420aa0",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "e50e6a4b-1a8e-4c9f-b707-3d3c16e8c1db",
+    "generation_id": "f3ee5355-ffde-4ad7-86fe-e0b6a0420aa0",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": true,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "e50e6a4b-1a8e-4c9f-b707-3d3c16e8c1db",
+  "panel_sizes": [
+   [
+    826,
+    460
+   ],
+   [
+    825,
+    460
+   ],
+   [
+    826,
+    460
+   ],
+   [
+    825,
+    460
+   ]
+  ],
+  "video_sha256": "5fec852f6729d79e284e02f6d4285cc61fbb1acb8d24ae0fa3104e292766f360",
+  "hf": {
+   "seq": "v_8",
+   "frames": 362,
+   "shots": 4,
+   "jitter_hf": 0.082,
+   "worst": {
+    "start": 0,
+    "end": 93,
+    "frames": 88,
+    "jitter_hf": 0.129,
+    "speed": 0.149
+   },
+   "shaky_shots": 0,
+   "max_speed": 0.17
+  }
+ },
+ {
+  "sequence": 9,
+  "group_id": "6f0473bc-fc9c-5c04-8304-1329cb00def9",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "3f6779df-8113-42e6-8812-3180bf576779",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 05:54:09.428835+00:00"
+   }
+  ],
+  "current_storyboard": "3f6779df-8113-42e6-8812-3180bf576779",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "6e13d495-d6a5-4810-a48b-3c12fe8d0c55",
+    "generation_id": "3f6779df-8113-42e6-8812-3180bf576779",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": true,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "6e13d495-d6a5-4810-a48b-3c12fe8d0c55",
+  "panel_sizes": [
+   [
+    823,
+    459
+   ],
+   [
+    822,
+    459
+   ],
+   [
+    823,
+    459
+   ]
+  ],
+  "video_sha256": "720f6d54afa1467175bfd9388b7389754008d69929c67faa11a9766fd28d6ef6",
+  "hf": {
+   "seq": "v_9",
+   "frames": 362,
+   "shots": 3,
+   "jitter_hf": 0.109,
+   "worst": {
+    "start": 0,
+    "end": 94,
+    "frames": 89,
+    "jitter_hf": 0.18,
+    "speed": 0.241
+   },
+   "shaky_shots": 0,
+   "max_speed": 0.254
+  }
+ },
+ {
+  "sequence": 10,
+  "group_id": "4786b54e-12dc-553f-b399-78df9214a1b1",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "bd606748-4e5a-4be9-9453-3d8f23e1ff4e",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 05:54:09.480559+00:00"
+   }
+  ],
+  "current_storyboard": "bd606748-4e5a-4be9-9453-3d8f23e1ff4e",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "15061ee8-3292-4186-a35a-9dc2079eb506",
+    "generation_id": "bd606748-4e5a-4be9-9453-3d8f23e1ff4e",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": true,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "15061ee8-3292-4186-a35a-9dc2079eb506",
+  "panel_sizes": [
+   [
+    826,
+    461
+   ],
+   [
+    826,
+    461
+   ],
+   [
+    827,
+    461
+   ]
+  ],
+  "video_sha256": "dcc52c7666226d6c5605076e710a00dd51590fee1348181253021d9c986c6de4",
+  "hf": {
+   "seq": "v_10",
+   "frames": 294,
+   "shots": 3,
+   "jitter_hf": 0.266,
+   "worst": {
+    "start": 141,
+    "end": 294,
+    "frames": 148,
+    "jitter_hf": 0.342,
+    "speed": 0.39
+   },
+   "shaky_shots": 1,
+   "max_speed": 0.39
+  }
+ },
+ {
+  "sequence": 11,
+  "group_id": "ace9e878-fb2d-52e1-97be-498af3fa8b36",
+  "shots": 2,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "e50b7999-15cd-4de8-bb7c-224c84d5b30f",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 2,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 05:54:09.525944+00:00"
+   }
+  ],
+  "current_storyboard": "e50b7999-15cd-4de8-bb7c-224c84d5b30f",
+  "storyboard_size": [
+   1672,
+   940
+  ],
+  "empty_cells": [
+   {
+    "cell": 3,
+    "mean": 0.1,
+    "dark": true
+   },
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "be695523-533f-491e-b7c3-612a147b3f4b",
+    "generation_id": "e50b7999-15cd-4de8-bb7c-224c84d5b30f",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": true,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 2,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 3,
+     "reference_source": "logical_request",
+     "staged": 3,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "be695523-533f-491e-b7c3-612a147b3f4b",
+  "panel_sizes": [
+   [
+    823,
+    462
+   ],
+   [
+    823,
+    462
+   ]
+  ],
+  "video_sha256": "ba6e303950b6cd5f3b3d44251f7dbf6619ebd8ce517e1fb417227ece95d71d2c",
+  "hf": {
+   "seq": "v_11",
+   "frames": 260,
+   "shots": 2,
+   "jitter_hf": 0.028,
+   "worst": {
+    "start": 0,
+    "end": 110,
+    "frames": 105,
+    "jitter_hf": 0.037,
+    "speed": 0.09
+   },
+   "shaky_shots": 0,
+   "max_speed": 0.09
+  }
+ },
+ {
+  "sequence": 12,
+  "group_id": "e093cc03-6257-5be9-bc3f-f3dd1b703b5f",
+  "shots": 2,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "16ee7264-889d-4acf-a9b9-5785e5261baf",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 2,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 05:54:10.549663+00:00"
+   }
+  ],
+  "current_storyboard": "16ee7264-889d-4acf-a9b9-5785e5261baf",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 3,
+    "mean": 0.1,
+    "dark": true
+   },
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "e1afc01b-132a-4e4e-952d-e3d5d26b8ada",
+    "generation_id": "16ee7264-889d-4acf-a9b9-5785e5261baf",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": true,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 2,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 3,
+     "reference_source": "logical_request",
+     "staged": 3,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "e1afc01b-132a-4e4e-952d-e3d5d26b8ada",
+  "panel_sizes": [
+   [
+    823,
+    463
+   ],
+   [
+    823,
+    463
+   ]
+  ],
+  "video_sha256": "c3243d2fdbca5195c805799d7b3268c1d29a30a929871883a468487ab3065e35",
+  "hf": {
+   "seq": "v_12",
+   "frames": 362,
+   "shots": 3,
+   "jitter_hf": 0.121,
+   "worst": {
+    "start": 30,
+    "end": 130,
+    "frames": 95,
+    "jitter_hf": 0.176,
+    "speed": 0.125
+   },
+   "shaky_shots": 0,
+   "max_speed": 0.155
+  }
+ },
+ {
+  "sequence": 13,
+  "group_id": "7df7c763-bfa6-5595-af5a-b1400f37eed2",
+  "shots": 2,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "c1730068-a2ab-4b52-a2b5-51d9043147c5",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 2,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 05:54:11.112064+00:00"
+   }
+  ],
+  "current_storyboard": "c1730068-a2ab-4b52-a2b5-51d9043147c5",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 3,
+    "mean": 0.1,
+    "dark": true
+   },
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "bb9ef4c9-a3da-4f85-a8bf-396466ccf210",
+    "generation_id": "c1730068-a2ab-4b52-a2b5-51d9043147c5",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": true,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 2,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 3,
+     "reference_source": "logical_request",
+     "staged": 3,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "bb9ef4c9-a3da-4f85-a8bf-396466ccf210",
+  "panel_sizes": [
+   [
+    827,
+    465
+   ],
+   [
+    823,
+    465
+   ]
+  ],
+  "video_sha256": "b06eb611fa37f4ddc55f27b5e72658a8079b12dab2225eecc4caf8ddca084764",
+  "hf": {
+   "seq": "v_13",
+   "frames": 141,
+   "shots": 1,
+   "jitter_hf": 0.215,
+   "worst": {
+    "start": 2,
+    "end": 141,
+    "frames": 134,
+    "jitter_hf": 0.215,
+    "speed": 1.748
+   },
+   "shaky_shots": 0,
+   "max_speed": 1.748
+  }
+ }
+]

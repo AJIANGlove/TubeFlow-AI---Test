@@ -1,0 +1,15 @@
+{
+  "project_id": "484746c4-ddf3-48af-90ca-a25cf41cbf35",
+  "confirm": {
+    "result": {
+      "project_id": "484746c4-ddf3-48af-90ca-a25cf41cbf35",
+      "job_id": "narration_484746c4-ddf3-48af-90ca-a25cf41cbf35_29ad09b7f804f8bdbe015819f4979ae01da94a79a435b29273fc71f883e2d9cc",
+      "state": "QUEUED"
+    }
+  },
+  "narration_job_state": null,
+  "narration_sentences": 39,
+  "auto_state": "RUNNING",
+  "auto_round": 1,
+  "frozen_sentences": 0
+}

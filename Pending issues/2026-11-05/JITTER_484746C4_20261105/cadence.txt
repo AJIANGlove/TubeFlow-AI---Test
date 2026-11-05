@@ -1,0 +1,15 @@
+185789c0-59d {"moving_windows": 21, "held_windows": 2, "held_share": 0.1, "held_at_s": [4.2, 4.5]}
+a19ac034-b26 {"moving_windows": 42, "held_windows": 8, "held_share": 0.19, "held_at_s": [4.8, 5.0, 5.2, 5.5, 5.8, 6.0, 6.2, 6.5]}
+v_1.mp4 {"moving_windows": 41, "held_windows": 2, "held_share": 0.05, "held_at_s": [6.5, 6.8]}
+v_10.mp4 {"moving_windows": 43, "held_windows": 8, "held_share": 0.19, "held_at_s": [0.8, 1.0, 1.2, 1.5, 1.8, 2.0, 2.2, 2.5]}
+v_11.mp4 {"moving_windows": 29, "held_windows": 0, "held_share": 0.0, "held_at_s": []}
+v_12.mp4 {"moving_windows": 43, "held_windows": 14, "held_share": 0.33, "held_at_s": [0.5, 0.8, 1.0, 1.2, 1.5, 5.5, 5.8, 6.0, 6.2, 6.5, 10.0, 10.2]}
+v_13.mp4 {"moving_windows": 20, "held_windows": 0, "held_share": 0.0, "held_at_s": []}
+v_2.mp4 {"moving_windows": 35, "held_windows": 15, "held_share": 0.43, "held_at_s": [1.0, 1.2, 1.5, 1.8, 2.0, 5.0, 5.2, 5.5, 5.8, 6.0, 6.2, 6.5]}
+v_3.mp4 {"moving_windows": 38, "held_windows": 0, "held_share": 0.0, "held_at_s": []}
+v_4.mp4 {"moving_windows": 33, "held_windows": 8, "held_share": 0.24, "held_at_s": [11.0, 11.2, 12.0, 12.2, 12.5, 12.8, 13.8, 14.0]}
+v_5.mp4 {"moving_windows": 31, "held_windows": 0, "held_share": 0.0, "held_at_s": []}
+v_6.mp4 {"moving_windows": 38, "held_windows": 3, "held_share": 0.08, "held_at_s": [0.0, 0.2, 0.5]}
+v_7.mp4 {"moving_windows": 49, "held_windows": 7, "held_share": 0.14, "held_at_s": [1.2, 1.5, 2.5, 2.8, 12.5, 12.8, 13.0]}
+v_8.mp4 {"moving_windows": 43, "held_windows": 15, "held_share": 0.35, "held_at_s": [0.0, 10.5, 10.8, 11.0, 11.2, 11.5, 11.8, 12.0, 12.5, 12.8, 13.0, 13.2]}
+v_9.mp4 {"moving_windows": 34, "held_windows": 0, "held_share": 0.0, "held_at_s": []}
