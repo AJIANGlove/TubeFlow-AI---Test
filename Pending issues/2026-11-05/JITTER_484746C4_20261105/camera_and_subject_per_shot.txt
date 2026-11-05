@@ -1,0 +1,6 @@
+group 1 shot 1 (0.0-4.0s): camera tx/frame +0.01px, zoom/frame -0.002%, max |tx| jump 2.8px, camera HF 0.79px (native 1056); subject flow even/odd frames 0.5/0.4px
+group 1 shot 2 (4.0-7.7s): camera tx/frame +0.43px, zoom/frame -0.027%, max |tx| jump 15.7px, camera HF 2.66px (native 1056); subject flow even/odd frames 1.9/6.1px
+group 1 shot 3 (7.8-12.9s): camera tx/frame +0.05px, zoom/frame -0.002%, max |tx| jump 2.1px, camera HF 0.62px (native 1056); subject flow even/odd frames 0.7/0.5px
+group 9 shot 1 (0.0-3.9s): camera tx/frame -0.42px, zoom/frame +0.082%, max |tx| jump 1.0px, camera HF 0.51px (native 1056); subject flow even/odd frames 0.5/2.5px
+group 9 shot 2 (3.9-7.8s): camera tx/frame -0.01px, zoom/frame +0.000%, max |tx| jump 0.1px, camera HF 0.02px (native 1056); subject flow even/odd frames 0.5/12.6px
+group 9 shot 3 (7.8-15.0s): camera tx/frame -0.18px, zoom/frame -0.038%, max |tx| jump 1.4px, camera HF 0.08px (native 1056); subject flow even/odd frames 0.1/1.5px
