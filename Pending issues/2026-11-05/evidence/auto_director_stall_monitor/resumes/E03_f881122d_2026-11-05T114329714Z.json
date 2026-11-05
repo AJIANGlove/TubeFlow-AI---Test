@@ -1,0 +1,26 @@
+{
+  "action": {
+    "kind": "resume",
+    "at_utc": "2026-11-05T11:43:27.154Z",
+    "round_before": 6,
+    "round_after": 7,
+    "result": "accepted",
+    "postcheck": {
+      "state": "RUNNING",
+      "round": 7,
+      "phase": "director_preplan",
+      "paused_at_ms_present": false
+    },
+    "verification": {
+      "state": "awaiting_new_run"
+    }
+  },
+  "raw_result": {
+    "ok": true,
+    "state": "RUNNING",
+    "round": 7,
+    "reason_code": null,
+    "round_before": 6,
+    "exit": 0
+  }
+}

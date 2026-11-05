@@ -3,8 +3,8 @@
 > 本文档由 `runtime/operations/director-stall-monitor-20261105/monitor.py` 自动生成。
 > `<!-- BEGIN/END AUTO-GENERATED -->` 之间为受管区，脚本会重写；之外为人工批注，脚本不改动。
 
-- 最近一次结构性更新：2026-11-05T11:33:20.107Z / 2026-11-05 19:33:20 CST（仅当事件/恢复/阶段变化时才重写本区）
-- 数据库时钟（采集时）：2026-11-05T11:33:41.883Z
+- 最近一次结构性更新：2026-11-05T11:43:29.735Z / 2026-11-05 19:43:29 CST（仅当事件/恢复/阶段变化时才重写本区）
+- 数据库时钟（采集时）：2026-11-05T11:43:47.515Z
 - 监控脚本：`runtime/operations/director-stall-monitor-20261105/monitor.py`
 - 采样：常驻进程 5 分钟一轮；会话结束后由每小时兜底任务接力（精度降为 60 分钟）
 
@@ -12,7 +12,7 @@
 
 ## 0. 一句话结论
 
-截至 2026-11-05T11:33:20.107Z / 2026-11-05 19:33:20 CST：3 个监控对象中，2 个已跳出导演阶段，1 个停在导演阶段且已暂停，0 个需要人工关注；累计执行恢复 2 次，累计记录中断事件 2 个。
+截至 2026-11-05T11:43:29.735Z / 2026-11-05 19:43:29 CST：3 个监控对象中，2 个已跳出导演阶段，1 个停在导演阶段且已暂停，0 个需要人工关注；累计执行恢复 3 次，累计记录中断事件 3 个。
 
 ## 1. 监控对象与授权
 
@@ -20,7 +20,7 @@
 
 | 项目 UUID | 标题 | 基线 round | 基线 phase | 当前 state | 当前 phase | 已用恢复 | 分类 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `ff67c5e9-1db8-49c6-8f49-c96d9d0e140e` | Every Level of a Medieval Merchant | 4 | director_preplan | RUNNING | storyboard | 0/3 | EXITED |
+| `ff67c5e9-1db8-49c6-8f49-c96d9d0e140e` | Every Level of a Medieval Merchant | 4 | director_preplan | RUNNING | video | 0/3 | EXITED |
 | `7cf2e79d-4d9d-48fa-8639-dde4100b6469` | Why Everyone Keeps Stealing Ukraine's Soil | 1 | storyboard | PAUSED | video | 0/3 | EXITED |
 | `f881122d-1846-4d18-8f8b-4b89b0cbc0db` | You're a Crew Member on the Mary Celeste | 4 | director_preplan | PAUSED | director_preplan | 2/3 | PAUSED_DIRECTOR |
 
@@ -199,6 +199,58 @@
 
 证据：`Pending issues/2026-11-05/evidence/auto_director_stall_monitor/incidents/E02_f881122d_2026-11-05T112811.203Z.json`
 
+#### E03 · You're a Crew Member on the Mary Celeste · 首次观测 2026-11-05T11:43:25.180Z · `PAUSED_DIRECTOR`
+
+**可证事实（采集快照）**
+
+| 字段 | 值 | 来源 |
+| --- | --- | --- |
+| auto_pipeline_runs.id | a3be1745-399c-4857-b6b8-ee4aeccd111a | auto_pipeline_runs |
+| state / reason_code | PAUSED / director_preplan_failed | auto_pipeline_runs |
+| authorization_round | 6 | auto_pipeline_runs |
+| payload.phase | director_preplan | auto_pipeline_runs |
+| payload.paused_at_ms | 1793878281730 | auto_pipeline_runs |
+| payload.paused_at_ms（换算） | 2026-11-05T11:31:21Z | 同上 |
+| payload.failure_code | director_output_sentence_coverage_invalid | auto_pipeline_runs |
+| payload.director_failed_run_id | be6678d5-ae14-410c-a2ed-bccf121a9dfd | auto_pipeline_runs |
+| auto_pipeline_runs.updated_at | 2026-11-05T11:31:21.730Z | auto_pipeline_runs |
+| 最新导演 run.id | be6678d5-ae14-410c-a2ed-bccf121a9dfd | project_director_runs |
+| 最新导演 run.status | FAILED | project_director_runs |
+| 最新导演 run.failure_code | director_output_sentence_coverage_invalid | project_director_runs |
+| total_units / auto_retries_used | 59 / 3 | project_director_runs |
+| run 创建时间 | 2026-11-05T11:28:47.368Z | project_director_runs |
+| 单元状态分布 | {"FAILED": 1, "INTENT_PERSISTED": 12, "SUCCEEDED": 46} | project_director_units |
+| 单元失败码分布 | {"director_output_sentence_coverage_invalid": 1} | project_director_units |
+| 项目 auto_budget_round | 6 | projects |
+| 观测次数 | 1 | 本监控 |
+| 首次/最近观测 | 2026-11-05T11:43:25.180Z / 2026-11-05T11:43:25.180Z | 本监控 |
+
+**失败单元明细（最多 1 条，来自最新 run）**
+
+| ordinal | kind | status | attempt | last_failure_code | diagnostics 摘要 |
+| --- | --- | --- | --- | --- | --- |
+| 40 | SHOT_PLAN | FAILED | 3 | director_output_sentence_coverage_invalid | {} |
+
+**不可证 / 只能近似**
+
+- 失败发生的精确时刻：`project_director_runs` / `project_director_units` 均无 `updated_at`，只能由暂停时刻反推「不晚于该时刻」。
+- 每次重试的先后与耗时：单元无逐次尝试历史，`attempt_count` 只有累计值。
+- 更早一次暂停的详情：`payload` 的暂停详情键会在下一次暂停时被清除。
+- 远端服务的真实响应：`response_diagnostics_json` 仅保留最近一次。
+
+**动作与结果**
+
+| 项 | 值 |
+| --- | --- |
+| 动作 | resume |
+| 时刻 | 2026-11-05T11:43:27.154Z |
+| round 变化 | 6 → 7 |
+| 调用结果 | accepted |
+| 立即复核 | {"state": "RUNNING", "round": 7, "phase": "director_preplan", "paused_at_ms_present": false} |
+| 新 run 验证 | {"state": "awaiting_new_run"} |
+
+证据：`Pending issues/2026-11-05/evidence/auto_director_stall_monitor/incidents/E03_f881122d_2026-11-05T114325.180Z.json`
+
 ## 4. 取证边界（可证 vs 不可证）
 
 ### 4.1 可证
@@ -224,7 +276,7 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | Every Level of a Medieval Merchant | 4 | 4 | 0 | 3 | EXITED | — |
 | Why Everyone Keeps Stealing Ukraine's Soil | 1 | 1 | 0 | 3 | EXITED | — |
-| You're a Crew Member on the Mary Celeste | 4 | 6 | 2 | 1 | PAUSED_DIRECTOR | 2026-11-05T11:28:13.394Z |
+| You're a Crew Member on the Mary Celeste | 4 | 6 | 2 | 1 | PAUSED_DIRECTOR | 2026-11-05T11:43:27.154Z |
 
 ### 5.2 失败码频次（最新 run 的单元级）
 

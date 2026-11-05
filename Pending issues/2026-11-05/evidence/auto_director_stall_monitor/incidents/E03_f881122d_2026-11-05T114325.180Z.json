@@ -1,0 +1,83 @@
+{
+  "id": "E03",
+  "project_id": "f881122d-1846-4d18-8f8b-4b89b0cbc0db",
+  "title": "You're a Crew Member on the Mary Celeste",
+  "kind": "PAUSED_DIRECTOR",
+  "fingerprint": "3eed302c6150adb8",
+  "first_seen_utc": "2026-11-05T11:43:25.180Z",
+  "last_seen_utc": "2026-11-05T11:43:25.180Z",
+  "observation_count": 1,
+  "pause_at_ms": 1793878281730,
+  "pause_at_utc": "2026-11-05T11:31:21Z",
+  "auto_run": {
+    "id": "a3be1745-399c-4857-b6b8-ee4aeccd111a",
+    "state": "PAUSED",
+    "reason_code": "director_preplan_failed",
+    "authorization_round": 6,
+    "phase": "director_preplan",
+    "director_failed_run_id": "be6678d5-ae14-410c-a2ed-bccf121a9dfd",
+    "paused_at_ms": 1793878281730,
+    "run_paused_ms": 3494846,
+    "phase_paused_ms": 3494846,
+    "pause_failure_code": "director_output_sentence_coverage_invalid",
+    "pause_group_sequences": null,
+    "created_at": "2026-11-05T09:02:44.391Z",
+    "updated_at": "2026-11-05T11:31:21.730Z"
+  },
+  "latest_run": {
+    "id": "be6678d5-ae14-410c-a2ed-bccf121a9dfd",
+    "status": "FAILED",
+    "trigger": "AUTO_RESUME",
+    "idempotency_key": "auto-pipeline-director:f881122d-1846-4d18-8f8b-4b89b0cbc0db:r6",
+    "failure_code": "director_output_sentence_coverage_invalid",
+    "total_units": 59,
+    "auto_retries_used": 3,
+    "retry_blocked": false,
+    "recovery_source_run_id": "924ee9a8-9e30-46a5-a6b8-5cd832007521",
+    "created_at": "2026-11-05T11:28:47.368Z",
+    "units_by_status": {
+      "FAILED": 1,
+      "INTENT_PERSISTED": 12,
+      "SUCCEEDED": 46
+    },
+    "unit_attempts": 6,
+    "unit_failure_codes": {
+      "director_output_sentence_coverage_invalid": 1
+    },
+    "max_lease_until": null,
+    "max_next_attempt_at": null,
+    "last_unit_created_at": "2026-11-05T11:28:47Z"
+  },
+  "problem_units": [
+    {
+      "ordinal": 40,
+      "kind": "SHOT_PLAN",
+      "status": "FAILED",
+      "attempt_count": 3,
+      "last_failure_code": "director_output_sentence_coverage_invalid",
+      "failure_code": "director_output_sentence_coverage_invalid",
+      "lease_until": null,
+      "next_attempt_at": null,
+      "diagnostics_excerpt": "{}"
+    }
+  ],
+  "auto_budget_round": 6,
+  "action": {
+    "kind": "resume",
+    "at_utc": "2026-11-05T11:43:27.154Z",
+    "round_before": 6,
+    "round_after": 7,
+    "result": "accepted",
+    "postcheck": {
+      "state": "RUNNING",
+      "round": 7,
+      "phase": "director_preplan",
+      "paused_at_ms_present": false
+    },
+    "verification": {
+      "state": "awaiting_new_run"
+    },
+    "resume_evidence": "Pending issues/2026-11-05/evidence/auto_director_stall_monitor/resumes/E03_f881122d_2026-11-05T114329714Z.json"
+  },
+  "evidence": "Pending issues/2026-11-05/evidence/auto_director_stall_monitor/incidents/E03_f881122d_2026-11-05T114325.180Z.json"
+}
