@@ -96,3 +96,13 @@
 - 新增故事板 **11 条**，全部 `grid-v2`，全部属 `247462a4`；全部产生于 10:11 之前（该项目重启前的自身重试），部署后 10 分钟内没有新增故事板。`storyboard_director_revisions` 新增 **0 条**；`composition_recut_approvals_json <> '[]'` 计数 **0**（开关关闭，符合预期）。
 - `247462a4`：AUTO 仍 `RUNNING` round 9（`updated_at` 10:06:19Z，早于本次部署，未被打断）；`23c59183`：仍 `COMPLETED` round 8（`updated_at` 08:32:14Z）。
 - 既有 v1 项目无新增故事板、无新增尝试。
+
+### 3.7 PR #12 部署后 10 分钟与 60 分钟（T_dep 2026-11-05T13:59:14Z 起至 14:10:07Z / 14:59:46Z）
+
+- 镜像 `sha256:aa73e69215a1…`（`director-stall-20261105`）；`.env` **首次**写入 `TUBEFLOW_DIRECTOR_COMPOSITION_RECUT=true` 与 `..._MIN_DISTANCE=0.10`；无迁移（`0047` 不变）。
+- 视频尝试被触碰：10 分钟 **25 条**（`f881122d` 10 CREATED + 2 RUNNING、`247462a4` 3 ARCHIVED、`7bc8ddd7` 6、`ff67c5e9` 1、`7cf2e79d` 1）；60 分钟 **76 条 / 5 个项目**（`f881122d` 27、`7cf2e79d` 21、`7bc8ddd7` 12、`ff67c5e9` 10、`247462a4` 5；阶段分布 ARCHIVED 43 / CREATED 25 / RUNNING 4 / SUCCEEDED 2 / STAGING 1 / SUBMITTED 1）。全部属各项目自身推进，`error_code` 为空。
+- 触发标记（FAILED / REMOTE_STATE_UNKNOWN / QC_FAILED / local_integrity_blocked）：10 分钟与 60 分钟**均为 0**。
+- 新增故事板：10 分钟 2 条、60 分钟仍为 2 条（均 `f881122d`、grid-v2：1 条 `aspect_ratio_not_supported` + 1 条成功）。既有 v1 项目无新增。
+- 回切：`storyboard_director_revisions` 新增 0 条；`composition_recut_approvals_json <> '[]'` **0**（全表 4920 行）；`storyboard_recut_panels_too_similar` **0**；`project_director_runs` 新增 **0** ⇒ 本窗口内**没有**回切、没有合并行为，相关验收项记「未验证」，不记「无异常」。
+- 三个监控项目（只读、未干预）：`7cf2e79d` RUNNING round 2（`updated_at` 12:26:38Z）、`f881122d` RUNNING round 12（14:05:18Z，部署后仍在推进视频阶段）、`ff67c5e9` RUNNING round 4（11:33:42Z）。
+- Temporal 超时对比：W0 `[12:59:46Z,13:59:46Z)` 112 个工作流、W1 `[13:59:46Z,14:59:46Z)` 136 个，故事板/合成/封面活动 `ActivityTaskTimedOut` **两窗均 0**，`fetch_failures` 0 ⇒ 无「部署前没有的超时」，未回滚。明细 `Pending issues/2026-11-05/evidence/director_stall_followup/deploy/temporal_w0.json`、`temporal_w1.json`。

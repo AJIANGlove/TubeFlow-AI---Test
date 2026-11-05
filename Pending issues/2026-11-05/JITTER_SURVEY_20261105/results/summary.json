@@ -1,0 +1,386 @@
+{
+ "metric": "held-frame share (held_frames.py, same algorithm as cadence.py)",
+ "since": "2026-10-01",
+ "projects_filter": [],
+ "overall": {
+  "videos": 4182,
+  "measured": 4114,
+  "held_share_mean": 0.1,
+  "held_share_max": 1.0,
+  "videos_held_share_ge_0.2": 722
+ },
+ "errors": 0,
+ "projects": {
+  "0383c58f-c592-46e9-a85e-f4ef083bc89e": {
+   "videos": 43,
+   "measured": 43,
+   "held_share_mean": 0.11,
+   "held_share_max": 1.0,
+   "videos_held_share_ge_0.2": 7
+  },
+  "05041eca-2392-4436-8310-d8ff5f6a5a6c": {
+   "videos": 86,
+   "measured": 86,
+   "held_share_mean": 0.059,
+   "held_share_max": 0.75,
+   "videos_held_share_ge_0.2": 10
+  },
+  "05c2bcce-4136-498d-8028-25e4a8a62b92": {
+   "videos": 121,
+   "measured": 110,
+   "held_share_mean": 0.106,
+   "held_share_max": 1.0,
+   "videos_held_share_ge_0.2": 12
+  },
+  "0a831fd2-709c-443e-98bc-741e8e522e54": {
+   "videos": 77,
+   "measured": 77,
+   "held_share_mean": 0.038,
+   "held_share_max": 0.69,
+   "videos_held_share_ge_0.2": 6
+  },
+  "1142cd90-f7dd-4455-8d7b-45ceae6ccf09": {
+   "videos": 85,
+   "measured": 85,
+   "held_share_mean": 0.053,
+   "held_share_max": 0.83,
+   "videos_held_share_ge_0.2": 9
+  },
+  "146ae08c-8412-49de-acd6-6ddaae2eb201": {
+   "videos": 112,
+   "measured": 108,
+   "held_share_mean": 0.139,
+   "held_share_max": 1.0,
+   "videos_held_share_ge_0.2": 28
+  },
+  "1a1056b7-9059-4e5a-a4d2-3239d988eacb": {
+   "videos": 109,
+   "measured": 108,
+   "held_share_mean": 0.037,
+   "held_share_max": 0.64,
+   "videos_held_share_ge_0.2": 5
+  },
+  "20b5c00a-3e67-453e-b9ff-5a700608cd80": {
+   "videos": 143,
+   "measured": 125,
+   "held_share_mean": 0.095,
+   "held_share_max": 1.0,
+   "videos_held_share_ge_0.2": 14
+  },
+  "22a7e305-c60c-4501-b716-d1af1506f22e": {
+   "videos": 91,
+   "measured": 87,
+   "held_share_mean": 0.056,
+   "held_share_max": 0.97,
+   "videos_held_share_ge_0.2": 7
+  },
+  "22dbcf09-4c18-4fd3-8fb7-d60732c78431": {
+   "videos": 68,
+   "measured": 63,
+   "held_share_mean": 0.097,
+   "held_share_max": 1.0,
+   "videos_held_share_ge_0.2": 6
+  },
+  "2333d455-a668-43c7-9a78-5473dbceae28": {
+   "videos": 67,
+   "measured": 67,
+   "held_share_mean": 0.062,
+   "held_share_max": 0.88,
+   "videos_held_share_ge_0.2": 5
+  },
+  "23c59183-7165-4c33-a161-7ecf28964c78": {
+   "videos": 79,
+   "measured": 79,
+   "held_share_mean": 0.367,
+   "held_share_max": 1.0,
+   "videos_held_share_ge_0.2": 59
+  },
+  "247462a4-e719-4488-ae14-aab962de1a27": {
+   "videos": 53,
+   "measured": 53,
+   "held_share_mean": 0.035,
+   "held_share_max": 1.0,
+   "videos_held_share_ge_0.2": 2
+  },
+  "2a1f46d4-7bb7-4fdf-8593-6ebbc49cbeaf": {
+   "videos": 56,
+   "measured": 55,
+   "held_share_mean": 0.033,
+   "held_share_max": 0.58,
+   "videos_held_share_ge_0.2": 1
+  },
+  "2c291aba-085d-499d-bd32-b3a4d75f252f": {
+   "videos": 107,
+   "measured": 107,
+   "held_share_mean": 0.406,
+   "held_share_max": 1.0,
+   "videos_held_share_ge_0.2": 83
+  },
+  "31ac464d-c0fe-4d55-8366-c343fcdddebe": {
+   "videos": 54,
+   "measured": 53,
+   "held_share_mean": 0.017,
+   "held_share_max": 0.39,
+   "videos_held_share_ge_0.2": 2
+  },
+  "31e00d87-5332-4b60-88e9-8b6dd8d475e7": {
+   "videos": 147,
+   "measured": 146,
+   "held_share_mean": 0.034,
+   "held_share_max": 0.56,
+   "videos_held_share_ge_0.2": 8
+  },
+  "3ce9a585-570f-4ac6-9d72-1ad13abb5daf": {
+   "videos": 102,
+   "measured": 100,
+   "held_share_mean": 0.015,
+   "held_share_max": 0.52,
+   "videos_held_share_ge_0.2": 2
+  },
+  "3ff575f8-51f3-4aee-87c9-f2cb482f5b15": {
+   "videos": 100,
+   "measured": 99,
+   "held_share_mean": 0.031,
+   "held_share_max": 0.32,
+   "videos_held_share_ge_0.2": 3
+  },
+  "41f44892-3201-4966-a551-b0c2eaac16fe": {
+   "videos": 126,
+   "measured": 126,
+   "held_share_mean": 0.029,
+   "held_share_max": 0.7,
+   "videos_held_share_ge_0.2": 5
+  },
+  "484746c4-ddf3-48af-90ca-a25cf41cbf35": {
+   "videos": 13,
+   "measured": 13,
+   "held_share_mean": 0.245,
+   "held_share_max": 0.72,
+   "videos_held_share_ge_0.2": 8
+  },
+  "4d47fb42-5795-4856-98fa-7f4a621394f4": {
+   "videos": 57,
+   "measured": 57,
+   "held_share_mean": 0.05,
+   "held_share_max": 0.71,
+   "videos_held_share_ge_0.2": 4
+  },
+  "56200e0b-892f-4d50-8a74-3a80336923e6": {
+   "videos": 111,
+   "measured": 111,
+   "held_share_mean": 0.039,
+   "held_share_max": 0.9,
+   "videos_held_share_ge_0.2": 5
+  },
+  "58677f8f-a8cb-426e-bdbb-221be62933ee": {
+   "videos": 66,
+   "measured": 66,
+   "held_share_mean": 0.024,
+   "held_share_max": 0.37,
+   "videos_held_share_ge_0.2": 2
+  },
+  "5b3037d2-18b8-4d7a-b161-2f9c1d1857fd": {
+   "videos": 34,
+   "measured": 33,
+   "held_share_mean": 0.027,
+   "held_share_max": 0.28,
+   "videos_held_share_ge_0.2": 1
+  },
+  "5c6fce56-78ea-41b9-825c-f278698b5ca1": {
+   "videos": 121,
+   "measured": 121,
+   "held_share_mean": 0.022,
+   "held_share_max": 0.83,
+   "videos_held_share_ge_0.2": 4
+  },
+  "5fd9e4ee-20cf-48de-84a3-7c7d1d376223": {
+   "videos": 97,
+   "measured": 97,
+   "held_share_mean": 0.069,
+   "held_share_max": 0.86,
+   "videos_held_share_ge_0.2": 13
+  },
+  "608cf263-ff21-4561-8ab7-573b01087ea3": {
+   "videos": 87,
+   "measured": 87,
+   "held_share_mean": 0.016,
+   "held_share_max": 0.46,
+   "videos_held_share_ge_0.2": 2
+  },
+  "6090a944-95f3-4f74-9825-683617bd4c3b": {
+   "videos": 127,
+   "measured": 127,
+   "held_share_mean": 0.024,
+   "held_share_max": 0.98,
+   "videos_held_share_ge_0.2": 3
+  },
+  "61f51e4b-0ced-494b-81e1-3735d3a6d812": {
+   "videos": 36,
+   "measured": 36,
+   "held_share_mean": 0.018,
+   "held_share_max": 0.21,
+   "videos_held_share_ge_0.2": 1
+  },
+  "72a22f0a-becd-44e7-8af5-369589781885": {
+   "videos": 14,
+   "measured": 14,
+   "held_share_mean": 0.333,
+   "held_share_max": 0.69,
+   "videos_held_share_ge_0.2": 10
+  },
+  "765dca11-b2fe-4e48-bc3d-9c0695f91263": {
+   "videos": 147,
+   "measured": 146,
+   "held_share_mean": 0.323,
+   "held_share_max": 1.0,
+   "videos_held_share_ge_0.2": 85
+  },
+  "7bc8ddd7-b9bc-46d5-9466-c4d29056ed21": {
+   "videos": 27,
+   "measured": 27,
+   "held_share_mean": 0.32,
+   "held_share_max": 0.78,
+   "videos_held_share_ge_0.2": 17
+  },
+  "7c6bdd71-be88-4090-9fde-87ac6187e35f": {
+   "videos": 43,
+   "measured": 43,
+   "held_share_mean": 0.046,
+   "held_share_max": 0.4,
+   "videos_held_share_ge_0.2": 3
+  },
+  "7cf2e79d-4d9d-48fa-8639-dde4100b6469": {
+   "videos": 33,
+   "measured": 33,
+   "held_share_mean": 0.138,
+   "held_share_max": 1.0,
+   "videos_held_share_ge_0.2": 11
+  },
+  "87bd1c2d-ffe6-4ba0-b187-2ac39e0babed": {
+   "videos": 116,
+   "measured": 116,
+   "held_share_mean": 0.079,
+   "held_share_max": 1.0,
+   "videos_held_share_ge_0.2": 14
+  },
+  "8971d305-4817-4743-94b7-f551b0b8c780": {
+   "videos": 170,
+   "measured": 165,
+   "held_share_mean": 0.101,
+   "held_share_max": 1.0,
+   "videos_held_share_ge_0.2": 28
+  },
+  "8d55c62a-6dfe-4fa5-8607-7ea5883cf001": {
+   "videos": 63,
+   "measured": 63,
+   "held_share_mean": 0.033,
+   "held_share_max": 0.59,
+   "videos_held_share_ge_0.2": 3
+  },
+  "8df22ac8-4723-44c7-bf2c-a733d329e208": {
+   "videos": 78,
+   "measured": 74,
+   "held_share_mean": 0.135,
+   "held_share_max": 1.0,
+   "videos_held_share_ge_0.2": 16
+  },
+  "910fa912-9755-4f03-99ef-b5fa6b894361": {
+   "videos": 147,
+   "measured": 145,
+   "held_share_mean": 0.025,
+   "held_share_max": 0.67,
+   "videos_held_share_ge_0.2": 6
+  },
+  "9a0e2b9f-efbb-4f66-ab91-65e3a27c9d48": {
+   "videos": 44,
+   "measured": 44,
+   "held_share_mean": 0.115,
+   "held_share_max": 1.0,
+   "videos_held_share_ge_0.2": 8
+  },
+  "a0e52ea0-0ef7-4a95-9c76-d87c947c38a0": {
+   "videos": 122,
+   "measured": 122,
+   "held_share_mean": 0.154,
+   "held_share_max": 0.6,
+   "videos_held_share_ge_0.2": 42
+  },
+  "c421d13b-e724-4908-8dd4-2bfcd18a33d2": {
+   "videos": 60,
+   "measured": 57,
+   "held_share_mean": 0.041,
+   "held_share_max": 1.0,
+   "videos_held_share_ge_0.2": 3
+  },
+  "d43cee7a-8070-4a9d-abc3-5072739ac3b2": {
+   "videos": 54,
+   "measured": 54,
+   "held_share_mean": 0.037,
+   "held_share_max": 0.31,
+   "videos_held_share_ge_0.2": 3
+  },
+  "d725172f-bffa-4795-9554-8761a197fa08": {
+   "videos": 152,
+   "measured": 150,
+   "held_share_mean": 0.137,
+   "held_share_max": 1.0,
+   "videos_held_share_ge_0.2": 37
+  },
+  "dd4f88ef-bbe4-5ee4-ac00-bede0e5a507f": {
+   "videos": 1,
+   "measured": 1,
+   "held_share_mean": 0.4,
+   "held_share_max": 0.4,
+   "videos_held_share_ge_0.2": 1
+  },
+  "e6e60acd-3b85-4c44-b833-22f3e29348bd": {
+   "videos": 78,
+   "measured": 78,
+   "held_share_mean": 0.211,
+   "held_share_max": 1.0,
+   "videos_held_share_ge_0.2": 27
+  },
+  "f2125c75-649b-4c92-948a-938c69b03afc": {
+   "videos": 55,
+   "measured": 55,
+   "held_share_mean": 0.075,
+   "held_share_max": 1.0,
+   "videos_held_share_ge_0.2": 7
+  },
+  "f66ea862-24ca-4a2a-83d4-2f191c0abaa7": {
+   "videos": 79,
+   "measured": 79,
+   "held_share_mean": 0.046,
+   "held_share_max": 0.47,
+   "videos_held_share_ge_0.2": 7
+  },
+  "f881122d-1846-4d18-8f8b-4b89b0cbc0db": {
+   "videos": 16,
+   "measured": 15,
+   "held_share_mean": 0.097,
+   "held_share_max": 0.55,
+   "videos_held_share_ge_0.2": 4
+  },
+  "fa3a0b30-9222-4ca4-a475-3bfd6cc57220": {
+   "videos": 13,
+   "measured": 13,
+   "held_share_mean": 0.139,
+   "held_share_max": 0.43,
+   "videos_held_share_ge_0.2": 4
+  },
+  "fd3bf04d-d703-4054-bf53-baa7081ed0e8": {
+   "videos": 77,
+   "measured": 77,
+   "held_share_mean": 0.336,
+   "held_share_max": 0.85,
+   "videos_held_share_ge_0.2": 53
+  },
+  "ff67c5e9-1db8-49c6-8f49-c96d9d0e140e": {
+   "videos": 18,
+   "measured": 18,
+   "held_share_mean": 0.455,
+   "held_share_max": 1.0,
+   "videos_held_share_ge_0.2": 16
+  }
+ }
+}

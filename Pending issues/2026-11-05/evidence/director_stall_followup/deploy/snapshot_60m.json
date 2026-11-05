@@ -1,0 +1,184 @@
+{
+ "t0": "2026-11-05T13:59:46Z",
+ "attempts_by_stage": [
+  {
+   "stage": "ARCHIVED",
+   "count": 43
+  },
+  {
+   "stage": "CREATED",
+   "count": 25
+  },
+  {
+   "stage": "RUNNING",
+   "count": 4
+  },
+  {
+   "stage": "SUCCEEDED",
+   "count": 2
+  },
+  {
+   "stage": "STAGING",
+   "count": 1
+  },
+  {
+   "stage": "SUBMITTED",
+   "count": 1
+  }
+ ],
+ "attempts_by_project": [
+  {
+   "project": "f881122d",
+   "stage": "ARCHIVED",
+   "count": 16
+  },
+  {
+   "project": "f881122d",
+   "stage": "CREATED",
+   "count": 11
+  },
+  {
+   "project": "7cf2e79d",
+   "stage": "ARCHIVED",
+   "count": 11
+  },
+  {
+   "project": "7cf2e79d",
+   "stage": "CREATED",
+   "count": 7
+  },
+  {
+   "project": "7bc8ddd7",
+   "stage": "ARCHIVED",
+   "count": 6
+  },
+  {
+   "project": "247462a4",
+   "stage": "ARCHIVED",
+   "count": 5
+  },
+  {
+   "project": "7bc8ddd7",
+   "stage": "CREATED",
+   "count": 5
+  },
+  {
+   "project": "ff67c5e9",
+   "stage": "ARCHIVED",
+   "count": 5
+  },
+  {
+   "project": "7cf2e79d",
+   "stage": "RUNNING",
+   "count": 2
+  },
+  {
+   "project": "ff67c5e9",
+   "stage": "CREATED",
+   "count": 2
+  },
+  {
+   "project": "f881122d",
+   "stage": "RUNNING",
+   "count": 1
+  },
+  {
+   "project": "ff67c5e9",
+   "stage": "SUCCEEDED",
+   "count": 1
+  },
+  {
+   "project": "7cf2e79d",
+   "stage": "SUCCEEDED",
+   "count": 1
+  },
+  {
+   "project": "ff67c5e9",
+   "stage": "RUNNING",
+   "count": 1
+  },
+  {
+   "project": "ff67c5e9",
+   "stage": "SUBMITTED",
+   "count": 1
+  },
+  {
+   "project": "7bc8ddd7",
+   "stage": "STAGING",
+   "count": 1
+  }
+ ],
+ "attempt_errors": [],
+ "trigger_markers": [
+  {
+   "failed": 0,
+   "remote_unknown": 0,
+   "qc_failed": 0,
+   "local_integrity_blocked": 0
+  }
+ ],
+ "storyboards_created": [
+  {
+   "project": "f881122d",
+   "layout": "grid-v2",
+   "status": "FAILED",
+   "failure_code": "aspect_ratio_not_supported",
+   "count": 1
+  },
+  {
+   "project": "f881122d",
+   "layout": "grid-v2",
+   "status": "SUCCEEDED",
+   "failure_code": "(none)",
+   "count": 1
+  }
+ ],
+ "director_revisions_created": [],
+ "recut_approvals_total": [
+  {
+   "total": 4920,
+   "non_empty": 0
+  }
+ ],
+ "recut_too_similar": [
+  {
+   "total": 0,
+   "since_t0": 0
+  }
+ ],
+ "director_runs_since": [
+  {
+   "runs": 0,
+   "first_run": "",
+   "last_run": ""
+  }
+ ],
+ "monitor_projects": [
+  {
+   "project": "7cf2e79d",
+   "state": "RUNNING",
+   "reason_code": null,
+   "authorization_round": 2,
+   "updated_at": "2026-11-05 12:26:38.496574+00:00"
+  },
+  {
+   "project": "f881122d",
+   "state": "RUNNING",
+   "reason_code": null,
+   "authorization_round": 12,
+   "updated_at": "2026-11-05 14:05:18.941818+00:00"
+  },
+  {
+   "project": "ff67c5e9",
+   "state": "RUNNING",
+   "reason_code": null,
+   "authorization_round": 4,
+   "updated_at": "2026-11-05 11:33:42.860777+00:00"
+  }
+ ],
+ "alembic": [
+  {
+   "version_num": "0047"
+  }
+ ]
+}

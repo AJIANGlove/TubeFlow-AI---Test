@@ -642,7 +642,7 @@
 - [x] 本地：放行记录经 SQL 往返、应用后保留；迁移前写入的行读出为空（SQLite 单元测试）。
 - [x] PostgreSQL 集成测试（含迁移 `0047` 升级/降级）、ruff、mypy 相对 main 无新增（实施方执行）。（2026-11-05 分支 `c40b196` 对 main `66f7609`：集成两侧 19 failed 逐条相同、跳过 7 条原因相同，通过 121 对 120（分支该文件为旧副本，合并后取 main 版本 `e8eb749e…`）；ruff 15 条、mypy 12 errors / 7 files 两侧相同，按行号归一化后逐行一致。迁移在隔离 PG 上 `0046 → 0047 → 0046 → 0047` 往返通过，列 `json` / `NOT NULL` / 默认 `'[]'::json`，迁移前写入的行读出 `[]`，降级不丢行，`alembic heads` 单头。证据 `Pending issues/2026-11-05/RECUT_CALIBRATION/`、`docs/DEPLOYMENT.md` §40。）
 - [x] 离线标定：已部署镜像上对全部成功的 v2 故事板计算同组不同镜头格子距离分布与最近样例（`Pending issues/2026-11-05/RECUT_CALIBRATION/recut_calibration.py`，只读），结果交用户看图（实施方执行）。（2026-11-05 镜像 `sha256:fa167f1b…`，342/343 张量到（6 项目），裁切失败 0；同组不同镜头 2877 对 p0 0.1240 / p1 0.3536 / p5 0.5647 / p25 0.8138 / p50 0.94；同构图相邻 2 对 0.6947 与 0.9411，同构图非相邻 0 对。结果与样图 `Pending issues/2026-11-05/RECUT_CALIBRATION/results/`，阈值未选。）
-- [ ] 阈值经用户看图确认后才开启开关（未验证）。
+- [x] 阈值经用户看图确认后才开启开关。（2026-11-05 用户确认阈值 **0.10**，开关于 **2026-11-05T13:59:46Z** 开启，镜像 `sha256:aa73e69215a1…`；见 `docs/DEPLOYMENT.md` §41。首批回切的故事板与成片仍须交用户观看——当前窗口内尚未出现回切。）
 
 ## 45. 2026-11-05 前置导演停滞治理验收（USER_DECISIONS §50）
 
@@ -650,6 +650,7 @@
 - [x] 本地：第 2 次重试提示含被拒相邻对序号与四轴变化，第 3 次为合并指令；诊断缺失时回退通用文本；持久化提示词不含附加文本（单元测试）。
 - [x] 本地：导演调用日志含耗时与结果、拒收日志含失败码与诊断、不含正文；句子覆盖拒收诊断含缺失位置（单元测试）。
 - [x] 本地：并发认领落败后改取下一个单元并执行（单元测试）。
-- [ ] PostgreSQL 集成测试、`test_project_director_workflow.py`（本机缺 pytest-asyncio 未运行）、ruff、mypy 相对 main 无新增（实施方执行）。
-- [ ] 部署机补采：失败单元全量位置与诊断、`8697ee51` 单元明细、已通过相邻对的四轴变化分布、第 40 单元文案、Temporal 活动耗时与超时、worker 线程池告警（只读，实施方执行）。
+- [x] PostgreSQL 集成测试、`test_project_director_workflow.py`、ruff、mypy 相对 main 无新增（实施方执行）。（2026-11-05 分支 `1baebef` 对 main `746d6bc`：单元 2426 → **2441 passed**，两侧 0 失败；集成两侧 **19 failed / 121 passed / 7 skipped**，失败集合逐条相同；ruff 15 条逐字节相同；mypy 12 errors / 7 files 归一化后逐行相同；`npm run check` 两侧均 259 passed。PR 声明其本机缺 pytest-asyncio 未跑的那条，本环境（pytest-asyncio 1.4.0）已跑：**11 passed**，两侧一致。证据 `Pending issues/2026-11-05/evidence/director_stall_followup/gates/`。）
+- [x] 部署机补采：失败单元全量位置与诊断、`8697ee51` 单元明细、已通过相邻对的四轴变化分布、第 40 单元文案、Temporal 活动耗时与超时、worker 线程池告警（只读，实施方执行）。（2026-11-05，`evidence/director_stall_followup/`：SQL A 254 行 / B 2 行（`8697ee51` 第 33 单元 `remote_state_unknown_exhausted`、第 39 单元 `worker_lost_after_call_started`）/ C 11 种轴向组合（731 对，只变 1 轴的组合为 **0**）/ D 第 40 单元 6 句 v10 提示词；16 个 run、572 次 `advance_project_director`，**TimedOut 0、重试 0**，最长 Started→Completed 806.07 s，**1201 s 只出现在 Scheduled→Started（5 次排队）**，1232/1274 未出现；temporalio 1.35.0，1702 行日志中线程池告警 **0 命中（记「无」）**。）
 - [ ] 上线后首个出现合并的运行：合并次数、每单元镜头数变化、受影响组故事板按 §46.11 目视抽查（未验证）。
+  - 2026-11-05 上线后 60 分钟：`project_director_runs` 新增 0、三类导演日志（`project director call finished` / `unit rejected` / `unit merged`）各 0 条，尚未出现任何合并行为，本项**未验证**。

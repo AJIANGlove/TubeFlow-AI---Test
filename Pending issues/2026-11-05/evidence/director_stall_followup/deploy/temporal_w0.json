@@ -1,0 +1,20 @@
+{
+ "window": {
+  "start": "2026-11-05T12:59:46Z",
+  "end": "2026-11-05T13:59:46Z"
+ },
+ "enumeration": "StartTime in [2026-11-05T12:29:46Z, 2026-11-05T13:59:46Z)",
+ "workflows_listed": 112,
+ "type_histogram": {
+  "GridSheetGenerationWorkflow": 69,
+  "GroupVideoRecoveryWorkflow": 37,
+  "ProjectDirectorRunWorkflow": 4,
+  "GridSheetRecoveryWorkflow": 2
+ },
+ "targets_scanned": 112,
+ "fetch_failures": [],
+ "fetch_failure_count": 0,
+ "timeouts_in_window": {},
+ "timeout_total": 0,
+ "workflows_with_timeouts": []
+}
