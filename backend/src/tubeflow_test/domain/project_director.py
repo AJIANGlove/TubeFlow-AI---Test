@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 from enum import StrEnum
 from uuid import UUID
@@ -169,6 +169,9 @@ class ProjectDirectorUnit:
     next_attempt_at: datetime | None = None
     plan_document: str | None = None
     plan_document_sha256: str | None = None
+    # 最近一次落库的安全诊断（不含模型正文，§40.1）：重试排程时为拒收诊断，
+    # 确定性合并完成时为合并审计（§50）。只读展示与重试提示使用，不入任何哈希。
+    response_diagnostics: dict[str, str | int | bool] = field(default_factory=dict)
 
     def __post_init__(self) -> None:
         if self.ordinal < 1:
