@@ -1,0 +1,1905 @@
+........F........F.F........................sF....ss...ss............... [ 49%]
+...............FFFFFFF.FFF...F.s..............FFF....................... [ 98%]
+Fs                                                                       [100%]
+================================== FAILURES ===================================
+____________ test_elevenlabs_project_and_snapshot_facts_round_trip ____________
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55433/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_40d65d7d0d0b4b27aa1388cb4131275f', schema='contract_40d65d7d0d0b4b27aa1388cb4131275f')
+production_parent_chain = ProductionParentChain(owner_id=UUID('b846e0d1-1adc-48bf-a5b9-d7cf68faf74f'), channel_id=UUID('347d8d8d-022b-4105-94ef-...848c'), project_id=UUID('eebe6aa4-e4df-4f52-873d-d9111cf50a38'), group_id=UUID('11b17396-58ae-43d6-85a1-3383ecda4307'))
+
+    @pytest.mark.integration
+    def test_elevenlabs_project_and_snapshot_facts_round_trip(
+        postgres_database, production_parent_chain
+    ) -> None:
+        ids = production_parent_chain
+        cloned_voice_id = uuid4()
+        with postgres_database.sessions.begin() as session:
+            repository = SqlAlchemyIdentityProjectRepository(session)
+            repository.add_cloned_voice(
+                ClonedVoice(
+                    id=cloned_voice_id,
+                    channel_id=ids.channel_id,
+                    owner_id=ids.owner_id,
+                    name="EL 旁白",
+                    remark="",
+                    source_object_key=f"cloned-voices/{ids.channel_id}/{cloned_voice_id}/source.mp3",
+                    source_sha256="b" * 64,
+                    source_size_bytes=64,
+                    source_media_type="audio/mpeg",
+                    created_at=NOW,
+                )
+            )
+    
+        with postgres_database.sessions.begin() as session:
+            session.add(
+                ProjectRow(
+                    id=uuid4(),
+                    owner_id=ids.owner_id,
+                    channel_id=ids.channel_id,
+                    title="EL 项目",
+                    script="A complete ElevenLabs fixture.",
+                    character_image_ids=[ids.character_id],
+                    visual_style="documentary",
+                    tts_provider=TtsProvider.ELEVENLABS.value,
+                    voice_version_id=None,
+                    cloned_voice_id=cloned_voice_id,
+                    locale="en-US",
+                    aspect_ratio="16:9",
+                    draft_revision=1,
+                    production_state="ACTIVE",
+                    production_revision=1,
+                )
+            )
+    
+        with postgres_database.sessions() as session:
+            repository = SqlAlchemyIdentityProjectRepository(session)
+            projects = repository.list_projects(ids.owner_id)
+            elevenlabs = [
+                item for item in projects if item.tts_provider == TtsProvider.ELEVENLABS.value
+            ]
+            assert len(elevenlabs) == 1
+            assert elevenlabs[0].voice_version_id is None
+            assert elevenlabs[0].cloned_voice_id == cloned_voice_id
+    
+        # 快照事实：EL 分支只写逻辑音色三列，三件媒体事实保持 NULL。
+        with postgres_database.engine.begin() as connection:
+            row = connection.execute(
+                text(
+                    "SELECT tts_provider, voice_version_id, cloned_voice_id FROM projects "
+                    "WHERE cloned_voice_id = :voice"
+                ),
+                {"voice": cloned_voice_id},
+            ).one()
+            assert row.tts_provider == TtsProvider.ELEVENLABS.value
+            assert row.voice_version_id is None
+            assert row.cloned_voice_id == cloned_voice_id
+    
+        inspection = inspect(postgres_database.engine)
+        columns = {column["name"]: column for column in inspection.get_columns("projects")}
+        assert columns["snapshot_cloned_voice_source_sha256"]["nullable"] is True
+        assert columns["snapshot_voice_reference_asset_id"]["nullable"] is True
+    
+        # 频道行默认值与既有项目不回填：既有（CosyVoice）项目仍持有公共音色。
+        with postgres_database.sessions() as session:
+            repository = SqlAlchemyIdentityProjectRepository(session)
+            cosyvoice = [
+                item
+                for item in repository.list_projects(ids.owner_id)
+                if item.tts_provider == TtsProvider.COSYVOICE.value
+            ]
+            assert cosyvoice and cosyvoice[0].voice_version_id is not None
+    
+        with postgres_database.engine.connect() as connection:
+>           assert (
+                connection.scalar(text("SELECT version_num FROM alembic_version")) == "0039"
+            )
+E           AssertionError: assert '0046' == '0039'
+E             
+E             - 0039
+E             + 0046
+
+tests\integration\test_cloned_voices_postgres.py:245: AssertionError
+____ test_elevenlabs_pool_schema_matches_models_and_downgrade_drops_tables ____
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55433/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_4e4e362a001e4a04b7b10222f28151f4', schema='contract_4e4e362a001e4a04b7b10222f28151f4')
+
+    @pytest.mark.integration
+    def test_elevenlabs_pool_schema_matches_models_and_downgrade_drops_tables(
+        postgres_database,
+    ) -> None:
+        engine = postgres_database.engine
+        inspector = inspect(engine)
+        assert {c["name"] for c in inspector.get_columns("elevenlabs_keys")} == set(
+            ElevenlabsKeyRow.__table__.columns.keys()
+        )
+        assert {c["name"] for c in inspector.get_columns("elevenlabs_key_events")} == set(
+            ElevenlabsKeyEventRow.__table__.columns.keys()
+        )
+        foreign_keys = inspector.get_foreign_keys("elevenlabs_key_events")
+        assert any(
+            item["constrained_columns"] == ["key_id"]
+            and item["referred_table"] == "elevenlabs_keys"
+            and item["options"].get("ondelete") == "CASCADE"
+            for item in foreign_keys
+        )
+        assert any(
+            item["column_names"] == ["api_key"]
+            for item in inspector.get_unique_constraints("elevenlabs_keys")
+        )
+        # 夹具从空库升级到 head（当前 0039）；此处断言迁移链已到当前 head。
+        with engine.connect() as connection:
+>           assert connection.scalar(text("SELECT version_num FROM alembic_version")) == "0039"
+E           AssertionError: assert '0046' == '0039'
+E             
+E             - 0039
+E             + 0046
+
+tests\integration\test_elevenlabs_pool_postgres.py:56: AssertionError
+_______________ test_h3_archive_concurrency_and_purge_interlock _______________
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55433/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_5762bf087ba74896af62eb991d818db3', schema='contract_5762bf087ba74896af62eb991d818db3')
+storyboard_parent_chain = (ProductionParentChain(owner_id=UUID('847210b5-45dc-4f04-a8f6-18b8e9dc7f73'), channel_id=UUID('e744ba0e-4e15-4f44-b1bb...9-2d0e44bed366'), group_id=UUID('07fe9f81-cc5a-4b78-a639-6ebeeca242de')), UUID('79821f1f-6a88-42f4-9875-d9f492be60b1'))
+
+    @pytest.mark.integration
+    def test_h3_archive_concurrency_and_purge_interlock(
+        postgres_database, storyboard_parent_chain
+    ) -> None:
+>       endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_h3_archive_postgres_minio.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = environ({'ACC_PRODUCT_CONFIG': '', 'ACC_PRODUCT_CONFIG_PATH': 'C:\\Users\\15202\\AppData\\Local\\Temp\\workbuddy-updat..._TEST': 'tests/integration/test_h3_archive_postgres_minio.py::test_h3_archive_concurrency_and_purge_interlock (call)'})
+key = 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+>   ???
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+<frozen os>:714: KeyError
+_______ test_real_postgres_schema_round_trip_and_atomic_initialization ________
+
+self = <sqlalchemy.engine.base.Connection object at 0x00000253B506FB60>
+dialect = <sqlalchemy.dialects.postgresql.psycopg.PGDialect_psycopg object at 0x00000253B65E3BC0>
+context = <sqlalchemy.dialects.postgresql.psycopg.PGExecutionContext_psycopg object at 0x00000253B4847020>
+statement = <sqlalchemy.dialects.postgresql.psycopg.PGCompiler_psycopg object at 0x00000253B66520C0>
+parameters = [{'id': UUID('92736024-97c0-48cb-80e6-a2830d5a1a5c'), 'username': 'same-admin', 'password_hash': '$argon2id$v=19$m=65536,t=3,p=4$kgRSHQwZ+CRvWaRurcNqgg$eReszGm3sEAadNUgbhnXQ/rJqKvS5R9Zurqftlja69Q', 'role': 'admin', ...}]
+
+    def _exec_single_context(
+        self,
+        dialect: Dialect,
+        context: ExecutionContext,
+        statement: Union[str, Compiled],
+        parameters: Optional[_AnyMultiExecuteParams],
+    ) -> CursorResult[Unpack[TupleAny]]:
+        """continue the _execute_context() method for a single DBAPI
+        cursor.execute() or cursor.executemany() call.
+    
+        """
+        if dialect.bind_typing is BindTyping.SETINPUTSIZES:
+            generic_setinputsizes = context._prepare_set_input_sizes()
+    
+            if generic_setinputsizes:
+                try:
+                    dialect.do_set_input_sizes(
+                        context.cursor, generic_setinputsizes, context
+                    )
+                except BaseException as e:
+                    self._handle_dbapi_exception(
+                        e, str(statement), parameters, None, context
+                    )
+    
+        cursor, str_statement, parameters = (
+            context.cursor,
+            context.statement,
+            context.parameters,
+        )
+    
+        effective_parameters: Optional[_AnyExecuteParams]
+    
+        if not context.executemany:
+            effective_parameters = parameters[0]
+        else:
+            effective_parameters = parameters
+    
+        evt_handled: bool = False
+        try:
+            if self._has_events or self.engine._has_events:
+                for fn in self.dispatch.before_cursor_execute:
+                    str_statement, effective_parameters = fn(
+                        self,
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                        context.executemany,
+                    )
+    
+            if self._echo:
+                self._log_info(str_statement)
+    
+                stats = context._get_cache_stats()
+    
+                if not self.engine.hide_parameters:
+                    self._log_info(
+                        "[%s] %r",
+                        stats,
+                        sql_util._repr_params(
+                            effective_parameters,
+                            batches=10,
+                            ismulti=context.executemany,
+                        ),
+                    )
+                else:
+                    self._log_info(
+                        "[%s] [SQL parameters hidden due to "
+                        "hide_parameters=True]",
+                        stats,
+                    )
+            if context.execute_style is ExecuteStyle.EXECUTEMANY:
+                effective_parameters = cast(
+                    "_CoreMultiExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_executemany:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_executemany(
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                    )
+            elif not effective_parameters and context.no_parameters:
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute_no_params:
+                        if fn(cursor, str_statement, context):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_execute_no_params(
+                        cursor, str_statement, context
+                    )
+            else:
+                effective_parameters = cast(
+                    "_CoreSingleExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+>                   self.dialect.do_execute(
+                        cursor, str_statement, effective_parameters, context
+                    )
+
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1946: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <psycopg.Cursor [closed] [IDLE] (host=127.0.0.1 port=55433 user=postgres database=tubeflowtest) at 0x253b67901d0>
+query = 'INSERT INTO accounts (id, username, password_hash, role, active, session_generation) VALUES (%(id)s::UUID, %(username)s::VARCHAR, %(password_hash)s::VARCHAR, %(role)s::VARCHAR, %(active)s, %(session_generation)s::INTEGER)'
+params = {'id': UUID('92736024-97c0-48cb-80e6-a2830d5a1a5c'), 'username': 'same-admin', 'password_hash': '$argon2id$v=19$m=65536,t=3,p=4$kgRSHQwZ+CRvWaRurcNqgg$eReszGm3sEAadNUgbhnXQ/rJqKvS5R9Zurqftlja69Q', 'role': 'admin', ...}
+prepare = None, binary = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -> Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+>           raise ex.with_traceback(None)
+E           psycopg.errors.UndefinedTable: relation "accounts" does not exist
+E           LINE 1: INSERT INTO accounts (id, username, password_hash, role, act...
+E                               ^
+
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\psycopg\cursor.py:117: UndefinedTable
+
+The above exception was the direct cause of the following exception:
+
+    @pytest.mark.integration
+    def test_real_postgres_schema_round_trip_and_atomic_initialization() -> None:
+        url = os.environ.get("TUBEFLOW_TEST_POSTGRES_URL")
+        if not url:
+            pytest.skip("TUBEFLOW_TEST_POSTGRES_URL is not configured")
+        schema = f"identity_test_{uuid4().hex}"
+        admin_engine = create_engine(url)
+        with admin_engine.begin() as connection:
+            connection.execute(text(f'CREATE SCHEMA "{schema}"'))
+        engine = create_engine(url, connect_args={"options": f"-csearch_path={schema}"})
+        try:
+            migration_url = f"{url}?options=-csearch_path%3D{schema}"
+            config = Config(str(BACKEND_ROOT / "alembic.ini"))
+            config.set_main_option("script_location", str(BACKEND_ROOT / "migrations"))
+            config.set_main_option("prepend_sys_path", str(BACKEND_ROOT / "src"))
+            config.attributes["database_url"] = migration_url
+            command.upgrade(config, "head")
+    
+            runtime = create_identity_project_runtime(
+                Settings(
+                    database_url=migration_url,
+                    identity_setup_username="same-admin",
+                    identity_setup_password="strong-password",
+                )
+            )
+            app = FastAPI()
+            app.include_router(runtime.router)
+            assert "/identity/projects/{project_id}/confirm-narration" in app.openapi()["paths"]
+    
+            def initialize(_ordinal: int) -> tuple[int, str | None]:
+                response = TestClient(app).post(
+                    "/identity/setup/initialize",
+                    json={"username": "same-admin", "password": "strong-password"},
+                )
+                detail = response.json().get("detail")
+                return response.status_code, detail.get("code") if isinstance(detail, dict) else None
+    
+            with ThreadPoolExecutor(max_workers=2) as pool:
+>               results = list(pool.map(initialize, (1, 2)))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_identity_project_postgres.py:63: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\15202\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\concurrent\futures\_base.py:619: in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\concurrent\futures\_base.py:317: in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\15202\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\concurrent\futures\thread.py:59: in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\integration\test_identity_project_postgres.py:55: in initialize
+    response = TestClient(app).post(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\httpx\_client.py:1144: in post
+    return self.request(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\starlette\testclient.py:457: in request
+    return super().request(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\httpx\_client.py:825: in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\httpx\_client.py:914: in send
+    response = self._send_handling_auth(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\httpx\_client.py:942: in _send_handling_auth
+    response = self._send_handling_redirects(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\httpx\_client.py:979: in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\httpx\_client.py:1014: in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\starlette\testclient.py:354: in handle_request
+    raise exc
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\starlette\testclient.py:351: in handle_request
+    portal.call(self.app, scope, receive, send)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\anyio\from_thread.py:340: in call
+    return cast(T_Retval, self.start_task_soon(func, *args).result())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\anyio\from_thread.py:265: in _call_func
+    retval = await retval_or_awaitable
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\applications.py:1216: in __call__
+    await super().__call__(scope, receive, send)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\starlette\applications.py:96: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\starlette\middleware\errors.py:186: in __call__
+    raise exc
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\starlette\middleware\errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\telemetry\_asgi.py:151: in __call__
+    await self.app(scope, receive, send)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\starlette\middleware\exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\starlette\routing.py:676: in __call__
+    await self.middleware_stack(scope, receive, send)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\routing.py:2786: in app
+    await route.handle(scope, receive, send)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\routing.py:1817: in handle
+    await self.original_router.handle(scope, receive, send)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\routing.py:2869: in handle
+    await included_router._handle_selected(scope, receive, send)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\routing.py:1843: in _handle_selected
+    await original_route.handle(scope, receive, send)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\routing.py:1308: in handle
+    await effective_context.app(scope, receive, send)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\routing.py:165: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\routing.py:151: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\routing.py:727: in app
+    raw_response = await run_endpoint_function(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\routing.py:362: in run_endpoint_function
+    return await run_in_threadpool(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\starlette\concurrency.py:34: in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\anyio\to_thread.py:65: in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\anyio\_backends\_asyncio.py:2706: in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\anyio\_backends\_asyncio.py:1100: in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\telemetry\_api.py:244: in _run_sync_endpoint
+    return function(**arguments)
+           ^^^^^^^^^^^^^^^^^^^^^
+src\tubeflow_test\identity_project\router.py:320: in initialize
+    return _call(lambda: _account(svc.initialize_admin(data.username, data.password)))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\tubeflow_test\identity_project\router.py:935: in _call
+    return operation()
+           ^^^^^^^^^^^
+src\tubeflow_test\identity_project\router.py:320: in <lambda>
+    return _call(lambda: _account(svc.initialize_admin(data.username, data.password)))
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\tubeflow_test\identity_project\service.py:378: in initialize_admin
+    if not self.repo.initialize_admin(account, datetime.now(UTC)):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\tubeflow_test\adapters\persistence\identity_project\repository.py:97: in initialize_admin
+    self.session.flush()
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\orm\session.py:4536: in flush
+    self._flush(objects)
+<sqlalchemy generated warned() wrapper for sqlalchemy.orm.session.Session._flush>:2: in _flush
+    return target(fn, self, objects=objects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\util\deprecations.py:281: in warned
+    return fn(*args, **kwargs)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\orm\session.py:4679: in _flush
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\util\langhelpers.py:166: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\orm\session.py:4640: in _flush
+    flush_context.execute()
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\orm\unitofwork.py:467: in execute
+    rec.execute(self)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\orm\unitofwork.py:643: in execute
+    util.preloaded.orm_persistence._save_obj(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\orm\persistence.py:92: in _save_obj
+    _emit_insert_statements(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\orm\persistence.py:1052: in _emit_insert_statements
+    result = connection.execute(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1451: in execute
+    return meth(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\sql\elements.py:533: in _execute_on_connection
+    return connection._execute_clauseelement(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1671: in _execute_clauseelement
+    ret = self._execute_context(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1825: in _execute_context
+    return self._exec_single_context(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1965: in _exec_single_context
+    self._handle_dbapi_exception(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:2335: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1946: in _exec_single_context
+    self.dialect.do_execute(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <psycopg.Cursor [closed] [IDLE] (host=127.0.0.1 port=55433 user=postgres database=tubeflowtest) at 0x253b67901d0>
+query = 'INSERT INTO accounts (id, username, password_hash, role, active, session_generation) VALUES (%(id)s::UUID, %(username)s::VARCHAR, %(password_hash)s::VARCHAR, %(role)s::VARCHAR, %(active)s, %(session_generation)s::INTEGER)'
+params = {'id': UUID('92736024-97c0-48cb-80e6-a2830d5a1a5c'), 'username': 'same-admin', 'password_hash': '$argon2id$v=19$m=65536,t=3,p=4$kgRSHQwZ+CRvWaRurcNqgg$eReszGm3sEAadNUgbhnXQ/rJqKvS5R9Zurqftlja69Q', 'role': 'admin', ...}
+prepare = None, binary = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -> Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+>           raise ex.with_traceback(None)
+E           sqlalchemy.exc.ProgrammingError: (psycopg.errors.UndefinedTable) relation "accounts" does not exist
+E           LINE 1: INSERT INTO accounts (id, username, password_hash, role, act...
+E                               ^
+E           [SQL: INSERT INTO accounts (id, username, password_hash, role, active, session_generation) VALUES (%(id)s::UUID, %(username)s::VARCHAR, %(password_hash)s::VARCHAR, %(role)s::VARCHAR, %(active)s, %(session_generation)s::INTEGER)]
+E           [parameters: {'id': UUID('92736024-97c0-48cb-80e6-a2830d5a1a5c'), 'username': 'same-admin', 'password_hash': '$argon2id$v=19$m=65536,t=3,p=4$kgRSHQwZ+CRvWaRurcNqgg$eReszGm3sEAadNUgbhnXQ/rJqKvS5R9Zurqftlja69Q', 'role': 'admin', 'active': True, 'session_generation': 1}]
+E           (Background on this error at: https://sqlalche.me/e/21/f405)
+
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\psycopg\cursor.py:117: ProgrammingError
+_______ test_concurrent_project_purges_elect_one_shared_object_deleter ________
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55433/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_7291c1d8d2334caabda30a0815032ccb', schema='contract_7291c1d8d2334caabda30a0815032ccb')
+production_parent_chain = ProductionParentChain(owner_id=UUID('1b215f7f-9d33-4aae-8ec6-064d20b38e88'), channel_id=UUID('7795d0a0-2a68-472a-85bf-...fe5c'), project_id=UUID('59c498e1-8c5c-43ad-90b8-bd774e5cb62d'), group_id=UUID('97c3889f-3554-40ee-acab-9130387c058d'))
+
+    @pytest.mark.integration
+    def test_concurrent_project_purges_elect_one_shared_object_deleter(
+        postgres_database: PostgresDatabase, production_parent_chain: ProductionParentChain
+    ) -> None:
+>       endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_project_purge_shared_assets.py:159: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = environ({'ACC_PRODUCT_CONFIG': '', 'ACC_PRODUCT_CONFIG_PATH': 'C:\\Users\\15202\\AppData\\Local\\Temp\\workbuddy-updat...tegration/test_project_purge_shared_assets.py::test_concurrent_project_purges_elect_one_shared_object_deleter (call)'})
+key = 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+>   ???
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+<frozen os>:714: KeyError
+_ test_non_project_shared_survivor_remains_unchanged_when_one_project_is_deleted[OWNER] _
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55433/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_82ab87b3857d41678bfe8664478f96a2', schema='contract_82ab87b3857d41678bfe8664478f96a2')
+production_parent_chain = ProductionParentChain(owner_id=UUID('bcfc6cfd-9ceb-4843-a270-d82537a61009'), channel_id=UUID('6c79d8e3-085b-47b0-b499-...e169'), project_id=UUID('9b6e8f81-d1da-4d11-83f1-4053a6d5b1a3'), group_id=UUID('b05efd4e-3bc0-4063-a3d1-34b0469ef521'))
+ownership_scope = 'OWNER'
+
+    @pytest.mark.integration
+    @pytest.mark.parametrize("ownership_scope", ("OWNER", "GLOBAL"))
+    def test_non_project_shared_survivor_remains_unchanged_when_one_project_is_deleted(
+        postgres_database: PostgresDatabase,
+        production_parent_chain: ProductionParentChain,
+        ownership_scope: str,
+    ) -> None:
+>       endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_project_purge_shared_assets.py:250: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = environ({'ACC_PRODUCT_CONFIG': '', 'ACC_PRODUCT_CONFIG_PATH': 'C:\\Users\\15202\\AppData\\Local\\Temp\\workbuddy-updat...purge_shared_assets.py::test_non_project_shared_survivor_remains_unchanged_when_one_project_is_deleted[OWNER] (call)'})
+key = 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+>   ???
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+<frozen os>:714: KeyError
+_ test_non_project_shared_survivor_remains_unchanged_when_one_project_is_deleted[GLOBAL] _
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55433/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_3098b28d3d4148d8bfcedbebe0107ff2', schema='contract_3098b28d3d4148d8bfcedbebe0107ff2')
+production_parent_chain = ProductionParentChain(owner_id=UUID('099a58c0-991b-4211-95fc-8fda9e15474d'), channel_id=UUID('61a0e14d-e0c6-4122-8a6e-...9fd9'), project_id=UUID('788a355d-9f4e-4ca3-b9d8-97a4c7d51ed9'), group_id=UUID('918243e9-3263-4880-9e06-22fb8cbd06d2'))
+ownership_scope = 'GLOBAL'
+
+    @pytest.mark.integration
+    @pytest.mark.parametrize("ownership_scope", ("OWNER", "GLOBAL"))
+    def test_non_project_shared_survivor_remains_unchanged_when_one_project_is_deleted(
+        postgres_database: PostgresDatabase,
+        production_parent_chain: ProductionParentChain,
+        ownership_scope: str,
+    ) -> None:
+>       endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_project_purge_shared_assets.py:250: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = environ({'ACC_PRODUCT_CONFIG': '', 'ACC_PRODUCT_CONFIG_PATH': 'C:\\Users\\15202\\AppData\\Local\\Temp\\workbuddy-updat...urge_shared_assets.py::test_non_project_shared_survivor_remains_unchanged_when_one_project_is_deleted[GLOBAL] (call)'})
+key = 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+>   ???
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+<frozen os>:714: KeyError
+_____ test_global_shared_survivor_is_rechecked_and_preserved_after_retry ______
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55433/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_e856e78532ec414ba99d9f0cd23f9024', schema='contract_e856e78532ec414ba99d9f0cd23f9024')
+production_parent_chain = ProductionParentChain(owner_id=UUID('f14727b6-6955-492e-a075-83d10059ec12'), channel_id=UUID('1415a346-53dc-4c3d-8c74-...ce7f'), project_id=UUID('7fbe4d5a-d9ff-47cb-af85-3cc1ad15a147'), group_id=UUID('856ad0aa-db95-47cd-b07f-65bec7977211'))
+
+    @pytest.mark.integration
+    def test_global_shared_survivor_is_rechecked_and_preserved_after_retry(
+        postgres_database: PostgresDatabase, production_parent_chain: ProductionParentChain
+    ) -> None:
+>       endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_project_purge_shared_assets.py:312: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = environ({'ACC_PRODUCT_CONFIG': '', 'ACC_PRODUCT_CONFIG_PATH': 'C:\\Users\\15202\\AppData\\Local\\Temp\\workbuddy-updat...ation/test_project_purge_shared_assets.py::test_global_shared_survivor_is_rechecked_and_preserved_after_retry (call)'})
+key = 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+>   ???
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+<frozen os>:714: KeyError
+_ test_concurrent_global_shared_purges_preserve_external_survivor_idempotently _
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55433/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_09c86281f9d244718af5bb45e6ad8dbe', schema='contract_09c86281f9d244718af5bb45e6ad8dbe')
+production_parent_chain = ProductionParentChain(owner_id=UUID('09ef2f9a-708d-436d-9001-c84a0a98985d'), channel_id=UUID('2224bb3f-dd31-46cf-86a9-...3f02'), project_id=UUID('193bde2e-00aa-437c-b06f-6353a95bc262'), group_id=UUID('85dd8a54-d28c-4436-9998-34358a9411de'))
+
+    @pytest.mark.integration
+    def test_concurrent_global_shared_purges_preserve_external_survivor_idempotently(
+        postgres_database: PostgresDatabase, production_parent_chain: ProductionParentChain
+    ) -> None:
+>       endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_project_purge_shared_assets.py:398: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = environ({'ACC_PRODUCT_CONFIG': '', 'ACC_PRODUCT_CONFIG_PATH': 'C:\\Users\\15202\\AppData\\Local\\Temp\\workbuddy-updat..._project_purge_shared_assets.py::test_concurrent_global_shared_purges_preserve_external_survivor_idempotently (call)'})
+key = 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+>   ???
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+<frozen os>:714: KeyError
+___ test_replace_media_then_peer_begin_project_lock_order_does_not_deadlock ___
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55433/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_02c2da8f30174e98bcc558eb87eebd19', schema='contract_02c2da8f30174e98bcc558eb87eebd19')
+production_parent_chain = ProductionParentChain(owner_id=UUID('68a68639-966d-410a-988d-8341ba5237ed'), channel_id=UUID('da798b13-98e0-4ae3-a9cc-...eb88'), project_id=UUID('9c193598-8c1c-4b5b-a71a-f4beb8633a3a'), group_id=UUID('52f8d74d-1584-495e-abc0-1f9ffb5df0ed'))
+
+    @pytest.mark.integration
+    def test_replace_media_then_peer_begin_project_lock_order_does_not_deadlock(
+        postgres_database: PostgresDatabase, production_parent_chain: ProductionParentChain
+    ) -> None:
+>       endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_project_purge_shared_assets.py:481: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = environ({'ACC_PRODUCT_CONFIG': '', 'ACC_PRODUCT_CONFIG_PATH': 'C:\\Users\\15202\\AppData\\Local\\Temp\\workbuddy-updat.../test_project_purge_shared_assets.py::test_replace_media_then_peer_begin_project_lock_order_does_not_deadlock (call)'})
+key = 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+>   ???
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+<frozen os>:714: KeyError
+_ test_last_reference_disappears_after_skipped_save_and_is_re_elected_for_delete _
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55433/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_6a84e4fbe9fa4aa68886a7abebce8164', schema='contract_6a84e4fbe9fa4aa68886a7abebce8164')
+production_parent_chain = ProductionParentChain(owner_id=UUID('a6bb6fb9-ad6b-407d-a619-fedf5c0ec316'), channel_id=UUID('f8b8929d-6d5b-423f-986a-...7d89'), project_id=UUID('19ac15e9-ebf2-42e6-9d49-938aadf8c41c'), group_id=UUID('644ca156-0412-4cc6-adf5-5063908c51e3'))
+
+    @pytest.mark.integration
+    def test_last_reference_disappears_after_skipped_save_and_is_re_elected_for_delete(
+        postgres_database: PostgresDatabase, production_parent_chain: ProductionParentChain
+    ) -> None:
+>       endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_project_purge_shared_assets.py:599: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = environ({'ACC_PRODUCT_CONFIG': '', 'ACC_PRODUCT_CONFIG_PATH': 'C:\\Users\\15202\\AppData\\Local\\Temp\\workbuddy-updat...roject_purge_shared_assets.py::test_last_reference_disappears_after_skipped_save_and_is_re_elected_for_delete (call)'})
+key = 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+>   ???
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+<frozen os>:714: KeyError
+__________ test_missing_direct_object_is_an_idempotent_purge_success __________
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55433/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_f06108de98c64970922737a7d22b40c8', schema='contract_f06108de98c64970922737a7d22b40c8')
+production_parent_chain = ProductionParentChain(owner_id=UUID('0b52e21c-7e08-4c93-93ba-542b34686e0e'), channel_id=UUID('da9b613e-ea26-4699-bc7e-...efa5'), project_id=UUID('2bafebe3-1bac-40e9-b536-5f1bb60644fa'), group_id=UUID('ef69fdb6-4c83-49ae-8a77-87a70ff40a45'))
+
+    @pytest.mark.integration
+    def test_missing_direct_object_is_an_idempotent_purge_success(
+        postgres_database: PostgresDatabase, production_parent_chain: ProductionParentChain
+    ) -> None:
+>       endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_project_purge_shared_assets.py:759: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = environ({'ACC_PRODUCT_CONFIG': '', 'ACC_PRODUCT_CONFIG_PATH': 'C:\\Users\\15202\\AppData\\Local\\Temp\\workbuddy-updat...ts/integration/test_project_purge_shared_assets.py::test_missing_direct_object_is_an_idempotent_purge_success (call)'})
+key = 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+>   ???
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+<frozen os>:714: KeyError
+____ test_purge_anonymizes_every_project_staged_state_and_cleans_late_put _____
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55433/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_89f72289032245b88a42ffaf67d0736a', schema='contract_89f72289032245b88a42ffaf67d0736a')
+production_parent_chain = ProductionParentChain(owner_id=UUID('701bd499-fff2-4a3e-824e-99ac8ed4ffcc'), channel_id=UUID('4ea42793-f940-47ff-b938-...4ea6'), project_id=UUID('a8ccc151-7b13-4cc3-ada5-27b1e1b8ec8a'), group_id=UUID('8825e728-6058-4161-9185-d4fe79d9a1c8'))
+
+    @pytest.mark.integration
+    def test_purge_anonymizes_every_project_staged_state_and_cleans_late_put(
+        postgres_database: PostgresDatabase, production_parent_chain: ProductionParentChain
+    ) -> None:
+>       endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_project_purge_shared_assets.py:804: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = environ({'ACC_PRODUCT_CONFIG': '', 'ACC_PRODUCT_CONFIG_PATH': 'C:\\Users\\15202\\AppData\\Local\\Temp\\workbuddy-updat...ion/test_project_purge_shared_assets.py::test_purge_anonymizes_every_project_staged_state_and_cleans_late_put (call)'})
+key = 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+>   ???
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+<frozen os>:714: KeyError
+________ test_expired_purge_claim_is_fenced_before_old_worker_deletes _________
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55433/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_cce5259c173e4827981d35bc39ed1ce1', schema='contract_cce5259c173e4827981d35bc39ed1ce1')
+production_parent_chain = ProductionParentChain(owner_id=UUID('b9365504-476d-4b1a-ac54-8f5876a5a92d'), channel_id=UUID('2003d4c8-a8ca-490c-b488-...3318'), project_id=UUID('f88ff3ef-71c3-4768-b412-0f8850e35145'), group_id=UUID('5e9ca378-3265-4a1b-87fd-8f64fc814f2b'))
+
+    @pytest.mark.integration
+    def test_expired_purge_claim_is_fenced_before_old_worker_deletes(
+        postgres_database: PostgresDatabase, production_parent_chain: ProductionParentChain
+    ) -> None:
+>       endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_project_purge_shared_assets.py:902: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = environ({'ACC_PRODUCT_CONFIG': '', 'ACC_PRODUCT_CONFIG_PATH': 'C:\\Users\\15202\\AppData\\Local\\Temp\\workbuddy-updat...integration/test_project_purge_shared_assets.py::test_expired_purge_claim_is_fenced_before_old_worker_deletes (call)'})
+key = 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+>   ???
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+<frozen os>:714: KeyError
+_ test_lease_expiry_during_delete_fences_results_but_not_issued_idempotent_io _
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55433/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_e99913a3633e4ff1adbf60ca48589728', schema='contract_e99913a3633e4ff1adbf60ca48589728')
+production_parent_chain = ProductionParentChain(owner_id=UUID('2155b3cd-51a6-4dea-a51c-0d3dbf3ef66c'), channel_id=UUID('fffb625b-7032-45d1-a79c-...dce9'), project_id=UUID('a2205f99-6fc2-4046-94ef-e1bae0643e76'), group_id=UUID('93e7b3f4-e8a5-4457-83bd-01f6f76c7429'))
+
+    @pytest.mark.integration
+    def test_lease_expiry_during_delete_fences_results_but_not_issued_idempotent_io(
+        postgres_database: PostgresDatabase, production_parent_chain: ProductionParentChain
+    ) -> None:
+>       endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_project_purge_shared_assets.py:1158: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = environ({'ACC_PRODUCT_CONFIG': '', 'ACC_PRODUCT_CONFIG_PATH': 'C:\\Users\\15202\\AppData\\Local\\Temp\\workbuddy-updat...t_project_purge_shared_assets.py::test_lease_expiry_during_delete_fences_results_but_not_issued_idempotent_io (call)'})
+key = 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+>   ???
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+
+<frozen os>:714: KeyError
+_____ test_postgres_advisory_claim_lock_prevents_same_generation_phantoms _____
+
+self = <sqlalchemy.engine.base.Connection object at 0x00000253B8178BC0>
+dialect = <sqlalchemy.dialects.postgresql.psycopg.PGDialect_psycopg object at 0x00000253B73E68A0>
+context = <sqlalchemy.dialects.postgresql.psycopg.PGExecutionContext_psycopg object at 0x00000253B8E130E0>
+statement = <sqlalchemy.dialects.postgresql.psycopg.PGCompiler_psycopg object at 0x00000253B8E13FB0>
+parameters = [{'logical_object_key_1': 'concurrent-logical-d81a4830-f59e-49c1-9a7b-dbc493baba33', 'param_1': 1}]
+
+    def _exec_single_context(
+        self,
+        dialect: Dialect,
+        context: ExecutionContext,
+        statement: Union[str, Compiled],
+        parameters: Optional[_AnyMultiExecuteParams],
+    ) -> CursorResult[Unpack[TupleAny]]:
+        """continue the _execute_context() method for a single DBAPI
+        cursor.execute() or cursor.executemany() call.
+    
+        """
+        if dialect.bind_typing is BindTyping.SETINPUTSIZES:
+            generic_setinputsizes = context._prepare_set_input_sizes()
+    
+            if generic_setinputsizes:
+                try:
+                    dialect.do_set_input_sizes(
+                        context.cursor, generic_setinputsizes, context
+                    )
+                except BaseException as e:
+                    self._handle_dbapi_exception(
+                        e, str(statement), parameters, None, context
+                    )
+    
+        cursor, str_statement, parameters = (
+            context.cursor,
+            context.statement,
+            context.parameters,
+        )
+    
+        effective_parameters: Optional[_AnyExecuteParams]
+    
+        if not context.executemany:
+            effective_parameters = parameters[0]
+        else:
+            effective_parameters = parameters
+    
+        evt_handled: bool = False
+        try:
+            if self._has_events or self.engine._has_events:
+                for fn in self.dispatch.before_cursor_execute:
+                    str_statement, effective_parameters = fn(
+                        self,
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                        context.executemany,
+                    )
+    
+            if self._echo:
+                self._log_info(str_statement)
+    
+                stats = context._get_cache_stats()
+    
+                if not self.engine.hide_parameters:
+                    self._log_info(
+                        "[%s] %r",
+                        stats,
+                        sql_util._repr_params(
+                            effective_parameters,
+                            batches=10,
+                            ismulti=context.executemany,
+                        ),
+                    )
+                else:
+                    self._log_info(
+                        "[%s] [SQL parameters hidden due to "
+                        "hide_parameters=True]",
+                        stats,
+                    )
+            if context.execute_style is ExecuteStyle.EXECUTEMANY:
+                effective_parameters = cast(
+                    "_CoreMultiExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_executemany:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_executemany(
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                    )
+            elif not effective_parameters and context.no_parameters:
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute_no_params:
+                        if fn(cursor, str_statement, context):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_execute_no_params(
+                        cursor, str_statement, context
+                    )
+            else:
+                effective_parameters = cast(
+                    "_CoreSingleExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+>                   self.dialect.do_execute(
+                        cursor, str_statement, effective_parameters, context
+                    )
+
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1946: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <psycopg.Cursor [closed] [IDLE] (host=127.0.0.1 port=55433 user=postgres database=tubeflowtest) at 0x253b6793ad0>
+query = 'SELECT staged_objects.id, staged_objects.object_key, staged_objects.logical_object_key, staged_objects.project_id, st...jects.generation DESC, staged_objects.created_at DESC, staged_objects.id DESC \n LIMIT %(param_1)s::INTEGER FOR UPDATE'
+params = {'logical_object_key_1': 'concurrent-logical-d81a4830-f59e-49c1-9a7b-dbc493baba33', 'param_1': 1}
+prepare = None, binary = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -> Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+>           raise ex.with_traceback(None)
+E           psycopg.errors.UndefinedTable: relation "staged_objects" does not exist
+E           LINE 2: FROM staged_objects 
+E                        ^
+
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\psycopg\cursor.py:117: UndefinedTable
+
+The above exception was the direct cause of the following exception:
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55433/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_278a57070b2647fbb8b61b4f06541ad5', schema='contract_278a57070b2647fbb8b61b4f06541ad5')
+
+    @pytest.mark.integration
+    def test_postgres_advisory_claim_lock_prevents_same_generation_phantoms(
+        postgres_database,
+    ) -> None:
+        database = Database(postgres_database.url)
+        storage = ProtocolStorage()
+        key = f"concurrent-logical-{uuid4()}"
+        body = b"same logical candidate"
+        digest = hashlib.sha256(body).hexdigest()
+        with postgres_database.sessions.begin() as session:
+            session.add(
+                StagedObjectRow(
+                    object_key=key,
+                    logical_object_key=key,
+                    created_at=datetime.now(UTC),
+                    ownership_scope="GLOBAL",
+                    state="CLEANUP_PENDING",
+                    generation=1,
+                    execution_token=uuid4(),
+                    cleanup_checked_at=datetime.now(UTC),
+                    cleanup_after=datetime.now(UTC),
+                    sha256=digest,
+                    size_bytes=len(body),
+                    media_type="application/octet-stream",
+                )
+            )
+    
+        def claim() -> tuple[str, int] | None:
+            writer = RequestStagedStorage(database, storage)  # type: ignore[arg-type]
+            try:
+                actual_key, generation, _ = writer._record_pending(  # noqa: SLF001
+                    key,
+                    sha256=digest,
+                    size_bytes=len(body),
+                    media_type="application/octet-stream",
+                )
+            except DomainError as exc:
+                assert exc.code == "staged_object_claim_lost"
+                return None
+            return actual_key, generation
+    
+        with ThreadPoolExecutor(max_workers=32) as executor:
+>           results = tuple(executor.map(lambda _: claim(), range(32)))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_staged_upload_protocol.py:139: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\15202\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\concurrent\futures\_base.py:619: in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\concurrent\futures\_base.py:317: in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\concurrent\futures\_base.py:456: in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\concurrent\futures\_base.py:401: in __get_result
+    raise self._exception
+C:\Users\15202\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\concurrent\futures\thread.py:59: in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\integration\test_staged_upload_protocol.py:139: in <lambda>
+    results = tuple(executor.map(lambda _: claim(), range(32)))
+                                           ^^^^^^^
+tests\integration\test_staged_upload_protocol.py:127: in claim
+    actual_key, generation, _ = writer._record_pending(  # noqa: SLF001
+src\tubeflow_test\adapters\persistence\identity_project\staged_objects.py:104: in _record_pending
+    existing = session.scalar(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\orm\session.py:2534: in scalar
+    return self._execute_internal(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\orm\session.py:2363: in _execute_internal
+    compile_state_cls.orm_execute_statement(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\orm\context.py:316: in orm_execute_statement
+    result = conn.execute(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1451: in execute
+    return meth(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\sql\elements.py:533: in _execute_on_connection
+    return connection._execute_clauseelement(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1671: in _execute_clauseelement
+    ret = self._execute_context(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1825: in _execute_context
+    return self._exec_single_context(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1965: in _exec_single_context
+    self._handle_dbapi_exception(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:2335: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1946: in _exec_single_context
+    self.dialect.do_execute(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <psycopg.Cursor [closed] [IDLE] (host=127.0.0.1 port=55433 user=postgres database=tubeflowtest) at 0x253b6793ad0>
+query = 'SELECT staged_objects.id, staged_objects.object_key, staged_objects.logical_object_key, staged_objects.project_id, st...jects.generation DESC, staged_objects.created_at DESC, staged_objects.id DESC \n LIMIT %(param_1)s::INTEGER FOR UPDATE'
+params = {'logical_object_key_1': 'concurrent-logical-d81a4830-f59e-49c1-9a7b-dbc493baba33', 'param_1': 1}
+prepare = None, binary = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -> Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+>           raise ex.with_traceback(None)
+E           sqlalchemy.exc.ProgrammingError: (psycopg.errors.UndefinedTable) relation "staged_objects" does not exist
+E           LINE 2: FROM staged_objects 
+E                        ^
+E           [SQL: SELECT staged_objects.id, staged_objects.object_key, staged_objects.logical_object_key, staged_objects.project_id, staged_objects.owner_id, staged_objects.purpose, staged_objects.kind, staged_objects.ownership_scope, staged_objects.created_at, staged_objects.state, staged_objects.sha256, staged_objects.size_bytes, staged_objects.media_type, staged_objects.generation, staged_objects.execution_token, staged_objects.asset_id, staged_objects.reference_type, staged_objects.lease_until, staged_objects.cleanup_after, staged_objects.cleanup_checked_at, staged_objects.cleanup_attempt 
+E           FROM staged_objects 
+E           WHERE staged_objects.logical_object_key = %(logical_object_key_1)s::VARCHAR ORDER BY staged_objects.generation DESC, staged_objects.created_at DESC, staged_objects.id DESC 
+E            LIMIT %(param_1)s::INTEGER FOR UPDATE]
+E           [parameters: {'logical_object_key_1': 'concurrent-logical-d81a4830-f59e-49c1-9a7b-dbc493baba33', 'param_1': 1}]
+E           (Background on this error at: https://sqlalche.me/e/21/f405)
+
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\psycopg\cursor.py:117: ProgrammingError
+_______ test_fixed_catalog_writer_can_resume_matching_unattached_stage ________
+
+self = <sqlalchemy.engine.base.Connection object at 0x00000253B736ED20>
+dialect = <sqlalchemy.dialects.postgresql.psycopg.PGDialect_psycopg object at 0x00000253B6D8A150>
+context = <sqlalchemy.dialects.postgresql.psycopg.PGExecutionContext_psycopg object at 0x00000253B77A1490>
+statement = <sqlalchemy.dialects.postgresql.psycopg.PGCompiler_psycopg object at 0x00000253B790EC00>
+parameters = [{'logical_object_key_1': 'voice-catalog/v1/resume-96443165-346e-4148-a793-7c4c82ece951/preview.wav', 'param_1': 1}]
+
+    def _exec_single_context(
+        self,
+        dialect: Dialect,
+        context: ExecutionContext,
+        statement: Union[str, Compiled],
+        parameters: Optional[_AnyMultiExecuteParams],
+    ) -> CursorResult[Unpack[TupleAny]]:
+        """continue the _execute_context() method for a single DBAPI
+        cursor.execute() or cursor.executemany() call.
+    
+        """
+        if dialect.bind_typing is BindTyping.SETINPUTSIZES:
+            generic_setinputsizes = context._prepare_set_input_sizes()
+    
+            if generic_setinputsizes:
+                try:
+                    dialect.do_set_input_sizes(
+                        context.cursor, generic_setinputsizes, context
+                    )
+                except BaseException as e:
+                    self._handle_dbapi_exception(
+                        e, str(statement), parameters, None, context
+                    )
+    
+        cursor, str_statement, parameters = (
+            context.cursor,
+            context.statement,
+            context.parameters,
+        )
+    
+        effective_parameters: Optional[_AnyExecuteParams]
+    
+        if not context.executemany:
+            effective_parameters = parameters[0]
+        else:
+            effective_parameters = parameters
+    
+        evt_handled: bool = False
+        try:
+            if self._has_events or self.engine._has_events:
+                for fn in self.dispatch.before_cursor_execute:
+                    str_statement, effective_parameters = fn(
+                        self,
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                        context.executemany,
+                    )
+    
+            if self._echo:
+                self._log_info(str_statement)
+    
+                stats = context._get_cache_stats()
+    
+                if not self.engine.hide_parameters:
+                    self._log_info(
+                        "[%s] %r",
+                        stats,
+                        sql_util._repr_params(
+                            effective_parameters,
+                            batches=10,
+                            ismulti=context.executemany,
+                        ),
+                    )
+                else:
+                    self._log_info(
+                        "[%s] [SQL parameters hidden due to "
+                        "hide_parameters=True]",
+                        stats,
+                    )
+            if context.execute_style is ExecuteStyle.EXECUTEMANY:
+                effective_parameters = cast(
+                    "_CoreMultiExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_executemany:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_executemany(
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                    )
+            elif not effective_parameters and context.no_parameters:
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute_no_params:
+                        if fn(cursor, str_statement, context):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_execute_no_params(
+                        cursor, str_statement, context
+                    )
+            else:
+                effective_parameters = cast(
+                    "_CoreSingleExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+>                   self.dialect.do_execute(
+                        cursor, str_statement, effective_parameters, context
+                    )
+
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1946: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <psycopg.Cursor [closed] [IDLE] (host=127.0.0.1 port=55433 user=postgres database=tubeflowtest) at 0x253b8d281d0>
+query = 'SELECT staged_objects.id, staged_objects.object_key, staged_objects.logical_object_key, staged_objects.project_id, st...jects.generation DESC, staged_objects.created_at DESC, staged_objects.id DESC \n LIMIT %(param_1)s::INTEGER FOR UPDATE'
+params = {'logical_object_key_1': 'voice-catalog/v1/resume-96443165-346e-4148-a793-7c4c82ece951/preview.wav', 'param_1': 1}
+prepare = None, binary = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -> Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+>           raise ex.with_traceback(None)
+E           psycopg.errors.UndefinedTable: relation "staged_objects" does not exist
+E           LINE 2: FROM staged_objects 
+E                        ^
+
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\psycopg\cursor.py:117: UndefinedTable
+
+The above exception was the direct cause of the following exception:
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55433/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_1d7ba4de2ceb49918af548cd1d8fcbc4', schema='contract_1d7ba4de2ceb49918af548cd1d8fcbc4')
+
+    @pytest.mark.integration
+    def test_fixed_catalog_writer_can_resume_matching_unattached_stage(postgres_database) -> None:
+        database = Database(postgres_database.url)
+        storage = ProtocolStorage()
+        key = f"voice-catalog/v1/resume-{uuid4()}/preview.wav"
+        body = b"fixed catalog preview"
+        digest = hashlib.sha256(body).hexdigest()
+    
+        interrupted = RequestStagedStorage(database, storage)  # type: ignore[arg-type]
+>       first = interrupted.put_at_key(key, body, "audio/wav", digest)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_staged_upload_protocol.py:170: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\tubeflow_test\adapters\persistence\identity_project\staged_objects.py:68: in put_at_key
+    actual_key, generation, token = self._record_pending(
+src\tubeflow_test\adapters\persistence\identity_project\staged_objects.py:104: in _record_pending
+    existing = session.scalar(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\orm\session.py:2534: in scalar
+    return self._execute_internal(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\orm\session.py:2363: in _execute_internal
+    compile_state_cls.orm_execute_statement(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\orm\context.py:316: in orm_execute_statement
+    result = conn.execute(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1451: in execute
+    return meth(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\sql\elements.py:533: in _execute_on_connection
+    return connection._execute_clauseelement(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1671: in _execute_clauseelement
+    ret = self._execute_context(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1825: in _execute_context
+    return self._exec_single_context(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1965: in _exec_single_context
+    self._handle_dbapi_exception(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:2335: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1946: in _exec_single_context
+    self.dialect.do_execute(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <psycopg.Cursor [closed] [IDLE] (host=127.0.0.1 port=55433 user=postgres database=tubeflowtest) at 0x253b8d281d0>
+query = 'SELECT staged_objects.id, staged_objects.object_key, staged_objects.logical_object_key, staged_objects.project_id, st...jects.generation DESC, staged_objects.created_at DESC, staged_objects.id DESC \n LIMIT %(param_1)s::INTEGER FOR UPDATE'
+params = {'logical_object_key_1': 'voice-catalog/v1/resume-96443165-346e-4148-a793-7c4c82ece951/preview.wav', 'param_1': 1}
+prepare = None, binary = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -> Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+>           raise ex.with_traceback(None)
+E           sqlalchemy.exc.ProgrammingError: (psycopg.errors.UndefinedTable) relation "staged_objects" does not exist
+E           LINE 2: FROM staged_objects 
+E                        ^
+E           [SQL: SELECT staged_objects.id, staged_objects.object_key, staged_objects.logical_object_key, staged_objects.project_id, staged_objects.owner_id, staged_objects.purpose, staged_objects.kind, staged_objects.ownership_scope, staged_objects.created_at, staged_objects.state, staged_objects.sha256, staged_objects.size_bytes, staged_objects.media_type, staged_objects.generation, staged_objects.execution_token, staged_objects.asset_id, staged_objects.reference_type, staged_objects.lease_until, staged_objects.cleanup_after, staged_objects.cleanup_checked_at, staged_objects.cleanup_attempt 
+E           FROM staged_objects 
+E           WHERE staged_objects.logical_object_key = %(logical_object_key_1)s::VARCHAR ORDER BY staged_objects.generation DESC, staged_objects.created_at DESC, staged_objects.id DESC 
+E            LIMIT %(param_1)s::INTEGER FOR UPDATE]
+E           [parameters: {'logical_object_key_1': 'voice-catalog/v1/resume-96443165-346e-4148-a793-7c4c82ece951/preview.wav', 'param_1': 1}]
+E           (Background on this error at: https://sqlalche.me/e/21/f405)
+
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\psycopg\cursor.py:117: ProgrammingError
+___ test_identity_claim_handle_blocks_aba_and_refreshes_reopened_generation ___
+
+self = <sqlalchemy.engine.base.Connection object at 0x00000253B80461B0>
+dialect = <sqlalchemy.dialects.postgresql.psycopg.PGDialect_psycopg object at 0x00000253B66BAC60>
+context = <sqlalchemy.dialects.postgresql.psycopg.PGExecutionContext_psycopg object at 0x00000253B8E8CEF0>
+statement = <sqlalchemy.dialects.postgresql.psycopg.PGCompiler_psycopg object at 0x00000253B9234E00>
+parameters = [{'logical_object_key_1': 'identity-claim-65a6bcbf-ae25-4193-882f-59e5deed3c5d', 'param_1': 1}]
+
+    def _exec_single_context(
+        self,
+        dialect: Dialect,
+        context: ExecutionContext,
+        statement: Union[str, Compiled],
+        parameters: Optional[_AnyMultiExecuteParams],
+    ) -> CursorResult[Unpack[TupleAny]]:
+        """continue the _execute_context() method for a single DBAPI
+        cursor.execute() or cursor.executemany() call.
+    
+        """
+        if dialect.bind_typing is BindTyping.SETINPUTSIZES:
+            generic_setinputsizes = context._prepare_set_input_sizes()
+    
+            if generic_setinputsizes:
+                try:
+                    dialect.do_set_input_sizes(
+                        context.cursor, generic_setinputsizes, context
+                    )
+                except BaseException as e:
+                    self._handle_dbapi_exception(
+                        e, str(statement), parameters, None, context
+                    )
+    
+        cursor, str_statement, parameters = (
+            context.cursor,
+            context.statement,
+            context.parameters,
+        )
+    
+        effective_parameters: Optional[_AnyExecuteParams]
+    
+        if not context.executemany:
+            effective_parameters = parameters[0]
+        else:
+            effective_parameters = parameters
+    
+        evt_handled: bool = False
+        try:
+            if self._has_events or self.engine._has_events:
+                for fn in self.dispatch.before_cursor_execute:
+                    str_statement, effective_parameters = fn(
+                        self,
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                        context.executemany,
+                    )
+    
+            if self._echo:
+                self._log_info(str_statement)
+    
+                stats = context._get_cache_stats()
+    
+                if not self.engine.hide_parameters:
+                    self._log_info(
+                        "[%s] %r",
+                        stats,
+                        sql_util._repr_params(
+                            effective_parameters,
+                            batches=10,
+                            ismulti=context.executemany,
+                        ),
+                    )
+                else:
+                    self._log_info(
+                        "[%s] [SQL parameters hidden due to "
+                        "hide_parameters=True]",
+                        stats,
+                    )
+            if context.execute_style is ExecuteStyle.EXECUTEMANY:
+                effective_parameters = cast(
+                    "_CoreMultiExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_executemany:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_executemany(
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                    )
+            elif not effective_parameters and context.no_parameters:
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute_no_params:
+                        if fn(cursor, str_statement, context):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_execute_no_params(
+                        cursor, str_statement, context
+                    )
+            else:
+                effective_parameters = cast(
+                    "_CoreSingleExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+>                   self.dialect.do_execute(
+                        cursor, str_statement, effective_parameters, context
+                    )
+
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1946: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <psycopg.Cursor [closed] [BAD] at 0x253b8d28950>
+query = 'SELECT staged_objects.id, staged_objects.object_key, staged_objects.logical_object_key, staged_objects.project_id, st...jects.generation DESC, staged_objects.created_at DESC, staged_objects.id DESC \n LIMIT %(param_1)s::INTEGER FOR UPDATE'
+params = {'logical_object_key_1': 'identity-claim-65a6bcbf-ae25-4193-882f-59e5deed3c5d', 'param_1': 1}
+prepare = None, binary = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -> Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+>           raise ex.with_traceback(None)
+E           psycopg.errors.UndefinedTable: relation "staged_objects" does not exist
+E           LINE 2: FROM staged_objects 
+E                        ^
+
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\psycopg\cursor.py:117: UndefinedTable
+
+The above exception was the direct cause of the following exception:
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55433/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_361ec57dd45a427b84a188c1aade996c', schema='contract_361ec57dd45a427b84a188c1aade996c')
+
+    @pytest.mark.integration
+    def test_identity_claim_handle_blocks_aba_and_refreshes_reopened_generation(
+        postgres_database,
+    ) -> None:
+        database = Database(postgres_database.url)
+        storage = ProtocolStorage()
+        staged = RequestStagedStorage(database, storage)  # type: ignore[arg-type]
+        key = f"identity-claim-{uuid4()}"
+        body = b"identity-claim-body"
+        digest = hashlib.sha256(body).hexdigest()
+        try:
+>           first = staged.put_at_key(key, body, "application/octet-stream", digest)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\integration\test_staged_upload_protocol.py:204: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\tubeflow_test\adapters\persistence\identity_project\staged_objects.py:68: in put_at_key
+    actual_key, generation, token = self._record_pending(
+src\tubeflow_test\adapters\persistence\identity_project\staged_objects.py:104: in _record_pending
+    existing = session.scalar(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\orm\session.py:2534: in scalar
+    return self._execute_internal(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\orm\session.py:2363: in _execute_internal
+    compile_state_cls.orm_execute_statement(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\orm\context.py:316: in orm_execute_statement
+    result = conn.execute(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1451: in execute
+    return meth(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\sql\elements.py:533: in _execute_on_connection
+    return connection._execute_clauseelement(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1671: in _execute_clauseelement
+    ret = self._execute_context(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1825: in _execute_context
+    return self._exec_single_context(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1965: in _exec_single_context
+    self._handle_dbapi_exception(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:2335: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\base.py:1946: in _exec_single_context
+    self.dialect.do_execute(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <psycopg.Cursor [closed] [BAD] at 0x253b8d28950>
+query = 'SELECT staged_objects.id, staged_objects.object_key, staged_objects.logical_object_key, staged_objects.project_id, st...jects.generation DESC, staged_objects.created_at DESC, staged_objects.id DESC \n LIMIT %(param_1)s::INTEGER FOR UPDATE'
+params = {'logical_object_key_1': 'identity-claim-65a6bcbf-ae25-4193-882f-59e5deed3c5d', 'param_1': 1}
+prepare = None, binary = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -> Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+>           raise ex.with_traceback(None)
+E           sqlalchemy.exc.ProgrammingError: (psycopg.errors.UndefinedTable) relation "staged_objects" does not exist
+E           LINE 2: FROM staged_objects 
+E                        ^
+E           [SQL: SELECT staged_objects.id, staged_objects.object_key, staged_objects.logical_object_key, staged_objects.project_id, staged_objects.owner_id, staged_objects.purpose, staged_objects.kind, staged_objects.ownership_scope, staged_objects.created_at, staged_objects.state, staged_objects.sha256, staged_objects.size_bytes, staged_objects.media_type, staged_objects.generation, staged_objects.execution_token, staged_objects.asset_id, staged_objects.reference_type, staged_objects.lease_until, staged_objects.cleanup_after, staged_objects.cleanup_checked_at, staged_objects.cleanup_attempt 
+E           FROM staged_objects 
+E           WHERE staged_objects.logical_object_key = %(logical_object_key_1)s::VARCHAR ORDER BY staged_objects.generation DESC, staged_objects.created_at DESC, staged_objects.id DESC 
+E            LIMIT %(param_1)s::INTEGER FOR UPDATE]
+E           [parameters: {'logical_object_key_1': 'identity-claim-65a6bcbf-ae25-4193-882f-59e5deed3c5d', 'param_1': 1}]
+E           (Background on this error at: https://sqlalche.me/e/21/f405)
+
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\psycopg\cursor.py:117: ProgrammingError
+__________ test_postgres_round_trip_revision_cas_and_atomic_capacity __________
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55433/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_5e3054c28eb745cf8f26d215cf719fba', schema='contract_5e3054c28eb745cf8f26d215cf719fba')
+storyboard_parent_chain = (ProductionParentChain(owner_id=UUID('bab14eea-d332-4a6b-996c-9fee5ff76932'), channel_id=UUID('aaf086af-1b79-43e7-b336...e-7ec9845941f0'), group_id=UUID('49bdee18-55e7-4a36-af11-07486a8a92db')), UUID('436c5e2c-93f4-411b-891c-d72772b0bda6'))
+
+    @pytest.mark.integration
+    def test_postgres_round_trip_revision_cas_and_atomic_capacity(
+        postgres_database,
+        storyboard_parent_chain,
+    ) -> None:
+        sessions: sessionmaker[Session] = postgres_database.sessions
+        parents, generation_id = storyboard_parent_chain
+        with sessions.begin() as session:
+            session.add(
+                H3NodeRecord(
+                    node_id="pg-node",
+                    base_url="http://pg-node",
+                    token_secret_ref="node-token",
+                    capacity=1,
+                    claimed_slots=0,
+                    enabled=True,
+                    health="READY",
+                    capability="video.reference_images_to_video",
+                    model_key="minimax-h3",
+                    model_version="1",
+                    workflow_id="h3-r2v-images",
+                    workflow_version="1",
+                    manifest_sha256="a" * 64,
+                )
+            )
+    
+        def unavailable_loader(session: Session, owner_id, group_id):  # type: ignore[no-untyped-def]
+            raise AssertionError("loader is not used in repository persistence integration")
+    
+        first_repo = SqlAlchemyVideoRepository(sessions, unavailable_loader, lambda ref: ref)
+        attempt = PersistentAttempt(
+            uuid4(),
+            parents.owner_id,
+            parents.project_id,
+            parents.group_id,
+            generation_id,
+            "pg-key",
+            "b" * 64,
+            "c" * 64,
+            {},
+        )
+        saved = first_repo.create_attempt(attempt)
+        del first_repo
+        second_repo = SqlAlchemyVideoRepository(sessions, unavailable_loader, lambda ref: ref)
+        recovered = second_repo.get_attempt(saved.attempt_id)
+        assert recovered == saved
+        stale = recovered
+        assert stale is not None
+        advanced = second_repo.save_attempt(replace(stale, stage=AttemptStage.STAGING))
+        assert advanced.revision == stale.revision + 1
+        with pytest.raises(VideoRuleViolation, match="revision_conflict"):
+            second_repo.save_attempt(replace(stale, stage=AttemptStage.CANCELLED))
+    
+        workflow = ImmutableWorkflowSnapshot(
+            "minimax-h3", "1", "h3-r2v-images", "1", "a" * 64, "preview", {}
+        )
+        second_repo.claim_compatible_node(advanced.attempt_id, workflow)
+        other_group_id, other_revision_id, other_generation_id = uuid4(), uuid4(), uuid4()
+        with sessions.begin() as session:
+            session.add(
+                AuthoritativeNarrationGroupRecord(
+                    id=other_group_id,
+                    project_id=parents.project_id,
+                    owner_id=parents.owner_id,
+                    snapshot_sha256="9" * 64,
+                    snapshot_revision=1,
+                    sequence=2,
+                    start_frame=48_000,
+                    end_frame=96_000,
+                    sample_rate_hz=48_000,
+                    start_ms=1_000,
+                    end_ms=2_000,
+                    video_blocked=False,
+                    block_reason=None,
+                )
+            )
+            session.add(
+                DirectorRevisionRow(
+                    id=other_revision_id,
+                    owner_id=parents.owner_id,
+                    project_id=parents.project_id,
+                    group_id=other_group_id,
+                    revision_number=1,
+                    kind="APPLIED",
+                    shots_json=[{"ordinal": 1, "description": "A second distinct event"}],
+                    links_json=[],
+                    group_sentence_ids_json=[],
+                    review_state="APPROVED",
+                    continuous_observation_approvals_json=[],
+                    created_at=datetime.now(UTC),
+                )
+            )
+            session.flush()
+            session.add(
+                StoryboardGenerationRow(
+                    id=other_generation_id,
+                    owner_id=parents.owner_id,
+                    project_id=parents.project_id,
+                    group_id=other_group_id,
+                    applied_revision_id=other_revision_id,
+                    version=1,
+                    kind="GRID",
+                    input_json={},
+                    idempotency_key=f"storyboard-{other_generation_id.hex}",
+                    provider_idempotency_key=f"provider-{other_generation_id.hex}",
+                    canonical_request_sha256="a" * 64,
+                    status="SUCCEEDED",
+                    state_revision=1,
+                    created_at=datetime.now(UTC),
+                    checkpoint_json={},
+                )
+            )
+        other = second_repo.create_attempt(
+            PersistentAttempt(
+                uuid4(),
+                parents.owner_id,
+                parents.project_id,
+                other_group_id,
+                other_generation_id,
+                "pg-key-2",
+                "d" * 64,
+                "e" * 64,
+                {},
+            )
+        )
+        with pytest.raises(VideoRuleViolation, match="capacity"):
+>           second_repo.claim_compatible_node(other.attempt_id, workflow)
+
+tests\integration\test_video_postgres.py:147: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <tubeflow_test.video_generation.sqlalchemy_repository.SqlAlchemyVideoRepository object at 0x00000253B45BC8F0>
+attempt_id = UUID('f3359dec-e7e6-43a1-a781-418653705431')
+workflow = ImmutableWorkflowSnapshot(model_key='minimax-h3', model_version='1', workflow_id='h3-r2v-images', workflow_version='1'...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', resolution_preset='preview', manifest=mappingproxy({}))
+
+    def claim_compatible_node(
+        self, attempt_id: UUID, workflow: ImmutableWorkflowSnapshot
+    ) -> EngineNode:
+        with self._sessions() as session, session.begin():
+            if session.bind is not None and session.bind.dialect.name == "postgresql":
+                session.execute(
+                    text("SELECT pg_advisory_xact_lock(hashtext(:scope))"),
+                    {"scope": H3_NODE_CONFIG_LOCK_SCOPE},
+                )
+            attempt = session.scalar(
+                select(VideoAttemptRecord)
+                .where(VideoAttemptRecord.attempt_id == attempt_id)
+                .with_for_update()
+            )
+            if attempt is None:
+                raise VideoRuleViolation("unknown attempt")
+            if attempt.slot_claimed:
+                return self._node_by_id(session, attempt.node_id, workflow, lock=False)
+            if attempt.node_id is not None:
+                node = self._node_by_id(session, attempt.node_id, workflow, lock=True)
+                row = session.get(H3NodeRecord, attempt.node_id)
+                assert row is not None
+                stalled = (
+                    session.scalar(
+                        select(func.count())
+                        .select_from(VideoAttemptRecord)
+                        .where(
+                            VideoAttemptRecord.node_id == attempt.node_id,
+                            VideoAttemptRecord.slot_claimed.is_(True),
+                            VideoAttemptRecord.stalled_at.is_not(None),
+                        )
+                    )
+                    or 0
+                )
+                if row.claimed_slots - stalled >= row.capacity:
+                    raise VideoRuleViolation("assigned H3 node has no capacity")
+            else:
+                stalled_sq = _stalled_slots_subquery()
+                completed_sq = (
+                    select(
+                        VideoAttemptRecord.node_id.label("completed_node_id"),
+                        func.max(VideoAttemptRecord.updated_at).label("last_completed_at"),
+                    )
+                    .where(
+                        VideoAttemptRecord.stage.in_(
+                            (
+                                AttemptStage.ARCHIVED.value,
+                                AttemptStage.FAILED.value,
+                                AttemptStage.CANCELLED.value,
+                            )
+                        )
+                    )
+                    .group_by(VideoAttemptRecord.node_id)
+                    .subquery()
+                )
+                effective_free = (
+                    H3NodeRecord.capacity
+                    - H3NodeRecord.claimed_slots
+                    + func.coalesce(stalled_sq.c.stalled_slots, 0)
+                )
+                row = session.scalar(
+                    select(H3NodeRecord)
+                    .outerjoin(stalled_sq, stalled_sq.c.stalled_node_id == H3NodeRecord.node_id)
+                    .outerjoin(
+                        completed_sq, completed_sq.c.completed_node_id == H3NodeRecord.node_id
+                    )
+                    .where(
+                        H3NodeRecord.enabled.is_(True),
+                        H3NodeRecord.health == NodeHealth.READY.value,
+                        effective_free > 0,
+                        H3NodeRecord.capability == "video.reference_images_to_video",
+                        H3NodeRecord.model_key == workflow.model_key,
+                        H3NodeRecord.model_version == workflow.model_version,
+                        H3NodeRecord.workflow_id == workflow.workflow_id,
+                        H3NodeRecord.workflow_version == workflow.workflow_version,
+                        H3NodeRecord.manifest_sha256 == workflow.workflow_manifest_sha256,
+                    )
+                    .order_by(
+                        effective_free.desc(),
+                        nulls_first(completed_sq.c.last_completed_at.asc()),
+                        H3NodeRecord.node_id,
+                    )
+                    .with_for_update(of=H3NodeRecord, skip_locked=True)
+                )
+                if row is None:
+                    _log_capacity_starvation(session)
+>                   raise VideoCapacityUnavailable()
+E                   tubeflow_test.video_generation.domain.VideoCapacityUnavailable: no compatible H3 node has capacity
+
+src\tubeflow_test\video_generation\sqlalchemy_repository.py:855: VideoCapacityUnavailable
+------------------------------ Captured log call ------------------------------
+WARNING  tubeflow_test.video_generation.sqlalchemy_repository:sqlalchemy_repository.py:1166 no compatible H3 node has capacity; enabled node snapshot (node_id, health, claimed, capacity, stalled): [('pg-node', 'READY', 1, 1, 0)]
+============================== warnings summary ===============================
+src\tubeflow_test\adapters\audio_qc.py:3
+  D:\AAA-project\TubeFlow AI - Test\backend\src\tubeflow_test\adapters\audio_qc.py:3: DeprecationWarning: 'audioop' is deprecated and slated for removal in Python 3.13
+    import audioop
+
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/integration/test_alembic_url_precedence.py: 3 warnings
+tests/integration/test_channel_deletion_postgres.py: 5 warnings
+tests/integration/test_cloned_voices_postgres.py: 3 warnings
+tests/integration/test_composition_authority_postgres.py: 3 warnings
+tests/integration/test_cover_image_upload_postgres.py: 3 warnings
+tests/integration/test_cover_templates_postgres.py: 2 warnings
+tests/integration/test_elevenlabs_pool_postgres.py: 2 warnings
+tests/integration/test_h3_archive_postgres_minio.py: 1 warning
+tests/integration/test_h3_manual_media_lock.py: 1 warning
+tests/integration/test_h3_node_startup_postgres.py: 1 warning
+tests/integration/test_h3_outbox_migration_postgres.py: 4 warnings
+tests/integration/test_h3_project_routing_postgres.py: 3 warnings
+tests/integration/test_h3_reference_policy_migration.py: 11 warnings
+tests/integration/test_h3_storyboard_binding.py: 13 warnings
+tests/integration/test_identity_project_postgres.py: 1 warning
+tests/integration/test_media_content_postgres.py: 4 warnings
+tests/integration/test_narration_recovery_queue.py: 3 warnings
+tests/integration/test_postgres_media_cas.py: 2 warnings
+tests/integration/test_project_director_claim_project_gate.py: 2 warnings
+tests/integration/test_project_director_confirmation_atomic.py: 4 warnings
+tests/integration/test_project_director_current_materialization.py: 2 warnings
+tests/integration/test_project_director_manual_recovery_postgres.py: 11 warnings
+tests/integration/test_project_director_recovery_postgres.py: 2 warnings
+tests/integration/test_project_director_v4_migration.py: 3 warnings
+tests/integration/test_project_publication_postgres.py: 1 warning
+tests/integration/test_project_purge_scope_migration.py: 6 warnings
+tests/integration/test_project_purge_shared_assets.py: 17 warnings
+tests/integration/test_provider_audit_postgres.py: 1 warning
+tests/integration/test_shot_panel_assets_postgres.py: 5 warnings
+tests/integration/test_single_panel_fake_engine_postgres.py: 2 warnings
+tests/integration/test_single_panel_opt_in_postgres.py: 6 warnings
+tests/integration/test_staged_cleanup_migration.py: 4 warnings
+tests/integration/test_staged_upload_protocol.py: 13 warnings
+tests/integration/test_storyboard_director_lineage_edit.py: 5 warnings
+tests/integration/test_storyboard_failover_migration.py: 3 warnings
+tests/integration/test_storyboard_failover_postgres_atomic.py: 2 warnings
+tests/integration/test_storyboard_postgres_authority.py: 1 warning
+tests/integration/test_video_descriptions_postgres.py: 4 warnings
+tests/integration/test_video_postgres.py: 1 warning
+  C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\alembic\config.py:604: DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces, commas, and colons for prepend_sys_path.  Consider adding path_separator=os to Alembic config.
+    util.warn_deprecated(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\integration\test_identity_project_minio.py:21: TUBEFLOW_TEST_MINIO_ENDPOINT is not configured
+SKIPPED [1] tests\integration\test_media_content_postgres.py:303: TUBEFLOW_TEST_MINIO_ENDPOINT is not configured
+SKIPPED [1] tests\integration\test_narration_postgres.py:104: isolated PostgreSQL and MinIO are not configured
+SKIPPED [1] tests\integration\test_narration_temporal.py:63: isolated Temporal target is not configured
+SKIPPED [1] tests\integration\test_narration_temporal.py:109: isolated Temporal and PostgreSQL are not configured
+SKIPPED [1] tests\integration\test_real_ffmpeg_composition.py:31: FFmpeg integration fixture requires local ffmpeg and ffprobe
+SKIPPED [1] \app\tests\integration\test_voice_catalog_concurrency.py:83: PostgreSQL and MinIO integration endpoints are required
+FAILED tests/integration/test_cloned_voices_postgres.py::test_elevenlabs_project_and_snapshot_facts_round_trip
+FAILED tests/integration/test_elevenlabs_pool_postgres.py::test_elevenlabs_pool_schema_matches_models_and_downgrade_drops_tables
+FAILED tests/integration/test_h3_archive_postgres_minio.py::test_h3_archive_concurrency_and_purge_interlock
+FAILED tests/integration/test_identity_project_postgres.py::test_real_postgres_schema_round_trip_and_atomic_initialization
+FAILED tests/integration/test_project_purge_shared_assets.py::test_concurrent_project_purges_elect_one_shared_object_deleter
+FAILED tests/integration/test_project_purge_shared_assets.py::test_non_project_shared_survivor_remains_unchanged_when_one_project_is_deleted[OWNER]
+FAILED tests/integration/test_project_purge_shared_assets.py::test_non_project_shared_survivor_remains_unchanged_when_one_project_is_deleted[GLOBAL]
+FAILED tests/integration/test_project_purge_shared_assets.py::test_global_shared_survivor_is_rechecked_and_preserved_after_retry
+FAILED tests/integration/test_project_purge_shared_assets.py::test_concurrent_global_shared_purges_preserve_external_survivor_idempotently
+FAILED tests/integration/test_project_purge_shared_assets.py::test_replace_media_then_peer_begin_project_lock_order_does_not_deadlock
+FAILED tests/integration/test_project_purge_shared_assets.py::test_last_reference_disappears_after_skipped_save_and_is_re_elected_for_delete
+FAILED tests/integration/test_project_purge_shared_assets.py::test_missing_direct_object_is_an_idempotent_purge_success
+FAILED tests/integration/test_project_purge_shared_assets.py::test_purge_anonymizes_every_project_staged_state_and_cleans_late_put
+FAILED tests/integration/test_project_purge_shared_assets.py::test_expired_purge_claim_is_fenced_before_old_worker_deletes
+FAILED tests/integration/test_project_purge_shared_assets.py::test_lease_expiry_during_delete_fences_results_but_not_issued_idempotent_io
+FAILED tests/integration/test_staged_upload_protocol.py::test_postgres_advisory_claim_lock_prevents_same_generation_phantoms
+FAILED tests/integration/test_staged_upload_protocol.py::test_fixed_catalog_writer_can_resume_matching_unattached_stage
+FAILED tests/integration/test_staged_upload_protocol.py::test_identity_claim_handle_blocks_aba_and_refreshes_reopened_generation
+FAILED tests/integration/test_video_postgres.py::test_postgres_round_trip_revision_cas_and_atomic_capacity
+19 failed, 120 passed, 7 skipped, 162 warnings in 226.20s (0:03:46)

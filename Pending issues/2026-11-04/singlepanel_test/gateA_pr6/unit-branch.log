@@ -1,0 +1,91 @@
+....................sssss............................................... [  3%]
+........................................................................ [  6%]
+........................................................................ [  9%]
+........................................................................ [ 12%]
+........................................................................ [ 15%]
+........................................................................ [ 18%]
+........................................................................ [ 21%]
+........................................................................ [ 24%]
+........................................................................ [ 27%]
+........................................................................ [ 30%]
+........................................................................ [ 33%]
+.............................................s.......................... [ 36%]
+........................................................................ [ 39%]
+........................................................................ [ 42%]
+.............................................s.......................... [ 45%]
+........................................................................ [ 48%]
+........................................................................ [ 52%]
+........................................................................ [ 55%]
+........................................................................ [ 58%]
+........................................................................ [ 61%]
+........................................................................ [ 64%]
+........................................................................ [ 67%]
+........................................................................ [ 70%]
+........................................................................ [ 73%]
+........................................................................ [ 76%]
+........................................................................ [ 79%]
+.................................................................sss.... [ 82%]
+........................................................................ [ 85%]
+........................................................................ [ 88%]
+........................................................................ [ 91%]
+........................................................................ [ 94%]
+........................................................................ [ 97%]
+................................................                         [100%]
+============================== warnings summary ===============================
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+src\tubeflow_test\adapters\audio_qc.py:3
+  D:\AAA-project\TubeFlow AI - Test\backend\src\tubeflow_test\adapters\audio_qc.py:3: DeprecationWarning: 'audioop' is deprecated and slated for removal in Python 3.13
+    import audioop
+
+tests/unit/test_elevenlabs_pool_api.py::test_add_key_error_mapping
+  D:\AAA-project\TubeFlow AI - Test\backend\src\tubeflow_test\api\elevenlabs_pool.py:102: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    _raise_http(error)
+
+tests/unit/test_health.py::test_module_asgi_target_constructs_the_same_central_app
+  D:\AAA-project\TubeFlow AI - Test\backend\tests\unit\test_health.py:53: DeprecationWarning: 
+          on_event is deprecated, use lifespan event handlers instead.
+  
+          Read more about it in the
+          [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+          
+    @router.on_event("startup")
+
+tests/unit/test_narration.py::test_zip_manifest_rejects_unknown_duplicate_traversal_and_oversized_member
+  C:\Users\15202\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\zipfile\__init__.py:1625: UserWarning: Duplicate name: '0001.wav'
+    return self._open_to_write(zinfo, force_zip64=force_zip64)
+
+tests/unit/test_narration.py::test_invalid_output_api_rejects_completed_unknown_and_unowned_attempts
+  D:\AAA-project\TubeFlow AI - Test\backend\src\tubeflow_test\api\narration_router.py:174: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    _raise_http(error)
+
+tests/unit/test_panel_images.py: 21 warnings
+  D:\AAA-project\TubeFlow AI - Test\backend\tests\unit\test_panel_images.py:89: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+    assert set(image.getdata()) == {colors[panel.shot_order]}
+
+tests/unit/test_project_director_api.py::test_manual_resolution_requires_non_blank_evidence
+  D:\AAA-project\TubeFlow AI - Test\backend\src\tubeflow_test\api\project_director.py:332: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    run = call(
+
+tests/unit/test_public_voice_catalog.py::test_catalog_rejects_duplicate_and_symlink
+  C:\Users\15202\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\zipfile\__init__.py:1625: UserWarning: Duplicate name: 'public_voice_library/avatars/voice-1.png'
+    return self._open_to_write(zinfo, force_zip64=force_zip64)
+
+tests/unit/test_staged_object_reconciler.py::test_orphan_reconciler_never_deletes_attached_or_finalized_objects
+tests/unit/test_staged_object_reconciler.py::test_orphan_reconciler_never_deletes_attached_or_finalized_objects
+tests/unit/test_staged_object_reconciler.py::test_orphan_reconciler_never_deletes_attached_or_finalized_objects
+tests/unit/test_staged_object_reconciler.py::test_orphan_reconciler_never_deletes_attached_or_finalized_objects
+  C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\sqlalchemy\engine\default.py:1192: DeprecationWarning: The default datetime adapter is deprecated as of Python 3.12; see the sqlite3 documentation for suggested replacement recipes
+    cursor.execute(statement, parameters)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [5] tests\unit\test_audio_normalization_short.py:26: FFmpeg executable is not available
+SKIPPED [1] tests\unit\test_h3_ffprobe_native_audio.py:55: local ffmpeg unavailable
+SKIPPED [1] tests\unit\test_narration.py:1195: FFmpeg executable is not available
+SKIPPED [1] tests\unit\test_video_content_qc.py:337: local ffmpeg unavailable
+SKIPPED [1] tests\unit\test_video_content_qc.py:352: local ffmpeg unavailable
+SKIPPED [1] tests\unit\test_video_content_qc.py:362: ffmpeg/ffprobe not on PATH
+2342 passed, 10 skipped, 33 warnings in 97.20s (0:01:37)
