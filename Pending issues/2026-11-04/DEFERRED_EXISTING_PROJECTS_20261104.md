@@ -88,3 +88,11 @@
 - 视频尝试被触碰：**12 条**，全部属 `23c59183`（4 RUNNING / 4 CREATED / 4 ARCHIVED-COMPLETE），是其被外部恢复后自身的推进。
 - 触发标记（FAILED / REMOTE_STATE_UNKNOWN / QC_FAILED / local_integrity_blocked）：**0 条**；新增故事板 **0 条**。
 - `247462a4` 在本次部署前（12:55 +0800）已因 `storyboard_failed:storyboard_panel_layout_unreadable` 暂停，未受本次部署影响，也未恢复。
+
+### 3.6 PR #10 部署后 10 分钟（T_dep 2026-11-05T10:09:53Z 起至 10:20:10Z）
+
+- 镜像 `sha256:fa167f1b…`（`recut-resume-20261105`，含 §48 回切框架，开关关闭），迁移 `0046 → 0047`；`.env` 未改。
+- 视频尝试被触碰：**17 条**，全部属 `247462a4`（7 CREATED / 4 ARCHIVED / 3 RUNNING / 2 SUCCEEDED / 1 SUBMITTED），是该组自身梯子重试并在推进（`ARCHIVED` 1→4、`SUCCEEDED` 1→2）；其中 1 条 `video_content_black_region`。worker 日志同期为「no compatible H3 node has capacity」（h3-new-1 OFFLINE，h3-new-2/3 各 2/2），属容量排队，与本次改动无关。
+- 新增故事板 **11 条**，全部 `grid-v2`，全部属 `247462a4`；全部产生于 10:11 之前（该项目重启前的自身重试），部署后 10 分钟内没有新增故事板。`storyboard_director_revisions` 新增 **0 条**；`composition_recut_approvals_json <> '[]'` 计数 **0**（开关关闭，符合预期）。
+- `247462a4`：AUTO 仍 `RUNNING` round 9（`updated_at` 10:06:19Z，早于本次部署，未被打断）；`23c59183`：仍 `COMPLETED` round 8（`updated_at` 08:32:14Z）。
+- 既有 v1 项目无新增故事板、无新增尝试。

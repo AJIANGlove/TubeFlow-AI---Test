@@ -640,6 +640,6 @@
 - [x] 本地：v1 项目、MANUAL 项目、阈值未配置均不推导；已放行的组在开关关闭或版式不是 v2 时，单组提交 fail-closed（`composition_recut_not_allowed`），批量路径为 `needs_review` 不提交（单元测试）。
 - [x] 本地：回切两格过于相似 → `storyboard_recut_panels_too_similar` 并生成后继；差异足够 → 通过；裁切失败 → 按 `storyboard_panel_layout_unreadable` 重试；检查未配置 fail-closed；无回切组不执行检查（单元测试，合成图）。
 - [x] 本地：放行记录经 SQL 往返、应用后保留；迁移前写入的行读出为空（SQLite 单元测试）。
-- [ ] PostgreSQL 集成测试（含迁移 `0047` 升级/降级）、ruff、mypy 相对 main 无新增（实施方执行）。
-- [ ] 离线标定：已部署镜像上对全部成功的 v2 故事板计算同组不同镜头格子距离分布与最近样例（`Pending issues/2026-11-05/RECUT_CALIBRATION/recut_calibration.py`，只读），结果交用户看图（实施方执行）。
+- [x] PostgreSQL 集成测试（含迁移 `0047` 升级/降级）、ruff、mypy 相对 main 无新增（实施方执行）。（2026-11-05 分支 `c40b196` 对 main `66f7609`：集成两侧 19 failed 逐条相同、跳过 7 条原因相同，通过 121 对 120（分支该文件为旧副本，合并后取 main 版本 `e8eb749e…`）；ruff 15 条、mypy 12 errors / 7 files 两侧相同，按行号归一化后逐行一致。迁移在隔离 PG 上 `0046 → 0047 → 0046 → 0047` 往返通过，列 `json` / `NOT NULL` / 默认 `'[]'::json`，迁移前写入的行读出 `[]`，降级不丢行，`alembic heads` 单头。证据 `Pending issues/2026-11-05/RECUT_CALIBRATION/`、`docs/DEPLOYMENT.md` §40。）
+- [x] 离线标定：已部署镜像上对全部成功的 v2 故事板计算同组不同镜头格子距离分布与最近样例（`Pending issues/2026-11-05/RECUT_CALIBRATION/recut_calibration.py`，只读），结果交用户看图（实施方执行）。（2026-11-05 镜像 `sha256:fa167f1b…`，342/343 张量到（6 项目），裁切失败 0；同组不同镜头 2877 对 p0 0.1240 / p1 0.3536 / p5 0.5647 / p25 0.8138 / p50 0.94；同构图相邻 2 对 0.6947 与 0.9411，同构图非相邻 0 对。结果与样图 `Pending issues/2026-11-05/RECUT_CALIBRATION/results/`，阈值未选。）
 - [ ] 阈值经用户看图确认后才开启开关（未验证）。
