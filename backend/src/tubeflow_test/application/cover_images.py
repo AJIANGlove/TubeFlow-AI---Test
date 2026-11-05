@@ -56,10 +56,10 @@ from tubeflow_test.identity_project.images import verify_character_image
 
 # 用户直接上传封面版本（2026-10-22）：与 AI 出图共用不可变版本序列。
 # 原图字节不改写（不重编码、不剥 EXIF）；导出仍按 qc_mime 命名 cover.{ext}。
+# 2026-11-05 修订：取消最小尺寸与 16:9 限制，任意可解码 png/jpeg/webp 按原字节
+# 归档（见 USER_DECISIONS §34 第 13 条）；仅保留格式、字节与像素上限。
 COVER_IMAGE_UPLOAD_MAX_BYTES = 25 * 1024 * 1024
 COVER_IMAGE_UPLOAD_MAX_PIXELS = 40_000_000
-COVER_IMAGE_UPLOAD_MIN_WIDTH = 1280
-COVER_IMAGE_UPLOAD_MIN_HEIGHT = 720
 
 
 def _not_found() -> DomainError:
@@ -236,8 +236,9 @@ class CoverImageService:
     ) -> tuple[CoverImageGeneration, bool]:
         """把用户上传的图片落为不可变封面版本（同步、无模型调用、无 outbox）。
 
-        校验顺序：项目存在/冻结 → 字节与像素上限 → 格式 → 最小尺寸 → 16:9±1%。
-        全部校验在写对象之前完成，422 不产生对象、不产生版本行。
+        校验：项目存在/冻结 → 字节与像素上限 → 格式（含可解码）。
+        不限制宽高比与最小尺寸（2026-11-05 修订）；全部校验在写对象之前完成，
+        422 不产生对象、不产生版本行。
         同项目同字节重复上传返回既有版本并设为当前（reused=True）。
         """
         context = self._projects.project_cover_context(owner_id, project_id)
@@ -252,20 +253,6 @@ class CoverImageService:
             max_bytes=COVER_IMAGE_UPLOAD_MAX_BYTES,
             max_pixels=COVER_IMAGE_UPLOAD_MAX_PIXELS,
         )
-        if (
-            verified.width < COVER_IMAGE_UPLOAD_MIN_WIDTH
-            or verified.height < COVER_IMAGE_UPLOAD_MIN_HEIGHT
-        ):
-            raise DomainError(
-                "invalid_image_dimensions",
-                f"Cover image must be at least {COVER_IMAGE_UPLOAD_MIN_WIDTH}x"
-                f"{COVER_IMAGE_UPLOAD_MIN_HEIGHT}",
-            )
-        # 16:9 ±1%（整数运算，避免浮点边界误差）：|9w-16h| * 100 <= 16h。
-        if abs(9 * verified.width - 16 * verified.height) * 100 > 16 * verified.height:
-            raise DomainError(
-                "invalid_image_aspect_ratio", "Cover image must use a 16:9 aspect ratio"
-            )
         object_key = f"cover-images/uploads/{owner_id}/{project_id}/{verified.sha256}"
         self._storage.put_at_key(
             object_key, verified.content, verified.media_type, verified.sha256

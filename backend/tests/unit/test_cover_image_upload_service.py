@@ -280,18 +280,12 @@ def test_upload_rejects_foreign_or_unknown_project_without_orphan(tmp_path: Path
     [
         ("cover.gif", gif_bytes(), "invalid_image_type"),
         ("cover.png", b"x" * (COVER_IMAGE_UPLOAD_MAX_BYTES + 1), "invalid_image_size"),
-        ("cover.png", png_bytes(1024, 576), "invalid_image_dimensions"),
         ("cover.png", png_with_declared_size(8000, 6000), "invalid_image_dimensions"),
-        ("cover.png", png_bytes(1360, 720), "invalid_image_aspect_ratio"),
-        ("cover.png", png_bytes(1300, 720), "invalid_image_aspect_ratio"),
     ],
     ids=[
         "gif-format",
         "over-25mb",
-        "below-min-size",
         "over-40mp",
-        "ratio-1360x720",
-        "ratio-1300x720",
     ],
 )
 def test_upload_validation_rejects_without_writing(
@@ -309,16 +303,61 @@ def test_upload_validation_rejects_without_writing(
     assert storage.puts == []
 
 
-def test_upload_accepts_one_percent_ratio_tolerance(tmp_path: Path) -> None:
-    images, repo, projects, _storage = service(tmp_path)
+def test_upload_accepts_non_16_9_dimensions(tmp_path: Path) -> None:
+    """2026-11-05：取消 16:9 与最小尺寸限制，1056×608（视频原生尺寸）原样归档。"""
+    images, repo, projects, storage = service(tmp_path)
     owner_id = uuid4()
     project_id = seed_project(repo, projects, owner_id=owner_id)
+    content = png_bytes(1056, 608)
 
-    generation, _ = images.upload(
-        owner_id, project_id, filename="cover.png", content=png_bytes(1290, 720)
+    generation, reused = images.upload(
+        owner_id, project_id, filename="cover.png", content=content
     )
 
-    assert (generation.qc_width, generation.qc_height) == (1290, 720)
+    assert reused is False
+    assert (generation.qc_width, generation.qc_height) == (1056, 608)
+    assert storage.objects[generation.object_key or ""] == content
+    assert repo.current_image_generation_for_project(owner_id, project_id) == generation
+
+
+def test_upload_accepts_vertical_image(tmp_path: Path) -> None:
+    """竖图不再是拒绝理由：1080×1920 上传成功并成为当前版本。"""
+    images, repo, projects, storage = service(tmp_path)
+    owner_id = uuid4()
+    project_id = seed_project(repo, projects, owner_id=owner_id)
+    content = png_bytes(1080, 1920)
+
+    generation, _ = images.upload(
+        owner_id, project_id, filename="vertical.png", content=content
+    )
+
+    assert (generation.qc_width, generation.qc_height) == (1080, 1920)
+    assert storage.objects[generation.object_key or ""] == content
+    assert repo.current_image_generation_for_project(owner_id, project_id) == generation
+
+
+def test_upload_second_distinct_image_is_version_two_and_current(tmp_path: Path) -> None:
+    """多版本：不同字节的第二张图新增版本 2 并立即成为当前（不再要求 16:9）。"""
+    images, repo, projects, storage = service(tmp_path)
+    owner_id = uuid4()
+    project_id = seed_project(repo, projects, owner_id=owner_id)
+    first_content = png_bytes(1056, 608)
+    second_content = jpeg_bytes(1200, 1600)
+
+    first, first_reused = images.upload(
+        owner_id, project_id, filename="first.png", content=first_content
+    )
+    second, second_reused = images.upload(
+        owner_id, project_id, filename="second.jpg", content=second_content
+    )
+
+    assert (first.version, first_reused) == (1, False)
+    assert (second.version, second_reused) == (2, False)
+    assert repo.current_image_generation_for_project(owner_id, project_id) == second
+    assert len(repo.list_image_generations_for_project(owner_id, project_id)) == 2
+    assert len(storage.objects) == 2
+    assert storage.objects[second.object_key or ""] == second_content
+    assert repo.outbox == {}
 
 
 def test_upload_preserves_original_bytes_and_media_type(tmp_path: Path) -> None:

@@ -22,6 +22,7 @@ import {
   coverPageModel,
   coverStyleSourceModel,
   coverTaskRunning,
+  coverUploadErrorMessage,
   coverVersionList,
   coverWarningLabel,
   dimsFromPayload,
@@ -334,6 +335,9 @@ test("page model builds image panel with current media and generate gate", () =>
   assert.match(model.imagePanel.current.meta, /2560×1440/);
   assert.equal(model.imagePanel.versions[0].isCurrent, true);
   assert.match(model.imagePanel.emptyText, /上传/);
+  assert.match(model.imagePanel.emptyText, /png/);
+  // 2026-11-05：上传不再要求 16:9 或 ≥1280×720。
+  assert.doesNotMatch(model.imagePanel.emptyText, /16:9/);
   // 提示词未就绪不可出图。
   const noPrompt = coverPageModel({ fact: null, project: frozenProject, projectStyle: projectStylePayload, prompts: { current: null, items: [] }, images });
   assert.equal(noPrompt.imagePanel.canGenerate, false);
@@ -369,6 +373,9 @@ test("cover stage is registered as the tenth stage with renderer, polling and ch
   assert.match(appSource, /id="coverUploadImageFile"/);
   assert.match(appSource, /api\.uploadProjectCoverImage/);
   assert.match(appSource, /async function uploadCoverImageFile/);
+  // 2026-11-05：取消最小尺寸与 16:9 限制，失败提示按 code 映射中文。
+  assert.doesNotMatch(appSource, /≥1280×720/);
+  assert.match(appSource, /coverUploadErrorMessage/);
   assert.match(appSource, /固定为频道风格/);
   assert.match(appSource, /以所选文字重新生成画面/);
   assert.match(appSource, /function channelCoverStylePanelMarkup\(channel\)/);
@@ -609,4 +616,14 @@ test("image review view model normalizes payloads and passes through page model"
     images: { ...images, current: { ...images.current, visual_review: null } },
   });
   assert.equal(noReview.imagePanel.current.review, null);
+});
+
+test("upload error codes map to Chinese hints and unknown codes fall back", () => {
+  assert.match(coverUploadErrorMessage({ code: "invalid_image_type" }), /png/);
+  assert.match(coverUploadErrorMessage({ code: "invalid_image_size" }), /25MB/);
+  assert.match(coverUploadErrorMessage({ code: "invalid_image_dimensions" }), /4000 万像素/);
+  assert.match(coverUploadErrorMessage({ code: "invalid_image" }), /无法解码/);
+  assert.equal(coverUploadErrorMessage({ code: "something_else" }), "");
+  assert.equal(coverUploadErrorMessage(null), "");
+  assert.equal(coverUploadErrorMessage({}), "");
 });

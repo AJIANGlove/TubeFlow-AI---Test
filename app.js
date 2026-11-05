@@ -111,6 +111,7 @@ import {
   coverPageModel,
   coverStyleSourceModel,
   coverTaskRunning,
+  coverUploadErrorMessage,
   coverVersionList,
   coverWarningLabel,
   dimsFromPayload,
@@ -7181,7 +7182,7 @@ function coverImagePanelMarkup(model) {
     ? `<figure class="media-preview"><img id="coverCurrentImage" alt="当前封面图" /><figcaption id="coverPreviewCaption">当前封面图 · 版本 ${escapeHtml(current.version)} · ${escapeHtml(current.meta)}</figcaption></figure>`
     : `<div class="notice-card"><strong>当前没有封面图</strong><p>${escapeHtml(panel.emptyText)}</p></div>`;
   return `<section class="panel" id="coverImagePanel">
-    <div class="panel-head"><div><h2>封面图</h2><p>生成 2560×1440 封面，或上传 16:9 图片（≥1280×720）；不可变版本归档，上传成功即设为当前，生成首次成功自动设为当前。</p></div>
+    <div class="panel-head"><div><h2>封面图</h2><p>生成 2560×1440 封面，或上传 png/jpeg/webp 图片（≤25MB，≤4000 万像素，原样归档，不限尺寸与宽高比）；不可变版本归档，上传成功即设为当前，生成首次成功自动设为当前。</p></div>
       <div class="panel-head-actions">
         <button id="coverUploadImage" class="secondary-button compact" type="button" ${canUpload ? "" : "disabled"}>${state.coverImageUploading ? "上传中…" : "上传封面图"}</button>
         <button id="coverGenerateImage" class="primary-button compact" type="button" ${canGenerate ? "" : "disabled"}>${runningRow ? `${escapeHtml(statusText(runningRow))}…` : "生成封面图"}</button>
@@ -8139,7 +8140,7 @@ async function uploadCoverImageFile(file) {
     const response = await api.uploadProjectCoverImage(state.project.id, file);
     toast(response?.reused ? "相同图片已存在，已设为当前封面图。" : "封面图已上传并设为当前。");
   } catch (error) {
-    toast(messageOf(error), true);
+    toast(coverUploadErrorMessage(error) || messageOf(error), true);
   } finally {
     state.coverImageUploading = false;
     setBusy(false);

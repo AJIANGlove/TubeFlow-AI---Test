@@ -217,6 +217,66 @@ def test_uploaded_cover_dedupes_and_exports_original(
     assert path.read_bytes() == content
 
 
+def test_two_distinct_uploads_increment_version_and_switch_current(
+    postgres_database: object, production_parent_chain: object, tmp_path: Path
+) -> None:
+    """多版本（2026-11-05）：非 16:9 / 竖图均落版本，第二张成为当前并进入导出。"""
+    ids = production_parent_chain
+    _freeze_project(postgres_database, ids.project_id)  # type: ignore[attr-defined]
+    storage = FakeStorage()
+    service = _service(postgres_database, tmp_path, storage)
+    first_content = _png(1056, 608)
+    second_content = _png(1080, 1920)
+
+    first, first_reused = service.upload(
+        ids.owner_id,  # type: ignore[attr-defined]
+        ids.project_id,  # type: ignore[attr-defined]
+        filename="first.png",
+        content=first_content,
+    )
+    second, second_reused = service.upload(
+        ids.owner_id,  # type: ignore[attr-defined]
+        ids.project_id,  # type: ignore[attr-defined]
+        filename="second.png",
+        content=second_content,
+    )
+
+    assert (first.version, first_reused) == (1, False)
+    assert (second.version, second_reused) == (2, False)
+    assert (second.qc_width, second.qc_height) == (1080, 1920)
+    assert _current_cover_id(postgres_database, ids.project_id) == second.id  # type: ignore[attr-defined]
+    assert len(storage.objects) == 2
+
+    sessions = postgres_database.sessions  # type: ignore[attr-defined]
+    with sessions.begin() as session:
+        rows = session.execute(
+            text(
+                "SELECT version, qc_width, qc_height, source "
+                "FROM cover_image_generations WHERE project_id = :id ORDER BY version"
+            ),
+            {"id": ids.project_id},  # type: ignore[attr-defined]
+        ).all()
+    assert [(row[0], row[1], row[2], row[3]) for row in rows] == [
+        (1, 1056, 608, "upload"),
+        (2, 1080, 1920, "upload"),
+    ]
+
+    source_root = tmp_path / "export"
+    source_root.mkdir()
+    with sessions.begin() as session:
+        export_cover = _load_export_cover(
+            session,
+            storage,  # type: ignore[arg-type]
+            ids.project_id,  # type: ignore[attr-defined]
+            ids.owner_id,  # type: ignore[attr-defined]
+            source_root,
+        )
+    assert export_cover is not None
+    path, arcname = export_cover
+    assert arcname == "cover.png"
+    assert path.read_bytes() == second_content
+
+
 def test_concurrent_upload_of_same_bytes_leaves_one_row(
     postgres_database: object, production_parent_chain: object, tmp_path: Path
 ) -> None:

@@ -251,6 +251,19 @@ export function coverWarningLabel(code) {
   return COVER_WARNING_LABELS[code] || String(code || "");
 }
 
+// 封面上传 422 错误码 → 人话（取值与 identity_project/images.py 一致；
+// 未知码返回空串，由调用方回退后端原文）。
+const COVER_UPLOAD_ERROR_LABELS = Object.freeze({
+  invalid_image_type: "仅支持 png / jpeg / webp 图片。",
+  invalid_image_size: "图片为空或超过 25MB。",
+  invalid_image_dimensions: "图片像素尺寸超出允许范围（上限 4000 万像素）。",
+  invalid_image: "图片无法解码，请换一张后重试。",
+});
+
+export function coverUploadErrorMessage(error) {
+  return COVER_UPLOAD_ERROR_LABELS[String(error?.code || "")] || "";
+}
+
 // 出图后视觉复审视图模型：null = 未复审（旧版本/开关关闭）；
 // {status:"succeeded", ok, issues, blockerCount} 或 {status:"failed", code}。
 export function coverImageReviewView(raw) {
@@ -465,7 +478,7 @@ export function coverPageModel({
     },
     imagePanel: {
       running: imageRunning,
-      emptyText: "尚无封面图版本：可直接上传一张 16:9 图片，或在提示词就绪后生成封面图。",
+      emptyText: "尚无封面图版本：可直接上传一张图片（png/jpeg/webp，≤25MB），或在提示词就绪后生成封面图。",
       canGenerate: promptSucceeded && !imageRunning,
       current: imageCurrent ? {
         generationId: String(imageCurrent.generation_id || ""),

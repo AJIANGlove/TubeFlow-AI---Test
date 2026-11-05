@@ -745,7 +745,9 @@ def create_cover_router(
     ) -> dict[str, object]:
         """用户直接上传封面图并成为不可变版本（同步，无模型调用）。
 
-        新版本 201；同项目同字节重复上传 200 + ``reused=true``（仍切为当前）。
+        不限宽高比与最小尺寸（2026-11-05 修订）；仅限 png/jpeg/webp、≤25MB、
+        ≤4000 万像素。新版本 201；同项目同字节重复上传 200 + ``reused=true``
+        （仍切为当前）。
         """
         content = await file.read(COVER_IMAGE_UPLOAD_MAX_BYTES + 1)
         generation, reused = call(

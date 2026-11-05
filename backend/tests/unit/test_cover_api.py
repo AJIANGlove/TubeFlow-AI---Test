@@ -27,7 +27,10 @@ from tubeflow_test.adapters.in_memory_cover_providers import (
 )
 from tubeflow_test.api.cover import create_cover_router
 from tubeflow_test.application.cover_characters import CoverCharacterService
-from tubeflow_test.application.cover_images import CoverImageService
+from tubeflow_test.application.cover_images import (
+    COVER_IMAGE_UPLOAD_MAX_BYTES,
+    CoverImageService,
+)
 from tubeflow_test.application.cover_ports import (
     COVER_STATUS_INTENT_PERSISTED,
     COVER_STATUS_SUCCEEDED,
@@ -811,6 +814,38 @@ def test_upload_cover_image_201_then_200_reused(harness: Harness) -> None:
     assert media.headers["content-type"].startswith("image/png")
 
 
+def test_upload_cover_image_accepts_non_16_9_and_multiple_versions(harness: Harness) -> None:
+    """2026-11-05：任意尺寸/比例可上传；第二张不同图新增版本 2 并成为当前。"""
+    client = TestClient(harness.app())
+    project_id = harness.project()
+    url = f"/projects/{project_id}/cover/images/uploads"
+    first_content = png_bytes(1056, 608)
+    second_content = png_bytes(1080, 1920)
+
+    first = client.post(url, files={"file": ("first.png", first_content, "image/png")})
+    assert first.status_code == 201
+    first_body = first.json()
+    assert (first_body["version"], first_body["width"], first_body["height"]) == (1, 1056, 608)
+    assert first_body["is_current"] is True
+
+    second = client.post(url, files={"file": ("second.png", second_content, "image/png")})
+    assert second.status_code == 201
+    second_body = second.json()
+    assert (second_body["version"], second_body["width"], second_body["height"]) == (2, 1080, 1920)
+    assert second_body["is_current"] is True
+    assert second_body["reused"] is False
+
+    listing = client.get(f"/projects/{project_id}/cover/images").json()
+    assert len(listing["items"]) == 2
+    assert listing["current"]["generation_id"] == second_body["generation_id"]
+    assert [item["version"] for item in listing["items"]] == [2, 1]
+
+    media = client.get(second_body["media_url"])
+    assert media.status_code == 200
+    assert media.content == second_content
+    assert harness.repo.outbox == {}
+
+
 def test_upload_cover_image_validation_and_cross_account(harness: Harness) -> None:
     client = TestClient(harness.app())
     project_id = harness.project()
@@ -818,8 +853,7 @@ def test_upload_cover_image_validation_and_cross_account(harness: Harness) -> No
 
     for filename, content, code in (
         ("cover.gif", gif_bytes(), "invalid_image_type"),
-        ("cover.png", png_bytes(1024, 576), "invalid_image_dimensions"),
-        ("cover.png", png_bytes(1360, 720), "invalid_image_aspect_ratio"),
+        ("cover.png", b"x" * (COVER_IMAGE_UPLOAD_MAX_BYTES + 1), "invalid_image_size"),
     ):
         response = client.post(url, files={"file": (filename, content, "image/png")})
         assert response.status_code == 422, (filename, response.text)

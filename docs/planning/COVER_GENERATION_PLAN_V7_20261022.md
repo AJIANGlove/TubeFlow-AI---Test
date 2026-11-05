@@ -35,7 +35,7 @@
 
 1. 项目存在且 `snapshot_script` 非空（冻结），否则 404 / 409。
 2. `verify_character_image(content, max_bytes=25MB, max_pixels=40MP)`：空/超限/不可解码/格式非 png-jpeg-webp 直接 422。
-3. 最小尺寸 1280×720；宽高比用整数运算判 16:9 ±1%（`|9w-16h|*100 <= 16h`）。
+3. 最小尺寸 1280×720；宽高比用整数运算判 16:9 ±1%（`|9w-16h|*100 <= 16h`）。〔2026-11-05 废止：取消最小尺寸与 16:9 限制，见 `USER_DECISIONS.md` §34 第 13 条〕
 4. 对象键 `cover-images/uploads/{owner_id}/{project_id}/{sha256}`，原始字节条件写（同键复用，不覆盖）。
 5. 落库：`status=SUCCEEDED`、`source='upload'`、`prompt_generation_id=None`、`model/size/quality=None`、`prompt=''`、`parameters={"source_filename": ...}`、`idempotency_key="upload:{project_id}:{sha256}"`、`qc_width/height/mime`、`object_key/object_sha256`、`downloaded_size`。
 6. 仓储在项目锁内按 `(owner, project, source='upload', object_sha256)` 去重：命中切当前并返回 `reused=True`；未命中分配 `version=max+1`、插入、无条件切当前；**不写 outbox**。
@@ -54,12 +54,12 @@
 ## 6. 前端
 
 - `frontend/api-client.js`：`uploadProjectCoverImage(project, file)`（FormData，不手设 Content-Type）。
-- `frontend/cover-view.js`：版本项新增 `source`；空态提示可直接上传 16:9 图片。
+- `frontend/cover-view.js`：版本项新增 `source`；空态提示可直接上传图片〔2026-11-05 修订：不再限定 16:9〕。
 - `app.js`：面板头次按钮「上传封面图」+ 隐藏 file input；上传中禁用并显示「上传中…」；成功 toast 区分新版本/复用；版本行标注「上传 · 」；项目切换重置上传状态。
 
 ## 7. 测试矩阵
 
-- 服务单测：无提示词上传、同字节复用并切回当前、生成版本后版本递增、未冻结、跨账号、格式/大小/像素/最小尺寸/比例、±1% 边界、原字节与 mime、无 outbox。
+- 服务单测：无提示词上传、同字节复用并切回当前、生成版本后版本递增、未冻结、跨账号、格式/大小/像素（2026-11-05 起不再校验最小尺寸与比例）、原字节与 mime、无 outbox。
 - 仓储契约（SQLite + 内存）：去重、版本、指针、按项目隔离、活跃项目门禁。
 - API：openapi 路径集合、未冻结矩阵、201/200 `reused`、无提示词可用、422 矩阵且无对象、跨账号 404、媒体原字节、`source` 与 allowed_actions。
 - 迁移：0042 revision 链、列/可空/check 形状、与 ORM 元数据逐列一致、降级两分支。
