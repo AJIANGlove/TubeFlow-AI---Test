@@ -50,6 +50,30 @@ def _panel(size: tuple[int, int], seed: int) -> Image.Image:
     return base
 
 
+def _dark_panel(size: tuple[int, int], seed: int) -> Image.Image:
+    """Dark oil-painting content that fades towards its edges (247462a4 style): the gutter
+    is pure black but the picture right next to it is only about 13-30 grey levels."""
+    width, height = size
+    gradient = Image.linear_gradient("L").rotate(seed * 41 % 360).resize(size)
+    base = Image.merge(
+        "RGB",
+        (
+            gradient.point(lambda v: 16 + v // 12),
+            gradient.point(lambda v: 18 + v // 10),
+            gradient.point(lambda v: 24 + v // 9),
+        ),
+    )
+    draw = ImageDraw.Draw(base)
+    # A lantern glow and some texture, but nothing near-black across the whole panel.
+    draw.ellipse(
+        (width // 3, height // 4, width // 3 + width // 6, height // 4 + height // 5),
+        fill=(230, 170, 60),
+    )
+    for index in range(0, width, 9):
+        draw.point((index, (index * 7 + seed * 13) % height), fill=(60, 55, 50))
+    return base
+
+
 Gutter = Callable[[ImageDraw.ImageDraw, tuple[int, int, int, int]], None]
 
 
@@ -89,6 +113,8 @@ def _sheet(
     extra_vertical_in_first: bool = False,
     light_line_in_first: bool = False,
     fmt: str = "PNG",
+    panel: Callable[[tuple[int, int], int], Image.Image] = _panel,
+    blank_fill: tuple[int, int, int] = (0, 0, 0),
 ) -> bytes:
     image = Image.new("RGB", (WIDTH, HEIGHT), (0, 0, 0))
     draw = ImageDraw.Draw(image)
@@ -107,8 +133,9 @@ def _sheet(
                 offset if col < cols - 1 else 0
             )
             if order in blank:
+                draw.rectangle((left, top, right - 1, bottom - 1), fill=blank_fill)
                 continue
-            image.paste(_panel((right - left, bottom - top), order), (left, top))
+            image.paste(panel((right - left, bottom - top), order), (left, top))
             if order == 1 and extra_vertical_in_first:
                 middle = (left + right) // 2
                 _black(draw, (middle - 6, top, middle + 6, bottom))
@@ -404,6 +431,196 @@ GATE1_EXPECTED = (
 @pytest.mark.parametrize(("prefix", "shots", "crops"), GATE1_EXPECTED)
 def test_gate1_originals(prefix: str, shots: int, crops: bool) -> None:
     (path,) = GATE1.glob(f"{prefix}*.png")
+    content = path.read_bytes()
+    if crops:
+        assert len(_derive(content, shots, GRID_LAYOUT_V1)) == shots
+    else:
+        with pytest.raises(VideoRuleViolation, match="shot_panel_gutter_not_found"):
+            _derive(content, shots, GRID_LAYOUT_V1)
+
+
+# --- 2026-11-05 dark pictures against black gutters (247462a4) -------------------------
+
+
+def _assert_near_grid(panels, rows: int, cols: int, slack: int = 40) -> None:  # type: ignore[no-untyped-def]
+    cell_w, cell_h = WIDTH / cols, HEIGHT / rows
+    for panel in panels:
+        row, col = divmod(panel.shot_order - 1, cols)
+        x0, y0, x1, y1 = panel.crop_xyxy
+        assert abs(x0 - col * cell_w) <= slack and abs(x1 - (col + 1) * cell_w) <= slack
+        assert abs(y0 - row * cell_h) <= slack and abs(y1 - (row + 1) * cell_h) <= slack
+
+
+@pytest.mark.parametrize(
+    ("count", "rows", "cols", "blank"),
+    [(2, 2, 2, (3, 4)), (3, 2, 2, (4,)), (4, 2, 2, ()), (5, 2, 3, (6,)), (6, 2, 3, ())],
+)
+def test_dark_pictures_tight_against_black_gutters_crop(
+    count: int, rows: int, cols: int, blank: tuple[int, ...]
+) -> None:
+    sheet = _sheet(rows, cols, panel=_dark_panel, blank=blank)
+    panels = _derive(sheet, count)
+    assert len(panels) == count
+    _assert_near_grid(panels, rows, cols)
+
+
+def test_dark_sheet_with_dark_grey_empty_cells_crops() -> None:
+    # 49625d3e: the empty row is about 10 grey, the gutter about 0.5, the picture about 13.
+    sheet = _sheet(2, 2, panel=_dark_panel, blank=(3, 4), blank_fill=(10, 10, 10))
+    panels = _derive(sheet, 2)
+    assert len(panels) == 2
+    _assert_near_grid(panels, 2, 2)
+
+
+def test_dark_picture_without_gutters_still_fails_closed() -> None:
+    output = BytesIO()
+    _dark_panel((WIDTH, HEIGHT), 1).save(output, format="PNG")
+    with pytest.raises(VideoRuleViolation, match="shot_panel_gutter_not_found"):
+        _derive(output.getvalue(), 4)
+
+
+@pytest.mark.parametrize(
+    ("rows", "cols", "count", "options"),
+    [
+        (2, 2, 4, {}),
+        (2, 2, 2, {"blank": (3, 4)}),
+        (2, 3, 5, {"blank": (6,)}),
+        (2, 2, 4, {"gutter": _white_framed}),
+        (2, 2, 4, {"gutter": _inked}),
+        (2, 2, 4, {"frame": 30}),
+    ],
+)
+def test_dark_fallback_does_not_change_sheets_the_original_rule_crops(
+    rows: int, cols: int, count: int, options: dict, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from tubeflow_test.video_generation import panel_images
+
+    sheet = _sheet(rows, cols, **options)
+    expected = [panel.crop_xyxy for panel in _derive(sheet, count)]
+    monkeypatch.setattr(panel_images, "_V2_BLACK_MAX", -1.0)  # fallback can never match
+    assert [panel.crop_xyxy for panel in _derive(sheet, count)] == expected
+
+
+DARK = Path(__file__).resolve().parents[3] / "Pending issues"
+DARK_ORIGINALS = (
+    # (path under Pending issues, shots, crops?) - 247462a4 rejections; 1a04e778 drew a grey
+    # (about 17) gutter instead of a black one and stays rejected.
+    (
+        "2026-11-05/CROP_GRID_V2_DARK_SHEET_REJECTION_20261105/evidence/failed/e459d954_6panels_25931.jpg",
+        6,
+        True,
+    ),
+    (
+        "2026-11-05/CROP_GRID_V2_DARK_SHEET_REJECTION_20261105/evidence/failed/ce321800_4panels_30023.jpg",
+        4,
+        True,
+    ),
+    (
+        "2026-11-05/CROP_GRID_V2_DARK_SHEET_REJECTION_20261105/evidence/failed/313b41c6_5panels_25923.jpg",
+        5,
+        True,
+    ),
+    (
+        "2026-11-05/CROP_GRID_V2_DARK_SHEET_REJECTION_20261105/evidence/failed/1a04e778_4panels_25915.jpg",
+        4,
+        False,
+    ),
+    (
+        "2026-11-05/CROP_GRID_V2_DARK_SHEET_REJECTION_20261105/evidence/passed/79ec5d16_4panels.png",
+        4,
+        True,
+    ),
+    (
+        "2026-11-05/CROP_GRID_V2_DARK_SHEET_REJECTION_20261105/evidence/passed/cc1ced3d_4panels.png",
+        4,
+        True,
+    ),
+    (
+        "2026-11-04/singlepanel_test/gate3_5/247462a4/originals/0a476862-93e4-422a-a52a-bd29296a2a99.png",
+        6,
+        True,
+    ),
+    (
+        "2026-11-04/singlepanel_test/gate3_5/247462a4/originals/1b9389dc-c305-4b61-922a-7e3f049ddd8e.png",
+        6,
+        True,
+    ),
+    (
+        "2026-11-04/singlepanel_test/gate3_5/247462a4/originals/42fb7318-6a65-4b11-8c11-fffe7b23529e.png",
+        3,
+        True,
+    ),
+    (
+        "2026-11-04/singlepanel_test/gate3_5/247462a4/originals/49625d3e-0e5b-49fb-9361-3f85e9a5d594.png",
+        2,
+        True,
+    ),
+    (
+        "2026-11-04/singlepanel_test/gate3_5/247462a4/originals/900f552a-f75d-4643-b92d-3bbfa443dbd3.png",
+        5,
+        True,
+    ),
+    (
+        "2026-11-04/singlepanel_test/gate3_5/247462a4/originals/a51485e7-4426-4ce2-8dc6-d6512c7a1bf5.png",
+        6,
+        True,
+    ),
+    (
+        "2026-11-04/singlepanel_test/gate3_5/247462a4/originals/c2dba5e1-df66-49dc-a6bf-6b8f54e44930.png",
+        5,
+        True,
+    ),
+    (
+        "2026-11-04/singlepanel_test/gate3_5/247462a4/originals/fe2a6e19-6ffe-4395-9081-fb76603350c8.png",
+        4,
+        True,
+    ),
+)
+
+
+@pytest.mark.parametrize(("relative", "shots", "crops"), DARK_ORIGINALS)
+def test_247462a4_dark_originals(relative: str, shots: int, crops: bool) -> None:
+    path = DARK / relative
+    if not path.exists():
+        pytest.skip("247462a4 originals not present")
+    content = path.read_bytes()
+    if crops:
+        assert len(_derive(content, shots)) == shots
+    else:
+        with pytest.raises(VideoRuleViolation, match="shot_panel_gutter_not_found"):
+            _derive(content, shots)
+
+
+GATE1_RERUN = (
+    Path(__file__).resolve().parents[3]
+    / "Pending issues"
+    / "2026-11-04"
+    / "singlepanel_test"
+    / "gate1_rerun"
+    / "diag"
+    / "originals"
+)
+# Gate 1 rerun rejections (v1 sheets). The first five have thin black gutters right next to
+# dark content and now crop on those gutters (checked by eye); the last four stay rejected:
+# 110d018d is drawn 3x1 instead of 1x3, 57f29042 is not the requested layout, 2ae249f2 and
+# f051c1b8 have no full-length gutter.
+GATE1_RERUN_EXPECTED = (
+    ("05dbf56a", 4, True),
+    ("0886fd57", 4, True),
+    ("99e738ce", 4, True),
+    ("b13bc354", 4, True),
+    ("dd83c6f5", 3, True),
+    ("110d018d", 3, False),
+    ("57f29042", 5, False),
+    ("2ae249f2", 3, False),
+    ("f051c1b8", 4, False),
+)
+
+
+@pytest.mark.skipif(not GATE1_RERUN.exists(), reason="Gate 1 rerun originals not present")
+@pytest.mark.parametrize(("prefix", "shots", "crops"), GATE1_RERUN_EXPECTED)
+def test_gate1_rerun_originals(prefix: str, shots: int, crops: bool) -> None:
+    (path,) = GATE1_RERUN.glob(f"{prefix}*.png")
     content = path.read_bytes()
     if crops:
         assert len(_derive(content, shots, GRID_LAYOUT_V1)) == shots
