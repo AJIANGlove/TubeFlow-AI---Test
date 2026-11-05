@@ -1,0 +1,1292 @@
+[
+ {
+  "sequence": 1,
+  "group_id": "04fa0f90-9b60-5672-b8a8-b3a0c573f5a1",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "66013024-477b-45ed-9e5b-035ffda1e07f",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 03:01:58.734066+00:00"
+   }
+  ],
+  "current_storyboard": "66013024-477b-45ed-9e5b-035ffda1e07f",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "aaed1c9a-e2c6-4e81-a859-632a4ec3caa1",
+    "generation_id": "66013024-477b-45ed-9e5b-035ffda1e07f",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "aaed1c9a-e2c6-4e81-a859-632a4ec3caa1",
+  "panel_sizes": [
+   [
+    829,
+    462
+   ],
+   [
+    823,
+    462
+   ],
+   [
+    829,
+    458
+   ]
+  ],
+  "video_sha256": "a91b4b629411e1f4998268b5e2f4ed5d468dcf91bb9c02d8047592dd45c8839e",
+  "hf": {
+   "seq": "v_1",
+   "frames": 311,
+   "shots": 3,
+   "jitter_hf": 0.188,
+   "worst": {
+    "start": 101,
+    "end": 185,
+    "frames": 79,
+    "jitter_hf": 0.217,
+    "speed": 0.222
+   },
+   "shaky_shots": 0,
+   "max_speed": 0.222
+  }
+ },
+ {
+  "sequence": 2,
+  "group_id": "deebf949-731c-5631-8313-26343603acfb",
+  "shots": 2,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "0ba27dc5-2670-49a6-9776-4df5752682fe",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 2,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 03:01:58.938509+00:00"
+   }
+  ],
+  "current_storyboard": "0ba27dc5-2670-49a6-9776-4df5752682fe",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 3,
+    "mean": 0.2,
+    "dark": true
+   },
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "0b53c09d-04b2-4e77-bb0b-37c62b9cdd61",
+    "generation_id": "0ba27dc5-2670-49a6-9776-4df5752682fe",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 2,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "0b53c09d-04b2-4e77-bb0b-37c62b9cdd61",
+  "panel_sizes": [
+   [
+    820,
+    462
+   ],
+   [
+    820,
+    462
+   ]
+  ],
+  "video_sha256": "73c823d6e5ecc1866c41a69081343ad6ab0c6d0f2cc594b0f70f5ca11c5dc711",
+  "hf": {
+   "seq": "v_2",
+   "frames": 243,
+   "shots": 2,
+   "jitter_hf": 0.071,
+   "worst": {
+    "start": 0,
+    "end": 114,
+    "frames": 109,
+    "jitter_hf": 0.085,
+    "speed": 0.142
+   },
+   "shaky_shots": 0,
+   "max_speed": 0.142
+  }
+ },
+ {
+  "sequence": 3,
+  "group_id": "c18be217-358e-50b8-913f-eee885a1fe2a",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "a545e07c-958f-4017-86c2-c30f5ac518a1",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 03:01:59.081187+00:00"
+   }
+  ],
+  "current_storyboard": "a545e07c-958f-4017-86c2-c30f5ac518a1",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "6ac81422-92fd-4a6c-a44f-afa497a77b1a",
+    "generation_id": "a545e07c-958f-4017-86c2-c30f5ac518a1",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "6ac81422-92fd-4a6c-a44f-afa497a77b1a",
+  "panel_sizes": [
+   [
+    828,
+    459
+   ],
+   [
+    824,
+    459
+   ],
+   [
+    829,
+    460
+   ]
+  ],
+  "video_sha256": "54eefaff76efa42b034c33d1f148ace2ee1be1887028d9870a19051e6af890e9",
+  "hf": {
+   "seq": "v_3",
+   "frames": 328,
+   "shots": 1,
+   "jitter_hf": 0.173,
+   "worst": {
+    "start": 0,
+    "end": 328,
+    "frames": 323,
+    "jitter_hf": 0.173,
+    "speed": 0.124
+   },
+   "shaky_shots": 0,
+   "max_speed": 0.124
+  }
+ },
+ {
+  "sequence": 4,
+  "group_id": "01529c7a-f6d8-5463-bae0-d9c7890d49a1",
+  "shots": 2,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "86d3b94d-5264-487d-a7fa-f5b0c74a4b85",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 2,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 03:01:59.222157+00:00"
+   }
+  ],
+  "current_storyboard": "86d3b94d-5264-487d-a7fa-f5b0c74a4b85",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 3,
+    "mean": 0.1,
+    "dark": true
+   },
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "bdc837e0-e5e2-47a5-8379-f5b647c9f160",
+    "generation_id": "86d3b94d-5264-487d-a7fa-f5b0c74a4b85",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 2,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "bdc837e0-e5e2-47a5-8379-f5b647c9f160",
+  "panel_sizes": [
+   [
+    824,
+    466
+   ],
+   [
+    823,
+    466
+   ]
+  ],
+  "video_sha256": "a39591ab6e55482dc5a2e4ac202791044266909d7b706f175d3e85e86504335e",
+  "hf": {
+   "seq": "v_4",
+   "frames": 311,
+   "shots": 2,
+   "jitter_hf": 0.282,
+   "worst": {
+    "start": 110,
+    "end": 311,
+    "frames": 196,
+    "jitter_hf": 0.349,
+    "speed": 0.402
+   },
+   "shaky_shots": 1,
+   "max_speed": 0.402
+  }
+ },
+ {
+  "sequence": 5,
+  "group_id": "de325acb-0fff-57a9-92be-9039766b4b0c",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "9b65dc0c-d09f-4e65-a4e7-b3e49b553b36",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 03:01:59.415797+00:00"
+   }
+  ],
+  "current_storyboard": "9b65dc0c-d09f-4e65-a4e7-b3e49b553b36",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "bd5ebb34-202c-4b87-9458-84ba4a400a84",
+    "generation_id": "9b65dc0c-d09f-4e65-a4e7-b3e49b553b36",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "bd5ebb34-202c-4b87-9458-84ba4a400a84",
+  "panel_sizes": [
+   [
+    827,
+    462
+   ],
+   [
+    827,
+    462
+   ],
+   [
+    828,
+    461
+   ]
+  ],
+  "video_sha256": "74f02afd8d80ab86c3a40c99073438580afc341e4a2cdfdd512c3dabede0367c",
+  "hf": {
+   "seq": "v_5",
+   "frames": 311,
+   "shots": 3,
+   "jitter_hf": 0.164,
+   "worst": {
+    "start": 77,
+    "end": 165,
+    "frames": 83,
+    "jitter_hf": 0.283,
+    "speed": 0.254
+   },
+   "shaky_shots": 1,
+   "max_speed": 0.254
+  }
+ },
+ {
+  "sequence": 6,
+  "group_id": "3398b616-f827-5df8-95d8-adcf5eae72dc",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "bb1fc0dc-17c3-484e-91c9-f776705c5060",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 03:01:59.683479+00:00"
+   }
+  ],
+  "current_storyboard": "bb1fc0dc-17c3-484e-91c9-f776705c5060",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "6743a00d-24ba-4935-84f9-450f77d64f9b",
+    "generation_id": "bb1fc0dc-17c3-484e-91c9-f776705c5060",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "6743a00d-24ba-4935-84f9-450f77d64f9b",
+  "panel_sizes": [
+   [
+    826,
+    460
+   ],
+   [
+    825,
+    460
+   ],
+   [
+    826,
+    460
+   ]
+  ],
+  "video_sha256": "f59dbe795ee102e01caef31764dba963b98e8a1fe2e1368cac1725c401999888",
+  "hf": {
+   "seq": "v_6",
+   "frames": 311,
+   "shots": 3,
+   "jitter_hf": 0.039,
+   "worst": {
+    "start": 201,
+    "end": 311,
+    "frames": 105,
+    "jitter_hf": 0.053,
+    "speed": 0.043
+   },
+   "shaky_shots": 0,
+   "max_speed": 0.043
+  }
+ },
+ {
+  "sequence": 7,
+  "group_id": "2491be65-7545-5045-ab04-2a73844538fe",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 2,
+  "storyboard_failure_codes": {
+   "aspect_ratio_not_supported": 1
+  },
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "6426c001-8a64-421d-83b8-759de8b44ec3",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "aspect_ratio_not_supported",
+    "created_at": "2026-11-05 03:01:59.805935+00:00"
+   },
+   {
+    "id": "73dcbd63-d435-4520-a0ad-d1101720713d",
+    "version": 2,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": null,
+    "created_at": "2026-11-05 03:12:02.762639+00:00"
+   }
+  ],
+  "current_storyboard": "73dcbd63-d435-4520-a0ad-d1101720713d",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "2ee0dfe9-fe43-45d5-bc65-20604022b6cb",
+    "generation_id": "73dcbd63-d435-4520-a0ad-d1101720713d",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "2ee0dfe9-fe43-45d5-bc65-20604022b6cb",
+  "panel_sizes": [
+   [
+    824,
+    458
+   ],
+   [
+    824,
+    458
+   ],
+   [
+    824,
+    459
+   ]
+  ],
+  "video_sha256": "ff9d1d7c2b511f514d03d9f52b033d2cbf1520ecf514e03c00ecdf64da7c8a7f",
+  "hf": {
+   "seq": "v_7",
+   "frames": 311,
+   "shots": 3,
+   "jitter_hf": 0.11,
+   "worst": {
+    "start": 199,
+    "end": 311,
+    "frames": 107,
+    "jitter_hf": 0.159,
+    "speed": 0.166
+   },
+   "shaky_shots": 0,
+   "max_speed": 0.166
+  }
+ },
+ {
+  "sequence": 8,
+  "group_id": "12cf0d75-2955-5c59-989d-0a3e083b4506",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "bf0e87b6-5a4b-4409-8b51-066f81b46823",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 03:01:59.916656+00:00"
+   }
+  ],
+  "current_storyboard": "bf0e87b6-5a4b-4409-8b51-066f81b46823",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "8ed166df-52a9-45b5-9002-c605ad373c88",
+    "generation_id": "bf0e87b6-5a4b-4409-8b51-066f81b46823",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "8ed166df-52a9-45b5-9002-c605ad373c88",
+  "panel_sizes": [
+   [
+    825,
+    460
+   ],
+   [
+    825,
+    460
+   ],
+   [
+    826,
+    460
+   ]
+  ],
+  "video_sha256": "6595155260cc6397c50e9391a5db47c0ccf47791e19283d019cdd11a0fad915a",
+  "hf": {
+   "seq": "v_8",
+   "frames": 328,
+   "shots": 3,
+   "jitter_hf": 0.107,
+   "worst": {
+    "start": 0,
+    "end": 90,
+    "frames": 85,
+    "jitter_hf": 0.177,
+    "speed": 0.17
+   },
+   "shaky_shots": 0,
+   "max_speed": 0.17
+  }
+ },
+ {
+  "sequence": 9,
+  "group_id": "9b56b87e-e656-5dbb-9c8b-e6e69e7d8e28",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "49527971-e8fd-4711-a11a-afe3adf2384c",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 03:02:00.058447+00:00"
+   }
+  ],
+  "current_storyboard": "49527971-e8fd-4711-a11a-afe3adf2384c",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "e6b7bb08-4caa-4eb3-8f9f-bae8b8e75987",
+    "generation_id": "49527971-e8fd-4711-a11a-afe3adf2384c",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "e6b7bb08-4caa-4eb3-8f9f-bae8b8e75987",
+  "panel_sizes": [
+   [
+    825,
+    460
+   ],
+   [
+    825,
+    460
+   ],
+   [
+    826,
+    461
+   ],
+   [
+    826,
+    461
+   ]
+  ],
+  "video_sha256": "ceed70db09610b88039250a2180739545004b0e5a8b2aed9af113153648d80cf",
+  "hf": {
+   "seq": "v_9",
+   "frames": 362,
+   "shots": 4,
+   "jitter_hf": 0.392,
+   "worst": {
+    "start": 0,
+    "end": 89,
+    "frames": 84,
+    "jitter_hf": 0.731,
+    "speed": 0.508
+   },
+   "shaky_shots": 1,
+   "max_speed": 0.713
+  }
+ },
+ {
+  "sequence": 10,
+  "group_id": "aa173fe1-3bbd-5810-8e7d-3aecdfba507f",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "22c0234f-9bda-4d35-b1b4-ecd9c544bce7",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 03:02:00.198147+00:00"
+   }
+  ],
+  "current_storyboard": "22c0234f-9bda-4d35-b1b4-ecd9c544bce7",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "4499f0aa-acb3-4d61-8542-50ace673aac2",
+    "generation_id": "22c0234f-9bda-4d35-b1b4-ecd9c544bce7",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "4499f0aa-acb3-4d61-8542-50ace673aac2",
+  "panel_sizes": [
+   [
+    828,
+    461
+   ],
+   [
+    825,
+    461
+   ],
+   [
+    795,
+    462
+   ]
+  ],
+  "video_sha256": "ec9fa69843ebb5ff18de9189deb2b6dd223d22d5dfa8a71644a0a721e57dc6a0",
+  "hf": {
+   "seq": "v_10",
+   "frames": 328,
+   "shots": 3,
+   "jitter_hf": 0.294,
+   "worst": {
+    "start": 2,
+    "end": 97,
+    "frames": 90,
+    "jitter_hf": 0.427,
+    "speed": 0.395
+   },
+   "shaky_shots": 2,
+   "max_speed": 0.667
+  }
+ },
+ {
+  "sequence": 11,
+  "group_id": "54aad650-1a39-59c4-8a58-bc07e7f42a26",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "779fe300-ab5d-445a-ae88-b62d03effcf9",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 03:02:00.487163+00:00"
+   }
+  ],
+  "current_storyboard": "779fe300-ab5d-445a-ae88-b62d03effcf9",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "c8c08e73-e0fe-445e-8bcb-168715a7a270",
+    "generation_id": "779fe300-ab5d-445a-ae88-b62d03effcf9",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "c8c08e73-e0fe-445e-8bcb-168715a7a270",
+  "panel_sizes": [
+   [
+    825,
+    460
+   ],
+   [
+    824,
+    460
+   ],
+   [
+    824,
+    458
+   ]
+  ],
+  "video_sha256": "b57234bd53e47c5c994e74e6c0ab2a9d766715529b94e14bb77991c870d65592",
+  "hf": {
+   "seq": "v_11",
+   "frames": 294,
+   "shots": 3,
+   "jitter_hf": 0.197,
+   "worst": {
+    "start": 145,
+    "end": 294,
+    "frames": 144,
+    "jitter_hf": 0.273,
+    "speed": 0.523
+   },
+   "shaky_shots": 1,
+   "max_speed": 0.523
+  }
+ },
+ {
+  "sequence": 12,
+  "group_id": "22e48d40-bc5e-5f83-8c6e-3c6f4b7ba8f0",
+  "shots": 2,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "03ac8e48-43d3-47e5-8577-9f77b02d59d8",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 2,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 03:02:00.566795+00:00"
+   }
+  ],
+  "current_storyboard": "03ac8e48-43d3-47e5-8577-9f77b02d59d8",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 3,
+    "mean": 0.1,
+    "dark": true
+   },
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "c6015418-c131-4cb2-94fd-b7525c17c162",
+    "generation_id": "03ac8e48-43d3-47e5-8577-9f77b02d59d8",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 2,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "c6015418-c131-4cb2-94fd-b7525c17c162",
+  "panel_sizes": [
+   [
+    825,
+    461
+   ],
+   [
+    825,
+    461
+   ]
+  ],
+  "video_sha256": "270fe50f5edea2a7698684bc7a562b1e705ee897144244f9561dbd4c4f1dffcb",
+  "hf": {
+   "seq": "v_12",
+   "frames": 260,
+   "shots": 2,
+   "jitter_hf": 0.048,
+   "worst": {
+    "start": 110,
+    "end": 260,
+    "frames": 145,
+    "jitter_hf": 0.055,
+    "speed": 0.073
+   },
+   "shaky_shots": 0,
+   "max_speed": 0.073
+  }
+ },
+ {
+  "sequence": 13,
+  "group_id": "4ae3691d-2c47-515d-984d-00fe7ae28d8e",
+  "shots": 2,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "a1fd09ba-c71c-424a-9fc9-238df0b45969",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 2,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 03:02:00.613097+00:00"
+   }
+  ],
+  "current_storyboard": "a1fd09ba-c71c-424a-9fc9-238df0b45969",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 3,
+    "mean": 0.1,
+    "dark": true
+   },
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "562b165b-1b48-4b4e-ad0a-532f18ec8217",
+    "generation_id": "a1fd09ba-c71c-424a-9fc9-238df0b45969",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 2,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "562b165b-1b48-4b4e-ad0a-532f18ec8217",
+  "panel_sizes": [
+   [
+    826,
+    460
+   ],
+   [
+    825,
+    460
+   ]
+  ],
+  "video_sha256": "bb2d859698cb3456bef57ee1657decd8678a2f0163c57e703b359e469833f5a2",
+  "hf": {
+   "seq": "v_13",
+   "frames": 362,
+   "shots": 3,
+   "jitter_hf": 0.304,
+   "worst": {
+    "start": 70,
+    "end": 158,
+    "frames": 83,
+    "jitter_hf": 0.502,
+    "speed": 0.357
+   },
+   "shaky_shots": 2,
+   "max_speed": 0.464
+  }
+ },
+ {
+  "sequence": 14,
+  "group_id": "67c61f5f-caad-5576-9f08-adafe3f2a93b",
+  "shots": 2,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "41088229-ed79-4d95-8511-0522a64fe2b0",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 2,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-05 03:02:00.870114+00:00"
+   }
+  ],
+  "current_storyboard": "41088229-ed79-4d95-8511-0522a64fe2b0",
+  "storyboard_size": [
+   1672,
+   940
+  ],
+  "empty_cells": [
+   {
+    "cell": 3,
+    "mean": 0.1,
+    "dark": true
+   },
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "211df90f-b775-4c60-8bb4-66d1f0a29f63",
+    "generation_id": "41088229-ed79-4d95-8511-0522a64fe2b0",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 2,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "211df90f-b775-4c60-8bb4-66d1f0a29f63",
+  "panel_sizes": [
+   [
+    824,
+    462
+   ],
+   [
+    824,
+    462
+   ]
+  ],
+  "video_sha256": "89397a7fcae799139fa9aacbdabcad1adac2e7ab5b6a33d4b0dd016c40530578",
+  "hf": {
+   "seq": "v_14",
+   "frames": 141,
+   "shots": 2,
+   "jitter_hf": 0.525,
+   "worst": {
+    "start": 73,
+    "end": 120,
+    "frames": 42,
+    "jitter_hf": 0.832,
+    "speed": 0.974
+   },
+   "shaky_shots": 1,
+   "max_speed": 0.974
+  }
+ }
+]

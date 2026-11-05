@@ -1,0 +1,6459 @@
+[
+ {
+  "sequence": 1,
+  "group_id": "c29a0380-1a45-517e-89e3-1e61ca57d266",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "aad63315-6974-4712-8e3e-40cefd80dc53",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:03.790400+00:00"
+   }
+  ],
+  "current_storyboard": "aad63315-6974-4712-8e3e-40cefd80dc53",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "38b85532-c3fb-40e3-844d-01d86480d54e",
+    "generation_id": "aad63315-6974-4712-8e3e-40cefd80dc53",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "38b85532-c3fb-40e3-844d-01d86480d54e"
+ },
+ {
+  "sequence": 2,
+  "group_id": "d0d93cc1-baaf-54f8-a373-f963ebf47c6c",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "2c0179f2-8943-4f6b-a677-6b9a7fc2d702",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:03.864355+00:00"
+   }
+  ],
+  "current_storyboard": "2c0179f2-8943-4f6b-a677-6b9a7fc2d702",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "6f14c1ed-da8c-412b-9ac3-e086fa26eea2",
+    "generation_id": "2c0179f2-8943-4f6b-a677-6b9a7fc2d702",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "6f14c1ed-da8c-412b-9ac3-e086fa26eea2"
+ },
+ {
+  "sequence": 3,
+  "group_id": "a0f589ff-facc-5042-9801-f1f1e900d967",
+  "shots": 6,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "ad1aa340-124f-4f39-b572-4e03ae281b66",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:03.943064+00:00"
+   }
+  ],
+  "current_storyboard": "ad1aa340-124f-4f39-b572-4e03ae281b66",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "004c871c-7f06-46ce-a9c1-bd67eb59b2a5",
+    "generation_id": "ad1aa340-124f-4f39-b572-4e03ae281b66",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 6,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "004c871c-7f06-46ce-a9c1-bd67eb59b2a5"
+ },
+ {
+  "sequence": 4,
+  "group_id": "d83faa40-d1f4-5b02-8370-a893e4dc6ef0",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "04841203-f35e-4a0f-954d-43482ef8677a",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:04.028526+00:00"
+   }
+  ],
+  "current_storyboard": "04841203-f35e-4a0f-954d-43482ef8677a",
+  "storyboard_size": [
+   1672,
+   940
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "ca69d98f-a043-4ec8-b5e0-f7d99ce0fda9",
+    "generation_id": "04841203-f35e-4a0f-954d-43482ef8677a",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "ca69d98f-a043-4ec8-b5e0-f7d99ce0fda9"
+ },
+ {
+  "sequence": 5,
+  "group_id": "bdc168ab-012a-5ae9-8177-5d57b87b1d02",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "16a6d7e6-a72d-4cf2-8968-8620a8a0971c",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:04.093209+00:00"
+   }
+  ],
+  "current_storyboard": "16a6d7e6-a72d-4cf2-8968-8620a8a0971c",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "49191352-453f-46a0-95be-d8eb2025048b",
+    "generation_id": "16a6d7e6-a72d-4cf2-8968-8620a8a0971c",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "49191352-453f-46a0-95be-d8eb2025048b"
+ },
+ {
+  "sequence": 6,
+  "group_id": "375cb624-867b-5fc3-bda6-367fe8c67fc9",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "a2c580c4-083e-4544-8d03-22e3a8c365cb",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:04.165011+00:00"
+   }
+  ],
+  "current_storyboard": "a2c580c4-083e-4544-8d03-22e3a8c365cb",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "99e55d97-8227-46eb-9413-111aec7d2b82",
+    "generation_id": "a2c580c4-083e-4544-8d03-22e3a8c365cb",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "99e55d97-8227-46eb-9413-111aec7d2b82"
+ },
+ {
+  "sequence": 7,
+  "group_id": "7c867203-019f-5157-9bdf-3727824fda07",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 2,
+  "storyboard_failure_codes": {
+   "aspect_ratio_not_supported": 1
+  },
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "890203e5-3021-4846-b69c-cbba8a4ef2cf",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "aspect_ratio_not_supported",
+    "created_at": "2026-11-04 14:16:04.227197+00:00"
+   },
+   {
+    "id": "38c150c4-97aa-4c3b-885e-bfc4cb3063e6",
+    "version": 2,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:22:51.550782+00:00"
+   }
+  ],
+  "current_storyboard": "38c150c4-97aa-4c3b-885e-bfc4cb3063e6",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "02f6b6a0-d60c-43c1-9faa-c0c8ad7240f8",
+    "generation_id": "38c150c4-97aa-4c3b-885e-bfc4cb3063e6",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "02f6b6a0-d60c-43c1-9faa-c0c8ad7240f8"
+ },
+ {
+  "sequence": 8,
+  "group_id": "eca42932-c8aa-58fe-9330-3a32db38c554",
+  "shots": 6,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "b5f635d8-a792-4c9d-922f-fa5ad582ca3d",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:04.310314+00:00"
+   }
+  ],
+  "current_storyboard": "b5f635d8-a792-4c9d-922f-fa5ad582ca3d",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "c5909f3e-0518-4cc7-931b-b41869b82569",
+    "generation_id": "b5f635d8-a792-4c9d-922f-fa5ad582ca3d",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 6,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "c5909f3e-0518-4cc7-931b-b41869b82569"
+ },
+ {
+  "sequence": 9,
+  "group_id": "e7672cd1-29a4-5c16-9a02-916c9d0097dc",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "113cb69a-a6ad-4091-a118-1f8c540f979b",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:04.490012+00:00"
+   }
+  ],
+  "current_storyboard": "113cb69a-a6ad-4091-a118-1f8c540f979b",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "31603a5b-3aa6-48aa-9e4b-33c8a3664d12",
+    "generation_id": "113cb69a-a6ad-4091-a118-1f8c540f979b",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "31603a5b-3aa6-48aa-9e4b-33c8a3664d12"
+ },
+ {
+  "sequence": 10,
+  "group_id": "60facf4f-a861-5ba8-97fa-fef10070ad6a",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "dcf2ec86-744a-4897-a4b7-ed9d50f21524",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:04.873740+00:00"
+   }
+  ],
+  "current_storyboard": "dcf2ec86-744a-4897-a4b7-ed9d50f21524",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "1d5697ed-c36f-4abc-9bff-dad417d1744e",
+    "generation_id": "dcf2ec86-744a-4897-a4b7-ed9d50f21524",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "1d5697ed-c36f-4abc-9bff-dad417d1744e"
+ },
+ {
+  "sequence": 11,
+  "group_id": "d0a2ebc9-21cb-53af-8dd8-f7772cb40a28",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "71f922aa-0392-44d9-9add-a5a19245dc64",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:05.098209+00:00"
+   }
+  ],
+  "current_storyboard": "71f922aa-0392-44d9-9add-a5a19245dc64",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "a8a9cde3-78a1-42da-974a-677a12f61cd7",
+    "generation_id": "71f922aa-0392-44d9-9add-a5a19245dc64",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "a8a9cde3-78a1-42da-974a-677a12f61cd7"
+ },
+ {
+  "sequence": 12,
+  "group_id": "0fdef5f7-5d1f-581a-a4ea-912cbfd2dd5a",
+  "shots": 6,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "8907fb7f-2467-4adf-8668-2f38af92a1fc",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:05.211301+00:00"
+   }
+  ],
+  "current_storyboard": "8907fb7f-2467-4adf-8668-2f38af92a1fc",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "848e183d-0e0e-4968-a8ba-399b9f019acd",
+    "generation_id": "8907fb7f-2467-4adf-8668-2f38af92a1fc",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 6,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "848e183d-0e0e-4968-a8ba-399b9f019acd"
+ },
+ {
+  "sequence": 13,
+  "group_id": "bc82a4ba-b44f-5b37-bf0c-87025b3f53d1",
+  "shots": 2,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "5c17894f-87b0-4df0-8268-6b3f60afeec9",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 2,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:05.271931+00:00"
+   }
+  ],
+  "current_storyboard": "5c17894f-87b0-4df0-8268-6b3f60afeec9",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 3,
+    "mean": 0.2,
+    "dark": true
+   },
+   {
+    "cell": 4,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "7df54700-2a9b-4e23-9614-b5d3f2a431b8",
+    "generation_id": "5c17894f-87b0-4df0-8268-6b3f60afeec9",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 2,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "7df54700-2a9b-4e23-9614-b5d3f2a431b8"
+ },
+ {
+  "sequence": 14,
+  "group_id": "b78c7335-74ab-5da7-8516-8f8e7f0dcd9f",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 2,
+  "storyboard_failure_codes": {
+   "generate image failed": 1
+  },
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "38a4e3a3-0371-41de-9375-d4f0d9962e52",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "generate image failed",
+    "created_at": "2026-11-04 14:16:05.465194+00:00"
+   },
+   {
+    "id": "53963cbd-14d9-444a-9f79-77e9477b7cff",
+    "version": 2,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:22:55.832917+00:00"
+   }
+  ],
+  "current_storyboard": "53963cbd-14d9-444a-9f79-77e9477b7cff",
+  "storyboard_size": [
+   1672,
+   940
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "6d3dd438-9216-490a-99dc-8040f2f3d8ad",
+    "generation_id": "53963cbd-14d9-444a-9f79-77e9477b7cff",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "6d3dd438-9216-490a-99dc-8040f2f3d8ad"
+ },
+ {
+  "sequence": 15,
+  "group_id": "3b4a5fad-36ce-5b9d-b4b5-f4e4f8643e76",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "f8292bc5-e220-46d4-af71-1fc2e57aa81b",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:05.591276+00:00"
+   }
+  ],
+  "current_storyboard": "f8292bc5-e220-46d4-af71-1fc2e57aa81b",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "d7012d4b-7eb2-4a5f-9de3-ed94db9e3e2e",
+    "generation_id": "f8292bc5-e220-46d4-af71-1fc2e57aa81b",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "d7012d4b-7eb2-4a5f-9de3-ed94db9e3e2e"
+ },
+ {
+  "sequence": 16,
+  "group_id": "67028b7a-25c8-5b2f-936f-12072f203c0e",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "b948db83-c5ec-4c26-9926-6735f27501d8",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:05.658772+00:00"
+   }
+  ],
+  "current_storyboard": "b948db83-c5ec-4c26-9926-6735f27501d8",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "bce7201f-bef1-4539-a8d8-148c6865475b",
+    "generation_id": "b948db83-c5ec-4c26-9926-6735f27501d8",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "bce7201f-bef1-4539-a8d8-148c6865475b"
+ },
+ {
+  "sequence": 17,
+  "group_id": "853bde67-ab14-5749-b499-58b165bd1d33",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "6f1b8c1d-f426-4b25-a866-154ef00fc7fb",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:05.718032+00:00"
+   }
+  ],
+  "current_storyboard": "6f1b8c1d-f426-4b25-a866-154ef00fc7fb",
+  "storyboard_size": [
+   1672,
+   940
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "07a6e1d1-5f87-4f8a-8bd8-ee1e89f8ad45",
+    "generation_id": "6f1b8c1d-f426-4b25-a866-154ef00fc7fb",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "07a6e1d1-5f87-4f8a-8bd8-ee1e89f8ad45"
+ },
+ {
+  "sequence": 18,
+  "group_id": "38c23df9-c2d8-5023-809a-b1d078a5061b",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 2,
+  "storyboard_failure_codes": {
+   "aspect_ratio_not_supported": 1
+  },
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "5d48f160-5230-402d-bd3d-0779314ad333",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "aspect_ratio_not_supported",
+    "created_at": "2026-11-04 14:16:05.796610+00:00"
+   },
+   {
+    "id": "1d62a919-8d73-4ee0-992f-56382cfcdacc",
+    "version": 2,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:23:02.050247+00:00"
+   }
+  ],
+  "current_storyboard": "1d62a919-8d73-4ee0-992f-56382cfcdacc",
+  "storyboard_size": [
+   1671,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "172e9443-c727-43e2-bbb7-f42dc661d622",
+    "generation_id": "1d62a919-8d73-4ee0-992f-56382cfcdacc",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "172e9443-c727-43e2-bbb7-f42dc661d622"
+ },
+ {
+  "sequence": 19,
+  "group_id": "48480768-7a8f-59c2-9031-3a90681f18b2",
+  "shots": 6,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "50ef02c5-1f91-49c0-a745-5a22c77bc89e",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:05.877900+00:00"
+   }
+  ],
+  "current_storyboard": "50ef02c5-1f91-49c0-a745-5a22c77bc89e",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "abfd0757-ec63-487e-887c-a76619871baa",
+    "generation_id": "50ef02c5-1f91-49c0-a745-5a22c77bc89e",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 6,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "abfd0757-ec63-487e-887c-a76619871baa"
+ },
+ {
+  "sequence": 20,
+  "group_id": "41130d83-32ac-5167-bd8b-c29605998097",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "6dfd7b26-67de-41e7-988e-dd0e0e3cfad6",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:05.970628+00:00"
+   }
+  ],
+  "current_storyboard": "6dfd7b26-67de-41e7-988e-dd0e0e3cfad6",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "469936e3-a61e-44c3-b87a-41fa29b653dd",
+    "generation_id": "6dfd7b26-67de-41e7-988e-dd0e0e3cfad6",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "469936e3-a61e-44c3-b87a-41fa29b653dd"
+ },
+ {
+  "sequence": 21,
+  "group_id": "062e5866-c93c-5762-8adb-ff0aad9e3554",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "3295cff8-ad29-43ed-a028-72f1c25a1f0e",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:06.168422+00:00"
+   }
+  ],
+  "current_storyboard": "3295cff8-ad29-43ed-a028-72f1c25a1f0e",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "5d9a89c2-3c13-4a8e-b758-677725369ebd",
+    "generation_id": "3295cff8-ad29-43ed-a028-72f1c25a1f0e",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "5d9a89c2-3c13-4a8e-b758-677725369ebd"
+ },
+ {
+  "sequence": 22,
+  "group_id": "ed995bca-e9cb-557e-9d3f-8b0ae298d4a4",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "9a23ef58-6a45-443e-ac19-b97ffcc0b9c5",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:06.299004+00:00"
+   }
+  ],
+  "current_storyboard": "9a23ef58-6a45-443e-ac19-b97ffcc0b9c5",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "ba0bb465-88f0-4dbe-a6d9-f17d691e54cc",
+    "generation_id": "9a23ef58-6a45-443e-ac19-b97ffcc0b9c5",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "ba0bb465-88f0-4dbe-a6d9-f17d691e54cc"
+ },
+ {
+  "sequence": 23,
+  "group_id": "52c3ee9e-0397-5b8e-8bc4-43cf533e1d17",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "09cb9dbf-7b4a-4832-b26b-8d3eaed72655",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:06.374930+00:00"
+   }
+  ],
+  "current_storyboard": "09cb9dbf-7b4a-4832-b26b-8d3eaed72655",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "8e5759c2-172b-4054-8d39-d4500cf3c0f9",
+    "generation_id": "09cb9dbf-7b4a-4832-b26b-8d3eaed72655",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "8e5759c2-172b-4054-8d39-d4500cf3c0f9"
+ },
+ {
+  "sequence": 24,
+  "group_id": "648b9ad8-d439-50bc-9bfd-d2c7b97a47c9",
+  "shots": 6,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "70eeee6c-7a6e-4824-8f06-d2f6c8c6487f",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:06.465589+00:00"
+   }
+  ],
+  "current_storyboard": "70eeee6c-7a6e-4824-8f06-d2f6c8c6487f",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "26d5c973-8924-4926-81ea-72ce94b6961e",
+    "generation_id": "70eeee6c-7a6e-4824-8f06-d2f6c8c6487f",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 6,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "26d5c973-8924-4926-81ea-72ce94b6961e"
+ },
+ {
+  "sequence": 25,
+  "group_id": "c96a62b6-a55f-59f8-b522-53345b077fdd",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "1418819b-754e-4145-bad4-5c7a42e54772",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:06.521787+00:00"
+   }
+  ],
+  "current_storyboard": "1418819b-754e-4145-bad4-5c7a42e54772",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "c9706d4c-09ff-43ef-b9dd-1c178b249daf",
+    "generation_id": "1418819b-754e-4145-bad4-5c7a42e54772",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "c9706d4c-09ff-43ef-b9dd-1c178b249daf"
+ },
+ {
+  "sequence": 26,
+  "group_id": "99b96be3-a1ba-5abd-89f1-8d9455d395d9",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "15bc17fe-f21e-415e-80b9-af79481062d3",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:06.596494+00:00"
+   }
+  ],
+  "current_storyboard": "15bc17fe-f21e-415e-80b9-af79481062d3",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "031d373c-64c1-460a-a60b-12dcbbee1378",
+    "generation_id": "15bc17fe-f21e-415e-80b9-af79481062d3",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "031d373c-64c1-460a-a60b-12dcbbee1378"
+ },
+ {
+  "sequence": 27,
+  "group_id": "8eccc7a8-769c-51d6-8f8a-1890ceb32726",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "4f8a630b-c9b3-4b1c-915c-1f4aa711ee54",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:06.659646+00:00"
+   }
+  ],
+  "current_storyboard": "4f8a630b-c9b3-4b1c-915c-1f4aa711ee54",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "b0f22378-b9da-43af-bf80-9c4555c1c5d0",
+    "generation_id": "4f8a630b-c9b3-4b1c-915c-1f4aa711ee54",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "b0f22378-b9da-43af-bf80-9c4555c1c5d0"
+ },
+ {
+  "sequence": 28,
+  "group_id": "ca426aae-0812-5370-86d6-341a842aa84f",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "8ede4a0b-7594-4ddd-9cd9-51045d42231d",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:06.716206+00:00"
+   }
+  ],
+  "current_storyboard": "8ede4a0b-7594-4ddd-9cd9-51045d42231d",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "9bc9f453-5ee8-4fbe-b420-e0e63b427cc4",
+    "generation_id": "8ede4a0b-7594-4ddd-9cd9-51045d42231d",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "9bc9f453-5ee8-4fbe-b420-e0e63b427cc4"
+ },
+ {
+  "sequence": 29,
+  "group_id": "c9a7c40f-344d-5bdc-9884-cf66c859a3db",
+  "shots": 6,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 2,
+  "storyboard_failure_codes": {
+   "aspect_ratio_not_supported": 1
+  },
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "32cd93b8-8f4f-4002-bbb9-9537cba85d9d",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "aspect_ratio_not_supported",
+    "created_at": "2026-11-04 14:16:06.954787+00:00"
+   },
+   {
+    "id": "1b50a509-1b27-4ac7-b4a2-8e567e06f7f5",
+    "version": 2,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:23:17.676840+00:00"
+   }
+  ],
+  "current_storyboard": "1b50a509-1b27-4ac7-b4a2-8e567e06f7f5",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "79dd6987-8ffa-4b44-a6f6-d371940bf814",
+    "generation_id": "1b50a509-1b27-4ac7-b4a2-8e567e06f7f5",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 6,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "79dd6987-8ffa-4b44-a6f6-d371940bf814"
+ },
+ {
+  "sequence": 30,
+  "group_id": "84196266-84cf-57de-bfed-100b176f4ce1",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "650600a5-d671-4f8b-a4ef-970074b29c69",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:07.109678+00:00"
+   }
+  ],
+  "current_storyboard": "650600a5-d671-4f8b-a4ef-970074b29c69",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "3d4d4e60-92ca-4385-ba04-5d6ec3ad376f",
+    "generation_id": "650600a5-d671-4f8b-a4ef-970074b29c69",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "3d4d4e60-92ca-4385-ba04-5d6ec3ad376f"
+ },
+ {
+  "sequence": 31,
+  "group_id": "fcf80317-3545-5921-a0ee-d24f40dd28cf",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "0df5fa89-3fe6-451c-b96a-9e029626b197",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:07.210735+00:00"
+   }
+  ],
+  "current_storyboard": "0df5fa89-3fe6-451c-b96a-9e029626b197",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "ee58d54c-630b-4b7f-a0c5-cb8d89dd3c8b",
+    "generation_id": "0df5fa89-3fe6-451c-b96a-9e029626b197",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "ee58d54c-630b-4b7f-a0c5-cb8d89dd3c8b"
+ },
+ {
+  "sequence": 32,
+  "group_id": "0257d4b9-c213-5cff-8f13-b99c7b225b14",
+  "shots": 2,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "cd7595a5-9293-4da4-af2d-c37f2e3b5528",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 2,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:07.270603+00:00"
+   }
+  ],
+  "current_storyboard": "cd7595a5-9293-4da4-af2d-c37f2e3b5528",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 3,
+    "mean": 0.8,
+    "dark": true
+   },
+   {
+    "cell": 4,
+    "mean": 0.8,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "686a10c6-97d1-4f98-b523-0d798489930f",
+    "generation_id": "cd7595a5-9293-4da4-af2d-c37f2e3b5528",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 2,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "686a10c6-97d1-4f98-b523-0d798489930f"
+ },
+ {
+  "sequence": 33,
+  "group_id": "50dc3238-34a9-57de-8a1d-13c7cb4eb33b",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 2,
+  "storyboard_failure_codes": {
+   "aspect_ratio_not_supported": 1
+  },
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "c7aefccd-97f6-4b40-ac5d-b32646a9926e",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "aspect_ratio_not_supported",
+    "created_at": "2026-11-04 14:16:07.342016+00:00"
+   },
+   {
+    "id": "a11157bb-b9e1-40b3-b26f-c838d7074b60",
+    "version": 2,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:23:23.477443+00:00"
+   }
+  ],
+  "current_storyboard": "a11157bb-b9e1-40b3-b26f-c838d7074b60",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "58192570-bb38-4072-bf44-f130b7e108ab",
+    "generation_id": "a11157bb-b9e1-40b3-b26f-c838d7074b60",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "58192570-bb38-4072-bf44-f130b7e108ab"
+ },
+ {
+  "sequence": 34,
+  "group_id": "0b8e753d-abcb-5341-954a-3e34942d62cc",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 2,
+  "storyboard_failure_codes": {
+   "generate image failed": 1
+  },
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "84c7e6f5-2aca-4b23-bda2-a885c17adb17",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "generate image failed",
+    "created_at": "2026-11-04 14:16:07.413356+00:00"
+   },
+   {
+    "id": "eed7211f-8a4e-4adb-909d-86af73ef965f",
+    "version": 2,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:23:24.068342+00:00"
+   }
+  ],
+  "current_storyboard": "eed7211f-8a4e-4adb-909d-86af73ef965f",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "841c2980-9db0-489e-89a8-b6eef10488eb",
+    "generation_id": "eed7211f-8a4e-4adb-909d-86af73ef965f",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "841c2980-9db0-489e-89a8-b6eef10488eb"
+ },
+ {
+  "sequence": 35,
+  "group_id": "cdc1982e-975f-50f9-8357-ebf6f6b2c6a7",
+  "shots": 6,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "7723850e-b25b-4725-83b7-4d0e924c22ed",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:07.505295+00:00"
+   }
+  ],
+  "current_storyboard": "7723850e-b25b-4725-83b7-4d0e924c22ed",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "a7922ed2-50bf-4e90-908e-92de14924b89",
+    "generation_id": "7723850e-b25b-4725-83b7-4d0e924c22ed",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 6,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "a7922ed2-50bf-4e90-908e-92de14924b89"
+ },
+ {
+  "sequence": 36,
+  "group_id": "a0d36fda-6f29-5fdc-99e9-5024da38c352",
+  "shots": 6,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "579fba6b-7554-41b3-8416-7ed32dab6691",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:07.707202+00:00"
+   }
+  ],
+  "current_storyboard": "579fba6b-7554-41b3-8416-7ed32dab6691",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "1da3cab6-540f-4632-b5bb-e43055a7594e",
+    "generation_id": "579fba6b-7554-41b3-8416-7ed32dab6691",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 6,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "1da3cab6-540f-4632-b5bb-e43055a7594e"
+ },
+ {
+  "sequence": 37,
+  "group_id": "c6417d2a-b8dd-5d29-b6a9-bfa5b23c98f3",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "29c36766-60d9-4cf8-8aac-b8cb7c37db5d",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:07.783588+00:00"
+   }
+  ],
+  "current_storyboard": "29c36766-60d9-4cf8-8aac-b8cb7c37db5d",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "b64c8d80-2e3e-409d-bec2-be901c83362b",
+    "generation_id": "29c36766-60d9-4cf8-8aac-b8cb7c37db5d",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "b64c8d80-2e3e-409d-bec2-be901c83362b"
+ },
+ {
+  "sequence": 38,
+  "group_id": "9fcc8150-a981-59cd-ac26-4a597128bf8d",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "be854bd5-6d30-4708-932e-080c0061784d",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:07.842513+00:00"
+   }
+  ],
+  "current_storyboard": "be854bd5-6d30-4708-932e-080c0061784d",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "bafc41a3-0554-49b0-8308-776dd283dc54",
+    "generation_id": "be854bd5-6d30-4708-932e-080c0061784d",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "bafc41a3-0554-49b0-8308-776dd283dc54"
+ },
+ {
+  "sequence": 39,
+  "group_id": "75c17880-60bf-51b7-b6ef-ce00626ef3ed",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "830538c7-ee03-4014-8adb-c5617eb6e157",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:07.910715+00:00"
+   }
+  ],
+  "current_storyboard": "830538c7-ee03-4014-8adb-c5617eb6e157",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "9d7f6e62-671a-4078-ab0c-d0db29fbe838",
+    "generation_id": "830538c7-ee03-4014-8adb-c5617eb6e157",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "9d7f6e62-671a-4078-ab0c-d0db29fbe838"
+ },
+ {
+  "sequence": 40,
+  "group_id": "987d2973-93da-59b7-b0b1-9253320a42d1",
+  "shots": 6,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "91f750d8-9f7f-4745-a81d-d0716e967752",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:07.998499+00:00"
+   }
+  ],
+  "current_storyboard": "91f750d8-9f7f-4745-a81d-d0716e967752",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "cb12ff89-17eb-4638-89c7-37ede5720aef",
+    "generation_id": "91f750d8-9f7f-4745-a81d-d0716e967752",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 6,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "cb12ff89-17eb-4638-89c7-37ede5720aef"
+ },
+ {
+  "sequence": 41,
+  "group_id": "95f7b353-a954-5979-bae3-59e53fd93cf1",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "0f5244f0-1d5e-4842-a09e-144e2fa2aabc",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:08.073807+00:00"
+   }
+  ],
+  "current_storyboard": "0f5244f0-1d5e-4842-a09e-144e2fa2aabc",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "398385c1-4900-44cc-8e07-bc69c997f8ae",
+    "generation_id": "0f5244f0-1d5e-4842-a09e-144e2fa2aabc",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "398385c1-4900-44cc-8e07-bc69c997f8ae"
+ },
+ {
+  "sequence": 42,
+  "group_id": "cc52af1e-26dd-5af0-87a6-b47680a501e9",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "abed08a6-b16a-4607-88f8-9eb68fd18ca4",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:08.159666+00:00"
+   }
+  ],
+  "current_storyboard": "abed08a6-b16a-4607-88f8-9eb68fd18ca4",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "eb3d8673-7524-413a-b2b8-43f1948b5e4b",
+    "generation_id": "abed08a6-b16a-4607-88f8-9eb68fd18ca4",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "eb3d8673-7524-413a-b2b8-43f1948b5e4b"
+ },
+ {
+  "sequence": 43,
+  "group_id": "ee388398-6634-5c74-b0f2-0afd80118adf",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "85135d29-2c16-4350-b660-05c9b5d9f830",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:08.408321+00:00"
+   }
+  ],
+  "current_storyboard": "85135d29-2c16-4350-b660-05c9b5d9f830",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "583600a8-d1bf-458a-986e-df42c9bf2ba1",
+    "generation_id": "85135d29-2c16-4350-b660-05c9b5d9f830",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "583600a8-d1bf-458a-986e-df42c9bf2ba1"
+ },
+ {
+  "sequence": 44,
+  "group_id": "7ce86311-6b9e-5116-8cd6-82e077da8661",
+  "shots": 6,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "7bc5fc5d-4d8c-4388-a026-d304dd9d8e80",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:08.603711+00:00"
+   }
+  ],
+  "current_storyboard": "7bc5fc5d-4d8c-4388-a026-d304dd9d8e80",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "13b828aa-8a7f-4e31-bd54-91fdcd9600c4",
+    "generation_id": "7bc5fc5d-4d8c-4388-a026-d304dd9d8e80",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 6,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "13b828aa-8a7f-4e31-bd54-91fdcd9600c4"
+ },
+ {
+  "sequence": 45,
+  "group_id": "07b4f66f-0cbe-556c-b94b-61b71402d06f",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "f4227cc2-14e4-4155-a211-ffdebc6bed92",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:08.668459+00:00"
+   }
+  ],
+  "current_storyboard": "f4227cc2-14e4-4155-a211-ffdebc6bed92",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "5211d56a-ded2-42dd-93c4-abd3eaec1696",
+    "generation_id": "f4227cc2-14e4-4155-a211-ffdebc6bed92",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "5211d56a-ded2-42dd-93c4-abd3eaec1696"
+ },
+ {
+  "sequence": 46,
+  "group_id": "e61b8ee9-54c6-5ad1-ad92-7ef82b0b159b",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "7232ad7a-fcab-40b2-9016-9cbdfdb76499",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:08.753482+00:00"
+   }
+  ],
+  "current_storyboard": "7232ad7a-fcab-40b2-9016-9cbdfdb76499",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.4,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "416ea269-d293-49f6-aedf-6592a89bdd82",
+    "generation_id": "7232ad7a-fcab-40b2-9016-9cbdfdb76499",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "416ea269-d293-49f6-aedf-6592a89bdd82"
+ },
+ {
+  "sequence": 47,
+  "group_id": "76bc48f0-8cbe-53fc-824f-06631bb00e15",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "49669b1d-eab1-4663-92fa-4f48599a10ad",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:08.873151+00:00"
+   }
+  ],
+  "current_storyboard": "49669b1d-eab1-4663-92fa-4f48599a10ad",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "aad29954-654b-4f96-9cc7-b204333b2d86",
+    "generation_id": "49669b1d-eab1-4663-92fa-4f48599a10ad",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "aad29954-654b-4f96-9cc7-b204333b2d86"
+ },
+ {
+  "sequence": 48,
+  "group_id": "067348e9-66f6-5756-857d-d68f1a8c633d",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "9372985a-e8bd-420e-854a-e1799b30efb3",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:08.942042+00:00"
+   }
+  ],
+  "current_storyboard": "9372985a-e8bd-420e-854a-e1799b30efb3",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "f860255a-809f-4dca-b4ff-d8335e76a190",
+    "generation_id": "9372985a-e8bd-420e-854a-e1799b30efb3",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "f860255a-809f-4dca-b4ff-d8335e76a190"
+ },
+ {
+  "sequence": 49,
+  "group_id": "102cc8a8-1f36-5708-8fae-5223238c4b2f",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "8425cf91-a7f6-4acf-a00b-8d317be90a31",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:09.003097+00:00"
+   }
+  ],
+  "current_storyboard": "8425cf91-a7f6-4acf-a00b-8d317be90a31",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "20881042-f4ee-4843-ac16-5286e43b4a55",
+    "generation_id": "8425cf91-a7f6-4acf-a00b-8d317be90a31",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "20881042-f4ee-4843-ac16-5286e43b4a55"
+ },
+ {
+  "sequence": 50,
+  "group_id": "9592655d-0eae-5eea-8faa-b7a0e59088d5",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "34069a29-56e5-4372-a222-ed1268987c3e",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:09.081917+00:00"
+   }
+  ],
+  "current_storyboard": "34069a29-56e5-4372-a222-ed1268987c3e",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "f2d7acce-a445-4a91-be6d-8683552f4d70",
+    "generation_id": "34069a29-56e5-4372-a222-ed1268987c3e",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "f2d7acce-a445-4a91-be6d-8683552f4d70"
+ },
+ {
+  "sequence": 51,
+  "group_id": "012a01d2-d375-59c0-8d92-b78c0427de94",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "5225bcd4-ab70-43ba-942f-afe4b97304ec",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:09.173539+00:00"
+   }
+  ],
+  "current_storyboard": "5225bcd4-ab70-43ba-942f-afe4b97304ec",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "81c179a5-2e08-4329-bf05-eabd811ef926",
+    "generation_id": "5225bcd4-ab70-43ba-942f-afe4b97304ec",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "81c179a5-2e08-4329-bf05-eabd811ef926"
+ },
+ {
+  "sequence": 52,
+  "group_id": "99605f09-eb76-57b2-965f-831e4ddf4996",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "9b55eff8-8c68-4122-9f42-2b7f1fa270c6",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:09.400466+00:00"
+   }
+  ],
+  "current_storyboard": "9b55eff8-8c68-4122-9f42-2b7f1fa270c6",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "3fc60003-6608-45c9-b71d-3cf53c72f0d2",
+    "generation_id": "9b55eff8-8c68-4122-9f42-2b7f1fa270c6",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "3fc60003-6608-45c9-b71d-3cf53c72f0d2"
+ },
+ {
+  "sequence": 53,
+  "group_id": "9ba34497-862a-5e05-abd9-e9f37e9eaf52",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "0b2fb0d0-02a1-4c7e-8feb-26f042de8ae8",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:09.498744+00:00"
+   }
+  ],
+  "current_storyboard": "0b2fb0d0-02a1-4c7e-8feb-26f042de8ae8",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "31d20987-2cb6-477f-9b3d-8c751a4b7023",
+    "generation_id": "0b2fb0d0-02a1-4c7e-8feb-26f042de8ae8",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "31d20987-2cb6-477f-9b3d-8c751a4b7023"
+ },
+ {
+  "sequence": 54,
+  "group_id": "cf69a59c-22a9-5029-96da-996541b919a9",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 2,
+  "storyboard_failure_codes": {
+   "storyboard_panel_layout_unreadable": 1
+  },
+  "layout_unreadable": 1,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "0d12ccb5-05cf-4926-a288-e0e9c78c8ace",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "storyboard_panel_layout_unreadable",
+    "created_at": "2026-11-04 14:16:09.558679+00:00"
+   },
+   {
+    "id": "66456abc-e966-4546-8706-8c9c9392918d",
+    "version": 2,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:23:26.303091+00:00"
+   }
+  ],
+  "current_storyboard": "66456abc-e966-4546-8706-8c9c9392918d",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "64aa9cdd-7639-4d8b-a264-8f350251d2db",
+    "generation_id": "66456abc-e966-4546-8706-8c9c9392918d",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "64aa9cdd-7639-4d8b-a264-8f350251d2db"
+ },
+ {
+  "sequence": 55,
+  "group_id": "e17b1ab2-d63e-55f3-ad34-0942dda08bfc",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "d4941bf0-ed67-4cfb-91b4-b72e8fe20051",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:09.619645+00:00"
+   }
+  ],
+  "current_storyboard": "d4941bf0-ed67-4cfb-91b4-b72e8fe20051",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "5c026fab-a4e0-4c44-8117-fd6a9d741d1a",
+    "generation_id": "d4941bf0-ed67-4cfb-91b4-b72e8fe20051",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "5c026fab-a4e0-4c44-8117-fd6a9d741d1a"
+ },
+ {
+  "sequence": 56,
+  "group_id": "b94d4778-be2f-536f-9221-b69a5d34e1b0",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "048c8672-e545-4ec8-b937-3847d17367d7",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:09.684933+00:00"
+   }
+  ],
+  "current_storyboard": "048c8672-e545-4ec8-b937-3847d17367d7",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "841e2a30-16d8-4f71-8071-e07abaf29531",
+    "generation_id": "048c8672-e545-4ec8-b937-3847d17367d7",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "841e2a30-16d8-4f71-8071-e07abaf29531"
+ },
+ {
+  "sequence": 57,
+  "group_id": "0d10cdf7-0eaf-5c55-b5a2-d00be96ba870",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "c52741c6-c779-4713-b628-09d47dced51a",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:09.776745+00:00"
+   }
+  ],
+  "current_storyboard": "c52741c6-c779-4713-b628-09d47dced51a",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "ddf46c59-ceb5-418b-bfb8-e3339992b8d8",
+    "generation_id": "c52741c6-c779-4713-b628-09d47dced51a",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "ddf46c59-ceb5-418b-bfb8-e3339992b8d8"
+ },
+ {
+  "sequence": 58,
+  "group_id": "cac54383-8883-589e-aa0f-99cda23a10ba",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "13d6ea2f-4467-40ac-9e25-903601b9ed0c",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:09.854858+00:00"
+   }
+  ],
+  "current_storyboard": "13d6ea2f-4467-40ac-9e25-903601b9ed0c",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "440f9a19-6a2d-4caa-9232-7742e7976a51",
+    "generation_id": "13d6ea2f-4467-40ac-9e25-903601b9ed0c",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "440f9a19-6a2d-4caa-9232-7742e7976a51"
+ },
+ {
+  "sequence": 59,
+  "group_id": "8820b994-a59f-511f-af76-e0f17030fec6",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 2,
+  "storyboard_failure_codes": {
+   "aspect_ratio_not_supported": 1
+  },
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "967d8d5b-7c49-4bd2-b1b4-028bf1f87aa1",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "aspect_ratio_not_supported",
+    "created_at": "2026-11-04 14:16:09.953419+00:00"
+   },
+   {
+    "id": "e24618c9-55dc-4040-9e3b-7e86161c8834",
+    "version": 2,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:23:29.242991+00:00"
+   }
+  ],
+  "current_storyboard": "e24618c9-55dc-4040-9e3b-7e86161c8834",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "2039c633-89a1-43f5-ab4d-9749f24c3995",
+    "generation_id": "e24618c9-55dc-4040-9e3b-7e86161c8834",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "2039c633-89a1-43f5-ab4d-9749f24c3995"
+ },
+ {
+  "sequence": 60,
+  "group_id": "e54af232-0413-5080-b68d-a3f2884680cc",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "b159a3a4-6fdb-43ff-8313-c2fdf24dda5e",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:10.113823+00:00"
+   }
+  ],
+  "current_storyboard": "b159a3a4-6fdb-43ff-8313-c2fdf24dda5e",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "afbe6c4e-6d59-45d7-b8ea-ba10c3ce0e60",
+    "generation_id": "b159a3a4-6fdb-43ff-8313-c2fdf24dda5e",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "afbe6c4e-6d59-45d7-b8ea-ba10c3ce0e60"
+ },
+ {
+  "sequence": 61,
+  "group_id": "b7283aa1-c10a-5298-86f4-89d83530ef0c",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "e1111673-8cfc-4313-bcb7-c08d8704d13d",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:10.224813+00:00"
+   }
+  ],
+  "current_storyboard": "e1111673-8cfc-4313-bcb7-c08d8704d13d",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "475464de-f07a-4421-b940-4a6d5fc81115",
+    "generation_id": "e1111673-8cfc-4313-bcb7-c08d8704d13d",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "475464de-f07a-4421-b940-4a6d5fc81115"
+ },
+ {
+  "sequence": 62,
+  "group_id": "ba4cb9f8-7b6e-5201-a363-eea2c8bbc131",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "ef8ff3af-0ccb-46d8-8054-1558b1c06e3c",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:10.316038+00:00"
+   }
+  ],
+  "current_storyboard": "ef8ff3af-0ccb-46d8-8054-1558b1c06e3c",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "4ca17a1e-b26c-4ccf-9ce1-49acf81e4a7a",
+    "generation_id": "ef8ff3af-0ccb-46d8-8054-1558b1c06e3c",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "4ca17a1e-b26c-4ccf-9ce1-49acf81e4a7a"
+ },
+ {
+  "sequence": 63,
+  "group_id": "1e83c872-4a96-5bdc-b235-01e3b66357f9",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "d39a78ad-6911-499a-a8a0-2f139f5ca93d",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:10.412703+00:00"
+   }
+  ],
+  "current_storyboard": "d39a78ad-6911-499a-a8a0-2f139f5ca93d",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "ada05ba2-c07d-4f7f-9aec-6e0394f699ad",
+    "generation_id": "d39a78ad-6911-499a-a8a0-2f139f5ca93d",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "ada05ba2-c07d-4f7f-9aec-6e0394f699ad"
+ },
+ {
+  "sequence": 64,
+  "group_id": "ae2bcd35-3ccf-54bd-98ec-2ebe886bb038",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "cc33878e-7fc4-4365-9d62-6a29ddaa57d2",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:10.488790+00:00"
+   }
+  ],
+  "current_storyboard": "cc33878e-7fc4-4365-9d62-6a29ddaa57d2",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "e01ab87d-03cd-4a3e-bce8-11b885dcc394",
+    "generation_id": "cc33878e-7fc4-4365-9d62-6a29ddaa57d2",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "e01ab87d-03cd-4a3e-bce8-11b885dcc394"
+ },
+ {
+  "sequence": 65,
+  "group_id": "ac279d80-9f1c-556f-9dc0-d97ac0fa6f97",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "8dcc5db4-c657-4a4c-b792-524468c51860",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:10.561246+00:00"
+   }
+  ],
+  "current_storyboard": "8dcc5db4-c657-4a4c-b792-524468c51860",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "45d6ccf2-1515-44e4-87d3-7f26b0853d18",
+    "generation_id": "8dcc5db4-c657-4a4c-b792-524468c51860",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "45d6ccf2-1515-44e4-87d3-7f26b0853d18"
+ },
+ {
+  "sequence": 66,
+  "group_id": "37944313-2071-55aa-8749-6c40776d3907",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "0502d356-e606-46eb-948c-ba7bc2ac70e0",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:10.625077+00:00"
+   }
+  ],
+  "current_storyboard": "0502d356-e606-46eb-948c-ba7bc2ac70e0",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "35414673-d14e-4b1a-9153-e9c6aa053da3",
+    "generation_id": "0502d356-e606-46eb-948c-ba7bc2ac70e0",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "35414673-d14e-4b1a-9153-e9c6aa053da3"
+ },
+ {
+  "sequence": 67,
+  "group_id": "33960358-4ec9-54ad-9d50-039337ceb82d",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 2,
+  "storyboard_failure_codes": {
+   "generate image failed": 1
+  },
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "96c99c2c-a35a-4a0d-8d5d-f416cb705daa",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "generate image failed",
+    "created_at": "2026-11-04 14:16:10.719032+00:00"
+   },
+   {
+    "id": "50642c7a-bce2-4864-81c9-2fdccc7ac70e",
+    "version": 2,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:24:38.234065+00:00"
+   }
+  ],
+  "current_storyboard": "50642c7a-bce2-4864-81c9-2fdccc7ac70e",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "86ea0d82-c82a-44ea-87b6-b0261e6ebde0",
+    "generation_id": "50642c7a-bce2-4864-81c9-2fdccc7ac70e",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "86ea0d82-c82a-44ea-87b6-b0261e6ebde0"
+ },
+ {
+  "sequence": 68,
+  "group_id": "a4c3541a-4dce-55c0-832d-66109691ac7c",
+  "shots": 6,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 3,
+  "storyboard_failure_codes": {
+   "generate image failed": 1,
+   "aspect_ratio_not_supported": 1
+  },
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "a58d33d7-8291-4b0d-ad43-46d0046f5171",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "generate image failed",
+    "created_at": "2026-11-04 14:16:10.929450+00:00"
+   },
+   {
+    "id": "e30da25c-6bec-41f6-9b8f-15f91d9bff29",
+    "version": 2,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": "aspect_ratio_not_supported",
+    "created_at": "2026-11-04 14:24:15.795780+00:00"
+   },
+   {
+    "id": "a63a5a29-444f-42ad-bad2-62564a6993ac",
+    "version": 3,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 3,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:29:52.976378+00:00"
+   }
+  ],
+  "current_storyboard": "a63a5a29-444f-42ad-bad2-62564a6993ac",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "12e4e507-38d0-42e4-8ff0-02717719b91b",
+    "generation_id": "a63a5a29-444f-42ad-bad2-62564a6993ac",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 6,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "12e4e507-38d0-42e4-8ff0-02717719b91b"
+ },
+ {
+  "sequence": 69,
+  "group_id": "5433ac58-a918-5c8b-a25c-ccda062c251f",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "12c8296e-6634-4cca-a491-c0cb5b485614",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:10.986903+00:00"
+   }
+  ],
+  "current_storyboard": "12c8296e-6634-4cca-a491-c0cb5b485614",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "66c34881-7c89-48e6-96ce-c94551d70b0f",
+    "generation_id": "12c8296e-6634-4cca-a491-c0cb5b485614",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "66c34881-7c89-48e6-96ce-c94551d70b0f"
+ },
+ {
+  "sequence": 70,
+  "group_id": "cfe96a8b-a23a-5944-a602-ea86079f054d",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "d49889f8-80ba-4a0f-a81f-1bc4587223df",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:11.048047+00:00"
+   }
+  ],
+  "current_storyboard": "d49889f8-80ba-4a0f-a81f-1bc4587223df",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "7fa2d3cc-6b49-477b-87e3-4b8fd8bf83ee",
+    "generation_id": "d49889f8-80ba-4a0f-a81f-1bc4587223df",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "7fa2d3cc-6b49-477b-87e3-4b8fd8bf83ee"
+ },
+ {
+  "sequence": 71,
+  "group_id": "8020feb3-4ddf-5f57-adf4-2ddafde70ebe",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 2,
+  "storyboard_failure_codes": {
+   "get image url failed": 1
+  },
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "9c001aa8-5af7-453f-8bfc-2628f779f461",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "get image url failed",
+    "created_at": "2026-11-04 14:16:11.117601+00:00"
+   },
+   {
+    "id": "2fc6537e-0489-49c1-ae79-834916ee3de2",
+    "version": 2,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:23:45.784348+00:00"
+   }
+  ],
+  "current_storyboard": "2fc6537e-0489-49c1-ae79-834916ee3de2",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "d290b009-db7f-40c6-9a6e-7da0f1a335ee",
+    "generation_id": "2fc6537e-0489-49c1-ae79-834916ee3de2",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "d290b009-db7f-40c6-9a6e-7da0f1a335ee"
+ },
+ {
+  "sequence": 72,
+  "group_id": "51af9e94-2bad-5721-979d-7a9f499e7074",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 2,
+  "storyboard_failure_codes": {
+   "get image url failed": 1
+  },
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "47b62905-d3e5-44b8-9325-eeace7a40e8b",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "get image url failed",
+    "created_at": "2026-11-04 14:16:11.198563+00:00"
+   },
+   {
+    "id": "d2067d7e-6518-4bda-8df2-62bcfc0d5274",
+    "version": 2,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:29:58.935919+00:00"
+   }
+  ],
+  "current_storyboard": "d2067d7e-6518-4bda-8df2-62bcfc0d5274",
+  "storyboard_size": [
+   1672,
+   940
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "8dad799d-a1de-4e20-9c1f-e00f514fb917",
+    "generation_id": "d2067d7e-6518-4bda-8df2-62bcfc0d5274",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "8dad799d-a1de-4e20-9c1f-e00f514fb917"
+ },
+ {
+  "sequence": 73,
+  "group_id": "094b53c9-f1b1-5bb1-9ff4-924d3027d6ce",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "ce15fbdb-0896-4f81-a200-28656c4e2749",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:11.260969+00:00"
+   }
+  ],
+  "current_storyboard": "ce15fbdb-0896-4f81-a200-28656c4e2749",
+  "storyboard_size": [
+   1673,
+   940
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "d2c7872c-f45d-4d75-91c6-b3d57d1ee20b",
+    "generation_id": "ce15fbdb-0896-4f81-a200-28656c4e2749",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "d2c7872c-f45d-4d75-91c6-b3d57d1ee20b"
+ },
+ {
+  "sequence": 74,
+  "group_id": "1d428955-5e27-5c73-9ba9-f09b87b064f7",
+  "shots": 6,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "ce8cdb6c-72e2-4031-a801-193e09b02029",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:11.425546+00:00"
+   }
+  ],
+  "current_storyboard": "ce8cdb6c-72e2-4031-a801-193e09b02029",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "bcf7bf9a-755b-4d4b-8175-bbcc872ae464",
+    "generation_id": "ce8cdb6c-72e2-4031-a801-193e09b02029",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 6,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "bcf7bf9a-755b-4d4b-8175-bbcc872ae464"
+ },
+ {
+  "sequence": 75,
+  "group_id": "3f6dfd66-e555-5e65-b267-17f2a18008d5",
+  "shots": 6,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "48f480dc-ee14-4858-8b39-3a2f7b541a4d",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:11.744781+00:00"
+   }
+  ],
+  "current_storyboard": "48f480dc-ee14-4858-8b39-3a2f7b541a4d",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "7a6826cd-e2b1-4dc7-9982-afd363533eeb",
+    "generation_id": "48f480dc-ee14-4858-8b39-3a2f7b541a4d",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 6,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "7a6826cd-e2b1-4dc7-9982-afd363533eeb"
+ },
+ {
+  "sequence": 76,
+  "group_id": "ca588f33-cf71-5021-a437-ea581fd03848",
+  "shots": 6,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 3,
+  "storyboard_failure_codes": {
+   "aspect_ratio_not_supported": 2
+  },
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "abe2d133-8ea3-4447-a94e-e34bbdbbd0d1",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "aspect_ratio_not_supported",
+    "created_at": "2026-11-04 14:16:11.832074+00:00"
+   },
+   {
+    "id": "0ca9c951-badc-49ea-92b3-d97675cd0d78",
+    "version": 2,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": "aspect_ratio_not_supported",
+    "created_at": "2026-11-04 14:23:45.783068+00:00"
+   },
+   {
+    "id": "5c5a90ef-7551-424c-bda8-45bc0a258c8f",
+    "version": 3,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 3,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:25:32.261851+00:00"
+   }
+  ],
+  "current_storyboard": "5c5a90ef-7551-424c-bda8-45bc0a258c8f",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "6a256d05-eb65-408e-9b84-d8977b05525e",
+    "generation_id": "5c5a90ef-7551-424c-bda8-45bc0a258c8f",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 6,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "6a256d05-eb65-408e-9b84-d8977b05525e"
+ },
+ {
+  "sequence": 77,
+  "group_id": "56cba2a8-a8f9-533a-b8cf-4b788a41a846",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "819a5266-1a0f-470a-a344-fb4a97ef6d21",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:11.897815+00:00"
+   }
+  ],
+  "current_storyboard": "819a5266-1a0f-470a-a344-fb4a97ef6d21",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "ad772520-3f90-49a5-8330-4189dadfbce0",
+    "generation_id": "819a5266-1a0f-470a-a344-fb4a97ef6d21",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "ad772520-3f90-49a5-8330-4189dadfbce0"
+ },
+ {
+  "sequence": 78,
+  "group_id": "18dad0c7-e24e-5fe5-8abb-83b9f737b897",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 3,
+  "storyboard_failure_codes": {
+   "aspect_ratio_not_supported": 2
+  },
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "23998010-4ff0-4d6c-98ab-950bdb619426",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "aspect_ratio_not_supported",
+    "created_at": "2026-11-04 14:16:11.965861+00:00"
+   },
+   {
+    "id": "c7c11675-bf2c-42da-a214-b146a588ff69",
+    "version": 2,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": "aspect_ratio_not_supported",
+    "created_at": "2026-11-04 14:23:49.514122+00:00"
+   },
+   {
+    "id": "9cbc3bed-9955-4bdb-b36f-1da895d0997f",
+    "version": 3,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 3,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:27:47.645440+00:00"
+   }
+  ],
+  "current_storyboard": "9cbc3bed-9955-4bdb-b36f-1da895d0997f",
+  "storyboard_size": [
+   1671,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "adff9327-ddbd-42ef-a7e8-012d4063876d",
+    "generation_id": "9cbc3bed-9955-4bdb-b36f-1da895d0997f",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "adff9327-ddbd-42ef-a7e8-012d4063876d"
+ },
+ {
+  "sequence": 79,
+  "group_id": "51ec740a-a216-5e55-90cf-76fdc4cbc412",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "8961f769-6f79-4241-91ce-500262b9af42",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:12.029706+00:00"
+   }
+  ],
+  "current_storyboard": "8961f769-6f79-4241-91ce-500262b9af42",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "ce7915d5-7ccd-4313-abe9-7575149e3564",
+    "generation_id": "8961f769-6f79-4241-91ce-500262b9af42",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "ce7915d5-7ccd-4313-abe9-7575149e3564"
+ },
+ {
+  "sequence": 80,
+  "group_id": "d17e433b-2f6c-5ac8-a4ee-5a459291f04e",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "7acf6514-8d0d-4754-9473-fd937b8e36a6",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:12.116970+00:00"
+   }
+  ],
+  "current_storyboard": "7acf6514-8d0d-4754-9473-fd937b8e36a6",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "beb3ca4e-3172-4b08-bd5a-8d8e35b15652",
+    "generation_id": "7acf6514-8d0d-4754-9473-fd937b8e36a6",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "beb3ca4e-3172-4b08-bd5a-8d8e35b15652"
+ },
+ {
+  "sequence": 81,
+  "group_id": "c0768148-e524-55a2-b98a-a2189461be49",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 2,
+  "storyboard_failure_codes": {
+   "generate image failed": 1
+  },
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "bb18cecb-d9c5-4fdc-8338-0f12065571ee",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "generate image failed",
+    "created_at": "2026-11-04 14:16:12.231944+00:00"
+   },
+   {
+    "id": "a545277b-e110-4cdb-9bd0-8f10000f6063",
+    "version": 2,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:25:20.868460+00:00"
+   }
+  ],
+  "current_storyboard": "a545277b-e110-4cdb-9bd0-8f10000f6063",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "c06214b5-eab8-4478-9993-77971c47874f",
+    "generation_id": "a545277b-e110-4cdb-9bd0-8f10000f6063",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "c06214b5-eab8-4478-9993-77971c47874f"
+ },
+ {
+  "sequence": 82,
+  "group_id": "28ec5e3c-a17f-5b3e-ac12-31b75d7e86b8",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "bf71ee9c-b2d5-4c53-8f46-ea810e06b7ea",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:12.425254+00:00"
+   }
+  ],
+  "current_storyboard": "bf71ee9c-b2d5-4c53-8f46-ea810e06b7ea",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "a0a7b118-8c05-4e78-a637-dba825e6c3ec",
+    "generation_id": "bf71ee9c-b2d5-4c53-8f46-ea810e06b7ea",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "a0a7b118-8c05-4e78-a637-dba825e6c3ec"
+ },
+ {
+  "sequence": 83,
+  "group_id": "b45e99b7-ce8e-5ca8-a96a-3fd8c864186e",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "a09bec08-1066-4504-9498-eb57dd9f3002",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:12.511161+00:00"
+   }
+  ],
+  "current_storyboard": "a09bec08-1066-4504-9498-eb57dd9f3002",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "40bebd94-c1be-48dc-bd73-63c87c8edba1",
+    "generation_id": "a09bec08-1066-4504-9498-eb57dd9f3002",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "40bebd94-c1be-48dc-bd73-63c87c8edba1"
+ },
+ {
+  "sequence": 84,
+  "group_id": "b3f4b23d-afa2-5268-a97c-ab3d1e6f98f9",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "e9816cc0-0fd7-4e18-9b03-7ebc9fdc38ca",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:12.561703+00:00"
+   }
+  ],
+  "current_storyboard": "e9816cc0-0fd7-4e18-9b03-7ebc9fdc38ca",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "bde2ddd5-50f3-446f-82b8-c46d4d4d9661",
+    "generation_id": "e9816cc0-0fd7-4e18-9b03-7ebc9fdc38ca",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "bde2ddd5-50f3-446f-82b8-c46d4d4d9661"
+ },
+ {
+  "sequence": 85,
+  "group_id": "be55a160-f18c-5aa2-ba20-9586e3826bb3",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "1533f3d8-eced-4e72-b997-9286f063995b",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:12.632440+00:00"
+   }
+  ],
+  "current_storyboard": "1533f3d8-eced-4e72-b997-9286f063995b",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "6956a91d-5d8e-457b-b410-7ae5afa74d20",
+    "generation_id": "1533f3d8-eced-4e72-b997-9286f063995b",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "6956a91d-5d8e-457b-b410-7ae5afa74d20"
+ },
+ {
+  "sequence": 86,
+  "group_id": "23c412a8-ae7d-56f0-9174-2adae61d47c8",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "c7a067a0-563e-4ae4-9a49-92ef8cf26b6a",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:12.685349+00:00"
+   }
+  ],
+  "current_storyboard": "c7a067a0-563e-4ae4-9a49-92ef8cf26b6a",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "9afadc95-90d8-4a54-ae82-5abb4fdb332b",
+    "generation_id": "c7a067a0-563e-4ae4-9a49-92ef8cf26b6a",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "9afadc95-90d8-4a54-ae82-5abb4fdb332b"
+ },
+ {
+  "sequence": 87,
+  "group_id": "c26bba3c-554c-5866-a1f9-5c0f0a6a6e9b",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "645bcd26-e926-465e-bea7-e09dd939eea6",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:12.742583+00:00"
+   }
+  ],
+  "current_storyboard": "645bcd26-e926-465e-bea7-e09dd939eea6",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "db3d9354-5da5-4298-b094-d87e46f638ee",
+    "generation_id": "645bcd26-e926-465e-bea7-e09dd939eea6",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "db3d9354-5da5-4298-b094-d87e46f638ee"
+ },
+ {
+  "sequence": 88,
+  "group_id": "866fe635-c612-5320-9797-c45a4d85f0fb",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "35491bb1-17b8-4fb8-be82-d2e5e03eb5e8",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:12.800059+00:00"
+   }
+  ],
+  "current_storyboard": "35491bb1-17b8-4fb8-be82-d2e5e03eb5e8",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "8d28cd32-1f79-4c9c-bd10-ae9a626e6238",
+    "generation_id": "35491bb1-17b8-4fb8-be82-d2e5e03eb5e8",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "8d28cd32-1f79-4c9c-bd10-ae9a626e6238"
+ },
+ {
+  "sequence": 89,
+  "group_id": "654a6ce1-ebb5-5f38-9a81-730a2890f6da",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 2,
+  "storyboard_failure_codes": {
+   "server_timeout": 1
+  },
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "e6940321-2059-4ff6-a0aa-08e671a80ebc",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "server_timeout",
+    "created_at": "2026-11-04 14:16:12.862763+00:00"
+   },
+   {
+    "id": "9ac84884-83d1-423d-b6a9-b701c165bcb8",
+    "version": 2,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:32:21.216611+00:00"
+   }
+  ],
+  "current_storyboard": "9ac84884-83d1-423d-b6a9-b701c165bcb8",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "c4630c53-ee0d-4be3-9241-76279d6cfbdd",
+    "generation_id": "9ac84884-83d1-423d-b6a9-b701c165bcb8",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "c4630c53-ee0d-4be3-9241-76279d6cfbdd"
+ },
+ {
+  "sequence": 90,
+  "group_id": "048c0d37-e9ce-55f1-be55-383ce26bd9b2",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "9febba86-0262-4afa-b0ce-f5d9f5d41e20",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:12.939752+00:00"
+   }
+  ],
+  "current_storyboard": "9febba86-0262-4afa-b0ce-f5d9f5d41e20",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "9963bf15-ef0a-433d-95fc-21b3bfd89e2c",
+    "generation_id": "9febba86-0262-4afa-b0ce-f5d9f5d41e20",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "9963bf15-ef0a-433d-95fc-21b3bfd89e2c"
+ },
+ {
+  "sequence": 91,
+  "group_id": "82c7fd71-d9d9-510f-9d65-cfce5019c0a1",
+  "shots": 6,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "b17ddcec-548a-43d1-a95e-d24e7344edf8",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:13.232872+00:00"
+   }
+  ],
+  "current_storyboard": "b17ddcec-548a-43d1-a95e-d24e7344edf8",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "35ba07c4-467b-43ec-944e-6fbb940fc1c0",
+    "generation_id": "b17ddcec-548a-43d1-a95e-d24e7344edf8",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 6,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "35ba07c4-467b-43ec-944e-6fbb940fc1c0"
+ },
+ {
+  "sequence": 92,
+  "group_id": "d0c7a591-32a9-5e78-ad55-1f0fe9f476e2",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "4b355d92-fa47-450c-9cae-f4ac997e4c5c",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:13.350963+00:00"
+   }
+  ],
+  "current_storyboard": "4b355d92-fa47-450c-9cae-f4ac997e4c5c",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "04462a85-76b5-4410-99ed-e3d380830455",
+    "generation_id": "4b355d92-fa47-450c-9cae-f4ac997e4c5c",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "04462a85-76b5-4410-99ed-e3d380830455"
+ },
+ {
+  "sequence": 93,
+  "group_id": "2755938f-7e60-5ced-a478-96375ecfaf56",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "102ef947-1b4f-4819-8be8-1f5e0902b2b7",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:13.410671+00:00"
+   }
+  ],
+  "current_storyboard": "102ef947-1b4f-4819-8be8-1f5e0902b2b7",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "697f55b0-32c9-4beb-9ffd-9a94248a7707",
+    "generation_id": "102ef947-1b4f-4819-8be8-1f5e0902b2b7",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "697f55b0-32c9-4beb-9ffd-9a94248a7707"
+ },
+ {
+  "sequence": 94,
+  "group_id": "6ba78f12-17bf-50da-84d3-3bc964708813",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "49065a4e-ea96-4dff-bd91-942c571a9c89",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:13.481795+00:00"
+   }
+  ],
+  "current_storyboard": "49065a4e-ea96-4dff-bd91-942c571a9c89",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "2103c65c-70fd-4766-850f-ae731353102e",
+    "generation_id": "49065a4e-ea96-4dff-bd91-942c571a9c89",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "2103c65c-70fd-4766-850f-ae731353102e"
+ },
+ {
+  "sequence": 95,
+  "group_id": "d8c8c641-6661-5ef4-9218-caa1ea880f3c",
+  "shots": 6,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "5b89d4b8-382c-4c6f-a69e-22c0c14e7b38",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:13.694867+00:00"
+   }
+  ],
+  "current_storyboard": "5b89d4b8-382c-4c6f-a69e-22c0c14e7b38",
+  "storyboard_size": [
+   1671,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "0364dee7-58ff-4107-94f7-6dadd4205229",
+    "generation_id": "5b89d4b8-382c-4c6f-a69e-22c0c14e7b38",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 6,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "0364dee7-58ff-4107-94f7-6dadd4205229"
+ },
+ {
+  "sequence": 96,
+  "group_id": "a7ea1db0-391b-5e57-8b76-5c348b250fd2",
+  "shots": 6,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "24511289-04ec-400d-9267-6ed6a35ff2d2",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:13.869483+00:00"
+   }
+  ],
+  "current_storyboard": "24511289-04ec-400d-9267-6ed6a35ff2d2",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "5e0dff3c-0b84-4fd9-ba1a-fef7709d2117",
+    "generation_id": "24511289-04ec-400d-9267-6ed6a35ff2d2",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 6,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "5e0dff3c-0b84-4fd9-ba1a-fef7709d2117"
+ },
+ {
+  "sequence": 97,
+  "group_id": "9daea25a-6fff-5506-81b7-25ab193c37fa",
+  "shots": 6,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "5fea6702-9183-4c47-8e9a-4d7c2cd78b9b",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:13.959797+00:00"
+   }
+  ],
+  "current_storyboard": "5fea6702-9183-4c47-8e9a-4d7c2cd78b9b",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "81bec34d-ab26-4ca2-bacd-edee712e0e46",
+    "generation_id": "5fea6702-9183-4c47-8e9a-4d7c2cd78b9b",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 6,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "81bec34d-ab26-4ca2-bacd-edee712e0e46"
+ },
+ {
+  "sequence": 98,
+  "group_id": "ea33cc31-082d-5907-92c1-7ac64262a432",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "02c2fc86-ebfd-4154-871a-4a77445cc539",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:14.044231+00:00"
+   }
+  ],
+  "current_storyboard": "02c2fc86-ebfd-4154-871a-4a77445cc539",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "39d9cc1b-ca03-45ea-9d1f-595e12b99396",
+    "generation_id": "02c2fc86-ebfd-4154-871a-4a77445cc539",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "39d9cc1b-ca03-45ea-9d1f-595e12b99396"
+ },
+ {
+  "sequence": 99,
+  "group_id": "bcc13470-47cb-537b-97f0-dcc2b7c1fdc7",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "e67d7085-2d77-449a-aa9a-2545dc21eb77",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:14.131395+00:00"
+   }
+  ],
+  "current_storyboard": "e67d7085-2d77-449a-aa9a-2545dc21eb77",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "413fbd27-571b-4d6d-918a-4136d6f7824b",
+    "generation_id": "e67d7085-2d77-449a-aa9a-2545dc21eb77",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "413fbd27-571b-4d6d-918a-4136d6f7824b"
+ },
+ {
+  "sequence": 100,
+  "group_id": "d7ff89ac-c922-5e3b-a696-c852d2b547d5",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 2,
+  "storyboard_failure_codes": {
+   "storyboard_panel_layout_unreadable": 1
+  },
+  "layout_unreadable": 1,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "45dc85ed-67c2-4010-8809-20588792d72d",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "storyboard_panel_layout_unreadable",
+    "created_at": "2026-11-04 14:16:14.189100+00:00"
+   },
+   {
+    "id": "804c0a3d-2ed8-4e00-ab95-54eb109613b4",
+    "version": 2,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:24:03.183553+00:00"
+   }
+  ],
+  "current_storyboard": "804c0a3d-2ed8-4e00-ab95-54eb109613b4",
+  "storyboard_size": [
+   1671,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "fa5d9d5a-b5f5-46d4-aa2d-630749d27855",
+    "generation_id": "804c0a3d-2ed8-4e00-ab95-54eb109613b4",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "fa5d9d5a-b5f5-46d4-aa2d-630749d27855"
+ },
+ {
+  "sequence": 101,
+  "group_id": "8b1c7419-bc6f-56ed-8ce3-d9989a52b1e2",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "b4892bb0-b36a-4d2e-bb6a-b431eedac8fd",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:14.251895+00:00"
+   }
+  ],
+  "current_storyboard": "b4892bb0-b36a-4d2e-bb6a-b431eedac8fd",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "762651f2-4c39-4c67-8805-a32946f61a1f",
+    "generation_id": "b4892bb0-b36a-4d2e-bb6a-b431eedac8fd",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "762651f2-4c39-4c67-8805-a32946f61a1f"
+ },
+ {
+  "sequence": 102,
+  "group_id": "918420f0-ae80-5ef5-9098-5cd78146ef77",
+  "shots": 5,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 2,
+  "storyboard_failure_codes": {
+   "aspect_ratio_not_supported": 1
+  },
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "8fbcf3c8-cff3-4c81-97d0-cc0ab387c86a",
+    "version": 1,
+    "status": "FAILED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": "aspect_ratio_not_supported",
+    "created_at": "2026-11-04 14:16:14.319146+00:00"
+   },
+   {
+    "id": "418af812-a902-4576-bcf1-d5770001fec1",
+    "version": 2,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 5,
+    "provider": "grsai",
+    "failover_total_attempt": 2,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:24:02.340910+00:00"
+   }
+  ],
+  "current_storyboard": "418af812-a902-4576-bcf1-d5770001fec1",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "f4114848-4f27-4d62-8cde-ddc4ffa0504a",
+    "generation_id": "418af812-a902-4576-bcf1-d5770001fec1",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 5,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "f4114848-4f27-4d62-8cde-ddc4ffa0504a"
+ },
+ {
+  "sequence": 103,
+  "group_id": "a7a1b978-052d-5dca-89e9-5fe3c2c4b9d5",
+  "shots": 6,
+  "layout_v2": "2x3",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "9f89bc9f-1354-40c2-8c8a-035f4f1ee4b8",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 6,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:14.494885+00:00"
+   }
+  ],
+  "current_storyboard": "9f89bc9f-1354-40c2-8c8a-035f4f1ee4b8",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "f1f7505d-871e-4b8a-8221-6319c3e8fd81",
+    "generation_id": "9f89bc9f-1354-40c2-8c8a-035f4f1ee4b8",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 6,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "f1f7505d-871e-4b8a-8221-6319c3e8fd81"
+ },
+ {
+  "sequence": 104,
+  "group_id": "0ff08d13-b372-5c1a-876a-ff356c9de183",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "9cc076ac-2541-4541-84cc-8d1c8e32f754",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:14.703434+00:00"
+   }
+  ],
+  "current_storyboard": "9cc076ac-2541-4541-84cc-8d1c8e32f754",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "cfcbf6b5-910c-41db-9303-014f04c39603",
+    "generation_id": "9cc076ac-2541-4541-84cc-8d1c8e32f754",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "cfcbf6b5-910c-41db-9303-014f04c39603"
+ },
+ {
+  "sequence": 105,
+  "group_id": "e66434fc-8b6d-5eb4-a7f8-5143016f65d0",
+  "shots": 4,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "937f8d5b-6d2e-4a43-a383-75f637983ab7",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 4,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:14.771376+00:00"
+   }
+  ],
+  "current_storyboard": "937f8d5b-6d2e-4a43-a383-75f637983ab7",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "6229338d-882c-400a-ac49-815ceb7ca88c",
+    "generation_id": "937f8d5b-6d2e-4a43-a383-75f637983ab7",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 4,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "6229338d-882c-400a-ac49-815ceb7ca88c"
+ },
+ {
+  "sequence": 106,
+  "group_id": "efe9cbed-a6b1-5770-95d9-3d4a033a8032",
+  "shots": 3,
+  "layout_v2": "2x2",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "41951eb5-6faa-4404-a1d1-7c6c97f059d6",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 3,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:14.880056+00:00"
+   }
+  ],
+  "current_storyboard": "41951eb5-6faa-4404-a1d1-7c6c97f059d6",
+  "storyboard_size": [
+   1672,
+   941
+  ],
+  "empty_cells": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "video_attempts": [
+   {
+    "attempt_id": "294fb344-4d69-4589-b678-1c27340b9136",
+    "generation_id": "41951eb5-6faa-4404-a1d1-7c6c97f059d6",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 3,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "294fb344-4d69-4589-b678-1c27340b9136"
+ },
+ {
+  "sequence": 107,
+  "group_id": "910700ba-2d83-5dbc-b7a4-292bac499924",
+  "shots": 1,
+  "layout_v2": "1x1",
+  "storyboard_attempts": 1,
+  "storyboard_failure_codes": {},
+  "layout_unreadable": 0,
+  "all_storyboards_v2": true,
+  "storyboards": [
+   {
+    "id": "c9c25edd-e588-441a-aa26-35431fcc8b48",
+    "version": 1,
+    "status": "SUCCEEDED",
+    "grid_layout_version": "grid-v2",
+    "shots": 1,
+    "provider": "grsai",
+    "failover_total_attempt": 1,
+    "failure_code": null,
+    "created_at": "2026-11-04 14:16:14.921965+00:00"
+   }
+  ],
+  "current_storyboard": "c9c25edd-e588-441a-aa26-35431fcc8b48",
+  "storyboard_size": [
+   1672,
+   940
+  ],
+  "empty_cells": [],
+  "video_attempts": [
+   {
+    "attempt_id": "4c18efe0-f395-484f-9f42-53fe0412a065",
+    "generation_id": "c9c25edd-e588-441a-aa26-35431fcc8b48",
+    "superseded_attempt_id": null,
+    "stage": "ARCHIVED",
+    "archive_stage": "COMPLETE",
+    "error_code": null,
+    "ok": false,
+    "check": {
+     "has_snapshot": true,
+     "policy_ok": true,
+     "strategy": "tubeflow_storyboard_v4_single_panel",
+     "strategy_ok": true,
+     "panels": 1,
+     "panels_match_shots": true,
+     "shot_orders_ok": true,
+     "storyboard_not_sent": true,
+     "each_panel_sent_once": false,
+     "reference_count_ok": false,
+     "references": 0,
+     "characters": 1
+    }
+   }
+  ],
+  "current_attempt": "4c18efe0-f395-484f-9f42-53fe0412a065"
+ }
+]

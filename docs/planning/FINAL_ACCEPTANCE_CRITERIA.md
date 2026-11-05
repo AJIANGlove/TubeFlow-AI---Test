@@ -522,7 +522,7 @@
 - [ ] 上传成功后 `GET /projects/{pid}/cover/images` 的 `current` 指向该版本，版本历史出现该行并标注「上传」；项目卡片缩略图立即使用该封面。
 - [ ] 上传原图字节可经 `GET /projects/{pid}/cover/images/{id}/media` 逐字节读回；导出 ZIP 包含当前封面原图并以 `cover.png|jpg|webp` 命名。
 - [ ] 同一项目相同字节再次上传返回 200、`reused=true`、同一 `generation_id`，版本数与对象数均不增加，当前指针保持该版本；不同项目上传同一图片互不复用。
-- [ ] 图片校验：GIF/超 25MB/低于 1280×720/超过 4000 万像素/非 16:9（如 1360×720）分别返回 422 稳定错误码，且不产生版本行与对象；16:9 ±1%（如 1290×720）通过。
+- [ ] 图片校验：GIF / 超 25MB / 超 4000 万像素分别返回 422 稳定错误码，且不产生版本行与对象；1056×608（非 16:9）与 1080×1920（竖图）上传成功并成为当前版本；不再出现 `invalid_image_aspect_ratio`（2026-11-05 修订：取消最小尺寸与 16:9 限制，见 `USER_DECISIONS.md` §34 第 13 条）。
 - [ ] 未冻结项目上传返回 409 `cover_project_not_frozen`；非 owner 返回 404 且不写对象；上传不产生 `cover_outbox` 事件、不调用任何 Provider/QC/复审。
 - [ ] 上传版本与生成版本共用同一不可变版本序列；上传版本可被 `POST /cover/images/current` 切换；不存在删除或覆盖入口。
 - [ ] 迁移 `0042` 可从 `0041` 升级并通过/降级；存在上传版本时降级拒绝并提示人工处理，无上传版本时恢复四列非空并移除 `source`。`alembic heads` 唯一为 `0042`。
@@ -619,7 +619,7 @@
 - [x] 第 0 关：H3 工作流核对（2026-11-04 通过，`Pending issues/2026-11-04/h3_workflow/`）。
 - [x] 第 1 关：对 d5c1a12 之后全部无角标故事板原始字节做 `crop-grid-v2` 离线演练，通过率 ≥90%。（2026-11-04 首轮 78.835% 未通过，口径与算法按 USER_DECISIONS §47 修订后重跑，见 §43；重跑 539/548 = 98.3577% 通过。）
 - [x] 第 2 关：开关关闭部署后，既有项目无新故事板/视频生成，抽查一组 v1 故事板提示词哈希不变。（2026-11-04 17:45:08–17:45:40 部署 `sha256:238bd9ea…`（`crop-grid-v2-rev-20261104`），`TUBEFLOW_STORYBOARD_SINGLE_PANEL_NEW_PROJECTS=false`；观察 30 分钟：`grid_layout_version` 键 0 条、新增故事板 0 条，4348 组中 4129 个已有当前成片的组无一条新尝试；未新增故事板行，故 v1 提示词逐字不变，抽查 `146ae08c` 版本 1 两条 `prompt` md5 `c9893523…`、`b0167115…` 记录在 `Pending issues/2026-11-04/singlepanel_test/gate2_rerun/`。）
-- [ ] 第 3–4 关：开关开启的新测试项目（复用 fa3a0b30 文案、标题与角色）全部组为 v2；每次视频请求无 STORYBOARD 角色、每镜一个 SHOT_PANEL；策略为 `tubeflow_storyboard_v4_single_panel`；记录各组 `storyboard_panel_layout_unreadable` 次数与留黑格状态。
+- [ ] 第 3–4 关：开关开启的新测试项目（复用 fa3a0b30 文案、标题与角色）全部组为 v2；每次视频请求无 STORYBOARD 角色、每镜一个 SHOT_PANEL；策略为 `tubeflow_storyboard_v4_single_panel`；记录各组 `storyboard_panel_layout_unreadable` 次数与留黑格状态。（2026-11-05 项目 `72a22f0a`：14 组全部 `grid-v2`（2x2）、策略只含 `tubeflow_storyboard_v4_single_panel`、`ladder_error_count` 与 worker 日志 grep 均为 0、各组 `storyboard_panel_layout_unreadable` 均为 0、17 个留黑格全部 `dark=true`（均值 0.1–0.2）——以上满足；但 `checks.json` 的 `every_attempt_single_panel` 为 **false**、`attempts_failing_checks` 为全部 14 条，子项固定是 `each_panel_sent_once` 与 `reference_count_ok`：收集脚本读 `request_json.references`，该字段在 staging 后被替换为 `staged_assets`（长度 0）。改用 `input_snapshot_json.logical_request.references` 直接核对 14/14：`refs = panels + characters`、每个 panel sha 恰好 1 次、storyboard sha 从不出现。判据按脚本输出未满足，故暂不勾选，待收集脚本口径确认。证据 `Pending issues/2026-11-04/singlepanel_test/gate3_5/`。）
 - [ ] 第 5 关：1 fps 全组复核，分屏/网格帧 0 组；同一人物同框少于 fa3a0b30（2 组）；有角色的组身份全部正确；HF 抖动逐组记录；梯子替代尝试无 `single_panel_automatic_resubmit_not_supported`。
 - [ ] PostgreSQL 集成测试、ruff、mypy 全量通过（实施方执行）。
 

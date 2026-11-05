@@ -425,3 +425,14 @@ ssh $SSHOPTS edy@192.168.110.200 'sudo docker run --rm -v tubeflowai-test_postgr
 - 重启影响（事后 10 分钟快照）：视频尝试更新 2 条（`a0e52ea0`，RUNNING→ARCHIVED/COMPLETE），无 FAILED / REMOTE_STATE_UNKNOWN / QC_FAILED / local_integrity_blocked；新增故事板 0 条，带 `grid_layout_version` 0 条。既有项目只记录，见 `Pending issues/2026-11-04/DEFERRED_EXISTING_PROJECTS_20261104.md` 第 3 节。
 - 第 3–4 关：新建测试项目 `faf27eb5-23d4-43e7-8269-029336e38167`（21:51 创建并确认配音）后，旁白作业停在 `DISPATCHED`（0 句、50 分钟无进展），AUTO 仍 RUNNING，未取得第 3–4 关证据；未重启、未恢复。记录 `Pending issues/2026-11-04/singlepanel_test/gate3_5/STALL.md`。
 - 回滚：`.env` 还原 `.env.bak-single-panel-on-20261104` 后 `up -d --no-build`（镜像无需变更）。
+
+## 38. 2026-11-05 PR #6 旁白作业 ID 修复上线（narration-jobid-20261104）
+
+- 来源：main `01ccf01`（合并 PR #6 `aad06d1`）。修复一行：`api/narration_runtime.py` 的作业 ID 由 `narration_{snapshot_hash}` 改为 `narration_{project_id}_{snapshot_hash}`；无迁移、无前端、无 settings 变更。
+- 门禁：分支 `aad06d1` 对 main `09cd418`——单元两侧 2342 passed；集成两侧 19 failed，通过数 119（main）对 120（分支，新增用例 `test_identical_snapshots_in_two_projects_get_distinct_narration_job_ids` 通过，单跑 1 passed in 3.64s），失败集合逐条相同；ruff 15 条、mypy 12 条输出逐字节相同。证据 `Pending issues/2026-11-04/singlepanel_test/gateA_pr6/`。
+- 构建：部署机 `/home/edy/build-pr6-20261104`（`git archive` of `01ccf01`，只含 backend/frontend/根三件套）。镜像 `sha256:edee542dda35ceadd8b3688ee690838419f620d3b32197d99237406f81db6336`（`tubeflow-test:narration-jobid-20261104`）；容器内 `narration_runtime.py` LF 归一 sha256 `2450a3b9…` 与 git blob 一致。
+- 部署：compose 备份 `runtime/operations/narration-jobid-20261104/docker-compose.yml.bak`，web/worker/migrate 三处改钉，`.env` 未改（`TUBEFLOW_STORYBOARD_SINGLE_PANEL_NEW_PROJECTS` 保持 true），`up -d --no-build`，T_dep **2026-11-05T02:41:26Z–02:41:40Z**。按 §46.10 未等待既有项目排空。
+- 校验：`/health/live` 200（启动约 100 秒），web/worker healthy 且均在新镜像，两容器 `Settings().storyboard_single_panel_new_projects is True`，`alembic 0046` 不变。
+- 重启影响（10 分钟快照）：视频尝试被触碰 0；FAILED / REMOTE_STATE_UNKNOWN / QC_FAILED / local_integrity_blocked 0；新增故事板 37 条全部 grid-v2、全部属开关开启后新建的 `247462a4`（其自身故事板梯子重试），既有 v1 项目无新增。
+- 效果：同内容新项目 `72a22f0a` 的作业 ID 为 `narration_72a22f0a-…_29ad09b7…`，旁白约 2 分 17 秒完成，AUTO 59 分钟 COMPLETED。
+- 回滚：还原 compose 备份后 `up -d --no-build` 回 `sha256:238bd9ea…`。

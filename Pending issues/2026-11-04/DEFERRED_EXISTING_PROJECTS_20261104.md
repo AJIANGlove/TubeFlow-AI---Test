@@ -51,6 +51,18 @@
 
 证据：`singlepanel_test/gate3_5/post_restart.json`（SQL 见同目录 `post_restart.sql`）。
 
+### 3.4 PR #6 部署后 10 分钟（T_dep 2026-11-05T02:41:26Z 起至 02:49:53Z）
+
+- 镜像 `sha256:edee542d…`（`narration-jobid-20261104`），`.env` 未改（开关保持 true），无迁移。
+- 视频尝试被触碰：**0 条**；触发标记（FAILED / REMOTE_STATE_UNKNOWN / QC_FAILED / local_integrity_blocked）：**0 条**。
+- 新增故事板：**37 条**，全部带 `grid_layout_version`，全部 `grid-v2`，全部属 `247462a4-e719-4488-ae14-aab962de1a27`
+  （36 FAILED `storyboard_panel_layout_unreadable` + 1 SUCCEEDED）。该项目 2026-11-04 22:23 在开关已开之后创建，
+  本就按 v2 钉版，不属于"既有 v1 项目被改钉"；36 条失败是它自身的故事板梯子重试，不是重启打断。
+  除该项目外，部署后 10 分钟内没有其它项目产生故事板。
+- 结论：既有 v1 项目（B 类）未出现 `grid_layout_version`；本次重启未造成尝试失败或未知态。
+
+证据：`singlepanel_test/gate3_5/post_deploy_pr6.json`（同一份 `post_restart.sql`，`t0 = T_dep`）。
+
 
 ## 4. 旁白作业停在 DISPATCHED 的项目（作业 ID 跨项目碰撞，根因见 `NARRATION_JOB_ID_COLLISION_20261104.md`）
 

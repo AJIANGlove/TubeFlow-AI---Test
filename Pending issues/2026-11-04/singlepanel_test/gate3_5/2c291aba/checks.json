@@ -1,0 +1,618 @@
+{
+ "groups": 107,
+ "all_groups_v2": true,
+ "every_attempt_single_panel": false,
+ "attempts_total": 107,
+ "attempts_without_snapshot": 0,
+ "attempts_failing_checks": [
+  "38b85532-c3fb-40e3-844d-01d86480d54e",
+  "6f14c1ed-da8c-412b-9ac3-e086fa26eea2",
+  "004c871c-7f06-46ce-a9c1-bd67eb59b2a5",
+  "ca69d98f-a043-4ec8-b5e0-f7d99ce0fda9",
+  "49191352-453f-46a0-95be-d8eb2025048b",
+  "99e55d97-8227-46eb-9413-111aec7d2b82",
+  "02f6b6a0-d60c-43c1-9faa-c0c8ad7240f8",
+  "c5909f3e-0518-4cc7-931b-b41869b82569",
+  "31603a5b-3aa6-48aa-9e4b-33c8a3664d12",
+  "1d5697ed-c36f-4abc-9bff-dad417d1744e",
+  "a8a9cde3-78a1-42da-974a-677a12f61cd7",
+  "848e183d-0e0e-4968-a8ba-399b9f019acd",
+  "7df54700-2a9b-4e23-9614-b5d3f2a431b8",
+  "6d3dd438-9216-490a-99dc-8040f2f3d8ad",
+  "d7012d4b-7eb2-4a5f-9de3-ed94db9e3e2e",
+  "bce7201f-bef1-4539-a8d8-148c6865475b",
+  "07a6e1d1-5f87-4f8a-8bd8-ee1e89f8ad45",
+  "172e9443-c727-43e2-bbb7-f42dc661d622",
+  "abfd0757-ec63-487e-887c-a76619871baa",
+  "469936e3-a61e-44c3-b87a-41fa29b653dd",
+  "5d9a89c2-3c13-4a8e-b758-677725369ebd",
+  "ba0bb465-88f0-4dbe-a6d9-f17d691e54cc",
+  "8e5759c2-172b-4054-8d39-d4500cf3c0f9",
+  "26d5c973-8924-4926-81ea-72ce94b6961e",
+  "c9706d4c-09ff-43ef-b9dd-1c178b249daf",
+  "031d373c-64c1-460a-a60b-12dcbbee1378",
+  "b0f22378-b9da-43af-bf80-9c4555c1c5d0",
+  "9bc9f453-5ee8-4fbe-b420-e0e63b427cc4",
+  "79dd6987-8ffa-4b44-a6f6-d371940bf814",
+  "3d4d4e60-92ca-4385-ba04-5d6ec3ad376f",
+  "ee58d54c-630b-4b7f-a0c5-cb8d89dd3c8b",
+  "686a10c6-97d1-4f98-b523-0d798489930f",
+  "58192570-bb38-4072-bf44-f130b7e108ab",
+  "841c2980-9db0-489e-89a8-b6eef10488eb",
+  "a7922ed2-50bf-4e90-908e-92de14924b89",
+  "1da3cab6-540f-4632-b5bb-e43055a7594e",
+  "b64c8d80-2e3e-409d-bec2-be901c83362b",
+  "bafc41a3-0554-49b0-8308-776dd283dc54",
+  "9d7f6e62-671a-4078-ab0c-d0db29fbe838",
+  "cb12ff89-17eb-4638-89c7-37ede5720aef",
+  "398385c1-4900-44cc-8e07-bc69c997f8ae",
+  "eb3d8673-7524-413a-b2b8-43f1948b5e4b",
+  "583600a8-d1bf-458a-986e-df42c9bf2ba1",
+  "13b828aa-8a7f-4e31-bd54-91fdcd9600c4",
+  "5211d56a-ded2-42dd-93c4-abd3eaec1696",
+  "416ea269-d293-49f6-aedf-6592a89bdd82",
+  "aad29954-654b-4f96-9cc7-b204333b2d86",
+  "f860255a-809f-4dca-b4ff-d8335e76a190",
+  "20881042-f4ee-4843-ac16-5286e43b4a55",
+  "f2d7acce-a445-4a91-be6d-8683552f4d70",
+  "81c179a5-2e08-4329-bf05-eabd811ef926",
+  "3fc60003-6608-45c9-b71d-3cf53c72f0d2",
+  "31d20987-2cb6-477f-9b3d-8c751a4b7023",
+  "64aa9cdd-7639-4d8b-a264-8f350251d2db",
+  "5c026fab-a4e0-4c44-8117-fd6a9d741d1a",
+  "841e2a30-16d8-4f71-8071-e07abaf29531",
+  "ddf46c59-ceb5-418b-bfb8-e3339992b8d8",
+  "440f9a19-6a2d-4caa-9232-7742e7976a51",
+  "2039c633-89a1-43f5-ab4d-9749f24c3995",
+  "afbe6c4e-6d59-45d7-b8ea-ba10c3ce0e60",
+  "475464de-f07a-4421-b940-4a6d5fc81115",
+  "4ca17a1e-b26c-4ccf-9ce1-49acf81e4a7a",
+  "ada05ba2-c07d-4f7f-9aec-6e0394f699ad",
+  "e01ab87d-03cd-4a3e-bce8-11b885dcc394",
+  "45d6ccf2-1515-44e4-87d3-7f26b0853d18",
+  "35414673-d14e-4b1a-9153-e9c6aa053da3",
+  "86ea0d82-c82a-44ea-87b6-b0261e6ebde0",
+  "12e4e507-38d0-42e4-8ff0-02717719b91b",
+  "66c34881-7c89-48e6-96ce-c94551d70b0f",
+  "7fa2d3cc-6b49-477b-87e3-4b8fd8bf83ee",
+  "d290b009-db7f-40c6-9a6e-7da0f1a335ee",
+  "8dad799d-a1de-4e20-9c1f-e00f514fb917",
+  "d2c7872c-f45d-4d75-91c6-b3d57d1ee20b",
+  "bcf7bf9a-755b-4d4b-8175-bbcc872ae464",
+  "7a6826cd-e2b1-4dc7-9982-afd363533eeb",
+  "6a256d05-eb65-408e-9b84-d8977b05525e",
+  "ad772520-3f90-49a5-8330-4189dadfbce0",
+  "adff9327-ddbd-42ef-a7e8-012d4063876d",
+  "ce7915d5-7ccd-4313-abe9-7575149e3564",
+  "beb3ca4e-3172-4b08-bd5a-8d8e35b15652",
+  "c06214b5-eab8-4478-9993-77971c47874f",
+  "a0a7b118-8c05-4e78-a637-dba825e6c3ec",
+  "40bebd94-c1be-48dc-bd73-63c87c8edba1",
+  "bde2ddd5-50f3-446f-82b8-c46d4d4d9661",
+  "6956a91d-5d8e-457b-b410-7ae5afa74d20",
+  "9afadc95-90d8-4a54-ae82-5abb4fdb332b",
+  "db3d9354-5da5-4298-b094-d87e46f638ee",
+  "8d28cd32-1f79-4c9c-bd10-ae9a626e6238",
+  "c4630c53-ee0d-4be3-9241-76279d6cfbdd",
+  "9963bf15-ef0a-433d-95fc-21b3bfd89e2c",
+  "35ba07c4-467b-43ec-944e-6fbb940fc1c0",
+  "04462a85-76b5-4410-99ed-e3d380830455",
+  "697f55b0-32c9-4beb-9ffd-9a94248a7707",
+  "2103c65c-70fd-4766-850f-ae731353102e",
+  "0364dee7-58ff-4107-94f7-6dadd4205229",
+  "5e0dff3c-0b84-4fd9-ba1a-fef7709d2117",
+  "81bec34d-ab26-4ca2-bacd-edee712e0e46",
+  "39d9cc1b-ca03-45ea-9d1f-595e12b99396",
+  "413fbd27-571b-4d6d-918a-4136d6f7824b",
+  "fa5d9d5a-b5f5-46d4-aa2d-630749d27855",
+  "762651f2-4c39-4c67-8805-a32946f61a1f",
+  "f4114848-4f27-4d62-8cde-ddc4ffa0504a",
+  "f1f7505d-871e-4b8a-8221-6319c3e8fd81",
+  "cfcbf6b5-910c-41db-9303-014f04c39603",
+  "6229338d-882c-400a-ac49-815ceb7ca88c",
+  "294fb344-4d69-4589-b678-1c27340b9136",
+  "4c18efe0-f395-484f-9f42-53fe0412a065"
+ ],
+ "strategies": {
+  "tubeflow_storyboard_v4_single_panel": 107
+ },
+ "ladder_error_count": 0,
+ "layout_unreadable_by_group": {
+  "1": 0,
+  "2": 0,
+  "3": 0,
+  "4": 0,
+  "5": 0,
+  "6": 0,
+  "7": 0,
+  "8": 0,
+  "9": 0,
+  "10": 0,
+  "11": 0,
+  "12": 0,
+  "13": 0,
+  "14": 0,
+  "15": 0,
+  "16": 0,
+  "17": 0,
+  "18": 0,
+  "19": 0,
+  "20": 0,
+  "21": 0,
+  "22": 0,
+  "23": 0,
+  "24": 0,
+  "25": 0,
+  "26": 0,
+  "27": 0,
+  "28": 0,
+  "29": 0,
+  "30": 0,
+  "31": 0,
+  "32": 0,
+  "33": 0,
+  "34": 0,
+  "35": 0,
+  "36": 0,
+  "37": 0,
+  "38": 0,
+  "39": 0,
+  "40": 0,
+  "41": 0,
+  "42": 0,
+  "43": 0,
+  "44": 0,
+  "45": 0,
+  "46": 0,
+  "47": 0,
+  "48": 0,
+  "49": 0,
+  "50": 0,
+  "51": 0,
+  "52": 0,
+  "53": 0,
+  "54": 1,
+  "55": 0,
+  "56": 0,
+  "57": 0,
+  "58": 0,
+  "59": 0,
+  "60": 0,
+  "61": 0,
+  "62": 0,
+  "63": 0,
+  "64": 0,
+  "65": 0,
+  "66": 0,
+  "67": 0,
+  "68": 0,
+  "69": 0,
+  "70": 0,
+  "71": 0,
+  "72": 0,
+  "73": 0,
+  "74": 0,
+  "75": 0,
+  "76": 0,
+  "77": 0,
+  "78": 0,
+  "79": 0,
+  "80": 0,
+  "81": 0,
+  "82": 0,
+  "83": 0,
+  "84": 0,
+  "85": 0,
+  "86": 0,
+  "87": 0,
+  "88": 0,
+  "89": 0,
+  "90": 0,
+  "91": 0,
+  "92": 0,
+  "93": 0,
+  "94": 0,
+  "95": 0,
+  "96": 0,
+  "97": 0,
+  "98": 0,
+  "99": 0,
+  "100": 1,
+  "101": 0,
+  "102": 0,
+  "103": 0,
+  "104": 0,
+  "105": 0,
+  "106": 0,
+  "107": 0
+ },
+ "empty_cells_by_group": {
+  "1": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "2": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "4": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "9": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "13": [
+   {
+    "cell": 3,
+    "mean": 0.2,
+    "dark": true
+   },
+   {
+    "cell": 4,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "14": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "16": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "17": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "18": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "21": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "22": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "25": [
+   {
+    "cell": 4,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "28": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "30": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "31": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "32": [
+   {
+    "cell": 3,
+    "mean": 0.8,
+    "dark": true
+   },
+   {
+    "cell": 4,
+    "mean": 0.8,
+    "dark": true
+   }
+  ],
+  "33": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "34": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "41": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "43": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "46": [
+   {
+    "cell": 6,
+    "mean": 0.4,
+    "dark": true
+   }
+  ],
+  "47": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "50": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "52": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "56": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "57": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "59": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "61": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "62": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "63": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "65": [
+   {
+    "cell": 4,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "66": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "67": [
+   {
+    "cell": 4,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "69": [
+   {
+    "cell": 4,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "71": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "79": [
+   {
+    "cell": 4,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "81": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "82": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "84": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "85": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "86": [
+   {
+    "cell": 4,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "89": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "90": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "94": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "98": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "101": [
+   {
+    "cell": 6,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "102": [
+   {
+    "cell": 6,
+    "mean": 0.2,
+    "dark": true
+   }
+  ],
+  "104": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ],
+  "106": [
+   {
+    "cell": 4,
+    "mean": 0.1,
+    "dark": true
+   }
+  ]
+ },
+ "auto": [
+  {
+   "state": "COMPLETED",
+   "authorization_round": 9,
+   "reason_code": null,
+   "payload": {
+    "phase": "completed",
+    "completed_ms": 1793827779463,
+    "failure_code": "director_output_adjacent_diversity_insufficient",
+    "run_paused_ms": 32999489,
+    "run_started_ms": 1793762923597,
+    "group_sequences": [
+     8
+    ],
+    "phase_paused_ms": 0,
+    "failure_messages": {
+     "8": "director plan repeats an event or composition across the group"
+    },
+    "phase_elapsed_ms": {
+     "video": 24365179,
+     "narration": 1099739,
+     "storyboard": 1011352,
+     "composition": 628004,
+     "director_preplan": 4714170,
+     "storyboard_drafts": 37933
+    },
+    "phase_started_ms": null,
+    "timing_from_phase": "narration",
+    "video_batch_job_id": "1eaf4aae-14a7-4497-8d84-da89acd81b48",
+    "video_batch_job_round": 9,
+    "director_failed_run_id": "8ff8975f-2b45-45c3-8d42-796c35bb6c1f"
+   }
+  }
+ ]
+}

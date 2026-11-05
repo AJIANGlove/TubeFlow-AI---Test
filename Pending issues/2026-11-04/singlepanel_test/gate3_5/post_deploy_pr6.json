@@ -1,0 +1,26 @@
+{
+    "t0": "2026-11-05T02:41:26Z",
+    "captured_at": "2026-11-05T02:49:53Z",
+    "new_storyboards": [
+        {
+            "n": 36,
+            "status": "FAILED",
+            "project_id": "247462a4-e719-4488-ae14-aab962de1a27",
+            "grid_layout_version": "grid-v2"
+        },
+        {
+            "n": 1,
+            "status": "SUCCEEDED",
+            "project_id": "247462a4-e719-4488-ae14-aab962de1a27",
+            "grid_layout_version": "grid-v2"
+        }
+    ],
+    "attempts_flagged": [
+    ],
+    "attempts_touched": [
+    ],
+    "new_storyboards_total": 37,
+    "attempts_touched_total": 0,
+    "new_storyboards_with_v2": 37,
+    "new_storyboards_with_any_key": 37
+}

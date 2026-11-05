@@ -1,0 +1,15 @@
+{
+  "project_id": "72a22f0a-becd-44e7-8af5-369589781885",
+  "confirm": {
+    "result": {
+      "project_id": "72a22f0a-becd-44e7-8af5-369589781885",
+      "job_id": "narration_72a22f0a-becd-44e7-8af5-369589781885_29ad09b7f804f8bdbe015819f4979ae01da94a79a435b29273fc71f883e2d9cc",
+      "state": "QUEUED"
+    }
+  },
+  "narration_job_state": null,
+  "narration_sentences": 39,
+  "auto_state": "RUNNING",
+  "auto_round": 1,
+  "frozen_sentences": 0
+}
