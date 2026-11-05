@@ -39,6 +39,12 @@ _V2_MARGIN_MAX_FRACTION = 0.15  # 每边最多剪去 15% 的白色页边
 _V2_SOURCE_FORMATS = frozenset({"PNG", "JPEG", "WEBP"})
 # 暗尾上限：识别留黑空格与分隔合并后的暗尾。
 _V2_DARK_MAX = 64.0
+# 2026-11-05 暗调画风后备判据（247462a4：纯黑分隔紧贴暗画面，两侧仅 13–31，达不到 40）。
+# 只在原判据找不到分隔/暗尾时启用，原判据能裁的图结果逐像素不变：
+# 分隔线须接近纯黑（≤8）且比邻域与两侧至少暗 4（c2dba5e1：格边本身只有 6–9）；暗尾按留黑格
+# 自身亮度 +4（不低于 8）判定，并先做中值滤波，以免右下角水印等小块亮点截断暗尾。
+_V2_BLACK_MAX = 8.0
+_V2_BLACK_DELTA = 4.0
 _V2_BAND_SEGMENTS = 16
 _V2_BAND_SEGMENT_SHARE = 0.9
 _V2_BAND_SIDE = (4, 16)  # 分隔带两侧对照条：距带 4–16 px
@@ -444,27 +450,73 @@ def _v2_spans(
     separators: list[tuple[int, int]] = []
     for index in range(1, used):
         expected = lo + cell * index
-        separator = _v2_separator(means, expected, radius, lo, hi, pixels)
+        separator = _v2_find_separator(region, axis, means, expected, radius, wide, lo, hi, pixels)
         if separator is None:
-            separator = _v2_wide_separator(region, axis, means, expected, wide, lo, hi, pixels)
+            separator = _v2_find_separator(
+                region, axis, means, expected, radius, wide, lo, hi, pixels, black=True
+            )
         if separator is None:
             raise VideoRuleViolation("shot_panel_gutter_not_found")
         separators.append(separator)
     end = hi
     if used < total:
         expected = lo + cell * used
-        boundary = _v2_separator(means, expected, radius, lo, hi, pixels)
-        if boundary is None:
-            boundary = _v2_wide_separator(region, axis, means, expected, wide, lo, hi, pixels)
-        end = (
-            boundary[0]
-            if boundary is not None
-            else _v2_dark_tail(means, expected, radius, lo, hi, cell, pixels)
-        )
+        end = _v2_shot_end(region, axis, means, expected, radius, wide, lo, hi, cell, pixels)
     spans = _segments(lo, end, tuple(separators))
     if any(stop - start < cell * _V2_MIN_CELL_FRACTION for start, stop in spans):
         raise VideoRuleViolation("shot_panel_crop_unsafe")
     return spans
+
+
+def _v2_find_separator(
+    region: Image.Image,
+    axis: str,
+    means: Sequence[float],
+    expected: float,
+    radius: int,
+    wide: int,
+    lo: int,
+    hi: int,
+    pixels: _V2Pixels,
+    *,
+    black: bool = False,
+) -> tuple[int, int] | None:
+    separator = _v2_separator(means, expected, radius, lo, hi, pixels, black=black)
+    if separator is None:
+        separator = _v2_wide_separator(
+            region, axis, means, expected, wide, lo, hi, pixels, black=black
+        )
+    return separator
+
+
+def _v2_shot_end(
+    region: Image.Image,
+    axis: str,
+    means: Sequence[float],
+    expected: float,
+    radius: int,
+    wide: int,
+    lo: int,
+    hi: int,
+    cell: float,
+    pixels: _V2Pixels,
+) -> int:
+    """Where the last shot of a row (or the last shot row) ends before the empty cells.
+
+    The original rules come first; the dark-picture fallback is tried only when they fail.
+    """
+    boundary = _v2_find_separator(region, axis, means, expected, radius, wide, lo, hi, pixels)
+    if boundary is not None:
+        return boundary[0]
+    try:
+        return _v2_dark_tail(means, expected, radius, lo, hi, cell, pixels)
+    except VideoRuleViolation:
+        boundary = _v2_find_separator(
+            region, axis, means, expected, radius, wide, lo, hi, pixels, black=True
+        )
+        if boundary is not None:
+            return boundary[0]
+        return _v2_black_tail(means, expected, radius, lo, hi, cell, pixels)
 
 
 def _v2_means(luminance: Image.Image, axis: str) -> list[float]:
@@ -475,16 +527,24 @@ def _v2_means(luminance: Image.Image, axis: str) -> list[float]:
 
 
 def _v2_extreme(
-    means: Sequence[float], lo: int, hi: int, pixels: _V2Pixels
+    means: Sequence[float], lo: int, hi: int, pixels: _V2Pixels, *, black: bool = False
 ) -> list[bool]:
     marks = [False] * len(means)
     for position in range(max(0, lo), min(len(means), hi)):
         start = max(0, position - pixels.neighbourhood)
         end = min(len(means), position + pixels.neighbourhood + 1)
+        median = statistics.median(means[start:end])
         marks[position] = (
-            abs(means[position] - statistics.median(means[start:end])) >= _V2_DELTA
+            _v2_black_line(means[position], median)
+            if black
+            else abs(means[position] - median) >= _V2_DELTA
         )
     return marks
+
+
+def _v2_black_line(value: float, *references: float) -> bool:
+    """A near-black line darker than every reference by the dark-picture margin."""
+    return value <= _V2_BLACK_MAX and all(ref - value >= _V2_BLACK_DELTA for ref in references)
 
 
 def _v2_runs(
@@ -549,13 +609,16 @@ def _v2_separator(
     lo: int,
     hi: int,
     pixels: _V2Pixels,
+    *,
+    black: bool = False,
 ) -> tuple[int, int] | None:
     """The gutter band nearest the expected grid line, or None when there is none."""
     start = max(lo + 1, math.floor(expected - radius - pixels.framed_max))
     end = min(hi - 1, math.ceil(expected + radius + pixels.framed_max))
+    marks = _v2_extreme(means, start, end, pixels, black=black)
     candidates = [
         run
-        for run in _v2_runs(_v2_extreme(means, start, end, pixels), start, end, pixels)
+        for run in _v2_runs(marks, start, end, pixels)
         if run[1] - run[0] + 1 <= pixels.framed_max
         and abs((run[0] + run[1]) / 2 - expected) <= radius
     ]
@@ -571,15 +634,18 @@ def _v2_wide_separator(
     lo: int,
     hi: int,
     pixels: _V2Pixels,
+    *,
+    black: bool = False,
 ) -> tuple[int, int] | None:
     """A gutter off the equal-grid position: only bands that run the whole length count."""
     start = max(lo + 1, math.floor(expected - wide))
     end = min(hi - 1, math.ceil(expected + wide))
+    marks = _v2_extreme(means, start, end, pixels, black=black)
     candidates = [
         run
-        for run in _v2_runs(_v2_extreme(means, start, end, pixels), start, end, pixels)
+        for run in _v2_runs(marks, start, end, pixels)
         if run[1] - run[0] + 1 <= pixels.framed_max
-        and _v2_is_gutter_band(region, axis, run[0], run[1], pixels)
+        and _v2_is_gutter_band(region, axis, run[0], run[1], pixels, black=black)
     ]
     if len(candidates) > 1:
         raise VideoRuleViolation("shot_panel_gutter_ambiguous")
@@ -617,8 +683,46 @@ def _v2_dark_tail(
     return start
 
 
+def _v2_black_tail(
+    means: Sequence[float],
+    expected: float,
+    radius: int,
+    lo: int,
+    hi: int,
+    cell: float,
+    pixels: _V2Pixels,
+) -> int:
+    """Dark-picture fallback for `_v2_dark_tail`: the tail is the median-filtered run that stays
+    within 4 grey levels (at least up to 8) of the empty cells' own level, not below 64."""
+    window = radius + pixels.band_max
+    filtered = _v2_median_filter(means, pixels.band_max)
+    beyond = filtered[min(hi - 1, math.ceil(expected + window)) : hi]
+    if not beyond:
+        raise VideoRuleViolation("shot_panel_gutter_not_found")
+    limit = min(_V2_DARK_MAX, max(_V2_BLACK_MAX, statistics.median(beyond) + _V2_BLACK_DELTA))
+    start = hi
+    while start > lo and filtered[start - 1] <= limit:
+        start -= 1
+    if hi - start < cell / 2 or abs(start - expected) > window:
+        raise VideoRuleViolation("shot_panel_gutter_not_found")
+    return start
+
+
+def _v2_median_filter(values: Sequence[float], half: int) -> list[float]:
+    return [
+        statistics.median(values[max(0, index - half) : index + half + 1])
+        for index in range(len(values))
+    ]
+
+
 def _v2_is_gutter_band(
-    luminance: Image.Image, axis: str, start: int, end: int, pixels: _V2Pixels
+    luminance: Image.Image,
+    axis: str,
+    start: int,
+    end: int,
+    pixels: _V2Pixels,
+    *,
+    black: bool = False,
 ) -> bool:
     """True when, along almost the whole length, some line of the band stands out from both
     of its sides in the same direction (darker or lighter).
@@ -642,6 +746,11 @@ def _v2_is_gutter_band(
         for line in range(start, end + 1):
             value = _v2_region_mean(luminance, axis, line, line + 1, a, b)
             if value is None:
+                continue
+            if black:
+                if _v2_black_line(value, before, after):
+                    hits += 1
+                    break
                 continue
             darker = before - value >= _V2_DELTA and after - value >= _V2_DELTA
             lighter = value - before >= _V2_DELTA and value - after >= _V2_DELTA

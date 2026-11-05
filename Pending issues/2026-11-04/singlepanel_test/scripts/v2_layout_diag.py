@@ -59,13 +59,13 @@ def trace_one(content: bytes, shots: int, layout_version: str = "grid-v2") -> di
                 {"axis": context["axis"], "start": found[0], "end": found[1], "offset": context["offset"], "kind": kind}
             )
 
-    def separator(means, expected, radius, lo, hi, pixels):  # type: ignore[no-untyped-def]
-        found = originals[1](means, expected, radius, lo, hi, pixels)
+    def separator(means, expected, radius, lo, hi, pixels, **kwargs):  # type: ignore[no-untyped-def]
+        found = originals[1](means, expected, radius, lo, hi, pixels, **kwargs)
         record("strict", expected, radius, found)
         return found
 
-    def wide(region, axis, means, expected, window, lo, hi, pixels):  # type: ignore[no-untyped-def]
-        found = originals[2](region, axis, means, expected, window, lo, hi, pixels)
+    def wide(region, axis, means, expected, window, lo, hi, pixels, **kwargs):  # type: ignore[no-untyped-def]
+        found = originals[2](region, axis, means, expected, window, lo, hi, pixels, **kwargs)
         record("wide", expected, window, found)
         return found
 
