@@ -1,0 +1,83 @@
+{
+  "id": "E02",
+  "project_id": "f881122d-1846-4d18-8f8b-4b89b0cbc0db",
+  "title": "You're a Crew Member on the Mary Celeste",
+  "kind": "PAUSED_DIRECTOR",
+  "fingerprint": "5f1d181c532c77fc",
+  "first_seen_utc": "2026-11-05T11:28:11.203Z",
+  "last_seen_utc": "2026-11-05T11:28:11.203Z",
+  "observation_count": 1,
+  "pause_at_ms": 1793877381427,
+  "pause_at_utc": "2026-11-05T11:16:21Z",
+  "auto_run": {
+    "id": "a3be1745-399c-4857-b6b8-ee4aeccd111a",
+    "state": "PAUSED",
+    "reason_code": "director_preplan_failed",
+    "authorization_round": 5,
+    "phase": "director_preplan",
+    "director_failed_run_id": "924ee9a8-9e30-46a5-a6b8-5cd832007521",
+    "paused_at_ms": 1793877381427,
+    "run_paused_ms": 2761314,
+    "phase_paused_ms": 2761314,
+    "pause_failure_code": "director_output_adjacent_diversity_insufficient",
+    "pause_group_sequences": null,
+    "created_at": "2026-11-05T09:02:44.391Z",
+    "updated_at": "2026-11-05T11:16:21.427Z"
+  },
+  "latest_run": {
+    "id": "924ee9a8-9e30-46a5-a6b8-5cd832007521",
+    "status": "FAILED",
+    "trigger": "AUTO_RESUME",
+    "idempotency_key": "auto-pipeline-director:f881122d-1846-4d18-8f8b-4b89b0cbc0db:r5",
+    "failure_code": "director_output_adjacent_diversity_insufficient",
+    "total_units": 59,
+    "auto_retries_used": 4,
+    "retry_blocked": false,
+    "recovery_source_run_id": "baf41aa2-a83f-4528-a4a4-c640d95bc35b",
+    "created_at": "2026-11-05T11:11:50.056Z",
+    "units_by_status": {
+      "FAILED": 1,
+      "INTENT_PERSISTED": 14,
+      "SUCCEEDED": 44
+    },
+    "unit_attempts": 9,
+    "unit_failure_codes": {
+      "director_output_adjacent_diversity_insufficient": 1
+    },
+    "max_lease_until": null,
+    "max_next_attempt_at": null,
+    "last_unit_created_at": "2026-11-05T11:11:50Z"
+  },
+  "problem_units": [
+    {
+      "ordinal": 40,
+      "kind": "SHOT_PLAN",
+      "status": "FAILED",
+      "attempt_count": 3,
+      "last_failure_code": "director_output_adjacent_diversity_insufficient",
+      "failure_code": "director_output_adjacent_diversity_insufficient",
+      "lease_until": null,
+      "next_attempt_at": null,
+      "diagnostics_excerpt": "{\"adjacent_pair_after_order\": 1, \"changed_axes\": 1, \"previous_axes\": \"REVEAL_EVIDENCE|OBJECT_OR_EVIDENCE|SAME_MOMENT|SAME_LOCATION\", \"current_axes\": \"ESTABLISH_CONTEXT|OBJECT_OR_EVIDENCE|SAME_MOMENT|SAME_LOCATION\"}"
+    }
+  ],
+  "auto_budget_round": 5,
+  "action": {
+    "kind": "resume",
+    "at_utc": "2026-11-05T11:28:13.394Z",
+    "round_before": 5,
+    "round_after": 6,
+    "result": "accepted",
+    "postcheck": {
+      "state": "RUNNING",
+      "round": 6,
+      "phase": "director_preplan",
+      "paused_at_ms_present": false
+    },
+    "verification": {
+      "state": "awaiting_new_run"
+    },
+    "resume_evidence": "Pending issues/2026-11-05/evidence/auto_director_stall_monitor/resumes/E02_f881122d_2026-11-05T112815966Z.json"
+  },
+  "evidence": "Pending issues/2026-11-05/evidence/auto_director_stall_monitor/incidents/E02_f881122d_2026-11-05T112811.203Z.json"
+}
