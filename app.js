@@ -88,6 +88,7 @@ import {
   autoPipelineState,
   autoPipelineStateLabel,
   autoResumeAllowed,
+  autoResumeFailureMessage,
   autoStageRows,
   formatElapsedMs,
 } from "./frontend/auto-progress.js";
@@ -3585,7 +3586,23 @@ function directorApprovalEditor(shots, draft, editable) {
         <input data-approval-reason type="text" placeholder="填写连续观察理由" value="${escapeHtml(approval?.reason || "")}" ${approval ? "required" : "disabled"}>
       </label>`;
     }).join("")}</div>
+    ${directorRecutNotice(shots, draft)}
   </details>`;
+}
+
+// §48.3：系统放行的组内非相邻构图回切，只读展示（与连续观察审批同处）。
+function directorRecutNotice(shots, draft) {
+  const recuts = Array.isArray(draft?.composition_recut_approvals)
+    ? draft.composition_recut_approvals
+    : [];
+  if (!recuts.length) return "";
+  const position = (shotId) => {
+    const index = shots.findIndex((shot) => String(shot.shot_id) === String(shotId));
+    return index < 0 ? "??" : String(index + 1).padStart(2, "0");
+  };
+  return `<div class="director-recut-readonly">${recuts.map((item) =>
+    `<div class="director-approval-readonly"><strong>${position(item.previous_shot_id)} ↩ ${position(item.next_shot_id)}</strong><span>系统回切放行：${escapeHtml(item.reason || "")}</span></div>`
+  ).join("")}</div>`;
 }
 
 function readDirectorDraftForm(draft, sourceCandidateId = null) {
@@ -5658,7 +5675,16 @@ async function renderAutoProgressStage() {
   $("#refreshAutoProgress")?.addEventListener("click", refreshAndRenderCurrentStage);
   $("#publishProjectFromStage")?.addEventListener("click", () => void publishCurrentProject());
   $("#resumeAutoPipeline")?.addEventListener("click", () => runManualAction(
-    () => api.autoPipelineResume(state.project.id),
+    async () => {
+      const result = await api.autoPipelineResume(state.project.id);
+      const failure = autoResumeFailureMessage(result);
+      if (failure) {
+        // 恢复已消耗 1 轮授权但又暂停：先刷新事实（轮次、暂停详情），再按失败提示。
+        await refreshProjectFacts();
+        renderProjectWorkspace();
+        throw new Error(failure);
+      }
+    },
     "已恢复自动执行；相关对象预算已按规则重置。",
   ));
   $("#autoExportButton")?.addEventListener("click", downloadFormalExport);

@@ -33,6 +33,21 @@ REASON_COMPOSITION_FAILED = "composition_failed"
 # 2026-10-31：H3 容量不足改为排队等待；等待超过上限才暂停并给出该原因。
 REASON_VIDEO_CAPACITY_TIMEOUT = "video_capacity_timeout"
 
+# 各暂停点写入 payload 的暂停详情键（service._pause 的 details）。每次进入暂停前先清除，
+# 避免上一次暂停的失败码残留到本次暂停的 workflow_summary（USER_DECISIONS §48.2）。
+# 阶段书签、计时、视频 job/容量书签与 director_failed_run_id 不在此列，照常保留。
+PAUSE_DETAIL_KEYS = frozenset(
+    {
+        "group_sequences",
+        "failure_code",
+        "error_code",
+        "sequences",
+        "failure_messages",
+        "groups",
+        "waited_seconds",
+    }
+)
+
 
 def to_epoch_ms(now: datetime) -> int:
     """UTC 时间 → epoch 毫秒。
@@ -150,9 +165,11 @@ class AutoPipelineRun:
         now_ms = to_epoch_ms(now)
         # 暂停也可能直接改写阶段书签（如 oversized_sentence 从 narration 跳 video）；
         # 先合并 details，再按同一切换口径结算上一阶段，避免把旧阶段时长算进新阶段。
-        payload = _enter_phase(
-            {**self.payload, **(details or {})}, phase, now_ms
-        )
+        # §48.2：先清除上一次暂停写入的详情键，暂停详情不跨次残留；书签与计时键保留。
+        retained = {
+            key: value for key, value in self.payload.items() if key not in PAUSE_DETAIL_KEYS
+        }
+        payload = _enter_phase({**retained, **(details or {})}, phase, now_ms)
         if as_non_negative_int(payload.get("phase_started_ms")) is not None:
             payload["paused_at_ms"] = now_ms
         return replace(

@@ -1085,7 +1085,8 @@ def test_advance_paused_run_is_not_advanced() -> None:
 
 def test_resume_requires_paused_and_bumps_round() -> None:
     runs = FakeRunRepository()
-    facts = FakeFacts(make_facts())
+    # 合成在途：恢复后推进一步仍为 RUNNING（resume 现返回推进后的真实状态，§48.1）。
+    facts = FakeFacts(make_facts(composition_current_exists=False, composition_in_flight=True))
     service = make_service(runs, facts)
     run = start_run(runs)
 
@@ -1102,6 +1103,72 @@ def test_resume_requires_paused_and_bumps_round() -> None:
     assert resumed.reason_code is None
     assert resumed.authorization_round == 2
     assert runs.project_rounds[PROJECT] == 2
+    stored = runs.runs[run.run_id]
+    assert stored.state is AutoPipelineState.RUNNING
+    assert stored.reason_code is None
+    assert stored.authorization_round == 2
+
+
+def test_resume_reports_the_pause_when_the_problem_is_not_fixed() -> None:
+    """§48.1：问题未修复时恢复在同一请求内再次暂停，返回 PAUSED 与真实原因码。"""
+    runs = FakeRunRepository()
+    facts = FakeFacts(
+        make_facts(composition_current_exists=False, composition_failed_code="media_command_failed")
+    )
+    service = make_service(runs, facts)
+    run = start_run(runs)
+    runs.runs[run.run_id] = run.paused("composition_failed", NOW, phase="composition")
+
+    resumed = service.resume(OWNER, PROJECT)
+
+    assert resumed.state is AutoPipelineState.PAUSED
+    assert resumed.reason_code == "composition_failed"
+    assert resumed.authorization_round == 2
+    assert runs.runs[run.run_id].state is AutoPipelineState.PAUSED
+    assert runs.project_rounds[PROJECT] == 2
+
+
+def test_resume_returns_the_resumed_run_when_advance_fails() -> None:
+    class FailingFacts:
+        def load(self, owner_id: UUID, project_id: UUID) -> AutoPipelineFacts:
+            raise RuntimeError("facts unavailable")
+
+    runs = FakeRunRepository()
+    service = make_service(runs, FailingFacts())  # type: ignore[arg-type]
+    run = start_run(runs)
+    runs.runs[run.run_id] = run.paused("composition_failed", NOW, phase="composition")
+
+    resumed = service.resume(OWNER, PROJECT)
+
+    assert resumed.state is AutoPipelineState.RUNNING
+    assert resumed.authorization_round == 2
+
+
+def test_pause_details_do_not_carry_over_to_the_next_pause() -> None:
+    """§48.2：新暂停前清除旧暂停详情；书签与 director_failed_run_id 保留。"""
+    run = new_auto_pipeline_run(uuid4(), OWNER, PROJECT, NOW)
+    first = run.paused(
+        "director_preplan_failed",
+        NOW,
+        phase="director_preplan",
+        details={
+            "director_failed_run_id": "run-1",
+            "failure_code": "director_output_adjacent_diversity_insufficient",
+            "video_batch_job_id": "job-1",
+        },
+    )
+    second = first.resumed(2, NOW).paused(
+        "director_validation_failed",
+        NOW,
+        phase="storyboard_drafts",
+        details={"group_sequences": [8], "failure_messages": {"8": "repeats"}},
+    )
+
+    assert "failure_code" not in second.payload
+    assert second.payload["group_sequences"] == [8]
+    assert second.payload["failure_messages"] == {"8": "repeats"}
+    assert second.payload["director_failed_run_id"] == "run-1"
+    assert second.payload["video_batch_job_id"] == "job-1"
 
 
 def test_resume_if_paused_for_reason_guard() -> None:
