@@ -3,8 +3,8 @@
 > 本文档由 `runtime/operations/director-stall-monitor-20261105/monitor.py` 自动生成。
 > `<!-- BEGIN/END AUTO-GENERATED -->` 之间为受管区，脚本会重写；之外为人工批注，脚本不改动。
 
-- 最近渲染：2026-11-05T11:11:49.716Z / 2026-11-05 19:11:49 CST
-- 数据库时钟（采集时）：2026-11-05T11:12:11.455Z
+- 最近渲染：2026-11-05T11:12:23.583Z / 2026-11-05 19:12:23 CST
+- 数据库时钟（采集时）：2026-11-05T11:12:45.320Z
 - 监控脚本：`runtime/operations/director-stall-monitor-20261105/monitor.py`
 - 采样：常驻进程 5 分钟一轮；会话结束后由每小时兜底任务接力（精度降为 60 分钟）
 
@@ -12,7 +12,7 @@
 
 ## 0. 一句话结论
 
-截至 2026-11-05T11:11:49.716Z / 2026-11-05 19:11:49 CST：3 个监控对象中，1 个已跳出导演阶段，0 个停在导演阶段且已暂停，0 个需要人工关注；累计执行恢复 1 次，累计记录中断事件 1 个。
+截至 2026-11-05T11:12:23.583Z / 2026-11-05 19:12:23 CST：3 个监控对象中，1 个已跳出导演阶段，0 个停在导演阶段且已暂停，0 个需要人工关注；累计执行恢复 1 次，累计记录中断事件 1 个。
 
 ## 1. 监控对象与授权
 
@@ -143,7 +143,7 @@
 | round 变化 | 4 → 5 |
 | 调用结果 | accepted |
 | 立即复核 | {"state": "RUNNING", "round": 5, "phase": "director_preplan", "paused_at_ms_present": false} |
-| 新 run 验证 | {"state": "awaiting_new_run"} |
+| 新 run 验证 | {"state": "verified", "run_id": "924ee9a8-9e30-46a5-a6b8-5cd832007521", "verified_at_utc": "2026-11-05T11:11:49.123Z"} |
 
 证据：`Pending issues/2026-11-05/evidence/auto_director_stall_monitor/incidents/E01_f881122d_2026-11-05T111033.428Z.json`
 
@@ -176,7 +176,9 @@
 
 ### 5.2 失败码频次（最新 run 的单元级）
 
-（无）
+| failure_code | 次数 |
+| --- | --- |
+| director_output_adjacent_diversity_insufficient | 2 |
 
 ### 5.3 需要人工介入
 
