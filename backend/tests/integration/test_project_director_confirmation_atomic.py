@@ -177,3 +177,25 @@ def test_director_intent_failure_rolls_back_entire_confirmation_transaction(
         _adapter(postgres_database, configured=True).confirm_and_enqueue(owner_id, project_id)
 
     _assert_no_confirmation_writes(postgres_database, project_id)
+
+
+@pytest.mark.integration
+def test_identical_snapshots_in_two_projects_get_distinct_narration_job_ids(
+    postgres_database: object,
+    production_parent_chain: object,
+) -> None:
+    # 作业 ID 即 Temporal 工作流 ID（REJECT_DUPLICATE）：内容相同的第二个项目若沿用同一 ID，
+    # 启动被当作重复静默吞掉，作业永远停在 DISPATCHED（2026-11-04 faf27eb5 撞 fa3a0b30）。
+    adapter = _adapter(postgres_database, configured=True)
+    owner_id = production_parent_chain.owner_id
+    first = _create_project(postgres_database, production_parent_chain, "One sentence. Two.")
+    second = _create_project(postgres_database, production_parent_chain, "One sentence. Two.")
+
+    *_, first_job = adapter.confirm_and_enqueue(owner_id, first)
+    *_, second_job = adapter.confirm_and_enqueue(owner_id, second)
+    *_, first_replay = adapter.confirm_and_enqueue(owner_id, first)
+
+    assert first_job.job_id != second_job.job_id
+    assert first_job.job_id.startswith(f"narration_{first}_")
+    assert second_job.job_id.startswith(f"narration_{second}_")
+    assert first_replay.job_id == first_job.job_id
