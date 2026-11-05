@@ -2,7 +2,10 @@ from __future__ import annotations
 
 import hashlib
 import json
+import logging
 import re
+import sys
+import time
 from dataclasses import dataclass, replace
 from datetime import datetime, timedelta
 from typing import Protocol, cast
@@ -13,7 +16,11 @@ from tubeflow_test.application.director_generation import (
     PermanentDirectorModelError,
     RetryableDirectorModelError,
 )
-from tubeflow_test.application.plan_convergence import converge_group_shots
+from tubeflow_test.application.plan_convergence import (
+    ADJACENT_DIVERSITY_MERGE_VERSION,
+    converge_group_shots,
+    merge_insufficiently_different_shots,
+)
 from tubeflow_test.application.ports import Clock, IdentifierFactory
 from tubeflow_test.domain.common import SupportedLocale
 from tubeflow_test.domain.errors import DomainError
@@ -90,6 +97,9 @@ PROJECT_DIRECTOR_UNIT_HARD_CHARS = 1200
 PROJECT_DIRECTOR_MAX_ATTEMPTS = 3
 PROJECT_DIRECTOR_RETRY_BACKOFF_SECONDS = (5.0, 15.0, 30.0)
 PROJECT_DIRECTOR_RUN_RETRY_BUDGET_FACTOR = 2
+# §50：并发 advance 认领同一单元落败时改取下一个可认领单元；上限不小于并发度上限
+# （config.director_parallelism ≤ 16），保证 N 个并发活动最多各重试 N−1 次即可各得一个单元。
+PROJECT_DIRECTOR_CLAIM_ATTEMPTS = 16
 # 单次 provider 调用的租约上限：必须大于 TUBEFLOW_DIRECTOR_PROVIDER_TIMEOUT_SECONDS（目标 900s），
 # 并与 workflows/storyboards.py 的 DIRECTOR_CALL_ACTIVITY_TIMEOUT 保持同改联动；
 # 不变式：HTTP 超时 < 租约 ≤ 活动超时。
@@ -105,6 +115,8 @@ _DETERMINISTIC_SEPARATOR_RECEIPT = (
 _MANUAL_CONFIRMED_NOT_ACCEPTED_PREFIX = "manual_confirmed_not_accepted:"
 _LEGACY_STRUCTURED_RESPONSE_FAILURE = "invalid_structured_response"
 _LOCAL_REJECTION_FAILURE_PREFIXES = ("director_response_", "director_output_", "provider_http_")
+
+logger = logging.getLogger(__name__)
 
 # 2026-10-16：计时投影无解触发自动相邻合并的审计型冲突码（monotone-projection-v1 配套）。
 SHOT_TIMING_CONVERGED_CONFLICT = "shot_timing_converged"
@@ -236,6 +248,8 @@ class ProjectDirectorRepository(Protocol):
         links: tuple[ShotSentenceLink, ...],
         receipt: str,
         raw_response_sha256: str,
+        *,
+        response_diagnostics: dict[str, str | int | bool] | None = None,
     ) -> ProjectDirectorRun: ...
     def complete_plan_unit(
         self,
@@ -809,15 +823,24 @@ class ProjectDirectorService:
         unit = self._repository.next_claimable_unit(owner_id, run_id, now)
         if unit is None:
             return self._finalize(run)
-        now, token = self._clock.now(), self._ids.new()
-        claimed = self._repository.claim_unit(
-            owner_id,
-            run_id,
-            unit.unit_id,
-            token,
-            now,
-            now + PROJECT_DIRECTOR_UNIT_LEASE,
-        )
+        claimed: ProjectDirectorUnit | None = None
+        for _ in range(PROJECT_DIRECTOR_CLAIM_ATTEMPTS):
+            now, token = self._clock.now(), self._ids.new()
+            claimed = self._repository.claim_unit(
+                owner_id,
+                run_id,
+                unit.unit_id,
+                token,
+                now,
+                now + PROJECT_DIRECTOR_UNIT_LEASE,
+            )
+            if claimed is not None:
+                break
+            # §50：并发活动先到一步认领了同一单元；改取下一个，而不是空手返回。
+            next_unit = self._repository.next_claimable_unit(owner_id, run_id, now)
+            if next_unit is None:
+                return self.status(owner_id, run_id)
+            unit = next_unit
         if claimed is None:
             return self.status(owner_id, run_id)
         if claimed.kind is ProjectDirectorUnitKind.NONVISUAL_SEPARATOR:
@@ -841,8 +864,12 @@ class ProjectDirectorService:
         submitting = self._repository.mark_unit_call_started(claimed)
         if submitting is None:
             return self.status(owner_id, run_id)
+        started = time.monotonic()
         try:
-            result = self._model.generate(_provider_call_unit(submitting))
+            try:
+                result = self._model.generate(_provider_call_unit(submitting))
+            finally:
+                _log_provider_call(submitting, started, sys.exc_info()[1])
         except PermanentDirectorModelError as exc:
             return self._repository.fail_unit(
                 submitting,
@@ -1079,10 +1106,27 @@ class ProjectDirectorService:
     def _complete_shot_plan(
         self, unit: ProjectDirectorUnit, result: ProjectDirectorModelResult
     ) -> ProjectDirectorRun:
+        merge_audit: dict[str, str | int | bool] | None = None
         try:
-            shots, links = self._validated_output(result.payload, unit)
-            if not result.receipt.strip() or len(result.raw_response_sha256) != 64:
+            shots, links = self._validated_output(
+                result.payload, unit, enforce_adjacent_diversity=False
+            )
+            violation = _adjacent_diversity_violation(shots)
+            provenance_invalid = not result.receipt.strip() or len(result.raw_response_sha256) != 64
+            if violation is not None and (provenance_invalid or not self._final_auto_attempt(unit)):
+                raise violation
+            if provenance_invalid:
                 raise ProjectDirectorOutputValidationError("director_output_provenance")
+            if violation is not None:
+                # §50：AUTO 末次尝试仍只因相邻多样性被拒（其余校验均已通过）→ 确定性合并。
+                before = len(shots)
+                shots, links, pairs = merge_insufficiently_different_shots(shots, links)
+                merge_audit = {
+                    "adjacent_diversity_merge": ADJACENT_DIVERSITY_MERGE_VERSION,
+                    "merged_pairs": ",".join(f"{a}+{b}" for a, b in pairs),
+                    "shots_before": before,
+                    "shots_after": len(shots),
+                }
         except (ValueError, TypeError, KeyError) as exc:
             failure_code = (
                 exc.code
@@ -1100,14 +1144,38 @@ class ProjectDirectorService:
                     else None
                 ),
             )
-        updated = self._repository.complete_unit(
-            unit,
-            shots,
-            links,
-            result.receipt,
-            result.raw_response_sha256,
-        )
+        if merge_audit is None:
+            updated = self._repository.complete_unit(
+                unit,
+                shots,
+                links,
+                result.receipt,
+                result.raw_response_sha256,
+            )
+        else:
+            logger.warning(
+                "project director unit merged: run=%s ordinal=%s attempt=%s audit=%s",
+                unit.run_id,
+                unit.ordinal,
+                unit.attempt_count,
+                json.dumps(merge_audit, sort_keys=True),
+            )
+            updated = self._repository.complete_unit(
+                unit,
+                shots,
+                links,
+                result.receipt,
+                result.raw_response_sha256,
+                response_diagnostics=merge_audit,
+            )
         return self._finalize(updated)
+
+    def _final_auto_attempt(self, unit: ProjectDirectorUnit) -> bool:
+        # §50 仅 AUTO：本次已是每单元第 3 次（末次）尝试。MANUAL 仍按 §20.2 耗尽即失败。
+        return (
+            unit.attempt_count >= PROJECT_DIRECTOR_MAX_ATTEMPTS
+            and self._repository.project_production_mode(unit.owner_id, unit.project_id) == "AUTO"
+        )
 
     def _auto_production(self, run: ProjectDirectorRun) -> bool:
         # §15.4 的自动重提只适用于 AUTO 项目；项目缺失时按 MANUAL 保守处理。
@@ -1140,7 +1208,11 @@ class ProjectDirectorService:
                 response_diagnostics=response_diagnostics,
             )
             if scheduled is not None:
+                _log_unit_rejection(unit, failure_code, response_diagnostics, terminal=False)
                 return scheduled
+        _log_unit_rejection(
+            unit, terminal_failure_code or failure_code, response_diagnostics, terminal=True
+        )
         return self._repository.fail_unit(
             unit,
             failure_code=terminal_failure_code or failure_code,
@@ -1492,7 +1564,11 @@ class ProjectDirectorService:
         )
 
     def _validated_output(
-        self, payload: dict[str, object], unit: ProjectDirectorUnit
+        self,
+        payload: dict[str, object],
+        unit: ProjectDirectorUnit,
+        *,
+        enforce_adjacent_diversity: bool = True,
     ) -> tuple[tuple[DirectorShot, ...], tuple[ShotSentenceLink, ...]]:
         root_keys = {"output_locale", "shots"}
         if not isinstance(payload, dict) or not root_keys.issubset(payload) or not isinstance(
@@ -1670,23 +1746,28 @@ class ProjectDirectorService:
                 for sentence_id in unit_order
                 if sentence_id in linked_set
             )
-        if {item.sentence_id for item in links} != unit_sentence_ids:
-            raise ProjectDirectorOutputValidationError("director_output_sentence_coverage_invalid")
+        covered = {item.sentence_id for item in links}
+        if covered != unit_sentence_ids:
+            # §50 诊断（不落正文）：未被任何镜头关联的句子在本单元内的位置（1 起）。
+            missing = [
+                position
+                for position, sentence_id in enumerate(unit_order, 1)
+                if sentence_id not in covered
+            ]
+            raise ProjectDirectorOutputValidationError(
+                "director_output_sentence_coverage_invalid",
+                {
+                    "unit_sentence_count": len(unit_order),
+                    "missing_sentence_count": len(missing),
+                    "missing_sentence_positions": ",".join(str(item) for item in missing),
+                },
+            )
         # §20：解析期即按唯一多样性尺子（受控语义轴）拦截相邻近似镜头，
         # 拒收走既有有界自动重试，不再留到草稿阶段才暴露。
-        for previous, shot in zip(shots, shots[1:], strict=False):
-            changed = shot.changes_from(previous)
-            if changed < 2:
-                # 诊断（不落正文）：记录被拒相邻对与四轴取值，供事后归因。
-                raise ProjectDirectorOutputValidationError(
-                    "director_output_adjacent_diversity_insufficient",
-                    {
-                        "adjacent_pair_after_order": previous.order,
-                        "changed_axes": changed,
-                        "previous_axes": "|".join(previous.controlled_semantic_key() or ()),
-                        "current_axes": "|".join(shot.controlled_semantic_key() or ()),
-                    },
-                )
+        if enforce_adjacent_diversity:
+            violation = _adjacent_diversity_violation(tuple(shots))
+            if violation is not None:
+                raise violation
         return tuple(shots), tuple(links)
 
     def _finalize(self, run: ProjectDirectorRun) -> ProjectDirectorRun:
@@ -2116,9 +2197,80 @@ _RETRY_FEEDBACK_PREFIXES = ("director_output_", "director_response_")
 _ADJACENT_DIVERSITY_FAILURE = "director_output_adjacent_diversity_insufficient"
 
 
-def _repair_notice(failure_code: str) -> str:
+_CONTROLLED_AXES = ("semantic_event", "subject_focus", "time_relation", "location_relation")
+
+
+def _adjacent_diversity_violation(
+    shots: tuple[DirectorShot, ...],
+) -> ProjectDirectorOutputValidationError | None:
+    """§20.2：首个受控语义差异不足 2 维的相邻对；诊断只含序号与四轴取值，不含正文。"""
+    for previous, shot in zip(shots, shots[1:], strict=False):
+        changed = shot.changes_from(previous)
+        if changed < 2:
+            return ProjectDirectorOutputValidationError(
+                _ADJACENT_DIVERSITY_FAILURE,
+                {
+                    "adjacent_pair_after_order": previous.order,
+                    "changed_axes": changed,
+                    "previous_axes": "|".join(previous.controlled_semantic_key() or ()),
+                    "current_axes": "|".join(shot.controlled_semantic_key() or ()),
+                },
+            )
+    return None
+
+
+def _rejected_pair_detail(diagnostics: dict[str, str | int | bool]) -> str | None:
+    """把被拒相邻对的诊断写成提示用的一句话；诊断不完整时返回 None。"""
+    order = diagnostics.get("adjacent_pair_after_order")
+    previous = str(diagnostics.get("previous_axes") or "").split("|")
+    current = str(diagnostics.get("current_axes") or "").split("|")
+    if (
+        not isinstance(order, int)
+        or isinstance(order, bool)
+        or len(previous) != len(_CONTROLLED_AXES)
+        or len(current) != len(_CONTROLLED_AXES)
+    ):
+        return None
+    changed = [
+        axis for axis, a, b in zip(_CONTROLLED_AXES, previous, current, strict=True) if a != b
+    ]
+    unchanged = [
+        f"{axis} ({a})"
+        for axis, a, b in zip(_CONTROLLED_AXES, previous, current, strict=True)
+        if a == b
+    ]
+    changed_text = ", ".join(changed) if changed else "none of the four dimensions"
+    return (
+        f"The rejected pair was shot {order} and shot {order + 1}: only {changed_text} "
+        f"changed, while {', '.join(unchanged)} stayed the same."
+    )
+
+
+def _repair_notice(unit: ProjectDirectorUnit) -> str:
+    failure_code = unit.last_failure_code or ""
     if failure_code == _ADJACENT_DIVERSITY_FAILURE:
-        return (
+        detail = _rejected_pair_detail(unit.response_diagnostics)
+        if unit.attempt_count >= PROJECT_DIRECTOR_MAX_ATTEMPTS:
+            # §50：末次尝试改为要求模型自己把违规的两镜写成一镜（单一时刻，覆盖两镜全部句子）。
+            order = unit.response_diagnostics.get("adjacent_pair_after_order")
+            pair = (
+                f"shot {order} and shot {cast(int, order) + 1}"
+                if detail is not None
+                else "the two adjacent shots that differ in fewer than two dimensions"
+            )
+            return (
+                "FINAL ATTEMPT NOTICE: your previous answer for this TARGET was rejected again "
+                f"with code {failure_code}. "
+                + (f"{detail} " if detail is not None else "")
+                + f"Merge {pair} into ONE shot that shows a single moment and is linked to "
+                "every sentence that either of them covered. Keep the other shots only if every "
+                "adjacent pair in your answer still changes at least two of semantic_event, "
+                "subject_focus, time_relation and location_relation; otherwise merge them too. "
+                "If no two shots of this TARGET can differ in two dimensions, return exactly one "
+                "shot linked to all sentences; this overrides any minimum shot count above. "
+                "Never relabel tokens without changing what the shot shows."
+            )
+        notice = (
             "RETRY NOTICE: your previous answer for this TARGET was rejected with code "
             f"{failure_code}: two adjacent shots changed only one of semantic_event, "
             "subject_focus, time_relation and location_relation. Rewrite the unit so that "
@@ -2130,6 +2282,8 @@ def _repair_notice(failure_code: str) -> str:
             "exactly one shot; this overrides any minimum shot count above. Never relabel "
             "tokens without changing what the shot shows."
         )
+        # §50：附上本单元上一次被拒的具体相邻对，使每次重试的提示随实际错误变化。
+        return f"{notice} {detail}" if detail is not None else notice
     return (
         f"RETRY NOTICE: your previous answer was rejected with code {failure_code}. Re-read "
         "the output contract above, fix that problem, and check every rule again before "
@@ -2151,8 +2305,47 @@ def _provider_call_unit(unit: ProjectDirectorUnit) -> ProjectDirectorUnit:
     ).hexdigest()
     return replace(
         unit,
-        prompt_content=f"{unit.prompt_content}\n\n{_repair_notice(code)}",
+        prompt_content=f"{unit.prompt_content}\n\n{_repair_notice(unit)}",
         provider_idempotency_key=key,
+    )
+
+
+def _log_provider_call(
+    unit: ProjectDirectorUnit, started: float, error: BaseException | None
+) -> None:
+    """§50 观测：每次导演调用的耗时与结果（不含提示词与响应正文）。"""
+    outcome = "returned" if error is None else getattr(error, "code", type(error).__name__)
+    logger.info(
+        "project director call finished: run=%s project=%s ordinal=%s kind=%s attempt=%s "
+        "prompt_ref=%s outcome=%s duration_ms=%d",
+        unit.run_id,
+        unit.project_id,
+        unit.ordinal,
+        unit.kind.value,
+        unit.attempt_count,
+        unit.prompt_ref,
+        outcome,
+        round((time.monotonic() - started) * 1000),
+    )
+
+
+def _log_unit_rejection(
+    unit: ProjectDirectorUnit,
+    failure_code: str,
+    diagnostics: dict[str, str | int | bool] | None,
+    *,
+    terminal: bool,
+) -> None:
+    logger.warning(
+        "project director unit rejected: run=%s project=%s ordinal=%s attempt=%s code=%s "
+        "terminal=%s diagnostics=%s",
+        unit.run_id,
+        unit.project_id,
+        unit.ordinal,
+        unit.attempt_count,
+        failure_code,
+        terminal,
+        json.dumps(diagnostics or {}, sort_keys=True),
     )
 
 

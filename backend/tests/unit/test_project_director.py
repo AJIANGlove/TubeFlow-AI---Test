@@ -510,11 +510,16 @@ class MemoryRepository:
         links: tuple[ShotSentenceLink, ...],
         receipt: str,
         raw_response_sha256: str,
+        *,
+        response_diagnostics: dict[str, str | int | bool] | None = None,
     ) -> ProjectDirectorRun:
         current = self.units[unit.run_id][unit.ordinal - 1]
         run = self.runs[unit.run_id]
         if current != unit:
             return run
+        if response_diagnostics is not None:
+            self.response_diagnostics[unit.unit_id] = dict(response_diagnostics)
+            unit = replace(unit, response_diagnostics=dict(response_diagnostics))
         completed = replace(
             unit,
             status=ProjectDirectorUnitStatus.SUCCEEDED,
@@ -606,6 +611,7 @@ class MemoryRepository:
             raw_response_sha256=raw_response_sha256,
             last_failure_code=failure_code,
             next_attempt_at=next_attempt_at,
+            response_diagnostics=dict(response_diagnostics or {}),
         )
         self.response_diagnostics[unit.unit_id] = dict(response_diagnostics or {})
         self.runs[unit.run_id] = replace(
@@ -645,6 +651,7 @@ class MemoryRepository:
             next_attempt_at=None,
             provider_receipt=provider_receipt,
             raw_response_sha256=raw_response_sha256,
+            response_diagnostics=dict(response_diagnostics or {}),
         )
         self.response_diagnostics[unit.unit_id] = dict(response_diagnostics or {})
         if run.status not in TERMINAL_RUN_STATUSES:

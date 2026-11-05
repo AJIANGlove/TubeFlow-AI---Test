@@ -651,6 +651,8 @@ class SqlAlchemyProjectDirectorRepository:
         links: tuple[ShotSentenceLink, ...],
         receipt: str,
         raw_response_sha256: str,
+        *,
+        response_diagnostics: dict[str, str | int | bool] | None = None,
     ) -> ProjectDirectorRun:
         with self._uow() as session:
             run, row = self._locked_run_unit(session, unit)
@@ -679,6 +681,9 @@ class SqlAlchemyProjectDirectorRepository:
             row.failure_code = None
             row.last_failure_code = None
             row.next_attempt_at = None
+            if response_diagnostics is not None:
+                # §50：确定性合并的审计随单元落库；未合并时保留原值（行为不变）。
+                row.response_diagnostics_json = dict(response_diagnostics)
             run.state_revision += 1
             session.flush()
             return _run(run)
@@ -1501,7 +1506,7 @@ def _unit_row(value: ProjectDirectorUnit) -> ProjectDirectorUnitRow:
         lease_until=value.lease_until,
         provider_receipt=value.provider_receipt,
         raw_response_sha256=value.raw_response_sha256,
-        response_diagnostics_json={},
+        response_diagnostics_json=dict(value.response_diagnostics),
         shots_json=[_shot_json(item) for item in value.shots],
         links_json=[_link_json(item) for item in value.sentence_links],
         failure_code=value.failure_code,
@@ -1547,6 +1552,9 @@ def _unit(row: ProjectDirectorUnitRow) -> ProjectDirectorUnit:
         plan_document=row.plan_document,
         plan_document_sha256=row.plan_document_sha256,
         reused_from_unit_id=row.reused_from_unit_id,
+        response_diagnostics=cast(
+            dict[str, str | int | bool], dict(row.response_diagnostics_json or {})
+        ),
     )
 
 

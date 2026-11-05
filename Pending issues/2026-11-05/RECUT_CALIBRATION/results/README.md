@@ -18,7 +18,7 @@ docker compose cp worker:/tmp/recut_cal /home/edy/pr10-regression/recut_cal
 ## 口径
 
 - 集合：`storyboard_generations.status='SUCCEEDED'` 且 `input_json.grid_layout_version='grid-v2'` 且有媒资的故事板，`limit 600`（实际 343 张，未截断）。
-- 每张用 `crop-grid-v2` 裁格（失败计入 `crop_failures`，本次为 0），再对同组任意两格算 `recut-similarity-v1 = 1 − Pearson(64×36 灰度缩略图)`：1.0 表示两格灰度量完全一致，0 表示不相关。
+- 每张用 `crop-grid-v2` 裁格（失败计入 `crop_failures`，本次为 0），再对同组任意两格算 `recut-similarity-v1 = 1 − Pearson(64×36 灰度缩略图)`：0 表示两格灰度图完全一致，1 表示不相关，2 表示完全反相。（2026-11-05 勘误：原文把 0 和 1 的含义写反了。）
 - 分类：`different`（构图键不同）、`adjacent_same`（构图键相同且相邻，即连续观察）、`nonadjacent_same`（构图键相同且不相邻，即旧规则拦截、本次要放行的那类）。
 
 ## 结果（`summary.json`）

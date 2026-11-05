@@ -111,3 +111,55 @@ def _merge_shot(front: DirectorShot, back: DirectorShot) -> DirectorShot:
 
 def _joined_text(front: str, back: str) -> str:
     return f"{front}{_MERGE_TEXT_SEPARATOR}{back}"
+
+
+# §50（2026-11-05 用户「全部按推荐执行」）：前置导演单元第 3 次（末次）尝试仍只因相邻
+# 多样性不足被拒时，对违规相邻对做确定性合并。配方与 adjacent-merge-v1 不同：保留前镜
+# 全部字段（不拼接后镜文本），只把后镜的句子链接并入前镜，避免一格写入两个时刻（§46.11）。
+ADJACENT_DIVERSITY_MERGE_VERSION = "adjacent-diversity-merge-v1"
+ADJACENT_DIVERSITY_MIN_CHANGES = 2
+
+
+def merge_insufficiently_different_shots(
+    shots: Sequence[DirectorShot],
+    links: Sequence[ShotSentenceLink],
+) -> tuple[
+    tuple[DirectorShot, ...],
+    tuple[ShotSentenceLink, ...],
+    tuple[tuple[int, int], ...],
+]:
+    """逐次合并首个受控语义差异不足 2 维的相邻对，直至全部相邻对合格或只剩 1 镜。
+
+    返回（重排序号后的镜头、去重并保持稳定序的句子链接、按原序号记录的合并对）。
+    纯函数：不调用外部 AI、不读写存储；相同输入恒得相同输出。无违规时恒等返回。
+    """
+    current = list(shots)
+    current_links = list(links)
+    merged: list[tuple[int, int]] = []
+    while True:
+        index = next(
+            (
+                position
+                for position in range(len(current) - 1)
+                if current[position + 1].changes_from(current[position])
+                < ADJACENT_DIVERSITY_MIN_CHANGES
+            ),
+            None,
+        )
+        if index is None:
+            break
+        front, back = current[index], current[index + 1]
+        merged.append((front.order, back.order))
+        del current[index + 1]
+        current_links = [
+            ShotSentenceLink(front.shot_id, item.sentence_id)
+            if item.shot_id == back.shot_id
+            else item
+            for item in current_links
+        ]
+    if not merged:
+        return tuple(shots), tuple(links), ()
+    renumbered = tuple(
+        replace(shot, order=position) for position, shot in enumerate(current, start=1)
+    )
+    return renumbered, tuple(dict.fromkeys(current_links)), tuple(merged)
