@@ -436,3 +436,14 @@ ssh $SSHOPTS edy@192.168.110.200 'sudo docker run --rm -v tubeflowai-test_postgr
 - 重启影响（10 分钟快照）：视频尝试被触碰 0；FAILED / REMOTE_STATE_UNKNOWN / QC_FAILED / local_integrity_blocked 0；新增故事板 37 条全部 grid-v2、全部属开关开启后新建的 `247462a4`（其自身故事板梯子重试），既有 v1 项目无新增。
 - 效果：同内容新项目 `72a22f0a` 的作业 ID 为 `narration_72a22f0a-…_29ad09b7…`，旁白约 2 分 17 秒完成，AUTO 59 分钟 COMPLETED。
 - 回滚：还原 compose 备份后 `up -d --no-build` 回 `sha256:238bd9ea…`。
+
+## 39. 2026-11-05 v2 格内构图规则上线（v2-panel-rule-20261105）
+
+- 来源：main `c7baf5b`（合并 PR #7 `1ec07ca`，USER_DECISIONS §46 第 11 条）。仅 `application/storyboard_prompt.py` 在 `layout_version == GRID_LAYOUT_V2` 时追加一段「每格为单一连续镜头、禁格内分屏/左右对比/画中画/示意图/箭头/漂浮图标」；v1 提示词不变。无迁移、无前端、无 settings 变更。
+- 门禁：分支 `1ec07ca` 对 main `72fbe78`——单元 2348 vs 2342 passed（新增 6 条参数化用例），两侧 0 失败；集成两侧 19 failed / 121 passed / 7 skipped，失败集合逐条相同；ruff 15、mypy 12 逐字节相同。证据 `Pending issues/2026-11-04/singlepanel_test/gateA_pr7/`。
+- 构建（按 1A 结论改用干净 worktree）：`git worktree add --detach` 到仓库外临时目录，`git archive` 取 `backend index.html app.js styles.css frontend` → 部署机 `/home/edy/build-pr7-20261105` → 镜像 `sha256:30ffc3c39729397df3d00607dc4dea6240ccc2ca5d0235f0a0de5cdb27040166`（`tubeflow-test:v2-panel-rule-20261105`）。容器内 `storyboard_prompt.py` LF 归一 sha256 `f95dc1e6…` 与 `c7baf5b` blob 一致。
+- 部署：compose 备份 `runtime/operations/v2-panel-rule-20261105/docker-compose.yml.bak`，三处改钉，`.env` 未改（开关 true），`up -d --no-build`，T_dep **2026-11-05T05:36:46Z–05:37:00Z**。按 §46.10 未等待排空。
+- 校验：`/health/live` 200（启动约 80 秒），web/worker healthy 且均在新镜像，两容器 `Settings().storyboard_single_panel_new_projects is True`，`alembic 0046` 不变。
+- 重启影响（10 分钟快照 05:45:25Z）：视频尝试被触碰 12 条，全部属 `23c59183`（4 RUNNING / 4 CREATED / 4 ARCHIVED-COMPLETE，其自身恢复推进）；FAILED / REMOTE_STATE_UNKNOWN / QC_FAILED / local_integrity_blocked 0 条；新增故事板 0 条。
+- 第二轮测试项目 `484746c4`：旁白约 2 分钟，AUTO **COMPLETED**（05:45:39Z → 07:14:37Z，89 分钟），13 组全部 grid-v2，checks 全绿，全片 HF 0.274（首轮 0.219）。证据 `Pending issues/2026-11-04/singlepanel_test/gate3_5_r2/`。
+- 回滚：还原 compose 备份后 `up -d --no-build` 回 `sha256:edee542d…`。

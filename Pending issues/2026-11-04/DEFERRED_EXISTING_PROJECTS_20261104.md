@@ -81,3 +81,10 @@
 - 2026-11-04 22:18 +0800 由另一会话修改导演候选后恢复（`df1c5c7`，round 8 → 9），进入故事板阶段并启动 107 个组的故事板工作流。
 - 此时开关已开（T_on 21:41:55 +0800），按 §46 第 2 项，这些组的首张故事板钉 `grid-v2`，视频走逐格参考。
 - 本条只记录，不干预该项目。其数据可作为第 3–4 关的只读补充证据。
+
+### 3.5 PR #7 部署后 10 分钟（T_dep 2026-11-05T05:36:46Z 起至 05:45:25Z）
+
+- 镜像 `sha256:30ffc3c3…`（`v2-panel-rule-20261105`），`.env` 未改（开关保持 true），无迁移。
+- 视频尝试被触碰：**12 条**，全部属 `23c59183`（4 RUNNING / 4 CREATED / 4 ARCHIVED-COMPLETE），是其被外部恢复后自身的推进。
+- 触发标记（FAILED / REMOTE_STATE_UNKNOWN / QC_FAILED / local_integrity_blocked）：**0 条**；新增故事板 **0 条**。
+- `247462a4` 在本次部署前（12:55 +0800）已因 `storyboard_failed:storyboard_panel_layout_unreadable` 暂停，未受本次部署影响，也未恢复。
