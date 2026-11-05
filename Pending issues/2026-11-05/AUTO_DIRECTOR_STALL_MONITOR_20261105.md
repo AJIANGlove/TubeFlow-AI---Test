@@ -3,8 +3,8 @@
 > 本文档由 `runtime/operations/director-stall-monitor-20261105/monitor.py` 自动生成。
 > `<!-- BEGIN/END AUTO-GENERATED -->` 之间为受管区，脚本会重写；之外为人工批注，脚本不改动。
 
-- 最近渲染：2026-11-05T11:11:10.036Z / 2026-11-05 19:11:10 CST
-- 数据库时钟（采集时）：2026-11-05T11:11:27.846Z
+- 最近渲染：2026-11-05T11:11:49.716Z / 2026-11-05 19:11:49 CST
+- 数据库时钟（采集时）：2026-11-05T11:12:11.455Z
 - 监控脚本：`runtime/operations/director-stall-monitor-20261105/monitor.py`
 - 采样：常驻进程 5 分钟一轮；会话结束后由每小时兜底任务接力（精度降为 60 分钟）
 
@@ -12,7 +12,7 @@
 
 ## 0. 一句话结论
 
-截至 2026-11-05T11:11:10.036Z / 2026-11-05 19:11:10 CST：3 个监控对象中，1 个已跳出导演阶段，1 个停在导演阶段且已暂停，0 个需要人工关注；累计执行恢复 1 次，累计记录中断事件 1 个。
+截至 2026-11-05T11:11:49.716Z / 2026-11-05 19:11:49 CST：3 个监控对象中，1 个已跳出导演阶段，0 个停在导演阶段且已暂停，0 个需要人工关注；累计执行恢复 1 次，累计记录中断事件 1 个。
 
 ## 1. 监控对象与授权
 
@@ -21,8 +21,8 @@
 | 项目 UUID | 标题 | 基线 round | 基线 phase | 当前 state | 当前 phase | 已用恢复 | 分类 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | `ff67c5e9-1db8-49c6-8f49-c96d9d0e140e` | Every Level of a Medieval Merchant | 4 | director_preplan | RUNNING | director_preplan | 0/3 | PROGRESSING |
-| `7cf2e79d-4d9d-48fa-8639-dde4100b6469` | Why Everyone Keeps Stealing Ukraine's Soil | 1 | storyboard | RUNNING | storyboard | 0/3 | EXITED |
-| `f881122d-1846-4d18-8f8b-4b89b0cbc0db` | You're a Crew Member on the Mary Celeste | 4 | director_preplan | PAUSED | director_preplan | 0/3 | PAUSED_DIRECTOR |
+| `7cf2e79d-4d9d-48fa-8639-dde4100b6469` | Why Everyone Keeps Stealing Ukraine's Soil | 1 | storyboard | PAUSED | video | 0/3 | EXITED |
+| `f881122d-1846-4d18-8f8b-4b89b0cbc0db` | You're a Crew Member on the Mary Celeste | 4 | director_preplan | RUNNING | director_preplan | 1/3 | PROGRESSING |
 
 ### 1.2 授权范围
 
@@ -172,13 +172,11 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | Every Level of a Medieval Merchant | 4 | 4 | 0 | 3 | PROGRESSING | — |
 | Why Everyone Keeps Stealing Ukraine's Soil | 1 | 1 | 0 | 3 | EXITED | — |
-| You're a Crew Member on the Mary Celeste | 4 | 4 | 0 | 3 | PAUSED_DIRECTOR | 2026-11-05T11:11:07.460Z |
+| You're a Crew Member on the Mary Celeste | 4 | 5 | 1 | 2 | PROGRESSING | 2026-11-05T11:11:07.460Z |
 
 ### 5.2 失败码频次（最新 run 的单元级）
 
-| failure_code | 次数 |
-| --- | --- |
-| director_output_adjacent_diversity_insufficient | 2 |
+（无）
 
 ### 5.3 需要人工介入
 
