@@ -78,7 +78,16 @@ def check_attempt(attempt: dict[str, Any], shots: int | None) -> dict[str, Any]:
     panels = snapshot.get("shot_panel_assets") or []
     characters = snapshot.get("character_assets") or []
     storyboard_sha = (snapshot.get("storyboard") or {}).get("sha256")
-    ref_shas = [str(ref.get("asset_sha256")) for ref in request.get("references") or []]
+    # Staging pops request_json.references and replaces it with staged_assets (ids only, no sha):
+    # orchestration.py "execution_request['staged_assets']". The logical request kept in the
+    # snapshot carries the same references with their sha256, so read it when references are gone.
+    if "references" in request:
+        references, reference_source = request.get("references") or [], "request_json"
+    else:
+        references = (snapshot.get("logical_request") or {}).get("references") or []
+        reference_source = "logical_request"
+    ref_shas = [str(ref.get("asset_sha256")) for ref in references]
+    staged = request.get("staged_assets")
     panel_shas = [str(panel.get("sha256")) for panel in panels]
     orders = [panel.get("shot_order") for panel in panels]
     strategy = (snapshot.get("video_prompt") or {}).get("strategy")
@@ -92,8 +101,12 @@ def check_attempt(attempt: dict[str, Any], shots: int | None) -> dict[str, Any]:
         "shot_orders_ok": orders == list(range(1, len(panels) + 1)),
         "storyboard_not_sent": storyboard_sha is not None and storyboard_sha not in ref_shas,
         "each_panel_sent_once": all(ref_shas.count(sha) == 1 for sha in panel_shas),
-        "reference_count_ok": len(ref_shas) == len(characters) + len(panels),
+        "reference_count_ok": bool(ref_shas)
+        and len(ref_shas) == len(characters) + len(panels)
+        and (staged is None or len(staged) == len(ref_shas)),
         "references": len(ref_shas),
+        "reference_source": reference_source,
+        "staged": None if staged is None else len(staged),
         "characters": len(characters),
     }
 
