@@ -1,0 +1,16 @@
+src\tubeflow_test\auto_pipeline\service.py:421: error: No overload variant of "int" matches argument type "object"  [call-overload]
+src\tubeflow_test\auto_pipeline\service.py:421: note: Possible overload variants:
+src\tubeflow_test\auto_pipeline\service.py:421: note:     def int(str | Buffer | SupportsInt | SupportsIndex | SupportsTrunc = ..., /) -> int
+src\tubeflow_test\auto_pipeline\service.py:421: note:     def int(str | bytes | bytearray, /, base: SupportsIndex) -> int
+src\tubeflow_test\application\narration.py:640: error: "object" has no attribute "get"  [attr-defined]
+src\tubeflow_test\application\narration.py:641: error: "object" has no attribute "get"  [attr-defined]
+src\tubeflow_test\adapters\persistence\storyboards\project_director_repository.py:1022: error: Redundant cast to "str"  [redundant-cast]
+src\tubeflow_test\adapters\persistence\storyboards\project_director_repository.py:1022: error: Redundant cast to "int"  [redundant-cast]
+src\tubeflow_test\adapters\persistence\storyboards\project_director_repository.py:1073: error: Redundant cast to "str"  [redundant-cast]
+src\tubeflow_test\video_generation\persistence.py:830: error: "Result[*tuple[Any, ...]]" has no attribute "rowcount"  [attr-defined]
+src\tubeflow_test\adapters\persistence\identity_project\repository.py:1288: error: Need type annotation for "director_states"  [var-annotated]
+src\tubeflow_test\adapters\persistence\identity_project\repository.py:1306: error: Need type annotation for "storyboard_states"  [var-annotated]
+src\tubeflow_test\adapters\persistence\identity_project\repository.py:1322: error: Need type annotation for "video_states"  [var-annotated]
+src\tubeflow_test\video_generation\worker.py:256: error: Argument 1 to "_as_utc" has incompatible type "datetime | None"; expected "datetime"  [arg-type]
+src\tubeflow_test\api\media_content.py:148: error: Incompatible return value type (got "Select[str, str, int, str]", expected "Select[tuple[str, str, int, str]]")  [return-value]
+Found 12 errors in 7 files (checked 206 source files)

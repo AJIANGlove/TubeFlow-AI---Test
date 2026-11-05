@@ -1,0 +1,16 @@
+SET
+BEGIN
+event_changed|focus_changed|time_changed|location_changed|count
+t|t|t|f|194
+t|t|f|f|183
+t|t|t|t|165
+t|t|f|t|75
+t|f|t|f|35
+t|f|t|t|21
+f|t|t|f|19
+t|f|f|t|16
+f|t|t|t|13
+f|t|f|t|9
+f|f|t|t|1
+(11 rows)
+COMMIT

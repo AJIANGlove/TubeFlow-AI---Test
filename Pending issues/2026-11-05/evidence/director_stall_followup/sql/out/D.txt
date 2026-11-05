@@ -1,0 +1,6 @@
+SET
+BEGIN
+ordinal|prompt_ref|sentence_count|sentences_json
+40|project-director-unit-v10|6|[{"sentence_id": "10024eef-f6fc-5441-9fb2-bd89b923e01c", "sequence": 229, "text": "That's the last time anyone writes a date in the log.", "text_sha256": "9b2d438996d41b754e429dfa8e600e8efcebc53074d5a144050b67d35ed3c0c2"}, {"sentence_id": "67f727c7-3250-5cb1-b5ad-1cc534aabb90", "sequence": 230, "text": "Ship's position: about 110 miles west of Santa Maria Island, Azores.", "text_sha256": "b6412728ae092aa2db1fc149cc14dac858431e9b1d110413600e34dd3fc3c25a"}, {"sentence_id": "22bd2d8e-d22a-5912-9c0d-bd1f3440fac0", "sequence": 231, "text": "Nine days from now, this ship will be found drifting 400 miles out.", "text_sha256": "586b01d456769c66e1cddaf9bbacec2d03bd3dc278ca61e07af696abbb6fa7b6"}, {"sentence_id": "1abd25df-c21b-55c5-91ca-27ff23ee5da9", "sequence": 232, "text": "Empty.", "text_sha256": "8a112150702b655cc0e9ec4d17b00e5d1135aae6fa3cae5a2874aa1e3297d6a9"}, {"sentence_id": "c3238942-672e-5453-be5c-5de78764ee48", "sequence": 233, "text": "You don't know which day.", "text_sha256": "a5e49b00733452a03e34468021d32104cc851bb33bb8aad6dced99c9cea53f3b"}, {"sentence_id": "b3e3df7b-e532-5160-8ef4-7319af7c495c", "sequence": 234, "text": "You don't know which hour.", "text_sha256": "c492fdc48e81607eb48d21530f34e4797051b3c3d3bac008e94ad8dd4fa61634"}]
+(1 row)
+COMMIT

@@ -1,0 +1,21 @@
+SET
+BEGIN
+run_id|owner_id|project_id|created_at|status|failure_code|recovery_source_run_id
+5d25a3a4-c359-41cc-bbf2-edacdedaa920|fb294c02-5f32-4597-b1e9-f7348ac9734a|7cf2e79d-4d9d-48fa-8639-dde4100b6469|2026-11-05 09:01:12.807344+00|SUCCEEDED||
+6fae6a67-e93e-4a72-abbe-c751d274e2ec|fb294c02-5f32-4597-b1e9-f7348ac9734a|f881122d-1846-4d18-8f8b-4b89b0cbc0db|2026-11-05 09:02:44.402869+00|FAILED|director_output_adjacent_diversity_insufficient|
+8697ee51-2fd8-4ace-9174-a3bc54946d16|fb294c02-5f32-4597-b1e9-f7348ac9734a|f881122d-1846-4d18-8f8b-4b89b0cbc0db|2026-11-05 09:43:08.629643+00|FAILED|remote_state_unknown_exhausted|6fae6a67-e93e-4a72-abbe-c751d274e2ec
+9c2a58c3-1821-446e-8b5e-e72e15f9fdde|fb294c02-5f32-4597-b1e9-f7348ac9734a|f881122d-1846-4d18-8f8b-4b89b0cbc0db|2026-11-05 10:33:20.030399+00|FAILED|director_output_adjacent_diversity_insufficient|8697ee51-2fd8-4ace-9174-a3bc54946d16
+baf41aa2-a83f-4528-a4a4-c640d95bc35b|fb294c02-5f32-4597-b1e9-f7348ac9734a|f881122d-1846-4d18-8f8b-4b89b0cbc0db|2026-11-05 10:47:53.601007+00|FAILED|director_output_adjacent_diversity_insufficient|9c2a58c3-1821-446e-8b5e-e72e15f9fdde
+924ee9a8-9e30-46a5-a6b8-5cd832007521|fb294c02-5f32-4597-b1e9-f7348ac9734a|f881122d-1846-4d18-8f8b-4b89b0cbc0db|2026-11-05 11:11:50.056132+00|FAILED|director_output_adjacent_diversity_insufficient|baf41aa2-a83f-4528-a4a4-c640d95bc35b
+be6678d5-ae14-410c-a2ed-bccf121a9dfd|fb294c02-5f32-4597-b1e9-f7348ac9734a|f881122d-1846-4d18-8f8b-4b89b0cbc0db|2026-11-05 11:28:47.368753+00|FAILED|director_output_sentence_coverage_invalid|924ee9a8-9e30-46a5-a6b8-5cd832007521
+d449aa5f-0f7b-4508-bce7-374efcf5f9e7|fb294c02-5f32-4597-b1e9-f7348ac9734a|f881122d-1846-4d18-8f8b-4b89b0cbc0db|2026-11-05 11:44:04.762005+00|FAILED|director_output_adjacent_diversity_insufficient|be6678d5-ae14-410c-a2ed-bccf121a9dfd
+36d773f7-59c3-41b3-8c62-54f04de9f072|fb294c02-5f32-4597-b1e9-f7348ac9734a|f881122d-1846-4d18-8f8b-4b89b0cbc0db|2026-11-05 12:26:29.479056+00|FAILED|director_output_adjacent_diversity_insufficient|d449aa5f-0f7b-4508-bce7-374efcf5f9e7
+d9187fc4-1c6a-42bd-9618-daa172c25f8a|fb294c02-5f32-4597-b1e9-f7348ac9734a|f881122d-1846-4d18-8f8b-4b89b0cbc0db|2026-11-05 12:32:14.266996+00|FAILED|director_response_content_json_invalid|36d773f7-59c3-41b3-8c62-54f04de9f072
+d7ed0e1a-ec59-4420-a28c-c9223719dc19|fb294c02-5f32-4597-b1e9-f7348ac9734a|f881122d-1846-4d18-8f8b-4b89b0cbc0db|2026-11-05 12:42:07.267181+00|FAILED|director_output_adjacent_diversity_insufficient|d9187fc4-1c6a-42bd-9618-daa172c25f8a
+0ceac8f3-a260-4715-94a9-7aa8a7ea309b|fb294c02-5f32-4597-b1e9-f7348ac9734a|f881122d-1846-4d18-8f8b-4b89b0cbc0db|2026-11-05 12:48:45.014804+00|FAILED|director_output_adjacent_diversity_insufficient|d7ed0e1a-ec59-4420-a28c-c9223719dc19
+29e49f83-8471-4a38-9e4d-7fddd9646def|fb294c02-5f32-4597-b1e9-f7348ac9734a|ff67c5e9-1db8-49c6-8f49-c96d9d0e140e|2026-11-05 09:03:58.873452+00|FAILED|director_output_sentence_coverage_invalid|
+964a36b4-10ba-4256-b31f-2557dc839195|fb294c02-5f32-4597-b1e9-f7348ac9734a|ff67c5e9-1db8-49c6-8f49-c96d9d0e140e|2026-11-05 09:43:00.889173+00|FAILED|director_output_adjacent_diversity_insufficient|29e49f83-8471-4a38-9e4d-7fddd9646def
+c80ea8bb-b5d9-4031-9e2c-a459f2dac8cd|fb294c02-5f32-4597-b1e9-f7348ac9734a|ff67c5e9-1db8-49c6-8f49-c96d9d0e140e|2026-11-05 10:07:12.275118+00|FAILED|director_output_adjacent_diversity_insufficient|964a36b4-10ba-4256-b31f-2557dc839195
+8f63bd28-5283-4dd5-aefd-a8a67174fd7e|fb294c02-5f32-4597-b1e9-f7348ac9734a|ff67c5e9-1db8-49c6-8f49-c96d9d0e140e|2026-11-05 10:48:05.373896+00|SUCCEEDED||c80ea8bb-b5d9-4031-9e2c-a459f2dac8cd
+(16 rows)
+COMMIT

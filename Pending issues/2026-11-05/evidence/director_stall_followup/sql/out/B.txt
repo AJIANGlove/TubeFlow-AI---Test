@@ -1,0 +1,7 @@
+SET
+BEGIN
+ordinal|status|attempt_count|last_failure_code|failure_code|lease_until|next_attempt_at|response_diagnostics_json
+33|FAILED|3|remote_state_unknown_exhausted|remote_state_unknown_exhausted|||{}
+39|FAILED|2|worker_lost_after_call_started|worker_lost_after_call_started|||{"adjacent_pair_after_order": 1, "changed_axes": 0, "previous_axes": "REVEAL_EVIDENCE|OBJECT_OR_EVIDENCE|SAME_MOMENT|SAME_LOCATION", "current_axes": "REVEAL_EVIDENCE|OBJECT_OR_EVIDENCE|SAME_MOMENT|SAME_LOCATION"}
+(2 rows)
+COMMIT
