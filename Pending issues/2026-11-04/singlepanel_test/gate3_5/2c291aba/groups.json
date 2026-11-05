@@ -41,7 +41,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -51,9 +51,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -102,7 +104,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -112,9 +114,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -157,7 +161,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -167,9 +171,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 7,
+     "reference_source": "logical_request",
+     "staged": 7,
      "characters": 1
     }
    }
@@ -218,7 +224,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -228,9 +234,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -273,7 +281,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -283,9 +291,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -328,7 +338,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -338,9 +348,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -396,7 +408,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -406,9 +418,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -451,7 +465,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -461,9 +475,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 7,
+     "reference_source": "logical_request",
+     "staged": 7,
      "characters": 1
     }
    }
@@ -512,7 +528,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -522,9 +538,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
@@ -567,7 +585,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -577,9 +595,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -622,7 +642,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -632,9 +652,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -677,7 +699,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -687,9 +709,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 7,
+     "reference_source": "logical_request",
+     "staged": 7,
      "characters": 1
     }
    }
@@ -743,7 +767,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -753,9 +777,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 3,
+     "reference_source": "logical_request",
+     "staged": 3,
      "characters": 1
     }
    }
@@ -817,7 +843,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -827,9 +853,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
@@ -872,7 +900,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -882,9 +910,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -933,7 +963,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -943,9 +973,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -994,7 +1026,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -1004,9 +1036,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
@@ -1068,7 +1102,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -1078,9 +1112,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -1123,7 +1159,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -1133,9 +1169,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 7,
+     "reference_source": "logical_request",
+     "staged": 7,
      "characters": 1
     }
    }
@@ -1178,7 +1216,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -1188,9 +1226,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -1239,7 +1279,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -1249,9 +1289,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -1300,7 +1342,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -1310,9 +1352,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
@@ -1355,7 +1399,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -1365,9 +1409,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -1410,7 +1456,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -1420,9 +1466,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 7,
+     "reference_source": "logical_request",
+     "staged": 7,
      "characters": 1
     }
    }
@@ -1471,7 +1519,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -1481,9 +1529,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
@@ -1526,7 +1576,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -1536,9 +1586,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -1581,7 +1633,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -1591,9 +1643,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -1642,7 +1696,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -1652,9 +1706,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
@@ -1710,7 +1766,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -1720,9 +1776,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 7,
+     "reference_source": "logical_request",
+     "staged": 7,
      "characters": 1
     }
    }
@@ -1771,7 +1829,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -1781,9 +1839,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -1832,7 +1892,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -1842,9 +1902,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
@@ -1898,7 +1960,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -1908,9 +1970,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 3,
+     "reference_source": "logical_request",
+     "staged": 3,
      "characters": 1
     }
    }
@@ -1972,7 +2036,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -1982,9 +2046,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -2046,7 +2112,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -2056,9 +2122,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -2101,7 +2169,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -2111,9 +2179,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 7,
+     "reference_source": "logical_request",
+     "staged": 7,
      "characters": 1
     }
    }
@@ -2156,7 +2226,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -2166,9 +2236,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 7,
+     "reference_source": "logical_request",
+     "staged": 7,
      "characters": 1
     }
    }
@@ -2211,7 +2283,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -2221,9 +2293,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -2266,7 +2340,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -2276,9 +2350,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -2321,7 +2397,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -2331,9 +2407,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -2376,7 +2454,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -2386,9 +2464,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 7,
+     "reference_source": "logical_request",
+     "staged": 7,
      "characters": 1
     }
    }
@@ -2437,7 +2517,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -2447,9 +2527,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -2492,7 +2574,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -2502,9 +2584,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -2553,7 +2637,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -2563,9 +2647,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
@@ -2608,7 +2694,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -2618,9 +2704,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 7,
+     "reference_source": "logical_request",
+     "staged": 7,
      "characters": 1
     }
    }
@@ -2663,7 +2751,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -2673,9 +2761,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -2724,7 +2814,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -2734,9 +2824,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -2785,7 +2877,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -2795,9 +2887,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -2840,7 +2934,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -2850,9 +2944,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -2895,7 +2991,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -2905,9 +3001,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -2956,7 +3054,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -2966,9 +3064,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
@@ -3011,7 +3111,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -3021,9 +3121,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -3072,7 +3174,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -3082,9 +3184,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -3127,7 +3231,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -3137,9 +3241,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -3195,7 +3301,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -3205,9 +3311,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -3250,7 +3358,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -3260,9 +3368,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -3311,7 +3421,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -3321,9 +3431,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -3372,7 +3484,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -3382,9 +3494,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -3427,7 +3541,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -3437,9 +3551,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -3501,7 +3617,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -3511,9 +3627,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
@@ -3556,7 +3674,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -3566,9 +3684,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -3617,7 +3737,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -3627,9 +3747,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -3678,7 +3800,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -3688,9 +3810,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -3739,7 +3863,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -3749,9 +3873,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -3794,7 +3920,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -3804,9 +3930,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -3855,7 +3983,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -3865,9 +3993,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
@@ -3916,7 +4046,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -3926,9 +4056,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
@@ -3990,7 +4122,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -4000,9 +4132,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
@@ -4070,7 +4204,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -4080,9 +4214,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 7,
+     "reference_source": "logical_request",
+     "staged": 7,
      "characters": 1
     }
    }
@@ -4131,7 +4267,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -4141,9 +4277,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
@@ -4186,7 +4324,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -4196,9 +4334,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -4260,7 +4400,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -4270,9 +4410,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -4328,7 +4470,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -4338,9 +4480,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -4383,7 +4527,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -4393,9 +4537,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -4438,7 +4584,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -4448,9 +4594,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 7,
+     "reference_source": "logical_request",
+     "staged": 7,
      "characters": 1
     }
    }
@@ -4493,7 +4641,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -4503,9 +4651,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 7,
+     "reference_source": "logical_request",
+     "staged": 7,
      "characters": 1
     }
    }
@@ -4572,7 +4722,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -4582,9 +4732,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 7,
+     "reference_source": "logical_request",
+     "staged": 7,
      "characters": 1
     }
    }
@@ -4627,7 +4779,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -4637,9 +4789,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -4706,7 +4860,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -4716,9 +4870,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -4767,7 +4923,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -4777,9 +4933,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
@@ -4822,7 +4980,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -4832,9 +4990,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -4896,7 +5056,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -4906,9 +5066,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -4957,7 +5119,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -4967,9 +5129,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -5012,7 +5176,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -5022,9 +5186,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -5073,7 +5239,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -5083,9 +5249,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
@@ -5134,7 +5302,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -5144,9 +5312,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
@@ -5195,7 +5365,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -5205,9 +5375,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
@@ -5250,7 +5422,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -5260,9 +5432,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -5305,7 +5479,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -5315,9 +5489,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -5379,7 +5555,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -5389,9 +5565,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -5440,7 +5618,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -5450,9 +5628,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -5495,7 +5675,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -5505,9 +5685,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 7,
+     "reference_source": "logical_request",
+     "staged": 7,
      "characters": 1
     }
    }
@@ -5550,7 +5732,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -5560,9 +5742,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -5605,7 +5789,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -5615,9 +5799,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -5666,7 +5852,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -5676,9 +5862,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -5721,7 +5909,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -5731,9 +5919,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 7,
+     "reference_source": "logical_request",
+     "staged": 7,
      "characters": 1
     }
    }
@@ -5776,7 +5966,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -5786,9 +5976,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 7,
+     "reference_source": "logical_request",
+     "staged": 7,
      "characters": 1
     }
    }
@@ -5831,7 +6023,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -5841,9 +6033,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 7,
+     "reference_source": "logical_request",
+     "staged": 7,
      "characters": 1
     }
    }
@@ -5892,7 +6086,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -5902,9 +6096,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -5947,7 +6143,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -5957,9 +6153,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -6015,7 +6213,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -6025,9 +6223,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -6076,7 +6276,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -6086,9 +6286,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -6150,7 +6352,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -6160,9 +6362,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 6,
+     "reference_source": "logical_request",
+     "staged": 6,
      "characters": 1
     }
    }
@@ -6205,7 +6409,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -6215,9 +6419,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 7,
+     "reference_source": "logical_request",
+     "staged": 7,
      "characters": 1
     }
    }
@@ -6266,7 +6472,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -6276,9 +6482,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
@@ -6321,7 +6529,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -6331,9 +6539,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
@@ -6382,7 +6592,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -6392,9 +6602,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
@@ -6437,7 +6649,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -6447,9 +6659,11 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 2,
+     "reference_source": "logical_request",
+     "staged": 2,
      "characters": 1
     }
    }

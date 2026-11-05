@@ -41,7 +41,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -51,44 +51,16 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
   ],
-  "current_attempt": "aaed1c9a-e2c6-4e81-a859-632a4ec3caa1",
-  "panel_sizes": [
-   [
-    829,
-    462
-   ],
-   [
-    823,
-    462
-   ],
-   [
-    829,
-    458
-   ]
-  ],
-  "video_sha256": "a91b4b629411e1f4998268b5e2f4ed5d468dcf91bb9c02d8047592dd45c8839e",
-  "hf": {
-   "seq": "v_1",
-   "frames": 311,
-   "shots": 3,
-   "jitter_hf": 0.188,
-   "worst": {
-    "start": 101,
-    "end": 185,
-    "frames": 79,
-    "jitter_hf": 0.217,
-    "speed": 0.222
-   },
-   "shaky_shots": 0,
-   "max_speed": 0.222
-  }
+  "current_attempt": "aaed1c9a-e2c6-4e81-a859-632a4ec3caa1"
  },
  {
   "sequence": 2,
@@ -137,7 +109,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -147,40 +119,16 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 3,
+     "reference_source": "logical_request",
+     "staged": 3,
      "characters": 1
     }
    }
   ],
-  "current_attempt": "0b53c09d-04b2-4e77-bb0b-37c62b9cdd61",
-  "panel_sizes": [
-   [
-    820,
-    462
-   ],
-   [
-    820,
-    462
-   ]
-  ],
-  "video_sha256": "73c823d6e5ecc1866c41a69081343ad6ab0c6d0f2cc594b0f70f5ca11c5dc711",
-  "hf": {
-   "seq": "v_2",
-   "frames": 243,
-   "shots": 2,
-   "jitter_hf": 0.071,
-   "worst": {
-    "start": 0,
-    "end": 114,
-    "frames": 109,
-    "jitter_hf": 0.085,
-    "speed": 0.142
-   },
-   "shaky_shots": 0,
-   "max_speed": 0.142
-  }
+  "current_attempt": "0b53c09d-04b2-4e77-bb0b-37c62b9cdd61"
  },
  {
   "sequence": 3,
@@ -224,7 +172,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -234,44 +182,16 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
   ],
-  "current_attempt": "6ac81422-92fd-4a6c-a44f-afa497a77b1a",
-  "panel_sizes": [
-   [
-    828,
-    459
-   ],
-   [
-    824,
-    459
-   ],
-   [
-    829,
-    460
-   ]
-  ],
-  "video_sha256": "54eefaff76efa42b034c33d1f148ace2ee1be1887028d9870a19051e6af890e9",
-  "hf": {
-   "seq": "v_3",
-   "frames": 328,
-   "shots": 1,
-   "jitter_hf": 0.173,
-   "worst": {
-    "start": 0,
-    "end": 328,
-    "frames": 323,
-    "jitter_hf": 0.173,
-    "speed": 0.124
-   },
-   "shaky_shots": 0,
-   "max_speed": 0.124
-  }
+  "current_attempt": "6ac81422-92fd-4a6c-a44f-afa497a77b1a"
  },
  {
   "sequence": 4,
@@ -320,7 +240,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -330,40 +250,16 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 3,
+     "reference_source": "logical_request",
+     "staged": 3,
      "characters": 1
     }
    }
   ],
-  "current_attempt": "bdc837e0-e5e2-47a5-8379-f5b647c9f160",
-  "panel_sizes": [
-   [
-    824,
-    466
-   ],
-   [
-    823,
-    466
-   ]
-  ],
-  "video_sha256": "a39591ab6e55482dc5a2e4ac202791044266909d7b706f175d3e85e86504335e",
-  "hf": {
-   "seq": "v_4",
-   "frames": 311,
-   "shots": 2,
-   "jitter_hf": 0.282,
-   "worst": {
-    "start": 110,
-    "end": 311,
-    "frames": 196,
-    "jitter_hf": 0.349,
-    "speed": 0.402
-   },
-   "shaky_shots": 1,
-   "max_speed": 0.402
-  }
+  "current_attempt": "bdc837e0-e5e2-47a5-8379-f5b647c9f160"
  },
  {
   "sequence": 5,
@@ -407,7 +303,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -417,44 +313,16 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
   ],
-  "current_attempt": "bd5ebb34-202c-4b87-9458-84ba4a400a84",
-  "panel_sizes": [
-   [
-    827,
-    462
-   ],
-   [
-    827,
-    462
-   ],
-   [
-    828,
-    461
-   ]
-  ],
-  "video_sha256": "74f02afd8d80ab86c3a40c99073438580afc341e4a2cdfdd512c3dabede0367c",
-  "hf": {
-   "seq": "v_5",
-   "frames": 311,
-   "shots": 3,
-   "jitter_hf": 0.164,
-   "worst": {
-    "start": 77,
-    "end": 165,
-    "frames": 83,
-    "jitter_hf": 0.283,
-    "speed": 0.254
-   },
-   "shaky_shots": 1,
-   "max_speed": 0.254
-  }
+  "current_attempt": "bd5ebb34-202c-4b87-9458-84ba4a400a84"
  },
  {
   "sequence": 6,
@@ -498,7 +366,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -508,44 +376,16 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
   ],
-  "current_attempt": "6743a00d-24ba-4935-84f9-450f77d64f9b",
-  "panel_sizes": [
-   [
-    826,
-    460
-   ],
-   [
-    825,
-    460
-   ],
-   [
-    826,
-    460
-   ]
-  ],
-  "video_sha256": "f59dbe795ee102e01caef31764dba963b98e8a1fe2e1368cac1725c401999888",
-  "hf": {
-   "seq": "v_6",
-   "frames": 311,
-   "shots": 3,
-   "jitter_hf": 0.039,
-   "worst": {
-    "start": 201,
-    "end": 311,
-    "frames": 105,
-    "jitter_hf": 0.053,
-    "speed": 0.043
-   },
-   "shaky_shots": 0,
-   "max_speed": 0.043
-  }
+  "current_attempt": "6743a00d-24ba-4935-84f9-450f77d64f9b"
  },
  {
   "sequence": 7,
@@ -602,7 +442,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -612,44 +452,16 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
   ],
-  "current_attempt": "2ee0dfe9-fe43-45d5-bc65-20604022b6cb",
-  "panel_sizes": [
-   [
-    824,
-    458
-   ],
-   [
-    824,
-    458
-   ],
-   [
-    824,
-    459
-   ]
-  ],
-  "video_sha256": "ff9d1d7c2b511f514d03d9f52b033d2cbf1520ecf514e03c00ecdf64da7c8a7f",
-  "hf": {
-   "seq": "v_7",
-   "frames": 311,
-   "shots": 3,
-   "jitter_hf": 0.11,
-   "worst": {
-    "start": 199,
-    "end": 311,
-    "frames": 107,
-    "jitter_hf": 0.159,
-    "speed": 0.166
-   },
-   "shaky_shots": 0,
-   "max_speed": 0.166
-  }
+  "current_attempt": "2ee0dfe9-fe43-45d5-bc65-20604022b6cb"
  },
  {
   "sequence": 8,
@@ -693,7 +505,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -703,44 +515,16 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
   ],
-  "current_attempt": "8ed166df-52a9-45b5-9002-c605ad373c88",
-  "panel_sizes": [
-   [
-    825,
-    460
-   ],
-   [
-    825,
-    460
-   ],
-   [
-    826,
-    460
-   ]
-  ],
-  "video_sha256": "6595155260cc6397c50e9391a5db47c0ccf47791e19283d019cdd11a0fad915a",
-  "hf": {
-   "seq": "v_8",
-   "frames": 328,
-   "shots": 3,
-   "jitter_hf": 0.107,
-   "worst": {
-    "start": 0,
-    "end": 90,
-    "frames": 85,
-    "jitter_hf": 0.177,
-    "speed": 0.17
-   },
-   "shaky_shots": 0,
-   "max_speed": 0.17
-  }
+  "current_attempt": "8ed166df-52a9-45b5-9002-c605ad373c88"
  },
  {
   "sequence": 9,
@@ -778,7 +562,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -788,48 +572,16 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 5,
+     "reference_source": "logical_request",
+     "staged": 5,
      "characters": 1
     }
    }
   ],
-  "current_attempt": "e6b7bb08-4caa-4eb3-8f9f-bae8b8e75987",
-  "panel_sizes": [
-   [
-    825,
-    460
-   ],
-   [
-    825,
-    460
-   ],
-   [
-    826,
-    461
-   ],
-   [
-    826,
-    461
-   ]
-  ],
-  "video_sha256": "ceed70db09610b88039250a2180739545004b0e5a8b2aed9af113153648d80cf",
-  "hf": {
-   "seq": "v_9",
-   "frames": 362,
-   "shots": 4,
-   "jitter_hf": 0.392,
-   "worst": {
-    "start": 0,
-    "end": 89,
-    "frames": 84,
-    "jitter_hf": 0.731,
-    "speed": 0.508
-   },
-   "shaky_shots": 1,
-   "max_speed": 0.713
-  }
+  "current_attempt": "e6b7bb08-4caa-4eb3-8f9f-bae8b8e75987"
  },
  {
   "sequence": 10,
@@ -873,7 +625,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -883,44 +635,16 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
   ],
-  "current_attempt": "4499f0aa-acb3-4d61-8542-50ace673aac2",
-  "panel_sizes": [
-   [
-    828,
-    461
-   ],
-   [
-    825,
-    461
-   ],
-   [
-    795,
-    462
-   ]
-  ],
-  "video_sha256": "ec9fa69843ebb5ff18de9189deb2b6dd223d22d5dfa8a71644a0a721e57dc6a0",
-  "hf": {
-   "seq": "v_10",
-   "frames": 328,
-   "shots": 3,
-   "jitter_hf": 0.294,
-   "worst": {
-    "start": 2,
-    "end": 97,
-    "frames": 90,
-    "jitter_hf": 0.427,
-    "speed": 0.395
-   },
-   "shaky_shots": 2,
-   "max_speed": 0.667
-  }
+  "current_attempt": "4499f0aa-acb3-4d61-8542-50ace673aac2"
  },
  {
   "sequence": 11,
@@ -964,7 +688,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -974,44 +698,16 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 4,
+     "reference_source": "logical_request",
+     "staged": 4,
      "characters": 1
     }
    }
   ],
-  "current_attempt": "c8c08e73-e0fe-445e-8bcb-168715a7a270",
-  "panel_sizes": [
-   [
-    825,
-    460
-   ],
-   [
-    824,
-    460
-   ],
-   [
-    824,
-    458
-   ]
-  ],
-  "video_sha256": "b57234bd53e47c5c994e74e6c0ab2a9d766715529b94e14bb77991c870d65592",
-  "hf": {
-   "seq": "v_11",
-   "frames": 294,
-   "shots": 3,
-   "jitter_hf": 0.197,
-   "worst": {
-    "start": 145,
-    "end": 294,
-    "frames": 144,
-    "jitter_hf": 0.273,
-    "speed": 0.523
-   },
-   "shaky_shots": 1,
-   "max_speed": 0.523
-  }
+  "current_attempt": "c8c08e73-e0fe-445e-8bcb-168715a7a270"
  },
  {
   "sequence": 12,
@@ -1060,7 +756,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -1070,40 +766,16 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 3,
+     "reference_source": "logical_request",
+     "staged": 3,
      "characters": 1
     }
    }
   ],
-  "current_attempt": "c6015418-c131-4cb2-94fd-b7525c17c162",
-  "panel_sizes": [
-   [
-    825,
-    461
-   ],
-   [
-    825,
-    461
-   ]
-  ],
-  "video_sha256": "270fe50f5edea2a7698684bc7a562b1e705ee897144244f9561dbd4c4f1dffcb",
-  "hf": {
-   "seq": "v_12",
-   "frames": 260,
-   "shots": 2,
-   "jitter_hf": 0.048,
-   "worst": {
-    "start": 110,
-    "end": 260,
-    "frames": 145,
-    "jitter_hf": 0.055,
-    "speed": 0.073
-   },
-   "shaky_shots": 0,
-   "max_speed": 0.073
-  }
+  "current_attempt": "c6015418-c131-4cb2-94fd-b7525c17c162"
  },
  {
   "sequence": 13,
@@ -1152,7 +824,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -1162,40 +834,16 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 3,
+     "reference_source": "logical_request",
+     "staged": 3,
      "characters": 1
     }
    }
   ],
-  "current_attempt": "562b165b-1b48-4b4e-ad0a-532f18ec8217",
-  "panel_sizes": [
-   [
-    826,
-    460
-   ],
-   [
-    825,
-    460
-   ]
-  ],
-  "video_sha256": "bb2d859698cb3456bef57ee1657decd8678a2f0163c57e703b359e469833f5a2",
-  "hf": {
-   "seq": "v_13",
-   "frames": 362,
-   "shots": 3,
-   "jitter_hf": 0.304,
-   "worst": {
-    "start": 70,
-    "end": 158,
-    "frames": 83,
-    "jitter_hf": 0.502,
-    "speed": 0.357
-   },
-   "shaky_shots": 2,
-   "max_speed": 0.464
-  }
+  "current_attempt": "562b165b-1b48-4b4e-ad0a-532f18ec8217"
  },
  {
   "sequence": 14,
@@ -1244,7 +892,7 @@
     "stage": "ARCHIVED",
     "archive_stage": "COMPLETE",
     "error_code": null,
-    "ok": false,
+    "ok": true,
     "check": {
      "has_snapshot": true,
      "policy_ok": true,
@@ -1254,39 +902,15 @@
      "panels_match_shots": true,
      "shot_orders_ok": true,
      "storyboard_not_sent": true,
-     "each_panel_sent_once": false,
-     "reference_count_ok": false,
-     "references": 0,
+     "each_panel_sent_once": true,
+     "reference_count_ok": true,
+     "references": 3,
+     "reference_source": "logical_request",
+     "staged": 3,
      "characters": 1
     }
    }
   ],
-  "current_attempt": "211df90f-b775-4c60-8bb4-66d1f0a29f63",
-  "panel_sizes": [
-   [
-    824,
-    462
-   ],
-   [
-    824,
-    462
-   ]
-  ],
-  "video_sha256": "89397a7fcae799139fa9aacbdabcad1adac2e7ab5b6a33d4b0dd016c40530578",
-  "hf": {
-   "seq": "v_14",
-   "frames": 141,
-   "shots": 2,
-   "jitter_hf": 0.525,
-   "worst": {
-    "start": 73,
-    "end": 120,
-    "frames": 42,
-    "jitter_hf": 0.832,
-    "speed": 0.974
-   },
-   "shaky_shots": 1,
-   "max_speed": 0.974
-  }
+  "current_attempt": "211df90f-b775-4c60-8bb4-66d1f0a29f63"
  }
 ]

@@ -1,0 +1,167 @@
+{
+ "groups": 53,
+ "all_groups_v2": true,
+ "every_attempt_single_panel": false,
+ "attempts_total": 0,
+ "attempts_without_snapshot": 0,
+ "attempts_failing_checks": [],
+ "strategies": {},
+ "ladder_error_count": 0,
+ "layout_unreadable_by_group": {
+  "1": 32,
+  "2": 48,
+  "3": 52,
+  "4": 19,
+  "5": 36,
+  "6": 53,
+  "7": 50,
+  "8": 54,
+  "9": 52,
+  "10": 52,
+  "11": 52,
+  "12": 53,
+  "13": 51,
+  "14": 53,
+  "15": 49,
+  "16": 43,
+  "17": 52,
+  "18": 51,
+  "19": 52,
+  "20": 51,
+  "21": 52,
+  "22": 52,
+  "23": 53,
+  "24": 52,
+  "25": 45,
+  "26": 18,
+  "27": 51,
+  "28": 51,
+  "29": 49,
+  "30": 50,
+  "31": 45,
+  "32": 52,
+  "33": 50,
+  "34": 52,
+  "35": 50,
+  "36": 32,
+  "37": 51,
+  "38": 7,
+  "39": 53,
+  "40": 52,
+  "41": 46,
+  "42": 42,
+  "43": 49,
+  "44": 34,
+  "45": 12,
+  "46": 24,
+  "47": 42,
+  "48": 51,
+  "49": 19,
+  "50": 48,
+  "51": 50,
+  "52": 48,
+  "53": 48
+ },
+ "empty_cells_by_group": {
+  "1": [
+   {
+    "cell": 3,
+    "mean": 0.5,
+    "dark": true
+   },
+   {
+    "cell": 4,
+    "mean": 0.5,
+    "dark": true
+   }
+  ],
+  "4": [
+   {
+    "cell": 3,
+    "mean": 0.5,
+    "dark": true
+   },
+   {
+    "cell": 4,
+    "mean": 0.5,
+    "dark": true
+   }
+  ],
+  "36": [
+   {
+    "cell": 4,
+    "mean": 0.5,
+    "dark": true
+   }
+  ],
+  "38": [
+   {
+    "cell": 3,
+    "mean": 0.5,
+    "dark": true
+   },
+   {
+    "cell": 4,
+    "mean": 0.5,
+    "dark": true
+   }
+  ],
+  "45": [
+   {
+    "cell": 3,
+    "mean": 0.4,
+    "dark": true
+   },
+   {
+    "cell": 4,
+    "mean": 0.4,
+    "dark": true
+   }
+  ],
+  "46": [
+   {
+    "cell": 3,
+    "mean": 0.4,
+    "dark": true
+   },
+   {
+    "cell": 4,
+    "mean": 0.4,
+    "dark": true
+   }
+  ],
+  "49": [
+   {
+    "cell": 6,
+    "mean": 0.5,
+    "dark": true
+   }
+  ]
+ },
+ "auto": [
+  {
+   "state": "PAUSED",
+   "authorization_round": 7,
+   "reason_code": "storyboard_failed:storyboard_panel_layout_unreadable",
+   "payload": {
+    "phase": "storyboard",
+    "failure_code": "storyboard_panel_layout_unreadable",
+    "paused_at_ms": 1793854519353,
+    "run_paused_ms": 36155134,
+    "run_started_ms": 1793802232017,
+    "group_sequences": [
+     5
+    ],
+    "phase_paused_ms": 2688349,
+    "phase_elapsed_ms": {
+     "narration": 713344,
+     "director_preplan": 2219758,
+     "storyboard_drafts": 19561
+    },
+    "phase_started_ms": 1793838651465,
+    "timing_from_phase": "narration",
+    "director_failed_run_id": "fd7414be-e544-48c3-b31b-41ab46dfe09c"
+   }
+  }
+ ]
+}

@@ -1,25 +1,10 @@
 {
  "groups": 14,
  "all_groups_v2": true,
- "every_attempt_single_panel": false,
+ "every_attempt_single_panel": true,
  "attempts_total": 14,
  "attempts_without_snapshot": 0,
- "attempts_failing_checks": [
-  "aaed1c9a-e2c6-4e81-a859-632a4ec3caa1",
-  "0b53c09d-04b2-4e77-bb0b-37c62b9cdd61",
-  "6ac81422-92fd-4a6c-a44f-afa497a77b1a",
-  "bdc837e0-e5e2-47a5-8379-f5b647c9f160",
-  "bd5ebb34-202c-4b87-9458-84ba4a400a84",
-  "6743a00d-24ba-4935-84f9-450f77d64f9b",
-  "2ee0dfe9-fe43-45d5-bc65-20604022b6cb",
-  "8ed166df-52a9-45b5-9002-c605ad373c88",
-  "e6b7bb08-4caa-4eb3-8f9f-bae8b8e75987",
-  "4499f0aa-acb3-4d61-8542-50ace673aac2",
-  "c8c08e73-e0fe-445e-8bcb-168715a7a270",
-  "c6015418-c131-4cb2-94fd-b7525c17c162",
-  "562b165b-1b48-4b4e-ad0a-532f18ec8217",
-  "211df90f-b775-4c60-8bb4-66d1f0a29f63"
- ],
+ "attempts_failing_checks": [],
  "strategies": {
   "tubeflow_storyboard_v4_single_panel": 14
  },

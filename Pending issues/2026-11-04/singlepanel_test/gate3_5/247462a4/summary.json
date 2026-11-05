@@ -1,0 +1,424 @@
+{
+ "project": {
+  "id": "247462a4-e719-4488-ae14-aab962de1a27",
+  "channel_id": "c77ea4a2-0058-4fab-839b-1b92172f35bd",
+  "visual_style": "暗黑油画插画、明暗对照布光。深海军蓝+琥珀金双色基调。每个场景只有一个暖光源（蜡烛、油灯、月光、调查员在场时=他的提灯）。厚涂油画笔触和画布肌理、大气雾感、画面边缘渐隐入黑暗。神秘、阴郁、调查氛围。POV 场景里的历史人物大多用剪影或半明半暗的脸；常驻调查员=提灯头的 Lumen（见 IP 锁定）。不要写实、不要电影实拍感、不要明亮日光场景、不要现代物件、不要霓虹色。",
+  "locale": "en-US",
+  "aspect_ratio": "16:9",
+  "title": "You're the Explorer Who Found Machu Picchu",
+  "created_at": "2026-11-04 14:23:48.559341+00:00",
+  "production_mode": "AUTO"
+ },
+ "generations": 2566,
+ "layout_versions": {
+  "grid-v2": 2566
+ },
+ "rejected_total": 2385,
+ "shots_of_rejected": {
+  "6": 803,
+  "3": 339,
+  "5": 415,
+  "2": 198,
+  "4": 630
+ },
+ "per_group": {
+  "8013e217-7912-55d9-975c-ff3c16437a91": {
+   "FAILED": 35,
+   "generate image failed": 1,
+   "storyboard_panel_layout_unreadable": 32,
+   "ProviderReconcileUnsupportedError": 2,
+   "SUCCEEDED": 1
+  },
+  "3ae0980d-4747-5a07-b8a0-78926a949d92": {
+   "FAILED": 51,
+   "storyboard_panel_layout_unreadable": 48,
+   "aspect_ratio_not_supported": 1,
+   "remote_state_unknown_exhausted": 1,
+   "provider_quota_exhausted": 1
+  },
+  "e35c61b9-92f4-5abc-9cd4-ce6371726c59": {
+   "FAILED": 55,
+   "storyboard_panel_layout_unreadable": 52,
+   "ProviderReconcileUnsupportedError": 1,
+   "provider_quota_exhausted": 1,
+   "aspect_ratio_not_supported": 1
+  },
+  "2cbed710-adda-5edc-9cad-a906115cb7c9": {
+   "FAILED": 21,
+   "ProviderReconcileUnsupportedError": 1,
+   "generate image failed": 1,
+   "storyboard_panel_layout_unreadable": 19,
+   "SUCCEEDED": 1
+  },
+  "92bc6d73-b23e-5089-bef6-a91220269770": {
+   "FAILED": 54,
+   "We are so sorry, but the prompt may violate our content policies. If you think we got it wrong, please retry or edit your prompt": 9,
+   "storyboard_panel_layout_unreadable": 36,
+   "非常抱歉，该提示可能违反了我们的内容政策。如果你认为此判断有误，请重试或修改提示语。（已退款）": 7,
+   "provider_quota_exhausted": 1,
+   "aspect_ratio_not_supported": 1
+  },
+  "9b6a530a-2a5e-5294-a237-3f145fac74ca": {
+   "FAILED": 55,
+   "storyboard_panel_layout_unreadable": 53,
+   "provider_quota_exhausted": 1,
+   "aspect_ratio_not_supported": 1
+  },
+  "aa2107bb-46d5-5b15-bead-6fa731a388fc": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 50,
+   "generate image failed": 1,
+   "aspect_ratio_not_supported": 2,
+   "provider_quota_exhausted": 1
+  },
+  "2c28a146-0b10-5f82-a2f0-ee976c81bd71": {
+   "FAILED": 55,
+   "storyboard_panel_layout_unreadable": 54,
+   "provider_quota_exhausted": 1
+  },
+  "ac43c4ca-2268-5a91-a67f-1b78b8295d47": {
+   "FAILED": 55,
+   "storyboard_panel_layout_unreadable": 52,
+   "generate image failed": 1,
+   "aspect_ratio_not_supported": 1,
+   "provider_quota_exhausted": 1
+  },
+  "3d5c74d6-6c1d-5cff-aa23-b83db4fbda42": {
+   "FAILED": 55,
+   "storyboard_panel_layout_unreadable": 52,
+   "generate image failed": 1,
+   "ProviderReconcileUnsupportedError": 1,
+   "provider_quota_exhausted": 1
+  },
+  "b9879982-6f40-50a8-a33c-4fe378e6bc03": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 52,
+   "provider_quota_exhausted": 1,
+   "aspect_ratio_not_supported": 1
+  },
+  "35e38aab-6ae4-5d5f-986e-a633ee1e13ae": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 53,
+   "provider_quota_exhausted": 1
+  },
+  "7564ae95-358c-5d73-8e3a-73c381d96efe": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 51,
+   "aspect_ratio_not_supported": 2,
+   "provider_quota_exhausted": 1
+  },
+  "d7fa456e-b7a7-520d-af8b-00ea55e632b3": {
+   "FAILED": 55,
+   "storyboard_panel_layout_unreadable": 53,
+   "aspect_ratio_not_supported": 1,
+   "provider_quota_exhausted": 1
+  },
+  "b4d2c17e-e298-59a5-9071-7f06621a791a": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 49,
+   "aspect_ratio_not_supported": 4,
+   "provider_quota_exhausted": 1
+  },
+  "8db80fff-94e4-5fc8-8c64-b2c355060bfa": {
+   "FAILED": 46,
+   "storyboard_panel_layout_unreadable": 43,
+   "aspect_ratio_not_supported": 1,
+   "provider_quota_exhausted": 1,
+   "generate image failed": 1,
+   "SUCCEEDED": 1
+  },
+  "2239f0c3-6225-5085-b7a3-2e8ee7219c54": {
+   "FAILED": 55,
+   "storyboard_panel_layout_unreadable": 52,
+   "get image url failed": 1,
+   "aspect_ratio_not_supported": 1,
+   "provider_quota_exhausted": 1
+  },
+  "f4c1317e-5300-59bc-9e65-dd50c455a364": {
+   "FAILED": 53,
+   "storyboard_panel_layout_unreadable": 51,
+   "provider_quota_exhausted": 1,
+   "aspect_ratio_not_supported": 1
+  },
+  "c568013a-9896-50fe-be56-fe991e2d20c9": {
+   "FAILED": 55,
+   "storyboard_panel_layout_unreadable": 52,
+   "aspect_ratio_not_supported": 2,
+   "provider_quota_exhausted": 1
+  },
+  "c22c218a-405c-5e2c-a5f1-4ca43179167d": {
+   "FAILED": 55,
+   "storyboard_panel_layout_unreadable": 51,
+   "generate image failed": 2,
+   "provider_quota_exhausted": 1,
+   "aspect_ratio_not_supported": 1
+  },
+  "eaee1818-9561-5475-ac35-e2c97dbe1140": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 52,
+   "provider_quota_exhausted": 1,
+   "generate image failed": 1
+  },
+  "313b41c6-5e7f-5417-bc9d-f059289405d3": {
+   "FAILED": 55,
+   "storyboard_panel_layout_unreadable": 52,
+   "aspect_ratio_not_supported": 2,
+   "provider_quota_exhausted": 1
+  },
+  "68597f2a-1dee-5742-82c8-40678bced3f4": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 53,
+   "provider_quota_exhausted": 1
+  },
+  "df46ebbf-2166-514b-baaa-792940b7f78a": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 52,
+   "aspect_ratio_not_supported": 1,
+   "provider_quota_exhausted": 1
+  },
+  "1a04e778-1132-5e9f-9bbd-c502d22124b1": {
+   "FAILED": 51,
+   "storyboard_panel_layout_unreadable": 45,
+   "get image url failed": 1,
+   "ProviderReconcileUnsupportedError": 1,
+   "aspect_ratio_not_supported": 2,
+   "provider_quota_exhausted": 1,
+   "generate image failed": 1
+  },
+  "3b21b8ef-5898-5b10-96d9-09275f09d052": {
+   "FAILED": 20,
+   "storyboard_panel_layout_unreadable": 18,
+   "generate image failed": 2,
+   "SUCCEEDED": 1
+  },
+  "a9bfded0-3edd-5c51-ae4b-2ca29addfa78": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 51,
+   "aspect_ratio_not_supported": 1,
+   "ProviderReconcileUnsupportedError": 1,
+   "provider_quota_exhausted": 1
+  },
+  "4cfe4d51-a599-5ef9-8973-6615b30fd9ae": {
+   "FAILED": 53,
+   "storyboard_panel_layout_unreadable": 51,
+   "provider_quota_exhausted": 1,
+   "aspect_ratio_not_supported": 1
+  },
+  "de049f21-95c5-5456-8b4f-48f0a4897176": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 49,
+   "aspect_ratio_not_supported": 3,
+   "generate image failed": 1,
+   "provider_quota_exhausted": 1
+  },
+  "36f4540b-962b-5298-8a4c-656a2c0d4671": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 50,
+   "generate image failed": 1,
+   "aspect_ratio_not_supported": 2,
+   "provider_quota_exhausted": 1
+  },
+  "b95676db-18dd-5701-b809-3db03e2f042c": {
+   "FAILED": 47,
+   "storyboard_panel_layout_unreadable": 45,
+   "generate image failed": 1,
+   "provider_quota_exhausted": 1,
+   "SUCCEEDED": 1
+  },
+  "3b2b6221-e8bd-5ea3-abe0-9554960c15ff": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 52,
+   "aspect_ratio_not_supported": 1,
+   "provider_quota_exhausted": 1
+  },
+  "ce321800-128a-594b-8032-f6dc75688d15": {
+   "FAILED": 54,
+   "aspect_ratio_not_supported": 2,
+   "storyboard_panel_layout_unreadable": 50,
+   "generate image failed": 1,
+   "provider_quota_exhausted": 1
+  },
+  "8cd802c5-fb7c-59f9-9134-8da8c3c840d9": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 52,
+   "aspect_ratio_not_supported": 1,
+   "provider_quota_exhausted": 1
+  },
+  "e579d8b4-e3f4-5521-a3b6-d286d1e68576": {
+   "FAILED": 52,
+   "storyboard_panel_layout_unreadable": 50,
+   "get image url failed": 1,
+   "provider_quota_exhausted": 1
+  },
+  "627ad0a7-d9a2-55ed-b7de-f14c75ea4421": {
+   "FAILED": 34,
+   "storyboard_panel_layout_unreadable": 32,
+   "aspect_ratio_not_supported": 2,
+   "SUCCEEDED": 1
+  },
+  "5e33eea2-bb14-5949-b1ba-5fd50abf772f": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 51,
+   "aspect_ratio_not_supported": 1,
+   "ProviderReconcileUnsupportedError": 1,
+   "provider_quota_exhausted": 1
+  },
+  "25950c2f-e5a6-589c-a7ce-d9c5ec9cf380": {
+   "FAILED": 7,
+   "storyboard_panel_layout_unreadable": 7,
+   "SUCCEEDED": 1
+  },
+  "c5ac3bdd-dcc5-5888-a666-c6b6287fef5b": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 53,
+   "provider_quota_exhausted": 1
+  },
+  "45e8d674-8347-5513-8699-9f1771591f73": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 52,
+   "generate image failed": 1,
+   "provider_quota_exhausted": 1
+  },
+  "dfbb1436-5ab8-5e92-98f0-41d607ec2ad7": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 46,
+   "aspect_ratio_not_supported": 6,
+   "generate image failed": 1,
+   "provider_quota_exhausted": 1
+  },
+  "6aa58bcf-2f23-5611-a881-d87bab5a98c8": {
+   "FAILED": 45,
+   "storyboard_panel_layout_unreadable": 42,
+   "get image url failed": 1,
+   "aspect_ratio_not_supported": 1,
+   "provider_quota_exhausted": 1,
+   "SUCCEEDED": 1
+  },
+  "29d46aba-1051-5115-afc4-ad7ce1fb7c5b": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 49,
+   "aspect_ratio_not_supported": 2,
+   "generate image failed": 1,
+   "ProviderReconcileUnsupportedError": 1,
+   "provider_quota_exhausted": 1
+  },
+  "9e9885d5-4707-54a5-a818-e9b0b0736f43": {
+   "FAILED": 35,
+   "storyboard_panel_layout_unreadable": 34,
+   "aspect_ratio_not_supported": 1,
+   "SUCCEEDED": 1
+  },
+  "2947ac92-69c9-5b7b-ba3a-2b384271aafc": {
+   "FAILED": 13,
+   "storyboard_panel_layout_unreadable": 12,
+   "aspect_ratio_not_supported": 1,
+   "SUCCEEDED": 1
+  },
+  "f6394647-1f39-565c-b8ff-a81d3565b79d": {
+   "FAILED": 27,
+   "aspect_ratio_not_supported": 1,
+   "generate image failed": 2,
+   "storyboard_panel_layout_unreadable": 24,
+   "SUCCEEDED": 1
+  },
+  "88e0c7a8-caac-5502-93ba-5cd3bee67974": {
+   "FAILED": 46,
+   "storyboard_panel_layout_unreadable": 42,
+   "generate image failed": 2,
+   "ProviderReconcileUnsupportedError": 1,
+   "provider_quota_exhausted": 1,
+   "SUCCEEDED": 1
+  },
+  "6d1cd238-e3d1-5a82-bc92-7cbff2a56dcf": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 51,
+   "aspect_ratio_not_supported": 2,
+   "provider_quota_exhausted": 1
+  },
+  "60d28b06-f995-55cf-86d3-8c70e770ff49": {
+   "FAILED": 19,
+   "storyboard_panel_layout_unreadable": 19,
+   "SUCCEEDED": 1
+  },
+  "3bcbe864-e8c9-5a94-9b67-bbce6aa1de04": {
+   "FAILED": 53,
+   "storyboard_panel_layout_unreadable": 48,
+   "aspect_ratio_not_supported": 4,
+   "provider_quota_exhausted": 1
+  },
+  "4bffd61a-4ade-5ef3-b9e9-bee8e0e16b7b": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 50,
+   "aspect_ratio_not_supported": 2,
+   "provider_quota_exhausted": 1,
+   "get image url failed": 1
+  },
+  "e459d954-a01c-55dc-9455-573d558382d8": {
+   "FAILED": 54,
+   "storyboard_panel_layout_unreadable": 48,
+   "aspect_ratio_not_supported": 4,
+   "generate image failed": 1,
+   "provider_quota_exhausted": 1
+  },
+  "d992ea8c-2b1a-571f-b615-e281c3af8500": {
+   "FAILED": 53,
+   "storyboard_panel_layout_unreadable": 48,
+   "aspect_ratio_not_supported": 4,
+   "provider_quota_exhausted": 1
+  }
+ },
+ "checkpoint_sample": [
+  {
+   "download_token": "https://tos-hk.lingkeai.vip/uploads/2026.11/05/20261105125915_18e50d65708670e85129.jpg",
+   "expected_sha256": "520bce426be57996ad3d827a47fbc9d3bf84c9d87fd63579ca7b302b23d0a1a3",
+   "downloaded_sha256": null,
+   "downloaded_size": null,
+   "qc_width": null,
+   "qc_height": null,
+   "qc_mime": null,
+   "object_asset": null,
+   "failure_stage": "download_or_qc",
+   "failure_code": "storyboard_panel_layout_unreadable",
+   "submission_receipt": "{\"code\": 200, \"data\": {\"task_id\": 205310989, \"task_ids\": [205310989], \"任务ids\": [205310989], \"对话组ID\": \"group_9926940_1793854704634843721_4e757a00\", \"成功数量\": 1}, \"msg\": \"任务创建成功\"}",
+   "recovery_failure_count": 0,
+   "unknown_origin_stage": null,
+   "unknown_origin_code": null
+  },
+  {
+   "download_token": "https://tos-hk.lingkeai.vip/uploads/2026.11/05/20261105130023_18e50d7517bd27f3c979.jpg",
+   "expected_sha256": "9ba03ab153fe2feed56c0645683dbdc6399f1e1023c2d5a099b71f11ee4ddebe",
+   "downloaded_sha256": null,
+   "downloaded_size": null,
+   "qc_width": null,
+   "qc_height": null,
+   "qc_mime": null,
+   "object_asset": null,
+   "failure_stage": "download_or_qc",
+   "failure_code": "storyboard_panel_layout_unreadable",
+   "submission_receipt": "{\"code\": 200, \"data\": {\"task_id\": 205311154, \"task_ids\": [205311154], \"任务ids\": [205311154], \"对话组ID\": \"group_9926940_1793854711158204012_57facf52\", \"成功数量\": 1}, \"msg\": \"任务创建成功\"}",
+   "recovery_failure_count": 0,
+   "unknown_origin_stage": null,
+   "unknown_origin_code": null
+  },
+  {
+   "download_token": "https://tos-hk.lingkeai.vip/uploads/2026.11/05/20261105125931_18e50d692f62b8feced3.jpg",
+   "expected_sha256": "3818ea6baddb19b0a657b55129394edae7a9dc083152a8055549b07c5756273e",
+   "downloaded_sha256": null,
+   "downloaded_size": null,
+   "qc_width": null,
+   "qc_height": null,
+   "qc_mime": null,
+   "object_asset": null,
+   "failure_stage": "download_or_qc",
+   "failure_code": "storyboard_panel_layout_unreadable",
+   "submission_receipt": "{\"code\": 200, \"data\": {\"task_id\": 205311288, \"task_ids\": [205311288], \"任务ids\": [205311288], \"对话组ID\": \"group_9926940_1793854717358673777_bc78f473\", \"成功数量\": 1}, \"msg\": \"任务创建成功\"}",
+   "recovery_failure_count": 0,
+   "unknown_origin_stage": null,
+   "unknown_origin_code": null
+  }
+ ],
+ "traced": 24,
+ "trace_status": {
+  "failed": 24
+ }
+}
