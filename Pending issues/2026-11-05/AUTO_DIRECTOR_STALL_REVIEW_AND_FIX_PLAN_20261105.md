@@ -2,7 +2,7 @@
 
 | 项 | 内容 |
 | --- | --- |
-| 性质 | 只读复核：没有改代码、数据、容器或配置，没有调用任何 Provider。方案**待用户决定**，未实施。 |
+| 性质 | 只读复核：没有改代码、数据、容器或配置，没有调用任何 Provider。**2026-11-05 用户对第 5–7 节的推荐回复「全部按推荐执行」**，记入 USER_DECISIONS §50；实现见分支 `fix/director-stall-20261105`（末次合并按推荐采用配方 ②「保留前镜」，并限 AUTO 项目）。 |
 | 代码基线 | `main@746d6bc`。文中行号都指这个提交。 |
 | 一手材料 | `AUTO_DIRECTOR_STALL_MONITOR_20261105.md`（下称「监控文档」）；`evidence/auto_director_stall_monitor/` 下的 `incidents/E01–E03`、`resumes/E02–E03`、`timeline.csv`；`docs/DEPLOYMENT.md` §40 |
 | 项目 | SOIL `7cf2e79d-…`、CELESTE `f881122d-…`、MEDIEVAL `ff67c5e9-…` |

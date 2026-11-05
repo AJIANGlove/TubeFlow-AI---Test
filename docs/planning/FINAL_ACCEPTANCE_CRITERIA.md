@@ -620,7 +620,7 @@
 - [x] 第 1 关：对 d5c1a12 之后全部无角标故事板原始字节做 `crop-grid-v2` 离线演练，通过率 ≥90%。（2026-11-04 首轮 78.835% 未通过，口径与算法按 USER_DECISIONS §47 修订后重跑，见 §43；重跑 539/548 = 98.3577% 通过。）
 - [x] 第 2 关：开关关闭部署后，既有项目无新故事板/视频生成，抽查一组 v1 故事板提示词哈希不变。（2026-11-04 17:45:08–17:45:40 部署 `sha256:238bd9ea…`（`crop-grid-v2-rev-20261104`），`TUBEFLOW_STORYBOARD_SINGLE_PANEL_NEW_PROJECTS=false`；观察 30 分钟：`grid_layout_version` 键 0 条、新增故事板 0 条，4348 组中 4129 个已有当前成片的组无一条新尝试；未新增故事板行，故 v1 提示词逐字不变，抽查 `146ae08c` 版本 1 两条 `prompt` md5 `c9893523…`、`b0167115…` 记录在 `Pending issues/2026-11-04/singlepanel_test/gate2_rerun/`。）
 - [x] 第 3–4 关：开关开启的新测试项目（复用 fa3a0b30 文案、标题与角色）全部组为 v2；每次视频请求无 STORYBOARD 角色、每镜一个 SHOT_PANEL；策略为 `tubeflow_storyboard_v4_single_panel`；记录各组 `storyboard_panel_layout_unreadable` 次数与留黑格状态。（2026-11-05 项目 `72a22f0a` 用修正后的收集脚本重跑（`request_json` 无 `references` 键时回退 `input_snapshot_json.logical_request.references`，`reference_source=logical_request`）：`all_groups_v2` true、`every_attempt_single_panel` **true**、`attempts_failing_checks` 空、`strategies` 只含 `tubeflow_storyboard_v4_single_panel`（14）、`ladder_error_count` 0；14 组全部 `grid-v2`（2x2），2 镜 ×5、3 镜 ×8、4 镜 ×1；各组 `storyboard_panel_layout_unreadable` 均为 0（唯一失败为第 7 组 `aspect_ratio_not_supported` 后重试成功）；17 个留黑格全部 `dark=true`（均值 0.1–0.2）；`2c291aba` 同口径重跑亦为 true（107 组）。证据 `Pending issues/2026-11-04/singlepanel_test/gate3_5/`。）
-- [x] 第 5 关：1 fps 全组复核，分屏/网格帧 0 组；同一人物同框少于 fa3a0b30（2 组）；有角色的组身份全部正确；HF 抖动逐组记录；梯子替代尝试无 `single_panel_automatic_resubmit_not_supported`。（2026-11-05 第二轮项目 `484746c4`（含 §46 第 11 条）：分屏 0 组；同框重复 1 组（第 2 组第 1 镜，故事板该格把两个时刻画进同一格），少于 2 组；身份一致；全片 HF 0.274，逐组已记录；梯子错误 0，按书面判据通过。首轮的对比镜头本轮未再出现，修复对该类镜头的效果未被直接验证；第 2 组双人与第 13 组图形格说明 §46 第 11 条尚未完全生效，见 `Pending issues/2026-11-04/singlepanel_test/gate3_5_r2/GATE5_VISUAL_REVIEW.md`。首轮项目 `72a22f0a` 目视复核：分屏 **1 组**，第 9 组第 3 镜，故事板该格本身画成左右对比构图，未满足；同框重复 0 组（fa3a0b30 为 2 组）；身份一致；全片 HF 0.219（fa3a0b30 为 0.275）；梯子错误 0。见 `Pending issues/2026-11-04/singlepanel_test/gate3_5/GATE5_VISUAL_REVIEW.md`。）
+- [x] 第 5 关：1 fps 全组复核，分屏/网格帧 0 组；同一人物同框少于 fa3a0b30（2 组）；有角色的组身份全部正确；HF 抖动逐组记录；梯子替代尝试无 `single_panel_automatic_resubmit_not_supported`。（2026-11-05 第二轮项目 `484746c4`（含 §46 第 11 条）：分屏 0 组；同框重复 1 组（第 2 组第 1 镜，故事板该格把两个时刻画进同一格），少于 2 组；身份一致；全片 HF 0.274，逐组已记录；梯子错误 0，按书面判据通过。首轮的对比镜头本轮未再出现，修复对该类镜头的效果未被直接验证；第 2 组双人与第 13 组图形格说明 §46 第 11 条尚未完全生效，见 `Pending issues/2026-11-04/singlepanel_test/gate3_5_r2/GATE5_VISUAL_REVIEW.md`。首轮项目 `72a22f0a` 目视复核：分屏 **1 组**，第 9 组第 3 镜，故事板该格本身画成左右对比构图，未满足；同框重复 0 组（fa3a0b30 为 2 组）；身份一致；全片 HF 0.219（fa3a0b30 为 0.275）；梯子错误 0。见 `Pending issues/2026-11-04/singlepanel_test/gate3_5/GATE5_VISUAL_REVIEW.md`。2026-11-05 加注（USER_DECISIONS §51）：勾选后经逐帧分析发现 `484746c4` 第 1、9 组抖动（主体隔帧停顿、机位突跳、静止微颤），书面判据不含抖动，勾选保留，抖动单独跟踪，见 `Pending issues/2026-11-05/JITTER_484746C4_20261105/README.md`。）
 - [ ] PostgreSQL 集成测试、ruff、mypy 全量通过（实施方执行）。
 
 ## 43. 2026-11-04 crop-grid-v2 修订验收（USER_DECISIONS §47）
@@ -643,3 +643,13 @@
 - [x] PostgreSQL 集成测试（含迁移 `0047` 升级/降级）、ruff、mypy 相对 main 无新增（实施方执行）。（2026-11-05 分支 `c40b196` 对 main `66f7609`：集成两侧 19 failed 逐条相同、跳过 7 条原因相同，通过 121 对 120（分支该文件为旧副本，合并后取 main 版本 `e8eb749e…`）；ruff 15 条、mypy 12 errors / 7 files 两侧相同，按行号归一化后逐行一致。迁移在隔离 PG 上 `0046 → 0047 → 0046 → 0047` 往返通过，列 `json` / `NOT NULL` / 默认 `'[]'::json`，迁移前写入的行读出 `[]`，降级不丢行，`alembic heads` 单头。证据 `Pending issues/2026-11-05/RECUT_CALIBRATION/`、`docs/DEPLOYMENT.md` §40。）
 - [x] 离线标定：已部署镜像上对全部成功的 v2 故事板计算同组不同镜头格子距离分布与最近样例（`Pending issues/2026-11-05/RECUT_CALIBRATION/recut_calibration.py`，只读），结果交用户看图（实施方执行）。（2026-11-05 镜像 `sha256:fa167f1b…`，342/343 张量到（6 项目），裁切失败 0；同组不同镜头 2877 对 p0 0.1240 / p1 0.3536 / p5 0.5647 / p25 0.8138 / p50 0.94；同构图相邻 2 对 0.6947 与 0.9411，同构图非相邻 0 对。结果与样图 `Pending issues/2026-11-05/RECUT_CALIBRATION/results/`，阈值未选。）
 - [ ] 阈值经用户看图确认后才开启开关（未验证）。
+
+## 45. 2026-11-05 前置导演停滞治理验收（USER_DECISIONS §50）
+
+- [x] 本地：AUTO 单元第 3 次仍只因相邻多样性被拒 → 按 `adjacent-diversity-merge-v1` 合并（保留前镜、句子链接并集、序号重排、级联至全部合格或 1 镜），运行成功，审计写入单元诊断；MANUAL 同输入仍 FAILED；第 2 次按反馈改好的不合并；末次被拒且来源凭据无效时不合并（单元测试）。
+- [x] 本地：第 2 次重试提示含被拒相邻对序号与四轴变化，第 3 次为合并指令；诊断缺失时回退通用文本；持久化提示词不含附加文本（单元测试）。
+- [x] 本地：导演调用日志含耗时与结果、拒收日志含失败码与诊断、不含正文；句子覆盖拒收诊断含缺失位置（单元测试）。
+- [x] 本地：并发认领落败后改取下一个单元并执行（单元测试）。
+- [ ] PostgreSQL 集成测试、`test_project_director_workflow.py`（本机缺 pytest-asyncio 未运行）、ruff、mypy 相对 main 无新增（实施方执行）。
+- [ ] 部署机补采：失败单元全量位置与诊断、`8697ee51` 单元明细、已通过相邻对的四轴变化分布、第 40 单元文案、Temporal 活动耗时与超时、worker 线程池告警（只读，实施方执行）。
+- [ ] 上线后首个出现合并的运行：合并次数、每单元镜头数变化、受影响组故事板按 §46.11 目视抽查（未验证）。
