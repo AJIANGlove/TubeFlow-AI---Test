@@ -49,7 +49,7 @@
 - **`.env` 未改**：部署前后 md5 均为 `a02afdc2583a2d4bbde6b2ac7d65f896`。
 - 改钉前 `Settings()` 预校验（`docker compose run --rm --no-deps -T web python -c ...`）：`single_panel_new_projects True`、`recut True`、`recut_min_distance 0.1`、`video_prompt_strategy tubeflow_storyboard_v4_natural_motion`、`h3_configured True`。
 - 部署：`docker compose up -d --no-build`，**T_dep 2026-11-06T03:19:25Z – 03:19:38Z**；`migrate` 退出码 0；`alembic_version` = `0047`（未变）。
-- **注意（现场偏差）**：web 容器实际名为 `tubeflowai-test-web-1`，不是 compose 默认的 `<project>-web-1`。compose 依 `com.docker.compose.project` + `service=web` 标签识别并**原地重建**了它（日志 `Container tubeflowai-test-web-1 Recreated/Started`），名称保留，8000 端口无冲突、无重复容器。为统一命名而执行的 `docker rename` 被 daemon 拒绝（`Renaming a container with the same name as its current name`），未产生任何变更。
+- **更正（2026-11-06 复核）**：原记录此处称 web 容器名不是 compose 默认名，该说法有误——该名就是 `<project>-<service>-1` 形式的 compose 默认名（同时也没有保存当时的 `docker ps -a` 原始输出）。该条已删除；2026-11-06 的部署已把前后两份 `docker ps -a` 存入 `Pending issues/2026-11-06/evidence/motion_metrics/deploy/`。
 
 ## 5. 部署后校验
 

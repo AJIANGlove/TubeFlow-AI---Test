@@ -1,0 +1,126 @@
+........F.........F.F.........................sF....ss...ss............. [ 48%]
+.................FFFFFFF.FFF...F.s..............FFF..................... [ 97%]
+..Fs                                                                     [100%]
+================================== FAILURES ===================================
+E   AssertionError: assert '0047' == '0039'
+      
+      - 0039
+      + 0047
+D:\AAA-project\wt-pr15-main\backend\tests\integration\test_cloned_voices_postgres.py:245: AssertionError: assert '0047' == '0039'
+E   AssertionError: assert '0047' == '0039'
+      
+      - 0039
+      + 0047
+D:\AAA-project\wt-pr15-main\backend\tests\integration\test_elevenlabs_pool_postgres.py:56: AssertionError: assert '0047' == '0039'
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+<frozen os>:714: KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+E   AssertionError: assert [(409, 'admin...initialized')] == [(201, None),...initialized')]
+      
+      At index 0 diff: (409, 'admin_already_initialized') != (201, None)
+      Use -v to get more diff
+D:\AAA-project\wt-pr15-main\backend\tests\integration\test_identity_project_postgres.py:64: AssertionError: assert [(409, 'admin...initialized')] == [(201, None),...initialized')]
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+<frozen os>:714: KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+<frozen os>:714: KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+<frozen os>:714: KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+<frozen os>:714: KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+<frozen os>:714: KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+<frozen os>:714: KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+<frozen os>:714: KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+<frozen os>:714: KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+<frozen os>:714: KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+<frozen os>:714: KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+E   KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+<frozen os>:714: KeyError: 'TUBEFLOW_TEST_MINIO_ENDPOINT'
+E   assert 1 == 2
+D:\AAA-project\wt-pr15-main\backend\tests\integration\test_staged_upload_protocol.py:143: assert 1 == 2
+E   assert None is not None
+D:\AAA-project\wt-pr15-main\backend\tests\integration\test_staged_upload_protocol.py:187: assert None is not None
+E   assert (None is not None)
+D:\AAA-project\wt-pr15-main\backend\tests\integration\test_staged_upload_protocol.py:217: assert (None is not None)
+E   tubeflow_test.video_generation.domain.VideoCapacityUnavailable: no compatible H3 node has capacity
+------------------------------ Captured log call ------------------------------
+WARNING  tubeflow_test.video_generation.sqlalchemy_repository:sqlalchemy_repository.py:1166 no compatible H3 node has capacity; enabled node snapshot (node_id, health, claimed, capacity, stalled): [('pg-node', 'READY', 1, 1, 0)]
+D:\AAA-project\wt-pr15-main\backend\src\tubeflow_test\video_generation\sqlalchemy_repository.py:855: tubeflow_test.video_generation.domain.VideoCapacityUnavailable: no compatible H3 node has capacity
+============================== warnings summary ===============================
+src\tubeflow_test\adapters\audio_qc.py:3
+  D:\AAA-project\wt-pr15-main\backend\src\tubeflow_test\adapters\audio_qc.py:3: DeprecationWarning: 'audioop' is deprecated and slated for removal in Python 3.13
+    import audioop
+
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/integration/test_alembic_url_precedence.py: 3 warnings
+tests/integration/test_channel_deletion_postgres.py: 5 warnings
+tests/integration/test_cloned_voices_postgres.py: 3 warnings
+tests/integration/test_composition_authority_postgres.py: 3 warnings
+tests/integration/test_cover_image_upload_postgres.py: 4 warnings
+tests/integration/test_cover_templates_postgres.py: 2 warnings
+tests/integration/test_elevenlabs_pool_postgres.py: 2 warnings
+tests/integration/test_h3_archive_postgres_minio.py: 1 warning
+tests/integration/test_h3_manual_media_lock.py: 1 warning
+tests/integration/test_h3_node_startup_postgres.py: 1 warning
+tests/integration/test_h3_outbox_migration_postgres.py: 4 warnings
+tests/integration/test_h3_project_routing_postgres.py: 3 warnings
+tests/integration/test_h3_reference_policy_migration.py: 11 warnings
+tests/integration/test_h3_storyboard_binding.py: 14 warnings
+tests/integration/test_identity_project_postgres.py: 1 warning
+tests/integration/test_media_content_postgres.py: 4 warnings
+tests/integration/test_narration_recovery_queue.py: 3 warnings
+tests/integration/test_postgres_media_cas.py: 2 warnings
+tests/integration/test_project_director_claim_project_gate.py: 2 warnings
+tests/integration/test_project_director_confirmation_atomic.py: 4 warnings
+tests/integration/test_project_director_current_materialization.py: 2 warnings
+tests/integration/test_project_director_manual_recovery_postgres.py: 11 warnings
+tests/integration/test_project_director_recovery_postgres.py: 2 warnings
+tests/integration/test_project_director_v4_migration.py: 3 warnings
+tests/integration/test_project_publication_postgres.py: 1 warning
+tests/integration/test_project_purge_scope_migration.py: 6 warnings
+tests/integration/test_project_purge_shared_assets.py: 17 warnings
+tests/integration/test_provider_audit_postgres.py: 1 warning
+tests/integration/test_shot_panel_assets_postgres.py: 5 warnings
+tests/integration/test_single_panel_fake_engine_postgres.py: 2 warnings
+tests/integration/test_single_panel_opt_in_postgres.py: 6 warnings
+tests/integration/test_staged_cleanup_migration.py: 4 warnings
+tests/integration/test_staged_upload_protocol.py: 13 warnings
+tests/integration/test_storyboard_director_lineage_edit.py: 5 warnings
+tests/integration/test_storyboard_failover_migration.py: 3 warnings
+tests/integration/test_storyboard_failover_postgres_atomic.py: 2 warnings
+tests/integration/test_storyboard_postgres_authority.py: 1 warning
+tests/integration/test_video_descriptions_postgres.py: 4 warnings
+tests/integration/test_video_postgres.py: 1 warning
+  C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\alembic\config.py:604: DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces, commas, and colons for prepend_sys_path.  Consider adding path_separator=os to Alembic config.
+    util.warn_deprecated(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/integration/test_cloned_voices_postgres.py::test_elevenlabs_project_and_snapshot_facts_round_trip
+FAILED tests/integration/test_elevenlabs_pool_postgres.py::test_elevenlabs_pool_schema_matches_models_and_downgrade_drops_tables
+FAILED tests/integration/test_h3_archive_postgres_minio.py::test_h3_archive_concurrency_and_purge_interlock
+FAILED tests/integration/test_identity_project_postgres.py::test_real_postgres_schema_round_trip_and_atomic_initialization
+FAILED tests/integration/test_project_purge_shared_assets.py::test_concurrent_project_purges_elect_one_shared_object_deleter
+FAILED tests/integration/test_project_purge_shared_assets.py::test_non_project_shared_survivor_remains_unchanged_when_one_project_is_deleted[OWNER]
+FAILED tests/integration/test_project_purge_shared_assets.py::test_non_project_shared_survivor_remains_unchanged_when_one_project_is_deleted[GLOBAL]
+FAILED tests/integration/test_project_purge_shared_assets.py::test_global_shared_survivor_is_rechecked_and_preserved_after_retry
+FAILED tests/integration/test_project_purge_shared_assets.py::test_concurrent_global_shared_purges_preserve_external_survivor_idempotently
+FAILED tests/integration/test_project_purge_shared_assets.py::test_replace_media_then_peer_begin_project_lock_order_does_not_deadlock
+FAILED tests/integration/test_project_purge_shared_assets.py::test_last_reference_disappears_after_skipped_save_and_is_re_elected_for_delete
+FAILED tests/integration/test_project_purge_shared_assets.py::test_missing_direct_object_is_an_idempotent_purge_success
+FAILED tests/integration/test_project_purge_shared_assets.py::test_purge_anonymizes_every_project_staged_state_and_cleans_late_put
+FAILED tests/integration/test_project_purge_shared_assets.py::test_expired_purge_claim_is_fenced_before_old_worker_deletes
+FAILED tests/integration/test_project_purge_shared_assets.py::test_lease_expiry_during_delete_fences_results_but_not_issued_idempotent_io
+FAILED tests/integration/test_staged_upload_protocol.py::test_postgres_advisory_claim_lock_prevents_same_generation_phantoms
+FAILED tests/integration/test_staged_upload_protocol.py::test_fixed_catalog_writer_can_resume_matching_unattached_stage
+FAILED tests/integration/test_staged_upload_protocol.py::test_identity_claim_handle_blocks_aba_and_refreshes_reopened_generation
+FAILED tests/integration/test_video_postgres.py::test_postgres_round_trip_revision_cas_and_atomic_capacity
+19 failed, 122 passed, 7 skipped, 164 warnings in 264.48s (0:04:24)

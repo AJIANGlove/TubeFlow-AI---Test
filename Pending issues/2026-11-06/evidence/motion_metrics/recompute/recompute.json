@@ -1,0 +1,218 @@
+{
+ "meta": {
+  "attempt_id": "7460885c-3aab-4e0e-ae73-e9c3fba5413b",
+  "bucket": "tubeflow-private",
+  "object_key": "08b8b453ff8eb7278de00bdceeb4e846c09e2557b300dec817129cfd9fdb45ea",
+  "mp4_bytes": 3937767,
+  "mp4_sha256": "aad949ca5ac4f7fcc3fcb2092909d0aee987b60c008b9455043b65dad70d321c",
+  "db_output_sha256": "aad949ca5ac4f7fcc3fcb2092909d0aee987b60c008b9455043b65dad70d321c",
+  "db_output_size_bytes": 3937767,
+  "stage": "ARCHIVED",
+  "probe_evidence_motion_metrics": null
+ },
+ "signals": {
+  "diffs": 327,
+  "shifts": 327
+ },
+ "timing": {
+  "extract_seconds": 1.512,
+  "metrics_seconds": 0.001
+ },
+ "evidence": {
+  "algorithm": "motion-cadence-v1",
+  "status": "ok",
+  "frames": 328,
+  "cuts": 2,
+  "moving_windows": 45,
+  "held_windows": 22,
+  "held_share": 0.49,
+  "hf": 0.874,
+  "jitter_shots": 2,
+  "shots": [
+   {
+    "t0": 0.0,
+    "t1": 3.83,
+    "moving_windows": 14,
+    "held_windows": 1,
+    "held_share": 0.07,
+    "hf": 1.578
+   },
+   {
+    "t0": 3.83,
+    "t1": 8.0,
+    "moving_windows": 15,
+    "held_windows": 15,
+    "held_share": 1.0,
+    "hf": 0.424
+   },
+   {
+    "t0": 8.0,
+    "t1": 13.67,
+    "moving_windows": 17,
+    "held_windows": 7,
+    "held_share": 0.41,
+    "hf": 0.167
+   }
+  ],
+  "reference": {
+   "held_notable": 0.2,
+   "jitter_shot_hf": 0.25
+  }
+ },
+ "comparison": {
+  "rows": [
+   {
+    "field": "frames",
+    "recomputed": 328,
+    "measure_json": 328,
+    "ok": true
+   },
+   {
+    "field": "cuts",
+    "recomputed": 2,
+    "measure_json": 2,
+    "ok": true
+   },
+   {
+    "field": "moving_windows",
+    "recomputed": 45,
+    "measure_json": 45,
+    "ok": true
+   },
+   {
+    "field": "held_windows",
+    "recomputed": 22,
+    "measure_json": 22,
+    "ok": true
+   },
+   {
+    "field": "held_share",
+    "recomputed": 0.49,
+    "measure_json": 0.49,
+    "ok": true
+   },
+   {
+    "field": "jitter_shots",
+    "recomputed": 2,
+    "measure_json": 2,
+    "ok": true
+   },
+   {
+    "field": "hf(whole)",
+    "recomputed": 0.874,
+    "measure_json": 0.874,
+    "ok": true
+   },
+   {
+    "field": "shot1.t0",
+    "recomputed": 0.0,
+    "measure_json": 0.0,
+    "ok": true
+   },
+   {
+    "field": "shot1.t1",
+    "recomputed": 3.83,
+    "measure_json": 3.83,
+    "ok": true
+   },
+   {
+    "field": "shot1.moving_windows",
+    "recomputed": 14,
+    "measure_json": 14,
+    "ok": true
+   },
+   {
+    "field": "shot1.held_windows",
+    "recomputed": 1,
+    "measure_json": 1,
+    "ok": true
+   },
+   {
+    "field": "shot1.held_share",
+    "recomputed": 0.07,
+    "measure_json": 0.07,
+    "ok": true
+   },
+   {
+    "field": "shot1.hf",
+    "recomputed": 1.578,
+    "measure_json": 1.578,
+    "ok": true
+   },
+   {
+    "field": "shot2.t0",
+    "recomputed": 3.83,
+    "measure_json": 3.83,
+    "ok": true
+   },
+   {
+    "field": "shot2.t1",
+    "recomputed": 8.0,
+    "measure_json": 8.0,
+    "ok": true
+   },
+   {
+    "field": "shot2.moving_windows",
+    "recomputed": 15,
+    "measure_json": 15,
+    "ok": true
+   },
+   {
+    "field": "shot2.held_windows",
+    "recomputed": 15,
+    "measure_json": 15,
+    "ok": true
+   },
+   {
+    "field": "shot2.held_share",
+    "recomputed": 1.0,
+    "measure_json": 1.0,
+    "ok": true
+   },
+   {
+    "field": "shot2.hf",
+    "recomputed": 0.424,
+    "measure_json": 0.424,
+    "ok": true
+   },
+   {
+    "field": "shot3.t0",
+    "recomputed": 8.0,
+    "measure_json": 8.0,
+    "ok": true
+   },
+   {
+    "field": "shot3.t1",
+    "recomputed": 13.67,
+    "measure_json": 13.67,
+    "ok": true
+   },
+   {
+    "field": "shot3.moving_windows",
+    "recomputed": 17,
+    "measure_json": 17,
+    "ok": true
+   },
+   {
+    "field": "shot3.held_windows",
+    "recomputed": 7,
+    "measure_json": 7,
+    "ok": true
+   },
+   {
+    "field": "shot3.held_share",
+    "recomputed": 0.41,
+    "measure_json": 0.41,
+    "ok": true
+   },
+   {
+    "field": "shot3.hf",
+    "recomputed": 0.167,
+    "measure_json": 0.167,
+    "ok": true
+   }
+  ],
+  "all_ok": true,
+  "shot_count": 3
+ }
+}

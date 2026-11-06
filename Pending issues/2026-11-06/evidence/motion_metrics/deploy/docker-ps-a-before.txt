@@ -1,0 +1,17 @@
+tubeflowai-test-web-1 d488b57e0898 Up About an hour (healthy)
+tubeflowai-test-worker-1 d488b57e0898 Up About an hour (healthy)
+tubeflowai-test-migrate-1 d488b57e0898 Exited (0) About an hour ago
+tubeflowai-test-mihomo-1 bac1a74de365 Up 14 hours (healthy)
+tubeflow-contract-pg postgres:17-alpine Up 2 days
+kinestack-h3-clones-h3-engine-new-3-1 88c0df224d3a Up 13 days (healthy)
+kinestack-h3-clones-h3-engine-new-2-1 88c0df224d3a Up 13 days (healthy)
+kinestack-h3-clones-h3-engine-new-1-1 88c0df224d3a Up 13 days (healthy)
+kinestack-worker-1 5858544a46ab Up 5 weeks
+kinestack-server-1 5858544a46ab Up 5 weeks (healthy)
+kinestack-web-1 e4213a7f6dd2 Up 5 weeks (healthy)
+kinestack-postgres-1 postgres:17-bookworm Up 5 weeks (healthy)
+kinestack-fake-engine-1 9bf93a5f910e Up 5 weeks (healthy)
+tubeflowai-test-temporal-1 temporalio/auto-setup:1.27 Up 5 weeks (healthy)
+tubeflowai-test-minio-init-1 a7fe349ef4bd Exited (0) About an hour ago
+tubeflowai-test-postgres-1 postgres:17-alpine Up 5 weeks (healthy)
+tubeflowai-test-minio-1 14cea493d9a3 Up 5 weeks (healthy)

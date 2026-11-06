@@ -1,0 +1,7 @@
+24a25,26
+> numpy==2.5.4
+> opencv-python-headless==5.0.0.93
+48c50
+< -e git+https://github.com/AJIANGlove/TubeFlow-AI---Test.git@36123e9ec57d34aecf7446be62c7e64854b1bbc0#egg=tubeflow_ai_test_backend&subdirectory=backend
+---
+> -e git+https://github.com/AJIANGlove/TubeFlow-AI---Test.git@da60ef6eea2819a2ec0d5c2ccc5791f7f8b82c60#egg=tubeflow_ai_test_backend&subdirectory=..\..\..\wt-pr15-branch\backend

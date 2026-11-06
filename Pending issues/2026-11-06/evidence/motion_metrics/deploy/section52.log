@@ -1,0 +1,13 @@
+§52 部署前等待记录（部署机，2026-11-06）
+
+| 复查 | 时刻（UTC） | `project_director_units` 的 `LEASED/SUBMITTING` | 运行中工作流 | pending `advance_project_director` | 处置 |
+| ---: | --- | ---: | ---: | ---: | --- |
+| 1 | 04:42:09Z / 04:42:15Z | **0** | **0** | **0** | 两项均为 0，立即部署 |
+
+- 等待开始 = 04:42:09Z，等待结束 = 04:42:15Z，**等待 0 分钟**，只复查 1 次。
+- 单元状态查询：`select count(*) from project_director_units where status in ('LEASED','SUBMITTING');`
+- 工作流查询：worker 容器内脚本 `/home/edy/pr14_temporal_check.py`（temporalio 客户端遍历
+  `ExecutionStatus='Running'` 的 `pending_activities`，按 `activity_type.name == 'advance_project_director'` 过滤）。
+  该脚本在容器重建后会丢失，本次部署前重新 `docker cp` 进去。
+- 探针未报错（无 UNKNOWN 记录）。
+- 部署随后执行：T_dep **04:42:22Z–04:42:35Z**。

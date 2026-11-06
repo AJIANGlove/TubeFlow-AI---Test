@@ -1,0 +1,4 @@
+.........s                                                               [100%]
+=========================== short test summary info ===========================
+SKIPPED [1] tests\unit\test_video_motion_metrics.py:187: ffmpeg not on PATH
+9 passed, 1 skipped in 1.02s

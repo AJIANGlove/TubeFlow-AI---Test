@@ -1,0 +1,151 @@
+{
+ "shot1": {
+  "start_frame": 0,
+  "end_frame": 92,
+  "t0": 0.0,
+  "t1": 3.83
+ },
+ "segment_len": 91,
+ "shot1_hf": 1.578,
+ "jitter_line": 0.25,
+ "top": [
+  {
+   "rank": 1,
+   "residual": 21.584,
+   "transition": "53->54",
+   "jump_into_frame": 54,
+   "t_seconds": 2.25,
+   "shift_dx": -3.9,
+   "shift_dy": -6.25,
+   "window_frames": [
+    52,
+    53,
+    54,
+    55,
+    56
+   ],
+   "files": [
+    "frame_052.png",
+    "frame_053.png",
+    "frame_054.png",
+    "frame_055.png",
+    "frame_056.png"
+   ]
+  },
+  {
+   "rank": 2,
+   "residual": 15.203,
+   "transition": "67->68",
+   "jump_into_frame": 68,
+   "t_seconds": 2.833,
+   "shift_dx": 4.32,
+   "shift_dy": 0.67,
+   "window_frames": [
+    66,
+    67,
+    68,
+    69,
+    70
+   ],
+   "files": [
+    "frame_066.png",
+    "frame_067.png",
+    "frame_068.png",
+    "frame_069.png",
+    "frame_070.png"
+   ]
+  },
+  {
+   "rank": 3,
+   "residual": 9.112,
+   "transition": "61->62",
+   "jump_into_frame": 62,
+   "t_seconds": 2.583,
+   "shift_dx": 3.26,
+   "shift_dy": -0.81,
+   "window_frames": [
+    60,
+    61,
+    62,
+    63,
+    64
+   ],
+   "files": [
+    "frame_060.png",
+    "frame_061.png",
+    "frame_062.png",
+    "frame_063.png",
+    "frame_064.png"
+   ]
+  },
+  {
+   "rank": 4,
+   "residual": 9.069,
+   "transition": "43->44",
+   "jump_into_frame": 44,
+   "t_seconds": 1.833,
+   "shift_dx": 4.83,
+   "shift_dy": -1.06,
+   "window_frames": [
+    42,
+    43,
+    44,
+    45,
+    46
+   ],
+   "files": [
+    "frame_042.png",
+    "frame_043.png",
+    "frame_044.png",
+    "frame_045.png",
+    "frame_046.png"
+   ]
+  },
+  {
+   "rank": 5,
+   "residual": 8.845,
+   "transition": "65->66",
+   "jump_into_frame": 66,
+   "t_seconds": 2.75,
+   "shift_dx": -1.0,
+   "shift_dy": -3.26,
+   "window_frames": [
+    64,
+    65,
+    66,
+    67,
+    68
+   ],
+   "files": [
+    "frame_064.png",
+    "frame_065.png",
+    "frame_066.png",
+    "frame_067.png",
+    "frame_068.png"
+   ]
+  }
+ ],
+ "exported_files": [
+  "frame_042.png",
+  "frame_043.png",
+  "frame_044.png",
+  "frame_045.png",
+  "frame_046.png",
+  "frame_052.png",
+  "frame_053.png",
+  "frame_054.png",
+  "frame_055.png",
+  "frame_056.png",
+  "frame_060.png",
+  "frame_061.png",
+  "frame_062.png",
+  "frame_063.png",
+  "frame_064.png",
+  "frame_065.png",
+  "frame_066.png",
+  "frame_067.png",
+  "frame_068.png",
+  "frame_069.png",
+  "frame_070.png"
+ ]
+}

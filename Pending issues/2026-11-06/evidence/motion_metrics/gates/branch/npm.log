@@ -1,0 +1,1618 @@
+
+> tubeflow-ai-web-prototype@1.0.0 check
+> npm run test && npm run lint && npm run typecheck && npm run build
+
+'fnm' 不是内部或外部命令，也不是可运行的程序
+或批处理文件。
+
+> tubeflow-ai-web-prototype@1.0.0 test
+> node --test frontend/*.test.js
+
+TAP version 13
+# request failed before response {
+#   path: '/storyboard-groups/g1/grid-sheet-generations',
+#   method: 'POST'
+# } Error: lost response
+#     at file:///D:/AAA-project/wt-pr15-branch/frontend/api-client.test.js:7:213
+#     at ApiClient.request (file:///D:/AAA-project/wt-pr15-branch/frontend/api-client.js:10:328)
+#     at file:///D:/AAA-project/wt-pr15-branch/frontend/api-client.js:20:212
+#     at file:///D:/AAA-project/wt-pr15-branch/frontend/api-client.js:12:426
+#     at ApiClient.idempotent (file:///D:/AAA-project/wt-pr15-branch/frontend/api-client.js:12:589)
+#     at ApiClient.generateStoryboard (file:///D:/AAA-project/wt-pr15-branch/frontend/api-client.js:20:165)
+#     at TestContext.<anonymous> (file:///D:/AAA-project/wt-pr15-branch/frontend/api-client.test.js:7:379)
+#     at Test.runInAsyncScope (node:async_hooks:214:14)
+#     at Test.run (node:internal/test_runner/test:1047:25)
+#     at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+# Subtest: mm:ss parses and rejects invalid seconds
+ok 1 - mm:ss parses and rejects invalid seconds
+  ---
+  duration_ms: 2.6838
+  type: 'test'
+  ...
+# Subtest: Bearer and JSON are sent to same-origin endpoint
+ok 2 - Bearer and JSON are sent to same-origin endpoint
+  ---
+  duration_ms: 52.5971
+  type: 'test'
+  ...
+# Subtest: server errors stay explicit and never synthesize data
+ok 3 - server errors stay explicit and never synthesize data
+  ---
+  duration_ms: 1.7027
+  type: 'test'
+  ...
+# Subtest: unauthorized media remains an error
+ok 4 - unauthorized media remains an error
+  ---
+  duration_ms: 0.8195
+  type: 'test'
+  ...
+# Subtest: LAN HTTP idempotency key does not require randomUUID
+ok 5 - LAN HTTP idempotency key does not require randomUUID
+  ---
+  duration_ms: 0.4081
+  type: 'test'
+  ...
+# Subtest: network uncertainty reuses the same idempotency key
+ok 6 - network uncertainty reuses the same idempotency key
+  ---
+  duration_ms: 3.9083
+  type: 'test'
+  ...
+# Subtest: authenticated 401 invokes the session handler
+ok 7 - authenticated 401 invokes the session handler
+  ---
+  duration_ms: 1.274
+  type: 'test'
+  ...
+# Subtest: legacy group director AI methods are absent while final draft methods remain
+ok 8 - legacy group director AI methods are absent while final draft methods remain
+  ---
+  duration_ms: 0.3234
+  type: 'test'
+  ...
+# Subtest: composition retry uses the explicit manual retry route
+ok 9 - composition retry uses the explicit manual retry route
+  ---
+  duration_ms: 1.1788
+  type: 'test'
+  ...
+# Subtest: frontend integration routes and payloads match the backend contract
+ok 10 - frontend integration routes and payloads match the backend contract
+  ---
+  duration_ms: 12.901
+  type: 'test'
+  ...
+# Subtest: project publication uses POST and DELETE on the same route
+ok 11 - project publication uses POST and DELETE on the same route
+  ---
+  duration_ms: 1.2064
+  type: 'test'
+  ...
+# Subtest: first manual director draft preserves a null expected revision
+ok 12 - first manual director draft preserves a null expected revision
+  ---
+  duration_ms: 0.6809
+  type: 'test'
+  ...
+# Subtest: two-phase director keeps storyboard behind materialization and final group authority
+ok 13 - two-phase director keeps storyboard behind materialization and final group authority
+  ---
+  duration_ms: 32.0804
+  type: 'test'
+  ...
+# Subtest: native media URL helpers never fetch protected bytes
+ok 14 - native media URL helpers never fetch protected bytes
+  ---
+  duration_ms: 0.5289
+  type: 'test'
+  ...
+# Subtest: deletion receipt is sent on status refresh and retry
+ok 15 - deletion receipt is sent on status refresh and retry
+  ---
+  duration_ms: 1.3016
+  type: 'test'
+  ...
+# Subtest: native image audio and video paths do not use Bearer blobs
+ok 16 - native image audio and video paths do not use Bearer blobs
+  ---
+  duration_ms: 4.1651
+  type: 'test'
+  ...
+# Subtest: channel default voice uses the channel PATCH contract
+ok 17 - channel default voice uses the channel PATCH contract
+  ---
+  duration_ms: 0.8958
+  type: 'test'
+  ...
+# Subtest: channel cover style routes and payloads match the backend contract
+ok 18 - channel cover style routes and payloads match the backend contract
+  ---
+  duration_ms: 2.3587
+  type: 'test'
+  ...
+# Subtest: channel cover ref image upload uses multipart FormData
+ok 19 - channel cover ref image upload uses multipart FormData
+  ---
+  duration_ms: 1.8293
+  type: 'test'
+  ...
+# Subtest: project cover style and promote routes match the backend contract
+ok 20 - project cover style and promote routes match the backend contract
+  ---
+  duration_ms: 2.342
+  type: 'test'
+  ...
+# Subtest: cover prompt generation posts the idempotency header and request body
+ok 21 - cover prompt generation posts the idempotency header and request body
+  ---
+  duration_ms: 1.6807
+  type: 'test'
+  ...
+# Subtest: cover prompt current patch supports edit, reset and candidate choice
+ok 22 - cover prompt current patch supports edit, reset and candidate choice
+  ---
+  duration_ms: 1.5364
+  type: 'test'
+  ...
+# Subtest: cover image generation, listing, selection and protected media url
+ok 23 - cover image generation, listing, selection and protected media url
+  ---
+  duration_ms: 1.6899
+  type: 'test'
+  ...
+# Subtest: cover character card routes and payloads match the v5 contract
+ok 24 - cover character card routes and payloads match the v5 contract
+  ---
+  duration_ms: 1.1717
+  type: 'test'
+  ...
+# Subtest: cover ref image media url covers channel and project scopes without fetching
+ok 25 - cover ref image media url covers channel and project scopes without fetching
+  ---
+  duration_ms: 0.2783
+  type: 'test'
+  ...
+# Subtest: cover prompt version switch posts version_id to prompts/current
+ok 26 - cover prompt version switch posts version_id to prompts/current
+  ---
+  duration_ms: 0.7131
+  type: 'test'
+  ...
+# Subtest: cover prompt generation passes character cards and style profile through
+ok 27 - cover prompt generation passes character cards and style profile through
+  ---
+  duration_ms: 0.9134
+  type: 'test'
+  ...
+# Subtest: channel cover style promote accepts an optional label body
+ok 28 - channel cover style promote accepts an optional label body
+  ---
+  duration_ms: 0.7649
+  type: 'test'
+  ...
+# Subtest: deleteProject sends non-ASCII titles as an ASCII-only base64 header
+ok 29 - deleteProject sends non-ASCII titles as an ASCII-only base64 header
+  ---
+  duration_ms: 6.6152
+  type: 'test'
+  ...
+# Subtest: deleteChannel sends the confirmation value as an ASCII-only base64 header
+ok 30 - deleteChannel sends the confirmation value as an ASCII-only base64 header
+  ---
+  duration_ms: 2.581
+  type: 'test'
+  ...
+# Subtest: project cover image upload uses multipart FormData
+ok 31 - project cover image upload uses multipart FormData
+  ---
+  duration_ms: 1.27
+  type: 'test'
+  ...
+# Subtest: description template and generation routes match the STEP 11 contract
+ok 32 - description template and generation routes match the STEP 11 contract
+  ---
+  duration_ms: 3.5446
+  type: 'test'
+  ...
+# Subtest: auto pipeline resume follows the identity contract route
+ok 33 - auto pipeline resume follows the identity contract route
+  ---
+  duration_ms: 70.9531
+  type: 'test'
+  ...
+# Subtest: auto pipeline state parsing is strict and never guesses semantics
+ok 34 - auto pipeline state parsing is strict and never guesses semantics
+  ---
+  duration_ms: 0.3553
+  type: 'test'
+  ...
+# Subtest: phase labels map known phases and fall back to the backend raw code
+ok 35 - phase labels map known phases and fall back to the backend raw code
+  ---
+  duration_ms: 0.2323
+  type: 'test'
+  ...
+# Subtest: pause reason maps stable codes, carries backend message and falls back to raw code
+ok 36 - pause reason maps stable codes, carries backend message and falls back to raw code
+  ---
+  duration_ms: 0.7785
+  type: 'test'
+  ...
+# Subtest: composition pause surfaces the backend error code instead of an empty detail
+ok 37 - composition pause surfaces the backend error code instead of an empty detail
+  ---
+  duration_ms: 0.2883
+  type: 'test'
+  ...
+# Subtest: pause reason composes director validation details and exposes group sequences
+ok 38 - pause reason composes director validation details and exposes group sequences
+  ---
+  duration_ms: 2.4181
+  type: 'test'
+  ...
+# Subtest: pause reason appends seed failure messages when present
+ok 39 - pause reason appends seed failure messages when present
+  ---
+  duration_ms: 0.7219
+  type: 'test'
+  ...
+# Subtest: resume is only allowed when PAUSED and the backend opens RESUME_AUTO_PIPELINE
+ok 40 - resume is only allowed when PAUSED and the backend opens RESUME_AUTO_PIPELINE
+  ---
+  duration_ms: 0.3947
+  type: 'test'
+  ...
+# Subtest: busy lock covers RUNNING and PAUSED only
+ok 41 - busy lock covers RUNNING and PAUSED only
+  ---
+  duration_ms: 0.5777
+  type: 'test'
+  ...
+# Subtest: stage rows read authoritative per-stage counts from workflow summary
+ok 42 - stage rows read authoritative per-stage counts from workflow summary
+  ---
+  duration_ms: 1.7189
+  type: 'test'
+  ...
+# Subtest: elapsed formatting is second-granular and never fabricates unknown
+ok 43 - elapsed formatting is second-granular and never fabricates unknown
+  ---
+  duration_ms: 0.4188
+  type: 'test'
+  ...
+# Subtest: stage timing sums director phases and hides partial history rows
+ok 44 - stage timing sums director phases and hides partial history rows
+  ---
+  duration_ms: 0.5479
+  type: 'test'
+  ...
+# Subtest: stage rows carry elapsed fields without changing authoritative counts
+ok 45 - stage rows carry elapsed fields without changing authoritative counts
+  ---
+  duration_ms: 0.3287
+  type: 'test'
+  ...
+# Subtest: elapsed ticker only patches text and is cleaned up with polling
+ok 46 - elapsed ticker only patches text and is cleaned up with polling
+  ---
+  duration_ms: 1.7605
+  type: 'test'
+  ...
+# Subtest: auto progress tab is prepended only for AUTO projects and default-selected
+ok 47 - auto progress tab is prepended only for AUTO projects and default-selected
+  ---
+  duration_ms: 0.8625
+  type: 'test'
+  ...
+# Subtest: AUTO submit relabels the button, shows progress, skips preflight and lands on the progress view
+ok 48 - AUTO submit relabels the button, shows progress, skips preflight and lands on the progress view
+  ---
+  duration_ms: 0.2923
+  type: 'test'
+  ...
+# Subtest: script preflight stays for MANUAL projects and is removed for AUTO projects
+ok 49 - script preflight stays for MANUAL projects and is removed for AUTO projects
+  ---
+  duration_ms: 0.1949
+  type: 'test'
+  ...
+# Subtest: auto progress polling reuses the backoff framework with single-flight and terminal stop
+ok 50 - auto progress polling reuses the backoff framework with single-flight and terminal stop
+  ---
+  duration_ms: 0.3799
+  type: 'test'
+  ...
+# Subtest: auto progress polling stops together with the other workspace pollers
+ok 51 - auto progress polling stops together with the other workspace pollers
+  ---
+  duration_ms: 0.4889
+  type: 'test'
+  ...
+# Subtest: progress view renders RUNNING, PAUSED and COMPLETED states from the authoritative summary
+ok 52 - progress view renders RUNNING, PAUSED and COMPLETED states from the authoritative summary
+  ---
+  duration_ms: 0.2708
+  type: 'test'
+  ...
+# Subtest: resume action is gated on RESUME_AUTO_PIPELINE and goes through the resume endpoint
+ok 53 - resume action is gated on RESUME_AUTO_PIPELINE and goes through the resume endpoint
+  ---
+  duration_ms: 0.3258
+  type: 'test'
+  ...
+# Subtest: resume that pauses again in the same request is reported as a failure
+ok 54 - resume that pauses again in the same request is reported as a failure
+  ---
+  duration_ms: 0.3583
+  type: 'test'
+  ...
+# Subtest: completed view embeds the current composition and reuses the formal ZIP export
+ok 55 - completed view embeds the current composition and reuses the formal ZIP export
+  ---
+  duration_ms: 0.2779
+  type: 'test'
+  ...
+# Subtest: locally hardcoded generation entries lock while the auto pipeline is busy
+ok 56 - locally hardcoded generation entries lock while the auto pipeline is busy
+  ---
+  duration_ms: 0.7091
+  type: 'test'
+  ...
+# Subtest: 搂48: recut failure code has a label and step 07 shows system recut approvals read-only
+ok 57 - 搂48: recut failure code has a label and step 07 shows system recut approvals read-only
+  ---
+  duration_ms: 0.2944
+  type: 'test'
+  ...
+# Subtest: toggle appends a new id to the end
+ok 58 - toggle appends a new id to the end
+  ---
+  duration_ms: 2.788
+  type: 'test'
+  ...
+# Subtest: toggle removes an already selected id
+ok 59 - toggle removes an already selected id
+  ---
+  duration_ms: 0.4173
+  type: 'test'
+  ...
+# Subtest: toggle rejects beyond the limit but still allows removal
+ok 60 - toggle rejects beyond the limit but still allows removal
+  ---
+  duration_ms: 0.4362
+  type: 'test'
+  ...
+# Subtest: toggle tolerates malformed input without throwing
+ok 61 - toggle tolerates malformed input without throwing
+  ---
+  duration_ms: 0.4365
+  type: 'test'
+  ...
+# Subtest: normalize filters unavailable ids, dedupes in order and caps at the limit
+ok 62 - normalize filters unavailable ids, dedupes in order and caps at the limit
+  ---
+  duration_ms: 0.4452
+  type: 'test'
+  ...
+# Subtest: normalize handles empty or malformed input
+ok 63 - normalize handles empty or malformed input
+  ---
+  duration_ms: 0.2401
+  type: 'test'
+  ...
+# Subtest: resolve maps ids to image objects in order and skips missing ones
+ok 64 - resolve maps ids to image objects in order and skips missing ones
+  ---
+  duration_ms: 0.3832
+  type: 'test'
+  ...
+# Subtest: frozen project copies the immutable snapshot instead of the draft or editor
+ok 65 - frozen project copies the immutable snapshot instead of the draft or editor
+  ---
+  duration_ms: 1.3404
+  type: 'test'
+  ...
+# Subtest: frozen project with an empty snapshot stays empty and never falls back
+ok 66 - frozen project with an empty snapshot stays empty and never falls back
+  ---
+  duration_ms: 0.2483
+  type: 'test'
+  ...
+# Subtest: draft project copies the live editor value, including empty and unsaved values
+ok 67 - draft project copies the live editor value, including empty and unsaved values
+  ---
+  duration_ms: 0.289
+  type: 'test'
+  ...
+# Subtest: draft project falls back to the saved script when the editor is absent
+ok 68 - draft project falls back to the saved script when the editor is absent
+  ---
+  duration_ms: 0.2777
+  type: 'test'
+  ...
+# Subtest: script text is copied verbatim, keeping blank lines and separator lines
+ok 69 - script text is copied verbatim, keeping blank lines and separator lines
+  ---
+  duration_ms: 0.1905
+  type: 'test'
+  ...
+# Subtest: hasCopyableText treats blank strings as empty but keeps separators and zero
+ok 70 - hasCopyableText treats blank strings as empty but keeps separators and zero
+  ---
+  duration_ms: 0.189
+  type: 'test'
+  ...
+# Subtest: SRT download filename sanitizes the project title with a stable fallback
+ok 71 - SRT download filename sanitizes the project title with a stable fallback
+  ---
+  duration_ms: 2.019
+  type: 'test'
+  ...
+# Subtest: SRT card exposes a disabled download button beside the title
+ok 72 - SRT card exposes a disabled download button beside the title
+  ---
+  duration_ms: 0.6323
+  type: 'test'
+  ...
+# Subtest: SRT card reuses the publish control so STEP 09 can mark publication without scrolling up
+ok 73 - SRT card reuses the publish control so STEP 09 can mark publication without scrolling up
+  ---
+  duration_ms: 0.4835
+  type: 'test'
+  ...
+# Subtest: SRT download reuses the preview blob without a third protected fetch
+ok 74 - SRT download reuses the preview blob without a third protected fetch
+  ---
+  duration_ms: 0.9177
+  type: 'test'
+  ...
+# Subtest: SRT button is enabled only by the render that loaded the subtitle
+ok 75 - SRT button is enabled only by the render that loaded the subtitle
+  ---
+  duration_ms: 0.6184
+  type: 'test'
+  ...
+# Subtest: file size keeps the agreed compact format
+ok 76 - file size keeps the agreed compact format
+  ---
+  duration_ms: 5.3144
+  type: 'test'
+  ...
+# Subtest: meta text shows original dimensions and original file size only
+ok 77 - meta text shows original dimensions and original file size only
+  ---
+  duration_ms: 0.721
+  type: 'test'
+  ...
+# Subtest: item model tolerates empty cover and missing fields
+ok 78 - item model tolerates empty cover and missing fields
+  ---
+  duration_ms: 0.3566
+  type: 'test'
+  ...
+# Subtest: collection model sorts by position and tolerates empty payload
+ok 79 - collection model sorts by position and tolerates empty payload
+  ---
+  duration_ms: 1.1921
+  type: 'test'
+  ...
+# Subtest: prompt and name limits count code points
+ok 80 - prompt and name limits count code points
+  ---
+  duration_ms: 0.985
+  type: 'test'
+  ...
+# Subtest: draft comparison detects name and prompt changes
+ok 81 - draft comparison detects name and prompt changes
+  ---
+  duration_ms: 0.3479
+  type: 'test'
+  ...
+# Subtest: moveTemplateItem reorders before and after the target
+ok 82 - moveTemplateItem reorders before and after the target
+  ---
+  duration_ms: 0.6068
+  type: 'test'
+  ...
+# Subtest: save status prioritises error over saving over dirty over saved
+ok 83 - save status prioritises error over saving over dirty over saved
+  ---
+  duration_ms: 0.3914
+  type: 'test'
+  ...
+# Subtest: saved clock is zero padded local time
+ok 84 - saved clock is zero padded local time
+  ---
+  duration_ms: 3.7044
+  type: 'test'
+  ...
+# Subtest: cards expose name, save, copy, upload, delete and drag affordances
+ok 85 - cards expose name, save, copy, upload, delete and drag affordances
+  ---
+  duration_ms: 1.6089
+  type: 'test'
+  ...
+# Subtest: empty list shows onboarding and the add card
+ok 86 - empty list shows onboarding and the add card
+  ---
+  duration_ms: 0.3797
+  type: 'test'
+  ...
+# Subtest: upload is disabled when a template has no cover
+ok 87 - upload is disabled when a template has no cover
+  ---
+  duration_ms: 0.3127
+  type: 'test'
+  ...
+# Subtest: more settings is collapsed by default and expanded only when asked
+ok 88 - more settings is collapsed by default and expanded only when asked
+  ---
+  duration_ms: 0.3058
+  type: 'test'
+  ...
+# Subtest: collapse state storage key and parser are project scoped
+ok 89 - collapse state storage key and parser are project scoped
+  ---
+  duration_ms: 0.228
+  type: 'test'
+  ...
+# Subtest: cover page helpers used by render and bind are all defined in app.js
+ok 90 - cover page helpers used by render and bind are all defined in app.js
+  ---
+  duration_ms: 9.8536
+  type: 'test'
+  ...
+# Subtest: dimension table mirrors the backend 8 dims and 36 children verbatim
+ok 91 - dimension table mirrors the backend 8 dims and 36 children verbatim
+  ---
+  duration_ms: 3.1066
+  type: 'test'
+  ...
+# Subtest: normalizeCoverDims keeps catalog order, drops unknown ids and lets whole key win
+ok 92 - normalizeCoverDims keeps catalog order, drops unknown ids and lets whole key win
+  ---
+  duration_ms: 0.7568
+  type: 'test'
+  ...
+# Subtest: dimsFromPayload reads the storage shape and tolerates garbage
+ok 93 - dimsFromPayload reads the storage shape and tolerates garbage
+  ---
+  duration_ms: 0.4798
+  type: 'test'
+  ...
+# Subtest: dims tree reports all/some/none per dimension
+ok 94 - dims tree reports all/some/none per dimension
+  ---
+  duration_ms: 0.9418
+  type: 'test'
+  ...
+# Subtest: dim toggle selects the whole dimension as the bare key and clears it
+ok 95 - dim toggle selects the whole dimension as the bare key and clears it
+  ---
+  duration_ms: 0.4362
+  type: 'test'
+  ...
+# Subtest: child toggle keeps half selection as child ids
+ok 96 - child toggle keeps half selection as child ids
+  ---
+  duration_ms: 0.4868
+  type: 'test'
+  ...
+# Subtest: child toggle collapses a fully checked dimension into the bare key
+ok 97 - child toggle collapses a fully checked dimension into the bare key
+  ---
+  duration_ms: 0.5071
+  type: 'test'
+  ...
+# Subtest: task running follows public_status
+ok 98 - task running follows public_status
+  ---
+  duration_ms: 0.2801
+  type: 'test'
+  ...
+# Subtest: candidate selector marks recommended, used and selected
+ok 99 - candidate selector marks recommended, used and selected
+  ---
+  duration_ms: 0.8564
+  type: 'test'
+  ...
+# Subtest: candidate selector flags a switched choice with the designed-for-original notice
+ok 100 - candidate selector flags a switched choice with the designed-for-original notice
+  ---
+  duration_ms: 1.1048
+  type: 'test'
+  ...
+# Subtest: version list maps generations and profiles with current and selectable flags
+ok 101 - version list maps generations and profiles with current and selectable flags
+  ---
+  duration_ms: 0.7572
+  type: 'test'
+  ...
+# Subtest: warning, failure and judge display models
+ok 102 - warning, failure and judge display models
+  ---
+  duration_ms: 2.349
+  type: 'test'
+  ...
+# Subtest: style source prefers channel profile, then project draft, then none
+ok 103 - style source prefers channel profile, then project draft, then none
+  ---
+  duration_ms: 0.5438
+  type: 'test'
+  ...
+# Subtest: lock model covers purging, not-frozen and frozen projects
+ok 104 - lock model covers purging, not-frozen and frozen projects
+  ---
+  duration_ms: 0.2338
+  type: 'test'
+  ...
+# Subtest: page model builds ref editor state with counts, selection and analyze gate
+ok 105 - page model builds ref editor state with counts, selection and analyze gate
+  ---
+  duration_ms: 4.1221
+  type: 'test'
+  ...
+# Subtest: page model builds prompt panel with running, edited and selector state
+ok 106 - page model builds prompt panel with running, edited and selector state
+  ---
+  duration_ms: 2.0516
+  type: 'test'
+  ...
+# Subtest: page model builds image panel with current media and generate gate
+ok 107 - page model builds image panel with current media and generate gate
+  ---
+  duration_ms: 1.1818
+  type: 'test'
+  ...
+# Subtest: page model locks the whole page for a not-frozen project
+ok 108 - page model locks the whole page for a not-frozen project
+  ---
+  duration_ms: 0.321
+  type: 'test'
+  ...
+# Subtest: cover stage is registered as the tenth stage with renderer, polling and channel section
+ok 109 - cover stage is registered as the tenth stage with renderer, polling and channel section
+  ---
+  duration_ms: 8.3376
+  type: 'test'
+  ...
+# Subtest: v5 default selection is style+composition and only applies to a never-saved draft
+ok 110 - v5 default selection is style+composition and only applies to a never-saved draft
+  ---
+  duration_ms: 0.8747
+  type: 'test'
+  ...
+# Subtest: dimension tree carries the v5 three-tier migration annotations and guide copy
+ok 111 - dimension tree carries the v5 three-tier migration annotations and guide copy
+  ---
+  duration_ms: 0.4867
+  type: 'test'
+  ...
+# Subtest: analysis dirty flag needs a known analyzed selection that differs from the current one
+ok 112 - analysis dirty flag needs a known analyzed selection that differs from the current one
+  ---
+  duration_ms: 0.7625
+  type: 'test'
+  ...
+# Subtest: low score warning attaches the v5 action guide
+ok 113 - low score warning attaches the v5 action guide
+  ---
+  duration_ms: 0.5635
+  type: 'test'
+  ...
+# Subtest: character binding model resolves default, explicit and explicit-empty selections
+ok 114 - character binding model resolves default, explicit and explicit-empty selections
+  ---
+  duration_ms: 1.6465
+  type: 'test'
+  ...
+# Subtest: version list exposes label and prompt switch flag; prompt panel surfaces bound cards
+ok 115 - version list exposes label and prompt switch flag; prompt panel surfaces bound cards
+  ---
+  duration_ms: 1.0791
+  type: 'test'
+  ...
+# Subtest: cover v5 wiring is present in app.js and the shared editor
+ok 116 - cover v5 wiring is present in app.js and the shared editor
+  ---
+  duration_ms: 5.1283
+  type: 'test'
+  ...
+# Subtest: image review view model normalizes payloads and passes through page model
+ok 117 - image review view model normalizes payloads and passes through page model
+  ---
+  duration_ms: 1.0956
+  type: 'test'
+  ...
+# Subtest: upload error codes map to Chinese hints and unknown codes fall back
+ok 118 - upload error codes map to Chinese hints and unknown codes fall back
+  ---
+  duration_ms: 0.2962
+  type: 'test'
+  ...
+# Subtest: description template model sorts versions and markup escapes prompt text
+ok 119 - description template model sorts versions and markup escapes prompt text
+  ---
+  duration_ms: 3.4316
+  type: 'test'
+  ...
+# Subtest: description state model keeps gate, SRT count and generation fact
+ok 120 - description state model keeps gate, SRT count and generation fact
+  ---
+  duration_ms: 0.6043
+  type: 'test'
+  ...
+# Subtest: generate markup disables generation without final SRT and explains why
+ok 121 - generate markup disables generation without final SRT and explains why
+  ---
+  duration_ms: 0.555
+  type: 'test'
+  ...
+# Subtest: generate markup shows running state, current content and escaped error
+ok 122 - generate markup shows running state, current content and escaped error
+  ---
+  duration_ms: 0.5861
+  type: 'test'
+  ...
+# Subtest: history markup exposes current, immutable actions and filename is safe
+ok 123 - history markup exposes current, immutable actions and filename is safe
+  ---
+  duration_ms: 3.1888
+  type: 'test'
+  ...
+# Subtest: password pair requires at least 8 characters
+ok 124 - password pair requires at least 8 characters
+  ---
+  duration_ms: 1.3492
+  type: 'test'
+  ...
+# Subtest: password pair reports mismatch only after length passes
+ok 125 - password pair reports mismatch only after length passes
+  ---
+  duration_ms: 0.3185
+  type: 'test'
+  ...
+# Subtest: password pair accepts equal long-enough input
+ok 126 - password pair accepts equal long-enough input
+  ---
+  duration_ms: 0.2949
+  type: 'test'
+  ...
+# Subtest: status badge maps every pool state with a tone
+ok 127 - status badge maps every pool state with a tone
+  ---
+  duration_ms: 4.1223
+  type: 'test'
+  ...
+# Subtest: quota percent is null-safe and capped at 100
+ok 128 - quota percent is null-safe and capped at 100
+  ---
+  duration_ms: 0.4248
+  type: 'test'
+  ...
+# Subtest: character and voice slot formatting handles missing quota
+ok 129 - character and voice slot formatting handles missing quota
+  ---
+  duration_ms: 29.0216
+  type: 'test'
+  ...
+# Subtest: event labels translate known events and pass through unknown ones
+ok 130 - event labels translate known events and pass through unknown ones
+  ---
+  duration_ms: 0.3464
+  type: 'test'
+  ...
+# Subtest: time formatting keeps unparsable input verbatim
+ok 131 - time formatting keeps unparsable input verbatim
+  ---
+  duration_ms: 13.2209
+  type: 'test'
+  ...
+# Subtest: pool errors map stable codes to actionable messages
+ok 132 - pool errors map stable codes to actionable messages
+  ---
+  duration_ms: 0.3575
+  type: 'test'
+  ...
+# Subtest: failed add keeps the error visible after the list refresh
+ok 133 - failed add keeps the error visible after the list refresh
+  ---
+  duration_ms: 9.5407
+  type: 'test'
+  ...
+# Subtest: successful add clears the error box and resets the form
+ok 134 - successful add clears the error box and resets the form
+  ---
+  duration_ms: 3.8082
+  type: 'test'
+  ...
+# Subtest: submit button shows pending state in flight and ignores repeat submits
+ok 135 - submit button shows pending state in flight and ignores repeat submits
+  ---
+  duration_ms: 2.5602
+  type: 'test'
+  ...
+# Subtest: providerOf defaults to CosyVoice for legacy rows
+ok 136 - providerOf defaults to CosyVoice for legacy rows
+  ---
+  duration_ms: 1.6491
+  type: 'test'
+  ...
+# Subtest: frozenProvider prefers the immutable snapshot
+ok 137 - frozenProvider prefers the immutable snapshot
+  ---
+  duration_ms: 0.3609
+  type: 'test'
+  ...
+# Subtest: voiceAssignment enforces exactly one voice kind per provider
+ok 138 - voiceAssignment enforces exactly one voice kind per provider
+  ---
+  duration_ms: 1.4462
+  type: 'test'
+  ...
+# Subtest: channelDefaultPatch binds the channel provider to the chosen voice (design A)
+ok 139 - channelDefaultPatch binds the channel provider to the chosen voice (design A)
+  ---
+  duration_ms: 0.3427
+  type: 'test'
+  ...
+# Subtest: channelDefaultVoiceReady tracks the default voice of the selected provider
+ok 140 - channelDefaultVoiceReady tracks the default voice of the selected provider
+  ---
+  duration_ms: 0.5905
+  type: 'test'
+  ...
+# Subtest: clonedVoiceViews marks the channel default as protected
+ok 141 - clonedVoiceViews marks the channel default as protected
+  ---
+  duration_ms: 3.139
+  type: 'test'
+  ...
+# Subtest: validateClonedVoiceUpload mirrors backend requirements
+ok 142 - validateClonedVoiceUpload mirrors backend requirements
+  ---
+  duration_ms: 0.551
+  type: 'test'
+  ...
+# Subtest: cloneOutcomeSummary reports partial failures honestly
+ok 143 - cloneOutcomeSummary reports partial failures honestly
+  ---
+  duration_ms: 0.8772
+  type: 'test'
+  ...
+# Subtest: frozenNarrationSummary shows the frozen provider and voice
+ok 144 - frozenNarrationSummary shows the frozen provider and voice
+  ---
+  duration_ms: 1.5755
+  type: 'test'
+  ...
+# Subtest: group tab strip re-binds every tab and keeps the active group visible after re-render
+ok 145 - group tab strip re-binds every tab and keeps the active group visible after re-render
+  ---
+  duration_ms: 7.0866
+  type: 'test'
+  ...
+# Subtest: six launch locales keep the stable dropdown order
+ok 146 - six launch locales keep the stable dropdown order
+  ---
+  duration_ms: 3.0585
+  type: 'test'
+  ...
+# Subtest: long labels carry the region while short labels stay compact
+ok 147 - long labels carry the region while short labels stay compact
+  ---
+  duration_ms: 0.7808
+  type: 'test'
+  ...
+# Subtest: unknown or empty codes fall back to the original value
+ok 148 - unknown or empty codes fall back to the original value
+  ---
+  duration_ms: 0.2753
+  type: 'test'
+  ...
+# Subtest: voice card language list is short, ordered and deduplicated
+ok 149 - voice card language list is short, ordered and deduplicated
+  ---
+  duration_ms: 0.3035
+  type: 'test'
+  ...
+# Subtest: app.js renders every locale surface through the label module
+ok 150 - app.js renders every locale surface through the label module
+  ---
+  duration_ms: 1.7916
+  type: 'test'
+  ...
+# Subtest: locale option values stay raw codes and are never the Chinese label
+ok 151 - locale option values stay raw codes and are never the Chinese label
+  ---
+  duration_ms: 0.9
+  type: 'test'
+  ...
+# Subtest: build and static checks register the new module
+ok 152 - build and static checks register the new module
+  ---
+  duration_ms: 6.1269
+  type: 'test'
+  ...
+# Subtest: failure filter includes all public failures but retries only authorized invalid output
+ok 153 - failure filter includes all public failures but retries only authorized invalid output
+  ---
+  duration_ms: 2.8247
+  type: 'test'
+  ...
+# Subtest: narration recovery sends the original failed attempt key and visible evidence
+ok 154 - narration recovery sends the original failed attempt key and visible evidence
+  ---
+  duration_ms: 60.621
+  type: 'test'
+  ...
+# Subtest: step 06 renders failure details, filters and allowed retry actions
+ok 155 - step 06 renders failure details, filters and allowed retry actions
+  ---
+  duration_ms: 2.0078
+  type: 'test'
+  ...
+# Subtest: manual retries confirm once, report each result and never mark 202 as completion
+ok 156 - manual retries confirm once, report each result and never mark 202 as completion
+  ---
+  duration_ms: 4.3089
+  type: 'test'
+  ...
+# Subtest: bulk recovery confirms once and preserves mixed per-sentence outcomes
+ok 157 - bulk recovery confirms once and preserves mixed per-sentence outcomes
+  ---
+  duration_ms: 1.6564
+  type: 'test'
+  ...
+# Subtest: cancelled confirmation submits no recovery
+ok 158 - cancelled confirmation submits no recovery
+  ---
+  duration_ms: 0.7481
+  type: 'test'
+  ...
+# Subtest: polling is read-only, serial and ignores responses after leaving the project
+ok 159 - polling is read-only, serial and ignores responses after leaving the project
+  ---
+  duration_ms: 2.0879
+  type: 'test'
+  ...
+# Subtest: accepted or uncertain recovery survives failed refresh using GET only until terminal
+ok 160 - accepted or uncertain recovery survives failed refresh using GET only until terminal
+  ---
+  duration_ms: 7.4231
+  type: 'test'
+  ...
+# Subtest: another project keeps polling during a batch and stale project or epoch responses are ignored
+ok 161 - another project keeps polling during a batch and stale project or epoch responses are ignored
+  ---
+  duration_ms: 59.3282
+  type: 'test'
+  ...
+# request failed before response { path: '/projects/project-1/director-preplan/runs', method: 'POST' } Error: response lost
+#     at file:///D:/AAA-project/wt-pr15-branch/frontend/project-director.test.js:61:13
+#     at ApiClient.request (file:///D:/AAA-project/wt-pr15-branch/frontend/api-client.js:10:328)
+#     at file:///D:/AAA-project/wt-pr15-branch/frontend/api-client.js:18:102
+#     at file:///D:/AAA-project/wt-pr15-branch/frontend/api-client.js:12:426
+#     at ApiClient.idempotent (file:///D:/AAA-project/wt-pr15-branch/frontend/api-client.js:12:589)
+#     at ApiClient.startDirectorPreplan (file:///D:/AAA-project/wt-pr15-branch/frontend/api-client.js:18:56)
+#     at TestContext.<anonymous> (file:///D:/AAA-project/wt-pr15-branch/frontend/project-director.test.js:66:28)
+#     at Test.runInAsyncScope (node:async_hooks:214:14)
+#     at Test.run (node:internal/test_runner/test:1047:25)
+#     at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+# Subtest: project director preplan routes follow the two-phase public contract
+ok 162 - project director preplan routes follow the two-phase public contract
+  ---
+  duration_ms: 128.6121
+  type: 'test'
+  ...
+# Subtest: manual preplan retry reuses its idempotency key after network uncertainty
+ok 163 - manual preplan retry reuses its idempotency key after network uncertainty
+  ---
+  duration_ms: 5.4622
+  type: 'test'
+  ...
+# Subtest: confirm narration does not issue a second frontend director POST
+ok 164 - confirm narration does not issue a second frontend director POST
+  ---
+  duration_ms: 4.5132
+  type: 'test'
+  ...
+# Subtest: step 07 uses project preplan and materialization instead of group director generation
+ok 165 - step 07 uses project preplan and materialization instead of group director generation
+  ---
+  duration_ms: 4.4356
+  type: 'test'
+  ...
+# Subtest: director polling is GET-only and final sentence choices are group-scoped
+ok 166 - director polling is GET-only and final sentence choices are group-scoped
+  ---
+  duration_ms: 5.0646
+  type: 'test'
+  ...
+# Subtest: director polling adapts from 2.5s to 5s and 10s, then resets on change
+ok 167 - director polling adapts from 2.5s to 5s and 10s, then resets on change
+  ---
+  duration_ms: 0.7887
+  type: 'test'
+  ...
+# Subtest: director polling signatures distinguish data changes from structural and terminal changes
+ok 168 - director polling signatures distinguish data changes from structural and terminal changes
+  ---
+  duration_ms: 0.8754
+  type: 'test'
+  ...
+# Subtest: step 07 polling patches only changed data and fully renders only transitions
+ok 169 - step 07 polling patches only changed data and fully renders only transitions
+  ---
+  duration_ms: 0.803
+  type: 'test'
+  ...
+# Subtest: director polling context rejects stale epoch, project, stage, and object identity
+ok 170 - director polling context rejects stale epoch, project, stage, and object identity
+  ---
+  duration_ms: 2.3606
+  type: 'test'
+  ...
+# Subtest: review-required materialization candidates seed an editable first draft without truncation
+ok 171 - review-required materialization candidates seed an editable first draft without truncation
+  ---
+  duration_ms: 9.6518
+  type: 'test'
+  ...
+# Subtest: preplan run view renders retry and failure details from the new run contract
+ok 172 - preplan run view renders retry and failure details from the new run contract
+  ---
+  duration_ms: 3.4802
+  type: 'test'
+  ...
+# Subtest: director list view consumes the batched overview without per-group fetches
+ok 173 - director list view consumes the batched overview without per-group fetches
+  ---
+  duration_ms: 1.0345
+  type: 'test'
+  ...
+# Subtest: group switching autosaves a dirty draft before changing the active group
+ok 174 - group switching autosaves a dirty draft before changing the active group
+  ---
+  duration_ms: 0.8306
+  type: 'test'
+  ...
+# Subtest: stage switching and workspace navigation flush the dirty director draft first
+ok 175 - stage switching and workspace navigation flush the dirty director draft first
+  ---
+  duration_ms: 1.1557
+  type: 'test'
+  ...
+# Subtest: director views sync location hash via replaceState and restore on workspace load
+ok 176 - director views sync location hash via replaceState and restore on workspace load
+  ---
+  duration_ms: 3.4128
+  type: 'test'
+  ...
+# Subtest: arrow-key group switching is guarded by editable targets and open overlays
+ok 177 - arrow-key group switching is guarded by editable targets and open overlays
+  ---
+  duration_ms: 0.5363
+  type: 'test'
+  ...
+# Subtest: list view polling appends one batched overview GET and re-renders once per change
+ok 178 - list view polling appends one batched overview GET and re-renders once per change
+  ---
+  duration_ms: 0.9067
+  type: 'test'
+  ...
+# Subtest: group switching renders an explicit error card instead of a stale view on failure
+ok 179 - group switching renders an explicit error card instead of a stale view on failure
+  ---
+  duration_ms: 1.5533
+  type: 'test'
+  ...
+# Subtest: unknown preplan uses its explicit recovery action while other unknown work stays locked
+ok 180 - unknown preplan uses its explicit recovery action while other unknown work stays locked
+  ---
+  duration_ms: 0.9175
+  type: 'test'
+  ...
+# Subtest: input-change confirmation retries with explicit consent and the same intent key
+ok 181 - input-change confirmation retries with explicit consent and the same intent key
+  ---
+  duration_ms: 6.3049
+  type: 'test'
+  ...
+# Subtest: preplan input-change cancellation sends no second request or false success
+ok 182 - preplan input-change cancellation sends no second request or false success
+  ---
+  duration_ms: 0.8686
+  type: 'test'
+  ...
+# Subtest: channel display name prefers trimmed custom name
+ok 183 - channel display name prefers trimmed custom name
+  ---
+  duration_ms: 5.0688
+  type: 'test'
+  ...
+# Subtest: channel display name falls back to padded auto index
+ok 184 - channel display name falls back to padded auto index
+  ---
+  duration_ms: 1.5273
+  type: 'test'
+  ...
+# Subtest: channel deletion confirmation prefers the trimmed name
+ok 185 - channel deletion confirmation prefers the trimmed name
+  ---
+  duration_ms: 0.7461
+  type: 'test'
+  ...
+# Subtest: channel deletion confirmation falls back to the full url, never the index name
+ok 186 - channel deletion confirmation falls back to the full url, never the index name
+  ---
+  duration_ms: 1.7492
+  type: 'test'
+  ...
+# Subtest: flow badge reports unavailable without flow facts
+ok 187 - flow badge reports unavailable without flow facts
+  ---
+  duration_ms: 2.6024
+  type: 'test'
+  ...
+# Subtest: flow badge attention wins over any stage
+ok 188 - flow badge attention wins over any stage
+  ---
+  duration_ms: 0.4645
+  type: 'test'
+  ...
+# Subtest: flow badge maps each known stage
+ok 189 - flow badge maps each known stage
+  ---
+  duration_ms: 0.7277
+  type: 'test'
+  ...
+# Subtest: flow badge falls back to raw stage for unknown states
+ok 190 - flow badge falls back to raw stage for unknown states
+  ---
+  duration_ms: 0.3952
+  type: 'test'
+  ...
+# Subtest: formatDateTime renders local YYYY-MM-DD HH:mm
+ok 191 - formatDateTime renders local YYYY-MM-DD HH:mm
+  ---
+  duration_ms: 6.4339
+  type: 'test'
+  ...
+# Subtest: formatDateTime returns placeholder for empty or unparsable input
+ok 192 - formatDateTime returns placeholder for empty or unparsable input
+  ---
+  duration_ms: 0.6896
+  type: 'test'
+  ...
+# Subtest: video stage waits for manual generation when backend reports incomplete videos
+ok 193 - video stage waits for manual generation when backend reports incomplete videos
+  ---
+  duration_ms: 0.3379
+  type: 'test'
+  ...
+# Subtest: video stage stays in progress for an active backend attempt
+ok 194 - video stage stays in progress for an active backend attempt
+  ---
+  duration_ms: 0.2033
+  type: 'test'
+  ...
+# Subtest: failed attempts still take priority over pending video generation
+ok 195 - failed attempts still take priority over pending video generation
+  ---
+  duration_ms: 0.1887
+  type: 'test'
+  ...
+# Subtest: projectCoverMediaPath builds the media path only for a real current cover
+ok 196 - projectCoverMediaPath builds the media path only for a real current cover
+  ---
+  duration_ms: 0.2178
+  type: 'test'
+  ...
+# Subtest: projectFilterCategory folds badges into four filter buckets
+ok 197 - projectFilterCategory folds badges into four filter buckets
+  ---
+  duration_ms: 0.2464
+  type: 'test'
+  ...
+# Subtest: projectMatchesStatusFilter folds draft into the in_progress chip
+ok 198 - projectMatchesStatusFilter folds draft into the in_progress chip
+  ---
+  duration_ms: 0.2314
+  type: 'test'
+  ...
+# Subtest: projectStatusCounts counts per chip with draft folded into in_progress
+ok 199 - projectStatusCounts counts per chip with draft folded into in_progress
+  ---
+  duration_ms: 0.275
+  type: 'test'
+  ...
+# Subtest: publication state prefers the marker and requires a current composition
+ok 200 - publication state prefers the marker and requires a current composition
+  ---
+  duration_ms: 0.2361
+  type: 'test'
+  ...
+# Subtest: published and unpublished chips partition projects independently of flow status
+ok 201 - published and unpublished chips partition projects independently of flow status
+  ---
+  duration_ms: 0.2124
+  type: 'test'
+  ...
+# Subtest: active channel preference resolves all, valid, stale and empty values
+ok 202 - active channel preference resolves all, valid, stale and empty values
+  ---
+  duration_ms: 0.3249
+  type: 'test'
+  ...
+# Subtest: sortProjectsByCreated orders by created_at without mutating input
+ok 203 - sortProjectsByCreated orders by created_at without mutating input
+  ---
+  duration_ms: 0.3927
+  type: 'test'
+  ...
+# Subtest: sortProjectsByCreated puts unparsable dates at the old end
+ok 204 - sortProjectsByCreated puts unparsable dates at the old end
+  ---
+  duration_ms: 0.1891
+  type: 'test'
+  ...
+# Subtest: visibleProjects combines query, status filter and sort
+ok 205 - visibleProjects combines query, status filter and sort
+  ---
+  duration_ms: 0.3602
+  type: 'test'
+  ...
+# Subtest: projectListEmptyKind distinguishes search, filter and true empty states
+ok 206 - projectListEmptyKind distinguishes search, filter and true empty states
+  ---
+  duration_ms: 0.1915
+  type: 'test'
+  ...
+# Subtest: project list polling still renders changed data in the current generation
+ok 207 - project list polling still renders changed data in the current generation
+  ---
+  duration_ms: 1.8568
+  type: 'test'
+  ...
+# Subtest: project list polling discards an in-flight response after its generation stops
+ok 208 - project list polling discards an in-flight response after its generation stops
+  ---
+  duration_ms: 0.8189
+  type: 'test'
+  ...
+# Subtest: polling pauses while a publication request is pending
+ok 209 - polling pauses while a publication request is pending
+  ---
+  duration_ms: 0.8462
+  type: 'test'
+  ...
+# Subtest: project list polling preserves unchanged-data and search-focus behavior
+ok 210 - project list polling preserves unchanged-data and search-focus behavior
+  ---
+  duration_ms: 0.8376
+  type: 'test'
+  ...
+# Subtest: detail header shows a publish button only while unpublished and publishable
+ok 211 - detail header shows a publish button only while unpublished and publishable
+  ---
+  duration_ms: 0.8015
+  type: 'test'
+  ...
+# Subtest: detail publication posts once, patches detail and list caches, then re-renders
+ok 212 - detail publication posts once, patches detail and list caches, then re-renders
+  ---
+  duration_ms: 0.9985
+  type: 'test'
+  ...
+# Subtest: detail publication translates 409 and never publishes twice
+ok 213 - detail publication translates 409 and never publishes twice
+  ---
+  duration_ms: 1.7387
+  type: 'test'
+  ...
+# Subtest: create project entry stops list polling before any asynchronous work
+ok 214 - create project entry stops list polling before any asynchronous work
+  ---
+  duration_ms: 1.1237
+  type: 'test'
+  ...
+# Subtest: create project entry asks for a channel when all-channels view has channels
+ok 215 - create project entry asks for a channel when all-channels view has channels
+  ---
+  duration_ms: 0.9401
+  type: 'test'
+  ...
+# Subtest: project card exposes one open target plus publication controls
+ok 216 - project card exposes one open target plus publication controls
+  ---
+  duration_ms: 0.3782
+  type: 'test'
+  ...
+# Subtest: project card shows the unpublished badge next to the mark button
+ok 217 - project card shows the unpublished badge next to the mark button
+  ---
+  duration_ms: 0.7736
+  type: 'test'
+  ...
+# Subtest: both detail stage headers place the publication control left of refresh
+ok 218 - both detail stage headers place the publication control left of refresh
+  ---
+  duration_ms: 0.6328
+  type: 'test'
+  ...
+# Subtest: opening a project and rendering assets do not rewrite the list channel filter
+ok 219 - opening a project and rendering assets do not rewrite the list channel filter
+  ---
+  duration_ms: 0.5414
+  type: 'test'
+  ...
+# Subtest: open project failure restores polling only when the list is still visible
+ok 220 - open project failure restores polling only when the list is still visible
+  ---
+  duration_ms: 10.7639
+  type: 'test'
+  ...
+# Subtest: summary counts narratable, separators and over-limit sentences
+ok 221 - summary counts narratable, separators and over-limit sentences
+  ---
+  duration_ms: 2.429
+  type: 'test'
+  ...
+# Subtest: rows map separator and risky sentence display models
+ok 222 - rows map separator and risky sentence display models
+  ---
+  duration_ms: 0.5142
+  type: 'test'
+  ...
+# Subtest: confirm warning appears only with over-limit sentences
+ok 223 - confirm warning appears only with over-limit sentences
+  ---
+  duration_ms: 0.436
+  type: 'test'
+  ...
+# Subtest: script draft counts characters and non-empty lines
+ok 224 - script draft counts characters and non-empty lines
+  ---
+  duration_ms: 0.4837
+  type: 'test'
+  ...
+# Subtest: action labels translate known codes and keep unknown codes readable
+ok 225 - action labels translate known codes and keep unknown codes readable
+  ---
+  duration_ms: 4.1665
+  type: 'test'
+  ...
+# Subtest: blocking reason labels cover known codes and fall back to null
+ok 226 - blocking reason labels cover known codes and fall back to null
+  ---
+  duration_ms: 0.3221
+  type: 'test'
+  ...
+# Subtest: review state labels translate review vocabulary
+ok 227 - review state labels translate review vocabulary
+  ---
+  duration_ms: 0.2238
+  type: 'test'
+  ...
+# Subtest: materialization status prefers review wording over raw status
+ok 228 - materialization status prefers review wording over raw status
+  ---
+  duration_ms: 0.239
+  type: 'test'
+  ...
+# Subtest: algorithm version label rewrites lineage-remap versions
+ok 229 - algorithm version label rewrites lineage-remap versions
+  ---
+  duration_ms: 0.4044
+  type: 'test'
+  ...
+# Subtest: preplanRunIsCalm only accepts fully succeeded quiet runs
+ok 230 - preplanRunIsCalm only accepts fully succeeded quiet runs
+  ---
+  duration_ms: 0.5909
+  type: 'test'
+  ...
+# Subtest: group candidate tone derives only from loaded facts
+ok 231 - group candidate tone derives only from loaded facts
+  ---
+  duration_ms: 1.3107
+  type: 'test'
+  ...
+# Subtest: suspicious narration duration flags sub-second ready audio
+ok 232 - suspicious narration duration flags sub-second ready audio
+  ---
+  duration_ms: 0.2391
+  type: 'test'
+  ...
+# Subtest: conflict display keeps human summary and full technical detail
+ok 233 - conflict display keeps human summary and full technical detail
+  ---
+  duration_ms: 0.9085
+  type: 'test'
+  ...
+# Subtest: groupCardModel derives card facts from loaded data only
+ok 234 - groupCardModel derives card facts from loaded data only
+  ---
+  duration_ms: 1.7572
+  type: 'test'
+  ...
+# Subtest: groupCardModel handles missing candidate overview and timeline
+ok 235 - groupCardModel handles missing candidate overview and timeline
+  ---
+  duration_ms: 1.3821
+  type: 'test'
+  ...
+# Subtest: groupCardMatchesFilter covers every filter key and safe fallbacks
+ok 236 - groupCardMatchesFilter covers every filter key and safe fallbacks
+  ---
+  duration_ms: 0.8767
+  type: 'test'
+  ...
+# Subtest: parseGroupSequenceInput only accepts in-range integers
+ok 237 - parseGroupSequenceInput only accepts in-range integers
+  ---
+  duration_ms: 0.4597
+  type: 'test'
+  ...
+# Subtest: directorViewFromHash parses list detail and other stage hashes
+ok 238 - directorViewFromHash parses list detail and other stage hashes
+  ---
+  duration_ms: 0.6772
+  type: 'test'
+  ...
+# Subtest: hashForDirectorView writes list hash unless the group sequence is valid
+ok 239 - hashForDirectorView writes list hash unless the group sequence is valid
+  ---
+  duration_ms: 0.2886
+  type: 'test'
+  ...
+# Subtest: video group tab tone follows group video progress facts
+ok 240 - video group tab tone follows group video progress facts
+  ---
+  duration_ms: 0.318
+  type: 'test'
+  ...
+# Subtest: video service availability uses the aggregate backend contract
+ok 241 - video service availability uses the aggregate backend contract
+  ---
+  duration_ms: 50.2811
+  type: 'test'
+  ...
+# Subtest: step 08 requires a currently available H3 service before enabling generation
+ok 242 - step 08 requires a currently available H3 service before enabling generation
+  ---
+  duration_ms: 5.0404
+  type: 'test'
+  ...
+# Subtest: defect notice only renders for backend-marked defect delivery
+ok 243 - defect notice only renders for backend-marked defect delivery
+  ---
+  duration_ms: 1.7632
+  type: 'test'
+  ...
+# Subtest: defect notice states time windows from content_defect findings verbatim
+ok 244 - defect notice states time windows from content_defect findings verbatim
+  ---
+  duration_ms: 0.6141
+  type: 'test'
+  ...
+# Subtest: defect windows skip non-numeric findings instead of fabricating times
+ok 245 - defect windows skip non-numeric findings instead of fabricating times
+  ---
+  duration_ms: 1.2483
+  type: 'test'
+  ...
+# Subtest: composition defect notice summarizes defect groups with sequences
+ok 246 - composition defect notice summarizes defect groups with sequences
+  ---
+  duration_ms: 0.5119
+  type: 'test'
+  ...
+# Subtest: step 08 shows the defect warning above the current group video player
+ok 247 - step 08 shows the defect warning above the current group video player
+  ---
+  duration_ms: 1.2633
+  type: 'test'
+  ...
+# Subtest: composition surfaces show the defect group notice from workflow summary
+ok 248 - composition surfaces show the defect group notice from workflow summary
+  ---
+  duration_ms: 0.5836
+  type: 'test'
+  ...
+# Subtest: video cancel uses the explicit attempt cancel route
+ok 249 - video cancel uses the explicit attempt cancel route
+  ---
+  duration_ms: 47.6118
+  type: 'test'
+  ...
+# Subtest: CANCEL action has a stable Chinese label
+ok 250 - CANCEL action has a stable Chinese label
+  ---
+  duration_ms: 1.2542
+  type: 'test'
+  ...
+# Subtest: group video surface shows authoritative remote wait and stalled notice
+ok 251 - group video surface shows authoritative remote wait and stalled notice
+  ---
+  duration_ms: 6.3876
+  type: 'test'
+  ...
+# Subtest: cancel button requires CANCEL action and defaults to stalled attempts only
+ok 252 - cancel button requires CANCEL action and defaults to stalled attempts only
+  ---
+  duration_ms: 4.592
+  type: 'test'
+  ...
+# Subtest: batch overview surfaces stalled groups in the strip and the modal
+ok 253 - batch overview surfaces stalled groups in the strip and the modal
+  ---
+  duration_ms: 6.7896
+  type: 'test'
+  ...
+# Subtest: voice filtering combines search and fixed metadata facets
+ok 254 - voice filtering combines search and fixed metadata facets
+  ---
+  duration_ms: 3.5123
+  type: 'test'
+  ...
+# Subtest: 402 voices are rendered in bounded 24-card pages
+ok 255 - 402 voices are rendered in bounded 24-card pages
+  ---
+  duration_ms: 0.9398
+  type: 'test'
+  ...
+# Subtest: voice cards expose stable version and short identifiers
+ok 256 - voice cards expose stable version and short identifiers
+  ---
+  duration_ms: 19.0509
+  type: 'test'
+  ...
+# Subtest: locale and replacement voice are produced as one compatible project patch
+ok 257 - locale and replacement voice are produced as one compatible project patch
+  ---
+  duration_ms: 0.3799
+  type: 'test'
+  ...
+# Subtest: project creation submits the controller selection instead of a paginated DOM radio
+ok 258 - project creation submits the controller selection instead of a paginated DOM radio
+  ---
+  duration_ms: 9.1534
+  type: 'test'
+  ...
+# Subtest: all four selection surfaces reuse the bounded lazy media component
+ok 259 - all four selection surfaces reuse the bounded lazy media component
+  ---
+  duration_ms: 8.1309
+  type: 'test'
+  ...
+1..259
+# tests 259
+# suites 0
+# pass 259
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1314.6655
+'fnm' 不是内部或外部命令，也不是可运行的程序
+或批处理文件。
+
+> tubeflow-ai-web-prototype@1.0.0 lint
+> node --check app.js && node --check frontend/api-client.js && node --check frontend/narration-view.js && node --check frontend/video-defect.js && node --check frontend/voice-library.js && node --check frontend/step07-view.js && node --check frontend/auto-progress.js && node --check frontend/script-preview.js && node --check frontend/clipboard-copy.js && node --check frontend/project-list-display.js && node --check frontend/channel-persona.js && node --check frontend/dialog-rules.js && node --check frontend/cover-view.js && node --check frontend/cover-templates.js && node --check frontend/description-view.js && node --check frontend/el-pool.js && node --check frontend/el-voices.js && node --check frontend/locale-labels.js && node --check dev-server.mjs
+
+'fnm' 不是内部或外部命令，也不是可运行的程序
+或批处理文件。
+
+> tubeflow-ai-web-prototype@1.0.0 typecheck
+> node --check app.js && node --check frontend/api-client.js && node --check frontend/narration-view.js && node --check frontend/video-defect.js && node --check frontend/voice-library.js && node --check frontend/step07-view.js && node --check frontend/auto-progress.js && node --check frontend/script-preview.js && node --check frontend/clipboard-copy.js && node --check frontend/project-list-display.js && node --check frontend/channel-persona.js && node --check frontend/dialog-rules.js && node --check frontend/cover-view.js && node --check frontend/cover-templates.js && node --check frontend/description-view.js && node --check frontend/el-pool.js && node --check frontend/el-voices.js && node --check frontend/locale-labels.js
+
+'fnm' 不是内部或外部命令，也不是可运行的程序
+或批处理文件。
+
+> tubeflow-ai-web-prototype@1.0.0 build
+> node scripts/build.mjs
+
+Built static client in dist/

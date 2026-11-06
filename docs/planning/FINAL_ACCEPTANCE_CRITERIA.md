@@ -676,7 +676,10 @@
 - [x] Claude 云端工作区：纯计算与普查/A/B 脚本同一算法——隔帧窗口、切点、逐镜分段、HF（5 帧滑动平均残差 RMS）、抖镜头（HF ≥ 0.25）计数；长度不一致、空输入、fps 非法一律报错（单元测试）。
 - [x] Claude 云端工作区：适配器用 ffmpeg 与 OpenCV 提取，合成的「一拍二」视频隔帧占比 1.0、全帧率视频 0.0（单元测试，需 ffmpeg）；用 484746c4 两段原片核对，与 `ab_measure.py` 的整条与逐镜数值逐项相同，每条约 2.7 秒。
 - [x] Claude 云端工作区：技术与内容 QC 通过后写入 `probe_evidence.motion_metrics`；测量异常记为 `status = error`，视频照常归档、成为当前、不重提；未装配时显式记录；QC 失败的视频不测（单元测试）。
-- [ ] 测试机：按 pyproject 安装新依赖后，单元、集成、ruff、mypy、npm 相对 main 无新增失败。
-- [ ] 部署机：镜像构建通过 `import cv2, numpy` 校验；部署按 §52 等待；worker 容器内对 A/B 已归档视频之一离线复算，与 `Pending issues/2026-11-06/evidence/jitter_ab/ab/results/measure.json` 对应条目一致（只读，不调用 Provider）。
+- [x] 测试机：按 pyproject 安装新依赖后，单元、集成、ruff、mypy、npm 相对 main 无新增失败。
+  - 2026-11-06 测试机实测：装 `numpy==2.5.4`、`opencv-python-headless==5.0.0.93`（`pip freeze` 仅这两项变化）。单元 main 2472 passed / 10 skipped、分支 **2481 passed / 11 skipped**；新文件单跑 **9 passed + 1 skipped**（`ffmpeg not on PATH`，**跳过不算通过**）；集成两侧 **19 failed / 122 passed / 7 skipped**（各收集 148），失败集合逐条相同且与上一轮一致；ruff 15 条逐字节相同；mypy 12 errors / 7 files（源文件 206→208）归一后相同；npm 259/259/0。证据 `Pending issues/2026-11-06/evidence/motion_metrics/gates/SUMMARY.md`。
+- [x] 部署机：镜像构建通过 `import cv2, numpy` 校验；部署按 §52 等待；worker 容器内对 A/B 已归档视频之一离线复算，与 `Pending issues/2026-11-06/evidence/jitter_ab/ab/results/measure.json` 对应条目一致（只读，不调用 Provider）。
+  - 2026-11-06 部署机：构建日志 `#16 [12/12] RUN python -c "import cv2, numpy"` → `DONE 0.3s`；镜像 `sha256:287592d9…`（1,419,211,640 字节，较 d488b57e +28.6%），镜像内 cv2 5.0.0 / numpy 2.5.4。§52 两项首查即 0（04:42:09Z / 04:42:15Z），等待 0 分钟。复算 **21 项全部一致**：0.49 / 45 / 22 / 0.874 / 2 与三镜逐项相同（逐镜 HF 差 0.000），提取 1.512 s、计算 0.001 s。证据 `Pending issues/2026-11-06/evidence/motion_metrics/recompute/`；记录 `docs/DEPLOYMENT.md` §43。
 - [ ] 上线后第一条正常归档的分组视频带 `motion_metrics.status = ok`（等自然发生，不为此调用 Provider）。
+  - 2026-11-06 截至 04:53:02Z（T+10 分钟快照）：`probe_evidence_json ? 'motion_metrics'` 计数 **0**，窗口内无运行中工作流、无 AUTO 运行。**待自然发生，本项未勾**；未为此触发生成（本任务全程未调用任何 Provider）。
 

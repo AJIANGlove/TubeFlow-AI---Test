@@ -1,0 +1,20 @@
+部署机（192.168.110.200）Postgres 只读查询，2026-11-06T04:45:08Z
+
+SQL：
+  select nspname from pg_namespace where nspname like 'contract\_%';
+
+结果：**1 行**
+  contract_be30c85aac3347ffbf3bc45bc6ea12de
+
+该 schema 的内容（同一时刻的只读查询）：
+  information_schema.tables 计数 = 0
+  contract_be30c85aac3347ffbf3bc45bc6ea12de.alembic_version → 不存在
+
+判断：**空 schema**，与 `backend/tests/integration/conftest.py::postgres_database` 的清理路径一致——
+该 fixture 先 `CREATE SCHEMA "contract_<hex>"`，再跑 `alembic upgrade`，`try/finally` 只包住 `yield`
+之后；若 `alembic upgrade` 阶段就失败，`DROP SCHEMA` 不会执行，留下一个空 schema。
+无法确认它由哪一次运行产生（`pg_namespace` 没有创建时间）；今天的集成跑（04:31–04:40Z，两侧各 19 条失败）
+与更早的运行都可能留下。
+
+处置：**只列出，未删除**（删除需用户授权）。附带说明：`contract_%` 命名与本次部署无关，
+线上业务表都在 `public`。
