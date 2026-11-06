@@ -257,3 +257,12 @@ where u.run_id = (select id from project_director_runs where id::text like 'be66
 ```
 
 Temporal 历史（只读）：对上面各运行执行 `temporal workflow show -w project-director-<owner_id>-<run_id> --output json`，统计 `advance_project_director` 每次的 Started→Completed 耗时、TimedOut 次数和重试次数。
+
+---
+
+## 8. 补采后的更正（2026-11-05，详见 `Pending issues/2026-11-05/DIRECTOR_STALL_FOLLOWUP_REVIEW_20261105.md`）
+
+1. 第 3 节结论 1 中的【推断】「单元内时间、地点很少变化」被 SQL C 否定：731 个已通过的相邻对里，时间轴变化 448 对（61%），地点轴变化 300 对（41%），两者都不变的只有 183 对（25%）。
+2. 第 2 节「固定位置反复失败」需要补充：CELESTE 全部 11 轮的失败单元依次为 9 → 33/39 → 40（连续 5 轮）→ 54 → 57。难单元会连续卡多轮，但最终会通过。第 2 节推断首轮失败单元序号在 14 以内，实际是第 9 单元。
+3. 第 1 节第 4 条（重启导致未知态耗尽）现在有直接证据：`8697ee51` 的两个活动在 PR #10 重启前 45 秒调度，第 1 次尝试跑满 20 分钟超时后重试；同一运行的第 33 单元 unknown_exhausted、第 39 单元 worker_lost。
+4. 第 6 节的失败码统计更新为 14 次已知失败运行：相邻多样性 10 次（71%）、句子覆盖 2 次、响应 JSON 无效 1 次、未知态耗尽 1 次。
