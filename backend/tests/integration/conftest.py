@@ -60,15 +60,17 @@ def postgres_database(request: pytest.FixtureRequest) -> Iterator[PostgresDataba
     admin_engine = create_engine(database_url, pool_pre_ping=True)
     with admin_engine.begin() as connection:
         connection.execute(text(f'CREATE SCHEMA "{schema}"'))
-    schema_url = _schema_url(database_url, schema)
-    backend_root = Path(__file__).resolve().parents[2]
-    config = Config(str(backend_root / "alembic.ini"))
-    config.set_main_option("script_location", str(backend_root / "migrations"))
-    config.set_main_option("prepend_sys_path", str(backend_root / "src"))
-    config.attributes["database_url"] = schema_url
-    command.upgrade(config, getattr(request, "param", "head"))
-    engine = create_engine(schema_url, pool_pre_ping=True)
+    engine: Engine | None = None
+    # 2026-11-06：迁移失败或中断时也要删掉临时 schema（此前 upgrade 在 try 之外，留下过空 schema）。
     try:
+        schema_url = _schema_url(database_url, schema)
+        backend_root = Path(__file__).resolve().parents[2]
+        config = Config(str(backend_root / "alembic.ini"))
+        config.set_main_option("script_location", str(backend_root / "migrations"))
+        config.set_main_option("prepend_sys_path", str(backend_root / "src"))
+        config.attributes["database_url"] = schema_url
+        command.upgrade(config, getattr(request, "param", "head"))
+        engine = create_engine(schema_url, pool_pre_ping=True)
         yield PostgresDatabase(
             engine=engine,
             sessions=sessionmaker(engine, expire_on_commit=False),
@@ -76,7 +78,8 @@ def postgres_database(request: pytest.FixtureRequest) -> Iterator[PostgresDataba
             schema=schema,
         )
     finally:
-        engine.dispose()
+        if engine is not None:
+            engine.dispose()
         with admin_engine.begin() as connection:
             connection.execute(text(f'DROP SCHEMA "{schema}" CASCADE'))
         admin_engine.dispose()

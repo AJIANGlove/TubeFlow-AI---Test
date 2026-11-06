@@ -683,3 +683,9 @@
 - [ ] 上线后第一条正常归档的分组视频带 `motion_metrics.status = ok`（等自然发生，不为此调用 Provider）。
   - 2026-11-06 截至 04:53:02Z（T+10 分钟快照）：`probe_evidence_json ? 'motion_metrics'` 计数 **0**，窗口内无运行中工作流、无 AUTO 运行。**待自然发生，本项未勾**；未为此触发生成（本任务全程未调用任何 Provider）。
 
+## 48. 2026-11-06 集成测试临时 schema 清理（复核文档 `Pending issues/2026-11-06/MOTION_METRICS_ROLLOUT_REVIEW_20261106.md`）
+
+- [x] Claude 云端工作区：`postgres_database` 夹具在迁移失败时也删除临时 schema。用替身 alembic 复现：原夹具只执行 `CREATE SCHEMA`，修复后执行 `DROP SCHEMA … CASCADE`；新单元测试在原夹具上失败、在修复后通过。云端工作区没有 alembic，正式运行时该测试会被跳过。
+- [ ] 测试机：新单元测试在装有 alembic 的环境中实际运行通过，不算跳过；单元、集成、ruff、mypy 相对 main 无新增失败。
+- [ ] 部署机：确认 `contract_be30c85aac3347ffbf3bc45bc6ea12de` 位于测试库 `tubeflowtest` 且为空后，以 `RESTRICT` 删除；复查 `contract\_%` 为 0 行；其他测试前缀只读列出，不删除。
+
