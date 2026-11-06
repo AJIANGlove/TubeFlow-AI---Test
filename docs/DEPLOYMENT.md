@@ -566,3 +566,13 @@ ssh $SSHOPTS edy@192.168.110.200 'sudo docker run --rm -v tubeflowai-test_postgr
   - 已删的 `contract_be30…` 只比 `staged_cleanup_gate` 早 824 个事务，比两个 `audit_272879e_20260829*` 早约 1.2 万个事务。很可能是 2026-08-29 前后同一次审计/清理工作留下的，早于首个项目（2026-09-04）。
   - 没有证据表明正式使用以后有集成测试连过业务库。
   - 三个审计 schema 应用不使用，建议保留，记为**已知历史遗留**。
+
+## 46. 2026-11-06 运维操作：建立测试专用 MinIO（`tubeflow-contract-minio`）
+
+- 授权与依据：`Pending issues/2026-11-06/NEXT_STEPS_IMPLEMENTATION_PLAN_20261106.md` D2（用户 2026-11-06 已确认）。目的：集成测试缺 `TUBEFLOW_TEST_MINIO_*`（12 条 `KeyError`）。
+- 操作（部署机 08:53:30Z）：用 `docker-compose.yml` 已钉死的 `minio/minio@sha256:14cea493d9a34af32f524e538b8346cf79f3321eff8e708c1e2960462bd8936e`（部署机原有，**未拉取**）起 `tubeflow-contract-minio`：仅 `127.0.0.1:59000->9000`、独立卷 `tubeflow-contract-minio-data`、`--restart unless-stopped`、随机 root 账号经 `--env-file /home/edy/tubeflow-contract-minio.env`（600）注入；不加 `--network`，只挂默认 `bridge`，**未进业务网络**。
+- 核对：新实例 `list_buckets()` 为空；本机经隧道 `59100→59000` 建桶/删桶再回空；`tubeflowai-test-minio-1` 的 Id/StartedAt/Mounts 与卷 `tubeflowai-test_minio_data` 创建时间**前后逐字相同**（未改动）。
+- 踩坑：测试机本机 59000 已被旧 SSH 转发占用（PID 17916 指向线上 MinIO），首个请求打到线上并返回 `InvalidAccessKeyId`；改本机 59100 后正常。复用前先 `netstat -ano | grep 59000`。
+- 凭据：`runtime/operations/contract-minio-20261106/credentials.txt`（`runtime/` 已 gitignore，不入库）；记录 `runtime/operations/contract-minio-20261106/README.md`。
+- 回滚：`docker rm -f tubeflow-contract-minio && docker volume rm tubeflow-contract-minio-data`（只限这两个对象）。
+- **未做**：完整集成重跑（等 C1 的对象存储守卫合并后再做）。未改 `.env`、未重启任何业务容器、未调用 Provider。

@@ -1,0 +1,107 @@
+{
+  "03_90c4a4e7": {
+    "source": {
+      "frames": 311,
+      "fps": "24/1",
+      "size": "1056x608",
+      "duration_s": 12.958
+    },
+    "measured_held_share": 0.58,
+    "candidates": [
+      {
+        "params": "mpdecimate=hi=768:lo=320:frac=0.1",
+        "label": "frac0.10",
+        "kept_frames": 205,
+        "dropped_share": 0.341
+      },
+      {
+        "params": "mpdecimate=hi=768:lo=320:frac=0.05",
+        "label": "frac0.05",
+        "kept_frames": 240,
+        "dropped_share": 0.228
+      },
+      {
+        "params": "mpdecimate=hi=512:lo=192:frac=0.33",
+        "label": "hi512",
+        "kept_frames": 271,
+        "dropped_share": 0.129
+      },
+      {
+        "params": "mpdecimate=hi=384:lo=128:frac=0.33",
+        "label": "hi384",
+        "kept_frames": 281,
+        "dropped_share": 0.096
+      }
+    ]
+  },
+  "12_0cc7c89c": {
+    "source": {
+      "frames": 362,
+      "fps": "24/1",
+      "size": "1056x608",
+      "duration_s": 15.083
+    },
+    "measured_held_share": 0.11,
+    "candidates": [
+      {
+        "params": "mpdecimate=hi=768:lo=320:frac=0.1",
+        "label": "frac0.10",
+        "kept_frames": 262,
+        "dropped_share": 0.276
+      },
+      {
+        "params": "mpdecimate=hi=768:lo=320:frac=0.05",
+        "label": "frac0.05",
+        "kept_frames": 267,
+        "dropped_share": 0.262
+      },
+      {
+        "params": "mpdecimate=hi=512:lo=192:frac=0.33",
+        "label": "hi512",
+        "kept_frames": 281,
+        "dropped_share": 0.224
+      },
+      {
+        "params": "mpdecimate=hi=384:lo=128:frac=0.33",
+        "label": "hi384",
+        "kept_frames": 285,
+        "dropped_share": 0.213
+      }
+    ]
+  },
+  "07_7460885c": {
+    "source": {
+      "frames": 328,
+      "fps": "24/1",
+      "size": "1056x608",
+      "duration_s": 13.667
+    },
+    "measured_held_share": 0.49,
+    "candidates": [
+      {
+        "params": "mpdecimate=hi=768:lo=320:frac=0.1",
+        "label": "frac0.10",
+        "kept_frames": 275,
+        "dropped_share": 0.162
+      },
+      {
+        "params": "mpdecimate=hi=768:lo=320:frac=0.05",
+        "label": "frac0.05",
+        "kept_frames": 290,
+        "dropped_share": 0.116
+      },
+      {
+        "params": "mpdecimate=hi=512:lo=192:frac=0.33",
+        "label": "hi512",
+        "kept_frames": 313,
+        "dropped_share": 0.046
+      },
+      {
+        "params": "mpdecimate=hi=384:lo=128:frac=0.33",
+        "label": "hi384",
+        "kept_frames": 327,
+        "dropped_share": 0.003
+      }
+    ]
+  }
+}

@@ -1,0 +1,107 @@
+=== cycle 1 2026-11-06T08:52:54Z ===
+TS 2026-11-06T08:53:17Z
+RUN RUNNING|-|round=1|11-06 08:52:35
+PROJECT ACTIVE
+NARR sentences=0|raw_qc=0|norm_qc=0|measured_ms=0
+GROUPS n=0
+DIR runs=1|SUBMITTING=4,SUCCEEDED=1
+DIRFAIL -=5
+MERGED units_with_merge=0
+SB gens=0|-
+RECUT revs_with_recut=0|max_approvals=0
+REVIEW -
+VID attempts=0|-
+VIDERR -
+VIDCUR current_videos=0
+METRICS measured=0|err=0|avg_held=0|jitter_sum=0
+COMP -
+COMPERR -
+=== cycle 2 2026-11-06T09:02:56Z ===
+TS 2026-11-06T09:03:19Z
+RUN PAUSED|director_preplan_failed|round=1|11-06 08:55:53
+PROJECT ACTIVE
+NARR sentences=26|raw_qc=26|norm_qc=26|measured_ms=113600
+GROUPS n=9
+DIR runs=1|FAILED=1,SUCCEEDED=4
+DIRFAIL -=4,director_output_shot_count_invalid=1
+MERGED units_with_merge=0
+SB gens=0|-
+RECUT revs_with_recut=0|max_approvals=0
+REVIEW -
+VID attempts=0|-
+VIDERR -
+VIDCUR current_videos=0
+METRICS measured=0|err=0|avg_held=0|jitter_sum=0
+COMP -
+COMPERR -
+=== cycle 1 2026-11-06T09:23:16Z ===
+TS 2026-11-06T09:23:39Z
+RUN RUNNING|-|round=2|11-06 09:23:35
+PROJECT ACTIVE
+NARR sentences=26|raw_qc=26|norm_qc=26|measured_ms=113600
+GROUPS n=9
+DIR runs=2|FAILED=1,SUBMITTING=1,SUCCEEDED=8
+DIRFAIL -=9,director_output_shot_count_invalid=1
+MERGED units_with_merge=0
+SB gens=0|-
+RECUT revs_with_recut=0|max_approvals=0
+REVIEW -
+VID attempts=0|-
+VIDERR -
+VIDCUR current_videos=0
+METRICS measured=0|err=0|avg_held=0|jitter_sum=0
+COMP -
+COMPERR -
+TS 2026-11-06T09:24:24Z
+RUN RUNNING|-|round=2|11-06 09:24:21
+PROJECT ACTIVE
+NARR sentences=26|raw_qc=26|norm_qc=26|measured_ms=113600
+GROUPS n=9
+DIR runs=2|FAILED=1,SUCCEEDED=9
+DIRFAIL -=9,director_output_shot_count_invalid=1
+MERGED units_with_merge=0
+SB gens=2|INTENT_PERSISTED=1,SUBMITTING=8
+RECUT revs_with_recut=9|max_approvals=0
+REVIEW APPROVED=1,NOT_REQUIRED=8
+VID attempts=0|-
+VIDERR -
+VIDCUR current_videos=0
+METRICS measured=0|err=0|avg_held=0|jitter_sum=0
+COMP -
+COMPERR -
+=== cycle 2 2026-11-06T09:33:17Z ===
+TS 2026-11-06T09:33:40Z
+RUN RUNNING|-|round=2|11-06 09:27:20
+PROJECT ACTIVE
+NARR sentences=26|raw_qc=26|norm_qc=26|measured_ms=113600
+GROUPS n=9
+DIR runs=2|FAILED=1,SUCCEEDED=9
+DIRFAIL -=9,director_output_shot_count_invalid=1
+MERGED units_with_merge=0
+SB gens=1|SUCCEEDED=9
+RECUT revs_with_recut=9|max_approvals=0
+REVIEW APPROVED=1,NOT_REQUIRED=8
+VID attempts=3|RUNNING=4,CREATED=3,ARCHIVED=2
+VIDERR -=9
+VIDCUR current_videos=2
+METRICS measured=2|err=0|avg_held=0.110|jitter_sum=1
+COMP -
+COMPERR -
+=== cycle 3 2026-11-06T09:43:19Z ===
+TS 2026-11-06T09:43:42Z
+RUN RUNNING|-|round=2|11-06 09:27:20
+PROJECT ACTIVE
+NARR sentences=26|raw_qc=26|norm_qc=26|measured_ms=113600
+GROUPS n=9
+DIR runs=2|FAILED=1,SUCCEEDED=9
+DIRFAIL -=9,director_output_shot_count_invalid=1
+MERGED units_with_merge=0
+SB gens=1|SUCCEEDED=9
+RECUT revs_with_recut=9|max_approvals=0
+REVIEW APPROVED=1,NOT_REQUIRED=8
+VID attempts=2|ARCHIVED=7,RUNNING=2
+VIDERR -=9
+VIDCUR current_videos=7
+METRICS measured=7|err=0|avg_held=0.559|jitter_sum=7
+COMP -
+COMPERR -

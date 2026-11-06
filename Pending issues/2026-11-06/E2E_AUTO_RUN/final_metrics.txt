@@ -1,0 +1,42 @@
+### per-group metrics
+sequence|attempt_id|node_id|status|held_share|hf|jitter|moving|held_w
+1|800b34df-744f-49d2-b900-0b0c4539e27f|h3-new-3|ok|0.17|0.108|0|18|3
+2|957ba333-6fa7-4b49-a085-00ccc80d1146|h3-new-2|ok|0.05|0.229|1|20|1
+3|47a2f762-1810-44d1-89ba-e482d72e937d|h3-new-3|ok|0.93|0.252|2|45|42
+4|9fb9fa06-b914-4c27-a3fb-6fa637e3c32e|h3-new-2|ok|0.83|0.38|2|35|29
+5|57825ae4-ebc5-4dd2-8824-58579ed81c3a|h3-new-3|ok|0.45|0.193|0|42|19
+6|87dee58e-f453-4d1e-8de9-b614a4c5756d|h3-new-2|ok|0.36|0.196|0|42|15
+7|617750e9-56dc-4c95-956b-4323e92e73a9|h3-new-2|ok|0.42|0.383|2|38|16
+8|3562e56b-d562-475c-a683-3c27b493a6bc|h3-new-3|ok|0.65|0.309|1|26|17
+9|7a83670b-d50e-404e-a2c0-3059316b0308|h3-new-2|ok|0.83|0.508|1|41|34
+(9 rows)
+### recompute overall
+measured|avg_held|max_held|jitter_sum
+9|0.521|0.930|9
+(1 row)
+### recut & merge
+revisions|with_recut
+9|0
+(1 row)
+units_with_merge
+0
+(1 row)
+### storyboard generations per group
+status|count
+SUCCEEDED|9
+(1 row)
+### composition
+id|state|attempt|error_code|composition_version_id
+4b6d24b2-f549-4035-a5c9-83f1c12c8964|SUCCEEDED|1||8465e58f-3252-4732-9789-28226219820f
+(1 row)
+### composition versions
+### video attempts total & stage
+attempts|with_error
+9|0
+(1 row)
+### timings
+s|min|max
+director|2026-11-06 08:52:35.354862+00|2026-11-06 09:23:35.455668+00
+storyboard|2026-11-06 09:24:21.175813+00|2026-11-06 09:24:21.963615+00
+video|2026-11-06 09:31:26.08959+00|2026-11-06 09:47:54.630346+00
+(3 rows)

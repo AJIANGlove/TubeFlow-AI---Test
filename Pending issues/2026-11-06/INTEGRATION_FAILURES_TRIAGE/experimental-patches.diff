@@ -1,0 +1,89 @@
+diff --git a/backend/src/tubeflow_test/adapters/persistence/database.py b/backend/src/tubeflow_test/adapters/persistence/database.py
+index 6230508..69ad211 100644
+--- a/backend/src/tubeflow_test/adapters/persistence/database.py
++++ b/backend/src/tubeflow_test/adapters/persistence/database.py
+@@ -19,15 +19,16 @@ class Database:
+     def __init__(self, url: str) -> None:
+         options: dict[str, object] = {"pool_pre_ping": True}
+         if make_url(url).get_backend_name() == "postgresql":
++            # [C3-DEBUG] 实验：把 URL 里已有的 options 与超时合并，验证 connect_args 是否覆盖了 search_path。
++            existing = dict(make_url(url).query).get("options", "")
++            merged = (
++                f"{existing} -c lock_timeout={_PG_LOCK_TIMEOUT} "
++                f"-c statement_timeout={_PG_STATEMENT_TIMEOUT}"
++            ).strip()
+             options.update(
+                 pool_size=20,
+                 max_overflow=20,
+-                connect_args={
+-                    "options": (
+-                        f"-c lock_timeout={_PG_LOCK_TIMEOUT} "
+-                        f"-c statement_timeout={_PG_STATEMENT_TIMEOUT}"
+-                    )
+-                },
++                connect_args={"options": merged},
+             )
+         self.engine: Engine = create_engine(url, **options)
+         self._sessions = sessionmaker(self.engine, expire_on_commit=False)
+diff --git a/backend/src/tubeflow_test/adapters/persistence/identity_project/repository.py b/backend/src/tubeflow_test/adapters/persistence/identity_project/repository.py
+index f55103c..6135008 100644
+--- a/backend/src/tubeflow_test/adapters/persistence/identity_project/repository.py
++++ b/backend/src/tubeflow_test/adapters/persistence/identity_project/repository.py
+@@ -77,7 +77,15 @@ class SqlAlchemyIdentityProjectRepository:
+         return self.session.get(SystemInitializationRow, 1) is not None
+ 
+     def initialize_admin(self, account: Account, completed_at: datetime) -> bool:
++        import sys
++        import threading
++
+         try:
++            print(
++                f"[C3-DEBUG] tid={threading.get_ident()} enter setup_complete={self.setup_complete()} username={account.username} id={account.id}",
++                file=sys.stderr,
++                flush=True,
++            )
+             with self.session.begin_nested():
+                 self.session.add(
+                     AccountRow(
+@@ -95,8 +103,14 @@ class SqlAlchemyIdentityProjectRepository:
+                     )
+                 )
+                 self.session.flush()
++            print(f"[C3-DEBUG] tid={threading.get_ident()} insert OK", file=sys.stderr, flush=True)
+             return True
+-        except IntegrityError:
++        except IntegrityError as exc:
++            print(
++                f"[C3-DEBUG] tid={threading.get_ident()} IntegrityError orig={exc.orig!r}",
++                file=sys.stderr,
++                flush=True,
++            )
+             return False
+ 
+     def disable_account_preserving_admin(self, account_id: UUID) -> str:
+diff --git a/backend/tests/integration/test_video_postgres.py b/backend/tests/integration/test_video_postgres.py
+index 1ffa4d4..87e15d8 100644
+--- a/backend/tests/integration/test_video_postgres.py
++++ b/backend/tests/integration/test_video_postgres.py
+@@ -12,7 +12,11 @@ from tubeflow_test.adapters.persistence.storyboards.models import (
+     DirectorRevisionRow,
+     StoryboardGenerationRow,
+ )
+-from tubeflow_test.video_generation.domain import ImmutableWorkflowSnapshot, VideoRuleViolation
++from tubeflow_test.video_generation.domain import (
++    ImmutableWorkflowSnapshot,
++    VideoCapacityUnavailable,
++    VideoRuleViolation,
++)
+ from tubeflow_test.video_generation.orchestration import AttemptStage, PersistentAttempt
+ from tubeflow_test.video_generation.persistence import H3NodeRecord
+ from tubeflow_test.video_generation.sqlalchemy_repository import SqlAlchemyVideoRepository
+@@ -143,7 +147,7 @@ def test_postgres_round_trip_revision_cas_and_atomic_capacity(
+             {},
+         )
+     )
+-    with pytest.raises(VideoRuleViolation, match="capacity"):
++    with pytest.raises(VideoCapacityUnavailable, match="no compatible H3 node has capacity"):  # [C3-DEBUG] 临时改期望
+         second_repo.claim_compatible_node(other.attempt_id, workflow)
+     claimed = second_repo.get_attempt(advanced.attempt_id)
+     assert claimed is not None and claimed.slot_lease_token is not None

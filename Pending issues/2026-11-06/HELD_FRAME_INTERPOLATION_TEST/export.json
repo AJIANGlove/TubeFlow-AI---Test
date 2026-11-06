@@ -1,0 +1,62 @@
+[
+  {
+    "attempt_id": "3ca4653d-b572-4a9e-9736-5043c85ef4d1",
+    "project_id": "484746c4-ddf3-48af-90ca-a25cf41cbf35",
+    "sequence": 12,
+    "object_key": "5b9aa0eb206d981ece3efe344d8572e47813ea2f4769e37cd119f6014dfca9d1",
+    "bytes": 4098188,
+    "sha256": "6bb98bf76014cc89b467736d70f01ea0ea884fef202d3405e381c77420e4db1f",
+    "sha256_matches_db": true,
+    "file": "/tmp/held_frame/12_3ca4653d.mp4"
+  },
+  {
+    "attempt_id": "7460885c-3aab-4e0e-ae73-e9c3fba5413b",
+    "project_id": "484746c4-ddf3-48af-90ca-a25cf41cbf35",
+    "sequence": 7,
+    "object_key": "08b8b453ff8eb7278de00bdceeb4e846c09e2557b300dec817129cfd9fdb45ea",
+    "bytes": 3937767,
+    "sha256": "aad949ca5ac4f7fcc3fcb2092909d0aee987b60c008b9455043b65dad70d321c",
+    "sha256_matches_db": true,
+    "file": "/tmp/held_frame/07_7460885c.mp4"
+  },
+  {
+    "attempt_id": "90c4a4e7-2115-4235-b389-df2471608eed",
+    "project_id": "484746c4-ddf3-48af-90ca-a25cf41cbf35",
+    "sequence": 3,
+    "object_key": "f913f4130daa6544d67502292c5199356507264055cccfedeeeb3e3d57c26a9e",
+    "bytes": 2692381,
+    "sha256": "fde70c84384b78d23cd1a494a61718659712e56197508eb66080bf00a7ab84d6",
+    "sha256_matches_db": true,
+    "file": "/tmp/held_frame/03_90c4a4e7.mp4"
+  },
+  {
+    "attempt_id": "fc6e97b8-23ca-4ea6-852a-d718dd71d4a0",
+    "project_id": "484746c4-ddf3-48af-90ca-a25cf41cbf35",
+    "sequence": 7,
+    "object_key": "01b3184934eb51e34f7ac8730fc32b303ffe60f90224f2cd9a213277d85596c1",
+    "bytes": 3874323,
+    "sha256": "c59ec3963eafc35a3e98f51fbef74b02984e2a2f4cb7a99a25fb23f8adba0bee",
+    "sha256_matches_db": true,
+    "file": "/tmp/held_frame/07_fc6e97b8.mp4"
+  },
+  {
+    "attempt_id": "0cc7c89c-40fd-4007-98ef-7e1f72fa7dcb",
+    "project_id": "484746c4-ddf3-48af-90ca-a25cf41cbf35",
+    "sequence": 12,
+    "object_key": "ddbecab2bcb9c21bc2f06d3c0d3f7ac756a3803fa0e67519b939330ee84e6d0d",
+    "bytes": 3579057,
+    "sha256": "b08a815aeebb2aaf15a002ab4284bada2639d1f66955de02693c5c1b11607a86",
+    "sha256_matches_db": true,
+    "file": "/tmp/held_frame/12_0cc7c89c.mp4"
+  },
+  {
+    "attempt_id": "8f749d4e-06b1-49ef-aab6-87f2fc288ba9",
+    "project_id": "910fa912-9755-4f03-99ef-b5fa6b894361",
+    "sequence": 129,
+    "object_key": "c91b37662e2ff4077ee873e926576f6a5416eb3523df39525f5690bd905b56fc",
+    "bytes": 6412640,
+    "sha256": "5e1262656a1b8525edc0ecbc417045819456dbecee6547cea240cda33ae99330",
+    "sha256_matches_db": true,
+    "file": "/tmp/held_frame/129_8f749d4e.mp4"
+  }
+]

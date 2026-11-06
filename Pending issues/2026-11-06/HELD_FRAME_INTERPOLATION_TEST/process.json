@@ -1,0 +1,212 @@
+{
+  "12_3ca4653d": {
+    "kind": "high",
+    "source": {
+      "frames": 362,
+      "fps": "24/1",
+      "size": "1056x608",
+      "duration_s": 15.083
+    },
+    "arms": {
+      "B0": {
+        "file": "/work/out/12_3ca4653d_B0.mp4",
+        "frames": 362,
+        "duration_s": 15.104,
+        "frames_match_source": true,
+        "elapsed_s": 4.5,
+        "bytes": 3687345
+      },
+      "B1": {
+        "file": "/work/out/12_3ca4653d_B1.mp4",
+        "frames": 359,
+        "duration_s": 15.104,
+        "frames_match_source": false,
+        "elapsed_s": 26.78,
+        "bytes": 3664076
+      },
+      "B2": {
+        "file": "/work/out/12_3ca4653d_B2.mp4",
+        "frames": 359,
+        "duration_s": 15.104,
+        "frames_match_source": false,
+        "elapsed_s": 4.49,
+        "bytes": 3614496
+      }
+    }
+  },
+  "07_7460885c": {
+    "kind": "high",
+    "source": {
+      "frames": 328,
+      "fps": "24/1",
+      "size": "1056x608",
+      "duration_s": 13.667
+    },
+    "arms": {
+      "B0": {
+        "file": "/work/out/07_7460885c_B0.mp4",
+        "frames": 328,
+        "duration_s": 13.696,
+        "frames_match_source": true,
+        "elapsed_s": 4.39,
+        "bytes": 3538118
+      },
+      "B1": {
+        "file": "/work/out/07_7460885c_B1.mp4",
+        "frames": 323,
+        "duration_s": 13.696,
+        "frames_match_source": false,
+        "elapsed_s": 22.95,
+        "bytes": 3529422
+      },
+      "B2": {
+        "file": "/work/out/07_7460885c_B2.mp4",
+        "frames": 323,
+        "duration_s": 13.696,
+        "frames_match_source": false,
+        "elapsed_s": 4.48,
+        "bytes": 3506510
+      }
+    }
+  },
+  "03_90c4a4e7": {
+    "kind": "high",
+    "source": {
+      "frames": 311,
+      "fps": "24/1",
+      "size": "1056x608",
+      "duration_s": 12.958
+    },
+    "arms": {
+      "B0": {
+        "file": "/work/out/03_90c4a4e7_B0.mp4",
+        "frames": 311,
+        "duration_s": 12.96,
+        "frames_match_source": true,
+        "elapsed_s": 3.44,
+        "bytes": 2379438
+      },
+      "B1": {
+        "file": "/work/out/03_90c4a4e7_B1.mp4",
+        "frames": 309,
+        "duration_s": 12.96,
+        "frames_match_source": false,
+        "elapsed_s": 26.07,
+        "bytes": 2450963
+      },
+      "B2": {
+        "file": "/work/out/03_90c4a4e7_B2.mp4",
+        "frames": 309,
+        "duration_s": 12.96,
+        "frames_match_source": false,
+        "elapsed_s": 3.6,
+        "bytes": 2457859
+      }
+    }
+  },
+  "07_fc6e97b8": {
+    "kind": "high",
+    "source": {
+      "frames": 328,
+      "fps": "24/1",
+      "size": "1056x608",
+      "duration_s": 13.667
+    },
+    "arms": {
+      "B0": {
+        "file": "/work/out/07_fc6e97b8_B0.mp4",
+        "frames": 328,
+        "duration_s": 13.696,
+        "frames_match_source": true,
+        "elapsed_s": 4.12,
+        "bytes": 3442016
+      },
+      "B1": {
+        "file": "/work/out/07_fc6e97b8_B1.mp4",
+        "frames": 326,
+        "duration_s": 13.696,
+        "frames_match_source": false,
+        "elapsed_s": 23.19,
+        "bytes": 3444550
+      },
+      "B2": {
+        "file": "/work/out/07_fc6e97b8_B2.mp4",
+        "frames": 326,
+        "duration_s": 13.696,
+        "frames_match_source": false,
+        "elapsed_s": 4.33,
+        "bytes": 3433708
+      }
+    }
+  },
+  "12_0cc7c89c": {
+    "kind": "low",
+    "source": {
+      "frames": 362,
+      "fps": "24/1",
+      "size": "1056x608",
+      "duration_s": 15.083
+    },
+    "arms": {
+      "B0": {
+        "file": "/work/out/12_0cc7c89c_B0.mp4",
+        "frames": 362,
+        "duration_s": 15.104,
+        "frames_match_source": true,
+        "elapsed_s": 4.33,
+        "bytes": 3157879
+      },
+      "B1": {
+        "file": "/work/out/12_0cc7c89c_B1.mp4",
+        "frames": 346,
+        "duration_s": 15.104,
+        "frames_match_source": false,
+        "elapsed_s": 26.49,
+        "bytes": 3157588
+      },
+      "B2": {
+        "file": "/work/out/12_0cc7c89c_B2.mp4",
+        "frames": 346,
+        "duration_s": 15.104,
+        "frames_match_source": false,
+        "elapsed_s": 4.29,
+        "bytes": 3181322
+      }
+    }
+  },
+  "129_8f749d4e": {
+    "kind": "low",
+    "source": {
+      "frames": 362,
+      "fps": "24/1",
+      "size": "1056x608",
+      "duration_s": 15.083
+    },
+    "arms": {
+      "B0": {
+        "file": "/work/out/129_8f749d4e_B0.mp4",
+        "frames": 362,
+        "duration_s": 15.104,
+        "frames_match_source": true,
+        "elapsed_s": 6.54,
+        "bytes": 5805134
+      },
+      "B1": {
+        "file": "/work/out/129_8f749d4e_B1.mp4",
+        "frames": 361,
+        "duration_s": 15.104,
+        "frames_match_source": false,
+        "elapsed_s": 22.55,
+        "bytes": 5795402
+      },
+      "B2": {
+        "file": "/work/out/129_8f749d4e_B2.mp4",
+        "frames": 361,
+        "duration_s": 15.104,
+        "frames_match_source": false,
+        "elapsed_s": 6.52,
+        "bytes": 5879301
+      }
+    }
+  }
+}

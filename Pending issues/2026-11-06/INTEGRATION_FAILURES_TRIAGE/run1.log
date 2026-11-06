@@ -1,0 +1,470 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Scripts\python.exe
+rootdir: D:\AAA-project\TubeFlow AI - Test\tmp\wt-c3\backend
+configfile: pyproject.toml
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 5 items
+
+tests/integration/test_identity_project_postgres.py::test_real_postgres_schema_round_trip_and_atomic_initialization FAILED [ 20%]
+tests/integration/test_staged_upload_protocol.py::test_postgres_advisory_claim_lock_prevents_same_generation_phantoms FAILED [ 40%]
+tests/integration/test_staged_upload_protocol.py::test_fixed_catalog_writer_can_resume_matching_unattached_stage FAILED [ 60%]
+tests/integration/test_staged_upload_protocol.py::test_identity_claim_handle_blocks_aba_and_refreshes_reopened_generation FAILED [ 80%]
+tests/integration/test_video_postgres.py::test_postgres_round_trip_revision_cas_and_atomic_capacity FAILED [100%]
+
+================================== FAILURES ===================================
+_______ test_real_postgres_schema_round_trip_and_atomic_initialization ________
+
+    @pytest.mark.integration
+    def test_real_postgres_schema_round_trip_and_atomic_initialization() -> None:
+        url = os.environ.get("TUBEFLOW_TEST_POSTGRES_URL")
+        if not url:
+            pytest.skip("TUBEFLOW_TEST_POSTGRES_URL is not configured")
+        schema = f"identity_test_{uuid4().hex}"
+        admin_engine = create_engine(url)
+        refuse_application_database(admin_engine)
+        with admin_engine.begin() as connection:
+            connection.execute(text(f'CREATE SCHEMA "{schema}"'))
+        engine = create_engine(url, connect_args={"options": f"-csearch_path={schema}"})
+        try:
+            migration_url = f"{url}?options=-csearch_path%3D{schema}"
+            config = Config(str(BACKEND_ROOT / "alembic.ini"))
+            config.set_main_option("script_location", str(BACKEND_ROOT / "migrations"))
+            config.set_main_option("prepend_sys_path", str(BACKEND_ROOT / "src"))
+            config.attributes["database_url"] = migration_url
+            command.upgrade(config, "head")
+    
+            runtime = create_identity_project_runtime(
+                Settings(
+                    database_url=migration_url,
+                    identity_setup_username="same-admin",
+                    identity_setup_password="strong-password",
+                )
+            )
+            app = FastAPI()
+            app.include_router(runtime.router)
+            assert "/identity/projects/{project_id}/confirm-narration" in app.openapi()["paths"]
+    
+            def initialize(_ordinal: int) -> tuple[int, str | None]:
+                response = TestClient(app).post(
+                    "/identity/setup/initialize",
+                    json={"username": "same-admin", "password": "strong-password"},
+                )
+                detail = response.json().get("detail")
+                return response.status_code, detail.get("code") if isinstance(detail, dict) else None
+    
+            with ThreadPoolExecutor(max_workers=2) as pool:
+                results = list(pool.map(initialize, (1, 2)))
+>           assert sorted(results) == [(201, None), (409, "admin_already_initialized")]
+E           AssertionError: assert [(409, 'admin_already_initialized'), (409, 'admin_already_initialized')] == [(201, None), (409, 'admin_already_initialized')]
+E             
+E             At index 0 diff: (409, 'admin_already_initialized') != (201, None)
+E             
+E             Full diff:
+E               [
+E                   (
+E             -         201,
+E             ?         ^ ^
+E             +         409,
+E             ?         ^ ^
+E             -         None,
+E             +         'admin_already_initialized',
+E                   ),
+E                   (
+E                       409,
+E                       'admin_already_initialized',
+E                   ),
+E               ]
+
+tests\integration\test_identity_project_postgres.py:66: AssertionError
+_____ test_postgres_advisory_claim_lock_prevents_same_generation_phantoms _____
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55441/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_bd794bbadc1c499f98eb2dbb5d8acf02', schema='contract_bd794bbadc1c499f98eb2dbb5d8acf02')
+
+    @pytest.mark.integration
+    def test_postgres_advisory_claim_lock_prevents_same_generation_phantoms(
+        postgres_database,
+    ) -> None:
+        database = Database(postgres_database.url)
+        storage = ProtocolStorage()
+        key = f"concurrent-logical-{uuid4()}"
+        body = b"same logical candidate"
+        digest = hashlib.sha256(body).hexdigest()
+        with postgres_database.sessions.begin() as session:
+            session.add(
+                StagedObjectRow(
+                    object_key=key,
+                    logical_object_key=key,
+                    created_at=datetime.now(UTC),
+                    ownership_scope="GLOBAL",
+                    state="CLEANUP_PENDING",
+                    generation=1,
+                    execution_token=uuid4(),
+                    cleanup_checked_at=datetime.now(UTC),
+                    cleanup_after=datetime.now(UTC),
+                    sha256=digest,
+                    size_bytes=len(body),
+                    media_type="application/octet-stream",
+                )
+            )
+    
+        def claim() -> tuple[str, int] | None:
+            writer = RequestStagedStorage(database, storage)  # type: ignore[arg-type]
+            try:
+                actual_key, generation, _ = writer._record_pending(  # noqa: SLF001
+                    key,
+                    sha256=digest,
+                    size_bytes=len(body),
+                    media_type="application/octet-stream",
+                )
+            except DomainError as exc:
+                assert exc.code == "staged_object_claim_lost"
+                return None
+            return actual_key, generation
+    
+        with ThreadPoolExecutor(max_workers=32) as executor:
+            results = tuple(executor.map(lambda _: claim(), range(32)))
+    
+        winners = tuple(result for result in results if result is not None)
+        assert len(winners) == 1
+>       assert winners[0][1] == 2
+E       assert 1 == 2
+
+tests\integration\test_staged_upload_protocol.py:143: AssertionError
+_______ test_fixed_catalog_writer_can_resume_matching_unattached_stage ________
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55441/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_fe99fd538a8d45f0b56b46bdc2a03892', schema='contract_fe99fd538a8d45f0b56b46bdc2a03892')
+
+    @pytest.mark.integration
+    def test_fixed_catalog_writer_can_resume_matching_unattached_stage(postgres_database) -> None:
+        database = Database(postgres_database.url)
+        storage = ProtocolStorage()
+        key = f"voice-catalog/v1/resume-{uuid4()}/preview.wav"
+        body = b"fixed catalog preview"
+        digest = hashlib.sha256(body).hexdigest()
+    
+        interrupted = RequestStagedStorage(database, storage)  # type: ignore[arg-type]
+        first = interrupted.put_at_key(key, body, "audio/wav", digest)
+        with pytest.raises(DomainError, match="already claimed"):
+            RequestStagedStorage(database, storage).put_at_key(  # type: ignore[arg-type]
+                key, body, "audio/wav", digest
+            )
+    
+        resumed = RequestStagedStorage(
+            database,
+            storage,  # type: ignore[arg-type]
+            reclaim_matching_unattached=True,
+        ).put_at_key(key, body, "audio/wav", digest)
+    
+        assert resumed.key == key
+        assert resumed.created is False
+        assert resumed.claim.generation == first.claim.generation + 1
+        with postgres_database.sessions() as session:
+            row = session.scalar(select(StagedObjectRow).where(StagedObjectRow.object_key == key))
+>           assert row is not None
+E           assert None is not None
+
+tests\integration\test_staged_upload_protocol.py:187: AssertionError
+___ test_identity_claim_handle_blocks_aba_and_refreshes_reopened_generation ___
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55441/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_f704f0adc7634329b412a8cd093fd8db', schema='contract_f704f0adc7634329b412a8cd093fd8db')
+
+    @pytest.mark.integration
+    def test_identity_claim_handle_blocks_aba_and_refreshes_reopened_generation(
+        postgres_database,
+    ) -> None:
+        database = Database(postgres_database.url)
+        storage = ProtocolStorage()
+        staged = RequestStagedStorage(database, storage)  # type: ignore[arg-type]
+        key = f"identity-claim-{uuid4()}"
+        body = b"identity-claim-body"
+        digest = hashlib.sha256(body).hexdigest()
+        try:
+            first = staged.put_at_key(key, body, "application/octet-stream", digest)
+            stale = StagedObjectClaim(
+                first.claim.key, first.claim.generation, first.claim.execution_token
+            )
+            with database.unit_of_work() as session:
+                SqlAlchemyIdentityProjectRepository(session).attach_staged_objects(
+                    (first.claim,), "identity-test"
+                )
+            staged.finalize()
+            with postgres_database.sessions() as session:
+                finalized = session.scalar(
+                    select(StagedObjectRow).where(StagedObjectRow.object_key == key)
+                )
+>               assert finalized is not None and finalized.state == "FINALIZED"
+E               assert (None is not None)
+
+tests\integration\test_staged_upload_protocol.py:217: AssertionError
+__________ test_postgres_round_trip_revision_cas_and_atomic_capacity __________
+
+postgres_database = PostgresDatabase(engine=Engine(postgresql+psycopg://postgres@127.0.0.1:55441/tubeflowtest?options=-csearch_path%3Dcont...options=-csearch_path%3Dcontract_54ca033f9eed483ea21807467111a04f', schema='contract_54ca033f9eed483ea21807467111a04f')
+storyboard_parent_chain = (ProductionParentChain(owner_id=UUID('c2a20350-8baf-4449-aa02-6d5a7a606aaa'), channel_id=UUID('bb5357ba-5770-44e9-94e8...9-ddc27bb4b441'), group_id=UUID('121bc5bb-acc4-411a-b815-66db1045529f')), UUID('3e7d66d1-1374-4b08-9c1b-5ff999f13d16'))
+
+    @pytest.mark.integration
+    def test_postgres_round_trip_revision_cas_and_atomic_capacity(
+        postgres_database,
+        storyboard_parent_chain,
+    ) -> None:
+        sessions: sessionmaker[Session] = postgres_database.sessions
+        parents, generation_id = storyboard_parent_chain
+        with sessions.begin() as session:
+            session.add(
+                H3NodeRecord(
+                    node_id="pg-node",
+                    base_url="http://pg-node",
+                    token_secret_ref="node-token",
+                    capacity=1,
+                    claimed_slots=0,
+                    enabled=True,
+                    health="READY",
+                    capability="video.reference_images_to_video",
+                    model_key="minimax-h3",
+                    model_version="1",
+                    workflow_id="h3-r2v-images",
+                    workflow_version="1",
+                    manifest_sha256="a" * 64,
+                )
+            )
+    
+        def unavailable_loader(session: Session, owner_id, group_id):  # type: ignore[no-untyped-def]
+            raise AssertionError("loader is not used in repository persistence integration")
+    
+        first_repo = SqlAlchemyVideoRepository(sessions, unavailable_loader, lambda ref: ref)
+        attempt = PersistentAttempt(
+            uuid4(),
+            parents.owner_id,
+            parents.project_id,
+            parents.group_id,
+            generation_id,
+            "pg-key",
+            "b" * 64,
+            "c" * 64,
+            {},
+        )
+        saved = first_repo.create_attempt(attempt)
+        del first_repo
+        second_repo = SqlAlchemyVideoRepository(sessions, unavailable_loader, lambda ref: ref)
+        recovered = second_repo.get_attempt(saved.attempt_id)
+        assert recovered == saved
+        stale = recovered
+        assert stale is not None
+        advanced = second_repo.save_attempt(replace(stale, stage=AttemptStage.STAGING))
+        assert advanced.revision == stale.revision + 1
+        with pytest.raises(VideoRuleViolation, match="revision_conflict"):
+            second_repo.save_attempt(replace(stale, stage=AttemptStage.CANCELLED))
+    
+        workflow = ImmutableWorkflowSnapshot(
+            "minimax-h3", "1", "h3-r2v-images", "1", "a" * 64, "preview", {}
+        )
+        second_repo.claim_compatible_node(advanced.attempt_id, workflow)
+        other_group_id, other_revision_id, other_generation_id = uuid4(), uuid4(), uuid4()
+        with sessions.begin() as session:
+            session.add(
+                AuthoritativeNarrationGroupRecord(
+                    id=other_group_id,
+                    project_id=parents.project_id,
+                    owner_id=parents.owner_id,
+                    snapshot_sha256="9" * 64,
+                    snapshot_revision=1,
+                    sequence=2,
+                    start_frame=48_000,
+                    end_frame=96_000,
+                    sample_rate_hz=48_000,
+                    start_ms=1_000,
+                    end_ms=2_000,
+                    video_blocked=False,
+                    block_reason=None,
+                )
+            )
+            session.add(
+                DirectorRevisionRow(
+                    id=other_revision_id,
+                    owner_id=parents.owner_id,
+                    project_id=parents.project_id,
+                    group_id=other_group_id,
+                    revision_number=1,
+                    kind="APPLIED",
+                    shots_json=[{"ordinal": 1, "description": "A second distinct event"}],
+                    links_json=[],
+                    group_sentence_ids_json=[],
+                    review_state="APPROVED",
+                    continuous_observation_approvals_json=[],
+                    created_at=datetime.now(UTC),
+                )
+            )
+            session.flush()
+            session.add(
+                StoryboardGenerationRow(
+                    id=other_generation_id,
+                    owner_id=parents.owner_id,
+                    project_id=parents.project_id,
+                    group_id=other_group_id,
+                    applied_revision_id=other_revision_id,
+                    version=1,
+                    kind="GRID",
+                    input_json={},
+                    idempotency_key=f"storyboard-{other_generation_id.hex}",
+                    provider_idempotency_key=f"provider-{other_generation_id.hex}",
+                    canonical_request_sha256="a" * 64,
+                    status="SUCCEEDED",
+                    state_revision=1,
+                    created_at=datetime.now(UTC),
+                    checkpoint_json={},
+                )
+            )
+        other = second_repo.create_attempt(
+            PersistentAttempt(
+                uuid4(),
+                parents.owner_id,
+                parents.project_id,
+                other_group_id,
+                other_generation_id,
+                "pg-key-2",
+                "d" * 64,
+                "e" * 64,
+                {},
+            )
+        )
+        with pytest.raises(VideoRuleViolation, match="capacity"):
+>           second_repo.claim_compatible_node(other.attempt_id, workflow)
+
+tests\integration\test_video_postgres.py:147: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <tubeflow_test.video_generation.sqlalchemy_repository.SqlAlchemyVideoRepository object at 0x000001AB048DF1D0>
+attempt_id = UUID('5d76532f-d38e-40ef-86f9-29b1e59c103d')
+workflow = ImmutableWorkflowSnapshot(model_key='minimax-h3', model_version='1', workflow_id='h3-r2v-images', workflow_version='1'...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', resolution_preset='preview', manifest=mappingproxy({}))
+
+    def claim_compatible_node(
+        self, attempt_id: UUID, workflow: ImmutableWorkflowSnapshot
+    ) -> EngineNode:
+        with self._sessions() as session, session.begin():
+            if session.bind is not None and session.bind.dialect.name == "postgresql":
+                session.execute(
+                    text("SELECT pg_advisory_xact_lock(hashtext(:scope))"),
+                    {"scope": H3_NODE_CONFIG_LOCK_SCOPE},
+                )
+            attempt = session.scalar(
+                select(VideoAttemptRecord)
+                .where(VideoAttemptRecord.attempt_id == attempt_id)
+                .with_for_update()
+            )
+            if attempt is None:
+                raise VideoRuleViolation("unknown attempt")
+            if attempt.slot_claimed:
+                return self._node_by_id(session, attempt.node_id, workflow, lock=False)
+            if attempt.node_id is not None:
+                node = self._node_by_id(session, attempt.node_id, workflow, lock=True)
+                row = session.get(H3NodeRecord, attempt.node_id)
+                assert row is not None
+                stalled = (
+                    session.scalar(
+                        select(func.count())
+                        .select_from(VideoAttemptRecord)
+                        .where(
+                            VideoAttemptRecord.node_id == attempt.node_id,
+                            VideoAttemptRecord.slot_claimed.is_(True),
+                            VideoAttemptRecord.stalled_at.is_not(None),
+                        )
+                    )
+                    or 0
+                )
+                if row.claimed_slots - stalled >= row.capacity:
+                    raise VideoRuleViolation("assigned H3 node has no capacity")
+            else:
+                stalled_sq = _stalled_slots_subquery()
+                completed_sq = (
+                    select(
+                        VideoAttemptRecord.node_id.label("completed_node_id"),
+                        func.max(VideoAttemptRecord.updated_at).label("last_completed_at"),
+                    )
+                    .where(
+                        VideoAttemptRecord.stage.in_(
+                            (
+                                AttemptStage.ARCHIVED.value,
+                                AttemptStage.FAILED.value,
+                                AttemptStage.CANCELLED.value,
+                            )
+                        )
+                    )
+                    .group_by(VideoAttemptRecord.node_id)
+                    .subquery()
+                )
+                effective_free = (
+                    H3NodeRecord.capacity
+                    - H3NodeRecord.claimed_slots
+                    + func.coalesce(stalled_sq.c.stalled_slots, 0)
+                )
+                row = session.scalar(
+                    select(H3NodeRecord)
+                    .outerjoin(stalled_sq, stalled_sq.c.stalled_node_id == H3NodeRecord.node_id)
+                    .outerjoin(
+                        completed_sq, completed_sq.c.completed_node_id == H3NodeRecord.node_id
+                    )
+                    .where(
+                        H3NodeRecord.enabled.is_(True),
+                        H3NodeRecord.health == NodeHealth.READY.value,
+                        effective_free > 0,
+                        H3NodeRecord.capability == "video.reference_images_to_video",
+                        H3NodeRecord.model_key == workflow.model_key,
+                        H3NodeRecord.model_version == workflow.model_version,
+                        H3NodeRecord.workflow_id == workflow.workflow_id,
+                        H3NodeRecord.workflow_version == workflow.workflow_version,
+                        H3NodeRecord.manifest_sha256 == workflow.workflow_manifest_sha256,
+                    )
+                    .order_by(
+                        effective_free.desc(),
+                        nulls_first(completed_sq.c.last_completed_at.asc()),
+                        H3NodeRecord.node_id,
+                    )
+                    .with_for_update(of=H3NodeRecord, skip_locked=True)
+                )
+                if row is None:
+                    _log_capacity_starvation(session)
+>                   raise VideoCapacityUnavailable()
+E                   tubeflow_test.video_generation.domain.VideoCapacityUnavailable: no compatible H3 node has capacity
+
+src\tubeflow_test\video_generation\sqlalchemy_repository.py:855: VideoCapacityUnavailable
+------------------------------ Captured log call ------------------------------
+WARNING  tubeflow_test.video_generation.sqlalchemy_repository:sqlalchemy_repository.py:1166 no compatible H3 node has capacity; enabled node snapshot (node_id, health, claimed, capacity, stalled): [('pg-node', 'READY', 1, 1, 0)]
+============================== warnings summary ===============================
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/integration/test_identity_project_postgres.py::test_real_postgres_schema_round_trip_and_atomic_initialization
+tests/integration/test_staged_upload_protocol.py::test_postgres_advisory_claim_lock_prevents_same_generation_phantoms
+tests/integration/test_staged_upload_protocol.py::test_fixed_catalog_writer_can_resume_matching_unattached_stage
+tests/integration/test_staged_upload_protocol.py::test_identity_claim_handle_blocks_aba_and_refreshes_reopened_generation
+tests/integration/test_video_postgres.py::test_postgres_round_trip_revision_cas_and_atomic_capacity
+  C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\alembic\config.py:604: DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces, commas, and colons for prepend_sys_path.  Consider adding path_separator=os to Alembic config.
+    util.warn_deprecated(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/integration/test_identity_project_postgres.py::test_real_postgres_schema_round_trip_and_atomic_initialization - AssertionError: assert [(409, 'admin_already_initialized'), (409, 'admin_already_initialized')] == [(201, None), (409, 'admin_already_initialized')]
+  
+  At index 0 diff: (409, 'admin_already_initialized') != (201, None)
+  
+  Full diff:
+    [
+        (
+  -         201,
+  ?         ^ ^
+  +         409,
+  ?         ^ ^
+  -         None,
+  +         'admin_already_initialized',
+        ),
+        (
+            409,
+            'admin_already_initialized',
+        ),
+    ]
+FAILED tests/integration/test_staged_upload_protocol.py::test_postgres_advisory_claim_lock_prevents_same_generation_phantoms - assert 1 == 2
+FAILED tests/integration/test_staged_upload_protocol.py::test_fixed_catalog_writer_can_resume_matching_unattached_stage - assert None is not None
+FAILED tests/integration/test_staged_upload_protocol.py::test_identity_claim_handle_blocks_aba_and_refreshes_reopened_generation - assert (None is not None)
+FAILED tests/integration/test_video_postgres.py::test_postgres_round_trip_revision_cas_and_atomic_capacity - tubeflow_test.video_generation.domain.VideoCapacityUnavailable: no compatible H3 node has capacity
+======================= 5 failed, 6 warnings in 14.05s ========================

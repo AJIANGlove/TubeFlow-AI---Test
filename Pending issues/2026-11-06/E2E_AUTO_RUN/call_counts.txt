@@ -1,0 +1,22 @@
+### narration attempts
+attempts|projects
+26|1
+(1 row)
+### narration project record state
+{"job": {"state": "COMPLETED", "job_id": "narration_93d717fa-e23c-4ee6-86dc-f5558088003b_917706ae4bc5f6fed8fbaabbfd92ce3e2929c82965499382791249ddf7d81450", "owner_id": "fb294c02-5f32-4597-b1e9-f7348ac9734a", "revision": 1, "project_id": "93d717fa-e23c-4ee6-86dc-f5558088003b", "failure_sequences": [], "sentence_sequences": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]}, "groups": [{"end_ms": 13200, "sequence": 1, "start_ms": 0, "block_reason": nul
+### director unit attempts total
+total_attempts|units
+8|5
+(1 row)
+### unit1 detail
+ordinal|shots|sentences
+1|0|[]
+(1 row)
+### failed unit last diagnostics keys
+ordinal|status|attempt_count|failure_code|response_diagnostics_json
+5|FAILED|3|director_output_shot_count_invalid|{}
+(1 row)
+### any storyboard/video for project
+sb|vid|comp
+0|0|0
+(1 row)

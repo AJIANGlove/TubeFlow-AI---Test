@@ -1,0 +1,89 @@
+### host/time
+edy-ThinkCentre-M760e-N000
+2026-11-06T08:50:56Z
+### contract
+{"available":true,"status":"AVAILABLE","message":"Video service is available."}
+### h3 nodes
+node_id|enabled|health|capacity|claimed_slots|capability|model_key|model_version|workflow_id|workflow_version|manifest
+5baad724-6e27-4a14-84c6-4be4607a0bb5|f|OFFLINE|2|0|video.reference_images_to_video|minimax-h3-community|2026-08-13-community-duration-v1|h3.community.reference-images-to-video|1.1.0-mvp|a8b0461398da
+cb883e07-5f2b-4aaf-bc9e-e86f52cbaad1|f|OFFLINE|2|0|video.reference_images_to_video|minimax-h3-community|2026-08-13-community-duration-v1|h3.community.reference-images-to-video|1.1.0-mvp|a8b0461398da
+fee2aa26-6994-4854-890f-47e711f0bd22|f|OFFLINE|2|0|video.reference_images_to_video|minimax-h3-community|2026-08-13-community-duration-v1|h3.community.reference-images-to-video|1.1.0-mvp|a8b0461398da
+h3-new-1|t|OFFLINE|2|0|video.reference_images_to_video|minimax-h3-community|2026-08-13-community-duration-v1|h3.tubeflow.storyboard-to-video|1.0.0|65bf74530537
+h3-new-2|t|READY|2|0|video.reference_images_to_video|minimax-h3-community|2026-08-13-community-duration-v1|h3.tubeflow.storyboard-to-video|1.0.0|65bf74530537
+h3-new-3|t|READY|2|0|video.reference_images_to_video|minimax-h3-community|2026-08-13-community-duration-v1|h3.tubeflow.storyboard-to-video|1.0.0|65bf74530537
+(6 rows)
+### active auto runs
+project_id|state|reason_code|authorization_round|updated_at
+faf27eb5-23d4-43e7-8269-029336e38167|RUNNING||1|2026-11-04 13:51:51.488236+00
+(1 row)
+### config web
+TUBEFLOW_DIRECTOR_COMPOSITION_RECUT=true
+TUBEFLOW_DIRECTOR_COMPOSITION_RECUT_MIN_DISTANCE=0.10
+TUBEFLOW_H3_SINGLE_PANEL_OPT_IN_ENABLED=true
+TUBEFLOW_STORYBOARD_SINGLE_PANEL_NEW_PROJECTS=true
+TUBEFLOW_VIDEO_PROMPT_STRATEGY=tubeflow_storyboard_v4_natural_motion
+### config worker
+TUBEFLOW_DIRECTOR_COMPOSITION_RECUT=true
+TUBEFLOW_VIDEO_PROMPT_STRATEGY=tubeflow_storyboard_v4_natural_motion
+### reference project 484746c4
+id|title|channel_id|character_image_ids|locale|aspect_ratio|expected_duration_seconds|tts_provider|cloned_voice_id|voice_version_id|production_mode|production_state|auto_budget_round|script_len|script_md5|owner_id
+484746c4-ddf3-48af-90ca-a25cf41cbf35|사장님 없는 무인 아이스크림 가게, 정말 돈이 될까?|f28a0845-6ddf-4111-ae2d-f5de595a5fd6|{500c0519-94fe-448b-8410-15152629a6cd}|ko-KR|16:9||elevenlabs|8c529fdd-cd89-4430-a76d-43c986547d89||AUTO|ACTIVE|1|1274|4c4cc468bb2da3ab8de44d6a01c4d38f|fb294c02-5f32-4597-b1e9-f7348ac9734a
+(1 row)
+### visual_style verbatim
+欧美二维手绘动画、半写实卡通人物、复古历史绘本背景、暖色历史科普纪录片风格、低饱和赭石配色、柔和赛璐璐阴影、细腻手绘线条、自然人物比例、轻微胶片颗粒、淡淡纸张纹理、柔和环境光、朦胧空气透视、电影级构图。避免3D渲染、照片写实、日式动漫、夸张大眼睛、高饱和色彩、文字和水印。
+### refs
+k|count
+character_image|1
+channel|1
+cloned_voice|1
+(3 rows)
+id|name|default_tts_provider|default_cloned_voice_id|default_voice_version_id|default_character_image_ids|has_default_style
+f28a0845-6ddf-4111-ae2d-f5de595a5fd6|韩国小生意经济财经|elevenlabs|8c529fdd-cd89-4430-a76d-43c986547d89|5c1d77e6-0265-4f26-9871-0dca6fb5bc71|["500c0519-94fe-448b-8410-15152629a6cd"]|t
+(1 row)
+### group count
+groups|min|max
+13|0|162720
+(1 row)
+### stage timings for 484746c4
+ERROR:  column "updated_at" does not exist
+LINE 1: ...or_runs' as stage, count(*), min(created_at), max(updated_at...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "project_director_runs.created_at".
+### director_runs cols
+string_agg
+composition_jobs.id, composition_jobs.project_id, composition_jobs.owner_id, composition_jobs.idempotency_key, composition_jobs.state, composition_jobs.status_detail, composition_jobs.error_code, composition_jobs.intent_sequence, composition_jobs.attempt, composition_jobs.workflow_generation, composition_jobs.lease_until, composition_jobs.execution_token, composition_jobs.composition_version_id, project_director_runs.id, project_director_runs.owner_id, project_director_runs.project_id, project_director_runs.trigger, project_director_runs.idempotency_key, project_director_runs.canonical_input_sha256, project_director_runs.input_json, project_director_runs.snapshot_sha256, project_director_runs.snapshot_revision, project_director_runs.model, project_director_runs.parameters_json, project_director_runs.status, project_director_runs.total_units, project_director_runs.state_revision, project_director_runs.revision_id, project_director_runs.failure_code, project_director_runs.retry_blocked, project_director_runs.created_at, project_director_runs.recovery_source_run_id, project_director_runs.auto_retries_used, project_director_runs.manual_recovery_audit_json, project_director_runs.auto_input_change_audit_json
+(1 row)
+### stage timings v2
+ERROR:  column "created_at" does not exist
+LINE 1: ...nion all select 'composition_jobs', count(*), min(created_at...
+                                                             ^
+### protected faf27eb5 activity
+leased_or_submitting|last_video|last_unit
+0||2026-11-04 13:51:51.497328+00
+(1 row)
+### temp objects reserved for C2
+### online minio baseline
+fb4ce984048f43545aa05aac1f76356471a5f8938f357ec32cc48002b3133b15 2026-09-30T04:46:21.719067866Z
+tubeflowai-test_minio_data 2026-09-23T14:38:44+08:00 /var/lib/docker/volumes/tubeflowai-test_minio_data/_data
+### stage timings v3
+stage|n|first|last
+director_runs|1|2026-11-05 05:45:39.755321+00|2026-11-05 05:45:39.755321+00
+storyboard_gens|16|2026-11-05 05:54:08.832243+00|2026-11-05 05:56:09.939433+00
+video_attempts|21|2026-11-05 06:06:33.582029+00|2026-11-06 03:45:43.723098+00
+(3 rows)
+### per-group video stats for 484746c4
+sequence|attempts|held_share|hf|jitter
+1|1|||
+2|1|||
+3|1|||
+4|1|||
+5|1|||
+6|1|||
+7|5|||
+8|1|||
+9|1|||
+10|1|||
+11|1|||
+12|5|||
+13|1|||
+(13 rows)

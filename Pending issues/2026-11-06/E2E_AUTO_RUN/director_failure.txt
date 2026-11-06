@@ -1,0 +1,35 @@
+### run
+state|reason_code|authorization_round|created_at|updated_at|payload
+PAUSED|director_preplan_failed|1|2026-11-06 08:52:35.342501+00|2026-11-06 08:55:53.490842+00|{"phase": "director_preplan", "failure_code": "director_output_shot_count_invalid", "paused_at_ms": 1793955353490, "run_paused_ms": 0, "run_started_ms": 1793955155342, "phase_paused_ms": 0, "phase_elapsed_ms": {"narration": 140850}, "phase_started_ms": 1793955296192, "timing_from_phase": "narration", "director_failed_run_id": "656fda8e-ad93-4893-b7d7-ba116e2b244a"}
+(1 row)
+### director run
+id|trigger|status|total_units|failure_code|auto_retries_used|created_at
+656fda8e-ad93-4893-b7d7-ba116e2b244a|NARRATION_CONFIRMATION|FAILED|5|director_output_shot_count_invalid|3|2026-11-06 08:52:35.354862+00
+(1 row)
+### units
+ordinal|status|attempt_count|failure_code|last_failure_code|shots|sent_len|created_at
+1|SUCCEEDED|1|||0|2|2026-11-06 08:52:35.354862+00
+2|SUCCEEDED|1|||6|1736|2026-11-06 08:52:35.354862+00
+3|SUCCEEDED|2|||6|1813|2026-11-06 08:52:35.354862+00
+4|SUCCEEDED|1|||6|2051|2026-11-06 08:52:35.354862+00
+5|FAILED|3|director_output_shot_count_invalid|director_output_shot_count_invalid|0|2661|2026-11-06 08:52:35.354862+00
+(5 rows)
+### failed unit diagnostics
+{}
+
+### narration
+sentences|raw_ok|norm_ok|total_ms|max_ms
+26|26|26|113600|7040
+(1 row)
+### groups
+sequence|start_ms|end_ms|video_blocked|block_reason
+1|0|13200|f|
+2|13200|24240|f|
+3|24240|36800|f|
+4|36800|49360|f|
+5|49360|62160|f|
+6|62160|75840|f|
+7|75840|87840|f|
+8|87840|101280|f|
+9|101280|113600|f|
+(9 rows)

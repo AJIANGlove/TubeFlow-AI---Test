@@ -1,0 +1,16 @@
+### contract minio
+Id=e31abb181027442324fd9ac151663566c7c4faaa36d60287526aec9e24c0c547
+Image=sha256:14cea493d9a34af32f524e538b8346cf79f3321eff8e708c1e2960462bd8936e
+Name=/tubeflow-contract-minio
+RestartPolicy=unless-stopped
+Ports=9000/tcp->127.0.0.1:59000
+Mounts=volume:tubeflow-contract-minio-data->/data 
+Networks=bridge 
+Started=2026-11-06T08:53:30.46623451Z
+### volume
+tubeflow-contract-minio-data created=2026-11-06T16:53:30+08:00 driver=local
+### online minio (unchanged check)
+Id=fb4ce984048f43545aa05aac1f76356471a5f8938f357ec32cc48002b3133b15 StartedAt=2026-09-30T04:46:21.719067866Z Mounts=tubeflowai-test_minio_data->/data 
+tubeflowai-test_minio_data created=2026-09-23T14:38:44+08:00
+### listening
+LISTEN 0      4096       127.0.0.1:59000      0.0.0.0:*          

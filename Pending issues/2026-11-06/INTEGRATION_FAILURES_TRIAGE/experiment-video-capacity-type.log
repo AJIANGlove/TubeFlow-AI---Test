@@ -1,0 +1,17 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Scripts\python.exe
+rootdir: D:\AAA-project\TubeFlow AI - Test\tmp\wt-c3\backend
+configfile: pyproject.toml
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 1 item
+
+tests/integration/test_video_postgres.py::test_postgres_round_trip_revision_cas_and_atomic_capacity PASSED [100%]
+
+============================== warnings summary ===============================
+tests/integration/test_video_postgres.py::test_postgres_round_trip_revision_cas_and_atomic_capacity
+  C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\alembic\config.py:604: DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces, commas, and colons for prepend_sys_path.  Consider adding path_separator=os to Alembic config.
+    util.warn_deprecated(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 1 passed, 1 warning in 2.62s =========================

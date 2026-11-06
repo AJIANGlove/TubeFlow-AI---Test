@@ -1,0 +1,492 @@
+{
+  "12_3ca4653d": {
+    "kind": "high",
+    "source": {
+      "frames": 362,
+      "fps": "24/1",
+      "size": "1056x608",
+      "duration_s": 15.083
+    },
+    "src_metrics": {
+      "algorithm": "motion-cadence-v1",
+      "status": "ok",
+      "frames": 362,
+      "cuts": 1,
+      "moving_windows": 36,
+      "held_windows": 35,
+      "held_share": 0.97,
+      "hf": 0.171,
+      "jitter_shots": 0,
+      "shots": [
+        {
+          "t0": 0.0,
+          "t1": 5.67,
+          "moving_windows": 17,
+          "held_windows": 17,
+          "held_share": 1.0,
+          "hf": 0.225
+        },
+        {
+          "t0": 5.67,
+          "t1": 15.08,
+          "moving_windows": 19,
+          "held_windows": 18,
+          "held_share": 0.95,
+          "hf": 0.129
+        }
+      ],
+      "reference": {
+        "held_notable": 0.2,
+        "jitter_shot_hf": 0.25
+      },
+      "elapsed_s": 3.48
+    },
+    "src_lap": 158.773,
+    "arms": {
+      "B0": {
+        "frames": 362,
+        "frames_match_source": true,
+        "held_share": 0.97,
+        "hf": 0.172,
+        "jitter_shots": 0,
+        "moving_windows": 36,
+        "held_windows": 35,
+        "lap_var": 149.452,
+        "elapsed_s": 3.63
+      },
+      "B1": {
+        "frames": 359,
+        "frames_match_source": false,
+        "held_share": 0.51,
+        "hf": 0.19,
+        "jitter_shots": 0,
+        "moving_windows": 37,
+        "held_windows": 19,
+        "lap_var": 147.452,
+        "elapsed_s": 3.58
+      },
+      "B2": {
+        "frames": 359,
+        "frames_match_source": false,
+        "held_share": 0.59,
+        "hf": 0.151,
+        "jitter_shots": 0,
+        "moving_windows": 37,
+        "held_windows": 22,
+        "lap_var": 146.989,
+        "elapsed_s": 3.47
+      }
+    }
+  },
+  "07_7460885c": {
+    "kind": "high",
+    "source": {
+      "frames": 328,
+      "fps": "24/1",
+      "size": "1056x608",
+      "duration_s": 13.667
+    },
+    "src_metrics": {
+      "algorithm": "motion-cadence-v1",
+      "status": "ok",
+      "frames": 328,
+      "cuts": 2,
+      "moving_windows": 45,
+      "held_windows": 22,
+      "held_share": 0.49,
+      "hf": 0.874,
+      "jitter_shots": 2,
+      "shots": [
+        {
+          "t0": 0.0,
+          "t1": 3.83,
+          "moving_windows": 14,
+          "held_windows": 1,
+          "held_share": 0.07,
+          "hf": 1.578
+        },
+        {
+          "t0": 3.83,
+          "t1": 8.0,
+          "moving_windows": 15,
+          "held_windows": 15,
+          "held_share": 1.0,
+          "hf": 0.424
+        },
+        {
+          "t0": 8.0,
+          "t1": 13.67,
+          "moving_windows": 17,
+          "held_windows": 7,
+          "held_share": 0.41,
+          "hf": 0.167
+        }
+      ],
+      "reference": {
+        "held_notable": 0.2,
+        "jitter_shot_hf": 0.25
+      },
+      "elapsed_s": 2.98
+    },
+    "src_lap": 101.412,
+    "arms": {
+      "B0": {
+        "frames": 328,
+        "frames_match_source": true,
+        "held_share": 0.52,
+        "hf": 0.907,
+        "jitter_shots": 2,
+        "moving_windows": 44,
+        "held_windows": 23,
+        "lap_var": 95.658,
+        "elapsed_s": 3.21
+      },
+      "B1": {
+        "frames": 323,
+        "frames_match_source": false,
+        "held_share": 0.26,
+        "hf": 0.913,
+        "jitter_shots": 2,
+        "moving_windows": 43,
+        "held_windows": 11,
+        "lap_var": 95.099,
+        "elapsed_s": 3.28
+      },
+      "B2": {
+        "frames": 323,
+        "frames_match_source": false,
+        "held_share": 0.28,
+        "hf": 0.911,
+        "jitter_shots": 2,
+        "moving_windows": 43,
+        "held_windows": 12,
+        "lap_var": 94.908,
+        "elapsed_s": 3.18
+      }
+    }
+  },
+  "03_90c4a4e7": {
+    "kind": "high",
+    "source": {
+      "frames": 311,
+      "fps": "24/1",
+      "size": "1056x608",
+      "duration_s": 12.958
+    },
+    "src_metrics": {
+      "algorithm": "motion-cadence-v1",
+      "status": "ok",
+      "frames": 311,
+      "cuts": 2,
+      "moving_windows": 24,
+      "held_windows": 14,
+      "held_share": 0.58,
+      "hf": 0.117,
+      "jitter_shots": 1,
+      "shots": [
+        {
+          "t0": 0.0,
+          "t1": 4.67,
+          "moving_windows": 6,
+          "held_windows": 6,
+          "held_share": 1.0,
+          "hf": 0.067
+        },
+        {
+          "t0": 4.67,
+          "t1": 6.88,
+          "moving_windows": 7,
+          "held_windows": 1,
+          "held_share": 0.14,
+          "hf": 0.265
+        },
+        {
+          "t0": 6.88,
+          "t1": 12.96,
+          "moving_windows": 11,
+          "held_windows": 7,
+          "held_share": 0.64,
+          "hf": 0.021
+        }
+      ],
+      "reference": {
+        "held_notable": 0.2,
+        "jitter_shot_hf": 0.25
+      },
+      "elapsed_s": 2.67
+    },
+    "src_lap": 166.784,
+    "arms": {
+      "B0": {
+        "frames": 311,
+        "frames_match_source": true,
+        "held_share": 0.57,
+        "hf": 0.115,
+        "jitter_shots": 1,
+        "moving_windows": 23,
+        "held_windows": 13,
+        "lap_var": 160.595,
+        "elapsed_s": 2.57
+      },
+      "B1": {
+        "frames": 309,
+        "frames_match_source": false,
+        "held_share": 0.08,
+        "hf": 0.112,
+        "jitter_shots": 1,
+        "moving_windows": 25,
+        "held_windows": 2,
+        "lap_var": 158.048,
+        "elapsed_s": 2.73
+      },
+      "B2": {
+        "frames": 309,
+        "frames_match_source": false,
+        "held_share": 0.14,
+        "hf": 0.109,
+        "jitter_shots": 1,
+        "moving_windows": 22,
+        "held_windows": 3,
+        "lap_var": 158.581,
+        "elapsed_s": 2.58
+      }
+    }
+  },
+  "07_fc6e97b8": {
+    "kind": "high",
+    "source": {
+      "frames": 328,
+      "fps": "24/1",
+      "size": "1056x608",
+      "duration_s": 13.667
+    },
+    "src_metrics": {
+      "algorithm": "motion-cadence-v1",
+      "status": "ok",
+      "frames": 328,
+      "cuts": 2,
+      "moving_windows": 32,
+      "held_windows": 23,
+      "held_share": 0.72,
+      "hf": 0.687,
+      "jitter_shots": 2,
+      "shots": [
+        {
+          "t0": 0.0,
+          "t1": 3.88,
+          "moving_windows": 14,
+          "held_windows": 14,
+          "held_share": 1.0,
+          "hf": 1.193
+        },
+        {
+          "t0": 3.88,
+          "t1": 7.75,
+          "moving_windows": 14,
+          "held_windows": 9,
+          "held_share": 0.64,
+          "hf": 0.49
+        },
+        {
+          "t0": 7.75,
+          "t1": 13.67,
+          "moving_windows": 5,
+          "held_windows": 2,
+          "held_share": 0.4,
+          "hf": 0.062
+        }
+      ],
+      "reference": {
+        "held_notable": 0.2,
+        "jitter_shot_hf": 0.25
+      },
+      "elapsed_s": 3.4
+    },
+    "src_lap": 113.515,
+    "arms": {
+      "B0": {
+        "frames": 328,
+        "frames_match_source": true,
+        "held_share": 0.75,
+        "hf": 0.687,
+        "jitter_shots": 2,
+        "moving_windows": 32,
+        "held_windows": 24,
+        "lap_var": 108.722,
+        "elapsed_s": 3.36
+      },
+      "B1": {
+        "frames": 326,
+        "frames_match_source": false,
+        "held_share": 0.66,
+        "hf": 0.922,
+        "jitter_shots": 2,
+        "moving_windows": 32,
+        "held_windows": 21,
+        "lap_var": 106.073,
+        "elapsed_s": 2.9
+      },
+      "B2": {
+        "frames": 326,
+        "frames_match_source": false,
+        "held_share": 0.68,
+        "hf": 0.69,
+        "jitter_shots": 2,
+        "moving_windows": 31,
+        "held_windows": 21,
+        "lap_var": 106.508,
+        "elapsed_s": 3.12
+      }
+    }
+  },
+  "12_0cc7c89c": {
+    "kind": "low",
+    "source": {
+      "frames": 362,
+      "fps": "24/1",
+      "size": "1056x608",
+      "duration_s": 15.083
+    },
+    "src_metrics": {
+      "algorithm": "motion-cadence-v1",
+      "status": "ok",
+      "frames": 362,
+      "cuts": 1,
+      "moving_windows": 36,
+      "held_windows": 4,
+      "held_share": 0.11,
+      "hf": 0.159,
+      "jitter_shots": 0,
+      "shots": [
+        {
+          "t0": 0.0,
+          "t1": 6.04,
+          "moving_windows": 23,
+          "held_windows": 4,
+          "held_share": 0.17,
+          "hf": 0.178
+        },
+        {
+          "t0": 6.04,
+          "t1": 15.08,
+          "moving_windows": 14,
+          "held_windows": 0,
+          "held_share": 0.0,
+          "hf": 0.145
+        }
+      ],
+      "reference": {
+        "held_notable": 0.2,
+        "jitter_shot_hf": 0.25
+      },
+      "elapsed_s": 3.54
+    },
+    "src_lap": 173.935,
+    "arms": {
+      "B0": {
+        "frames": 362,
+        "frames_match_source": true,
+        "held_share": 0.12,
+        "hf": 0.162,
+        "jitter_shots": 0,
+        "moving_windows": 34,
+        "held_windows": 4,
+        "lap_var": 165.479,
+        "elapsed_s": 3.61
+      },
+      "B1": {
+        "frames": 346,
+        "frames_match_source": false,
+        "held_share": 0.12,
+        "hf": 0.157,
+        "jitter_shots": 0,
+        "moving_windows": 34,
+        "held_windows": 4,
+        "lap_var": 158.722,
+        "elapsed_s": 3.4
+      },
+      "B2": {
+        "frames": 346,
+        "frames_match_source": false,
+        "held_share": 0.12,
+        "hf": 0.154,
+        "jitter_shots": 0,
+        "moving_windows": 34,
+        "held_windows": 4,
+        "lap_var": 158.882,
+        "elapsed_s": 3.14
+      }
+    }
+  },
+  "129_8f749d4e": {
+    "kind": "low",
+    "source": {
+      "frames": 362,
+      "fps": "24/1",
+      "size": "1056x608",
+      "duration_s": 15.083
+    },
+    "src_metrics": {
+      "algorithm": "motion-cadence-v1",
+      "status": "ok",
+      "frames": 362,
+      "cuts": 0,
+      "moving_windows": 59,
+      "held_windows": 0,
+      "held_share": 0.0,
+      "hf": 0.625,
+      "jitter_shots": 1,
+      "shots": [
+        {
+          "t0": 0.0,
+          "t1": 15.08,
+          "moving_windows": 59,
+          "held_windows": 0,
+          "held_share": 0.0,
+          "hf": 0.625
+        }
+      ],
+      "reference": {
+        "held_notable": 0.2,
+        "jitter_shot_hf": 0.25
+      },
+      "elapsed_s": 3.9
+    },
+    "src_lap": 124.314,
+    "arms": {
+      "B0": {
+        "frames": 362,
+        "frames_match_source": true,
+        "held_share": 0.0,
+        "hf": 0.618,
+        "jitter_shots": 1,
+        "moving_windows": 59,
+        "held_windows": 0,
+        "lap_var": 116.281,
+        "elapsed_s": 4.09
+      },
+      "B1": {
+        "frames": 361,
+        "frames_match_source": false,
+        "held_share": 0.0,
+        "hf": 0.618,
+        "jitter_shots": 1,
+        "moving_windows": 58,
+        "held_windows": 0,
+        "lap_var": 115.856,
+        "elapsed_s": 4.04
+      },
+      "B2": {
+        "frames": 361,
+        "frames_match_source": false,
+        "held_share": 0.0,
+        "hf": 0.616,
+        "jitter_shots": 1,
+        "moving_windows": 58,
+        "held_windows": 0,
+        "lap_var": 114.08,
+        "elapsed_s": 4.02
+      }
+    }
+  }
+}
