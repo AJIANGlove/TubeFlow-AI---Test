@@ -59,6 +59,11 @@ from tubeflow_test.video_generation.gpu_probe import (
     GpuStatusProbe,
     UnavailableGpuStatusProbe,
 )
+from tubeflow_test.video_generation.motion_metrics import (
+    MOTION_METRICS_ALGORITHM,
+    MotionSignals,
+    motion_metrics_evidence,
+)
 from tubeflow_test.video_generation.native_size import (
     expected_native_size,
     workflow_identity,
@@ -368,6 +373,12 @@ class ContentFrameSampler(Protocol):
     ) -> tuple[FrameStats, ...]: ...
 
 
+class MotionSignalExtractor(Protocol):
+    """观测指标端口（2026-11-06 用户决策）：从已归档视频字节提取逐帧灰度差与整帧位移。"""
+
+    def extract(self, content: bytes) -> MotionSignals: ...
+
+
 class _ContentQcFailure(Exception):
     """内容级 QC 失败信号：携带稳定错误码与确定性证据块（不是领域违例）。"""
 
@@ -485,6 +496,7 @@ class DurableGroupVideoOrchestrator:
         gpu_probe: GpuStatusProbe | None = None,
         content_sampler: ContentFrameSampler | None = None,
         content_qc_thresholds: ContentQcThresholds | None = None,
+        motion_extractor: MotionSignalExtractor | None = None,
     ) -> None:
         self._repo, self._engine, self._assets, self._probe = repository, engine, assets, probe
         self._write_guard = write_guard
@@ -494,6 +506,7 @@ class DurableGroupVideoOrchestrator:
         self._gpu_probe: GpuStatusProbe = gpu_probe or UnavailableGpuStatusProbe()
         self._content_sampler = content_sampler
         self._content_qc_thresholds = content_qc_thresholds or DEFAULT_THRESHOLDS
+        self._motion_extractor = motion_extractor
         self._execution_owner = uuid4().hex
 
     def _event(
@@ -1709,6 +1722,7 @@ class DurableGroupVideoOrchestrator:
                 )
             else:
                 assert evidence is not None
+                motion_metrics = self._motion_metrics_evidence(content, evidence.fps)
                 current = replace(
                     current,
                     archive_stage=ArchiveStage.QC_PASSED,
@@ -1730,6 +1744,7 @@ class DurableGroupVideoOrchestrator:
                         "audio_end_ms": evidence.audio_end_ms,
                         "audio_codec": evidence.audio_codec,
                         "content_qc": content_qc,
+                        "motion_metrics": motion_metrics,
                     },
                 )
                 current = self._save_with_audit(
@@ -1901,6 +1916,24 @@ class DurableGroupVideoOrchestrator:
                 VIDEO_CONTENT_BLACK_REGION, _black_region_message(findings), block
             )
         return block
+
+    def _motion_metrics_evidence(self, content: bytes, fps: float) -> dict[str, object]:
+        """隔帧停顿占比与 HF（2026-11-06 用户决策：只观测、不拦截）。
+
+        在技术与内容 QC 均已通过之后计算；不参与任何 QC 判定，失败只记录、不影响归档。
+        """
+        extractor = self._motion_extractor
+        if extractor is None:
+            return {"algorithm": MOTION_METRICS_ALGORITHM, "status": "extractor_not_configured"}
+        try:
+            return motion_metrics_evidence(extractor.extract(content), fps=fps)
+        except Exception as exc:
+            logger.warning("video motion metrics failed: %s: %s", type(exc).__name__, exc)
+            return {
+                "algorithm": MOTION_METRICS_ALGORITHM,
+                "status": "error",
+                "error": f"{type(exc).__name__}: {exc}"[:300],
+            }
 
     @staticmethod
     def _content_defect_deliverable(attempt: PersistentAttempt) -> bool:

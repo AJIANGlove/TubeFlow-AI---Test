@@ -13,6 +13,8 @@ dependencies = [
   "fastapi>=0.116,<1",
   "httpx>=0.28,<1",
   "minio==7.2.20",
+  "numpy>=2,<3",
+  "opencv-python-headless>=4.10,<6",
   "pillow>=11,<13",
   "psycopg[binary]>=3.2,<4",
   "pycryptodome>=3.23,<4",

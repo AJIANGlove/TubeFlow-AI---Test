@@ -16,5 +16,7 @@ ENV TUBEFLOW_FRONTEND_DIR=/app/frontend
 ENV PIP_DEFAULT_TIMEOUT=120 PIP_RETRIES=5
 RUN pip install --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple .
 RUN ffmpeg -version >/dev/null && ffprobe -version >/dev/null
+# 视频观测指标（HF，2026-11-06）依赖 OpenCV/numpy：构建时即验证可导入，缺系统库则构建失败。
+RUN python -c "import cv2, numpy"
 EXPOSE 8000
 CMD ["tubeflow-test-api"]
