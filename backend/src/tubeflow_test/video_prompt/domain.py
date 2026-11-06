@@ -48,6 +48,20 @@ class VideoPromptStrategy(StrEnum):
     TUBEFLOW_STORYBOARD_V4_NATURAL_MOTION = "tubeflow_storyboard_v4_natural_motion"
     # §46：逐格参考 + v4 规则（身份只按角色参考图序号指认、运镜白名单、禁性别代词）。
     TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL = "tubeflow_storyboard_v4_single_panel"
+    # §51（2026-11-05 抖动 A/B）：与 v4 单格完全相同的编译，之后在 detailed_description 的
+    # [Shot 1] 之前确定性插入一句运动节奏要求（CADENCE_SENTENCE_V1）。非默认、不可经配置选用；
+    # 目前只由手动 H3 的实验臂从基线尝试派生。
+    TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL_CADENCE_V1 = (
+        "tubeflow_storyboard_v4_single_panel_cadence_v1"
+    )
+
+
+# §51 抖动 A/B 的变体句，逐字取自 Pending issues/2026-11-05/JITTER_SURVEY_20261105/README.md §2。
+CADENCE_SENTENCE_V1 = (
+    "Animate every frame at the full frame rate with smooth, continuous motion; never hold a "
+    'pose for two frames or use limited animation ("animating on twos"); people, hands and '
+    "objects move a little on every frame."
+)
 
 
 # 共享 v3 输出合同（出口校验、绑定行、格位注入）的策略集合。
@@ -66,6 +80,15 @@ SINGLE_PANEL_STRATEGIES = frozenset(
     {
         VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3_SINGLE_PANEL_OPT_IN_V1,
         VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL,
+        VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL_CADENCE_V1,
+    }
+)
+
+# 使用 v4 单格系统提示词、示例与代词规则的策略集合。
+V4_SINGLE_PANEL_STRATEGIES = frozenset(
+    {
+        VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL,
+        VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL_CADENCE_V1,
     }
 )
 
@@ -355,6 +378,27 @@ def insert_single_panel_binding_line(
     )
 
 
+def insert_cadence_sentence(text: str) -> str:
+    """§51：把 CADENCE_SENTENCE_V1 作为独立一行插到 detailed_description 的 [Shot 1] 之前。
+
+    该位置紧跟全局摄影风格段（v4 第 8 条要求该段写明 stable camera、real-time movement
+    speed）；镜头块、Maintain 清单与负规则逐字不变。确定性插入，不经 LLM。
+    """
+    if CADENCE_SENTENCE_V1 in text:
+        raise VideoPromptViolation("h3_prompt_cadence_sentence_invalid")
+    positions = _section_positions(text)
+    following = SECTION_ORDER[SECTION_ORDER.index("detailed_description") + 1]
+    start, end = positions["detailed_description"].end(), positions[following].start()
+    match = re.compile(r"\[Shot 1\]").search(text, start, end)
+    if match is None:
+        raise VideoPromptViolation("h3_prompt_cadence_insertion_failed")
+    line_start = text.rfind("\n", start, match.start()) + 1
+    if line_start <= start or text[line_start : match.start()].strip():
+        # [Shot 1] 与前文同行：先断行，再插入独立一行。
+        return text[: match.start()] + "\n" + CADENCE_SENTENCE_V1 + "\n" + text[match.start() :]
+    return text[:line_start] + CADENCE_SENTENCE_V1 + "\n" + text[line_start:]
+
+
 def validate_single_panel_compiled_prompt(
     text: str,
     *,
@@ -430,8 +474,15 @@ def validate_single_panel_compiled_prompt(
         raise VideoPromptViolation("h3_prompt_music_forbidden")
     if not bodies["overall_soundscape"].strip():
         raise VideoPromptViolation("h3_prompt_audio_constraints_invalid")
-    if expected.strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL:
+    if expected.strategy in V4_SINGLE_PANEL_STRATEGIES:
         _validate_v4_pronouns(detailed)
+    if expected.strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL_CADENCE_V1:
+        # 模型输出（插入前）不得自带该句；最终文本恰好一句，且位于 detailed_description。
+        wanted = 1 if binding_inserted else 0
+        if text.count(CADENCE_SENTENCE_V1) != wanted or detailed.count(
+            CADENCE_SENTENCE_V1
+        ) != wanted:
+            raise VideoPromptViolation("h3_prompt_cadence_sentence_invalid")
 
 
 def _section_positions(text: str) -> dict[str, re.Match[str]]:

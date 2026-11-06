@@ -3,12 +3,12 @@ from __future__ import annotations
 from collections.abc import Callable
 from dataclasses import asdict
 from datetime import UTC, datetime
-from typing import Annotated, Protocol, cast
+from typing import Annotated, Literal, Protocol, cast
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, Header, HTTPException, Request, status
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from tubeflow_test.domain.errors import DomainError
 from tubeflow_test.identity_project.domain import Account
@@ -115,6 +115,23 @@ class ManualH3Input(BaseModel):
     # 实验用显式 seed（2026-11-03 用户决策 4）：仅当提供时覆盖派生 seed；
     # 取值范围与 _ladder_seed 一致。
     seed: int | None = Field(default=None, ge=0, le=2**53 - 1)
+    # §51（2026-11-05 用户决策）抖动 A/B 专用，缺省时行为不变。baseline：照常编译 v4 单格；
+    # cadence_v1：复用 prompt_source_attempt_id（同组、同故事板、同 seed 的基线臂）的已编译
+    # 提示词并插入一句运动节奏要求，不调用编译器。实验尝试不自动重提。
+    experiment_arm: Literal["baseline", "cadence_v1"] | None = None
+    prompt_source_attempt_id: UUID | None = None
+
+    @model_validator(mode="after")
+    def _experiment_fields(self) -> ManualH3Input:
+        if self.experiment_arm is None:
+            if self.prompt_source_attempt_id is not None:
+                raise ValueError("prompt_source_attempt_id requires experiment_arm")
+            return self
+        if self.seed is None:
+            raise ValueError("experiment arms require an explicit seed")
+        if (self.experiment_arm == "cadence_v1") != (self.prompt_source_attempt_id is not None):
+            raise ValueError("only the cadence_v1 arm takes prompt_source_attempt_id")
+        return self
 
 
 class ManualH3Writer(Protocol):
@@ -127,6 +144,8 @@ class ManualH3Writer(Protocol):
         idempotency_key: str,
         request: dict[str, object] | None = None,
         seed: int | None = None,
+        experiment_arm: str | None = None,
+        prompt_source_attempt_id: UUID | None = None,
     ) -> UUID: ...
 
     def get(self, owner_id: UUID, attempt_id: UUID) -> PersistentAttempt | None: ...
@@ -174,13 +193,24 @@ def create_video_router(
     ) -> dict[str, object]:
         _require_h3_available(request)
         try:
-            attempt_id = writer.create(
-                owner_id=account.id,
-                group_id=group_id,
-                expected_storyboard_generation_id=body.expected_storyboard_generation_id,
-                idempotency_key=idempotency_key,
-                seed=body.seed,
-            )
+            if body.experiment_arm is None:
+                attempt_id = writer.create(
+                    owner_id=account.id,
+                    group_id=group_id,
+                    expected_storyboard_generation_id=body.expected_storyboard_generation_id,
+                    idempotency_key=idempotency_key,
+                    seed=body.seed,
+                )
+            else:
+                attempt_id = writer.create(
+                    owner_id=account.id,
+                    group_id=group_id,
+                    expected_storyboard_generation_id=body.expected_storyboard_generation_id,
+                    idempotency_key=idempotency_key,
+                    seed=body.seed,
+                    experiment_arm=body.experiment_arm,
+                    prompt_source_attempt_id=body.prompt_source_attempt_id,
+                )
         except (DomainError, VideoRuleViolation) as exc:
             if isinstance(exc, VideoRuleViolation):
                 raise HTTPException(409, detail={"code": str(exc), "message": str(exc)}) from exc

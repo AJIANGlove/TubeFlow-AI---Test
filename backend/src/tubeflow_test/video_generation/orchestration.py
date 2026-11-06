@@ -81,6 +81,8 @@ from tubeflow_test.video_prompt.domain import (
     VideoPromptCompilerInput,
     VideoPromptStrategy,
     VideoPromptViolation,
+    insert_cadence_sentence,
+    validate_single_panel_compiled_prompt,
 )
 
 logger = logging.getLogger(__name__)
@@ -975,7 +977,13 @@ class DurableGroupVideoOrchestrator:
         )
 
     def _auto_mode(self, attempt: PersistentAttempt) -> bool:
-        """AUTO 判定来自项目级不可变标记；MANUAL 项目保持人工对账合同不变。"""
+        """AUTO 判定来自项目级不可变标记；MANUAL 项目保持人工对账合同不变。
+
+        §51：实验尝试（快照带 experiment 块）一律按 MANUAL 处理——不自动重提、不做停滞
+        GPU 处置——使实验的 H3 调用额度是硬上限。
+        """
+        if is_experiment_attempt(attempt):
+            return False
         source = self._repo.load_authoritative_group(attempt.owner_id, attempt.group_id)
         return source.production_mode == "AUTO"
 
@@ -2933,6 +2941,88 @@ def _ladder_strategy(
         except ValueError:
             pass
     return default
+
+
+# §51（2026-11-05 用户决策）抖动 A/B 的手动 H3 实验臂。基线臂照常编译 v4 单格；节奏臂不调用
+# 编译器，取同组同 seed 基线臂的已编译提示词，确定性插入 CADENCE_SENTENCE_V1 后提交，
+# 使两臂只差这一句。
+JITTER_CADENCE_AB_V1 = "jitter-cadence-ab-v1"
+EXPERIMENT_ARM_BASELINE = "baseline"
+EXPERIMENT_ARM_CADENCE = "cadence_v1"
+_CADENCE = VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL_CADENCE_V1
+
+
+def experiment_block(arm: str, prompt_source_attempt_id: UUID | None) -> dict[str, object]:
+    """实验请求身份（写入快照 experiment 键，并参与幂等比较）。"""
+    if arm == EXPERIMENT_ARM_BASELINE and prompt_source_attempt_id is None:
+        source_id = None
+    elif arm == EXPERIMENT_ARM_CADENCE and prompt_source_attempt_id is not None:
+        source_id = str(prompt_source_attempt_id)
+    else:
+        raise VideoRuleViolation("experiment_request_invalid")
+    return {"name": JITTER_CADENCE_AB_V1, "arm": arm, "prompt_source_attempt_id": source_id}
+
+
+def is_experiment_attempt(attempt: PersistentAttempt) -> bool:
+    return isinstance((attempt.input_snapshot or {}).get("experiment"), dict)
+
+
+def require_experiment_source(source: AuthoritativeGroupInput) -> None:
+    """实验臂只用于生产默认 v4 单格（crop-grid-v2 逐格参考）的分组。"""
+    if (
+        source.reference_policy is None
+        or single_panel_strategy(source.reference_policy)
+        is not VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL
+    ):
+        raise VideoRuleViolation("experiment_requires_v4_single_panel")
+
+
+def derive_cadence_variant_prompt(
+    source: AuthoritativeGroupInput,
+    *,
+    attempt_id: UUID,
+    idempotency_key: str,
+    seed: int | None,
+    prompt_source_attempt_id: UUID,
+    baseline_snapshot: dict[str, object],
+) -> CompiledVideoPrompt:
+    """节奏臂：基线臂已编译提示词 + 变体句；不调用编译器，按本尝试的编译输入全量校验。"""
+    require_experiment_source(source)
+    experiment = baseline_snapshot.get("experiment")
+    block = baseline_snapshot.get("video_prompt")
+    if (
+        not isinstance(experiment, dict)
+        or experiment.get("name") != JITTER_CADENCE_AB_V1
+        or experiment.get("arm") != EXPERIMENT_ARM_BASELINE
+        or not isinstance(block, dict)
+        or block.get("strategy") != VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL.value
+        or not isinstance(block.get("text"), str)
+    ):
+        raise VideoRuleViolation("experiment_baseline_invalid")
+    if seed is None or baseline_snapshot.get("seed") != seed:
+        raise VideoRuleViolation("experiment_seed_mismatch")
+    if (
+        baseline_snapshot.get("authority") != (source.authority_snapshot or {})
+        or baseline_snapshot.get("reference_input_sha256") != source.reference_input_sha256
+    ):
+        raise VideoRuleViolation("video_reference_input_changed")
+    generation = _authorize(source, idempotency_key=idempotency_key, seed=seed)
+    expected = _compiler_input(source, generation, _CADENCE, attempt_id)
+    if not isinstance(expected, SinglePanelPromptCompilerInput):
+        raise VideoRuleViolation("single_panel_reference_required")
+    try:
+        text = insert_cadence_sentence(str(block["text"]))
+        validate_single_panel_compiled_prompt(text, expected=expected, binding_inserted=True)
+    except VideoPromptViolation as exc:
+        raise VideoRuleViolation(f"experiment_prompt_invalid: {exc}") from exc
+    return CompiledVideoPrompt(
+        text,
+        _CADENCE,
+        str(block.get("model") or ""),
+        f"derived-from-attempt:{prompt_source_attempt_id}",
+        False,
+        expected.fingerprint,
+    )
 
 
 def single_panel_strategy(policy: ReferencePolicy) -> VideoPromptStrategy:
