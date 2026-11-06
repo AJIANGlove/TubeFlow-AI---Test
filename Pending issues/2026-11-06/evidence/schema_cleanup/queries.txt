@@ -1,0 +1,72 @@
+遗留 schema 处置：全部只读查询与原始输出（部署机 192.168.110.200）
+时间均为 UTC。写操作：0 次。
+
+== 拓扑（与任务假设不同，先记录）==
+测试库 tubeflowtest 在容器 tubeflow-contract-pg（角色 postgres，宿主 127.0.0.1:55432）
+业务库 tubeflow      在容器 tubeflowai-test-postgres-1（角色 tubeflow）
+两者不是同一个 Postgres 实例。
+
+# ---- a) 定位（2026-11-06T06:26:10Z）----
+
+[测试库]
+$ docker exec tubeflow-contract-pg psql -U postgres -d tubeflowtest -tAc \
+    "select nspname from pg_namespace where nspname = 'contract_be30c85aac3347ffbf3bc45bc6ea12de';"
+(0 行)
+count = 0
+
+[业务库]
+$ docker exec tubeflowai-test-postgres-1 psql -U tubeflow -d tubeflow -tAc \
+    "select nspname from pg_namespace where nspname = 'contract_be30c85aac3347ffbf3bc45bc6ea12de';"
+contract_be30c85aac3347ffbf3bc45bc6ea12de
+count = 1
+
+=> 命中业务库。按授权「若在业务库 tubeflow：立即停下，只汇报，不删除」，b)–e) 未执行。
+
+# ---- b) 未执行（备查：判据）----
+select count(*) from pg_class c join pg_namespace n on n.oid = c.relnamespace where n.nspname = '<名>';
+select count(*) from pg_proc p join pg_namespace n on n.oid = p.pronamespace where n.nspname = '<名>';
+select count(*) from pg_type t join pg_namespace n on n.oid = t.typnamespace where n.nspname = '<名>';
+（三项须全为 0 才可删；本步未对测试库执行，因为 a) 已停在业务库分支）
+
+# ---- c) 未执行（确认无集成测试在跑）----
+
+# ---- d) 未执行 ----
+-- 计划语句（未运行）：DROP SCHEMA "contract_be30c85aac3347ffbf3bc45bc6ea12de" RESTRICT;
+
+# ---- e) 未执行（复查 contract_% 为 0 行）----
+
+# ---- 信息性：业务库内该 schema 的对象计数（未据此删除，2026-11-06T06:26:17Z）----
+class=0 proc=0 type=0
+
+# ---- f) 只读列出其他遗留（2026-11-06T06:26:17Z）----
+
+[业务库] select nspname from pg_namespace where nspname like 'contract\_%';
+contract_be30c85aac3347ffbf3bc45bc6ea12de
+
+[业务库] identity\_test\_% / narration\_authority\_% / voice\_race\_%
+(0 行)
+
+[测试库] contract\_% / identity\_test\_% / narration\_authority\_% / voice\_race\_%
+(0 行)
+
+[业务库] 非系统 schema 全量
+audit_272879e_20260829a
+audit_272879e_exact_20260829a
+contract_be30c85aac3347ffbf3bc45bc6ea12de
+public
+staged_cleanup_gate
+
+[业务库集群] select datname from pg_database where datname like 'alembic\_url\_%';
+(0 行)
+
+[测试库集群] 同上
+(0 行)
+
+# ---- 环境旁证 ----
+$ ss -ltn | grep -E ":5543[0-9]"
+LISTEN 0 4096 127.0.0.1:55432 0.0.0.0:*
+（55432 是 tubeflow-contract-pg 的常驻端口映射，不是测试隧道；本次用的 55437 隧道已关闭）
+
+# ---- 集成跑完后两库复查（2026-11-06T06:25:31Z，见 gates/SUMMARY.md）----
+测试库 tubeflowtest : 0 行
+业务库 tubeflow     : 1 行（contract_be30c85aac3347ffbf3bc45bc6ea12de）

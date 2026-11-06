@@ -529,3 +529,14 @@ ssh $SSHOPTS edy@192.168.110.200 'sudo docker run --rm -v tubeflowai-test_postgr
       - 证据：`recompute/shot1_background.py`、`recompute/shot1_background.txt`；复核见 `Pending issues/2026-11-06/MOTION_METRICS_ROLLOUT_REVIEW_20261106.md`。
 - 自然归档观察：截至 04:53:02Z，`probe_evidence_json ? 'motion_metrics'` 的尝试数为 **0**，且窗口内运行中工作流为 0、无 AUTO 运行——**「上线后第一条正常归档带 status=ok」待自然发生**，未为此触发生成，`FINAL_ACCEPTANCE` §47 该项**未勾**。
 - 回滚：还原 compose 备份后 `up -d --no-build`，回到 `sha256:d488b57e0898…`（jitter-ab-20261106）。本次无迁移，无需降级；**未触发回滚**。
+
+## 44. 2026-11-06 运维操作：删除遗留测试 schema（**未执行**，schema-cleanup-20261106）
+
+- 授权与范围：用户 2026-11-06 授权删除集成测试夹具遗留的**一个**空 schema `contract_be30c85aac3347ffbf3bc45bc6ea12de`，并附硬限制「**若在业务库 `tubeflow`：立即停下，只汇报，不删除**」；`DROP` 报错即停、不得改用 `CASCADE`。运维记录（AGENT_AUTHORIZATION §5）：部署机 `runtime/operations/schema-cleanup-20261106/README.md`，仓库副本 `Pending issues/2026-11-06/evidence/schema_cleanup/operations-record.md`。
+- **拓扑更正**：测试库与业务库**不在同一个 Postgres**——`tubeflowtest` 在容器 `tubeflow-contract-pg`（角色 `postgres`，宿主 `127.0.0.1:55432`），业务库 `tubeflow` 在容器 `tubeflowai-test-postgres-1`（角色 `tubeflow`）。
+- a) 定位（06:26:10Z）：`select nspname from pg_namespace where nspname = 'contract_be30c85a…';` —— 测试库 **0 行**，业务库 **1 行**。**对象在业务库，按授权在此停止。**
+- b)–e) **全部未执行**：未做空检查、未确认运行状态、**未执行 `DROP SCHEMA … RESTRICT`**、未做删除后复查。本次对数据库的写操作 **0 次**，只有 `SELECT`。备查（仅信息性）：业务库内该 schema 的 `pg_class` / `pg_proc` / `pg_type` 均为 **0**（确实是空 schema）。
+- 复查：测试库 `contract\_%` 在本次两轮集成（main 用旧夹具、分支用新夹具）跑完后仍为 **0 行**，说明 PR #16 的夹具修复生效、本轮无新泄漏；业务库仍为该 1 行。
+- f) 其他遗留（只读，未删除）：业务库 `contract\_%` = 1 行（即上条）；业务库与测试库的 `identity\_test\_%` / `narration\_authority\_%` / `voice\_race\_%` 均 **0 行**；两个集群均无 `alembic\_url\_%` 数据库。额外观察（不在任务前缀内，未处理）：业务库另有 `audit_272879e_20260829a`、`audit_272879e_exact_20260829a`、`staged_cleanup_gate`。
+- 环境旁证：部署机 `127.0.0.1:55432` 处于 LISTEN，是 `tubeflow-contract-pg` 的常驻端口映射，不是测试隧道；本次集成用的 55437 隧道已关闭。
+- 续接：该空 schema **仍留在业务库 `tubeflow`**。删除它需要新的、明确指向业务库的授权；本任务不具此权限，也未消耗删除额度（上限 1、实际 0）。证据 `Pending issues/2026-11-06/evidence/schema_cleanup/`。

@@ -686,6 +686,10 @@
 ## 48. 2026-11-06 集成测试临时 schema 清理（复核文档 `Pending issues/2026-11-06/MOTION_METRICS_ROLLOUT_REVIEW_20261106.md`）
 
 - [x] Claude 云端工作区：`postgres_database` 夹具在迁移失败时也删除临时 schema。用替身 alembic 复现：原夹具只执行 `CREATE SCHEMA`，修复后执行 `DROP SCHEMA … CASCADE`；新单元测试在原夹具上失败、在修复后通过。云端工作区没有 alembic，正式运行时该测试会被跳过。
-- [ ] 测试机：新单元测试在装有 alembic 的环境中实际运行通过，不算跳过；单元、集成、ruff、mypy 相对 main 无新增失败。
+- [x] 测试机：新单元测试在装有 alembic 的环境中实际运行通过，不算跳过；单元、集成、ruff、mypy 相对 main 无新增失败。
+  - 2026-11-06 测试机实测：`tests/unit/test_integration_fixture_cleanup.py` **1 passed, 0 skipped**（3.29 s，未触发 `importorskip`）。单元 main 2481 passed / 11 skipped、分支 **2482 passed / 11 skipped**（+1 = 新增那条），0 失败；集成两侧 **19 failed / 122 passed / 7 skipped**，失败 nodeid 逐条相同且与上一轮一致；ruff **15 条逐字节相同**；mypy **12 errors / 7 files（208 源）逐字节相同**。`npm run check` **未跑**（前端未改）。证据 `Pending issues/2026-11-06/evidence/schema_cleanup/gates/SUMMARY.md`。
 - [ ] 部署机：确认 `contract_be30c85aac3347ffbf3bc45bc6ea12de` 位于测试库 `tubeflowtest` 且为空后，以 `RESTRICT` 删除；复查 `contract\_%` 为 0 行；其他测试前缀只读列出，不删除。
+  - 2026-11-06 部署机实测：**该项未完成，且未执行删除**。该 schema **不在测试库**（`tubeflowtest` 命中 0），而在**业务库 `tubeflow`**（命中 1，`pg_class/pg_proc/pg_type` 均为 0）。授权里的硬限制是「若在业务库 `tubeflow`：立即停下，只汇报，不删除」，故 `DROP` **未执行**，本次对数据库的写操作为 0 次。
+  - 已完成的只读部分：测试库 `contract\_%` **0 行**（两轮集成跑完后复查仍为 0，夹具修复生效）；两个库的 `identity\_test\_%` / `narration\_authority\_%` / `voice\_race\_%` 均 **0 行**；两个集群均无 `alembic\_url\_%` 数据库；业务库另见 `audit_272879e_20260829a`、`audit_272879e_exact_20260829a`、`staged_cleanup_gate`（只列出，未处理）。
+  - 运维记录（AGENT_AUTHORIZATION §5）：部署机 `runtime/operations/schema-cleanup-20261106/README.md`，副本 `Pending issues/2026-11-06/evidence/schema_cleanup/operations-record.md`；记录 `docs/DEPLOYMENT.md` §44。**该空 schema 仍在业务库中，删除需新的、明确指向业务库的授权。**
 
