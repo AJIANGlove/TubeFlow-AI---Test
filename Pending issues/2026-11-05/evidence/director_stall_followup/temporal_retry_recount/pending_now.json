@@ -1,0 +1,15 @@
+{
+ "mode": "pending",
+ "captured_at": "2026-11-06T01:56:43.144624Z",
+ "temporal": {
+  "address": "tubeflowai-test-temporal-1:7233",
+  "namespace": "default"
+ },
+ "running": 0,
+ "workflows": [],
+ "summary": {
+  "with_pending": 0,
+  "pending_total": 0,
+  "pending_attempt_gt_1": 0
+ }
+}

@@ -1,0 +1,1853 @@
+{
+ "mode": "fetch",
+ "generated_at": "2026-11-06T01:57:11.689797Z",
+ "temporal": {
+  "address": "tubeflowai-test-temporal-1:7233",
+  "namespace": "default"
+ },
+ "window": {
+  "name": "W1",
+  "start": "2026-11-05T13:59:46Z",
+  "end": "2026-11-05T14:59:46Z",
+  "lookback_start": "2026-11-05T13:29:46Z"
+ },
+ "enumeration": {
+  "queries": {
+   "primary": "StartTime >= \"2026-11-05T13:29:46Z\" and StartTime < \"2026-11-05T14:59:46Z\"",
+   "supplement": "StartTime < \"2026-11-05T13:29:46Z\" and CloseTime >= \"2026-11-05T13:59:46Z\" and CloseTime < \"2026-11-05T14:59:46Z\"",
+   "running": "ExecutionStatus = \"Running\""
+  },
+  "listings": {
+   "primary": 136,
+   "supplement": 13,
+   "running": 0
+  },
+  "unique_workflow_runs": 149,
+  "type_histogram": {
+   "GridSheetGenerationWorkflow": 71,
+   "GridSheetRecoveryWorkflow": 2,
+   "GroupVideoRecoveryWorkflow": 75,
+   "ProjectDirectorRunWorkflow": 1
+  },
+  "max_workflows": 5000,
+  "truncated": false,
+  "supplement_unavailable": null
+ },
+ "fetch": {
+  "attempted": 149,
+  "ok": 149,
+  "failure_count": 0,
+  "failures": []
+ },
+ "scan": {
+  "histories_scanned": 149,
+  "started_events": 11505,
+  "attempt_gt_1_total": 0,
+  "in_window": 0
+ },
+ "timeout_retries": [],
+ "application_retries": [],
+ "other_retries": [],
+ "out_of_window_timeout_retries": [],
+ "grouped_timeout": [],
+ "grouped_application": [],
+ "totals": {
+  "timeout_retries": 0,
+  "application_retries": 0,
+  "other_retries": 0
+ },
+ "range": {
+  "start": "2026-11-05T13:59:46Z",
+  "end": "2026-11-05T14:59:46Z"
+ },
+ "history_index": [
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-00e249fa-f4e5-4eb1-9392-ecae8d05674b",
+   "run_id": "01a1abf8-843e-7605-94b5-4209e9519a43",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 33,
+   "started": 3,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-011a856b-3a21-4295-8857-0344c6f8b8ec",
+   "run_id": "01a1abf8-7aef-7df4-a024-8fd79d3569de",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-0495671f-f537-4a01-8014-d58a54043f81",
+   "run_id": "01a1abfe-6615-762d-bf06-adbe5a1b8e44",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 165,
+   "started": 15,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-05265557-1741-426c-85fb-052ad716c772",
+   "run_id": "01a1abf8-752a-7e68-81ac-39e34a7e4476",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-079a0bab-c1bd-411c-b665-5bb89d214c42",
+   "run_id": "01a1abf8-7309-7f38-a3be-b2753a573a13",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-0801c36b-8dfa-43b4-a149-0c099eedd2e8",
+   "run_id": "01a1abf8-6be7-7e68-83d7-1f5a4d7efec2",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-0b1870a6-7dd5-4db5-853b-3bdffc1626f5",
+   "run_id": "01a1abfe-9af3-75cc-bdf9-2bdd1eea8f76",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 143,
+   "started": 13,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-15c8c429-00a7-4cc6-a2b0-ad44b26a5cd1",
+   "run_id": "01a1abf8-7816-7b3f-a6f7-0db2d83f6040",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-18859eb8-4ec8-42e0-b4dd-b61f18b9b53d",
+   "run_id": "01a1abf8-6eda-7bf4-9613-0266703c7607",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-2368a1ac-80ef-4ae4-884d-eda598fa37a7",
+   "run_id": "01a1abf8-7ac8-710f-95c6-9adff520483f",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-2bb352a6-ec18-4c28-b6b2-e6d43825bf08",
+   "run_id": "01a1abf8-849a-7a28-b1ad-3caa979db867",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 33,
+   "started": 3,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-2c666aad-bde7-4375-9f19-cd78628151ff",
+   "run_id": "01a1abf8-81bf-7843-9e0f-bef021d33a5f",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-2e4f8f89-7323-4087-a76a-a670eff39376",
+   "run_id": "01a1abf8-845c-77cd-a711-7afa2408ece3",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 33,
+   "started": 3,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-34d628b4-4924-434f-8fc2-e22849d137b7",
+   "run_id": "01a1abf8-6994-7edf-a1f2-6e907461f2c6",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-3500d406-d534-43fc-9314-ec1c0c615121",
+   "run_id": "01a1abfe-7884-7daa-b6f0-3028c1eddb50",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 154,
+   "started": 14,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-36061358-eb96-4199-a1a8-b5c7e827e9d8",
+   "run_id": "01a1abf8-72c4-7ac8-9d45-bf6cb366b6f9",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-412823d6-5aad-489a-9743-8ca53cbe9ec4",
+   "run_id": "01a1abf8-7587-7814-a676-548fcda5aa25",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-418c9bd1-5356-4901-9c6e-f201dc543ef2",
+   "run_id": "01a1abf8-72e4-7bcf-9ae7-fa90d4f8d123",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-43efbe29-7b5d-41ca-90d0-b1ffebf82f64",
+   "run_id": "01a1abf8-7567-7bd5-97a5-1ba16af235dc",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-46ae1540-179d-4946-9849-506cc1527f39",
+   "run_id": "01a1abf8-75c4-771a-a15e-e05d291ce3b9",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-49094c68-aaca-4134-b202-bfa88bd72a3b",
+   "run_id": "01a1abf8-8104-754b-a6e8-7ea1592d368b",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-502169ef-b7e7-4ffe-87e8-c774b6811777",
+   "run_id": "01a1abf8-7dc7-7124-96ae-f07b239d590e",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-52521d88-7af7-4b9e-8db3-4ab18d1a709d",
+   "run_id": "01a1abf8-83e0-72c5-a87c-fa6ccdbec0ba",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 33,
+   "started": 3,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-5f34fd2f-6519-4fc8-847c-df700ab20c4c",
+   "run_id": "01a1abf8-7260-7ba6-a9e4-c22f5a6516c8",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-660f70a9-9249-4266-97a3-9dd2e1758ab2",
+   "run_id": "01a1abf8-7b77-7ac8-bd66-62a974cfb1ca",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-6b0e3d00-9b35-4f18-8b0f-d0d8c259f4c5",
+   "run_id": "01a1abf8-6c43-7b7c-ab1e-cadf3d6e9bdf",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-71c8bd7d-59d7-494a-8b50-6f0a7f24db62",
+   "run_id": "01a1abf8-7109-79ba-b846-01a02abfc4a2",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-72cdfc8c-19b6-42dc-a18b-351f45159240",
+   "run_id": "01a1abfe-6686-7baa-a563-52f827c5f146",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 286,
+   "started": 26,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-7ab02cd6-c092-44ee-b11a-e413d4f20f3f",
+   "run_id": "01a1abfe-9654-7a82-a7d8-4b4d2066ec03",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 838,
+   "started": 76,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-7e2bfc4d-386a-408b-898a-fe2601ba82cd",
+   "run_id": "01a1abf8-7545-7470-b465-0e17658a60e2",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-7e45efaf-267b-4948-a4ed-d76dff59e6be",
+   "run_id": "01a1abf8-61f0-79bd-8dc4-16ff5207f9b2",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 11,
+   "started": 1,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-802eefc3-1385-48ce-9b6b-3c79e82c25c1",
+   "run_id": "01a1abf8-6c01-7184-ab8a-800f848c35c9",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-829baf3b-3531-4540-b5ce-79533fce490d",
+   "run_id": "01a1abfe-966c-7a6c-b7c7-24b8f6334008",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 143,
+   "started": 13,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-8c188a03-06fb-47a6-8eb3-186df2ec35fb",
+   "run_id": "01a1abf8-8401-79cf-b484-2af1125c9bd0",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 33,
+   "started": 3,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-9037f532-784d-41b5-b174-57ad3f1012eb",
+   "run_id": "01a1abfe-4db0-76ba-a2b2-2ac64e7fbede",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 198,
+   "started": 18,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-94497e6d-d197-406e-87a1-11efb0a740b3",
+   "run_id": "01a1abf8-7b3c-7928-98aa-5d1a8a4e4e7b",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-951b32b9-d498-473e-8ff5-c53fa8e35cf8",
+   "run_id": "01a1ac02-eb60-786b-9ba5-4715b98a2fa0",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 187,
+   "started": 17,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-97c879d8-52c2-432a-b3b5-c5eb4f8b342b",
+   "run_id": "01a1abf8-812a-79b5-825c-be47a3ca3269",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-9ce16ded-f5c3-487a-819f-4a78f6f3f933",
+   "run_id": "01a1abfe-aa8d-7ac9-a4e0-c2174b47b27c",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 154,
+   "started": 14,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-a12d378d-3178-4c5a-90e8-ee14fcab3902",
+   "run_id": "01a1ac04-1b60-70f7-8f3b-b5b375ffc802",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 220,
+   "started": 20,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-ac25c2cd-e14a-481f-ad2e-261be88a1d5e",
+   "run_id": "01a1abf8-7ed7-76f0-8f2d-8a5a9eebc220",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-af2a1b54-f17d-4809-a294-fdf903cde48d",
+   "run_id": "01a1abf8-668a-71d6-948c-328c1abb6453",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 11,
+   "started": 1,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-afcbfe2b-6b07-4999-90ef-6e176fe75d8f",
+   "run_id": "01a1abf8-7b59-775f-acff-1ccc5ff5b398",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-b0b97621-a3da-4197-b833-18b6b4a4ca3e",
+   "run_id": "01a1abf8-7de9-7720-bcfe-2107233670a2",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-b4c4699a-1fa2-4210-ae71-9097cf1842b3",
+   "run_id": "01a1abf8-7836-77f8-b809-84bd913dee6e",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-b955d914-aecd-4b8c-8e00-e589e83a1537",
+   "run_id": "01a1abf8-6ea2-7ad4-9ebf-9d695d634b4a",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-bf0289dc-95af-4c0e-971f-9b656231bcf5",
+   "run_id": "01a1abf8-7e90-7f21-9204-edaec6937b39",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-c051158f-0beb-4395-b93f-706fd0951747",
+   "run_id": "01a1abf8-7188-7f34-9b3a-63413cac4e20",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-c46b9eee-0551-4e85-b5ce-672d03774c6b",
+   "run_id": "01a1abf8-70f4-704e-be38-b9ea5ab8d949",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-c505832f-305d-4611-8e9f-8626d507a947",
+   "run_id": "01a1abf8-818f-775d-a281-60b4d761e9c5",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-c6a50209-ad15-45c0-9f49-340b7a5491fa",
+   "run_id": "01a1abf8-77f6-7c83-bc10-2eb0705cdef1",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-c7c8ee88-f70f-4a6b-8869-d6efda57c945",
+   "run_id": "01a1abf8-77e2-75be-a72f-442c150e1d0c",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-cb47f497-f14a-4ac6-8bbc-c5ce538fa0ec",
+   "run_id": "01a1abf8-7ab2-7570-a361-5ecae9780e66",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 44,
+   "started": 4,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-cd7c1144-afd9-4b81-b7d0-4aaf3cec961c",
+   "run_id": "01a1abf8-723e-7d6c-b6c0-a22ddbdfb080",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-d1586f6c-47cd-49c0-a562-baac064760da",
+   "run_id": "01a1abf8-7b18-70bc-b724-65addd169e96",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-d2edcd1f-3dff-47a3-b4ea-505d79866f31",
+   "run_id": "01a1abf8-6c24-7cba-a1f8-e4f4488ece3b",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-d5143c9d-3f2b-4678-87c9-ee367a969322",
+   "run_id": "01a1abf8-8170-7ac5-905f-627a8a7f1f24",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-d55d1111-0945-43fb-9a9c-020687f1481b",
+   "run_id": "01a1abf8-7eb6-77e9-aaca-9d6175e3444f",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-d7c4140d-ecd5-4187-bc79-4b2d599065ae",
+   "run_id": "01a1abf8-8423-76dd-86f4-ac83f471b101",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 33,
+   "started": 3,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-d7f4a0a7-1540-4787-a7e3-72f32f9bbbf1",
+   "run_id": "01a1abfe-3f3a-7b34-aee1-70ef1a0c6595",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 165,
+   "started": 15,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-da4194ad-bf4b-44b6-a767-775ea70bce9b",
+   "run_id": "01a1abf8-7da7-76b3-80e6-77df081ad5a6",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-dba91cec-2571-41e8-a49b-f70280e72bd7",
+   "run_id": "01a1abf8-72a0-7b78-8c9c-93dc1ebf1fa2",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-e608e0da-c729-41dd-a258-09ef117be97f",
+   "run_id": "01a1abf8-847b-762f-9d7f-2ad242210046",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 33,
+   "started": 3,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-ea6366e5-ba5c-471c-baf9-cff49ff113ee",
+   "run_id": "01a1abf8-6ebb-71cb-b802-de92e4f91e62",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-ea9086bb-dcd4-4c04-be4b-4df78dfe6f64",
+   "run_id": "01a1abf8-7e06-77b9-b231-45ba6d36296d",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-f6b6f744-ca48-4c6c-9f12-58f2f002623e",
+   "run_id": "01a1abf8-75a4-785d-ba19-f7c8cb282c8a",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-f723eeeb-ad5a-4c7f-8ca0-b7ee186dccbe",
+   "run_id": "01a1abf8-7280-7cfe-b0d9-1fa7087cc48f",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-f7af5566-9d92-4e14-899d-308839a7abbe",
+   "run_id": "01a1abf8-814f-7a1d-a19b-7f7af17497a0",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 33,
+   "started": 3,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-f9314f54-09bf-4e94-a25f-c629e429c8aa",
+   "run_id": "01a1abf8-7d94-7933-9cf8-d4ac7d049ccd",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-fa697ec0-1d8e-437e-ab46-fcc79696586b",
+   "run_id": "01a1abf8-6c62-7b85-9f73-8e13b31acbc5",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-fb294c02-5f32-4597-b1e9-f7348ac9734a-fe53662c-51da-47a7-988d-1deff472245d",
+   "run_id": "01a1abf8-7857-7b2b-82a3-6a84e3bb819a",
+   "workflow_type": "GridSheetGenerationWorkflow",
+   "events": 22,
+   "started": 2,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-recovery-fb294c02-5f32-4597-b1e9-f7348ac9734a-7e45efaf-267b-4948-a4ed-d76dff59e6be",
+   "run_id": "01a1abfa-4c25-7201-8f2e-ae79a3a8b232",
+   "workflow_type": "GridSheetRecoveryWorkflow",
+   "events": 11,
+   "started": 1,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "storyboard-grid-recovery-fb294c02-5f32-4597-b1e9-f7348ac9734a-af2a1b54-f17d-4809-a294-fdf903cde48d",
+   "run_id": "01a1abfa-4abf-770f-a6a0-2340662a990e",
+   "workflow_type": "GridSheetRecoveryWorkflow",
+   "events": 11,
+   "started": 1,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-03adf605-6510-46ca-a2ef-b993b6da12d3",
+   "run_id": "01a1ac26-b6a6-7c19-a7c6-80a6f60983e8",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 1914,
+   "started": 174,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-070ceec0-0646-4db5-8e3c-e4846ab113c3",
+   "run_id": "01a1ac0d-4379-7230-8838-93a7f6aa56b7",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 869,
+   "started": 79,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-0a26ad35-bc65-46d2-9010-eb9b6bb71ce1",
+   "run_id": "01a1ac1e-9325-7c29-a964-a52280cdef60",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 2959,
+   "started": 269,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-0a4acb99-dfa3-4c6f-9b0f-7e16c4050682",
+   "run_id": "01a1abf6-3e35-79f2-b7ad-d657c8cfccc4",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 1903,
+   "started": 173,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-0b90c31e-230d-4115-b09a-753214d89b88",
+   "run_id": "01a1ac0f-0d2f-79e4-b331-c6ded282e3fe",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 4466,
+   "started": 406,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-16ae479b-2356-4dd0-927f-8badb75581d0",
+   "run_id": "01a1ac10-8865-78d8-af63-339b41f1c6a2",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 451,
+   "started": 41,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-16bf7295-9d6b-49f4-aefc-1178a467dce3",
+   "run_id": "01a1abcf-19bd-71a7-b14b-0e0a5979a675",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 2453,
+   "started": 223,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "supplement"
+   ]
+  },
+  {
+   "workflow_id": "group-video-1d9eb3ca-d758-45e3-b885-b1e1014d4baa",
+   "run_id": "01a1ac37-e2b4-7e3e-bfa9-706705fc09eb",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 2805,
+   "started": 255,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-1ee6e5c4-4513-4fc4-ace4-6832e00dacf9",
+   "run_id": "01a1ac31-c24d-74e8-b613-0d2e425d151d",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 242,
+   "started": 22,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-1f16de9e-7c63-4f80-a4fb-edac8c4be4b9",
+   "run_id": "01a1ac37-c0f3-7741-8a57-7ddaf265093b",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 2453,
+   "started": 223,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-231414d4-10d2-4d72-b0d1-f007bc88a1c2",
+   "run_id": "01a1abf1-fe68-78a7-91c9-caf081f1fc6e",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 1452,
+   "started": 132,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-2526d36a-5804-41a1-8146-4f24b5e49675",
+   "run_id": "01a1ac2f-a71f-77c8-818c-a15d52442bc8",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 3355,
+   "started": 305,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-27e72515-4b5b-486c-8043-9b83881d24fe",
+   "run_id": "01a1abf9-2ad9-7d44-8e7f-869ec0cfe5b5",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 187,
+   "started": 17,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-28f367e3-45f9-4a7e-8705-19c22b42a1d9",
+   "run_id": "01a1abc5-f054-7a96-9eef-70a5683ebdda",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 1683,
+   "started": 153,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "supplement"
+   ]
+  },
+  {
+   "workflow_id": "group-video-29ad8a61-0e96-46e0-b8ff-4fd6e7bda697",
+   "run_id": "01a1ac1a-19af-79ec-881e-8393b520086e",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 1903,
+   "started": 173,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-2c0a4399-1be8-495a-b11c-cd9b68354727",
+   "run_id": "01a1ac23-9d52-7d80-a885-2035d806f7f6",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 385,
+   "started": 35,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-3c32c8bc-829c-4495-9e00-b155d802dc82",
+   "run_id": "01a1abfd-4289-72e0-aed6-44f9bfc97b7e",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 1542,
+   "started": 140,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-3ce66a63-c643-4061-9bbd-d0e8314b5074",
+   "run_id": "01a1abf2-47f6-79c2-93d2-213ec366575f",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 275,
+   "started": 25,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-3dbe5348-7099-4057-814c-09cd10fe4efc",
+   "run_id": "01a1ac1f-7174-75c8-b2cf-f276a3982413",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 209,
+   "started": 19,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-4478b4a9-6397-4e45-bf84-6c76742359a3",
+   "run_id": "01a1ac06-91bc-771c-9a00-07bfae81004d",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 1166,
+   "started": 106,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-4875b3bf-7d06-4926-9206-4feb5159bca5",
+   "run_id": "01a1ac11-27a3-7e9f-ad10-28fe62a00e31",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 6578,
+   "started": 598,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-49f07c26-ebb4-41e7-aaa8-1452a8b55995",
+   "run_id": "01a1ac22-9280-7149-a1ea-ac8e68659f30",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 781,
+   "started": 71,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-4c07dcc6-93b8-4489-83bc-eb7147d1b3cc",
+   "run_id": "01a1abee-3bb7-7d6a-813a-ba30059ffeb5",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 2624,
+   "started": 238,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-5175a796-cbac-48fd-af5a-fc1f56eba659",
+   "run_id": "01a1ac27-69d4-74f7-9577-793a772e74f8",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 495,
+   "started": 45,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-58c484e6-c935-40a2-8da9-8ad966dc3327",
+   "run_id": "01a1ac33-aaf6-7c40-a26b-d19a5db0d22c",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 803,
+   "started": 73,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-5973a267-93ed-407a-afb7-df5f53a62b92",
+   "run_id": "01a1ac14-8741-75e6-b3fe-250d9083f29e",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 3897,
+   "started": 354,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-5c7af7e9-8a43-48c0-a027-d11a645c987a",
+   "run_id": "01a1ac14-af5a-7dcd-abed-8fd958220120",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 253,
+   "started": 23,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-5cb0720c-f7a4-4de4-9c58-0d294a2a6c8c",
+   "run_id": "01a1ac07-dfd1-7960-a242-02b435f32951",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 1727,
+   "started": 157,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-5cfc8e47-5dd4-438b-8b46-04c6dcb43819",
+   "run_id": "01a1ac15-d957-701b-bc7f-695d69241d24",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 1287,
+   "started": 117,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-5db9b2cc-5db2-4577-a141-a32997153ff4",
+   "run_id": "01a1ab68-6041-7a52-8f50-3342e010d458",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 3842,
+   "started": 349,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "supplement"
+   ]
+  },
+  {
+   "workflow_id": "group-video-637df2d7-80ae-403c-bf1a-4345ddb86937",
+   "run_id": "01a1abee-3dd1-7881-acee-5a70564a9296",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 1344,
+   "started": 122,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-691d110e-3690-4e99-9bfe-d401bd5e4eb2",
+   "run_id": "01a1ac06-b933-7bb6-b598-191379eb199d",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 836,
+   "started": 76,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-692ad8fb-c748-4b32-80c8-a0ad63db1d37",
+   "run_id": "01a1ac2b-0369-74ed-be03-5dd5bcfd73c5",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 1177,
+   "started": 107,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-6de22300-147e-4e5f-983d-f7b01110fa24",
+   "run_id": "01a1ac06-3ead-7678-832c-c63e5763580e",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 352,
+   "started": 32,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-70cb2056-5db8-4ef3-900a-abfb1b376620",
+   "run_id": "01a1ac07-0c8f-74a7-ba0d-0f9afa356178",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 660,
+   "started": 60,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-73451a7e-ecb4-4ef6-bfab-e13b5f9a5672",
+   "run_id": "01a1ac1b-47ca-70f9-bdef-35273ff483a3",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 1661,
+   "started": 151,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-73f3f012-5e17-4db8-a88e-01ae75bb71d1",
+   "run_id": "01a1abfa-13d4-74b0-b6aa-ae4fefa11587",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 264,
+   "started": 24,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-78cd8afc-859f-46d7-a04e-2896778c1af3",
+   "run_id": "01a1ac18-a4f3-7f08-a5e3-590d1ad60d38",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 2002,
+   "started": 182,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-790452af-5fd7-402b-bf0c-70fd18166cb9",
+   "run_id": "01a1ac05-8493-73b8-83dc-3105fd4ccd42",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 616,
+   "started": 56,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-79411300-e91b-467f-ab17-a64138c10bc6",
+   "run_id": "01a1abe9-b227-71a2-8364-3fc667fff4a1",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 231,
+   "started": 21,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-7c61e290-1ee1-4282-82b1-5016aaad6508",
+   "run_id": "01a1ac05-2d86-7b8f-b717-57a1b9b64688",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 242,
+   "started": 22,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-8023fc73-2bf4-4518-9e41-5129d445669c",
+   "run_id": "01a1ac21-b158-7cc3-b3b7-50267a19d210",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 242,
+   "started": 22,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-8598c4f2-b4a7-4adb-b945-dc68b6c020a0",
+   "run_id": "01a1ac05-52c3-7e52-bce2-dcbe7efdb600",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 374,
+   "started": 34,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-8ac7f93a-b367-4461-8bea-9b544c84fcbb",
+   "run_id": "01a1abca-551e-7b93-a38e-2a7dc46663bf",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 1881,
+   "started": 171,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "supplement"
+   ]
+  },
+  {
+   "workflow_id": "group-video-93d846ca-e0f9-4674-b2c2-bae5722cd87f",
+   "run_id": "01a1ac29-9dcc-776a-91cb-14ee0bffa362",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 253,
+   "started": 23,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-9486105b-33c0-412c-9820-8b68b6da7f9e",
+   "run_id": "01a1abca-6615-70a6-a81b-d50900b0c5d6",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 1452,
+   "started": 132,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "supplement"
+   ]
+  },
+  {
+   "workflow_id": "group-video-97f84c79-762a-4655-a416-7022ba1028de",
+   "run_id": "01a1abad-318d-7d9a-aba6-e54eb5cbda30",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 2510,
+   "started": 228,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "supplement"
+   ]
+  },
+  {
+   "workflow_id": "group-video-991ed70f-d4af-4050-b2a9-f4cc3a00991e",
+   "run_id": "01a1abe6-3800-7933-a081-18f2001efc8e",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 1023,
+   "started": 93,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "supplement"
+   ]
+  },
+  {
+   "workflow_id": "group-video-9cbcedd0-1e03-4b22-a062-624830187491",
+   "run_id": "01a1ac07-36fc-744f-9c7a-3878cd514be3",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 484,
+   "started": 44,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-a2a0ec40-645d-4447-919c-02d7aa3a54b5",
+   "run_id": "01a1ac36-5000-7b79-a0d6-65da3c44a7e8",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 242,
+   "started": 22,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-a36f19a8-4422-4295-9f51-adbd111740a2",
+   "run_id": "01a1ac0c-531d-726c-9a3d-7b6455dd8c37",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 242,
+   "started": 22,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-a3c02181-4660-45a8-8988-a29d6d524b72",
+   "run_id": "01a1ac10-e0db-752a-90d8-d767664ea566",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 308,
+   "started": 28,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-a8b070d7-8a10-4ba8-a2e1-7caa87e200ee",
+   "run_id": "01a1ac06-0685-746a-990e-c69ca8603dd2",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 2123,
+   "started": 193,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-b12c8e62-ad54-4faf-b154-56ebd92b8b2c",
+   "run_id": "01a1abb1-a6e4-718b-9d69-16040372bf99",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 2678,
+   "started": 243,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "supplement"
+   ]
+  },
+  {
+   "workflow_id": "group-video-b2dd00b0-6d40-4051-8e4f-1821e1091474",
+   "run_id": "01a1ac06-6811-7bb1-8ee4-ba02edfe9019",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 1133,
+   "started": 103,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-b520366c-471d-49c9-9953-6cc9f2c3b307",
+   "run_id": "01a1ac00-6f7b-77c0-bfd8-d6f99b4b0919",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 231,
+   "started": 21,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-b5e4aebb-a1dd-4d6c-a1d0-50a7628125f5",
+   "run_id": "01a1ac22-83a3-70bb-acf1-b062eaae5c1e",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 220,
+   "started": 20,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-c47d5611-e3e0-43b6-8ad3-b0840c814d49",
+   "run_id": "01a1ac26-e98d-70e9-aedd-2275a513d46f",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 2002,
+   "started": 182,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-c5524def-dfb6-4a05-876c-2ccb27ee18c4",
+   "run_id": "01a1abfc-e0b0-77fc-af02-c9648ef18196",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 671,
+   "started": 61,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-c699a35f-8c09-4463-b8f7-c4f59235e2e4",
+   "run_id": "01a1abea-f488-7ec6-8147-4443e1d17547",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 4149,
+   "started": 377,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-d7ccaa8d-a7b4-4cf4-840c-28a32f0452b5",
+   "run_id": "01a1ab61-1160-7931-b338-2046c9898301",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 4810,
+   "started": 437,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "supplement"
+   ]
+  },
+  {
+   "workflow_id": "group-video-dbe7a4ba-b310-413a-b224-9f197a29184e",
+   "run_id": "01a1ac33-0e0c-76ed-a2c6-cebff36f6674",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 682,
+   "started": 62,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-dc02cd62-20d5-4322-b3fe-e626efe7db0a",
+   "run_id": "01a1ac05-cbb2-735f-b0bc-b1a8bc460831",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 1683,
+   "started": 153,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-dec05eaf-f688-401c-91e6-4ac124fd6dd9",
+   "run_id": "01a1ac17-b4b8-7312-b6cd-b8e67010f94a",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 583,
+   "started": 53,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-e0b0d3d8-a44c-4abb-9bcf-33709b87edb0",
+   "run_id": "01a1ac1d-22bc-705a-8d76-787ead0ad994",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 3575,
+   "started": 325,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-e2cfe864-5d2b-4626-bdcd-43b2c1b03a97",
+   "run_id": "01a1ac2f-5ecb-759b-b0da-ca6dbb04c451",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 2343,
+   "started": 213,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-e75cca02-6ff2-47c7-8228-1812a94c38b6",
+   "run_id": "01a1ab7e-9ec8-799b-8d03-2c5f7f978e04",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 3294,
+   "started": 299,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "supplement"
+   ]
+  },
+  {
+   "workflow_id": "group-video-e8703200-de92-4c17-b630-e0f171519add",
+   "run_id": "01a1ac04-7a42-792e-bed6-f05f6b8ba41c",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 5773,
+   "started": 524,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-f529907d-44c8-4062-ac29-88e0c0f007a1",
+   "run_id": "01a1abe7-642c-7643-ace6-fec0a5ca45ee",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 462,
+   "started": 42,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-f6478862-8162-487f-85ae-16faea0b486b",
+   "run_id": "01a1abde-1d45-7de0-94cb-10c375fc59b0",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 1718,
+   "started": 156,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "supplement"
+   ]
+  },
+  {
+   "workflow_id": "group-video-f77dda7b-bb59-4865-bb09-0b449032e874",
+   "run_id": "01a1ac2b-2333-7f17-82fe-928e74be2a42",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 3039,
+   "started": 276,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-fabc5193-13a9-4941-a09d-70be9cb4876d",
+   "run_id": "01a1ac06-d8c5-7ac2-a92b-d18b30089730",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 253,
+   "started": 23,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-fd3aca3c-7606-4554-9c21-1c11b377f4d7",
+   "run_id": "01a1abf5-c077-7e87-9cf9-2be91b74eb13",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 649,
+   "started": 59,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  },
+  {
+   "workflow_id": "group-video-fd4cbba5-5340-4dbd-ac77-4c65de662dec",
+   "run_id": "01a1ab99-790e-717d-a719-4ce800b97f35",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 2552,
+   "started": 232,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "supplement"
+   ]
+  },
+  {
+   "workflow_id": "group-video-fd5bb477-abab-4289-92b6-a7844f3c09b0",
+   "run_id": "01a1ab7b-44af-7103-b3b5-8447bf8501a4",
+   "workflow_type": "GroupVideoRecoveryWorkflow",
+   "events": 3888,
+   "started": 353,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "supplement"
+   ]
+  },
+  {
+   "workflow_id": "project-director-fb294c02-5f32-4597-b1e9-f7348ac9734a-8f5ee20b-001d-4e83-89b7-90d79464949b",
+   "run_id": "01a1abf6-5bb1-7d10-8d24-7516aafb086d",
+   "workflow_type": "ProjectDirectorRunWorkflow",
+   "events": 342,
+   "started": 60,
+   "attempt_gt_1": 0,
+   "unresolved_scheduled_event": 0,
+   "strata": [
+    "primary"
+   ]
+  }
+ ]
+}

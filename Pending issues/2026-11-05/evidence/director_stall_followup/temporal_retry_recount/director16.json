@@ -1,0 +1,245 @@
+{
+ "mode": "json-dir",
+ "directory": "Pending issues\\2026-11-05\\evidence\\director_stall_followup\\temporal\\history",
+ "histories": 16,
+ "per_run": [
+  {
+   "run_id": "0ceac8f3-a260-4715-94a9-7aa8a7ea309b",
+   "events": 327,
+   "scheduled": 60,
+   "started": 60,
+   "retries": 0,
+   "unresolved_scheduled_event": 0
+  },
+  {
+   "run_id": "29e49f83-8471-4a38-9e4d-7fddd9646def",
+   "events": 197,
+   "scheduled": 32,
+   "started": 32,
+   "retries": 0,
+   "unresolved_scheduled_event": 0
+  },
+  {
+   "run_id": "36d773f7-59c3-41b3-8c62-54f04de9f072",
+   "events": 92,
+   "scheduled": 16,
+   "started": 16,
+   "retries": 0,
+   "unresolved_scheduled_event": 0
+  },
+  {
+   "run_id": "5d25a3a4-c359-41cc-bbf2-edacdedaa920",
+   "events": 407,
+   "scheduled": 68,
+   "started": 68,
+   "retries": 3,
+   "unresolved_scheduled_event": 0
+  },
+  {
+   "run_id": "6fae6a67-e93e-4a72-abbe-c751d274e2ec",
+   "events": 148,
+   "scheduled": 24,
+   "started": 24,
+   "retries": 0,
+   "unresolved_scheduled_event": 0
+  },
+  {
+   "run_id": "8697ee51-2fd8-4ace-9174-a3bc54946d16",
+   "events": 551,
+   "scheduled": 100,
+   "started": 100,
+   "retries": 2,
+   "unresolved_scheduled_event": 0
+  },
+  {
+   "run_id": "8f63bd28-5283-4dd5-aefd-a8a67174fd7e",
+   "events": 419,
+   "scheduled": 76,
+   "started": 76,
+   "retries": 0,
+   "unresolved_scheduled_event": 0
+  },
+  {
+   "run_id": "924ee9a8-9e30-46a5-a6b8-5cd832007521",
+   "events": 110,
+   "scheduled": 20,
+   "started": 20,
+   "retries": 0,
+   "unresolved_scheduled_event": 0
+  },
+  {
+   "run_id": "964a36b4-10ba-4256-b31f-2557dc839195",
+   "events": 140,
+   "scheduled": 24,
+   "started": 24,
+   "retries": 0,
+   "unresolved_scheduled_event": 0
+  },
+  {
+   "run_id": "9c2a58c3-1821-446e-8b5e-e72e15f9fdde",
+   "events": 95,
+   "scheduled": 16,
+   "started": 16,
+   "retries": 0,
+   "unresolved_scheduled_event": 0
+  },
+  {
+   "run_id": "baf41aa2-a83f-4528-a4a4-c640d95bc35b",
+   "events": 110,
+   "scheduled": 20,
+   "started": 20,
+   "retries": 0,
+   "unresolved_scheduled_event": 0
+  },
+  {
+   "run_id": "be6678d5-ae14-410c-a2ed-bccf121a9dfd",
+   "events": 107,
+   "scheduled": 20,
+   "started": 20,
+   "retries": 0,
+   "unresolved_scheduled_event": 0
+  },
+  {
+   "run_id": "c80ea8bb-b5d9-4031-9e2c-a459f2dac8cd",
+   "events": 155,
+   "scheduled": 28,
+   "started": 28,
+   "retries": 1,
+   "unresolved_scheduled_event": 0
+  },
+  {
+   "run_id": "d449aa5f-0f7b-4508-bce7-374efcf5f9e7",
+   "events": 113,
+   "scheduled": 20,
+   "started": 20,
+   "retries": 0,
+   "unresolved_scheduled_event": 0
+  },
+  {
+   "run_id": "d7ed0e1a-ec59-4420-a28c-c9223719dc19",
+   "events": 131,
+   "scheduled": 24,
+   "started": 24,
+   "retries": 0,
+   "unresolved_scheduled_event": 0
+  },
+  {
+   "run_id": "d9187fc4-1c6a-42bd-9618-daa172c25f8a",
+   "events": 134,
+   "scheduled": 24,
+   "started": 24,
+   "retries": 0,
+   "unresolved_scheduled_event": 0
+  }
+ ],
+ "retries": [
+  {
+   "scheduled_event_id": "224",
+   "started_event_id": "235",
+   "activity_type": "advance_project_director",
+   "activity_id": "40",
+   "scheduled_time": "2026-11-05T09:39:04.485930Z",
+   "started_time": "2026-11-05T09:59:05.502513Z",
+   "schedule_to_start_s": 1201.017,
+   "attempt": 2,
+   "identity": "1@5b5a42bd37e5",
+   "has_prior_started": false,
+   "prior_attempt_duration_s": null,
+   "kind": "timeout",
+   "timeout_type": "TIMEOUT_TYPE_START_TO_CLOSE",
+   "message": "activity StartToClose timeout",
+   "run_id": "5d25a3a4-c359-41cc-bbf2-edacdedaa920"
+  },
+  {
+   "scheduled_event_id": "221",
+   "started_event_id": "240",
+   "activity_type": "advance_project_director",
+   "activity_id": "37",
+   "scheduled_time": "2026-11-05T09:39:04.485888Z",
+   "started_time": "2026-11-05T09:59:06.499640Z",
+   "schedule_to_start_s": 1202.014,
+   "attempt": 2,
+   "identity": "1@5b5a42bd37e5",
+   "has_prior_started": false,
+   "prior_attempt_duration_s": null,
+   "kind": "timeout",
+   "timeout_type": "TIMEOUT_TYPE_START_TO_CLOSE",
+   "message": "activity StartToClose timeout",
+   "run_id": "5d25a3a4-c359-41cc-bbf2-edacdedaa920"
+  },
+  {
+   "scheduled_event_id": "295",
+   "started_event_id": "312",
+   "activity_type": "advance_project_director",
+   "activity_id": "51",
+   "scheduled_time": "2026-11-05T10:07:25.487884Z",
+   "started_time": "2026-11-05T10:27:26.511409Z",
+   "schedule_to_start_s": 1201.024,
+   "attempt": 2,
+   "identity": "1@3cdcf87afd45",
+   "has_prior_started": false,
+   "prior_attempt_duration_s": null,
+   "kind": "timeout",
+   "timeout_type": "TIMEOUT_TYPE_START_TO_CLOSE",
+   "message": "activity StartToClose timeout",
+   "run_id": "5d25a3a4-c359-41cc-bbf2-edacdedaa920"
+  },
+  {
+   "scheduled_event_id": "527",
+   "started_event_id": "541",
+   "activity_type": "advance_project_director",
+   "activity_id": "97",
+   "scheduled_time": "2026-11-05T10:09:08.316992Z",
+   "started_time": "2026-11-05T10:29:09.328225Z",
+   "schedule_to_start_s": 1201.011,
+   "attempt": 2,
+   "identity": "1@3cdcf87afd45",
+   "has_prior_started": false,
+   "prior_attempt_duration_s": null,
+   "kind": "timeout",
+   "timeout_type": "TIMEOUT_TYPE_START_TO_CLOSE",
+   "message": "activity StartToClose timeout",
+   "run_id": "8697ee51-2fd8-4ace-9174-a3bc54946d16"
+  },
+  {
+   "scheduled_event_id": "529",
+   "started_event_id": "546",
+   "activity_type": "advance_project_director",
+   "activity_id": "99",
+   "scheduled_time": "2026-11-05T10:09:08.317023Z",
+   "started_time": "2026-11-05T10:29:10.002111Z",
+   "schedule_to_start_s": 1201.685,
+   "attempt": 2,
+   "identity": "1@3cdcf87afd45",
+   "has_prior_started": false,
+   "prior_attempt_duration_s": null,
+   "kind": "timeout",
+   "timeout_type": "TIMEOUT_TYPE_START_TO_CLOSE",
+   "message": "activity StartToClose timeout",
+   "run_id": "8697ee51-2fd8-4ace-9174-a3bc54946d16"
+  },
+  {
+   "scheduled_event_id": "53",
+   "started_event_id": "69",
+   "activity_type": "advance_project_director",
+   "activity_id": "12",
+   "scheduled_time": "2026-11-05T10:09:20.083710Z",
+   "started_time": "2026-11-05T10:29:21.112933Z",
+   "schedule_to_start_s": 1201.029,
+   "attempt": 2,
+   "identity": "1@3cdcf87afd45",
+   "has_prior_started": false,
+   "prior_attempt_duration_s": null,
+   "kind": "timeout",
+   "timeout_type": "TIMEOUT_TYPE_START_TO_CLOSE",
+   "message": "activity StartToClose timeout",
+   "run_id": "c80ea8bb-b5d9-4031-9e2c-a459f2dac8cd"
+  }
+ ],
+ "totals": {
+  "attempt_gt_1": 6,
+  "timeout_retries": 6,
+  "application_retries": 0,
+  "other_retries": 0
+ }
+}
