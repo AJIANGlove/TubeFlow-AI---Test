@@ -1,0 +1,92 @@
+删除前只读取证（部署机 192.168.110.200 + 测试机），2026-11-06
+全部为 SELECT / 读文件，无任何写操作。
+
+# ========== a) 业务库 pg_namespace 五行（07:03:46Z）==========
+SQL:
+  select oid, nspname, nspowner::regrole as owner, nspacl, xmin, age(xmin) as xmin_age
+  from pg_namespace
+  where nspname in ('contract_be30c85aac3347ffbf3bc45bc6ea12de',
+                    'audit_272879e_20260829a','audit_272879e_exact_20260829a',
+                    'staged_cleanup_gate','public')
+  order by oid;
+
+结果：
+  oid   | nspname                                   | owner             | nspacl                                                        | xmin  | xmin_age
+  2200  | public                                    | pg_database_owner | {pg_database_owner=UC/pg_database_owner,=U/pg_database_owner} | 532   | 51703873
+  60061 | contract_be30c85aac3347ffbf3bc45bc6ea12de | tubeflow          | (空)                                                          | 30623 | 51673782
+  75274 | staged_cleanup_gate                       | tubeflow          | (空)                                                          | 31367 | 51673038
+  289394| audit_272879e_20260829a                   | tubeflow          | (空)                                                          | 42563 | 51661842
+  291804| audit_272879e_exact_20260829a             | tubeflow          | (空)                                                          | 42932 | 51661473
+
+目标 schema 属主 = tubeflow（= 当前连接角色 current_user/session_user），故 DROP 权限无虞。
+
+# ========== b) 用 projects 的 xmin 推断创建时间（07:03:53Z / 07:04:06Z）==========
+说明：xmin 是 xid 类型，比较与聚合需 ::text::bigint；age(xmin) 才是可比的"年龄"。
+
+  select count(*), max(age(xmin)), min(age(xmin)) from projects;
+  -> 62 | 48580910 | 31487
+
+  -- 目标 schema
+  select age(xmin) from pg_namespace where nspname='contract_be30c85aac3347ffbf3bc45bc6ea12de';
+  -> 51673862
+
+  -- projects 中 age 小于 51673862 的最大 3 个（= 比它更晚的行）
+  -> d80b2be7-8c9c-4d54-b438-0016788e6dec | 2026-09-04 16:00:18.049882+00 | 48580910
+     b497a6b5-e594-42b8-8d92-2e390f0d7161 | 2026-09-04 16:00:18.049882+00 | 47864396
+     456c0fad-49c9-4287-a3aa-4c50fa5ee655 | 2026-09-18 13:31:52.030474+00 | 44591097
+
+  -- age 大于 51673862 的行
+  -> (0 行)
+
+结论：目标 schema 的 age 大于**全部** 62 个项目行 => 它比最早的项目行（2026-09-04T16:00:18Z）
+      还早，无法用相邻项目夹出区间，只能给出上界：**早于 2026-09-04T16:00:18Z**。
+      与最早项目相差约 3,092,952 个事务（51,673,862 − 48,580,910）。
+
+局限（必须与结论一起读）：
+  1) xid 是 32 位，可能回卷（本集群 age 约 5,170 万，尚未接近 2^31，暂不构成问题）；
+  2) 并发事务下 xid 顺序与提交时间不严格单调；
+  3) projects.xmin 是该行**最后一次修改**的事务号，不是创建时间；
+  4) pg_namespace 行的 xmin 在 ALTER SCHEMA（如改属主）后会被更新，届时反映的是那次修改。
+
+旁证（仅假设，未验证）：三个 audit 类 schema 名字里带 20260829，且 alembic_version 为 0006/0007，
+与"2026-08-29 前后的迁移/审计快照"一致；但这一点来自命名，不能作为时间证据。
+
+# ========== c) 业务库容器日志与创建时间（07:04:24Z）==========
+  docker inspect tubeflowai-test-postgres-1 --format '{{.Created}}'
+  -> 2026-09-23T06:40:04.956075412Z
+
+  docker logs -t tubeflowai-test-postgres-1 | head -1 / tail -1
+  -> 2026-09-23T06:43:19.184475094Z
+  -> 2026-09-29T18:36:06.521459069Z
+
+  日志总行数：3779
+
+  首行（第 2 行）内容：
+  -> 2026-09-23T06:43:19.184487102Z PostgreSQL Database directory appears to contain a database;
+     Skipping initialization
+     （说明数据目录是从旧机器拷贝来的，xid 历史包含迁移之前）
+
+  docker logs -t tubeflowai-test-postgres-1 2>&1 | grep -n -i -E "contract_be30|permission denied|must be owner|extension"
+  -> 0 行
+
+结论：日志只覆盖 2026-09-23 … 2026-09-29 这 6 天；目标 schema 早于 2026-09-04，
+      本来就不在该日志覆盖范围内 => **日志必然搜不到，不能据此说"没有发生过"**。
+
+# ========== d) 测试机：TUBEFLOW_TEST_POSTGRES_URL 溯源 ==========
+载体清点：
+  - ~/.bash_history            -> 不存在
+  - 各 D:/AAA-project/wt-*/.env -> 均不存在
+  - 仓库根 .env                -> 存在（4952 字节），grep TUBEFLOW_TEST_POSTGRES_URL = 0 命中
+  - PSReadLine 历史            -> 存在（3321 字节）
+
+PSReadLine 历史搜索（Select-String）：
+  模式 'TUBEFLOW_TEST_POSTGRES_URL|tubeflow@|tubeflow:tubeflow|psql .*-d tubeflow'
+  -> hits = 0
+
+仓库内所有 TUBEFLOW_TEST_POSTGRES_URL= 出现位置（已打码）：
+  Pending issues/2026-11-06/evidence/jitter_ab/gates/SUMMARY.md:10
+  -> postgresql+psycopg://***@127.0.0.1:55435/tubeflowtest      （指向测试库）
+
+结论：**没有留下任何把集成套件指向业务库的记录**。
+      这与复核文档的推断（"某次运行曾指向业务库"）不矛盾——但那次运行没有留在本机痕迹里，
+      且从 xmin 看它发生在 2026-09-04 之前，远早于本仓库有记录的这些运行。

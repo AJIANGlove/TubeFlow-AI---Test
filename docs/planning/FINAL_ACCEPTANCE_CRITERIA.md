@@ -693,3 +693,18 @@
   - 已完成的只读部分：测试库 `contract\_%` **0 行**（两轮集成跑完后复查仍为 0，夹具修复生效）；两个库的 `identity\_test\_%` / `narration\_authority\_%` / `voice\_race\_%` 均 **0 行**；两个集群均无 `alembic\_url\_%` 数据库；业务库另见 `audit_272879e_20260829a`、`audit_272879e_exact_20260829a`、`staged_cleanup_gate`（只列出，未处理）。
   - 运维记录（AGENT_AUTHORIZATION §5）：部署机 `runtime/operations/schema-cleanup-20261106/README.md`，副本 `Pending issues/2026-11-06/evidence/schema_cleanup/operations-record.md`；记录 `docs/DEPLOYMENT.md` §44。**该空 schema 仍在业务库中，删除需新的、明确指向业务库的授权。**
 
+  - **补记（2026-11-06 晚些时候）**：用户授权后，该空 schema 已于 **07:07:35Z 在业务库 `tubeflow` 用 `DROP SCHEMA … RESTRICT` 删除**（删除前四项检查全部满足；复查两库 `contract\_%` 均为 0 行、`/health/live` = 200）。详见 §49 与 `docs/DEPLOYMENT.md` §45。
+  - **守卫未合并**：PR #17 的 `database_guard` 在本环境会误拦测试库（`tubeflowtest.public.projects` 有 1 行 `mig-probe`），按用户裁定**暂停合并**、**不重跑门禁**；测试库中该行**未改动**。
+
+## 49. 2026-11-06 集成测试不得触碰业务库；业务库遗留 schema 处理（复核文档 `Pending issues/2026-11-06/SCHEMA_CLEANUP_REVIEW_20261106.md`）
+
+- [ ] Claude 云端工作区：`tests/integration/database_guard.py::refuse_application_database` 在目标库存在 `public.projects` 且有数据时判测试失败；全部 6 处建 schema 或数据库的集成测试代码都在建之前调用它；新单元测试覆盖三种库状态 + 源码扫描。
+  - **PR #17 修订中，未合并**（2026-11-06 用户裁定）。原因：该判据以「`public.projects` 有数据」识别业务库，而本环境的**测试库** `tubeflowtest.public.projects` 有 1 行（`id 000000000000000000000000000000f1`、`title mig-probe`、`created_at 2026-11-05T09:56:42Z`），守卫会把全部集成测试判失败。作者将改为「库名须以 test 结尾」后另行通知。
+- [ ] 测试机：上述单元测试实际运行；单元、集成、ruff、mypy 相对 main 无新增失败；集成在测试库上照常运行。
+  - **PR #17 修订中，未合并**，本次按裁定**未跑任何门禁**（未运行 ≠ 通过）。
+- [x] 部署机，删除前只读取证：`pg_namespace` 的 oid / 属主 / nspacl / xmin / age；用 `projects` 的 xmin 推断创建时间；容器日志检索；测试机 `TUBEFLOW_TEST_POSTGRES_URL` 溯源。
+  - 2026-11-06 部署机实测（07:03–07:04Z）：目标 schema `oid=60061`、属主 **`tubeflow`**、`nspacl` 空、`xmin=30623`、`age=51673862`。**年龄大于全部 62 个项目行**（最老者 2026-09-04T16:00:18Z、age 48580910）⇒ 只能给上界「早于 2026-09-04T16:00:18Z」，无法夹出区间；局限（xid 可回卷、并发非单调、`projects.xmin` 是最后修改、`ALTER SCHEMA` 会刷新该行 xmin）已记录。容器日志覆盖 2026-09-23T06:43:19Z–2026-09-29T18:36:06Z（3779 行），关键词 **0 命中**（本来就不覆盖该时段）。测试机：无 `.bash_history`、工作树无 `.env`、仓库 `.env` 无该键、PSReadLine 历史 **0 命中**；仓库唯一记录取值指向 `tubeflowtest`。证据 `Pending issues/2026-11-06/evidence/schema_forensics/{forensics.txt,README.md}`。
+- [x] 部署机：用户授权后，在业务库 `tubeflow` 中再次确认 `contract_be30c85aac3347ffbf3bc45bc6ea12de` 为空，以 `RESTRICT` 删除；复查 `contract\_%` 为 0 行。
+  - 2026-11-06 07:07:31Z 复查：存在、`pg_class`/`pg_proc`/`pg_type` **均 0**、属主 `tubeflow`。07:07:35Z 执行 `DROP SCHEMA … RESTRICT` → 输出 `DROP SCHEMA`、rc=0（未用 CASCADE、未换超级用户）。07:07:40Z 复查：业务库 **0 行**、测试库 **0 行**、`/health/live` **200**。授权额度 1/1 已用尽。证据 `evidence/schema_forensics/drop.md`、`operations-record.md`；记录 `docs/DEPLOYMENT.md` §45。
+- [x] 部署机：只读统计 `audit_272879e_20260829a`、`audit_272879e_exact_20260829a`、`staged_cleanup_gate` 三个 schema 的对象数、表行数与占用空间，不改动，交用户决定。
+  - 2026-11-06 07:07:51Z：三者属主均 `tubeflow`，各 **39 表 / 123 索引 / 0 函数 / 78 类型**，占用 **1176 kB / 1256 kB / 1216 kB**（合计约 3.6 MB）。`reltuples` 多为 **-1**（从未 ANALYZE，不可当行数）；真实 `count(*)` 合计 **1 / 3 / 1 = 5 行**，其余 114 张表全空。`alembic_version` 分别为 `0007` / `0006` / `0006`。**未做任何改动**，是否清理待用户决定。证据 `evidence/schema_forensics/{inventory.md,tables_detail.txt}`。

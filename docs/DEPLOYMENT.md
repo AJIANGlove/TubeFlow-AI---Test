@@ -540,3 +540,24 @@ ssh $SSHOPTS edy@192.168.110.200 'sudo docker run --rm -v tubeflowai-test_postgr
 - f) 其他遗留（只读，未删除）：业务库 `contract\_%` = 1 行（即上条）；业务库与测试库的 `identity\_test\_%` / `narration\_authority\_%` / `voice\_race\_%` 均 **0 行**；两个集群均无 `alembic\_url\_%` 数据库。额外观察（不在任务前缀内，未处理）：业务库另有 `audit_272879e_20260829a`、`audit_272879e_exact_20260829a`、`staged_cleanup_gate`。
 - 环境旁证：部署机 `127.0.0.1:55432` 处于 LISTEN，是 `tubeflow-contract-pg` 的常驻端口映射，不是测试隧道；本次集成用的 55437 隧道已关闭。
 - 续接：该空 schema **仍留在业务库 `tubeflow`**。删除它需要新的、明确指向业务库的授权；本任务不具此权限，也未消耗删除额度（上限 1、实际 0）。证据 `Pending issues/2026-11-06/evidence/schema_cleanup/`。
+
+## 45. 2026-11-06 运维操作：业务库遗留 schema 取证与删除（schema-forensics-20261106）
+
+- 授权：用户 2026-11-06「全部按建议执行」（`Pending issues/2026-11-06/SCHEMA_CLEANUP_REVIEW_20261106.md` 第 3 节），**范围仅限** `contract_be30c85aac3347ffbf3bc45bc6ea12de` 一个 schema，且限定在**业务库 `tubeflow`**。运维记录（AGENT_AUTHORIZATION §5）：部署机 `runtime/operations/schema-forensics-20261106/README.md`，仓库副本 `Pending issues/2026-11-06/evidence/schema_forensics/operations-record.md`（**先记录、后执行**）。
+- 与 PR #17 的关系：PR #17 新增的 `tests/integration/database_guard.py` 以「目标库存在 `public.projects` 且有行」识别业务库；而本环境的**测试库** `tubeflowtest.public` 有 70 张业务表（`alembic_version=0047`）且 `public.projects` 有 1 行（`id …0000f1`、`title mig-probe`、`created_at 2026-11-05T09:56:42Z`），守卫会把**全部**集成测试判失败。用户裁定 **PR #17 暂停合并、不重跑门禁**，测试库中的 `mig-probe` 行**不动**。本节的取证与删除**不依赖 PR #17**。
+- 删除前只读取证（部署机 07:03–07:04Z）：
+  - a) `pg_namespace`：目标 schema `oid=60061`、属主 **`tubeflow`**（= `current_user`）、`nspacl` 空、`xmin=30623`、`age(xmin)=51673862`；`public` oid 2200 / 属主 `pg_database_owner`；`staged_cleanup_gate` oid 75274 / age 51673038；`audit_272879e_20260829a` oid 289394 / age 51661842；`audit_272879e_exact_20260829a` oid 291804 / age 51661473。
+  - b) 时间推断：`projects` 62 行，`age(xmin)` 范围 **31487…48580910**（对应 2026-11-05 09:03Z…2026-09-04T16:00:18Z）。目标 schema 的 age **大于全部项目行**，因此**无法用相邻项目夹出区间**，只能给上界「**早于 2026-09-04T16:00:18Z**」（与最早项目相差约 3,092,952 个事务）。**这是推断**；局限：`xid` 32 位可回卷、并发下顺序与提交时间非严格单调、`projects.xmin` 反映最后一次修改、`ALTER SCHEMA` 会刷新该行 `xmin`。
+  - c) 容器日志：容器创建 `2026-09-23T06:40:04Z`，日志覆盖 `2026-09-23T06:43:19Z`–`2026-09-29T18:36:06Z`（3779 行），首行提示数据目录是拷贝来的（`Skipping initialization`）。`grep -iE "contract_be30|permission denied|must be owner|extension"` **0 命中**——该 schema 早于日志覆盖期，**日志本就不可能记录**。
+  - d) 测试机溯源：仓库内唯一记录的 `TUBEFLOW_TEST_POSTGRES_URL` 取值指向 `tubeflowtest`；仓库 `.env` 无该键；各 `wt-*` 工作树无 `.env`；**无** `~/.bash_history`；PSReadLine 历史（3321 字节）中相关模式 **0 命中**。⇒ **没有留下把集成套件指向业务库的记录**（不排除曾经发生过、但痕迹未留存）。
+- 删除（07:07:31Z–07:07:40Z）：复查 `exists=1`、`pg_class=0`、`pg_proc=0`、`pg_type=0`、属主 `tubeflow` → 07:07:35Z 执行 `DROP SCHEMA "contract_be30c85a…" RESTRICT;`，输出 `DROP SCHEMA`、**rc=0**（未用 `CASCADE`、未加 `IF EXISTS`、未换超级用户）→ 07:07:40Z 复查：业务库该 schema **0**、业务库与测试库 `contract\_%` 均 **0 行**、`/health/live` **200**。授权额度 **1/1 已用尽**。
+- 三个 schema 只读盘点（07:07:51Z，**未改动**）：
+
+| schema | 属主 | 表 | 索引 | 函数 | 类型 | 占用 | 真实行数 | `alembic_version` |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| `audit_272879e_20260829a` | tubeflow | 39 | 123 | 0 | 78 | 1176 kB | 1 | 0007 |
+| `audit_272879e_exact_20260829a` | tubeflow | 39 | 123 | 0 | 78 | 1256 kB | 3 | 0006 |
+| `staged_cleanup_gate` | tubeflow | 39 | 123 | 0 | 78 | 1216 kB | 1 | 0006 |
+
+  - `reltuples` 多为 **-1**（从未 `ANALYZE`，不能当行数），上表「真实行数」来自逐表 `count(*)`；合计仅 5 行，其余 114 张表全空。`audit_272879e_exact_20260829a` 里唯一的业务行是 `accounts.username = audit-owner`。三者为 2026-08 的早期迁移快照，**用途来源未查证**。
+- 未触发回滚、未重启容器、未改 `.env`、未调用任何 Provider。证据 `Pending issues/2026-11-06/evidence/schema_forensics/`。

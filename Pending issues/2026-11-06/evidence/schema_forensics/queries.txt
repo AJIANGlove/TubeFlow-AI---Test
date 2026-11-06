@@ -1,0 +1,98 @@
+本次用到的全部 SQL（只读，除第 4 节标注的那一条 DROP）
+部署机 192.168.110.200；业务库 tubeflow（容器 tubeflowai-test-postgres-1，角色 tubeflow）；
+测试库 tubeflowtest（容器 tubeflow-contract-pg，角色 postgres）。
+
+# 1. 取证 a) 五行属性
+select oid, nspname, nspowner::regrole as owner, nspacl, xmin, age(xmin) as xmin_age
+from pg_namespace
+where nspname in ('contract_be30c85aac3347ffbf3bc45bc6ea12de',
+                  'audit_272879e_20260829a','audit_272879e_exact_20260829a',
+                  'staged_cleanup_gate','public')
+order by oid;
+
+# 2. 取证 b) 时间推断（xmin 是 xid，需转 text 再比大小；age() 才可比"年龄"）
+select count(*), max(age(xmin)), min(age(xmin)) from projects;
+select age(xmin) from pg_namespace where nspname = 'contract_be30c85aac3347ffbf3bc45bc6ea12de';
+select id::text, created_at::text, age(xmin)::text from projects
+  where age(xmin) < 51673862 order by age(xmin) desc limit 3;
+select id::text, created_at::text, age(xmin)::text from projects
+  where age(xmin) > 51673862 order by age(xmin) asc limit 3;
+
+# 3. 取证 c) 日志（shell，不是 SQL）
+#   docker inspect tubeflowai-test-postgres-1 --format '{{.Created}}'
+#   docker logs -t tubeflowai-test-postgres-1 2>&1 | grep -n -i -E "contract_be30|permission denied|must be owner|extension"
+
+# 4. 删除前空检查 + 删除（唯一写操作）+ 复查
+select count(*) from pg_namespace where nspname = 'contract_be30c85aac3347ffbf3bc45bc6ea12de';
+select count(*) from pg_class c join pg_namespace n on n.oid = c.relnamespace where n.nspname = 'contract_be30c85aac3347ffbf3bc45bc6ea12de';
+select count(*) from pg_proc  p join pg_namespace n on n.oid = p.pronamespace where n.nspname = 'contract_be30c85aac3347ffbf3bc45bc6ea12de';
+select count(*) from pg_type  t join pg_namespace n on n.oid = t.typnamespace where n.nspname = 'contract_be30c85aac3347ffbf3bc45bc6ea12de';
+
+-- 以下为唯一写操作（07:07:35Z，rc=0，输出 DROP SCHEMA）
+DROP SCHEMA "contract_be30c85aac3347ffbf3bc45bc6ea12de" RESTRICT;
+
+select count(*) from pg_namespace where nspname like 'contract\_%';     -- 业务库，期望 0
+select count(*) from pg_namespace where nspname like 'contract\_%';     -- 测试库，期望 0
+select nspname from pg_namespace
+  where nspname not like 'pg\_%' and nspname <> 'information_schema' order by 1;
+
+# 5. 盘点三个 schema
+select n.nspname as schema,
+       pg_get_userbyid(n.nspowner) as owner,
+       count(c.oid) filter (where c.relkind='r') as tables,
+       count(c.oid) filter (where c.relkind='i') as indexes,
+       count(c.oid) filter (where c.relkind='S') as sequences,
+       count(c.oid) filter (where c.relkind='v') as views,
+       count(c.oid) filter (where c.relkind='m') as matviews,
+       pg_size_pretty(coalesce(sum(pg_total_relation_size(c.oid))
+                      filter (where c.relkind in ('r','m')), 0)) as total_size
+from pg_namespace n
+left join pg_class c on c.relnamespace = n.oid
+where n.nspname in ('audit_272879e_20260829a','audit_272879e_exact_20260829a','staged_cleanup_gate')
+group by 1,2 order by 1;
+
+select n.nspname as schema,
+       (select count(*) from pg_proc p where p.pronamespace = n.oid) as functions,
+       (select count(*) from pg_type t where t.typnamespace = n.oid) as types
+from pg_namespace n
+where n.nspname in ('audit_272879e_20260829a','audit_272879e_exact_20260829a','staged_cleanup_gate')
+order by 1;
+
+-- 每张表：reltuples 与占用（-1 表示从未 ANALYZE，不是行数）
+select n.nspname as schema, c.relname as table, c.reltuples::bigint as est_rows,
+       pg_size_pretty(pg_total_relation_size(c.oid)) as size
+from pg_class c join pg_namespace n on n.oid = c.relnamespace
+where n.nspname in ('audit_272879e_20260829a','audit_272879e_exact_20260829a','staged_cleanup_gate')
+  and c.relkind = 'r'
+order by 1, 2;
+
+-- 真实行数（逐表 count(*) 汇总；只读）
+select n.nspname as schema,
+       sum((xpath('/row/cnt/text()',
+            query_to_xml(format('select count(*) as cnt from %I.%I', n.nspname, c.relname),
+                         false, true, '')))[1]::text::bigint) as real_rows,
+       count(*) as tables
+from pg_class c join pg_namespace n on n.oid = c.relnamespace
+where n.nspname in ('audit_272879e_20260829a','audit_272879e_exact_20260829a','staged_cleanup_gate')
+  and c.relkind = 'r'
+group by 1 order by 1;
+
+-- 有数据的表
+select n.nspname as schema, c.relname as table,
+       (xpath('/row/cnt/text()',
+         query_to_xml(format('select count(*) as cnt from %I.%I', n.nspname, c.relname),
+                      false, true, '')))[1]::text::bigint as rows
+from pg_class c join pg_namespace n on n.oid = c.relnamespace
+where n.nspname in ('audit_272879e_20260829a','audit_272879e_exact_20260829a','staged_cleanup_gate')
+  and c.relkind = 'r'
+  and (xpath('/row/cnt/text()',
+        query_to_xml(format('select count(*) as cnt from %I.%I', n.nspname, c.relname),
+                     false, true, '')))[1]::text::bigint > 0
+order by 1, 2;
+
+# 6. PR #17 守卫误拦的证据（测试库，只读）
+select to_regclass('public.projects');                       -- -> projects
+select count(*) from public.projects;                        -- -> 1
+select count(*) from information_schema.tables where table_schema='public';  -- -> 70
+select version_num from public.alembic_version;             -- -> 0047
+select id::text, title, production_mode, created_at::text from public.projects;
