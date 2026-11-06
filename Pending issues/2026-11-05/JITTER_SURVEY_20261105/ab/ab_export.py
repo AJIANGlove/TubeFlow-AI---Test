@@ -3,10 +3,13 @@
 Read-only: SELECTs and MinIO GETs only; no writes, no Provider calls. Run inside the web
 container from a copied directory (same pattern as ../jitter_survey.py):
 
-    docker compose cp "Pending issues/2026-11-05/JITTER_SURVEY_20261105/ab" web:/tmp/jitter_ab
+    docker compose cp "Pending issues/2026-11-05/JITTER_SURVEY_20261105" web:/tmp/jitter_survey
     docker compose exec -T -e OUT=/tmp/jitter_ab_out -e ATTEMPTS=<uuid>,<uuid>,... \
-        web python /tmp/jitter_ab/ab_export.py
+        web python /tmp/jitter_survey/ab/ab_export.py
+    docker compose exec -T web python /tmp/jitter_survey/ab/ab_measure.py /tmp/jitter_ab_out frames
     docker compose cp web:/tmp/jitter_ab_out "Pending issues/2026-11-05/JITTER_SURVEY_20261105/ab/results"
+    # then, where numpy + cv2 are installed (no ffmpeg needed):
+    python ab_measure.py "Pending issues/2026-11-05/JITTER_SURVEY_20261105/ab/results" hf
 
 Writes OUT/attempts.json (one object per attempt, in the ATTEMPTS order) and
 OUT/<attempt_id>.mp4 for every attempt that has an archived asset. Attempts that failed or

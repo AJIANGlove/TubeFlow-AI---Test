@@ -1,0 +1,3 @@
+# Intermediate and bulky A/B files: grey frames for HF and the archived MP4s (sha256 is in attempts.json).
+results/*.gray.gz
+results/*.mp4

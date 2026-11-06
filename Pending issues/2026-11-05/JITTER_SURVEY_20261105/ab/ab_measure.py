@@ -1,10 +1,21 @@
 """Measure the jitter A/B videos and apply the pre-registered decision rule (USER_DECISIONS §51).
 
 Input: a directory produced by ab_export.py (attempts.json + <attempt_id>.mp4) and, after the
-visual check, an optional visual.json. Needs ffmpeg; the HF part also needs numpy and
-opencv-python (cv2). Without cv2 it stops with a clear message instead of reporting HF as 0.
+visual check, an optional visual.json.
 
-    python3 ab_measure.py <results_dir>
+    python3 ab_measure.py <results_dir> [all|frames|hf|report]
+
+Stages (default "all" runs the three in one place):
+- frames: needs ffmpeg only (run it in the web container, the same ffmpeg as the survey).
+  Held-frame shares, cuts, contact sheets, and the 528x304 grey frames for HF written as
+  <attempt_id>.gray.gz; result in stage_frames.json.
+- hf: needs numpy and opencv-python (cv2), no ffmpeg. Reads stage_frames.json and the
+  .gray.gz files, adds HF, writes stage_hf.json, then runs "report". Without cv2 it stops with
+  a clear message instead of reporting HF as 0.
+- report: pure Python. Reads stage_hf.json (+ visual.json), writes measure.json and pairs.md.
+  Re-run it after writing visual.json.
+The .gray.gz files are intermediate data (about 58 MB raw per 15 s video before gzip); do not
+commit them.
 
 Per video:
 - held-frame share for the whole video (../held_frames.py, same algorithm as the survey) and per
@@ -15,7 +26,9 @@ Per video:
   ../../JITTER_484746C4_20261105/scripts/motion.py), the frame-weighted RMS over all shots as the
   video HF, and "jitter shots" = shots with HF >= 0.25
   (the 2026-10-18 definition, docs/VIDEO_JITTER_DIAGNOSIS_20261018.md);
-- a contact sheet every 0.5 s (sheets/<attempt_id>.png) for the visual check.
+- a contact sheet every 0.5 s (sheets/<attempt_id>.png) for the visual check: 6 columns x 5
+  rows, read left to right then top to bottom; tile k is at k x 0.5 s (no text overlay, so no
+  font is needed).
 
 visual.json (written by the person doing the visual check): {"<attempt_id>": ["defect", ...]}
 with an empty list for a clean video. Defect names: identity, extra_people, text, split_screen,
@@ -34,6 +47,7 @@ reported as invalid.
 
 from __future__ import annotations
 
+import gzip
 import json
 import re
 import statistics
@@ -138,21 +152,27 @@ def held_by_segment(diffs: list[float], shots: list[dict[str, Any]]) -> None:
         shot["held_share"] = round(held / moving, 2) if moving else None
 
 
-def hf_by_segment(path: Path, shots: list[dict[str, Any]]) -> float | None:
+WIDTH, HEIGHT = 528, 304
+
+
+def gray_frames(path: Path) -> bytes:
+    """528x304 grey frames as raw bytes (same decode as motion.py); needs ffmpeg."""
+    return subprocess.run(
+        ["ffmpeg", "-v", "error", "-i", str(path), "-vf", f"scale={WIDTH}:{HEIGHT},format=gray",
+         "-f", "rawvideo", "-"],
+        capture_output=True,
+        check=True,
+    ).stdout
+
+
+def hf_by_segment(raw: bytes, shots: list[dict[str, Any]]) -> float | None:
     try:
         import cv2  # type: ignore[import-not-found]
         import numpy as np
     except ImportError as exc:  # never report a missing HF as zero
         raise SystemExit(f"HF needs numpy and opencv-python (cv2): {exc}") from exc
-    width, height = 528, 304
-    raw = subprocess.run(
-        ["ffmpeg", "-v", "error", "-i", str(path), "-vf", f"scale={width}:{height},format=gray",
-         "-f", "rawvideo", "-"],
-        capture_output=True,
-        check=True,
-    ).stdout
-    frames = np.frombuffer(raw, np.uint8).reshape(-1, height, width).astype(np.float32)
-    window = cv2.createHanningWindow((width, height), cv2.CV_32F)
+    frames = np.frombuffer(raw, np.uint8).reshape(-1, HEIGHT, WIDTH).astype(np.float32)
+    window = cv2.createHanningWindow((WIDTH, HEIGHT), cv2.CV_32F)
     shifts = np.array(
         [cv2.phaseCorrelate(frames[i - 1], frames[i], window)[0] for i in range(1, len(frames))]
     )
@@ -176,17 +196,17 @@ def contact_sheet(path: Path, target: Path) -> None:
     target.parent.mkdir(parents=True, exist_ok=True)
     subprocess.run(
         ["ffmpeg", "-v", "error", "-y", "-i", str(path), "-vf",
-         "fps=2,scale=352:-1,drawtext=text='%{pts\\:hms}':x=4:y=4:fontsize=14:fontcolor=white:box=1:boxcolor=black@0.6,tile=6x5",
+         "fps=2,scale=352:-1,tile=6x5",
          "-frames:v", "1", str(target)],
         check=True,
     )
 
 
-def main() -> None:
-    root = Path(sys.argv[1])
-    records = json.loads((root / "attempts.json").read_text(encoding="utf-8"))
-    visual_path = root / "visual.json"
-    visual = json.loads(visual_path.read_text(encoding="utf-8")) if visual_path.exists() else None
+def _write(path: Path, value: object) -> None:
+    path.write_text(json.dumps(value, indent=1, ensure_ascii=False), encoding="utf-8")
+
+
+def frames_stage(root: Path, records: list[dict[str, Any]], *, keep_gray: bool) -> None:
     for record in records:
         video = record.get("video_file")
         if not video:
@@ -199,11 +219,48 @@ def main() -> None:
         shots = segments(diffs, planned)
         held_by_segment(diffs, shots)
         record["planned_shots"] = planned
-        record["hf_video"] = hf_by_segment(path, shots)
-        record["jitter_shots"] = sum(1 for shot in shots if shot.get("jitter_shot"))
         record["shots"] = shots
         record["measured"] = True
         contact_sheet(path, root / "sheets" / f"{record['attempt_id']}.png")
+        if keep_gray:
+            (root / f"{record['attempt_id']}.gray.gz").write_bytes(gzip.compress(gray_frames(path)))
+    _write(root / "stage_frames.json", records)
+
+
+def hf_stage(root: Path, records: list[dict[str, Any]]) -> None:
+    for record in records:
+        if not record.get("measured"):
+            continue
+        cached = root / f"{record['attempt_id']}.gray.gz"
+        raw = gzip.decompress(cached.read_bytes()) if cached.exists() else gray_frames(root / record["video_file"])
+        record["hf_video"] = hf_by_segment(raw, record["shots"])
+        record["jitter_shots"] = sum(1 for shot in record["shots"] if shot.get("jitter_shot"))
+    _write(root / "stage_hf.json", records)
+
+
+def main() -> None:
+    root = Path(sys.argv[1])
+    stage = sys.argv[2] if len(sys.argv) > 2 else "all"
+    if stage not in ("all", "frames", "hf", "report"):
+        raise SystemExit("stage must be one of: all, frames, hf, report")
+    if stage in ("all", "frames"):
+        records = json.loads((root / "attempts.json").read_text(encoding="utf-8"))
+        frames_stage(root, records, keep_gray=stage == "frames")
+        if stage == "frames":
+            print(f"frames stage done: {root / 'stage_frames.json'}")
+            return
+    if stage == "hf":
+        records = json.loads((root / "stage_frames.json").read_text(encoding="utf-8"))
+    if stage in ("all", "hf"):
+        hf_stage(root, records)
+    if stage == "report":
+        records = json.loads((root / "stage_hf.json").read_text(encoding="utf-8"))
+    report(root, records)
+
+
+def report(root: Path, records: list[dict[str, Any]]) -> None:
+    visual_path = root / "visual.json"
+    visual = json.loads(visual_path.read_text(encoding="utf-8")) if visual_path.exists() else None
     pairs: dict[tuple[Any, Any], dict[str, Any]] = {}
     for record in records:
         experiment = record.get("experiment") or {}
