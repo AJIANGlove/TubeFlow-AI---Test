@@ -23,7 +23,7 @@ from tubeflow_test.adapters.persistence.storyboards.repository import (
 from tubeflow_test.domain.common import AspectRatio, MediaAssetRef
 from tubeflow_test.domain.errors import DomainError
 from tubeflow_test.domain.storyboards import DirectorShot, ShotSentenceLink
-from tubeflow_test.video_generation.domain import ImmutableWorkflowSnapshot
+from tubeflow_test.video_generation.domain import ImmutableWorkflowSnapshot, VideoRuleViolation
 from tubeflow_test.video_generation.fake_engine import FakeEngine
 from tubeflow_test.video_generation.orchestration import (
     AttemptStage,
@@ -827,3 +827,32 @@ def test_manual_intent_explicit_seed_overrides_and_conflicts_on_change(
             seed=explicit + 1,
         )
     assert conflict.value.code == "idempotency_conflict"
+
+
+@pytest.mark.integration
+def test_manual_intent_experiment_arm_is_refused_on_a_composite_group(
+    postgres_database: PostgresDatabase,
+    storyboard_parent_chain: tuple[ProductionParentChain, UUID],
+) -> None:
+    # §51（2026-11-05）：抖动 A/B 的实验臂只用于 v4 单格分组；整图分组在编译前即拒绝，不落库。
+    parents, generation_id = storyboard_parent_chain
+    _seed_current_media(postgres_database, parents, generation_id)
+    writer = _writer(postgres_database, seed=None)
+    with pytest.raises(VideoRuleViolation, match="experiment_requires_v4_single_panel"):
+        writer.create(
+            owner_id=parents.owner_id,
+            group_id=parents.group_id,
+            expected_storyboard_generation_id=generation_id,
+            idempotency_key="experiment-composite",
+            seed=798160553724158,
+            experiment_arm="baseline",
+        )
+    with postgres_database.sessions.begin() as session:
+        assert (
+            session.scalar(
+                select(func.count())
+                .select_from(VideoAttemptRecord)
+                .where(VideoAttemptRecord.idempotency_key == "experiment-composite")
+            )
+            == 0
+        )

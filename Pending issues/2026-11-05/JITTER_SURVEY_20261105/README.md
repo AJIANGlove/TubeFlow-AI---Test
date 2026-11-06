@@ -18,36 +18,76 @@
 - 只覆盖抖动 A（主体隔帧停顿）。机位突跳 B 和静止微颤 C 仍看既有 HF 指标；HF 测不到 A。
 - 「明显」暂定为占比 ≥ 0.2，只用于计数，不是验收阈值。
 
-## 2. 提示词 A/B（待用户授权调用次数后执行）
+## 2. 提示词 A/B（2026-11-06 修订：已授权，USER_DECISIONS §51 第 3 项）
 
-**对象：** 484746c4 第 1 组、第 9 组（出现抖动的两组），沿用当前故事板，不重新生成故事板。
+**修订说明：** 原方案（2026-11-05）是第 1、9 组、两臂各自编译。2026-11-06 用户确认的改动：
+- 改用第 7、12 组：普查时当前视频的隔帧停顿占比为 0.72、0.49。第 1、9 组只有 0.08、0.20，基线太低，看不出改善。
+- 不加第三组（v3 提示词），原因见 USER_DECISIONS §51 第 3 项。
+- 按镜头分开报告，并增加抖镜头一条判定。
+
+另有一处实现改动：变体臂不再单独编译，而是复用同组、同 seed 基线臂的已编译提示词，再插入这一句。这样两臂只差这一句，DeepSeek 的随机性（如每镜选哪种运镜）不再混进对比，DeepSeek 调用也从名义 8 次降到 4 次。额度上限不变。
+
+**对象：** `484746c4` 第 7 组、第 12 组，沿用当前故事板，不重新生成故事板。
 
 **两臂：**
-- 基线：现行 `tubeflow_storyboard_v4_single_panel`。
-- 变体：在基线基础上只追加一句运动节奏要求。英文原文如下，实施时逐字使用：
+- 基线（`experiment_arm: "baseline"`）：现行 `tubeflow_storyboard_v4_single_panel`，照常编译。
+- 变体（`experiment_arm: "cadence_v1"`）：取同组、同 seed 基线臂的已编译提示词，在 `detailed_description` 的 `[Shot 1]` 之前插入下面这一句，作为独立一行，不调用编译器。策略记为 `tubeflow_storyboard_v4_single_panel_cadence_v1`。英文原文逐字如下：
   > Animate every frame at the full frame rate with smooth, continuous motion; never hold a pose for two frames or use limited animation ("animating on twos"); people, hands and objects move a little on every frame.
 
-现行 v4 的规则 8、9 已经有「stable camera」「Static camera, 0% movement」，负面清单里也已有「camera shake, jitter」（`video_prompt/templates.py` 第 228–229 行；单格 v4 沿用这两条，只替换了格位前缀，见第 292–312 行）。所以变体只针对 A，不重复已有的机位规则。
+现行 v4 的规则 8、9 已经有「stable camera」「Static camera, 0% movement」，负面清单里也已有「camera shake, jitter」（`video_prompt/templates.py`）。所以变体只针对 A（主体隔帧停顿），不重复已有的机位规则。
 
-**seed：** 两臂共用 `ManualH3Input.seed` 显式给定的同一对 seed。
-- S1 = 798160553724158，S2 = 798160553724159（沿用 2026-11-03 A/B 的取值）。
-- 同组的提交放在同一节点上串行执行。
+**seed：** S1 = 798160553724158，S2 = 798160553724159。两臂通过 `ManualH3Input.seed` 显式给定同一对 seed；变体的 seed 必须等于其基线的 seed，否则拒绝。
 
-**调用预算：**
+**额度：**
 
 | Provider | 名义 | 硬上限 | 说明 |
 | --- | ---: | ---: | --- |
-| DeepSeek 编译 | 8 | 16 | 2 组 × 2 臂 × 2 seed；每次允许 1 次修复 |
+| DeepSeek 编译 | 4 | 16 | 只编译 4 个基线臂；每次允许 1 次修复；同一幂等键重发也会再编译一次 |
 | H3 视频 | 8 | 8 | 2 组 × 2 臂 × 2 seed |
 
-失败和 UNKNOWN 都计入额度，不自动重提。
+- 失败、UNKNOWN、取消都计入额度，不重提。
+- 实验尝试按 MANUAL 处理，系统不会自动重提。
 
-**测量（每条视频）：**
-- 隔帧停顿占比（`held_frames.py`）；
-- HF；
-- 每 0.5 秒抽帧目视：身份、多余人物、文字、分屏；
-- 编译后提示词的 SHA-256、seed、节点。
+**执行顺序（每组串行；两组可以并行）：**
+- 每组依次为：S1 基线 → S1 变体 → S2 基线 → S2 变体。
+- 同组同一时刻只允许一个未终结的尝试，所以必须等上一条终结后再提交下一条。
+- 基线 H3 失败的，不再提交它的变体（省下这次调用），这一对记为「不可比」。
 
-**判定（预先写定）：** 两组、两个 seed 共 4 对比较里，至少 3 对变体的隔帧停顿占比低于基线，并且没有新增画面缺陷，才把「变体设为默认」提交用户决定。否则如实报告为「无效或不确定」。
+| 步 | 请求体（`POST /group-videos/groups/{group_id}/generations`） | `Idempotency-Key` |
+| --- | --- | --- |
+| 1 | `{"expected_storyboard_generation_id": "<当前故事板>", "seed": 798160553724158, "experiment_arm": "baseline"}` | `jitter-ab-v1-g7-s1-baseline` |
+| 2 | `{"expected_storyboard_generation_id": "<同上>", "seed": 798160553724158, "experiment_arm": "cadence_v1", "prompt_source_attempt_id": "<第 1 步的 attempt_id>"}` | `jitter-ab-v1-g7-s1-cadence` |
+| 3–4 | 同上，seed 换成 798160553724159 | `jitter-ab-v1-g7-s2-baseline` / `-cadence` |
 
-**代码前提：** 变体策略需要一个新的、非默认的提示词策略值，供手动 H3 输入选用。这部分在用户授权调用次数之后再实现，避免向生产代码加入暂时用不到的分支。
+第 12 组相同，键里的 `g7` 换成 `g12`。
+
+- POST 报错或超时时，不要换新键重发。先按键查 `video_generation_attempts`，确认是否已经落库。
+- 节点无法指定；按实际节点记录，作为混淆项。
+
+**测量（`ab/`，只读，2026-11-06 改为分两处运行，不安装任何新软件）：**
+
+机器名称（2026-11-06 用户确认，见 `docs/DEPLOYMENT.md` §1）：**部署机** = 192.168.110.200；**测试机** = 实施方的机器。
+
+部署机上的 ffmpeg 在容器镜像里（`backend/Dockerfile` 用 apt 安装，构建时执行 `ffmpeg -version` 校验；合成与普查都用它），宿主系统的 PATH 里不一定有。web 容器没有 numpy/cv2；测试机的 video-qc 环境有 numpy/cv2，但没有 ffmpeg。所以分段运行，两段各用现成环境：
+
+1. 把整个 `JITTER_SURVEY_20261105` 目录复制进 web 容器，复制到 `/tmp/jitter_survey`（`ab_measure.py` 需要上一级的 `held_frames.py`）。
+2. **导出**（web 容器内）：`OUT=/tmp/jitter_ab_out ATTEMPTS=<8 个 id> python /tmp/jitter_survey/ab/ab_export.py`。导出 8 条尝试的元数据，以及已归档的 MP4。
+3. **frames 段**（web 容器内，只用 ffmpeg）：`python /tmp/jitter_survey/ab/ab_measure.py /tmp/jitter_ab_out frames`。产出：
+   - 整条与每镜的隔帧停顿占比（`held_frames.py`，与普查同一算法），每镜标出提示词要求的运镜；
+   - 每 0.5 秒一格的接触表，6 列 × 5 行，第 k 格对应 k × 0.5 秒；
+   - 计算 HF 用的灰度帧 `<attempt_id>.gray.gz`（每条约 30–40 MB）。
+4. 在部署机上用 `docker compose cp` 取出 `/tmp/jitter_ab_out`，再用 scp 传到测试机，放到 `ab/results/`。
+5. **hf 段**（测试机 video-qc 环境，只用 numpy/cv2，不需要 ffmpeg）：`python ab_measure.py ab/results hf`。计算每镜 HF 与抖镜头数（HF ≥ 0.25），并生成 `measure.json` 与 `pairs.md`。脚本还会逐对核对「变体提示词去掉这一句后，是否与基线逐字相同」。
+6. **目视**：逐张看接触表，按对比较四项——身份（是否参考图人物）、多余人物、可读文字、分屏或网格泄漏。结果写入 `ab/results/visual.json`（无缺陷写空列表），然后运行 `python ab_measure.py ab/results report` 得出结论。
+
+已在 Claude 云端工作区验证（既不是测试机，也不是部署机）：分段运行与一次性运行（`all`）的 `measure.json` 逐字相同；hf 段在 PATH 中没有 ffmpeg 时可以正常运行。`*.gray.gz` 与 `*.mp4` 不入库（见 `ab/.gitignore`；MP4 的 sha256 已记在 `attempts.json`，原件在对象存储中）。
+
+**判定（预先写定）：** 4 对比较中，三条同时成立，才把「变体设为默认」提交用户决定；否则如实报告为「无效或不确定」。
+1. 至少 3 对的变体整条隔帧停顿占比低于基线。「不可比」的对算作「不低于」。
+2. 变体的抖镜头总数不多于基线。
+3. 任何一对中，变体都没有其基线没有的画面缺陷。
+
+**代码：** PR「jitter A/B experiment arms」。
+- `ManualH3Input.experiment_arm` / `prompt_source_attempt_id`，缺省为空，行为不变。
+- 实验臂要求显式 seed，并且只用于 crop-grid-v2 分组。
+- 实验身份写入快照的 `experiment` 键，并参与幂等比较。

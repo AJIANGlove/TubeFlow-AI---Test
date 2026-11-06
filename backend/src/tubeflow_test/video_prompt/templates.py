@@ -19,6 +19,7 @@ from tubeflow_test.domain.storyboards import (
 from tubeflow_test.video_prompt.domain import (
     SINGLE_PANEL_STRATEGIES,
     V3_CONTRACT_STRATEGIES,
+    V4_SINGLE_PANEL_STRATEGIES,
     SinglePanelPromptCompilerInput,
     VideoPromptCompilerInput,
     VideoPromptStrategy,
@@ -337,7 +338,8 @@ N/A"""
 
 
 def build_system_prompt(strategy: VideoPromptStrategy, *, duration_seconds: int) -> str:
-    if strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL:
+    if strategy in V4_SINGLE_PANEL_STRATEGIES:
+        # §51：节奏变体与 v4 单格共用同一系统提示词；变体句在编译后确定性插入。
         return _v4_single_panel_system_prompt()
     if strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3_SINGLE_PANEL_OPT_IN_V1:
         return _single_panel_system_prompt()
@@ -479,7 +481,12 @@ def build_single_panel_user_payload(
         shot_plan.append(entry)
     payload: dict[str, object] = {
         "json_task": "compile_minimax_h3_video_prompt_single_panel_opt_in",
-        "strategy": value.strategy.value,
+        # §51：节奏变体向编译器发送与 v4 单格逐字相同的载荷（变体句不经 LLM）。
+        "strategy": (
+            VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL.value
+            if value.strategy in V4_SINGLE_PANEL_STRATEGIES
+            else value.strategy.value
+        ),
         "generation_context": {
             "duration_seconds": value.duration_seconds,
             "aspect_ratio": value.aspect_ratio,
@@ -497,7 +504,7 @@ def build_single_panel_user_payload(
         ],
         "format_example": FEW_SHOT_SINGLE_PANEL_OPT_IN_V1,
     }
-    if value.strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL:
+    if value.strategy in V4_SINGLE_PANEL_STRATEGIES:
         payload["format_example"] = FEW_SHOT_SINGLE_PANEL_V4
     if repair_reason:
         payload["repair_reason"] = repair_reason

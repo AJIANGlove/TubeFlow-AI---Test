@@ -23,6 +23,7 @@ from tubeflow_test.video_prompt.domain import (
     VideoPromptStrategy,
     VideoPromptViolation,
     insert_binding_line,
+    insert_cadence_sentence,
     insert_single_panel_binding_line,
     validate_compiled_prompt,
     validate_single_panel_compiled_prompt,
@@ -91,6 +92,9 @@ class VideoPromptCompiler:
         )
         if isinstance(value, SinglePanelPromptCompilerInput):
             final_text = insert_single_panel_binding_line(result.text, value)
+            if value.strategy is VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL_CADENCE_V1:
+                # §51：变体句与绑定行一样是确定性插入，插入后再全量校验。
+                final_text = insert_cadence_sentence(final_text)
             validate_single_panel_compiled_prompt(
                 final_text, expected=value, binding_inserted=True
             )

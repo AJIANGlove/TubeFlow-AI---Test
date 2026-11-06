@@ -46,12 +46,16 @@ from tubeflow_test.domain.errors import DomainError
 from tubeflow_test.domain.storyboards import VideoStoryboardBinding
 from tubeflow_test.video_generation.domain import canonical_sha256
 from tubeflow_test.video_generation.orchestration import (
+    EXPERIMENT_ARM_CADENCE,
     AuthoritativeGroupInput,
     compile_video_prompt,
+    derive_cadence_variant_prompt,
+    experiment_block,
     prepare_manual_video_intent,
+    require_experiment_source,
 )
 from tubeflow_test.video_prompt.compiler import VideoPromptCompiler
-from tubeflow_test.video_prompt.domain import CompiledVideoPrompt
+from tubeflow_test.video_prompt.domain import CompiledVideoPrompt, VideoPromptStrategy
 
 VideoGenerationBase = Base
 
@@ -350,7 +354,19 @@ class ManualH3IntentWriter:
         idempotency_key: str,
         request: dict[str, object] | None = None,
         seed: int | None = None,
+        experiment_arm: str | None = None,
+        prompt_source_attempt_id: UUID | None = None,
     ) -> UUID:
+        # §51 抖动 A/B 实验臂（缺省 None 时行为不变）：请求身份写入快照 experiment 键。
+        if experiment_arm is None and prompt_source_attempt_id is not None:
+            raise DomainError(
+                "experiment_request_invalid", "A prompt source requires an experiment arm"
+            )
+        experiment = (
+            None
+            if experiment_arm is None
+            else experiment_block(experiment_arm, prompt_source_attempt_id)
+        )
         # LLM 提示词编译放在写事务之外：只读预取 + 编译。预取失败不裁决——
         # 事务内按既有守卫顺序（purging/媒体/并发/血缘）复现 canonical 错误，
         # 指纹二次校验仍在 prepare_manual_video_intent 内执行。
@@ -364,7 +380,16 @@ class ManualH3IntentWriter:
             preview = None
         attempt_id = uuid4()
         compiled = (
-            self._compile(preview, attempt_id, idempotency_key, seed)
+            self._prompt(
+                preview,
+                owner_id,
+                expected_storyboard_generation_id,
+                attempt_id,
+                idempotency_key,
+                seed,
+                prompt_source_attempt_id,
+                experiment is not None,
+            )
             if preview is not None
             else None
         )
@@ -378,6 +403,7 @@ class ManualH3IntentWriter:
                 compiled=compiled,
                 attempt_id=attempt_id,
                 seed=seed,
+                experiment=experiment,
             )
         except IntegrityError:
             # Concurrent first-use races resolve through the owner/key unique row.
@@ -390,7 +416,50 @@ class ManualH3IntentWriter:
                 compiled=compiled,
                 attempt_id=attempt_id,
                 seed=seed,
+                experiment=experiment,
             )
+
+    def _prompt(
+        self,
+        source: AuthoritativeGroupInput,
+        owner_id: UUID,
+        storyboard_generation_id: UUID,
+        attempt_id: UUID,
+        idempotency_key: str,
+        seed: int | None,
+        prompt_source_attempt_id: UUID | None,
+        experimental: bool,
+    ) -> CompiledVideoPrompt:
+        """普通请求与基线臂照常编译；节奏臂从同组基线臂派生，不调用编译器。"""
+        if experimental:
+            require_experiment_source(source)
+        if prompt_source_attempt_id is None:
+            return self._compile(source, attempt_id, idempotency_key, seed)
+        with self._uow() as session:
+            baseline = session.scalar(
+                select(VideoAttemptRecord).where(
+                    VideoAttemptRecord.attempt_id == prompt_source_attempt_id,
+                    VideoAttemptRecord.owner_id == owner_id,
+                )
+            )
+            if (
+                baseline is None
+                or baseline.group_id != source.group_id
+                or baseline.generation_id != storyboard_generation_id
+            ):
+                raise DomainError(
+                    "experiment_baseline_not_found",
+                    "The baseline attempt is not on this group and storyboard",
+                )
+            snapshot = dict(baseline.input_snapshot_json or {})
+        return derive_cadence_variant_prompt(
+            source,
+            attempt_id=attempt_id,
+            idempotency_key=idempotency_key,
+            seed=seed,
+            prompt_source_attempt_id=prompt_source_attempt_id,
+            baseline_snapshot=snapshot,
+        )
 
     def _compile(
         self,
@@ -432,6 +501,7 @@ class ManualH3IntentWriter:
         compiled: CompiledVideoPrompt | None,
         attempt_id: UUID,
         seed: int | None = None,
+        experiment: dict[str, object] | None = None,
     ) -> UUID:
         now = datetime.now(UTC)
         with self._uow() as session:
@@ -468,6 +538,8 @@ class ManualH3IntentWriter:
                     or existing.generation_id != expected_storyboard_generation_id
                     or existing_request != (request or {})
                     or (seed is not None and snapshot.get("seed") != seed)
+                    # §51：实验身份（含无实验）严格参与比较；旧快照无该键即 None。
+                    or snapshot.get("experiment") != experiment
                 ):
                     raise DomainError("idempotency_conflict", "H3 key is bound to another request")
                 return existing.attempt_id
@@ -578,6 +650,18 @@ class ManualH3IntentWriter:
                 )
             )
             input_snapshot["manual_request"] = request or {}
+            if experiment is not None:
+                expected_strategy = (
+                    VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL_CADENCE_V1
+                    if experiment["arm"] == EXPERIMENT_ARM_CADENCE
+                    else VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL
+                )
+                if compiled.strategy is not expected_strategy:
+                    raise DomainError(
+                        "experiment_requires_v4_single_panel",
+                        "The experiment arm did not resolve to its prompt strategy",
+                    )
+                input_snapshot["experiment"] = experiment
             generation_sha256 = canonical_sha256(input_snapshot)
             session.add(
                 VideoAttemptRecord(
