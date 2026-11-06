@@ -1,0 +1,13 @@
+# 两库 contract\_% 只读查询（部署机）
+check_at=2026-11-06T07:39:26Z
+test_db_container=tubeflow-contract-pg (db tubeflowtest, role postgres)
+biz_db_container=tubeflowai-test-postgres-1 (db tubeflow, role tubeflow)
+--- 测试库 ---
+0
+--- 业务库 ---
+0
+--- 业务库非系统 schema（旁证：三个审计 schema 与 public 仍在，未动）---
+audit_272879e_20260829a
+audit_272879e_exact_20260829a
+public
+staged_cleanup_gate

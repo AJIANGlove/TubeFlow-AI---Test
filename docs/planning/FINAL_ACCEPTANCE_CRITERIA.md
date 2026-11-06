@@ -700,9 +700,9 @@
 
 - [x] Claude 云端工作区（2026-11-06 修订版）：`tests/integration/database_guard.py::refuse_application_database` 只允许连接名字以 `test` 结尾的库（`tubeflowtest` 放行，`tubeflow`、`postgres` 等拒绝），否则直接判测试失败、不建任何东西。全部 6 处建 schema 或数据库的集成测试代码都在建之前调用它。单元测试覆盖：5 种库名、夹具连到业务库时不建 schema 也不跑迁移、迁移失败时仍删除 schema、源码扫描。去掉守卫调用后，相应测试会失败。
   - 修订原因：第一版以「`public.projects` 有数据」识别业务库，测试库里有迁移探针行，会被误拦（见下条）。
-  - **PR #17 修订中，未合并**（2026-11-06 用户裁定）。原因：该判据以「`public.projects` 有数据」识别业务库，而本环境的**测试库** `tubeflowtest.public.projects` 有 1 行（`id 000000000000000000000000000000f1`、`title mig-probe`、`created_at 2026-11-05T09:56:42Z`），守卫会把全部集成测试判失败。作者将改为「库名须以 test 结尾」后另行通知。
-- [ ] 测试机：上述单元测试实际运行（不算跳过）；单元、集成、ruff、mypy 相对 main 无新增失败；集成在测试库 `tubeflowtest` 上照常运行，失败集合与 main 逐条相同（守卫不误拦）。
-  - **PR #17 修订中，未合并**，本次按裁定**未跑任何门禁**（未运行 ≠ 通过）。
+  - 历史：第一版曾于 2026-11-06 因上述误拦被**暂停合并**（测试库 `tubeflowtest.public.projects` 有 1 行 `mig-probe`，`id …0000f1`、`created_at 2026-11-05T09:56:42Z`）；修订版改为库名白名单后于 **`d3168fb`** 合并。该 `mig-probe` 行全程未动。
+- [x] 测试机：上述单元测试实际运行（不算跳过）；单元、集成、ruff、mypy 相对 main 无新增失败；集成在测试库 `tubeflowtest` 上照常运行，失败集合与 main 逐条相同（守卫不误拦）。
+  - 2026-11-06 测试机实测（合并前，分支 `c2bfb67` 对 main `b91ddc1`）：`tests/unit/test_integration_fixture_cleanup.py` **8 passed, 0 skipped**（5.00 s，未触发 `importorskip`）。单元 main **2482 passed / 11 skipped**、分支 **2489 passed / 11 skipped**（+7 = 单测由 1 条变 8 条），两侧 0 失败；集成两侧 **19 failed / 122 passed / 7 skipped**，失败 nodeid **逐条相同**且与上一轮一致；**两侧日志中 `must name a database whose name ends with 'test'` 均 0 命中**，`database_guard` / `refuse_application_database` 相关失败 0 条 ⇒ 守卫未误拦 `tubeflowtest`；ruff **15 条逐字节相同**；mypy **12 errors / 7 files（208 源）逐字节相同**。`npm run check` **未跑**（前端未改）。部署机复查（07:39:26Z）：测试库与业务库 `contract\_%` 均 **0 行**。证据 `Pending issues/2026-11-06/evidence/integration_guard/gates/SUMMARY.md`。
 - [x] 部署机，删除前只读取证：`pg_namespace` 的 oid / 属主 / nspacl / xmin / age；用 `projects` 的 xmin 推断创建时间；容器日志检索；测试机 `TUBEFLOW_TEST_POSTGRES_URL` 溯源。
   - 2026-11-06 部署机实测（07:03–07:04Z）：目标 schema `oid=60061`、属主 **`tubeflow`**、`nspacl` 空、`xmin=30623`、`age=51673862`。**年龄大于全部 62 个项目行**（最老者 2026-09-04T16:00:18Z、age 48580910）⇒ 只能给上界「早于 2026-09-04T16:00:18Z」，无法夹出区间；局限（xid 可回卷、并发非单调、`projects.xmin` 是最后修改、`ALTER SCHEMA` 会刷新该行 xmin）已记录。容器日志覆盖 2026-09-23T06:43:19Z–2026-09-29T18:36:06Z（3779 行），关键词 **0 命中**（本来就不覆盖该时段）。测试机：无 `.bash_history`、工作树无 `.env`、仓库 `.env` 无该键、PSReadLine 历史 **0 命中**；仓库唯一记录取值指向 `tubeflowtest`。证据 `Pending issues/2026-11-06/evidence/schema_forensics/{forensics.txt,README.md}`。
 - [x] 部署机：用户授权后，在业务库 `tubeflow` 中再次确认 `contract_be30c85aac3347ffbf3bc45bc6ea12de` 为空，以 `RESTRICT` 删除；复查 `contract\_%` 为 0 行。
