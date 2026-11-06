@@ -74,3 +74,8 @@
 - `1232`、`1274` 两个数值在仓库内**无出处**，本次历史里也**未出现**；不推测其来源。
 - 线程池告警：temporalio 1.35.0 在该日志级别下**不输出**此类告警，故「无」只能表述为「日志中没有」，不能据此断言不存在线程池不足；正面的证据是上面 5 次 1201 s 排队。
 - 未采集：`advance_project_director` 的服务端 `timeoutType` 分布（本窗口 TimedOut=0，无样本）、导演提示词全文与响应正文（库里只存 sha256，且本次按要求不读取正文）。
+
+## 5. 勘误（2026-11-05 复核，详见 `Pending issues/2026-11-05/DIRECTOR_STALL_FOLLOWUP_REVIEW_20261105.md`）
+
+- 第 2 节「TimedOut 0、重试 0；1201 s 是排队」不成立。`temporal/history` 原文中共有 **6** 个活动的 `ActivityTaskStarted.attempt = 2`，`lastFailure` 为 StartToClose 超时：第 1 次尝试跑满 1200 s 后超时，1 s 后重试。Temporal 不为中间重试写事件，本目录的审计脚本因此看不到。
+- 第 1 节 C 表：`t|t|f|t`（75）应为「事件+焦点+地点」，`t|f|t|t`（21）应为「事件+时间+地点」，漏列 `t|f|t|f`「事件+时间」35。原始输出 `sql/out/C.txt` 无误。
