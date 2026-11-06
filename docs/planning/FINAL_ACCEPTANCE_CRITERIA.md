@@ -660,8 +660,13 @@
 - [x] 本地：节奏变体与 v4 单格的系统提示词、编译载荷逐字相同；变体句逐字等于 README 原文，确定性插在 `[Shot 1]` 前一行；模型输出不得自带该句，最终文本恰好一句；v4 代词规则照旧（单元测试）。
 - [x] 本地：节奏臂取同组、同故事板、同 seed 基线臂的已编译提示词，只多这一句，不调用编译器；请求的 seed、参考图与工作流与基线相同；基线不符（无实验块、臂不对、策略不对、seed 不同、参考输入变化、已含该句）一律拒绝（单元测试）。
 - [x] 本地：实验臂只用于 crop-grid-v2 分组，整图与 title54 分组在编译前拒绝；实验尝试即使在 AUTO 项目也不走自动重提；实验身份参与幂等比较；不带实验字段的请求与原来一致，畸形实验请求返回 422（单元测试）。
-- [ ] PostgreSQL 集成测试（含新增「整图分组拒绝实验臂且不落库」）、ruff、mypy 相对 main 无新增（实施方在测试机执行；Claude 云端工作区无 PostgreSQL 驱动，未跑）。
-- [ ] 部署按 §52 等待在途导演活动，记录两项计数与等待时刻。
-- [ ] A/B 执行：H3 调用不超过 8 次、DeepSeek 不超过 16 次；8 条尝试的快照都带 `experiment` 块；节奏臂 `video_prompt.strategy` 为 `tubeflow_storyboard_v4_single_panel_cadence_v1`，提示词与其基线只差这一句（逐条核对）；没有以这 8 条为被取代对象的自动重提。
-- [ ] `484746c4` 第 7、12 组的当前视频（`group_current_videos`）在 A/B 前后不变。
-- [ ] `ab/ab_measure.py` 的结果（`measure.json`、`pairs.md`、逐条接触表）与目视记录 `visual.json` 入库；按预先写定的三条规则给出结论，交用户决定。
+- [x] PostgreSQL 集成测试（含新增「整图分组拒绝实验臂且不落库」）、ruff、mypy 相对 main 无新增（实施方在测试机执行；Claude 云端工作区无 PostgreSQL 驱动，未跑）。
+  - 2026-11-06 测试机实测：集成两侧 **19 failed / 7 skipped**，失败 nodeid 集合逐条相同（主因 12 条缺 `TUBEFLOW_TEST_MINIO_ENDPOINT`、2 条硬编码 `0047` vs `0039`），通过数 121（main）对 122（分支，+1 即新增用例，收集数 1 且不在失败清单）；ruff 15 条逐字节相同；mypy 12 errors / 7 files 归一化后逐行相同。证据 `Pending issues/2026-11-06/evidence/jitter_ab/gates/SUMMARY.md`。
+- [x] 部署按 §52 等待在途导演活动，记录两项计数与等待时刻。
+  - 2026-11-06：首查即 `LEASED/SUBMITTING` = 0、运行中工作流 0 且 pending `advance_project_director` = 0；等待 0 分钟，仅复查 1 次；`docs/DEPLOYMENT.md` §42。
+- [x] A/B 执行：H3 调用不超过 8 次、DeepSeek 不超过 16 次；8 条尝试的快照都带 `experiment` 块；节奏臂 `video_prompt.strategy` 为 `tubeflow_storyboard_v4_single_panel_cadence_v1`，提示词与其基线只差这一句（逐条核对）；没有以这 8 条为被取代对象的自动重提。
+  - 实际 H3 **8/8**、DeepSeek **4/16**；8 条全部 `ARCHIVED`、快照均含 `experiment`（arm 与来源 attempt 正确）；策略逐条核对一致；`pairs_whose_prompts_differ_by_more_than_the_sentence` 为空；`superseded_attempt_id` 指向这 8 条的记录 **0**。
+- [x] `484746c4` 第 7、12 组的当前视频（`group_current_videos`）在 A/B 前后不变。
+  - 第 7 组 `fc6e97b8-23ca-4ea6-852a-d718dd71d4a0`、第 12 组 `e1afc01b-132a-4e4e-952d-e3d5d26b8ada`，前后一致。
+- [x] `ab/ab_measure.py` 的结果（`measure.json`、`pairs.md`、逐条接触表）与目视记录 `visual.json` 入库；按预先写定的三条规则给出结论，交用户决定。
+  - 结果在 `Pending issues/2026-11-06/evidence/jitter_ab/ab/results/`；**结论「无效或不确定」**：规则 1（≥3 对更低）不成立，仅 2 对更低（第 7 组 0.49→0.30、0.53→0.50；第 12 组 0.11→0.32、0.97→1.00）；规则 2 成立（抖镜头 4→3）；规则 3 成立（目视无新增缺陷）。**变体未设为默认**，等用户决定下一步。

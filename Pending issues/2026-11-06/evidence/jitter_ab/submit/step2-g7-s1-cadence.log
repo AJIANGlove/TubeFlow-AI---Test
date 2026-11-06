@@ -1,0 +1,8 @@
+[2026-11-06T03:28:16.236061+00:00] step=g7-s1-cadence idempotency_key=jitter-ab-v1-g7-s1-cadence
+[2026-11-06T03:28:16.236099+00:00] args: {"arm": "cadence_v1", "group_id": "4a0973ab-342f-5b6f-a47f-5e0cd92814fd", "project_id": "484746c4-ddf3-48af-90ca-a25cf41cbf35", "prompt_source_attempt_id": "7460885c-3aab-4e0e-ae73-e9c3fba5413b", "seed": 798160553724158, "storyboard_id": "03382957-c8be-4156-b464-22da80408a78"}
+[2026-11-06T03:28:16.246997+00:00] contract: {"available": true, "message": "Video service is available.", "status": "AVAILABLE"}
+[2026-11-06T03:28:16.342866+00:00] owner_id (from projects): fb294c02-5f32-4597-b1e9-f7348ac9734a
+[2026-11-06T03:28:16.346345+00:00] active attempts on group before submit: []
+[2026-11-06T03:28:16.363285+00:00] compiler: strategy=tubeflow_storyboard_v4_natural_motion model=deepseek-v4-flash
+[2026-11-06T03:28:17.502845+00:00] create() returned attempt_id=2a3da090-45e7-4aff-b93e-6f5e53e12db7
+READBACK {"archive_stage": "NOT_STARTED", "attempt_id": "2a3da090-45e7-4aff-b93e-6f5e53e12db7", "budget_round": 1, "error_code": null, "experiment": {"arm": "cadence_v1", "name": "jitter-cadence-ab-v1", "prompt_source_attempt_id": "7460885c-3aab-4e0e-ae73-e9c3fba5413b"}, "found": true, "generation_id": "03382957-c8be-4156-b464-22da80408a78", "group_id": "4a0973ab-342f-5b6f-a47f-5e0cd92814fd", "idempotency_key": "jitter-ab-v1-g7-s1-cadence", "manual_request": {}, "node_id": null, "project_id": "484746c4-ddf3-48af-90ca-a25cf41cbf35", "seed": 798160553724158, "stage": "CREATED", "superseded_attempt_id": null, "updated_at": "2026-11-06 03:28:16.933533+00"}

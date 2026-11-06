@@ -1,0 +1,1002 @@
+[
+ {
+  "attempt_id": "7460885c-3aab-4e0e-ae73-e9c3fba5413b",
+  "project_id": "484746c4-ddf3-48af-90ca-a25cf41cbf35",
+  "group_sequence": 7,
+  "group_id": "4a0973ab-342f-5b6f-a47f-5e0cd92814fd",
+  "storyboard_generation_id": "03382957-c8be-4156-b464-22da80408a78",
+  "idempotency_key": "jitter-ab-v1-g7-s1-baseline",
+  "stage": "ARCHIVED",
+  "archive_stage": "COMPLETE",
+  "error_code": null,
+  "node_id": "h3-new-2",
+  "output_sha256": "aad949ca5ac4f7fcc3fcb2092909d0aee987b60c008b9455043b65dad70d321c",
+  "seed": 798160553724158,
+  "strategy": "tubeflow_storyboard_v4_single_panel",
+  "experiment": {
+   "arm": "baseline",
+   "name": "jitter-cadence-ab-v1",
+   "prompt_source_attempt_id": null
+  },
+  "prompt": "subject_definitions:\nvisual_asset_bindings: Character reference 1 = <Picture 1> (identity reference only); Shot 1 panel reference = <Picture 2>; Shot 2 panel reference = <Picture 3>; Shot 3 panel reference = <Picture 4> (each shot renders only the content of its corresponding single-panel reference).\n- (S1): The shop owner, the person in character reference 1; reproduce that person's face, hair, body, and clothing exactly as in that image.\n- (S2): A small unattended ice cream shop at early morning, with a glass entrance door, freezer cabinets along the wall, product shelves and a clean tiled floor aisle in warm low-saturation ochre tones.\n- Picture 2: The single-panel storyboard reference for Shot 1, used as the composition, action, and style reference for Shot 1 only.\n- Picture 3: The single-panel storyboard reference for Shot 2, used as the composition, action, and style reference for Shot 2 only.\n- Picture 4: The single-panel storyboard reference for Shot 3, used as the composition, action, and style reference for Shot 3 only.\nsummary:\nThe shop owner opens a quiet ice cream shop in the early morning, restocks the freezer, checks products and cleans the floor, then inspects the freezer temperature as condensation forms on the products. The film advances through the single-panel references in shot order.\nretention_analysis:\n- (S1) — fully_preserved: the same face, hair, body, and clothing as character reference 1 in every shot.\n- (S2) — fully_preserved: retain the glass entrance door, the freezer cabinets, the product shelves, the tiled floor aisle and the warm hazy morning light.\n- Picture 2 — shot_plan_reference_only: retain Shot 1 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.\n- Picture 3 — shot_plan_reference_only: retain Shot 2 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.\n- Picture 4 — shot_plan_reference_only: retain Shot 3 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.\ndetailed_description:\nEuropean two-dimensional hand-drawn animation, semi-realistic cartoon figures, retro historical picture-book backgrounds, warm historical documentary tone, low-saturation ochre palette, soft cel shading, fine hand-drawn line work, natural body proportions, subtle stable film grain, gentle paper texture, soft ambient light, hazy atmospheric perspective, cinematic composition, stable camera, natural motion blur, real-time movement speed.\n[Shot 1] <Picture 2>: At the shop entrance in early morning, (S1) pushes the glass door open with one hand while carrying a cardboard box against the chest, steps through the doorway, lowers the box onto the freezer ledge and slides a row of products into an empty slot until the gap is filled. Slow push-in of about 6%.\n[Shot 2] At 00:04.160, cut to <Picture 3>: Inside the shop beside the product shelves, (S1) lifts a package, turns it over to inspect the surface, sets it back on the shelf, then bends down and wipes the floor aisle with a cloth in steady strokes. Static camera, 0% movement.\n[Shot 3] At 00:08.400, cut to <Picture 4>: At the freezer temperature display, (S1)'s hand taps the small gauge, and the frozen products nearby show fine condensation beads sliding down their surfaces as the air warms slightly. Slow tilt of about 8 degrees.\nMaintain (S1)'s face, hair and clothing as character reference 1 in every shot, the shop geometry of the entrance door, freezer cabinets, shelves and floor aisle, the warm hazy morning light, the hand-drawn style, the correct finger count and real-time body movement.\nNo storyboard grid, panel borders, split screen, captions, on-screen text or numbers, logos, watermarks, camera shake, jitter, morphing faces, warping hands, flickering textures, slow motion, extra people, duplicated characters.\noverall_soundscape:\nQuiet early morning room tone, a glass door swinging open, cardboard brushing against a freezer ledge, products sliding into place, a cloth sweeping the tiled floor, a light tap on a plastic gauge, faint hum of a freezer, no voices.\nnon_diegetic_music:\nN/A",
+  "prompt_sha256": "c1aeeca134a9a42e2121ddcababd21c41ac7885ee83480630907ae2a923cb910",
+  "probe_evidence": {
+   "fps": 24.0,
+   "width": 1056,
+   "height": 608,
+   "qc_passed": true,
+   "content_qc": {
+    "findings": [],
+    "algorithm": "content-qc-v1"
+   },
+   "media_type": "video/mp4",
+   "audio_codec": "aac",
+   "duration_ms": 13667,
+   "audio_end_ms": 13667,
+   "audio_tracks": 1,
+   "video_tracks": 1,
+   "audio_start_ms": 0,
+   "container_names": [
+    "mov",
+    "mp4",
+    "m4a",
+    "3gp",
+    "3g2",
+    "mj2"
+   ],
+   "audio_duration_ms": 13667,
+   "video_duration_ms": 13667,
+   "video_frame_count": 328
+  },
+  "updated_at": "2026-11-06T03:28:06.202521+00:00",
+  "video_file": "7460885c-3aab-4e0e-ae73-e9c3fba5413b.mp4",
+  "video_file_sha256": "aad949ca5ac4f7fcc3fcb2092909d0aee987b60c008b9455043b65dad70d321c",
+  "whole": {
+   "frames": 328,
+   "cuts": 2,
+   "moving_windows": 45,
+   "held_windows": 22,
+   "held_share": 0.49,
+   "held_at_s": [
+    2.2,
+    4.0,
+    4.2,
+    4.5,
+    4.8,
+    5.0,
+    5.2,
+    5.5,
+    5.8,
+    6.0,
+    6.2,
+    6.5
+   ]
+  },
+  "planned_shots": [
+   {
+    "shot": 1,
+    "start_s": 0.0,
+    "camera": "push_in:6"
+   },
+   {
+    "shot": 2,
+    "start_s": 4.16,
+    "camera": "static"
+   },
+   {
+    "shot": 3,
+    "start_s": 8.4,
+    "camera": "tilt:8"
+   }
+  ],
+  "shots": [
+   {
+    "start_frame": 0,
+    "end_frame": 92,
+    "t0": 0.0,
+    "t1": 3.83,
+    "shot": 1,
+    "camera": "push_in:6",
+    "moving_windows": 14,
+    "held_windows": 1,
+    "held_share": 0.07,
+    "hf": 1.578,
+    "jitter_shot": true
+   },
+   {
+    "start_frame": 92,
+    "end_frame": 192,
+    "t0": 3.83,
+    "t1": 8.0,
+    "shot": 2,
+    "camera": "static",
+    "moving_windows": 15,
+    "held_windows": 15,
+    "held_share": 1.0,
+    "hf": 0.424,
+    "jitter_shot": true
+   },
+   {
+    "start_frame": 192,
+    "end_frame": 328,
+    "t0": 8.0,
+    "t1": 13.67,
+    "shot": 3,
+    "camera": "tilt:8",
+    "moving_windows": 17,
+    "held_windows": 7,
+    "held_share": 0.41,
+    "hf": 0.167,
+    "jitter_shot": false
+   }
+  ],
+  "measured": true,
+  "hf_video": 0.874,
+  "jitter_shots": 2
+ },
+ {
+  "attempt_id": "2a3da090-45e7-4aff-b93e-6f5e53e12db7",
+  "project_id": "484746c4-ddf3-48af-90ca-a25cf41cbf35",
+  "group_sequence": 7,
+  "group_id": "4a0973ab-342f-5b6f-a47f-5e0cd92814fd",
+  "storyboard_generation_id": "03382957-c8be-4156-b464-22da80408a78",
+  "idempotency_key": "jitter-ab-v1-g7-s1-cadence",
+  "stage": "ARCHIVED",
+  "archive_stage": "COMPLETE",
+  "error_code": null,
+  "node_id": "h3-new-3",
+  "output_sha256": "5e8b9253f99fde0edd5f1f84845a7db7ecbfc0a8d476835d5deb9e42ad309146",
+  "seed": 798160553724158,
+  "strategy": "tubeflow_storyboard_v4_single_panel_cadence_v1",
+  "experiment": {
+   "arm": "cadence_v1",
+   "name": "jitter-cadence-ab-v1",
+   "prompt_source_attempt_id": "7460885c-3aab-4e0e-ae73-e9c3fba5413b"
+  },
+  "prompt": "subject_definitions:\nvisual_asset_bindings: Character reference 1 = <Picture 1> (identity reference only); Shot 1 panel reference = <Picture 2>; Shot 2 panel reference = <Picture 3>; Shot 3 panel reference = <Picture 4> (each shot renders only the content of its corresponding single-panel reference).\n- (S1): The shop owner, the person in character reference 1; reproduce that person's face, hair, body, and clothing exactly as in that image.\n- (S2): A small unattended ice cream shop at early morning, with a glass entrance door, freezer cabinets along the wall, product shelves and a clean tiled floor aisle in warm low-saturation ochre tones.\n- Picture 2: The single-panel storyboard reference for Shot 1, used as the composition, action, and style reference for Shot 1 only.\n- Picture 3: The single-panel storyboard reference for Shot 2, used as the composition, action, and style reference for Shot 2 only.\n- Picture 4: The single-panel storyboard reference for Shot 3, used as the composition, action, and style reference for Shot 3 only.\nsummary:\nThe shop owner opens a quiet ice cream shop in the early morning, restocks the freezer, checks products and cleans the floor, then inspects the freezer temperature as condensation forms on the products. The film advances through the single-panel references in shot order.\nretention_analysis:\n- (S1) — fully_preserved: the same face, hair, body, and clothing as character reference 1 in every shot.\n- (S2) — fully_preserved: retain the glass entrance door, the freezer cabinets, the product shelves, the tiled floor aisle and the warm hazy morning light.\n- Picture 2 — shot_plan_reference_only: retain Shot 1 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.\n- Picture 3 — shot_plan_reference_only: retain Shot 2 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.\n- Picture 4 — shot_plan_reference_only: retain Shot 3 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.\ndetailed_description:\nEuropean two-dimensional hand-drawn animation, semi-realistic cartoon figures, retro historical picture-book backgrounds, warm historical documentary tone, low-saturation ochre palette, soft cel shading, fine hand-drawn line work, natural body proportions, subtle stable film grain, gentle paper texture, soft ambient light, hazy atmospheric perspective, cinematic composition, stable camera, natural motion blur, real-time movement speed.\nAnimate every frame at the full frame rate with smooth, continuous motion; never hold a pose for two frames or use limited animation (\"animating on twos\"); people, hands and objects move a little on every frame.\n[Shot 1] <Picture 2>: At the shop entrance in early morning, (S1) pushes the glass door open with one hand while carrying a cardboard box against the chest, steps through the doorway, lowers the box onto the freezer ledge and slides a row of products into an empty slot until the gap is filled. Slow push-in of about 6%.\n[Shot 2] At 00:04.160, cut to <Picture 3>: Inside the shop beside the product shelves, (S1) lifts a package, turns it over to inspect the surface, sets it back on the shelf, then bends down and wipes the floor aisle with a cloth in steady strokes. Static camera, 0% movement.\n[Shot 3] At 00:08.400, cut to <Picture 4>: At the freezer temperature display, (S1)'s hand taps the small gauge, and the frozen products nearby show fine condensation beads sliding down their surfaces as the air warms slightly. Slow tilt of about 8 degrees.\nMaintain (S1)'s face, hair and clothing as character reference 1 in every shot, the shop geometry of the entrance door, freezer cabinets, shelves and floor aisle, the warm hazy morning light, the hand-drawn style, the correct finger count and real-time body movement.\nNo storyboard grid, panel borders, split screen, captions, on-screen text or numbers, logos, watermarks, camera shake, jitter, morphing faces, warping hands, flickering textures, slow motion, extra people, duplicated characters.\noverall_soundscape:\nQuiet early morning room tone, a glass door swinging open, cardboard brushing against a freezer ledge, products sliding into place, a cloth sweeping the tiled floor, a light tap on a plastic gauge, faint hum of a freezer, no voices.\nnon_diegetic_music:\nN/A",
+  "prompt_sha256": "3b9cd1ca0817b57ff8e39e42383210a9fb3dc84102f0b30ad2baf9fbf8c4d301",
+  "probe_evidence": {
+   "fps": 24.0,
+   "width": 1056,
+   "height": 608,
+   "qc_passed": true,
+   "content_qc": {
+    "findings": [],
+    "algorithm": "content-qc-v1"
+   },
+   "media_type": "video/mp4",
+   "audio_codec": "aac",
+   "duration_ms": 13667,
+   "audio_end_ms": 13667,
+   "audio_tracks": 1,
+   "video_tracks": 1,
+   "audio_start_ms": 0,
+   "container_names": [
+    "mov",
+    "mp4",
+    "m4a",
+    "3gp",
+    "3g2",
+    "mj2"
+   ],
+   "audio_duration_ms": 13667,
+   "video_duration_ms": 13667,
+   "video_frame_count": 328
+  },
+  "updated_at": "2026-11-06T03:33:29.689403+00:00",
+  "video_file": "2a3da090-45e7-4aff-b93e-6f5e53e12db7.mp4",
+  "video_file_sha256": "5e8b9253f99fde0edd5f1f84845a7db7ecbfc0a8d476835d5deb9e42ad309146",
+  "whole": {
+   "frames": 328,
+   "cuts": 2,
+   "moving_windows": 47,
+   "held_windows": 14,
+   "held_share": 0.3,
+   "held_at_s": [
+    2.2,
+    4.0,
+    4.2,
+    4.5,
+    4.8,
+    5.2,
+    5.5,
+    5.8,
+    6.0,
+    6.2,
+    6.5,
+    9.5
+   ]
+  },
+  "planned_shots": [
+   {
+    "shot": 1,
+    "start_s": 0.0,
+    "camera": "push_in:6"
+   },
+   {
+    "shot": 2,
+    "start_s": 4.16,
+    "camera": "static"
+   },
+   {
+    "shot": 3,
+    "start_s": 8.4,
+    "camera": "tilt:8"
+   }
+  ],
+  "shots": [
+   {
+    "start_frame": 0,
+    "end_frame": 96,
+    "t0": 0.0,
+    "t1": 4.0,
+    "shot": 1,
+    "camera": "push_in:6",
+    "moving_windows": 14,
+    "held_windows": 1,
+    "held_share": 0.07,
+    "hf": 1.146,
+    "jitter_shot": true
+   },
+   {
+    "start_frame": 96,
+    "end_frame": 200,
+    "t0": 4.0,
+    "t1": 8.33,
+    "shot": 2,
+    "camera": "static",
+    "moving_windows": 15,
+    "held_windows": 10,
+    "held_share": 0.67,
+    "hf": 0.188,
+    "jitter_shot": false
+   },
+   {
+    "start_frame": 200,
+    "end_frame": 328,
+    "t0": 8.33,
+    "t1": 13.67,
+    "shot": 3,
+    "camera": "tilt:8",
+    "moving_windows": 18,
+    "held_windows": 2,
+    "held_share": 0.11,
+    "hf": 0.131,
+    "jitter_shot": false
+   }
+  ],
+  "measured": true,
+  "hf_video": 0.634,
+  "jitter_shots": 1
+ },
+ {
+  "attempt_id": "13f58cbc-9fa6-4c07-8af6-2e9bc5cdf902",
+  "project_id": "484746c4-ddf3-48af-90ca-a25cf41cbf35",
+  "group_sequence": 7,
+  "group_id": "4a0973ab-342f-5b6f-a47f-5e0cd92814fd",
+  "storyboard_generation_id": "03382957-c8be-4156-b464-22da80408a78",
+  "idempotency_key": "jitter-ab-v1-g7-s2-baseline",
+  "stage": "ARCHIVED",
+  "archive_stage": "COMPLETE",
+  "error_code": null,
+  "node_id": "h3-new-3",
+  "output_sha256": "aa4960e754743ccf1f3be6b51637e5a9d16214c61165166908f49952629c4a25",
+  "seed": 798160553724159,
+  "strategy": "tubeflow_storyboard_v4_single_panel",
+  "experiment": {
+   "arm": "baseline",
+   "name": "jitter-cadence-ab-v1",
+   "prompt_source_attempt_id": null
+  },
+  "prompt": "subject_definitions:\nvisual_asset_bindings: Character reference 1 = <Picture 1> (identity reference only); Shot 1 panel reference = <Picture 2>; Shot 2 panel reference = <Picture 3>; Shot 3 panel reference = <Picture 4> (each shot renders only the content of its corresponding single-panel reference).\n- (S1): The shop owner, the person in character reference 1; reproduce that person's face, hair, body, and clothing exactly as in that image.\n- (S2): The early-morning unmanned ice cream shop with a glass entrance door, a chest freezer, and warm interior shelving seen at the threshold.\n- (S3): The shop interior with product display shelves and a tiled floor aisle.\n- (S4): The freezer temperature gauge and the nearby product surfaces inside the shop.\n- Picture 2: The single-panel storyboard reference for Shot 1, used as the composition, action, and style reference for Shot 1 only.\n- Picture 3: The single-panel storyboard reference for Shot 2, used as the composition, action, and style reference for Shot 2 only.\n- Picture 4: The single-panel storyboard reference for Shot 3, used as the composition, action, and style reference for Shot 3 only.\nsummary:\nBefore opening hours, (S1) manages the small unmanned ice cream shop, moving through stocking, checking and cleaning, advancing through the single-panel references in shot order.\nretention_analysis:\n- (S1) — fully_preserved: the same face, hair, body, and clothing as character reference 1 in every shot.\n- (S2) — fully_preserved: retain the glass entrance door, the freezer front and the dim warm morning light at the threshold.\n- (S3) — fully_preserved: retain the product shelves, the aisle floor and the overhead interior lighting.\n- (S4) — fully_preserved: retain the temperature gauge form, the freezer interior and the glossy product surfaces.\n- Picture 2 — shot_plan_reference_only: retain Shot 1 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.\n- Picture 3 — shot_plan_reference_only: retain Shot 2 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.\n- Picture 4 — shot_plan_reference_only: retain Shot 3 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.\ndetailed_description:\nEuropean two-dimensional hand-drawn animation with semi-realistic cartoon figures, a vintage storybook background, a warm historical documentary color mood, low-saturation ochre palette, soft cel shading, fine hand-drawn linework, natural body proportions, subtle stable film grain, faint paper texture, soft ambient light, hazy atmospheric perspective and cinematic framing; stable camera, natural motion blur, real-time movement speed.\n[Shot 1] <Picture 2>: At the shop entrance in the early morning, (S1) pushes the glass door open with one hand while carrying a cardboard box against the chest, steps through the doorway and lowers the box toward the open freezer edge, then sets product packs into the empty slots; Slow push-in of about 6%.\n[Shot 2] At 00:04.160, cut to <Picture 3>: From a high angle inside the shop, (S1) turns a product package over in both hands, tilts the head slightly while examining it, places it back on the shelf, then crouches and wipes the aisle floor with a cloth in steady strokes; Static camera, 0% movement.\n[Shot 3] At 00:08.400, cut to <Picture 4>: In an extreme close-up, the temperature gauge needle drifts gently upward while beads of condensation swell on the glossy product surface and a thin drip slides down the pack; Slow tilt of about 8 degrees.\nMaintain (S1)'s face, hair, body and clothing exactly as character reference 1 in every shot, consistent shop geometry, stable warm ambient lighting, the hand-drawn style, the correct finger count and real-time body movement.\nNo storyboard grid, panel borders, split screen, captions, on-screen text or numbers, logos, watermarks, camera shake, jitter, morphing faces, warping hands, flickering textures, slow motion, extra people, duplicated characters.\noverall_soundscape:\nQuiet early-morning room tone, a glass door swinging open with a soft latch click, cardboard brushing against a freezer rim, packs set down one by one, a cloth wiping across a tiled floor, the faint hum of a freezer, no voices.\nnon_diegetic_music:\nN/A",
+  "prompt_sha256": "986d6dda6a071103099a04b5a9942e14689d2d5e3a5caad84aa1864a6c09d9b6",
+  "probe_evidence": {
+   "fps": 24.0,
+   "width": 1056,
+   "height": 608,
+   "qc_passed": true,
+   "content_qc": {
+    "findings": [],
+    "algorithm": "content-qc-v1"
+   },
+   "media_type": "video/mp4",
+   "audio_codec": "aac",
+   "duration_ms": 13667,
+   "audio_end_ms": 13667,
+   "audio_tracks": 1,
+   "video_tracks": 1,
+   "audio_start_ms": 0,
+   "container_names": [
+    "mov",
+    "mp4",
+    "m4a",
+    "3gp",
+    "3g2",
+    "mj2"
+   ],
+   "audio_duration_ms": 13667,
+   "video_duration_ms": 13667,
+   "video_frame_count": 328
+  },
+  "updated_at": "2026-11-06T03:39:21.491084+00:00",
+  "video_file": "13f58cbc-9fa6-4c07-8af6-2e9bc5cdf902.mp4",
+  "video_file_sha256": "aa4960e754743ccf1f3be6b51637e5a9d16214c61165166908f49952629c4a25",
+  "whole": {
+   "frames": 328,
+   "cuts": 2,
+   "moving_windows": 40,
+   "held_windows": 21,
+   "held_share": 0.53,
+   "held_at_s": [
+    0.0,
+    0.2,
+    0.5,
+    0.8,
+    1.0,
+    4.0,
+    4.2,
+    4.5,
+    4.8,
+    5.0,
+    5.2,
+    5.5
+   ]
+  },
+  "planned_shots": [
+   {
+    "shot": 1,
+    "start_s": 0.0,
+    "camera": "push_in:6"
+   },
+   {
+    "shot": 2,
+    "start_s": 4.16,
+    "camera": "static"
+   },
+   {
+    "shot": 3,
+    "start_s": 8.4,
+    "camera": "tilt:8"
+   }
+  ],
+  "shots": [
+   {
+    "start_frame": 0,
+    "end_frame": 94,
+    "t0": 0.0,
+    "t1": 3.92,
+    "shot": 1,
+    "camera": "push_in:6",
+    "moving_windows": 14,
+    "held_windows": 5,
+    "held_share": 0.36,
+    "hf": 1.227,
+    "jitter_shot": true
+   },
+   {
+    "start_frame": 94,
+    "end_frame": 188,
+    "t0": 3.92,
+    "t1": 7.83,
+    "shot": 2,
+    "camera": "static",
+    "moving_windows": 14,
+    "held_windows": 14,
+    "held_share": 1.0,
+    "hf": 0.306,
+    "jitter_shot": true
+   },
+   {
+    "start_frame": 188,
+    "end_frame": 328,
+    "t0": 7.83,
+    "t1": 13.67,
+    "shot": 3,
+    "camera": "tilt:8",
+    "moving_windows": 13,
+    "held_windows": 2,
+    "held_share": 0.15,
+    "hf": 0.188,
+    "jitter_shot": false
+   }
+  ],
+  "measured": true,
+  "hf_video": 0.687,
+  "jitter_shots": 2
+ },
+ {
+  "attempt_id": "a51a2a00-a6c4-4cdd-8ae7-e479fe5f4085",
+  "project_id": "484746c4-ddf3-48af-90ca-a25cf41cbf35",
+  "group_sequence": 7,
+  "group_id": "4a0973ab-342f-5b6f-a47f-5e0cd92814fd",
+  "storyboard_generation_id": "03382957-c8be-4156-b464-22da80408a78",
+  "idempotency_key": "jitter-ab-v1-g7-s2-cadence",
+  "stage": "ARCHIVED",
+  "archive_stage": "COMPLETE",
+  "error_code": null,
+  "node_id": "h3-new-3",
+  "output_sha256": "375ab52a91664dfdc537fbc77640e3edb2812ad2a09c4fa71105583893cf43f2",
+  "seed": 798160553724159,
+  "strategy": "tubeflow_storyboard_v4_single_panel_cadence_v1",
+  "experiment": {
+   "arm": "cadence_v1",
+   "name": "jitter-cadence-ab-v1",
+   "prompt_source_attempt_id": "13f58cbc-9fa6-4c07-8af6-2e9bc5cdf902"
+  },
+  "prompt": "subject_definitions:\nvisual_asset_bindings: Character reference 1 = <Picture 1> (identity reference only); Shot 1 panel reference = <Picture 2>; Shot 2 panel reference = <Picture 3>; Shot 3 panel reference = <Picture 4> (each shot renders only the content of its corresponding single-panel reference).\n- (S1): The shop owner, the person in character reference 1; reproduce that person's face, hair, body, and clothing exactly as in that image.\n- (S2): The early-morning unmanned ice cream shop with a glass entrance door, a chest freezer, and warm interior shelving seen at the threshold.\n- (S3): The shop interior with product display shelves and a tiled floor aisle.\n- (S4): The freezer temperature gauge and the nearby product surfaces inside the shop.\n- Picture 2: The single-panel storyboard reference for Shot 1, used as the composition, action, and style reference for Shot 1 only.\n- Picture 3: The single-panel storyboard reference for Shot 2, used as the composition, action, and style reference for Shot 2 only.\n- Picture 4: The single-panel storyboard reference for Shot 3, used as the composition, action, and style reference for Shot 3 only.\nsummary:\nBefore opening hours, (S1) manages the small unmanned ice cream shop, moving through stocking, checking and cleaning, advancing through the single-panel references in shot order.\nretention_analysis:\n- (S1) — fully_preserved: the same face, hair, body, and clothing as character reference 1 in every shot.\n- (S2) — fully_preserved: retain the glass entrance door, the freezer front and the dim warm morning light at the threshold.\n- (S3) — fully_preserved: retain the product shelves, the aisle floor and the overhead interior lighting.\n- (S4) — fully_preserved: retain the temperature gauge form, the freezer interior and the glossy product surfaces.\n- Picture 2 — shot_plan_reference_only: retain Shot 1 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.\n- Picture 3 — shot_plan_reference_only: retain Shot 2 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.\n- Picture 4 — shot_plan_reference_only: retain Shot 3 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.\ndetailed_description:\nEuropean two-dimensional hand-drawn animation with semi-realistic cartoon figures, a vintage storybook background, a warm historical documentary color mood, low-saturation ochre palette, soft cel shading, fine hand-drawn linework, natural body proportions, subtle stable film grain, faint paper texture, soft ambient light, hazy atmospheric perspective and cinematic framing; stable camera, natural motion blur, real-time movement speed.\nAnimate every frame at the full frame rate with smooth, continuous motion; never hold a pose for two frames or use limited animation (\"animating on twos\"); people, hands and objects move a little on every frame.\n[Shot 1] <Picture 2>: At the shop entrance in the early morning, (S1) pushes the glass door open with one hand while carrying a cardboard box against the chest, steps through the doorway and lowers the box toward the open freezer edge, then sets product packs into the empty slots; Slow push-in of about 6%.\n[Shot 2] At 00:04.160, cut to <Picture 3>: From a high angle inside the shop, (S1) turns a product package over in both hands, tilts the head slightly while examining it, places it back on the shelf, then crouches and wipes the aisle floor with a cloth in steady strokes; Static camera, 0% movement.\n[Shot 3] At 00:08.400, cut to <Picture 4>: In an extreme close-up, the temperature gauge needle drifts gently upward while beads of condensation swell on the glossy product surface and a thin drip slides down the pack; Slow tilt of about 8 degrees.\nMaintain (S1)'s face, hair, body and clothing exactly as character reference 1 in every shot, consistent shop geometry, stable warm ambient lighting, the hand-drawn style, the correct finger count and real-time body movement.\nNo storyboard grid, panel borders, split screen, captions, on-screen text or numbers, logos, watermarks, camera shake, jitter, morphing faces, warping hands, flickering textures, slow motion, extra people, duplicated characters.\noverall_soundscape:\nQuiet early-morning room tone, a glass door swinging open with a soft latch click, cardboard brushing against a freezer rim, packs set down one by one, a cloth wiping across a tiled floor, the faint hum of a freezer, no voices.\nnon_diegetic_music:\nN/A",
+  "prompt_sha256": "cfb4af9015d1bf1c4af2da6fe2c7cdda210de5b16866681dd20235cf11a8ab23",
+  "probe_evidence": {
+   "fps": 24.0,
+   "width": 1056,
+   "height": 608,
+   "qc_passed": true,
+   "content_qc": {
+    "findings": [],
+    "algorithm": "content-qc-v1"
+   },
+   "media_type": "video/mp4",
+   "audio_codec": "aac",
+   "duration_ms": 13667,
+   "audio_end_ms": 13667,
+   "audio_tracks": 1,
+   "video_tracks": 1,
+   "audio_start_ms": 0,
+   "container_names": [
+    "mov",
+    "mp4",
+    "m4a",
+    "3gp",
+    "3g2",
+    "mj2"
+   ],
+   "audio_duration_ms": 13667,
+   "video_duration_ms": 13667,
+   "video_frame_count": 328
+  },
+  "updated_at": "2026-11-06T03:45:11.931759+00:00",
+  "video_file": "a51a2a00-a6c4-4cdd-8ae7-e479fe5f4085.mp4",
+  "video_file_sha256": "375ab52a91664dfdc537fbc77640e3edb2812ad2a09c4fa71105583893cf43f2",
+  "whole": {
+   "frames": 328,
+   "cuts": 6,
+   "moving_windows": 38,
+   "held_windows": 19,
+   "held_share": 0.5,
+   "held_at_s": [
+    0.0,
+    0.2,
+    0.5,
+    0.8,
+    4.5,
+    4.8,
+    5.0,
+    5.2,
+    5.5,
+    5.8,
+    6.0,
+    6.2
+   ]
+  },
+  "planned_shots": [
+   {
+    "shot": 1,
+    "start_s": 0.0,
+    "camera": "push_in:6"
+   },
+   {
+    "shot": 2,
+    "start_s": 4.16,
+    "camera": "static"
+   },
+   {
+    "shot": 3,
+    "start_s": 8.4,
+    "camera": "tilt:8"
+   }
+  ],
+  "shots": [
+   {
+    "start_frame": 0,
+    "end_frame": 90,
+    "t0": 0.0,
+    "t1": 3.75,
+    "shot": 1,
+    "camera": "push_in:6",
+    "moving_windows": 13,
+    "held_windows": 4,
+    "held_share": 0.31,
+    "hf": 1.152,
+    "jitter_shot": true
+   },
+   {
+    "start_frame": 98,
+    "end_frame": 199,
+    "t0": 4.08,
+    "t1": 8.29,
+    "shot": 2,
+    "camera": "static",
+    "moving_windows": 15,
+    "held_windows": 14,
+    "held_share": 0.93,
+    "hf": 0.343,
+    "jitter_shot": true
+   },
+   {
+    "start_frame": 199,
+    "end_frame": 328,
+    "t0": 8.29,
+    "t1": 13.67,
+    "shot": 3,
+    "camera": "tilt:8",
+    "moving_windows": 11,
+    "held_windows": 1,
+    "held_share": 0.09,
+    "hf": 0.12,
+    "jitter_shot": false
+   }
+  ],
+  "measured": true,
+  "hf_video": 0.644,
+  "jitter_shots": 2
+ },
+ {
+  "attempt_id": "0cc7c89c-40fd-4007-98ef-7e1f72fa7dcb",
+  "project_id": "484746c4-ddf3-48af-90ca-a25cf41cbf35",
+  "group_sequence": 12,
+  "group_id": "e093cc03-6257-5be9-bc3f-f3dd1b703b5f",
+  "storyboard_generation_id": "16ee7264-889d-4acf-a9b9-5785e5261baf",
+  "idempotency_key": "jitter-ab-v1-g12-s1-baseline",
+  "stage": "ARCHIVED",
+  "archive_stage": "COMPLETE",
+  "error_code": null,
+  "node_id": "h3-new-3",
+  "output_sha256": "b08a815aeebb2aaf15a002ab4284bada2639d1f66955de02693c5c1b11607a86",
+  "seed": 798160553724158,
+  "strategy": "tubeflow_storyboard_v4_single_panel",
+  "experiment": {
+   "arm": "baseline",
+   "name": "jitter-cadence-ab-v1",
+   "prompt_source_attempt_id": null
+  },
+  "prompt": "subject_definitions:\nvisual_asset_bindings: Character reference 1 = <Picture 1> (identity reference only); Shot 1 panel reference = <Picture 2>; Shot 2 panel reference = <Picture 3> (each shot renders only the content of its corresponding single-panel reference).\n- (S1): The shop owner, the person in character reference 1; reproduce that person's face, hair, body, and clothing exactly as in that image.\n- Picture 2: The single-panel storyboard reference for Shot 1, used as the composition, action, and style reference for Shot 1 only.\n- Picture 3: The single-panel storyboard reference for Shot 2, used as the composition, action, and style reference for Shot 2 only.\nsummary:\nThe backroom and the checkout counter of an unmanned shop reveal the hands-on work behind a simple side business, advancing through the single-panel references in shot order.\nretention_analysis:\n- (S1) — fully_preserved: the same face, hair, body, and clothing as character reference 1 in every shot.\n- Picture 2 — shot_plan_reference_only: retain Shot 1 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.\n- Picture 3 — shot_plan_reference_only: retain Shot 2 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.\ndetailed_description:\nEuropean two-dimensional hand-drawn animation with semi-realistic cartoon figures, a muted ochre palette, soft cel shading and delicate hand-drawn lines, a faint paper texture and gentle film grain held stable, soft ambient light, hazy aerial perspective and cinematic composition, stable camera, natural motion blur, real-time movement speed.\n[Shot 1] <Picture 2>: In the back storage space of the unmanned shop, an opened product box, a stack of stock sheets and a cleaning cloth rest on the worktable under a high angle; (S1)'s hands enter frame, straighten the box flaps, slide the stock sheets into a neat stack and drape the cloth over the table edge, settling still. Slow push-in of about 6%.\n[Shot 2] At 00:06.320, cut to <Picture 3>: On the checkout counter work surface seen from directly overhead, (S1)'s hands gather receipts and expense papers into one pile on the left and set the remaining loose coins apart on the right, then pause with the fingers resting beside the coin pile. Static camera, 0% movement.\nMaintain (S1)'s face, hair and clothing as character reference 1, the worktable and counter geometry, the muted ochre palette and soft ambient light, the hand-drawn style, the correct finger count and real-time body movement.\nNo storyboard grid, panel borders, split screen, captions, on-screen text or numbers, logos, watermarks, camera shake, jitter, morphing faces, warping hands, flickering textures, slow motion, extra people, duplicated characters.\noverall_soundscape:\nQuiet indoor room tone, cardboard flaps shifting, papers sliding and tapped into a stack, a cloth brushing a surface, small coins clicking onto a counter, no voices.\nnon_diegetic_music:\nN/A",
+  "prompt_sha256": "b922fe3152f0fdfbccedce5b8dc7c83ff500e3357412162b309738e5e8dfd204",
+  "probe_evidence": {
+   "fps": 24.0,
+   "width": 1056,
+   "height": 608,
+   "qc_passed": true,
+   "content_qc": {
+    "findings": [],
+    "algorithm": "content-qc-v1"
+   },
+   "media_type": "video/mp4",
+   "audio_codec": "aac",
+   "duration_ms": 15083,
+   "audio_end_ms": 15075,
+   "audio_tracks": 1,
+   "video_tracks": 1,
+   "audio_start_ms": 0,
+   "container_names": [
+    "mov",
+    "mp4",
+    "m4a",
+    "3gp",
+    "3g2",
+    "mj2"
+   ],
+   "audio_duration_ms": 15075,
+   "video_duration_ms": 15083,
+   "video_frame_count": 362
+  },
+  "updated_at": "2026-11-06T03:28:40.953344+00:00",
+  "video_file": "0cc7c89c-40fd-4007-98ef-7e1f72fa7dcb.mp4",
+  "video_file_sha256": "b08a815aeebb2aaf15a002ab4284bada2639d1f66955de02693c5c1b11607a86",
+  "whole": {
+   "frames": 362,
+   "cuts": 1,
+   "moving_windows": 36,
+   "held_windows": 4,
+   "held_share": 0.11,
+   "held_at_s": [
+    0.5,
+    2.0,
+    2.2,
+    2.5
+   ]
+  },
+  "planned_shots": [
+   {
+    "shot": 1,
+    "start_s": 0.0,
+    "camera": "push_in:6"
+   },
+   {
+    "shot": 2,
+    "start_s": 6.32,
+    "camera": "static"
+   }
+  ],
+  "shots": [
+   {
+    "start_frame": 0,
+    "end_frame": 145,
+    "t0": 0.0,
+    "t1": 6.04,
+    "shot": 1,
+    "camera": "push_in:6",
+    "moving_windows": 23,
+    "held_windows": 4,
+    "held_share": 0.17,
+    "hf": 0.178,
+    "jitter_shot": false
+   },
+   {
+    "start_frame": 145,
+    "end_frame": 362,
+    "t0": 6.04,
+    "t1": 15.08,
+    "shot": 2,
+    "camera": "static",
+    "moving_windows": 14,
+    "held_windows": 0,
+    "held_share": 0.0,
+    "hf": 0.145,
+    "jitter_shot": false
+   }
+  ],
+  "measured": true,
+  "hf_video": 0.159,
+  "jitter_shots": 0
+ },
+ {
+  "attempt_id": "8e6c5c17-1760-422d-aa8b-4805278fa228",
+  "project_id": "484746c4-ddf3-48af-90ca-a25cf41cbf35",
+  "group_sequence": 12,
+  "group_id": "e093cc03-6257-5be9-bc3f-f3dd1b703b5f",
+  "storyboard_generation_id": "16ee7264-889d-4acf-a9b9-5785e5261baf",
+  "idempotency_key": "jitter-ab-v1-g12-s1-cadence",
+  "stage": "ARCHIVED",
+  "archive_stage": "COMPLETE",
+  "error_code": null,
+  "node_id": "h3-new-2",
+  "output_sha256": "589fa7683486ee2955b506c09183a1ad8f888bd0c18bd7f2e110d8150eff9ef1",
+  "seed": 798160553724158,
+  "strategy": "tubeflow_storyboard_v4_single_panel_cadence_v1",
+  "experiment": {
+   "arm": "cadence_v1",
+   "name": "jitter-cadence-ab-v1",
+   "prompt_source_attempt_id": "0cc7c89c-40fd-4007-98ef-7e1f72fa7dcb"
+  },
+  "prompt": "subject_definitions:\nvisual_asset_bindings: Character reference 1 = <Picture 1> (identity reference only); Shot 1 panel reference = <Picture 2>; Shot 2 panel reference = <Picture 3> (each shot renders only the content of its corresponding single-panel reference).\n- (S1): The shop owner, the person in character reference 1; reproduce that person's face, hair, body, and clothing exactly as in that image.\n- Picture 2: The single-panel storyboard reference for Shot 1, used as the composition, action, and style reference for Shot 1 only.\n- Picture 3: The single-panel storyboard reference for Shot 2, used as the composition, action, and style reference for Shot 2 only.\nsummary:\nThe backroom and the checkout counter of an unmanned shop reveal the hands-on work behind a simple side business, advancing through the single-panel references in shot order.\nretention_analysis:\n- (S1) — fully_preserved: the same face, hair, body, and clothing as character reference 1 in every shot.\n- Picture 2 — shot_plan_reference_only: retain Shot 1 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.\n- Picture 3 — shot_plan_reference_only: retain Shot 2 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.\ndetailed_description:\nEuropean two-dimensional hand-drawn animation with semi-realistic cartoon figures, a muted ochre palette, soft cel shading and delicate hand-drawn lines, a faint paper texture and gentle film grain held stable, soft ambient light, hazy aerial perspective and cinematic composition, stable camera, natural motion blur, real-time movement speed.\nAnimate every frame at the full frame rate with smooth, continuous motion; never hold a pose for two frames or use limited animation (\"animating on twos\"); people, hands and objects move a little on every frame.\n[Shot 1] <Picture 2>: In the back storage space of the unmanned shop, an opened product box, a stack of stock sheets and a cleaning cloth rest on the worktable under a high angle; (S1)'s hands enter frame, straighten the box flaps, slide the stock sheets into a neat stack and drape the cloth over the table edge, settling still. Slow push-in of about 6%.\n[Shot 2] At 00:06.320, cut to <Picture 3>: On the checkout counter work surface seen from directly overhead, (S1)'s hands gather receipts and expense papers into one pile on the left and set the remaining loose coins apart on the right, then pause with the fingers resting beside the coin pile. Static camera, 0% movement.\nMaintain (S1)'s face, hair and clothing as character reference 1, the worktable and counter geometry, the muted ochre palette and soft ambient light, the hand-drawn style, the correct finger count and real-time body movement.\nNo storyboard grid, panel borders, split screen, captions, on-screen text or numbers, logos, watermarks, camera shake, jitter, morphing faces, warping hands, flickering textures, slow motion, extra people, duplicated characters.\noverall_soundscape:\nQuiet indoor room tone, cardboard flaps shifting, papers sliding and tapped into a stack, a cloth brushing a surface, small coins clicking onto a counter, no voices.\nnon_diegetic_music:\nN/A",
+  "prompt_sha256": "6230602121d195c47d9ccd8747980e2e0dbbdacc4abdab5c12da28a0d8f74adb",
+  "probe_evidence": {
+   "fps": 24.0,
+   "width": 1056,
+   "height": 608,
+   "qc_passed": true,
+   "content_qc": {
+    "findings": [],
+    "algorithm": "content-qc-v1"
+   },
+   "media_type": "video/mp4",
+   "audio_codec": "aac",
+   "duration_ms": 15083,
+   "audio_end_ms": 15075,
+   "audio_tracks": 1,
+   "video_tracks": 1,
+   "audio_start_ms": 0,
+   "container_names": [
+    "mov",
+    "mp4",
+    "m4a",
+    "3gp",
+    "3g2",
+    "mj2"
+   ],
+   "audio_duration_ms": 15075,
+   "video_duration_ms": 15083,
+   "video_frame_count": 362
+  },
+  "updated_at": "2026-11-06T03:34:01.573606+00:00",
+  "video_file": "8e6c5c17-1760-422d-aa8b-4805278fa228.mp4",
+  "video_file_sha256": "589fa7683486ee2955b506c09183a1ad8f888bd0c18bd7f2e110d8150eff9ef1",
+  "whole": {
+   "frames": 362,
+   "cuts": 1,
+   "moving_windows": 38,
+   "held_windows": 12,
+   "held_share": 0.32,
+   "held_at_s": [
+    2.0,
+    2.2,
+    2.5,
+    3.5,
+    3.8,
+    4.0,
+    4.2,
+    4.5,
+    4.8,
+    5.0,
+    5.2,
+    5.5
+   ]
+  },
+  "planned_shots": [
+   {
+    "shot": 1,
+    "start_s": 0.0,
+    "camera": "push_in:6"
+   },
+   {
+    "shot": 2,
+    "start_s": 6.32,
+    "camera": "static"
+   }
+  ],
+  "shots": [
+   {
+    "start_frame": 0,
+    "end_frame": 145,
+    "t0": 0.0,
+    "t1": 6.04,
+    "shot": 1,
+    "camera": "push_in:6",
+    "moving_windows": 23,
+    "held_windows": 12,
+    "held_share": 0.52,
+    "hf": 0.196,
+    "jitter_shot": false
+   },
+   {
+    "start_frame": 145,
+    "end_frame": 362,
+    "t0": 6.04,
+    "t1": 15.08,
+    "shot": 2,
+    "camera": "static",
+    "moving_windows": 16,
+    "held_windows": 0,
+    "held_share": 0.0,
+    "hf": 0.142,
+    "jitter_shot": false
+   }
+  ],
+  "measured": true,
+  "hf_video": 0.166,
+  "jitter_shots": 0
+ },
+ {
+  "attempt_id": "3ca4653d-b572-4a9e-9736-5043c85ef4d1",
+  "project_id": "484746c4-ddf3-48af-90ca-a25cf41cbf35",
+  "group_sequence": 12,
+  "group_id": "e093cc03-6257-5be9-bc3f-f3dd1b703b5f",
+  "storyboard_generation_id": "16ee7264-889d-4acf-a9b9-5785e5261baf",
+  "idempotency_key": "jitter-ab-v1-g12-s2-baseline",
+  "stage": "ARCHIVED",
+  "archive_stage": "COMPLETE",
+  "error_code": null,
+  "node_id": "h3-new-2",
+  "output_sha256": "6bb98bf76014cc89b467736d70f01ea0ea884fef202d3405e381c77420e4db1f",
+  "seed": 798160553724159,
+  "strategy": "tubeflow_storyboard_v4_single_panel",
+  "experiment": {
+   "arm": "baseline",
+   "name": "jitter-cadence-ab-v1",
+   "prompt_source_attempt_id": null
+  },
+  "prompt": "subject_definitions:\nvisual_asset_bindings: Character reference 1 = <Picture 1> (identity reference only); Shot 1 panel reference = <Picture 2>; Shot 2 panel reference = <Picture 3> (each shot renders only the content of its corresponding single-panel reference).\n- (S1): The shop owner, the person in character reference 1; reproduce that person's face, hair, body, and clothing exactly as in that image.\n- (S2): An unmanned store back storage area with a work table holding opened product boxes, a stock checklist and a cleaning mop.\n- (S3): An unmanned store checkout counter work surface with receipts, expense papers and a few loose coins, plus a nearby display shelf with empty gaps.\n- Picture 2: The single-panel storyboard reference for Shot 1, used as the composition, action, and style reference for Shot 1 only.\n- Picture 3: The single-panel storyboard reference for Shot 2, used as the composition, action, and style reference for Shot 2 only.\nsummary:\nThe routine work behind an unmanned shop is revealed through the hands of the shop owner, advancing through the single-panel references in shot order.\nretention_analysis:\n- (S1) — fully_preserved: the same face, hair, body, and clothing as character reference 1 in every shot.\n- (S2) — fully_preserved: retain the work table layout, the opened product boxes, the stock checklist, the cleaning mop and the soft warm ambient light.\n- (S3) — fully_preserved: retain the checkout counter surface, the receipts, the expense papers, the loose coins, the display shelf gaps and the overhead lighting.\n- Picture 2 — shot_plan_reference_only: retain Shot 1 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.\n- Picture 3 — shot_plan_reference_only: retain Shot 2 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.\ndetailed_description:\nWestern two-dimensional hand-drawn animation with semi-realistic cartoon figures, a retro illustrated-history picture-book background, a warm historical science-documentary tone, low-saturation ochre palette, soft cel shading, fine hand-drawn lines, natural human proportions, subtle stable film grain, gentle paper texture, soft ambient light and hazy aerial perspective in a cinematic composition; stable camera, natural motion blur, real-time movement speed.\n[Shot 1] <Picture 2>: In the back storage area of the unmanned store, seen from a high angle in close-up, (S1)'s hands enter over the work table, lift an opened product box slightly, slide the stock checklist beside it and lay the cleaning mop down flat, then settle both hands at rest on the table edge. Static camera, 0% movement.\n[Shot 2] At 00:06.320, cut to <Picture 3>: Seen overhead in close-up on the checkout counter work surface, (S1)'s hands gather the receipts and expense papers into one stack and push them to one side, then separate the few loose coins into a small pile on the other side, while the empty gaps on the nearby display shelf stay visible in the same frame. Slow push-in of about 6%.\nMaintain (S1)'s face, hair and clothing as character reference 1 in every shot, the work table and counter layouts, the ochre hand-drawn style, the soft ambient light, the correct finger count and real-time body movement.\nNo storyboard grid, panel borders, split screen, captions, on-screen text or numbers, logos, watermarks, camera shake, jitter, morphing faces, warping hands, flickering textures, slow motion, extra people, duplicated characters.\noverall_soundscape:\nQuiet store room tone, cardboard sliding on a table, paper rustling as receipts are gathered, small coins clicking against the counter surface, no voices.\nnon_diegetic_music:\nN/A",
+  "prompt_sha256": "3c331d64ba8f77de4f19c173cad7e9514c929f624d891009cf4f65726f228d07",
+  "probe_evidence": {
+   "fps": 24.0,
+   "width": 1056,
+   "height": 608,
+   "qc_passed": true,
+   "content_qc": {
+    "findings": [],
+    "algorithm": "content-qc-v1"
+   },
+   "media_type": "video/mp4",
+   "audio_codec": "aac",
+   "duration_ms": 15083,
+   "audio_end_ms": 15075,
+   "audio_tracks": 1,
+   "video_tracks": 1,
+   "audio_start_ms": 0,
+   "container_names": [
+    "mov",
+    "mp4",
+    "m4a",
+    "3gp",
+    "3g2",
+    "mj2"
+   ],
+   "audio_duration_ms": 15075,
+   "video_duration_ms": 15083,
+   "video_frame_count": 362
+  },
+  "updated_at": "2026-11-06T03:39:59.862687+00:00",
+  "video_file": "3ca4653d-b572-4a9e-9736-5043c85ef4d1.mp4",
+  "video_file_sha256": "6bb98bf76014cc89b467736d70f01ea0ea884fef202d3405e381c77420e4db1f",
+  "whole": {
+   "frames": 362,
+   "cuts": 1,
+   "moving_windows": 36,
+   "held_windows": 35,
+   "held_share": 0.97,
+   "held_at_s": [
+    0.0,
+    0.2,
+    0.5,
+    0.8,
+    1.0,
+    1.2,
+    1.5,
+    1.8,
+    2.0,
+    2.2,
+    2.5,
+    2.8
+   ]
+  },
+  "planned_shots": [
+   {
+    "shot": 1,
+    "start_s": 0.0,
+    "camera": "static"
+   },
+   {
+    "shot": 2,
+    "start_s": 6.32,
+    "camera": "push_in:6"
+   }
+  ],
+  "shots": [
+   {
+    "start_frame": 0,
+    "end_frame": 136,
+    "t0": 0.0,
+    "t1": 5.67,
+    "shot": 1,
+    "camera": "static",
+    "moving_windows": 17,
+    "held_windows": 17,
+    "held_share": 1.0,
+    "hf": 0.225,
+    "jitter_shot": false
+   },
+   {
+    "start_frame": 136,
+    "end_frame": 362,
+    "t0": 5.67,
+    "t1": 15.08,
+    "shot": 2,
+    "camera": "push_in:6",
+    "moving_windows": 19,
+    "held_windows": 18,
+    "held_share": 0.95,
+    "hf": 0.129,
+    "jitter_shot": false
+   }
+  ],
+  "measured": true,
+  "hf_video": 0.171,
+  "jitter_shots": 0
+ },
+ {
+  "attempt_id": "115a17ba-b79c-4090-9429-34afe60c0453",
+  "project_id": "484746c4-ddf3-48af-90ca-a25cf41cbf35",
+  "group_sequence": 12,
+  "group_id": "e093cc03-6257-5be9-bc3f-f3dd1b703b5f",
+  "storyboard_generation_id": "16ee7264-889d-4acf-a9b9-5785e5261baf",
+  "idempotency_key": "jitter-ab-v1-g12-s2-cadence",
+  "stage": "ARCHIVED",
+  "archive_stage": "COMPLETE",
+  "error_code": null,
+  "node_id": "h3-new-2",
+  "output_sha256": "1ef747551f5d021b8675fba351497b4264d6bd5f87f05631dde0e709f8f45298",
+  "seed": 798160553724159,
+  "strategy": "tubeflow_storyboard_v4_single_panel_cadence_v1",
+  "experiment": {
+   "arm": "cadence_v1",
+   "name": "jitter-cadence-ab-v1",
+   "prompt_source_attempt_id": "3ca4653d-b572-4a9e-9736-5043c85ef4d1"
+  },
+  "prompt": "subject_definitions:\nvisual_asset_bindings: Character reference 1 = <Picture 1> (identity reference only); Shot 1 panel reference = <Picture 2>; Shot 2 panel reference = <Picture 3> (each shot renders only the content of its corresponding single-panel reference).\n- (S1): The shop owner, the person in character reference 1; reproduce that person's face, hair, body, and clothing exactly as in that image.\n- (S2): An unmanned store back storage area with a work table holding opened product boxes, a stock checklist and a cleaning mop.\n- (S3): An unmanned store checkout counter work surface with receipts, expense papers and a few loose coins, plus a nearby display shelf with empty gaps.\n- Picture 2: The single-panel storyboard reference for Shot 1, used as the composition, action, and style reference for Shot 1 only.\n- Picture 3: The single-panel storyboard reference for Shot 2, used as the composition, action, and style reference for Shot 2 only.\nsummary:\nThe routine work behind an unmanned shop is revealed through the hands of the shop owner, advancing through the single-panel references in shot order.\nretention_analysis:\n- (S1) — fully_preserved: the same face, hair, body, and clothing as character reference 1 in every shot.\n- (S2) — fully_preserved: retain the work table layout, the opened product boxes, the stock checklist, the cleaning mop and the soft warm ambient light.\n- (S3) — fully_preserved: retain the checkout counter surface, the receipts, the expense papers, the loose coins, the display shelf gaps and the overhead lighting.\n- Picture 2 — shot_plan_reference_only: retain Shot 1 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.\n- Picture 3 — shot_plan_reference_only: retain Shot 2 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.\ndetailed_description:\nWestern two-dimensional hand-drawn animation with semi-realistic cartoon figures, a retro illustrated-history picture-book background, a warm historical science-documentary tone, low-saturation ochre palette, soft cel shading, fine hand-drawn lines, natural human proportions, subtle stable film grain, gentle paper texture, soft ambient light and hazy aerial perspective in a cinematic composition; stable camera, natural motion blur, real-time movement speed.\nAnimate every frame at the full frame rate with smooth, continuous motion; never hold a pose for two frames or use limited animation (\"animating on twos\"); people, hands and objects move a little on every frame.\n[Shot 1] <Picture 2>: In the back storage area of the unmanned store, seen from a high angle in close-up, (S1)'s hands enter over the work table, lift an opened product box slightly, slide the stock checklist beside it and lay the cleaning mop down flat, then settle both hands at rest on the table edge. Static camera, 0% movement.\n[Shot 2] At 00:06.320, cut to <Picture 3>: Seen overhead in close-up on the checkout counter work surface, (S1)'s hands gather the receipts and expense papers into one stack and push them to one side, then separate the few loose coins into a small pile on the other side, while the empty gaps on the nearby display shelf stay visible in the same frame. Slow push-in of about 6%.\nMaintain (S1)'s face, hair and clothing as character reference 1 in every shot, the work table and counter layouts, the ochre hand-drawn style, the soft ambient light, the correct finger count and real-time body movement.\nNo storyboard grid, panel borders, split screen, captions, on-screen text or numbers, logos, watermarks, camera shake, jitter, morphing faces, warping hands, flickering textures, slow motion, extra people, duplicated characters.\noverall_soundscape:\nQuiet store room tone, cardboard sliding on a table, paper rustling as receipts are gathered, small coins clicking against the counter surface, no voices.\nnon_diegetic_music:\nN/A",
+  "prompt_sha256": "5647984e24898ecc11d708480357e9fa4f935182966bb22d081785c71c2614b6",
+  "probe_evidence": {
+   "fps": 24.0,
+   "width": 1056,
+   "height": 608,
+   "qc_passed": true,
+   "content_qc": {
+    "findings": [],
+    "algorithm": "content-qc-v1"
+   },
+   "media_type": "video/mp4",
+   "audio_codec": "aac",
+   "duration_ms": 15083,
+   "audio_end_ms": 15075,
+   "audio_tracks": 1,
+   "video_tracks": 1,
+   "audio_start_ms": 0,
+   "container_names": [
+    "mov",
+    "mp4",
+    "m4a",
+    "3gp",
+    "3g2",
+    "mj2"
+   ],
+   "audio_duration_ms": 15075,
+   "video_duration_ms": 15083,
+   "video_frame_count": 362
+  },
+  "updated_at": "2026-11-06T03:45:43.723098+00:00",
+  "video_file": "115a17ba-b79c-4090-9429-34afe60c0453.mp4",
+  "video_file_sha256": "1ef747551f5d021b8675fba351497b4264d6bd5f87f05631dde0e709f8f45298",
+  "whole": {
+   "frames": 362,
+   "cuts": 1,
+   "moving_windows": 34,
+   "held_windows": 34,
+   "held_share": 1.0,
+   "held_at_s": [
+    0.2,
+    0.5,
+    0.8,
+    1.0,
+    1.2,
+    1.5,
+    1.8,
+    2.0,
+    2.2,
+    2.5,
+    2.8,
+    3.0
+   ]
+  },
+  "planned_shots": [
+   {
+    "shot": 1,
+    "start_s": 0.0,
+    "camera": "static"
+   },
+   {
+    "shot": 2,
+    "start_s": 6.32,
+    "camera": "push_in:6"
+   }
+  ],
+  "shots": [
+   {
+    "start_frame": 0,
+    "end_frame": 152,
+    "t0": 0.0,
+    "t1": 6.33,
+    "shot": 1,
+    "camera": "static",
+    "moving_windows": 19,
+    "held_windows": 19,
+    "held_share": 1.0,
+    "hf": 0.231,
+    "jitter_shot": false
+   },
+   {
+    "start_frame": 152,
+    "end_frame": 362,
+    "t0": 6.33,
+    "t1": 15.08,
+    "shot": 2,
+    "camera": "push_in:6",
+    "moving_windows": 16,
+    "held_windows": 15,
+    "held_share": 0.94,
+    "hf": 0.156,
+    "jitter_shot": false
+   }
+  ],
+  "measured": true,
+  "hf_video": 0.191,
+  "jitter_shots": 0
+ }
+]

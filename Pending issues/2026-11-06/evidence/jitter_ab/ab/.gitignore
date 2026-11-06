@@ -1,0 +1,4 @@
+# 与 Pending issues/2026-11-05/JITTER_SURVEY_20261105/ab/.gitignore 同样的口径：
+# 灰度帧（HF 中间数据）与归档 MP4 不入库；MP4 的 sha256 记在 attempts.json。
+results/*.gray.gz
+results/*.mp4
