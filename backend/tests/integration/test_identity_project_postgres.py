@@ -8,6 +8,7 @@ from uuid import UUID, uuid4
 import pytest
 from alembic import command
 from alembic.config import Config
+from database_guard import refuse_application_database
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine, text
@@ -29,6 +30,7 @@ def test_real_postgres_schema_round_trip_and_atomic_initialization() -> None:
         pytest.skip("TUBEFLOW_TEST_POSTGRES_URL is not configured")
     schema = f"identity_test_{uuid4().hex}"
     admin_engine = create_engine(url)
+    refuse_application_database(admin_engine)
     with admin_engine.begin() as connection:
         connection.execute(text(f'CREATE SCHEMA "{schema}"'))
     engine = create_engine(url, connect_args={"options": f"-csearch_path={schema}"})

@@ -690,7 +690,7 @@
   - 2026-11-06 测试机实测：`tests/unit/test_integration_fixture_cleanup.py` **1 passed, 0 skipped**（3.29 s，未触发 `importorskip`）。单元 main 2481 passed / 11 skipped、分支 **2482 passed / 11 skipped**（+1 = 新增那条），0 失败；集成两侧 **19 failed / 122 passed / 7 skipped**，失败 nodeid 逐条相同且与上一轮一致；ruff **15 条逐字节相同**；mypy **12 errors / 7 files（208 源）逐字节相同**。`npm run check` **未跑**（前端未改）。证据 `Pending issues/2026-11-06/evidence/schema_cleanup/gates/SUMMARY.md`。
 - [ ] 部署机：确认 `contract_be30c85aac3347ffbf3bc45bc6ea12de` 位于测试库 `tubeflowtest` 且为空后，以 `RESTRICT` 删除；复查 `contract\_%` 为 0 行；其他测试前缀只读列出，不删除。
   - 2026-11-06 部署机实测：**该项未完成，且未执行删除**。该 schema **不在测试库**（`tubeflowtest` 命中 0），而在**业务库 `tubeflow`**（命中 1，`pg_class/pg_proc/pg_type` 均为 0）。授权里的硬限制是「若在业务库 `tubeflow`：立即停下，只汇报，不删除」，故 `DROP` **未执行**，本次对数据库的写操作为 0 次。
-  - 已完成的只读部分：测试库 `contract\_%` **0 行**（两轮集成跑完后复查仍为 0，夹具修复生效）；两个库的 `identity\_test\_%` / `narration\_authority\_%` / `voice\_race\_%` 均 **0 行**；两个集群均无 `alembic\_url\_%` 数据库；业务库另见 `audit_272879e_20260829a`、`audit_272879e_exact_20260829a`、`staged_cleanup_gate`（只列出，未处理）。
+  - 已完成的只读部分：测试库 `contract\_%` **0 行**（两轮集成跑完后复查仍为 0。**更正（2026-11-06）**：本轮没有用例在迁移阶段失败，main 一侧用的是旧夹具，同样是 0 行，所以这一计数不能证明修复有效。修复是否有效由单元测试证明：在 Claude 云端工作区用替身 alembic 运行，该测试在原夹具上失败、修复后通过）；两个库的 `identity\_test\_%` / `narration\_authority\_%` / `voice\_race\_%` 均 **0 行**；两个集群均无 `alembic\_url\_%` 数据库；业务库另见 `audit_272879e_20260829a`、`audit_272879e_exact_20260829a`、`staged_cleanup_gate`（只列出，未处理）。
   - 运维记录（AGENT_AUTHORIZATION §5）：部署机 `runtime/operations/schema-cleanup-20261106/README.md`，副本 `Pending issues/2026-11-06/evidence/schema_cleanup/operations-record.md`；记录 `docs/DEPLOYMENT.md` §44。**该空 schema 仍在业务库中，删除需新的、明确指向业务库的授权。**
 
   - **补记（2026-11-06 晚些时候）**：用户授权后，该空 schema 已于 **07:07:35Z 在业务库 `tubeflow` 用 `DROP SCHEMA … RESTRICT` 删除**（删除前四项检查全部满足；复查两库 `contract\_%` 均为 0 行、`/health/live` = 200）。详见 §49 与 `docs/DEPLOYMENT.md` §45。
@@ -698,9 +698,10 @@
 
 ## 49. 2026-11-06 集成测试不得触碰业务库；业务库遗留 schema 处理（复核文档 `Pending issues/2026-11-06/SCHEMA_CLEANUP_REVIEW_20261106.md`）
 
-- [ ] Claude 云端工作区：`tests/integration/database_guard.py::refuse_application_database` 在目标库存在 `public.projects` 且有数据时判测试失败；全部 6 处建 schema 或数据库的集成测试代码都在建之前调用它；新单元测试覆盖三种库状态 + 源码扫描。
+- [x] Claude 云端工作区（2026-11-06 修订版）：`tests/integration/database_guard.py::refuse_application_database` 只允许连接名字以 `test` 结尾的库（`tubeflowtest` 放行，`tubeflow`、`postgres` 等拒绝），否则直接判测试失败、不建任何东西。全部 6 处建 schema 或数据库的集成测试代码都在建之前调用它。单元测试覆盖：5 种库名、夹具连到业务库时不建 schema 也不跑迁移、迁移失败时仍删除 schema、源码扫描。去掉守卫调用后，相应测试会失败。
+  - 修订原因：第一版以「`public.projects` 有数据」识别业务库，测试库里有迁移探针行，会被误拦（见下条）。
   - **PR #17 修订中，未合并**（2026-11-06 用户裁定）。原因：该判据以「`public.projects` 有数据」识别业务库，而本环境的**测试库** `tubeflowtest.public.projects` 有 1 行（`id 000000000000000000000000000000f1`、`title mig-probe`、`created_at 2026-11-05T09:56:42Z`），守卫会把全部集成测试判失败。作者将改为「库名须以 test 结尾」后另行通知。
-- [ ] 测试机：上述单元测试实际运行；单元、集成、ruff、mypy 相对 main 无新增失败；集成在测试库上照常运行。
+- [ ] 测试机：上述单元测试实际运行（不算跳过）；单元、集成、ruff、mypy 相对 main 无新增失败；集成在测试库 `tubeflowtest` 上照常运行，失败集合与 main 逐条相同（守卫不误拦）。
   - **PR #17 修订中，未合并**，本次按裁定**未跑任何门禁**（未运行 ≠ 通过）。
 - [x] 部署机，删除前只读取证：`pg_namespace` 的 oid / 属主 / nspacl / xmin / age；用 `projects` 的 xmin 推断创建时间；容器日志检索；测试机 `TUBEFLOW_TEST_POSTGRES_URL` 溯源。
   - 2026-11-06 部署机实测（07:03–07:04Z）：目标 schema `oid=60061`、属主 **`tubeflow`**、`nspacl` 空、`xmin=30623`、`age=51673862`。**年龄大于全部 62 个项目行**（最老者 2026-09-04T16:00:18Z、age 48580910）⇒ 只能给上界「早于 2026-09-04T16:00:18Z」，无法夹出区间；局限（xid 可回卷、并发非单调、`projects.xmin` 是最后修改、`ALTER SCHEMA` 会刷新该行 xmin）已记录。容器日志覆盖 2026-09-23T06:43:19Z–2026-09-29T18:36:06Z（3779 行），关键词 **0 命中**（本来就不覆盖该时段）。测试机：无 `.bash_history`、工作树无 `.env`、仓库 `.env` 无该键、PSReadLine 历史 **0 命中**；仓库唯一记录取值指向 `tubeflowtest`。证据 `Pending issues/2026-11-06/evidence/schema_forensics/{forensics.txt,README.md}`。

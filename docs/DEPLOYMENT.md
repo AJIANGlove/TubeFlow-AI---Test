@@ -561,3 +561,8 @@ ssh $SSHOPTS edy@192.168.110.200 'sudo docker run --rm -v tubeflowai-test_postgr
 
   - `reltuples` 多为 **-1**（从未 `ANALYZE`，不能当行数），上表「真实行数」来自逐表 `count(*)`；合计仅 5 行，其余 114 张表全空。`audit_272879e_exact_20260829a` 里唯一的业务行是 `accounts.username = audit-owner`。三者为 2026-08 的早期迁移快照，**用途来源未查证**。
 - 未触发回滚、未重启容器、未改 `.env`、未调用任何 Provider。证据 `Pending issues/2026-11-06/evidence/schema_forensics/`。
+
+- **复核补充（2026-11-06，Claude 云端工作区据本节证据推算，属推断）：**
+  - 已删的 `contract_be30…` 只比 `staged_cleanup_gate` 早 824 个事务，比两个 `audit_272879e_20260829*` 早约 1.2 万个事务。很可能是 2026-08-29 前后同一次审计/清理工作留下的，早于首个项目（2026-09-04）。
+  - 没有证据表明正式使用以后有集成测试连过业务库。
+  - 三个审计 schema 应用不使用，建议保留，记为**已知历史遗留**。

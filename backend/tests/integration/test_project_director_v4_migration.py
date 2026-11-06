@@ -10,6 +10,7 @@ import pytest
 from alembic import command
 from alembic.config import Config
 from alembic.script import ScriptDirectory
+from database_guard import refuse_application_database
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import URL, make_url
 from sqlalchemy.orm import sessionmaker
@@ -154,6 +155,7 @@ def test_0018_backfills_v3_units_into_global_plan_unit_shape() -> None:
         )
     schema = f"contract_{uuid4().hex}"
     admin_engine = create_engine(database_url, pool_pre_ping=True)
+    refuse_application_database(admin_engine)
     with admin_engine.begin() as connection:
         connection.execute(text(f'CREATE SCHEMA "{schema}"'))
     schema_url = _schema_url(database_url, schema)

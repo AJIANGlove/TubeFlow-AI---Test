@@ -12,6 +12,7 @@ from uuid import UUID, uuid4
 import pytest
 from alembic import command
 from alembic.config import Config
+from database_guard import refuse_application_database
 from fastapi.testclient import TestClient
 from minio import Minio
 from sqlalchemy import create_engine, func, select, text
@@ -81,6 +82,7 @@ def narration_database_url() -> str:
         pytest.skip("isolated PostgreSQL is not configured")
     schema = f"narration_authority_{uuid4().hex}"
     admin_engine = create_engine(postgres_url)
+    refuse_application_database(admin_engine)
     with admin_engine.begin() as connection:
         connection.execute(text(f'CREATE SCHEMA "{schema}"'))
     separator = "&" if "?" in postgres_url else "?"
