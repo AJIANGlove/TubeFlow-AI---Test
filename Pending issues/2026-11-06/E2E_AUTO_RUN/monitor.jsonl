@@ -105,3 +105,11 @@ VIDCUR current_videos=7
 METRICS measured=7|err=0|avg_held=0.559|jitter_sum=7
 COMP -
 COMPERR -
+TS 2026-11-06T09:50:44Z
+RUN COMPLETED|-|round=2|11-06 09:48:38
+PROJECT ACTIVE
+NARR sentences=26|raw_qc=26|norm_qc=26|measured_ms=113600
+GROUPS n=9
+DIR runs=2|FAILED=1,SUCCEEDED=9
+DIRFAIL -=9,director_output_shot_count_invalid=1
+MERGED units_with_merge=0
