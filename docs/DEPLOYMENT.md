@@ -523,5 +523,9 @@ ssh $SSHOPTS edy@192.168.110.200 'sudo docker run --rm -v tubeflowai-test_postgr
   - **a) 容器名更正**：`docs/DEPLOYMENT.md` §42 与 `evidence/jitter_ab/deploy/README.md` §4 原有一条「现场偏差」称 web 容器名不是 compose 默认名——该说法有误，`tubeflowai-test-web-1` 正是 `<project>-<service>-1` 的默认名，且当时未保存 `docker ps -a`。两条已删除并各自加更正说明；本次部署前后各留一份 `docker ps -a` 于 `evidence/motion_metrics/deploy/`。
   - **b) 遗留 schema**：`select nspname from pg_namespace where nspname like 'contract\_%'` 命中 **1 个**：`contract_be30c85aac3347ffbf3bc45bc6ea12de`（**空 schema**，0 张表、无 `alembic_version`）。与「fixture 建好 schema 后 `alembic upgrade` 失败、清理未执行」的路径一致（`conftest.py` 的 `try/finally` 只包住 `yield` 之后）。**只列出，未删除**（删除需授权）。
   - **c) 第 7 组第 1 镜是否真实机位突跳**：同一提取器取该镜 `shifts[0:91]`，按 5 帧滑动平均残差排序，前 5 个帧号为 **54 / 68 / 62 / 44 / 66**（残差 21.584 / 15.203 / 9.112 / 9.069 / 8.845；对应位移 (dx,dy) = (−3.9,−6.25) / (4.32,0.67) / (3.26,−0.81) / (4.83,−1.06) / (−1.0,−3.26) 像素）。逐帧导出原分辨率（1056×608）画面并逐对目视：灯、门框、货架边缘、窗外树与远景人物在相邻两帧**位置一致**，只有人物姿态与纸箱在动。结论：**不是真实机位突跳**，是该镜主体占画面比例大、把相位相关带偏造成的测量误差；位移量级 3–7 px 也远小于真实跳变的量级。证据 `evidence/motion_metrics/recompute/shot1/`。
+    - **更正（2026-11-06 复核）**：只测画面两侧背景（避开人物），相邻帧的背景位移在 −3.4 到 +2.2 px 之间不规则跳动，右侧最多约 5.7 px，相位相关响应 0.84–1.0。
+      - 「背景逐帧对齐」「测量误差」两点不成立。
+      - 正确结论：没有几十像素的大突跳，但有 1–3 px 的整帧微颤（C 类）；HF 1.578 的量级大致可信。
+      - 证据：`recompute/shot1_background.py`、`recompute/shot1_background.txt`；复核见 `Pending issues/2026-11-06/MOTION_METRICS_ROLLOUT_REVIEW_20261106.md`。
 - 自然归档观察：截至 04:53:02Z，`probe_evidence_json ? 'motion_metrics'` 的尝试数为 **0**，且窗口内运行中工作流为 0、无 AUTO 运行——**「上线后第一条正常归档带 status=ok」待自然发生**，未为此触发生成，`FINAL_ACCEPTANCE` §47 该项**未勾**。
 - 回滚：还原 compose 备份后 `up -d --no-build`，回到 `sha256:d488b57e0898…`（jitter-ab-20261106）。本次无迁移，无需降级；**未触发回滚**。
