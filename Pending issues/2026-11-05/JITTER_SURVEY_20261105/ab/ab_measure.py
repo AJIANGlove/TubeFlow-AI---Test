@@ -6,10 +6,12 @@ visual check, an optional visual.json.
     python3 ab_measure.py <results_dir> [all|frames|hf|report]
 
 Stages (default "all" runs the three in one place):
-- frames: needs ffmpeg only (run it in the web container, the same ffmpeg as the survey).
+- frames: needs ffmpeg only (run it in the web container on the deployment machine
+  192.168.110.200: the image's ffmpeg, the same one the survey and composition use).
   Held-frame shares, cuts, contact sheets, and the 528x304 grey frames for HF written as
   <attempt_id>.gray.gz; result in stage_frames.json.
-- hf: needs numpy and opencv-python (cv2), no ffmpeg. Reads stage_frames.json and the
+- hf: needs numpy and opencv-python (cv2), no ffmpeg (run it on the test machine, i.e. the
+  implementation team's machine). Reads stage_frames.json and the
   .gray.gz files, adds HF, writes stage_hf.json, then runs "report". Without cv2 it stops with
   a clear message instead of reporting HF as 0.
 - report: pure Python. Reads stage_hf.json (+ visual.json), writes measure.json and pairs.md.

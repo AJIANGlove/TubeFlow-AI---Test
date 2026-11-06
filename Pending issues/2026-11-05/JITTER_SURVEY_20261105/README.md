@@ -66,7 +66,9 @@
 
 **测量（`ab/`，只读，2026-11-06 改为分两处运行，不安装任何新软件）：**
 
-web 容器有 ffmpeg（与普查相同），但没有 numpy/cv2；实施方本机的 video-qc 环境有 numpy/cv2，但没有 ffmpeg。所以分段运行，两段各用现成环境：
+机器名称（2026-11-06 用户确认，见 `docs/DEPLOYMENT.md` §1）：**部署机** = 192.168.110.200；**测试机** = 实施方的机器。
+
+部署机上的 ffmpeg 在容器镜像里（`backend/Dockerfile` 用 apt 安装，构建时执行 `ffmpeg -version` 校验；合成与普查都用它），宿主系统的 PATH 里不一定有。web 容器没有 numpy/cv2；测试机的 video-qc 环境有 numpy/cv2，但没有 ffmpeg。所以分段运行，两段各用现成环境：
 
 1. 把整个 `JITTER_SURVEY_20261105` 目录复制进 web 容器，复制到 `/tmp/jitter_survey`（`ab_measure.py` 需要上一级的 `held_frames.py`）。
 2. **导出**（web 容器内）：`OUT=/tmp/jitter_ab_out ATTEMPTS=<8 个 id> python /tmp/jitter_survey/ab/ab_export.py`。导出 8 条尝试的元数据，以及已归档的 MP4。
@@ -74,11 +76,11 @@ web 容器有 ffmpeg（与普查相同），但没有 numpy/cv2；实施方本�
    - 整条与每镜的隔帧停顿占比（`held_frames.py`，与普查同一算法），每镜标出提示词要求的运镜；
    - 每 0.5 秒一格的接触表，6 列 × 5 行，第 k 格对应 k × 0.5 秒；
    - 计算 HF 用的灰度帧 `<attempt_id>.gray.gz`（每条约 30–40 MB）。
-4. 用 `docker compose cp` 取回 `/tmp/jitter_ab_out`，放到 `ab/results/`。
-5. **hf 段**（本机 video-qc 环境，只用 numpy/cv2，不需要 ffmpeg）：`python ab_measure.py ab/results hf`。计算每镜 HF 与抖镜头数（HF ≥ 0.25），并生成 `measure.json` 与 `pairs.md`。脚本还会逐对核对「变体提示词去掉这一句后，是否与基线逐字相同」。
+4. 在部署机上用 `docker compose cp` 取出 `/tmp/jitter_ab_out`，再用 scp 传到测试机，放到 `ab/results/`。
+5. **hf 段**（测试机 video-qc 环境，只用 numpy/cv2，不需要 ffmpeg）：`python ab_measure.py ab/results hf`。计算每镜 HF 与抖镜头数（HF ≥ 0.25），并生成 `measure.json` 与 `pairs.md`。脚本还会逐对核对「变体提示词去掉这一句后，是否与基线逐字相同」。
 6. **目视**：逐张看接触表，按对比较四项——身份（是否参考图人物）、多余人物、可读文字、分屏或网格泄漏。结果写入 `ab/results/visual.json`（无缺陷写空列表），然后运行 `python ab_measure.py ab/results report` 得出结论。
 
-本地已验证：分段运行与一次性运行（`all`）的 `measure.json` 逐字相同；hf 段在 PATH 中没有 ffmpeg 时可以正常运行。`*.gray.gz` 与 `*.mp4` 不入库（见 `ab/.gitignore`；MP4 的 sha256 已记在 `attempts.json`，原件在对象存储中）。
+已在 Claude 云端工作区验证（既不是测试机，也不是部署机）：分段运行与一次性运行（`all`）的 `measure.json` 逐字相同；hf 段在 PATH 中没有 ffmpeg 时可以正常运行。`*.gray.gz` 与 `*.mp4` 不入库（见 `ab/.gitignore`；MP4 的 sha256 已记在 `attempts.json`，原件在对象存储中）。
 
 **判定（预先写定）：** 4 对比较中，三条同时成立，才把「变体设为默认」提交用户决定；否则如实报告为「无效或不确定」。
 1. 至少 3 对的变体整条隔帧停顿占比低于基线。「不可比」的对算作「不低于」。
