@@ -9,6 +9,7 @@ from uuid import uuid4
 import pytest
 from alembic import command
 from alembic.config import Config
+from database_guard import refuse_application_database
 from sqlalchemy import create_engine, inspect, text
 from sqlalchemy.engine import URL, make_url
 
@@ -46,6 +47,7 @@ def _isolated_databases(admin_url: str) -> Iterator[tuple[URL, URL]]:
     parsed_url = make_url(admin_url)
     root_url = parsed_url.set(database=parsed_url.database, query={})
     admin_engine = create_engine(root_url, isolation_level="AUTOCOMMIT")
+    refuse_application_database(admin_engine)
     try:
         with admin_engine.connect() as connection:
             for name in names:

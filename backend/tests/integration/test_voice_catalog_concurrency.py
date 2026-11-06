@@ -12,6 +12,7 @@ from zipfile import ZIP_DEFLATED, ZipFile
 import pytest
 from alembic import command
 from alembic.config import Config
+from database_guard import refuse_application_database
 from minio import Minio
 from PIL import Image
 from sqlalchemy import create_engine, text
@@ -88,6 +89,7 @@ def test_concurrent_conflicting_import_cannot_overwrite_winner(tmp_path: Path) -
     schema = f"voice_race_{uuid4().hex}"
     bucket = f"voice-race-{uuid4().hex}"
     admin_engine = create_engine(postgres_url)
+    refuse_application_database(admin_engine)
     with admin_engine.begin() as connection:
         connection.execute(text(f'CREATE SCHEMA "{schema}"'))
     database_url = f"{postgres_url}?options=-csearch_path%3D{schema}"

@@ -10,6 +10,7 @@ from uuid import UUID, uuid4
 import pytest
 from alembic import command
 from alembic.config import Config
+from database_guard import refuse_application_database
 from sqlalchemy import Engine, create_engine, text
 from sqlalchemy.engine import URL, make_url
 from sqlalchemy.orm import Session, sessionmaker
@@ -58,6 +59,7 @@ def postgres_database(request: pytest.FixtureRequest) -> Iterator[PostgresDataba
         )
     schema = f"contract_{uuid4().hex}"
     admin_engine = create_engine(database_url, pool_pre_ping=True)
+    refuse_application_database(admin_engine)
     with admin_engine.begin() as connection:
         connection.execute(text(f'CREATE SCHEMA "{schema}"'))
     engine: Engine | None = None
