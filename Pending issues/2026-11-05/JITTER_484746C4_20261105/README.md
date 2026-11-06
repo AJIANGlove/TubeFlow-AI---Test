@@ -65,3 +65,12 @@ join authoritative_narration_groups g on g.id = a.group_id
 join projects p on p.id = g.project_id
 where a.attempt_id in ('3528f397-c8a3-43d6-b758-3c7c81f9a153', '6e13d495-d6a5-4810-a48b-3c12fe8d0c55');
 ```
+
+## 勘误（2026-11-06）
+
+第 1 节「A 的成因」的第三条依据「本项目画风是手绘日式动画」**不成立**。`484746c4` 的 `visual_style` 是「欧美二维手绘动画、半写实卡通人物、复古历史绘本背景……避免 3D 渲染、照片写实、日式动漫……」，见 `../JITTER_SURVEY_20261105/results/stratified/coverage.json` 的 S7。
+
+「一拍二」在手绘动画中普遍使用，并不限于日式动画，所以「H3 在模仿手绘动画的一拍二节奏」这一推断仍可作为假设保留，但不能以画风为依据，且仍未直接验证。
+
+分层普查显示，同一画风下 v4 提示词时期的隔帧停顿明显更多：S1（v3）5.7%，S7（v4 单格）73.0%；S7 与 S1 只差一句「保留原图……」。复核见 `Pending issues/2026-11-06/RETRY_RECOUNT_AND_JITTER_STRATA_REVIEW_20261106.md`。
+

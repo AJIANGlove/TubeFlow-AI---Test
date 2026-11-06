@@ -654,3 +654,14 @@
 - [x] 部署机补采：失败单元全量位置与诊断、`8697ee51` 单元明细、已通过相邻对的四轴变化分布、第 40 单元文案、Temporal 活动耗时与超时、worker 线程池告警（只读，实施方执行）。（2026-11-05，`evidence/director_stall_followup/`：SQL A 254 行 / B 2 行（`8697ee51` 第 33 单元 `remote_state_unknown_exhausted`、第 39 单元 `worker_lost_after_call_started`）/ C 11 种轴向组合（731 对，只变 1 轴的组合为 **0**）/ D 第 40 单元 6 句 v10 提示词；16 个 run、572 次 `advance_project_director`，**TimedOut 0、重试 0**，最长 Started→Completed 806.07 s，**1201 s 只出现在 Scheduled→Started（5 次排队）**，1232/1274 未出现；temporalio 1.35.0，1702 行日志中线程池告警 **0 命中（记「无」）**。）（2026-11-05 复核勘误：「TimedOut 0、重试 0、1201 s 为排队」不成立，实为 6 次第 1 次尝试 StartToClose 超时后自动重试；数据已采集，本项勾选保留，解读见 `Pending issues/2026-11-05/DIRECTOR_STALL_FOLLOWUP_REVIEW_20261105.md`。）
 - [ ] 上线后首个出现合并的运行：合并次数、每单元镜头数变化、受影响组故事板按 §46.11 目视抽查（未验证）。
   - 2026-11-05 上线后 60 分钟：`project_director_runs` 新增 0、三类导演日志（`project director call finished` / `unit rejected` / `unit merged`）各 0 条，尚未出现任何合并行为，本项**未验证**。
+
+## 46. 2026-11-06 抖动 A/B 实验臂与部署前等待验收（USER_DECISIONS §51 第 3 项、§52）
+
+- [x] 本地：节奏变体与 v4 单格的系统提示词、编译载荷逐字相同；变体句逐字等于 README 原文，确定性插在 `[Shot 1]` 前一行；模型输出不得自带该句，最终文本恰好一句；v4 代词规则照旧（单元测试）。
+- [x] 本地：节奏臂取同组、同故事板、同 seed 基线臂的已编译提示词，只多这一句，不调用编译器；请求的 seed、参考图与工作流与基线相同；基线不符（无实验块、臂不对、策略不对、seed 不同、参考输入变化、已含该句）一律拒绝（单元测试）。
+- [x] 本地：实验臂只用于 crop-grid-v2 分组，整图与 title54 分组在编译前拒绝；实验尝试即使在 AUTO 项目也不走自动重提；实验身份参与幂等比较；不带实验字段的请求与原来一致，畸形实验请求返回 422（单元测试）。
+- [ ] PostgreSQL 集成测试（含新增「整图分组拒绝实验臂且不落库」）、ruff、mypy 相对 main 无新增（实施方执行；本地无 PostgreSQL 驱动，未跑）。
+- [ ] 部署按 §52 等待在途导演活动，记录两项计数与等待时刻。
+- [ ] A/B 执行：H3 调用不超过 8 次、DeepSeek 不超过 16 次；8 条尝试的快照都带 `experiment` 块；节奏臂 `video_prompt.strategy` 为 `tubeflow_storyboard_v4_single_panel_cadence_v1`，提示词与其基线只差这一句（逐条核对）；没有以这 8 条为被取代对象的自动重提。
+- [ ] `484746c4` 第 7、12 组的当前视频（`group_current_videos`）在 A/B 前后不变。
+- [ ] `ab/ab_measure.py` 的结果（`measure.json`、`pairs.md`、逐条接触表）与目视记录 `visual.json` 入库；按预先写定的三条规则给出结论，交用户决定。
