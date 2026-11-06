@@ -9,6 +9,7 @@ from sqlalchemy import Engine
 from sqlalchemy.orm import Session, sessionmaker
 
 from tubeflow_test.adapters.video_content_qc import FfmpegBlackFrameSampler
+from tubeflow_test.adapters.video_motion_metrics import FfmpegOpenCvMotionExtractor
 from tubeflow_test.video_generation.adapters import FfprobeVideoProbe
 from tubeflow_test.video_generation.api import AuthenticatedOwner, create_group_video_router
 from tubeflow_test.video_generation.authority import (
@@ -87,6 +88,8 @@ def build_video_feature(
         stall_policy=stall_policy,
         gpu_probe=gpu_probe,
         content_sampler=content_sampler,
+        # 观测指标（隔帧停顿占比与 HF，2026-11-06 用户决策）：只记录，不参与 QC 判定。
+        motion_extractor=FfmpegOpenCvMotionExtractor(timeout_seconds=60.0),
     )
     router = create_group_video_router(service, authenticated_owner)
     return VideoFeatureDependencies(repository, engine, assets, probe, router, service, gpu_probe)
