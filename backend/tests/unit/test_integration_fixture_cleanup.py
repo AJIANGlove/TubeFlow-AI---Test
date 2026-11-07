@@ -219,3 +219,16 @@ def test_no_integration_test_hardcodes_the_migration_head() -> None:
         if stale:
             offending.append((path.name, sorted(stale)))
     assert offending == []
+
+
+def test_every_integration_test_that_creates_a_bucket_removes_it() -> None:
+    # 2026-11-06: test_narration_postgres created a narration-check-* bucket on every run and
+    # never removed it; two were left in the test MinIO after one integration run.
+    creates = re.compile(r"\.ensure_(private_)?bucket\(\)")
+    leaking = [
+        path.name
+        for path in sorted(INTEGRATION.glob("*.py"))
+        if creates.search(path.read_text(encoding="utf-8"))
+        and "remove_bucket(" not in path.read_text(encoding="utf-8")
+    ]
+    assert leaking == []

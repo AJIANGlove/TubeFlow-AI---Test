@@ -96,10 +96,19 @@ def narration_database_url() -> str:
         admin_engine.dispose()
 
 
+def _remove_bucket(client: Minio, bucket: str) -> None:
+    if not client.bucket_exists(bucket):
+        return
+    for item in client.list_objects(bucket, recursive=True):
+        client.remove_object(bucket, item.object_name)
+    client.remove_bucket(bucket)
+
+
 @pytest.mark.integration
 def test_empty_postgres_authority_round_trip_after_migration(
     narration_database_url: str,
     monkeypatch: pytest.MonkeyPatch,
+    request: pytest.FixtureRequest,
 ) -> None:
     database_url = narration_database_url
     minio_endpoint = os.environ.get("TUBEFLOW_TEST_MINIO_ENDPOINT")
@@ -124,6 +133,8 @@ def test_empty_postgres_authority_round_trip_after_migration(
     bucket = f"narration-check-{uuid4().hex}"
     storage = PrivateObjectStorage(client, bucket)
     storage.ensure_bucket()
+    # 2026-11-06：此前从不删桶（通过时也留下一个 narration-check-*）；失败时同样要清理。
+    request.addfinalizer(lambda: _remove_bucket(client, bucket))
     raw_bytes = b"raw-authority-bytes"
     normalized_bytes = b"normalized-authority-bytes"
     raw_object = storage.put(raw_bytes, "audio/wav")
@@ -647,7 +658,8 @@ def test_empty_postgres_authority_round_trip_after_migration(
     )
     compiler = FakeVideoPromptCompiler(VideoPromptStrategy(settings.video_prompt_strategy))
     monkeypatch.setattr(
-        "tubeflow_test.api.app.build_video_prompt_compiler", lambda _settings: compiler
+        # app.py 按位置传 (settings, diagnostics)；替身须接受任意参数。
+        "tubeflow_test.api.app.build_video_prompt_compiler", lambda *_args: compiler
     )
     app = create_app(settings)
     http = TestClient(app)
