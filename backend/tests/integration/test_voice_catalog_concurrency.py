@@ -14,6 +14,7 @@ from alembic import command
 from alembic.config import Config
 from database_guard import refuse_application_database
 from minio import Minio
+from object_store_guard import refuse_application_object_store
 from PIL import Image
 from sqlalchemy import create_engine, text
 
@@ -107,6 +108,14 @@ def test_concurrent_conflicting_import_cannot_overwrite_winner(tmp_path: Path) -
             minio_access_key=minio_access_key,
             minio_secret_key=minio_secret_key,
             minio_bucket=bucket,
+        )
+    )
+    refuse_application_object_store(
+        Minio(
+            minio_endpoint,
+            access_key=minio_access_key,
+            secret_key=minio_secret_key,
+            secure=False,
         )
     )
     runtime.ensure_private_bucket()

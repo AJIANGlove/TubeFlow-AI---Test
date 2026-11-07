@@ -10,6 +10,7 @@ from uuid import uuid4
 import pytest
 from minio import Minio
 from minio.error import S3Error
+from object_store_guard import refuse_application_object_store
 
 from tubeflow_test.adapters.object_storage import PrivateObjectStorage
 
@@ -30,6 +31,7 @@ def test_real_minio_bucket_and_verified_round_trip() -> None:
         secret_key=secret_key,
         secure=False,
     )
+    refuse_application_object_store(client)
     storage = PrivateObjectStorage(client, bucket)
     storage.ensure_private_bucket()
     client.set_bucket_policy(

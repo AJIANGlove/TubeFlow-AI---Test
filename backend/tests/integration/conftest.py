@@ -10,6 +10,7 @@ from uuid import UUID, uuid4
 import pytest
 from alembic import command
 from alembic.config import Config
+from alembic.script import ScriptDirectory
 from database_guard import refuse_application_database
 from sqlalchemy import Engine, create_engine, text
 from sqlalchemy.engine import URL, make_url
@@ -40,6 +41,16 @@ class ProductionParentChain:
     voice_id: UUID
     project_id: UUID
     group_id: UUID
+
+
+def migration_head() -> str:
+    """The single head of the migration chain, read from migrations/ (never hardcoded)."""
+    backend_root = Path(__file__).resolve().parents[2]
+    config = Config(str(backend_root / "alembic.ini"))
+    config.set_main_option("script_location", str(backend_root / "migrations"))
+    head = ScriptDirectory.from_config(config).get_current_head()
+    assert head is not None, "the migration chain must have exactly one head"
+    return head
 
 
 def _schema_url(database_url: str, schema: str) -> str:

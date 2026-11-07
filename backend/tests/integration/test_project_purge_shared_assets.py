@@ -11,6 +11,7 @@ from uuid import UUID, uuid4
 import pytest
 from conftest import PostgresDatabase, ProductionParentChain
 from minio import Minio
+from object_store_guard import refuse_application_object_store
 from sqlalchemy import event, func, select
 
 from tubeflow_test.adapters.object_storage import PrivateObjectStorage
@@ -159,10 +160,11 @@ def test_concurrent_project_purges_elect_one_shared_object_deleter(
     endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
     client = Minio(
         endpoint,
-        access_key=os.environ.get("MINIO_ROOT_USER", "tubeflow"),
-        secret_key=os.environ.get("MINIO_ROOT_PASSWORD", "development-only-change-me"),
+        access_key=os.environ["TUBEFLOW_TEST_MINIO_ACCESS_KEY"],
+        secret_key=os.environ["TUBEFLOW_TEST_MINIO_SECRET_KEY"],
         secure=False,
     )
+    refuse_application_object_store(client)
     bucket = f"purge-{uuid4().hex}"
     storage = PrivateObjectStorage(client, bucket)
     storage.ensure_private_bucket()
@@ -250,10 +252,11 @@ def test_non_project_shared_survivor_remains_unchanged_when_one_project_is_delet
     endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
     client = Minio(
         endpoint,
-        access_key=os.environ.get("MINIO_ROOT_USER", "tubeflow"),
-        secret_key=os.environ.get("MINIO_ROOT_PASSWORD", "development-only-change-me"),
+        access_key=os.environ["TUBEFLOW_TEST_MINIO_ACCESS_KEY"],
+        secret_key=os.environ["TUBEFLOW_TEST_MINIO_SECRET_KEY"],
         secure=False,
     )
+    refuse_application_object_store(client)
     bucket = f"purge-owner-survivor-{uuid4().hex}"
     storage = PrivateObjectStorage(client, bucket)
     storage.ensure_private_bucket()
@@ -312,10 +315,11 @@ def test_global_shared_survivor_is_rechecked_and_preserved_after_retry(
     endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
     client = Minio(
         endpoint,
-        access_key=os.environ.get("MINIO_ROOT_USER", "tubeflow"),
-        secret_key=os.environ.get("MINIO_ROOT_PASSWORD", "development-only-change-me"),
+        access_key=os.environ["TUBEFLOW_TEST_MINIO_ACCESS_KEY"],
+        secret_key=os.environ["TUBEFLOW_TEST_MINIO_SECRET_KEY"],
         secure=False,
     )
+    refuse_application_object_store(client)
     bucket = f"purge-global-retry-{uuid4().hex}"
     storage = PrivateObjectStorage(client, bucket)
     storage.ensure_private_bucket()
@@ -398,10 +402,11 @@ def test_concurrent_global_shared_purges_preserve_external_survivor_idempotently
     endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
     client = Minio(
         endpoint,
-        access_key=os.environ.get("MINIO_ROOT_USER", "tubeflow"),
-        secret_key=os.environ.get("MINIO_ROOT_PASSWORD", "development-only-change-me"),
+        access_key=os.environ["TUBEFLOW_TEST_MINIO_ACCESS_KEY"],
+        secret_key=os.environ["TUBEFLOW_TEST_MINIO_SECRET_KEY"],
         secure=False,
     )
+    refuse_application_object_store(client)
     bucket = f"purge-global-concurrent-{uuid4().hex}"
     storage = PrivateObjectStorage(client, bucket)
     storage.ensure_private_bucket()
@@ -481,10 +486,11 @@ def test_replace_media_then_peer_begin_project_lock_order_does_not_deadlock(
     endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
     client = Minio(
         endpoint,
-        access_key=os.environ.get("MINIO_ROOT_USER", "tubeflow"),
-        secret_key=os.environ.get("MINIO_ROOT_PASSWORD", "development-only-change-me"),
+        access_key=os.environ["TUBEFLOW_TEST_MINIO_ACCESS_KEY"],
+        secret_key=os.environ["TUBEFLOW_TEST_MINIO_SECRET_KEY"],
         secure=False,
     )
+    refuse_application_object_store(client)
     bucket = f"purge-lock-order-{uuid4().hex}"
     storage = PrivateObjectStorage(client, bucket)
     storage.ensure_private_bucket()
@@ -599,10 +605,11 @@ def test_last_reference_disappears_after_skipped_save_and_is_re_elected_for_dele
     endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
     client = Minio(
         endpoint,
-        access_key=os.environ.get("MINIO_ROOT_USER", "tubeflow"),
-        secret_key=os.environ.get("MINIO_ROOT_PASSWORD", "development-only-change-me"),
+        access_key=os.environ["TUBEFLOW_TEST_MINIO_ACCESS_KEY"],
+        secret_key=os.environ["TUBEFLOW_TEST_MINIO_SECRET_KEY"],
         secure=False,
     )
+    refuse_application_object_store(client)
     bucket = f"purge-late-election-{uuid4().hex}"
     storage = PrivateObjectStorage(client, bucket)
     storage.ensure_private_bucket()
@@ -759,10 +766,11 @@ def test_missing_direct_object_is_an_idempotent_purge_success(
     endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
     client = Minio(
         endpoint,
-        access_key=os.environ.get("MINIO_ROOT_USER", "tubeflow"),
-        secret_key=os.environ.get("MINIO_ROOT_PASSWORD", "development-only-change-me"),
+        access_key=os.environ["TUBEFLOW_TEST_MINIO_ACCESS_KEY"],
+        secret_key=os.environ["TUBEFLOW_TEST_MINIO_SECRET_KEY"],
         secure=False,
     )
+    refuse_application_object_store(client)
     bucket = f"purge-missing-{uuid4().hex}"
     storage = PrivateObjectStorage(client, bucket)
     storage.ensure_private_bucket()
@@ -804,10 +812,11 @@ def test_purge_anonymizes_every_project_staged_state_and_cleans_late_put(
     endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
     client = Minio(
         endpoint,
-        access_key=os.environ.get("MINIO_ROOT_USER", "tubeflow"),
-        secret_key=os.environ.get("MINIO_ROOT_PASSWORD", "development-only-change-me"),
+        access_key=os.environ["TUBEFLOW_TEST_MINIO_ACCESS_KEY"],
+        secret_key=os.environ["TUBEFLOW_TEST_MINIO_SECRET_KEY"],
         secure=False,
     )
+    refuse_application_object_store(client)
     bucket = f"purge-staged-{uuid4().hex}"
     storage = PrivateObjectStorage(client, bucket)
     storage.ensure_private_bucket()
@@ -902,10 +911,11 @@ def test_expired_purge_claim_is_fenced_before_old_worker_deletes(
     endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
     client = Minio(
         endpoint,
-        access_key=os.environ.get("MINIO_ROOT_USER", "tubeflow"),
-        secret_key=os.environ.get("MINIO_ROOT_PASSWORD", "development-only-change-me"),
+        access_key=os.environ["TUBEFLOW_TEST_MINIO_ACCESS_KEY"],
+        secret_key=os.environ["TUBEFLOW_TEST_MINIO_SECRET_KEY"],
         secure=False,
     )
+    refuse_application_object_store(client)
     bucket = f"purge-claim-{uuid4().hex}"
     storage = PrivateObjectStorage(client, bucket)
     storage.ensure_private_bucket()
@@ -1158,10 +1168,11 @@ def test_lease_expiry_during_delete_fences_results_but_not_issued_idempotent_io(
     endpoint = os.environ["TUBEFLOW_TEST_MINIO_ENDPOINT"]
     client = Minio(
         endpoint,
-        access_key=os.environ.get("MINIO_ROOT_USER", "tubeflow"),
-        secret_key=os.environ.get("MINIO_ROOT_PASSWORD", "development-only-change-me"),
+        access_key=os.environ["TUBEFLOW_TEST_MINIO_ACCESS_KEY"],
+        secret_key=os.environ["TUBEFLOW_TEST_MINIO_SECRET_KEY"],
         secure=False,
     )
+    refuse_application_object_store(client)
     bucket = f"purge-issued-io-{uuid4().hex}"
     storage = PrivateObjectStorage(client, bucket)
     storage.ensure_private_bucket()

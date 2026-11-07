@@ -12,6 +12,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.testclient import TestClient
 from minio import Minio
+from object_store_guard import refuse_application_object_store
 from sqlalchemy import event, text, update
 
 from tubeflow_test.adapters.object_storage import PrivateObjectStorage
@@ -310,6 +311,7 @@ def test_real_minio_authenticated_http_serves_current_and_historical_video_asset
     client = _TrackingMinio(
         endpoint, access_key=access_key, secret_key=secret_key, secure=False
     )
+    refuse_application_object_store(client)
     storage = PrivateObjectStorage(client, bucket)
     storage.ensure_private_bucket()
     composition_body = b"composition-current-mp4"
