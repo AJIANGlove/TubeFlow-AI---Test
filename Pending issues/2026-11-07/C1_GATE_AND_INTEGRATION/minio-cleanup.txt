@@ -1,0 +1,20 @@
+### BEFORE
+[2026-11-07 03:15:52 UTC]     0B narration-check-e668d346bdb24b20a39df1ed08989dd4/
+[2026-11-07 03:10:52 UTC]     0B narration-check-e6c7727577bb43c9be8cac207771cdf6/
+### DELETE (allowlist only)
+objects in narration-check-e668d346bdb24b20a39df1ed08989dd4: 4
+Removed `local/narration-check-e668d346bdb24b20a39df1ed08989dd4/00a52a36-874b-4eed-afe7-0d4e544fc54c`.
+Removed `local/narration-check-e668d346bdb24b20a39df1ed08989dd4/0f8fe8ba-45db-4f1d-ac66-6c34b3481ec3`.
+Removed `local/narration-check-e668d346bdb24b20a39df1ed08989dd4/343f6cf3-5729-4d1b-b923-cb1592f99fb2`.
+Removed `local/narration-check-e668d346bdb24b20a39df1ed08989dd4/eb93f8c5-4b85-4e1c-9386-139f13fde99c`.
+Removed `local/narration-check-e668d346bdb24b20a39df1ed08989dd4` successfully.
+removed narration-check-e668d346bdb24b20a39df1ed08989dd4
+objects in narration-check-e6c7727577bb43c9be8cac207771cdf6: 4
+Removed `local/narration-check-e6c7727577bb43c9be8cac207771cdf6/4910d89d-a7c1-4bdc-a04c-89895506bb8a`.
+Removed `local/narration-check-e6c7727577bb43c9be8cac207771cdf6/80d2f19f-0fc5-4355-93bc-9db1163bc544`.
+Removed `local/narration-check-e6c7727577bb43c9be8cac207771cdf6/9329a65f-508d-4368-8832-9c8ce4ed58bf`.
+Removed `local/narration-check-e6c7727577bb43c9be8cac207771cdf6/c959381c-c397-45b0-b8b4-79c36d7f9d38`.
+Removed `local/narration-check-e6c7727577bb43c9be8cac207771cdf6` successfully.
+removed narration-check-e6c7727577bb43c9be8cac207771cdf6
+### AFTER
+buckets:0
