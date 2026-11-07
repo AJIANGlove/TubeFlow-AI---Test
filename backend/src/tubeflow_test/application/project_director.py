@@ -1583,8 +1583,13 @@ class ProjectDirectorService:
         if payload["output_locale"] != unit.required_locale:
             raise ProjectDirectorOutputValidationError("director_output_locale_declared_mismatch")
         raw_shots = cast(list[object], payload["shots"])
-        if not 1 <= len(raw_shots) <= min(2 * len(unit.sentences), 8):
-            raise ProjectDirectorOutputValidationError("director_output_shot_count_invalid")
+        maximum = _unit_shot_maximum(len(unit.sentences))
+        if not 1 <= len(raw_shots) <= maximum:
+            # §53：诊断只记镜头数与上限（不含正文），供重试提示写明超出多少。
+            raise ProjectDirectorOutputValidationError(
+                _SHOT_COUNT_FAILURE,
+                {"returned_shot_count": len(raw_shots), "shot_count_maximum": maximum},
+            )
         required = {
             "order",
             "scene",
@@ -2195,6 +2200,48 @@ def _v9_unit_prompt(legacy: str, sentence_count: int, shot_cap: int) -> str:
 # 提示词、temperature 0.0 与同一 Idempotency-Key 重发，3 次尝试实际等于 1 次。
 _RETRY_FEEDBACK_PREFIXES = ("director_output_", "director_response_")
 _ADJACENT_DIVERSITY_FAILURE = "director_output_adjacent_diversity_insufficient"
+_SHOT_COUNT_FAILURE = "director_output_shot_count_invalid"
+
+
+def _unit_shot_maximum(sentence_count: int) -> int:
+    """单元镜头上限 min(2×句数, 8)（§5.3），出口校验与重试提示共用。"""
+    return min(2 * sentence_count, 8)
+
+
+def _shot_count_notice(unit: ProjectDirectorUnit) -> str:
+    """§53（2026-11-07）：镜头数被拒后的重试提示写明返回了几镜、上限几镜，并要求合并相邻句。
+
+    依据：E2E 项目 93d717fa 第 5 单元（8 句，上限 8）三次都返回 9 镜以上，通用提示没有写出
+    上限。诊断缺失或不完整时上限按单元句数重算，返回数省略；只改发往服务商的提示视图。
+    """
+    diagnostics = unit.response_diagnostics
+    maximum = diagnostics.get("shot_count_maximum")
+    if not isinstance(maximum, int) or isinstance(maximum, bool) or maximum < 1:
+        maximum = _unit_shot_maximum(len(unit.sentences))
+    returned = diagnostics.get("returned_shot_count")
+    head = (
+        "RETRY NOTICE: your previous answer for this TARGET was rejected with code "
+        f"{_SHOT_COUNT_FAILURE}"
+    )
+    if isinstance(returned, int) and not isinstance(returned, bool) and returned < 1:
+        return (
+            f"{head}: it returned no shots. Return between 1 and {maximum} shots, and link "
+            "every TARGET sentence to at least one shot."
+        )
+    returned_text = (
+        f"it returned {returned} shots"
+        if isinstance(returned, int) and not isinstance(returned, bool)
+        else "it returned too many shots"
+    )
+    return (
+        f"{head}: {returned_text}, but this TARGET allows at most {maximum} shots. Return no "
+        f"more than {maximum} shots. When TARGET has more sentences than that, link "
+        "consecutive sentences that show the same moment or the same subject to one shot "
+        "instead of giving every sentence its own shot; this maximum overrides any "
+        "per-sentence pacing guidance above. Every TARGET sentence must still be "
+        "linked by at least one shot, and every adjacent pair must still change at least two "
+        "of semantic_event, subject_focus, time_relation and location_relation."
+    )
 
 
 _CONTROLLED_AXES = ("semantic_event", "subject_focus", "time_relation", "location_relation")
@@ -2284,6 +2331,8 @@ def _repair_notice(unit: ProjectDirectorUnit) -> str:
         )
         # §50：附上本单元上一次被拒的具体相邻对，使每次重试的提示随实际错误变化。
         return f"{notice} {detail}" if detail is not None else notice
+    if failure_code == _SHOT_COUNT_FAILURE:
+        return _shot_count_notice(unit)
     return (
         f"RETRY NOTICE: your previous answer was rejected with code {failure_code}. Re-read "
         "the output contract above, fix that problem, and check every rule again before "
