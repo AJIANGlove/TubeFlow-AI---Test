@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 from alembic import command
 from alembic.config import Config
+from conftest import migration_head
 from sqlalchemy import inspect, text
 
 from tubeflow_test.adapters.persistence.elevenlabs import (
@@ -51,9 +52,10 @@ def test_elevenlabs_pool_schema_matches_models_and_downgrade_drops_tables(
         item["column_names"] == ["api_key"]
         for item in inspector.get_unique_constraints("elevenlabs_keys")
     )
-    # 夹具从空库升级到 head（当前 0039）；此处断言迁移链已到当前 head。
+    # 夹具从空库升级到 head；此处断言迁移链已到当前 head（从 migrations/ 读取，不写死版本号）。
     with engine.connect() as connection:
-        assert connection.scalar(text("SELECT version_num FROM alembic_version")) == "0039"
+        version = connection.scalar(text("SELECT version_num FROM alembic_version"))
+    assert version == migration_head()
 
     command.downgrade(_config(postgres_database.url), "0033")
     downgraded = inspect(engine)

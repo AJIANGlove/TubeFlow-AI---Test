@@ -9,6 +9,7 @@ from uuid import uuid4
 import pytest
 from minio import Minio
 from minio.error import S3Error
+from object_store_guard import refuse_application_object_store
 from sqlalchemy import select
 
 from tubeflow_test.adapters.object_storage import PrivateObjectStorage
@@ -33,6 +34,7 @@ def test_h3_archive_concurrency_and_purge_interlock(
         secret_key=os.environ["TUBEFLOW_TEST_MINIO_SECRET_KEY"],
         secure=False,
     )
+    refuse_application_object_store(client)
     bucket = f"h3-archive-{uuid4().hex}"
     storage = PrivateObjectStorage(client, bucket)
     storage.ensure_private_bucket()

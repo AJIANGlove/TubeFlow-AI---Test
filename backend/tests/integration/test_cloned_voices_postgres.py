@@ -10,6 +10,7 @@ from datetime import UTC, datetime
 from uuid import uuid4
 
 import pytest
+from conftest import migration_head
 from sqlalchemy import inspect, text
 
 from tubeflow_test.adapters.persistence.identity_project.models import (
@@ -243,7 +244,8 @@ def test_elevenlabs_project_and_snapshot_facts_round_trip(
 
     with postgres_database.engine.connect() as connection:
         assert (
-            connection.scalar(text("SELECT version_num FROM alembic_version")) == "0039"
+            connection.scalar(text("SELECT version_num FROM alembic_version"))
+            == migration_head()
         )
         default_provider = connection.scalar(
             text("SELECT default_tts_provider FROM channels WHERE id = :id"),

@@ -12,7 +12,11 @@ from tubeflow_test.adapters.persistence.storyboards.models import (
     DirectorRevisionRow,
     StoryboardGenerationRow,
 )
-from tubeflow_test.video_generation.domain import ImmutableWorkflowSnapshot, VideoRuleViolation
+from tubeflow_test.video_generation.domain import (
+    ImmutableWorkflowSnapshot,
+    VideoCapacityUnavailable,
+    VideoRuleViolation,
+)
 from tubeflow_test.video_generation.orchestration import AttemptStage, PersistentAttempt
 from tubeflow_test.video_generation.persistence import H3NodeRecord
 from tubeflow_test.video_generation.sqlalchemy_repository import SqlAlchemyVideoRepository
@@ -143,7 +147,9 @@ def test_postgres_round_trip_revision_cas_and_atomic_capacity(
             {},
         )
     )
-    with pytest.raises(VideoRuleViolation, match="capacity"):
+    # 容量耗尽按设计抛 VideoCapacityUnavailable（orchestration 专门捕获），
+    # 不是 VideoRuleViolation。
+    with pytest.raises(VideoCapacityUnavailable, match="capacity"):
         second_repo.claim_compatible_node(other.attempt_id, workflow)
     claimed = second_repo.get_attempt(advanced.attempt_id)
     assert claimed is not None and claimed.slot_lease_token is not None

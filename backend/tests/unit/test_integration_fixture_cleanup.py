@@ -145,3 +145,77 @@ def test_every_integration_test_that_creates_schemas_or_databases_calls_the_guar
         and "refuse_application_database(" not in path.read_text(encoding="utf-8")
     ]
     assert unguarded == []
+
+
+class _ObjectStore:
+    """Fake MinIO client: answers bucket_exists and records every other call."""
+
+    def __init__(self, buckets: set[str]) -> None:
+        self.buckets = buckets
+        self.calls: list[str] = []
+
+    def bucket_exists(self, bucket_name: str) -> bool:
+        self.calls.append(f"bucket_exists:{bucket_name}")
+        return bucket_name in self.buckets
+
+
+def test_object_store_guard_refuses_the_application_minio(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    guard = _load(monkeypatch, "object_store_guard.py", "object_store_guard_under_test")
+    application = _ObjectStore({"tubeflow-private", "something-else"})
+    with pytest.raises(pytest.fail.Exception, match="'tubeflow-private'"):
+        guard.refuse_application_object_store(application)
+    assert application.calls == ["bucket_exists:tubeflow-private"]
+
+    empty_test_store = _ObjectStore(set())
+    guard.refuse_application_object_store(empty_test_store)
+    assert empty_test_store.calls == ["bucket_exists:tubeflow-private"]
+
+
+def test_object_store_guard_names_the_configured_application_bucket(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from tubeflow_test.config import Settings
+
+    guard = _load(monkeypatch, "object_store_guard.py", "object_store_guard_under_test")
+    assert Settings.model_fields["minio_bucket"].default == guard.APPLICATION_BUCKET
+
+
+def test_every_integration_test_that_builds_a_minio_client_calls_the_guard() -> None:
+    builds_client = re.compile(r"\b(Minio|_TrackingMinio)\(")
+    unguarded = [
+        path.name
+        for path in sorted(INTEGRATION.glob("*.py"))
+        if path.name != "object_store_guard.py"
+        and builds_client.search(path.read_text(encoding="utf-8"))
+        and "refuse_application_object_store(" not in path.read_text(encoding="utf-8")
+    ]
+    assert unguarded == []
+
+
+def test_minio_tests_never_fall_back_to_root_or_default_credentials() -> None:
+    offending = [
+        path.name
+        for path in sorted(INTEGRATION.glob("*.py"))
+        if any(
+            marker in path.read_text(encoding="utf-8")
+            for marker in ("MINIO_ROOT_USER", "MINIO_ROOT_PASSWORD", "development-only-change-me")
+        )
+    ]
+    assert offending == []
+
+
+def test_no_integration_test_hardcodes_the_migration_head() -> None:
+    # A literal revision is fine only when the same file pins the fixture to it
+    # (@pytest.mark.parametrize("postgres_database", ["0006"], indirect=True)); otherwise the
+    # assertion means "current head" and goes stale with every new migration (it did: 0039).
+    compared = re.compile(r"alembic_version\"\)\)\s*==\s*\"(\d{4})\"")
+    pinned = re.compile(r"parametrize\(\s*\"postgres_database\",\s*\[\s*\"(\d{4})\"")
+    offending = []
+    for path in sorted(INTEGRATION.glob("*.py")):
+        source = path.read_text(encoding="utf-8")
+        stale = set(compared.findall(source)) - set(pinned.findall(source))
+        if stale:
+            offending.append((path.name, sorted(stale)))
+    assert offending == []

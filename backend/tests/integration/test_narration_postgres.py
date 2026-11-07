@@ -15,6 +15,7 @@ from alembic.config import Config
 from database_guard import refuse_application_database
 from fastapi.testclient import TestClient
 from minio import Minio
+from object_store_guard import refuse_application_object_store
 from sqlalchemy import create_engine, func, select, text
 from sqlalchemy.orm import sessionmaker
 
@@ -119,6 +120,7 @@ def test_empty_postgres_authority_round_trip_after_migration(
         secret_key=minio_secret_key,
         secure=False,
     )
+    refuse_application_object_store(client)
     bucket = f"narration-check-{uuid4().hex}"
     storage = PrivateObjectStorage(client, bucket)
     storage.ensure_bucket()
