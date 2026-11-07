@@ -1,0 +1,309 @@
+........F.........F............................F....FF...ss............. [ 48%]
+.................FFFFFFF.FFF...F.s..............FFF..................... [ 97%]
+..F.                                                                     [100%]
+================================== FAILURES ===================================
+____________ test_elevenlabs_project_and_snapshot_facts_round_trip ____________
+tests\integration\test_cloned_voices_postgres.py:245: in test_elevenlabs_project_and_snapshot_facts_round_trip
+    assert (
+E   AssertionError: assert '0047' == '0039'
+E     
+E     - 0039
+E     + 0047
+____ test_elevenlabs_pool_schema_matches_models_and_downgrade_drops_tables ____
+tests\integration\test_elevenlabs_pool_postgres.py:56: in test_elevenlabs_pool_schema_matches_models_and_downgrade_drops_tables
+    assert connection.scalar(text("SELECT version_num FROM alembic_version")) == "0039"
+E   AssertionError: assert '0047' == '0039'
+E     
+E     - 0039
+E     + 0047
+_______ test_real_postgres_schema_round_trip_and_atomic_initialization ________
+tests\integration\test_identity_project_postgres.py:66: in test_real_postgres_schema_round_trip_and_atomic_initialization
+    assert sorted(results) == [(201, None), (409, "admin_already_initialized")]
+E   AssertionError: assert [(409, 'admin...initialized')] == [(201, None),...initialized')]
+E     
+E     At index 0 diff: (409, 'admin_already_initialized') != (201, None)
+E     Use -v to get more diff
+_ test_real_minio_authenticated_http_serves_current_and_historical_video_assets _
+tests\integration\test_media_content_postgres.py:482: in test_real_minio_authenticated_http_serves_current_and_historical_video_assets
+    assert full.status_code == 200 and full.content == composition_body
+E   assert (404 == 200)
+E    +  where 404 = <Response [404 Not Found]>.status_code
+__________ test_empty_postgres_authority_round_trip_after_migration ___________
+tests\integration\test_narration_postgres.py:650: in test_empty_postgres_authority_round_trip_after_migration
+    app = create_app(settings)
+          ^^^^^^^^^^^^^^^^^^^^
+src\tubeflow_test\api\app.py:367: in create_app
+    video_prompt_compiler = build_video_prompt_compiler(
+E   TypeError: test_empty_postgres_authority_round_trip_after_migration.<locals>.<lambda>() takes 1 positional argument but 2 were given
+_______ test_concurrent_project_purges_elect_one_shared_object_deleter ________
+tests\integration\test_project_purge_shared_assets.py:168: in test_concurrent_project_purges_elect_one_shared_object_deleter
+    storage.ensure_private_bucket()
+src\tubeflow_test\adapters\object_storage.py:48: in ensure_private_bucket
+    if not self._client.bucket_exists(self._bucket):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:700: in bucket_exists
+    self._execute("HEAD", bucket_name)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:441: in _execute
+    region = self._get_region(bucket_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:498: in _get_region
+    response = self._url_open(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:427: in _url_open
+    raise response_error
+E   minio.error.S3Error: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /purge-07c6f93a56454dab907f5a0d2c3b1a27, request_id: 18E5A4B4271E696F, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: purge-07c6f93a56454dab907f5a0d2c3b1a27
+_ test_non_project_shared_survivor_remains_unchanged_when_one_project_is_deleted[OWNER] _
+tests\integration\test_project_purge_shared_assets.py:259: in test_non_project_shared_survivor_remains_unchanged_when_one_project_is_deleted
+    storage.ensure_private_bucket()
+src\tubeflow_test\adapters\object_storage.py:48: in ensure_private_bucket
+    if not self._client.bucket_exists(self._bucket):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:700: in bucket_exists
+    self._execute("HEAD", bucket_name)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:441: in _execute
+    region = self._get_region(bucket_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:498: in _get_region
+    response = self._url_open(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:427: in _url_open
+    raise response_error
+E   minio.error.S3Error: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /purge-owner-survivor-26215f0dbb23426bb082ac4ff3142d67, request_id: 18E5A4B4841CC834, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: purge-owner-survivor-26215f0dbb23426bb082ac4ff3142d67
+_ test_non_project_shared_survivor_remains_unchanged_when_one_project_is_deleted[GLOBAL] _
+tests\integration\test_project_purge_shared_assets.py:259: in test_non_project_shared_survivor_remains_unchanged_when_one_project_is_deleted
+    storage.ensure_private_bucket()
+src\tubeflow_test\adapters\object_storage.py:48: in ensure_private_bucket
+    if not self._client.bucket_exists(self._bucket):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:700: in bucket_exists
+    self._execute("HEAD", bucket_name)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:441: in _execute
+    region = self._get_region(bucket_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:498: in _get_region
+    response = self._url_open(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:427: in _url_open
+    raise response_error
+E   minio.error.S3Error: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /purge-owner-survivor-dc80746bb1094ceb9e1e68e7b9da31d8, request_id: 18E5A4B4EB0B5AD9, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: purge-owner-survivor-dc80746bb1094ceb9e1e68e7b9da31d8
+_____ test_global_shared_survivor_is_rechecked_and_preserved_after_retry ______
+tests\integration\test_project_purge_shared_assets.py:321: in test_global_shared_survivor_is_rechecked_and_preserved_after_retry
+    storage.ensure_private_bucket()
+src\tubeflow_test\adapters\object_storage.py:48: in ensure_private_bucket
+    if not self._client.bucket_exists(self._bucket):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:700: in bucket_exists
+    self._execute("HEAD", bucket_name)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:441: in _execute
+    region = self._get_region(bucket_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:498: in _get_region
+    response = self._url_open(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:427: in _url_open
+    raise response_error
+E   minio.error.S3Error: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /purge-global-retry-2e915e6c81c14577b0f54f7d2a5a725c, request_id: 18E5A4B5500792F3, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: purge-global-retry-2e915e6c81c14577b0f54f7d2a5a725c
+_ test_concurrent_global_shared_purges_preserve_external_survivor_idempotently _
+tests\integration\test_project_purge_shared_assets.py:407: in test_concurrent_global_shared_purges_preserve_external_survivor_idempotently
+    storage.ensure_private_bucket()
+src\tubeflow_test\adapters\object_storage.py:48: in ensure_private_bucket
+    if not self._client.bucket_exists(self._bucket):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:700: in bucket_exists
+    self._execute("HEAD", bucket_name)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:441: in _execute
+    region = self._get_region(bucket_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:498: in _get_region
+    response = self._url_open(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:427: in _url_open
+    raise response_error
+E   minio.error.S3Error: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /purge-global-concurrent-756e49c03504444e9b59fc289ff1a9d7, request_id: 18E5A4B5B1240931, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: purge-global-concurrent-756e49c03504444e9b59fc289ff1a9d7
+___ test_replace_media_then_peer_begin_project_lock_order_does_not_deadlock ___
+tests\integration\test_project_purge_shared_assets.py:490: in test_replace_media_then_peer_begin_project_lock_order_does_not_deadlock
+    storage.ensure_private_bucket()
+src\tubeflow_test\adapters\object_storage.py:48: in ensure_private_bucket
+    if not self._client.bucket_exists(self._bucket):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:700: in bucket_exists
+    self._execute("HEAD", bucket_name)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:441: in _execute
+    region = self._get_region(bucket_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:498: in _get_region
+    response = self._url_open(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:427: in _url_open
+    raise response_error
+E   minio.error.S3Error: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /purge-lock-order-10de54ea5cba41af84aa5b868e81dc2a, request_id: 18E5A4B61C3E72B7, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: purge-lock-order-10de54ea5cba41af84aa5b868e81dc2a
+_ test_last_reference_disappears_after_skipped_save_and_is_re_elected_for_delete _
+tests\integration\test_project_purge_shared_assets.py:608: in test_last_reference_disappears_after_skipped_save_and_is_re_elected_for_delete
+    storage.ensure_private_bucket()
+src\tubeflow_test\adapters\object_storage.py:48: in ensure_private_bucket
+    if not self._client.bucket_exists(self._bucket):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:700: in bucket_exists
+    self._execute("HEAD", bucket_name)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:441: in _execute
+    region = self._get_region(bucket_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:498: in _get_region
+    response = self._url_open(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:427: in _url_open
+    raise response_error
+E   minio.error.S3Error: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /purge-late-election-4100c70e1f2043b4b6cfc8584e35bbed, request_id: 18E5A4B683254653, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: purge-late-election-4100c70e1f2043b4b6cfc8584e35bbed
+__________ test_missing_direct_object_is_an_idempotent_purge_success __________
+tests\integration\test_project_purge_shared_assets.py:768: in test_missing_direct_object_is_an_idempotent_purge_success
+    storage.ensure_private_bucket()
+src\tubeflow_test\adapters\object_storage.py:48: in ensure_private_bucket
+    if not self._client.bucket_exists(self._bucket):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:700: in bucket_exists
+    self._execute("HEAD", bucket_name)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:441: in _execute
+    region = self._get_region(bucket_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:498: in _get_region
+    response = self._url_open(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:427: in _url_open
+    raise response_error
+E   minio.error.S3Error: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /purge-missing-ab9f7cfce6d444a8a16d7074fd7f12ae, request_id: 18E5A4B7624D7B2B, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: purge-missing-ab9f7cfce6d444a8a16d7074fd7f12ae
+____ test_purge_anonymizes_every_project_staged_state_and_cleans_late_put _____
+tests\integration\test_project_purge_shared_assets.py:813: in test_purge_anonymizes_every_project_staged_state_and_cleans_late_put
+    storage.ensure_private_bucket()
+src\tubeflow_test\adapters\object_storage.py:48: in ensure_private_bucket
+    if not self._client.bucket_exists(self._bucket):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:700: in bucket_exists
+    self._execute("HEAD", bucket_name)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:441: in _execute
+    region = self._get_region(bucket_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:498: in _get_region
+    response = self._url_open(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:427: in _url_open
+    raise response_error
+E   minio.error.S3Error: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /purge-staged-77ea7d4bdd4b498098e80048aabeba8f, request_id: 18E5A4B7F175CB8E, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: purge-staged-77ea7d4bdd4b498098e80048aabeba8f
+________ test_expired_purge_claim_is_fenced_before_old_worker_deletes _________
+tests\integration\test_project_purge_shared_assets.py:911: in test_expired_purge_claim_is_fenced_before_old_worker_deletes
+    storage.ensure_private_bucket()
+src\tubeflow_test\adapters\object_storage.py:48: in ensure_private_bucket
+    if not self._client.bucket_exists(self._bucket):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:700: in bucket_exists
+    self._execute("HEAD", bucket_name)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:441: in _execute
+    region = self._get_region(bucket_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:498: in _get_region
+    response = self._url_open(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:427: in _url_open
+    raise response_error
+E   minio.error.S3Error: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /purge-claim-6a7b4eba85d246109422d40af436491b, request_id: 18E5A4B85B720B0E, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: purge-claim-6a7b4eba85d246109422d40af436491b
+_ test_lease_expiry_during_delete_fences_results_but_not_issued_idempotent_io _
+tests\integration\test_project_purge_shared_assets.py:1167: in test_lease_expiry_during_delete_fences_results_but_not_issued_idempotent_io
+    storage.ensure_private_bucket()
+src\tubeflow_test\adapters\object_storage.py:48: in ensure_private_bucket
+    if not self._client.bucket_exists(self._bucket):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:700: in bucket_exists
+    self._execute("HEAD", bucket_name)
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:441: in _execute
+    region = self._get_region(bucket_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:498: in _get_region
+    response = self._url_open(
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\minio\api.py:427: in _url_open
+    raise response_error
+E   minio.error.S3Error: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /purge-issued-io-c8d9d14d7d7645a1911d36cbe9530183, request_id: 18E5A4BA055378D6, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: purge-issued-io-c8d9d14d7d7645a1911d36cbe9530183
+_____ test_postgres_advisory_claim_lock_prevents_same_generation_phantoms _____
+tests\integration\test_staged_upload_protocol.py:143: in test_postgres_advisory_claim_lock_prevents_same_generation_phantoms
+    assert winners[0][1] == 2
+E   assert 1 == 2
+_______ test_fixed_catalog_writer_can_resume_matching_unattached_stage ________
+tests\integration\test_staged_upload_protocol.py:187: in test_fixed_catalog_writer_can_resume_matching_unattached_stage
+    assert row is not None
+E   assert None is not None
+___ test_identity_claim_handle_blocks_aba_and_refreshes_reopened_generation ___
+tests\integration\test_staged_upload_protocol.py:217: in test_identity_claim_handle_blocks_aba_and_refreshes_reopened_generation
+    assert finalized is not None and finalized.state == "FINALIZED"
+E   assert (None is not None)
+__________ test_postgres_round_trip_revision_cas_and_atomic_capacity __________
+tests\integration\test_video_postgres.py:147: in test_postgres_round_trip_revision_cas_and_atomic_capacity
+    second_repo.claim_compatible_node(other.attempt_id, workflow)
+src\tubeflow_test\video_generation\sqlalchemy_repository.py:855: in claim_compatible_node
+    raise VideoCapacityUnavailable()
+E   tubeflow_test.video_generation.domain.VideoCapacityUnavailable: no compatible H3 node has capacity
+------------------------------ Captured log call ------------------------------
+WARNING  tubeflow_test.video_generation.sqlalchemy_repository:sqlalchemy_repository.py:1166 no compatible H3 node has capacity; enabled node snapshot (node_id, health, claimed, capacity, stalled): [('pg-node', 'READY', 1, 1, 0)]
+============================== warnings summary ===============================
+src\tubeflow_test\adapters\audio_qc.py:3
+  D:\AAA-project\TubeFlow AI - Test\tmp\wt-c1-main\backend\src\tubeflow_test\adapters\audio_qc.py:3: DeprecationWarning: 'audioop' is deprecated and slated for removal in Python 3.13
+    import audioop
+
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/integration/test_alembic_url_precedence.py: 3 warnings
+tests/integration/test_channel_deletion_postgres.py: 5 warnings
+tests/integration/test_cloned_voices_postgres.py: 3 warnings
+tests/integration/test_composition_authority_postgres.py: 3 warnings
+tests/integration/test_cover_image_upload_postgres.py: 4 warnings
+tests/integration/test_cover_templates_postgres.py: 2 warnings
+tests/integration/test_elevenlabs_pool_postgres.py: 2 warnings
+tests/integration/test_h3_archive_postgres_minio.py: 1 warning
+tests/integration/test_h3_manual_media_lock.py: 1 warning
+tests/integration/test_h3_node_startup_postgres.py: 1 warning
+tests/integration/test_h3_outbox_migration_postgres.py: 4 warnings
+tests/integration/test_h3_project_routing_postgres.py: 3 warnings
+tests/integration/test_h3_reference_policy_migration.py: 11 warnings
+tests/integration/test_h3_storyboard_binding.py: 14 warnings
+tests/integration/test_identity_project_postgres.py: 1 warning
+tests/integration/test_media_content_postgres.py: 4 warnings
+tests/integration/test_narration_postgres.py: 1 warning
+tests/integration/test_narration_recovery_queue.py: 3 warnings
+tests/integration/test_postgres_media_cas.py: 2 warnings
+tests/integration/test_project_director_claim_project_gate.py: 2 warnings
+tests/integration/test_project_director_confirmation_atomic.py: 4 warnings
+tests/integration/test_project_director_current_materialization.py: 2 warnings
+tests/integration/test_project_director_manual_recovery_postgres.py: 11 warnings
+tests/integration/test_project_director_recovery_postgres.py: 2 warnings
+tests/integration/test_project_director_v4_migration.py: 3 warnings
+tests/integration/test_project_publication_postgres.py: 1 warning
+tests/integration/test_project_purge_scope_migration.py: 6 warnings
+tests/integration/test_project_purge_shared_assets.py: 17 warnings
+tests/integration/test_provider_audit_postgres.py: 1 warning
+tests/integration/test_shot_panel_assets_postgres.py: 5 warnings
+tests/integration/test_single_panel_fake_engine_postgres.py: 2 warnings
+tests/integration/test_single_panel_opt_in_postgres.py: 6 warnings
+tests/integration/test_staged_cleanup_migration.py: 4 warnings
+tests/integration/test_staged_upload_protocol.py: 13 warnings
+tests/integration/test_storyboard_director_lineage_edit.py: 5 warnings
+tests/integration/test_storyboard_failover_migration.py: 3 warnings
+tests/integration/test_storyboard_failover_postgres_atomic.py: 2 warnings
+tests/integration/test_storyboard_postgres_authority.py: 1 warning
+tests/integration/test_video_descriptions_postgres.py: 4 warnings
+tests/integration/test_video_postgres.py: 1 warning
+tests/integration/test_voice_catalog_concurrency.py: 1 warning
+  C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\alembic\config.py:604: DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces, commas, and colons for prepend_sys_path.  Consider adding path_separator=os to Alembic config.
+    util.warn_deprecated(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/integration/test_cloned_voices_postgres.py::test_elevenlabs_project_and_snapshot_facts_round_trip
+FAILED tests/integration/test_elevenlabs_pool_postgres.py::test_elevenlabs_pool_schema_matches_models_and_downgrade_drops_tables
+FAILED tests/integration/test_identity_project_postgres.py::test_real_postgres_schema_round_trip_and_atomic_initialization
+FAILED tests/integration/test_media_content_postgres.py::test_real_minio_authenticated_http_serves_current_and_historical_video_assets
+FAILED tests/integration/test_narration_postgres.py::test_empty_postgres_authority_round_trip_after_migration
+FAILED tests/integration/test_project_purge_shared_assets.py::test_concurrent_project_purges_elect_one_shared_object_deleter
+FAILED tests/integration/test_project_purge_shared_assets.py::test_non_project_shared_survivor_remains_unchanged_when_one_project_is_deleted[OWNER]
+FAILED tests/integration/test_project_purge_shared_assets.py::test_non_project_shared_survivor_remains_unchanged_when_one_project_is_deleted[GLOBAL]
+FAILED tests/integration/test_project_purge_shared_assets.py::test_global_shared_survivor_is_rechecked_and_preserved_after_retry
+FAILED tests/integration/test_project_purge_shared_assets.py::test_concurrent_global_shared_purges_preserve_external_survivor_idempotently
+FAILED tests/integration/test_project_purge_shared_assets.py::test_replace_media_then_peer_begin_project_lock_order_does_not_deadlock
+FAILED tests/integration/test_project_purge_shared_assets.py::test_last_reference_disappears_after_skipped_save_and_is_re_elected_for_delete
+FAILED tests/integration/test_project_purge_shared_assets.py::test_missing_direct_object_is_an_idempotent_purge_success
+FAILED tests/integration/test_project_purge_shared_assets.py::test_purge_anonymizes_every_project_staged_state_and_cleans_late_put
+FAILED tests/integration/test_project_purge_shared_assets.py::test_expired_purge_claim_is_fenced_before_old_worker_deletes
+FAILED tests/integration/test_project_purge_shared_assets.py::test_lease_expiry_during_delete_fences_results_but_not_issued_idempotent_io
+FAILED tests/integration/test_staged_upload_protocol.py::test_postgres_advisory_claim_lock_prevents_same_generation_phantoms
+FAILED tests/integration/test_staged_upload_protocol.py::test_fixed_catalog_writer_can_resume_matching_unattached_stage
+FAILED tests/integration/test_staged_upload_protocol.py::test_identity_claim_handle_blocks_aba_and_refreshes_reopened_generation
+FAILED tests/integration/test_video_postgres.py::test_postgres_round_trip_revision_cas_and_atomic_capacity
+20 failed, 125 passed, 3 skipped, 166 warnings in 275.63s (0:04:35)
