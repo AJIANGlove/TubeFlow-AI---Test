@@ -55,15 +55,17 @@
 | 容器内代码 | web 与 worker 的 `project_director.py` sha256 **均 `c875e419…`**；`_unit_shot_maximum(8)=8`、`_SHOT_COUNT_FAILURE` 均存在 |
 | 容器内配置（两容器相同） | `director_composition_recut=True`、`min_distance=0.1`、`storyboard_single_panel_new_projects=True`、`h3_single_panel_opt_in_enabled=True`、`video_prompt_strategy=tubeflow_storyboard_v4_natural_motion` |
 
-10 分钟快照（`snapshot_at=2026-11-08T15:41:35Z`，距 T_dep 约 3 分 8 秒；后续再补一次满 10 分钟的）：
+重启影响（两次快照；T_dep = 15:38:14Z）：
 
-| 指标 | 值 |
-| --- | ---: |
-| 被触碰的视频尝试（`video_generation_attempts.updated_at >= T_dep`） | **0** |
-| 新增故事板 `storyboard_generations` | **0** |
-| 新增 `storyboard_director_revisions` | **0** |
-| `composition_recut_approvals_json <> '[]'` | **0** |
-| `/health/live` | **200** |
+| 指标 | 15:41:35Z（+3m21s） | **15:48:42Z（+10m28s）** |
+| --- | ---: | ---: |
+| 被触碰的视频尝试（`video_generation_attempts.updated_at >= T_dep`） | 0 | **0** |
+| 新增故事板 `storyboard_generations` | 0 | **0** |
+| 新增 `storyboard_director_revisions` | 0 | **0** |
+| `composition_recut_approvals_json <> '[]'` | 0 | **0** |
+| `project_director_units` 的 `LEASED/SUBMITTING` | 0 | **0** |
+| `/health/live` | 200 | **200** |
+| worker 状态 | — | `Up 10 minutes (healthy)` |
 
 保护名单项目：因「被触碰的视频尝试」全库为 **0**，12 个保护项目必然零触碰（未再按 UUID 前缀单独统计——该查询因前缀不是完整 UUID 报错，未重试，以全库 0 为证据）。
 
