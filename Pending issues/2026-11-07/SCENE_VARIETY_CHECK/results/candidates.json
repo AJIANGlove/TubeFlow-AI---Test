@@ -1,0 +1,122 @@
+[
+ {
+  "project_id": "2280f7c6-f0c7-439a-8d82-71c52b588cbf",
+  "title": "What Really Happened to the Maya Civilization?",
+  "completed_at": "2026-11-07T16:33:06.956795+00:00",
+  "voiced_sentences": 535,
+  "groups": 163,
+  "director_run_id": "ffe19dfa-dcb0-4705-ad71-fc41ca0b36d2",
+  "director_prompt_refs": {
+   "GLOBAL_PLAN:project-director-global-plan-v7": 1,
+   "SHOT_PLAN:project-director-unit-v10": 89
+  }
+ },
+ {
+  "project_id": "bec1653d-a667-463a-92c9-9bcce3476876",
+  "title": "Every Empire That Conquered Iran Became Persian",
+  "completed_at": "2026-11-07T08:45:01.805547+00:00",
+  "voiced_sentences": 348,
+  "groups": 103,
+  "director_run_id": "193d577e-e72b-44cf-9513-33bde07cc46c",
+  "director_prompt_refs": {
+   "GLOBAL_PLAN:project-director-global-plan-v7": 1,
+   "SHOT_PLAN:project-director-unit-v10": 58
+  }
+ },
+ {
+  "project_id": "ff67c5e9-1db8-49c6-8f49-c96d9d0e140e",
+  "title": "Every Level of a Medieval Merchant",
+  "completed_at": "2026-11-06T01:50:30.661139+00:00",
+  "voiced_sentences": 331,
+  "groups": 67,
+  "director_run_id": "8f63bd28-5283-4dd5-aefd-a8a67174fd7e",
+  "director_prompt_refs": {
+   "GLOBAL_PLAN:project-director-global-plan-v7": 1,
+   "SHOT_PLAN:project-director-unit-v10": 55
+  }
+ },
+ {
+  "project_id": "7bc8ddd7-b9bc-46d5-9466-c4d29056ed21",
+  "title": "POV: 결혼식에 8천만 원을 썼고, 3년 뒤 후회한다",
+  "completed_at": "2026-11-05T20:08:11.564111+00:00",
+  "voiced_sentences": 350,
+  "groups": 84,
+  "director_run_id": "bae2ca3e-795a-47fd-95a5-3193f57c52f7",
+  "director_prompt_refs": {
+   "GLOBAL_PLAN:project-director-global-plan-v7": 1,
+   "SHOT_PLAN:project-director-unit-v10": 58
+  }
+ },
+ {
+  "project_id": "f881122d-1846-4d18-8f8b-4b89b0cbc0db",
+  "title": "You're a Crew Member on the Mary Celeste",
+  "completed_at": "2026-11-05T19:52:06.336996+00:00",
+  "voiced_sentences": 349,
+  "groups": 60,
+  "director_run_id": "8f5ee20b-001d-4e83-89b7-90d79464949b",
+  "director_prompt_refs": {
+   "GLOBAL_PLAN:project-director-global-plan-v7": 1,
+   "SHOT_PLAN:project-director-unit-v10": 58
+  }
+ },
+ {
+  "project_id": "7cf2e79d-4d9d-48fa-8639-dde4100b6469",
+  "title": "Why Everyone Keeps Stealing Ukraine's Soil",
+  "completed_at": "2026-11-05T19:46:00.946112+00:00",
+  "voiced_sentences": 258,
+  "groups": 100,
+  "director_run_id": "5d25a3a4-c359-41cc-bbf2-edacdedaa920",
+  "director_prompt_refs": {
+   "GLOBAL_PLAN:project-director-global-plan-v7": 1,
+   "SHOT_PLAN:project-director-unit-v10": 43
+  }
+ },
+ {
+  "project_id": "247462a4-e719-4488-ae14-aab962de1a27",
+  "title": "You're the Explorer Who Found Machu Picchu",
+  "completed_at": "2026-11-05T15:06:27.907537+00:00",
+  "voiced_sentences": 261,
+  "groups": 53,
+  "director_run_id": "08f817a8-cc3e-4214-873d-dd60213ff8a9",
+  "director_prompt_refs": {
+   "GLOBAL_PLAN:project-director-global-plan-v7": 1,
+   "SHOT_PLAN:project-director-unit-v10": 44
+  }
+ },
+ {
+  "project_id": "23c59183-7165-4c33-a161-7ecf28964c78",
+  "title": "A Day in the Life of a Roman Plebeian — Nothing Like the Movies",
+  "completed_at": "2026-11-05T08:32:14.776349+00:00",
+  "voiced_sentences": 475,
+  "groups": 79,
+  "director_run_id": "279ef866-aefd-424d-9785-b223b6472e5b",
+  "director_prompt_refs": {
+   "GLOBAL_PLAN:project-director-global-plan-v7": 1,
+   "SHOT_PLAN:project-director-unit-v10": 79
+  }
+ },
+ {
+  "project_id": "2c291aba-085d-499d-bd32-b3a4d75f252f",
+  "title": "여름 메뉴인 줄 알았지? 빙수 장사의 진짜 수익 구조",
+  "completed_at": "2026-11-04T21:29:39.463794+00:00",
+  "voiced_sentences": 496,
+  "groups": 107,
+  "director_run_id": "7e63cd2c-57dd-46ae-b59e-f4ef38c3b05e",
+  "director_prompt_refs": {
+   "GLOBAL_PLAN:project-director-global-plan-v7": 1,
+   "SHOT_PLAN:project-director-unit-v10": 83
+  }
+ },
+ {
+  "project_id": "fd3bf04d-d703-4054-bf53-baa7081ed0e8",
+  "title": "만두만 팔던 가게가 전국으로 파는 이유, 숨겨진 수익구조",
+  "completed_at": "2026-11-04T19:21:02.838609+00:00",
+  "voiced_sentences": 368,
+  "groups": 77,
+  "director_run_id": "404c7e8a-501c-433d-a561-09f4d09e0df8",
+  "director_prompt_refs": {
+   "GLOBAL_PLAN:project-director-global-plan-v7": 1,
+   "SHOT_PLAN:project-director-unit-v10": 61
+  }
+ }
+]

@@ -1,0 +1,3 @@
+=== guard hits ===
+Pending issues/2026-11-07/evidence/director_shot_count/gates/gate-integration-main.log:0
+Pending issues/2026-11-07/evidence/director_shot_count/gates/gate-integration-branch.log:0

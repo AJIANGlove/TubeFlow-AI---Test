@@ -1,0 +1,63 @@
+..........................................................ss............ [ 48%]
+..................................s..................................... [ 96%]
+.....                                                                    [100%]
+============================== warnings summary ===============================
+src\tubeflow_test\adapters\audio_qc.py:3
+  D:\AAA-project\TubeFlow AI - Test\backend\src\tubeflow_test\adapters\audio_qc.py:3: DeprecationWarning: 'audioop' is deprecated and slated for removal in Python 3.13
+    import audioop
+
+C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+tests/integration/test_alembic_url_precedence.py: 3 warnings
+tests/integration/test_channel_deletion_postgres.py: 5 warnings
+tests/integration/test_cloned_voices_postgres.py: 4 warnings
+tests/integration/test_composition_authority_postgres.py: 3 warnings
+tests/integration/test_cover_image_upload_postgres.py: 4 warnings
+tests/integration/test_cover_templates_postgres.py: 2 warnings
+tests/integration/test_database_options_postgres.py: 1 warning
+tests/integration/test_elevenlabs_pool_postgres.py: 5 warnings
+tests/integration/test_h3_archive_postgres_minio.py: 1 warning
+tests/integration/test_h3_manual_media_lock.py: 1 warning
+tests/integration/test_h3_node_startup_postgres.py: 1 warning
+tests/integration/test_h3_outbox_migration_postgres.py: 4 warnings
+tests/integration/test_h3_project_routing_postgres.py: 3 warnings
+tests/integration/test_h3_reference_policy_migration.py: 11 warnings
+tests/integration/test_h3_storyboard_binding.py: 14 warnings
+tests/integration/test_identity_project_postgres.py: 1 warning
+tests/integration/test_media_content_postgres.py: 4 warnings
+tests/integration/test_narration_postgres.py: 1 warning
+tests/integration/test_narration_recovery_queue.py: 3 warnings
+tests/integration/test_postgres_media_cas.py: 2 warnings
+tests/integration/test_project_director_claim_project_gate.py: 2 warnings
+tests/integration/test_project_director_confirmation_atomic.py: 4 warnings
+tests/integration/test_project_director_current_materialization.py: 2 warnings
+tests/integration/test_project_director_manual_recovery_postgres.py: 11 warnings
+tests/integration/test_project_director_recovery_postgres.py: 2 warnings
+tests/integration/test_project_director_v4_migration.py: 3 warnings
+tests/integration/test_project_publication_postgres.py: 1 warning
+tests/integration/test_project_purge_scope_migration.py: 6 warnings
+tests/integration/test_project_purge_shared_assets.py: 17 warnings
+tests/integration/test_provider_audit_postgres.py: 1 warning
+tests/integration/test_shot_panel_assets_postgres.py: 5 warnings
+tests/integration/test_single_panel_fake_engine_postgres.py: 2 warnings
+tests/integration/test_single_panel_opt_in_postgres.py: 6 warnings
+tests/integration/test_staged_cleanup_migration.py: 4 warnings
+tests/integration/test_staged_upload_protocol.py: 13 warnings
+tests/integration/test_storyboard_director_lineage_edit.py: 5 warnings
+tests/integration/test_storyboard_failover_migration.py: 3 warnings
+tests/integration/test_storyboard_failover_postgres_atomic.py: 2 warnings
+tests/integration/test_storyboard_postgres_authority.py: 1 warning
+tests/integration/test_video_descriptions_postgres.py: 4 warnings
+tests/integration/test_video_postgres.py: 1 warning
+tests/integration/test_voice_catalog_concurrency.py: 1 warning
+  C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Lib\site-packages\alembic\config.py:604: DeprecationWarning: No path_separator found in configuration; falling back to legacy splitting on spaces, commas, and colons for prepend_sys_path.  Consider adding path_separator=os to Alembic config.
+    util.warn_deprecated(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\integration\test_narration_temporal.py:63: isolated Temporal target is not configured
+SKIPPED [1] tests\integration\test_narration_temporal.py:109: isolated Temporal and PostgreSQL are not configured
+SKIPPED [1] tests\integration\test_real_ffmpeg_composition.py:31: FFmpeg integration fixture requires local ffmpeg and ffprobe
+146 passed, 3 skipped, 171 warnings in 273.31s (0:04:33)

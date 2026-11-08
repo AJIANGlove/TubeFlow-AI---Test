@@ -1,0 +1,302 @@
+{
+ "project_id": "2280f7c6-f0c7-439a-8d82-71c52b588cbf",
+ "voiced_sentences": 535,
+ "groups": 163,
+ "video_blocked_groups": 0,
+ "chapters": 22,
+ "chapter_limit_reached": false,
+ "sentences_per_chapter": {
+  "min": 6,
+  "median": 25.5,
+  "max": 39
+ },
+ "seconds_per_chapter": {
+  "min": 24.3,
+  "median": 91.5,
+  "max": 167.8
+ },
+ "groups_per_chapter": {
+  "min": 3.0,
+  "median": 7.0,
+  "max": 14.0
+ },
+ "sentences_without_chapter": 0,
+ "total_shots": 502,
+ "distinct_scene_texts": 465,
+ "longest_runs": [
+  {
+   "chapter": 17,
+   "visual_beat": "Two independent climate archives emerge from lake gypsum and cave stalagmite, each recording severe dry periods aligned with the southern cities' collapse.",
+   "setting": "Lake Chichancanab in the Yucatán and Yok Balum Cave in Belize.",
+   "groups": [
+    116,
+    129
+   ],
+   "group_count": 14,
+   "narration_time": [
+    "23:51.8",
+    "26:43.2"
+   ],
+   "seconds": 171.4,
+   "shots": 38,
+   "distinct_scene_texts": 35,
+   "scenes": [
+    "Lake Chichancanab - coring boat",
+    "Cambridge University - geochemistry worktable",
+    "Cambridge University - sediment core specimen",
+    "Cambridge University - isotope analysis bench",
+    "Cambridge University - analysis results table",
+    "Lake Chichancanab - exposed shoreline",
+    "southern Maya lowlands - abandoned reservoir beside city ruins",
+    "Lake Chichancanab - sediment-coring station",
+    "Lake Chichancanab - field analysis table",
+    "Yucatán lowlands - abstract rainfall comparison",
+    "Lake Chichancanab - sediment core at the shore",
+    "Lake Chichancanab - evidence table",
+    "Lake Chichancanab - archive worktable",
+    "Lake Chichancanab - isolated core sample",
+    "Lake Chichancanab - evidence table beside the core",
+    "Penn State - research worktable",
+    "Yok Balum Cave - limestone chamber",
+    "Yok Balum Cave - stalagmite surface",
+    "research laboratory - annual rainfall reconstruction",
+    "research laboratory - annual rainfall reconstruction",
+    "southern Maya lowlands - growing city precinct",
+    "Yok Balum Cave - later growth band",
+    "abstract evidence comparison",
+    "Lake Chichancanab - sediment core detail",
+    "Lake Chichancanab - exposed shoreline",
+    "Lake Chichancanab - sediment core detail",
+    "separate archive studies - divided evidence field",
+    "Lake Chichancanab field station - sample table",
+    "Lake Chichancanab field station - analysis table",
+    "Lake Chichancanab field station - notes desk",
+    "Lake Chichancanab field station - table edge",
+    "Lake Chichancanab field station - evidence bench",
+    "Yok Balum Cave research site - stalagmite sampling area",
+    "Yok Balum Cave - stalagmite archive",
+    "Southern lowlands - city ruins",
+    "Climate archives - paired records",
+    "Non-spatial - evidentiary pause",
+    "Maya lowlands - southern and northern regions"
+   ]
+  },
+  {
+   "chapter": 16,
+   "visual_beat": "A LiDAR-derived view traces dense settlement and cultivated land at near-capacity, then returns to Tikal's reservoir, whose untested limits remain an unresolved vulnerability.",
+   "setting": "The LiDAR-mapped southern lowlands, from Tikal's dense core to the extensive cultivated landscape.",
+   "groups": [
+    106,
+    115
+   ],
+   "group_count": 10,
+   "narration_time": [
+    "21:48.7",
+    "23:51.8"
+   ],
+   "seconds": 123.0,
+   "shots": 36,
+   "distinct_scene_texts": 36,
+   "scenes": [
+    "southern Maya lowlands - LiDAR survey view",
+    "research workspace - survey map table",
+    "research workspace - map edge",
+    "southern Maya lowlands - settlement expanse",
+    "research workspace - marked map detail",
+    "abstract comparison - paired land outlines",
+    "LiDAR-derived lowlands - regional scan field",
+    "LiDAR-derived lowlands - settlement pattern overlay",
+    "Tikal - urban core density field",
+    "Tikal - urban core and cultivated margin",
+    "Tikal - monumental urban center",
+    "Central and southern lowlands - regional density field",
+    "Maya lowlands - terraced agricultural slope",
+    "Maya lowlands - cultivated field plain",
+    "investigative visualization - lowland arable-surface model",
+    "Maya lowlands - cultivated approach to the urban core",
+    "Maya lowlands - reservoir inlet channel",
+    "investigative visualization - Maya lowland water-and-food system relief",
+    "Tikal - elevated catchment and reservoir district",
+    "Tikal - stone water channel beside the reservoir",
+    "investigation table - LiDAR relief map",
+    "Tikal - great reservoir embankment",
+    "Tikal - reservoir waterline and spillway stones",
+    "Tikal - reservoir basin through consecutive dry seasons",
+    "Non-spatial graphic - three marks and an open boundary",
+    "Tikal - reservoir edge",
+    "Tikal - reservoir catchment",
+    "Tikal - reservoir wall",
+    "Non-spatial graphic - three evidence cues",
+    "investigation table - three evidence groups",
+    "analytical comparison - converging case strands",
+    "Tikal - reservoir basin beneath the monumental center",
+    "Tikal - reservoir evidence reconstruction",
+    "Tikal - exposed reservoir banks",
+    "Tikal - reservoir edge and climate evidence detail",
+    "Lake Chichancanab - lantern-lit shoreline"
+   ]
+  },
+  {
+   "chapter": 15,
+   "visual_beat": "Researchers compare forest pollen evidence with a wide range of rainfall simulations, leaving the deforestation hypothesis open rather than declaring it proven.",
+   "setting": "Cleared lowland forest and the archaeological evidence and models used to assess its effects.",
+   "groups": [
+    97,
+    105
+   ],
+   "group_count": 9,
+   "narration_time": [
+    "19:50.8",
+    "21:48.7"
+   ],
+   "seconds": 117.9,
+   "shots": 31,
+   "distinct_scene_texts": 30,
+   "scenes": [
+    "southern Maya lowlands - causeway beside terraces",
+    "southern Maya lowlands - forest clearing edge",
+    "southern lowlands - cleared forest edge",
+    "Tikal - reservoir catchment",
+    "southern lowlands - forest canopy",
+    "southern lowlands - canopy leaves",
+    "southern lowlands - canopy and clearing",
+    "research workspace - model study papers",
+    "research field station - model analysis table",
+    "abstract model comparison - rainfall scenario field",
+    "abstract model comparison - uncertainty field",
+    "abstract conclusion - aligned study findings",
+    "cleared lowland forest - canopy margin",
+    "cleared lowland forest - survey table",
+    "research workspace - modeling desk",
+    "research workspace - chart surface",
+    "research workspace - comparison board",
+    "research workspace - estimate scale",
+    "abstract courtroom - evidence table",
+    "southern lowlands - cleared forest edge",
+    "southern lowlands - forest clearing boundary",
+    "research workspace - model evidence table",
+    "southern lowlands - view beyond the forest edge",
+    "southern lowlands - felled timber at clearing edge",
+    "research workspace - evidence table facing forest clearing",
+    "non-spatial - rainfall model comparison",
+    "evidence workspace - forest pollen records",
+    "southern lowlands - cleared forest tract",
+    "research analysis room - unresolved model table",
+    "PACUNAM survey - preliminary data grid",
+    "PACUNAM survey - LiDAR terrain map"
+   ]
+  }
+ ],
+ "per_chapter": [
+  {
+   "order": 1,
+   "voiced_sentences": 22,
+   "voiced_seconds": 55.0
+  },
+  {
+   "order": 2,
+   "voiced_sentences": 16,
+   "voiced_seconds": 75.3
+  },
+  {
+   "order": 3,
+   "voiced_sentences": 17,
+   "voiced_seconds": 62.3
+  },
+  {
+   "order": 4,
+   "voiced_sentences": 16,
+   "voiced_seconds": 57.0
+  },
+  {
+   "order": 5,
+   "voiced_sentences": 25,
+   "voiced_seconds": 89.3
+  },
+  {
+   "order": 6,
+   "voiced_sentences": 20,
+   "voiced_seconds": 48.7
+  },
+  {
+   "order": 7,
+   "voiced_sentences": 25,
+   "voiced_seconds": 89.3
+  },
+  {
+   "order": 8,
+   "voiced_sentences": 26,
+   "voiced_seconds": 91.8
+  },
+  {
+   "order": 9,
+   "voiced_sentences": 28,
+   "voiced_seconds": 119.7
+  },
+  {
+   "order": 10,
+   "voiced_sentences": 25,
+   "voiced_seconds": 100.6
+  },
+  {
+   "order": 11,
+   "voiced_sentences": 25,
+   "voiced_seconds": 98.2
+  },
+  {
+   "order": 12,
+   "voiced_sentences": 28,
+   "voiced_seconds": 91.2
+  },
+  {
+   "order": 13,
+   "voiced_sentences": 28,
+   "voiced_seconds": 105.0
+  },
+  {
+   "order": 14,
+   "voiced_sentences": 28,
+   "voiced_seconds": 110.3
+  },
+  {
+   "order": 15,
+   "voiced_sentences": 29,
+   "voiced_seconds": 104.8
+  },
+  {
+   "order": 16,
+   "voiced_sentences": 39,
+   "voiced_seconds": 133.2
+  },
+  {
+   "order": 17,
+   "voiced_sentences": 39,
+   "voiced_seconds": 167.8
+  },
+  {
+   "order": 18,
+   "voiced_sentences": 26,
+   "voiced_seconds": 87.0
+  },
+  {
+   "order": 19,
+   "voiced_sentences": 27,
+   "voiced_seconds": 125.8
+  },
+  {
+   "order": 20,
+   "voiced_sentences": 26,
+   "voiced_seconds": 93.0
+  },
+  {
+   "order": 21,
+   "voiced_sentences": 14,
+   "voiced_seconds": 67.8
+  },
+  {
+   "order": 22,
+   "voiced_sentences": 6,
+   "voiced_seconds": 24.3
+  }
+ ]
+}

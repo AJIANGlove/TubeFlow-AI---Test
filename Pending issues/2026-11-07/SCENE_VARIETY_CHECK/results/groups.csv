@@ -1,0 +1,164 @@
+sequence,start,end,primary_chapter,chapters,shots,scenes
+1,0:00.0,0:14.8,1,1,2,Northern Guatemala - jungle canopy | Northern Guatemala - buried foundation outlines
+2,0:14.8,0:28.9,1,1,6,Maya lowlands - buried plaza clearing | Maya lowlands - survey footprint field | Maya lowlands - expanded survey zone | Survey record - expanding structure pattern | Maya lowlands - completed survey extent | Maya lowlands - civilization beneath canopy
+3,0:28.9,0:42.2,1,1,4,jungle-covered Maya lowlands - ruins beneath the canopy | jungle survey clearing - lantern-lit field table | jungle survey clearing - evidence table | transition - lantern glow in darkness
+4,0:42.2,0:56.4,1,1 2,6,transition - engagement symbol | jungle survey clearing - empty camp chair | Northern Guatemala - jungle canopy | Northern Guatemala - buried city pattern | Northern Guatemala - overgrown plaza foundations | Abstract - chronology motif
+5,0:56.4,1:06.3,2,2,1,Maya lowlands - rain-fed settlement network
+6,1:06.3,1:16.2,2,2,2,northern Guatemala - jungle-covered lowlands | abstract political layout - separate city centers
+7,1:16.2,1:24.6,2,2,1,Maya lowlands - network of independent city centers
+8,1:24.6,1:39.4,2,2,2,Maya lowlands - settlement pattern | Maya lowlands - excavated building foundations
+9,1:39.4,1:47.0,2,2,3,Maya lowlands - plaza edge | Maya lowlands - jungle canopy | Maya lowlands - underground cross-section
+10,1:47.0,1:58.0,2,2,2,Maya lowlands - reservoir and canal | Maya lowlands - reservoir surface
+11,1:58.0,2:10.2,2,2,3,Maya lowlands - engineered plaza edge | Maya lowlands - reservoir network and plaza | Maya lowlands - overgrown ruined plaza overlook
+12,2:10.2,2:21.1,3,3,3,Petén lowlands - jungle approach trail | Petén lowlands - expedition field camp table | Petén lowlands - site perimeter above the central ruins
+13,2:21.1,2:35.0,3,3,3,Petén lowlands - elevated survey view of the central precinct | Petén archaeological site - jungle clearing | Petén archaeological site - temple approach
+14,2:35.0,2:44.0,3,3,2,Petén archaeological site - temple approach | Petén archaeological site - temple stairway
+15,2:44.0,2:57.8,3,3,3,Petén archaeological site - temple facade | Petén archaeological site - temple facade | Petén archaeological site - temple foot
+16,2:57.8,3:12.6,3,3,4,Petén archaeological site - temple stair base | Petén archaeological site - defensive wall circuit | Petén archaeological site - defensive wall interior | Dos Pilas - defensive wall base
+17,3:12.6,3:25.8,4,4,4,Dos Pilas - excavated perimeter trench | Dos Pilas - deep excavation cut | Dos Pilas - outer defensive perimeter | Dos Pilas - concentric defensive rings
+18,3:25.8,3:37.5,4,4,3,Dos Pilas - inner defensive passage | Dos Pilas - inner defensive alley | Dos Pilas - breach corridor entrance
+19,3:37.5,3:50.2,4,4,4,Dos Pilas - excavation panel station | Inscription reading - 679 AD victory account | Inscription reading - triumph glyphs | Inscription reading - pooled blood phrase
+20,3:50.2,4:02.2,4,4,3,Dos Pilas - defensive killing alley | Dos Pilas - temple precinct inscription panel | Dos Pilas - temple staircase
+21,4:02.2,4:09.5,4,4,2,Dos Pilas - excavation work area | Dos Pilas - ruined city center
+22,4:09.5,4:22.2,5,5,3,Aguateca - limestone escarpment above the river gorge | Aguateca - limestone escarpment above the river gorge | Aguateca - palace precinct interior
+23,4:22.2,4:35.4,5,5,3,Aguateca - palace excavation edge | Aguateca - excavated palace floor | Aguateca - palace rooms after the fire
+24,4:35.4,4:47.4,5,5,6,Aguateca - burned palace chamber floor | Aguateca - burned palace interior | Aguateca - palace workroom floor | Aguateca - palace workroom bench | Aguateca - palace workroom bench | Aguateca - palace workroom wall
+25,4:47.4,4:59.4,5,5,3,Aguateca - scribes' workroom floor | Aguateca - palace workroom floor | Aguateca - palace back rooms
+26,4:59.4,5:14.2,5,5,5,Aguateca - palace interior | Aguateca - palace central passage | Aguateca - scribe's workroom | Aguateca - palace kitchen hearth | Aguateca - burned palace interior
+27,5:14.2,5:27.7,5,5,3,Aguateca - burned palace interior | Aguateca - palace workroom floor | Aguateca - palace exit passage
+28,5:27.7,5:42.3,5,5 6,3,Aguateca - palace ceremonial chamber | Aguateca - limestone escarpment above the abandoned city | regional map - southern route to Cancuén
+29,5:42.3,5:53.6,6,6,3,Cancuén - palace precinct | Cancuén - palace cistern interior | Cancuén - cistern remains
+30,5:53.6,6:05.8,6,6,3,Cancuén - cistern burial goods | Cancuén - cistern floor | Cancuén palace - excavated cistern interior
+31,6:05.8,6:20.3,6,6,6,Cancuén - outer edge of the palace precinct | Cancuén palace - open central approach | Cancuén - excavation trench beside the palace approach | Cancuén - palace cistern | Regional map - Cancuén marker | Regional map - route to Aguateca
+32,6:20.3,6:32.1,6,6 7,5,Regional comparison - Cancuén and Aguateca evidence | Regional map - third city marker | southern Maya lowlands - regional view | comparative evidence - three endings | Dos Pilas - defensive wall
+33,6:32.1,6:44.8,7,7,3,Aguateca - palace room | Cancuén - cistern interior | southern Maya lowlands - overgrown ruins
+34,6:44.8,6:58.5,7,7,2,research workspace - map table | southern lowlands - monument sites
+35,6:58.5,7:11.6,7,7,5,Bonampak - carved monument | Quiriguá - monumental plaza | Copán - inscribed monument | Caracol - monument site | Tikal - monumental center stela precinct
+36,7:11.6,7:23.6,7,7,3,Toniná - carved monument court | southern Maya lowlands - dated monument network | Dos Pilas - outer defensive wall
+37,7:23.6,7:36.2,7,7,3,Dos Pilas - outer defensive wall | Cancuén - palace cistern | Dos Pilas - outer defensive ring
+38,7:36.2,7:49.9,7,7,6,Aguateca - burned palace chamber | Cancuén - palace cistern | Cancuén - cistern floor | Southern Maya lowlands - investigative comparison | Southern Maya lowlands - investigator's evidence table | Dos Pilas - defensive wall at the temple precinct
+39,7:49.9,7:56.8,7,7,2,abandoned lowland city - empty central plaza | Aguateca - burned palace floor
+40,7:56.8,8:10.2,8,8,1,investigation tableau - Maya region evidence map
+41,8:10.2,8:25.0,8,8,2,southern lowlands - regional map view | southern lowlands - monument evidence table
+42,8:25.0,8:38.8,8,8,3,archaeological study area - evidence table | southern lowlands - relief-map work surface | interstitial - dark frame
+43,8:38.8,8:53.3,8,8,5,interstitial - sponsor title | contemporary study desk - evidence notebook | contemporary study desk - desk calendar | video page - description panel | investigation workspace - cleared center
+44,8:53.3,9:07.4,8,8,4,investigation workspace - evidence table | non-spatial - search results | non-spatial - isolated search result | non-spatial - imagined map surface
+45,9:07.4,9:21.3,8,8,5,tabletop - cleared work surface | present day - shared community space | non-spatial - population count graphic | present-day Maya community - gathering place | present-day Maya community - central gathering area
+46,9:21.3,9:34.6,8,8 9,5,non-spatial - regional map | non-spatial - map detail of ancient city sites | Maya lowlands - city ruins in jungle | non-spatial - transition to Spanish conquest | southern Maya lowlands - regional map table
+47,9:34.6,9:45.7,9,9,2,Classic Maya city - central plaza | Tikal - final monument base
+48,9:45.7,9:59.4,9,9,4,Tikal - final monument base | chronology - date markers | Classic Maya city - ruined plaza threshold | southern lowlands - regional relief map
+49,9:59.4,10:11.8,9,9,2,Maya lowlands - separated city markers | Maya lowlands - city-state network map
+50,10:11.8,10:26.4,9,9,3,southern lowlands - contrasting city signals | southern lowlands - named city cluster map | southern lowlands - abandoned monument field
+51,10:26.4,10:38.5,9,9,4,northern Yucatán - jungle-covered lowlands | southern lowlands and northern Yucatán - regional comparison | Chichén Itzá - monumental center | Chichén Itzá - plaza edge
+52,10:38.5,10:52.2,9,9,3,regional map - southern lowlands and northern Yucatán | southern lowlands - jungle and city remains | southern lowlands - regional relief map
+53,10:52.2,11:05.4,9,9,2,southern lowlands - rain-fed urban catchment | southern lowlands - reservoir shoreline
+54,11:05.4,11:18.6,9,9,2,Dos Pilas - defensive masonry | early Classic Maya city - ceremonial plaza
+55,11:18.6,11:30.6,9,9 10,3,southern Maya lowlands - abstract regional transition | late Classic Maya city - burned ceremonial center | lowland forest - symbolic evidence transition
+56,11:30.6,11:44.7,10,10,3,lowland lakebed - exposed sediment layer | Maya construction site - lime-plaster kiln | southern Maya lowlands - terraced hillside
+57,11:44.7,11:47.4,10,10,1,southern Maya lowlands - settlement spread
+58,11:47.4,12:01.4,10,10,2,LiDAR-mapped lowlands - terraced farmland survey view | southern lowlands - cultivated plain beyond the terraces
+59,12:01.4,12:10.3,10,10,4,southern lowlands - evidence details | southern lowlands - unresolved crossroads | Bonampak - mural chamber | Petén lowlands - defensive earthworks and burial ground
+60,12:10.3,12:25.1,10,10,1,Bonampak - mural chamber
+61,12:25.1,12:36.3,10,10,3,Bonampak - mural chamber | Bonampak - mural chamber | Dos Pilas - defensive rings
+62,12:36.3,12:51.0,10,10,3,Tikal - monument center | Stone record - dated sequence | Dos Pilas - defensive wall
+63,12:51.0,13:01.8,10,10,4,Dos Pilas - outer defensive precinct | Dos Pilas - inner defensive wall of the temple precinct | Dos Pilas - excavated temple precinct approach | Dos Pilas - defensive wall masonry course
+64,13:01.8,13:15.8,11,10 11,3,Dos Pilas - former hieroglyphic stairway | Dos Pilas - buried base of the defensive wall | Dos Pilas - excavated hieroglyphic stairway fragment
+65,13:15.8,13:29.6,11,11,3,Dos Pilas - inscribed stairway | Dos Pilas - inscription surface | Dos Pilas - stairway monument
+66,13:29.6,13:42.6,11,11,3,Dos Pilas - defensive wall | Dos Pilas - wall beside the stairway | Dos Pilas - carved panel at stairway
+67,13:42.6,13:56.8,11,11,3,Dos Pilas - defensive wall passage | Dos Pilas - reused inscription in wall | Dos Pilas - inscription stone within defensive masonry
+68,13:56.8,14:08.4,11,11,4,Dos Pilas - stairway remains beside defensive wall | Dos Pilas - shadowed edge of defensive wall | Tikal - monumental center | Tikal - suspended chronology above the monument court
+69,14:08.4,14:18.2,11,11,3,Tikal - abandoned monument court | Tikal - monument court central platform | Tikal - restored central causeway
+70,14:18.2,14:29.0,11,11,2,Tikal - victory monument alcove | Tikal - temple summit overlooking the city
+71,14:29.0,14:41.1,11,11,3,non-spatial - fragile city silhouette beneath an advancing shadow | Tikal - restored monumental center | Tikal - monument platform
+72,14:41.1,14:55.7,11,11 12,3,non-spatial - sequence of Maya city monuments | Maya lowlands - fortified causeway between rival city territories | Southern Maya lowlands - city plazas
+73,14:55.7,15:09.4,12,12,4,Maya lowlands - reservoir and channel network | Southern lowlands - city ruins comparison | Dos Pilas - inscription stones and defensive wall | Dos Pilas - shadowed defensive passage
+74,15:09.4,15:22.7,12,12,6,Dos Pilas - defensive wall overlooking the city | Conceptual investigation - unresolved cause | Map study - terrain sheet | Map study - work surface | Conceptual map view - terrain rather than battles | Conceptual map view - geography rather than inscriptions
+75,15:22.7,15:34.4,12,12,4,Topographic map - water systems | topographic map - lowlands overview | Maya lowlands - jungle canopy | Maya lowlands - limestone basin
+76,15:34.4,15:47.4,12,12,4,limestone terrain - underground cross-section | Maya lowlands - reservoir beside city | Maya lowlands - reservoir overlook | Maya lowlands - elevated plaza beside a reservoir
+77,15:47.4,16:01.1,12,12,2,Maya lowlands - rain-swept limestone plaza surface | Maya lowlands - reservoir intake channel
+78,16:01.1,16:06.2,12,12,1,Tikal - carved water-management plan
+79,16:06.2,16:20.2,12,12 13,3,Tikal - central urban basin | Tikal - raised ceremonial plaza | Tikal - plaza drainage edge
+80,16:20.2,16:34.0,13,13,2,Tikal - integrated urban water layout | Tikal - central reservoir embankment
+81,16:34.0,16:40.2,13,13,2,"Tikal - central reservoir, nonliteral scale visualization | Tikal - reservoir catchment basin"
+82,16:40.2,16:53.4,13,13,2,Tikal - paved catchment channels above the reservoir | Tikal - central reservoir overlook
+83,16:53.4,17:07.4,13,13,4,Tikal - central reservoir overlook | Tikal - main reservoir embankment | Tikal - reservoir catchment plan | Tikal - sloped catchment channel
+84,17:07.4,17:20.6,13,13,6,Tikal - outer catchment edge | Tikal - reservoir retaining wall | Tikal water system - subsurface cross-section | Tikal - reservoir embankment and catchment channels | Tikal - open sky above the reservoir precinct | Tikal - rain-fed channels above the reservoir
+85,17:20.6,17:33.3,13,13,3,Tikal - reservoir retaining wall waterline marks | Tikal - elevated reservoir and urban catchment network | Tikal - reservoir embankment overlooking the urban catchment
+86,17:33.3,17:46.9,13,13,3,Tikal - densely worked fields beyond the reservoir channels | Tikal - junction where the final runoff channel enters the reservoir | Abstract diagram of Tikal's rain-fed water cycle
+87,17:46.9,18:00.2,13,13,2,Tikal - catchment slopes during the established rainy cycle | Tikal - drought-stricken reservoir shoreline
+88,18:00.2,18:14.1,14,13 14,4,Tikal - reservoir basin | Tikal - reservoir edge | Tikal - reservoir water surface | Tikal - inner reservoir basin
+89,18:14.1,18:28.6,14,14,4,Tikal - reservoir perimeter | Tikal - reservoir surface | Tikal - reservoir catchment overview | Tikal - reservoir inlet channel
+90,18:28.6,18:42.6,14,14,4,Tikal - reservoir basin edge | Maya lowlands - forested limestone plain | Maya lowlands - city reservoir basin | Maya lowlands - reservoir catchment channel
+91,18:42.6,18:51.4,14,14,3,Tikal - reservoir basin and surrounding ruins | Tikal - reservoir waterline | Evidence map - rainfall and competing pressures
+92,18:51.4,19:04.4,14,14,3,Tikal - catchment channels above the reservoir | Tikal - reservoir edge beneath clouded sky | Southern lowlands - cleared ground beyond Tikal
+93,19:04.4,19:13.5,14,14,3,Tikal - reservoir edge | Southern lowlands - forest edge | Southern lowlands - cleared terrain
+94,19:13.5,19:28.2,14,14,2,Maya building site - lime-burning area | Southern lowlands - causeway and terrace network
+95,19:28.2,19:38.6,14,14,2,southern Maya lowlands - terraced fields and causeways | lowland field station - sample table
+96,19:38.6,19:50.8,14,14,2,lowland lake - sediment sampling shore | lowland lake - core examination table
+97,19:50.8,20:02.0,15,14 15,5,southern Maya lowlands - causeway beside terraces | southern Maya lowlands - forest clearing edge | southern lowlands - cleared forest edge | Tikal - reservoir catchment | southern lowlands - forest canopy
+98,20:02.0,20:16.6,15,15,3,southern lowlands - canopy leaves | southern lowlands - canopy and clearing | research workspace - model study papers
+99,20:16.6,20:30.0,15,15,2,research field station - model analysis table | abstract model comparison - rainfall scenario field
+100,20:30.0,20:42.4,15,15,3,abstract model comparison - uncertainty field | abstract conclusion - aligned study findings | cleared lowland forest - canopy margin
+101,20:42.4,20:53.1,15,15,4,cleared lowland forest - survey table | research workspace - modeling desk | research workspace - chart surface | research workspace - comparison board
+102,20:53.1,21:06.8,15,15,4,research workspace - estimate scale | abstract courtroom - evidence table | southern lowlands - cleared forest edge | southern lowlands - forest clearing boundary
+103,21:06.8,21:19.8,15,15,2,research workspace - model evidence table | southern lowlands - view beyond the forest edge
+104,21:19.8,21:33.8,15,15,4,southern lowlands - felled timber at clearing edge | research workspace - evidence table facing forest clearing | non-spatial - rainfall model comparison | evidence workspace - forest pollen records
+105,21:33.8,21:48.7,15,15 16,4,southern lowlands - cleared forest tract | research analysis room - unresolved model table | PACUNAM survey - preliminary data grid | PACUNAM survey - LiDAR terrain map
+106,21:48.7,21:57.1,16,16,3,southern Maya lowlands - LiDAR survey view | research workspace - survey map table | research workspace - map edge
+107,21:57.1,22:09.6,16,16,3,southern Maya lowlands - settlement expanse | research workspace - marked map detail | abstract comparison - paired land outlines
+108,22:09.6,22:24.6,16,16,5,LiDAR-derived lowlands - regional scan field | LiDAR-derived lowlands - settlement pattern overlay | Tikal - urban core density field | Tikal - urban core and cultivated margin | Tikal - monumental urban center
+109,22:24.6,22:33.5,16,16,1,Central and southern lowlands - regional density field
+110,22:33.5,22:45.1,16,16,2,Maya lowlands - terraced agricultural slope | Maya lowlands - cultivated field plain
+111,22:45.1,22:56.2,16,16,3,investigative visualization - lowland arable-surface model | Maya lowlands - cultivated approach to the urban core | Maya lowlands - reservoir inlet channel
+112,22:56.2,23:09.0,16,16,3,investigative visualization - Maya lowland water-and-food system relief | Tikal - elevated catchment and reservoir district | Tikal - stone water channel beside the reservoir
+113,23:09.0,23:23.7,16,16,4,investigation table - LiDAR relief map | Tikal - great reservoir embankment | Tikal - reservoir waterline and spillway stones | Tikal - reservoir basin through consecutive dry seasons
+114,23:23.7,23:38.2,16,16,6,Non-spatial graphic - three marks and an open boundary | Tikal - reservoir edge | Tikal - reservoir catchment | Tikal - reservoir wall | Non-spatial graphic - three evidence cues | investigation table - three evidence groups
+115,23:38.2,23:51.8,16,16,6,analytical comparison - converging case strands | Tikal - reservoir basin beneath the monumental center | Tikal - reservoir evidence reconstruction | Tikal - exposed reservoir banks | Tikal - reservoir edge and climate evidence detail | Lake Chichancanab - lantern-lit shoreline
+116,23:51.8,24:06.2,17,17,2,Lake Chichancanab - coring boat | Cambridge University - geochemistry worktable
+117,24:06.2,24:11.5,17,17,1,Cambridge University - sediment core specimen
+118,24:11.5,24:23.1,17,17,2,Cambridge University - isotope analysis bench | Cambridge University - analysis results table
+119,24:23.1,24:33.4,17,17,3,Lake Chichancanab - exposed shoreline | southern Maya lowlands - abandoned reservoir beside city ruins | Lake Chichancanab - sediment-coring station
+120,24:33.4,24:42.5,17,17,1,Lake Chichancanab - field analysis table
+121,24:42.5,24:53.7,17,17,1,Yucatán lowlands - abstract rainfall comparison
+122,24:53.7,25:06.6,17,17,5,Lake Chichancanab - sediment core at the shore | Lake Chichancanab - evidence table | Lake Chichancanab - archive worktable | Lake Chichancanab - isolated core sample | Lake Chichancanab - evidence table beside the core
+123,25:06.6,25:18.6,17,17,2,Penn State - research worktable | Yok Balum Cave - limestone chamber
+124,25:18.6,25:33.0,17,17,2,Yok Balum Cave - stalagmite surface | research laboratory - annual rainfall reconstruction
+125,25:33.0,25:45.9,17,17,2,research laboratory - annual rainfall reconstruction | southern Maya lowlands - growing city precinct
+126,25:45.9,26:00.6,17,17,3,Yok Balum Cave - later growth band | abstract evidence comparison | Lake Chichancanab - sediment core detail
+127,26:00.6,26:15.5,17,17,5,Lake Chichancanab - exposed shoreline | Lake Chichancanab - sediment core detail | separate archive studies - divided evidence field | Lake Chichancanab field station - sample table | Lake Chichancanab field station - analysis table
+128,26:15.5,26:30.2,17,17,6,Lake Chichancanab field station - notes desk | Lake Chichancanab field station - table edge | Lake Chichancanab field station - evidence bench | Yok Balum Cave research site - stalagmite sampling area | Yok Balum Cave - stalagmite archive | Southern lowlands - city ruins
+129,26:30.2,26:43.2,17,17 18,3,Climate archives - paired records | Non-spatial - evidentiary pause | Maya lowlands - southern and northern regions
+130,26:43.2,26:54.8,18,18,3,Southern lowlands - regional landscape | Maya lowlands - regional relief map spread across a stone surface | southern lowlands - Tikal monument plaza
+131,26:54.8,27:06.6,18,18,2,southern lowlands - Tikal monument plaza | northern Yucatán - Chichén Itzá central plaza
+132,27:06.6,27:19.0,18,18,3,northern Yucatán - limestone cenote rim | Northern Yucatán - cenote rim | Southern lowlands - reservoir landscape
+133,27:19.0,27:32.4,18,18,4,Southern lowlands - reservoir edge | Regional comparison - northern Yucatán and southern lowlands | Regional comparison - paired water sources | Regional comparison - unresolved drought evidence
+134,27:32.4,27:46.7,18,18,4,southern lowlands - reservoir embankment | northern Yucatán - cenote waterline | southern lowlands - reservoir catchment channels | southern lowlands - reservoir floor and distant ruins
+135,27:46.7,28:01.0,18,18,5,southern lowlands - reservoir floor and distant ruins | regional map - paired north and south | investigation workspace - map table | investigation workspace - map detail | investigation workspace - map table
+136,28:01.0,28:15.2,18,18 19,3,investigation workspace - records desk | investigation workspace - records desk | Maya lowlands - rain-fed landscape
+137,28:15.2,28:23.0,19,19,3,Yok Balum Cave - stalagmite chamber | Maya lowlands - reservoir edge and cleared forest | Maya lowlands - reservoir embankment
+138,28:23.0,28:37.3,19,19,2,Maya lowlands - reservoir edge and cleared forest | Maya lowlands - reservoir waterline
+139,28:37.3,28:50.6,19,19,3,Southern lowlands - reservoir and cleared land | Tikal - reservoir edge | Maya lowlands - inscribed stone surface
+140,28:50.6,29:03.0,19,19,2,Archaeological field station - evidence table | Southern lowlands - city reservoir precinct
+141,29:03.0,29:12.8,19,19,2,Maya lowlands - reservoir catchment | Maya lowlands - reservoir channels
+142,29:12.8,29:25.8,19,19,2,Maya lowlands - urban landscape | Maya lowlands - reservoir edge and clearing
+143,29:25.8,29:35.0,19,19,2,Maya lowlands - city water network | Maya lowlands - reservoir beneath changing weather
+144,29:35.0,29:45.3,19,19,2,Yok Balum Cave - mineral chamber wall | southern lowlands - weathered monument field
+145,29:45.3,29:57.1,19,19,2,southern lowlands - shared basin between city territories | southern lowlands - reservoir shoreline
+146,29:57.1,30:10.5,19,19,4,reservoir basin - exposed waterline | investigation archive - evidence table | Tikal - great reservoir basin | Tikal - reservoir retaining steps
+147,30:10.5,30:24.9,20,19 20,6,Tikal - reservoir floor | Tikal - monument record transition | Bonampak - plaza stele | Quiriguá - stelae court | Copán - monument plaza | Caracol - carved monument
+148,30:24.9,30:39.1,20,20,5,Tikal - monument precinct | Tonina - carved monument | Southern lowlands - sequence of monument sites | Southern lowlands - abstract convergence of pressures | southern lowlands - city and reservoir network
+149,30:39.1,30:49.2,20,20,2,Tikal - reservoir edge | Tikal - reservoir inlet
+150,30:49.2,31:03.4,20,20,4,Tikal - exposed reservoir basin | Tikal - reservoir construction edge | Tikal - reservoir network and city center | southern lowlands - pyramid precinct
+151,31:03.4,31:15.8,20,20,3,southern lowlands - raised road network | southern lowlands - monument work area | southern lowlands - built landscape edge
+152,31:15.8,31:28.3,20,20,3,southern lowlands - city center ruins | southern lowlands - dispersed settlement | southern lowlands - reservoir and settlement overview
+153,31:28.3,31:40.2,20,20,3,Tikal - reservoir margin | climate evidence field - sample table | Lake Chichancanab - gypsum lakebed
+154,31:40.2,31:50.4,21,20 21,4,research settings - paired analysis work areas | abstract chronology - converging archive traces | Yucatán - lakebed archive | southern lowlands - reservoir and city ruins
+155,31:50.4,32:00.7,21,21,2,non-spatial - evidence convergence | Maya lowlands - reservoir edge and monumental center
+156,32:00.7,32:07.1,21,21,1,Maya lowlands - LiDAR survey image
+157,32:07.1,32:17.3,21,21,1,Maya lowlands - pyramid plaza and stela
+158,32:17.3,32:23.1,21,21,1,southern Maya lowlands - monumental plaza beside the rain-fed reservoir works
+159,32:23.1,32:33.7,21,21,1,Lake Chichancanab - exposed lakebed archive
+160,32:33.7,32:47.8,21,21,4,investigative comparison - paired climate archives | Tonina - carved Long Count monument | southern lowlands - abandoned city-state center | contemporary unspecified Maya community setting - evening gathering space
+161,32:47.8,33:00.3,22,21 22,2,Maya lowlands - present-day community landscape | Abstract reflection - monument and fragment
+162,33:00.3,33:11.8,22,22,2,Maya lowlands - reservoir network | Contemporary infrastructure - utility objects
+163,33:11.8,33:17.3,22,22,2,Contemporary infrastructure - darkened utility arrangement | Contemporary infrastructure - interrupted connections

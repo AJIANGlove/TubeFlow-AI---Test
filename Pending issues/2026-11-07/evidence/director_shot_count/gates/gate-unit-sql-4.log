@@ -1,0 +1,14 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\15202\.workbuddy\binaries\python\envs\tubeflow-test\Scripts\python.exe
+rootdir: D:\AAA-project\TubeFlow AI - Test\backend
+configfile: pyproject.toml
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 4 items
+
+tests/unit/test_project_director.py::test_sql_reclaim_expired_units_scopes_terminal_runs_only PASSED [ 25%]
+tests/unit/test_project_director.py::test_sql_find_materialization_tolerates_orphan_row PASSED [ 50%]
+tests/unit/test_project_director.py::test_materialization_ready_requires_candidate_rows PASSED [ 75%]
+tests/unit/test_project_director_stall_fixes.py::test_sql_unit_mapping_round_trips_the_diagnostics PASSED [100%]
+
+============================== 4 passed in 2.71s ==============================

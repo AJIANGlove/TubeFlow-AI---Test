@@ -1,0 +1,8 @@
+<string>:5: SyntaxWarning: invalid escape sequence '\_'
+<string>:5: SyntaxWarning: invalid escape sequence '\_'
+<string>:5: SyntaxWarning: invalid escape sequence '\_'
+<string>:5: SyntaxWarning: invalid escape sequence '\_'
+contract\_% = 0
+narration\_authority\_% = 0
+voice\_race\_% = 0
+identity\_test\_% = 0
