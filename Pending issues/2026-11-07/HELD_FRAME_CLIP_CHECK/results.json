@@ -1,0 +1,225 @@
+{
+ "motion_metrics": {
+  "algorithm": "motion-cadence-v1",
+  "status": "ok",
+  "frames": 576,
+  "cuts": 8,
+  "moving_windows": 63,
+  "held_windows": 41,
+  "held_share": 0.65,
+  "hf": 0.254,
+  "jitter_shots": 3,
+  "shots": [
+   {
+    "t0": 0.21,
+    "t1": 3.42,
+    "moving_windows": 2,
+    "held_windows": 1,
+    "held_share": 0.5,
+    "hf": 0.076
+   },
+   {
+    "t0": 3.42,
+    "t1": 4.92,
+    "moving_windows": 4,
+    "held_windows": 0,
+    "held_share": 0.0,
+    "hf": 0.132
+   },
+   {
+    "t0": 4.92,
+    "t1": 7.83,
+    "moving_windows": 10,
+    "held_windows": 1,
+    "held_share": 0.1,
+    "hf": 0.421
+   },
+   {
+    "t0": 7.83,
+    "t1": 11.25,
+    "moving_windows": 4,
+    "held_windows": 0,
+    "held_share": 0.0,
+    "hf": 0.147
+   },
+   {
+    "t0": 11.25,
+    "t1": 17.29,
+    "moving_windows": 21,
+    "held_windows": 21,
+    "held_share": 1.0,
+    "hf": 0.29
+   },
+   {
+    "t0": 17.29,
+    "t1": 20.96,
+    "moving_windows": 13,
+    "held_windows": 12,
+    "held_share": 0.92,
+    "hf": 0.157
+   },
+   {
+    "t0": 20.96,
+    "t1": 23.79,
+    "moving_windows": 9,
+    "held_windows": 8,
+    "held_share": 0.89,
+    "hf": 0.316
+   }
+  ],
+  "reference": {
+   "held_notable": 0.2,
+   "jitter_shot_hf": 0.25
+  }
+ },
+ "regions": [
+  {
+   "region": "group 3 shot 1, woman's face",
+   "frames": [
+    290,
+    314
+   ],
+   "final_video_seconds": [
+    25.08,
+    26.08
+   ],
+   "steps_px": [
+    0.41,
+    2.87,
+    0.07,
+    2.25,
+    0.03,
+    2.52,
+    0.09,
+    2.28,
+    0.21,
+    1.91,
+    0.1,
+    1.05,
+    0.08,
+    2.23,
+    0.07,
+    5.36,
+    0.29,
+    3.8,
+    0.15,
+    3.86,
+    0.45,
+    5.02,
+    0.37,
+    4.57
+   ],
+   "even_transition_mean_px": 0.19,
+   "odd_transition_mean_px": 3.14
+  },
+  {
+   "region": "group 3 shot 1, left background",
+   "frames": [
+    300,
+    316
+   ],
+   "final_video_seconds": [
+    25.5,
+    26.17
+   ],
+   "steps_px": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.01,
+    0.0,
+    0.0,
+    0.01,
+    0.01,
+    0.01
+   ],
+   "even_transition_mean_px": 0.0,
+   "odd_transition_mean_px": 0.0
+  },
+  {
+   "region": "group 3 shot 2, arm placing coins",
+   "frames": [
+    432,
+    456
+   ],
+   "final_video_seconds": [
+    31.0,
+    32.0
+   ],
+   "steps_px": [
+    0.22,
+    35.86,
+    0.16,
+    32.48,
+    0.19,
+    22.38,
+    0.19,
+    15.43,
+    0.04,
+    5.95,
+    0.21,
+    3.41,
+    0.63,
+    13.4,
+    0.55,
+    28.1,
+    0.34,
+    45.8,
+    0.18,
+    51.34,
+    0.36,
+    44.47,
+    0.28,
+    35.53
+   ],
+   "even_transition_mean_px": 0.28,
+   "odd_transition_mean_px": 27.85
+  },
+  {
+   "region": "group 2 shot 3, coins",
+   "frames": [
+    130,
+    154
+   ],
+   "final_video_seconds": [
+    18.42,
+    19.42
+   ],
+   "steps_px": [
+    1.12,
+    1.33,
+    0.92,
+    1.06,
+    1.03,
+    1.23,
+    0.75,
+    1.1,
+    1.16,
+    1.14,
+    1.01,
+    0.69,
+    1.24,
+    1.01,
+    1.05,
+    0.78,
+    1.15,
+    1.07,
+    1.27,
+    0.72,
+    1.22,
+    1.05,
+    1.21,
+    0.9
+   ],
+   "even_transition_mean_px": 1.09,
+   "odd_transition_mean_px": 1.01
+  }
+ ]
+}

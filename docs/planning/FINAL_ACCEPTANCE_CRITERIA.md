@@ -654,6 +654,7 @@
 - [x] 部署机补采：失败单元全量位置与诊断、`8697ee51` 单元明细、已通过相邻对的四轴变化分布、第 40 单元文案、Temporal 活动耗时与超时、worker 线程池告警（只读，实施方执行）。（2026-11-05，`evidence/director_stall_followup/`：SQL A 254 行 / B 2 行（`8697ee51` 第 33 单元 `remote_state_unknown_exhausted`、第 39 单元 `worker_lost_after_call_started`）/ C 11 种轴向组合（731 对，只变 1 轴的组合为 **0**）/ D 第 40 单元 6 句 v10 提示词；16 个 run、572 次 `advance_project_director`，**TimedOut 0、重试 0**，最长 Started→Completed 806.07 s，**1201 s 只出现在 Scheduled→Started（5 次排队）**，1232/1274 未出现；temporalio 1.35.0，1702 行日志中线程池告警 **0 命中（记「无」）**。）（2026-11-05 复核勘误：「TimedOut 0、重试 0、1201 s 为排队」不成立，实为 6 次第 1 次尝试 StartToClose 超时后自动重试；数据已采集，本项勾选保留，解读见 `Pending issues/2026-11-05/DIRECTOR_STALL_FOLLOWUP_REVIEW_20261105.md`。）
 - [ ] 上线后首个出现合并的运行：合并次数、每单元镜头数变化、受影响组故事板按 §46.11 目视抽查（未验证）。
   - 2026-11-05 上线后 60 分钟：`project_director_runs` 新增 0、三类导演日志（`project director call finished` / `unit rejected` / `unit merged`）各 0 条，尚未出现任何合并行为，本项**未验证**。
+  - 2026-11-06 E2E AUTO 项目 `93d717fa`：含合并诊断的单元 **0**，回切放行 **0**（9 个故事板修订均为 `[]`），本项仍**未验证**（`Pending issues/2026-11-06/E2E_AUTO_RUN/SUMMARY.md` 第 5 节）。
 
 ## 46. 2026-11-06 抖动 A/B 实验臂与部署前等待验收（USER_DECISIONS §51 第 3 项、§52）
 
@@ -680,8 +681,9 @@
   - 2026-11-06 测试机实测：装 `numpy==2.5.4`、`opencv-python-headless==5.0.0.93`（`pip freeze` 仅这两项变化）。单元 main 2472 passed / 10 skipped、分支 **2481 passed / 11 skipped**；新文件单跑 **9 passed + 1 skipped**（`ffmpeg not on PATH`，**跳过不算通过**）；集成两侧 **19 failed / 122 passed / 7 skipped**（各收集 148），失败集合逐条相同且与上一轮一致；ruff 15 条逐字节相同；mypy 12 errors / 7 files（源文件 206→208）归一后相同；npm 259/259/0。证据 `Pending issues/2026-11-06/evidence/motion_metrics/gates/SUMMARY.md`。
 - [x] 部署机：镜像构建通过 `import cv2, numpy` 校验；部署按 §52 等待；worker 容器内对 A/B 已归档视频之一离线复算，与 `Pending issues/2026-11-06/evidence/jitter_ab/ab/results/measure.json` 对应条目一致（只读，不调用 Provider）。
   - 2026-11-06 部署机：构建日志 `#16 [12/12] RUN python -c "import cv2, numpy"` → `DONE 0.3s`；镜像 `sha256:287592d9…`（1,419,211,640 字节，较 d488b57e +28.6%），镜像内 cv2 5.0.0 / numpy 2.5.4。§52 两项首查即 0（04:42:09Z / 04:42:15Z），等待 0 分钟。复算 **21 项全部一致**：0.49 / 45 / 22 / 0.874 / 2 与三镜逐项相同（逐镜 HF 差 0.000），提取 1.512 s、计算 0.001 s。证据 `Pending issues/2026-11-06/evidence/motion_metrics/recompute/`；记录 `docs/DEPLOYMENT.md` §43。
-- [ ] 上线后第一条正常归档的分组视频带 `motion_metrics.status = ok`（等自然发生，不为此调用 Provider）。
+- [x] 上线后第一条正常归档的分组视频带 `motion_metrics.status = ok`（等自然发生，不为此调用 Provider）。
   - 2026-11-06 截至 04:53:02Z（T+10 分钟快照）：`probe_evidence_json ? 'motion_metrics'` 计数 **0**，窗口内无运行中工作流、无 AUTO 运行。**待自然发生，本项未勾**；未为此触发生成（本任务全程未调用任何 Provider）。
+  - 2026-11-06 E2E AUTO 项目 `93d717fa`（用户授权的端到端验证，09:48:38Z 完成）：9 条分组视频全部一次通过 QC 并归档，`probe_evidence.motion_metrics.status` **9/9 = ok**（逐组 `held_share` 0.05–0.93，均值 0.521）。证据 `Pending issues/2026-11-06/E2E_AUTO_RUN/{SUMMARY.md,final_metrics.txt}`。本项据此勾选（2026-11-07）。
 
 ## 48. 2026-11-06 集成测试临时 schema 清理（复核文档 `Pending issues/2026-11-06/MOTION_METRICS_ROLLOUT_REVIEW_20261106.md`）
 
@@ -709,3 +711,12 @@
   - 2026-11-06 07:07:31Z 复查：存在、`pg_class`/`pg_proc`/`pg_type` **均 0**、属主 `tubeflow`。07:07:35Z 执行 `DROP SCHEMA … RESTRICT` → 输出 `DROP SCHEMA`、rc=0（未用 CASCADE、未换超级用户）。07:07:40Z 复查：业务库 **0 行**、测试库 **0 行**、`/health/live` **200**。授权额度 1/1 已用尽。证据 `evidence/schema_forensics/drop.md`、`operations-record.md`；记录 `docs/DEPLOYMENT.md` §45。
 - [x] 部署机：只读统计 `audit_272879e_20260829a`、`audit_272879e_exact_20260829a`、`staged_cleanup_gate` 三个 schema 的对象数、表行数与占用空间，不改动，交用户决定。
   - 2026-11-06 07:07:51Z：三者属主均 `tubeflow`，各 **39 表 / 123 索引 / 0 函数 / 78 类型**，占用 **1176 kB / 1256 kB / 1216 kB**（合计约 3.6 MB）。`reltuples` 多为 **-1**（从未 ANALYZE，不可当行数）；真实 `count(*)` 合计 **1 / 3 / 1 = 5 行**，其余 114 张表全空。`alembic_version` 分别为 `0007` / `0006` / `0006`。**未做任何改动**，是否清理待用户决定。证据 `evidence/schema_forensics/{inventory.md,tables_detail.txt}`。
+
+## 50. 2026-11-07 前置导演镜头数拒收重试提示验收（USER_DECISIONS §53 第 1 项）
+
+- [x] Claude 云端工作区：8 句单元第 1 次返回 9 镜被拒后，第 2 次发往服务商的提示含「it returned 9 shots, but this TARGET allows at most 8 shots」与合并相邻句、上限优先于逐句节奏的要求，模型照做后运行成功；第 1 次提示不含重试文本；持久化提示词不含附加文本；两次幂等键不同（单元测试）。
+- [x] Claude 云端工作区：拒收诊断只含 `returned_shot_count` 与 `shot_count_maximum`；3 次都超限时运行仍按原语义 FAILED、失败码不变、不触发 `adjacent-diversity-merge-v1`；诊断缺失、非整数、布尔或上限为 0 时按单元句数重算上限并省略返回数；返回 0 镜时改为要求 1 至上限镜；上限对长单元封顶 8；其他拒收码仍为通用提示（单元测试）。
+  - 新增 `tests/unit/test_project_director_shot_count_notice.py` 9 条，在改动前的代码上 8 条失败、1 条（通用提示回归）通过，改动后 9 条通过。本工作区能收集的 9 个导演测试文件共 154 passed；另 4 条因没有 SQLAlchemy 无法导入而失败（改动前同样失败），`test_project_director_api.py`、`_convergence_sql.py`、`_infrastructure_contracts.py`、`_workflow.py` 因缺 FastAPI/SQLAlchemy/temporalio 无法收集，均由测试机补跑。`ruff check` 通过；`mypy`（strict，缺失依赖按忽略处理）对改动文件无错误。
+- [ ] 测试机：单元（含上述 4 条 SQL 用例）、集成、ruff、mypy 相对 main 无新增失败。
+- [ ] 部署按 §52 等待在途导演活动，记录两项计数与等待时刻。
+- [ ] 上线后首次出现 `director_output_shot_count_invalid` 的运行：重试时提示是否带上镜头数与上限、下一次是否通过（等自然发生，不为此调用 Provider；未验证）。
