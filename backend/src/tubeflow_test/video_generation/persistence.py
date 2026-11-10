@@ -47,9 +47,11 @@ from tubeflow_test.domain.storyboards import VideoStoryboardBinding
 from tubeflow_test.video_generation.domain import canonical_sha256
 from tubeflow_test.video_generation.orchestration import (
     EXPERIMENT_ARM_CADENCE,
+    EXPERIMENT_ARM_EDITED,
     AuthoritativeGroupInput,
     compile_video_prompt,
     derive_cadence_variant_prompt,
+    derive_edited_variant_prompt,
     experiment_block,
     prepare_manual_video_intent,
     require_experiment_source,
@@ -356,16 +358,29 @@ class ManualH3IntentWriter:
         seed: int | None = None,
         experiment_arm: str | None = None,
         prompt_source_attempt_id: UUID | None = None,
+        edited_prompt: str | None = None,
+        edited_prompt_sha256: str | None = None,
+        variant_label: str | None = None,
     ) -> UUID:
         # §51 抖动 A/B 实验臂（缺省 None 时行为不变）：请求身份写入快照 experiment 键。
         if experiment_arm is None and prompt_source_attempt_id is not None:
             raise DomainError(
                 "experiment_request_invalid", "A prompt source requires an experiment arm"
             )
+        # §54 编辑臂：整段提示词与其 sha256、变体标签三者同时出现，且只用于 edited_v1。
+        if (experiment_arm == EXPERIMENT_ARM_EDITED) != (edited_prompt is not None):
+            raise DomainError(
+                "experiment_request_invalid", "An edited prompt requires the edited_v1 arm"
+            )
         experiment = (
             None
             if experiment_arm is None
-            else experiment_block(experiment_arm, prompt_source_attempt_id)
+            else experiment_block(
+                experiment_arm,
+                prompt_source_attempt_id,
+                variant_label=variant_label,
+                edited_prompt_sha256=edited_prompt_sha256,
+            )
         )
         # LLM 提示词编译放在写事务之外：只读预取 + 编译。预取失败不裁决——
         # 事务内按既有守卫顺序（purging/媒体/并发/血缘）复现 canonical 错误，
@@ -389,6 +404,8 @@ class ManualH3IntentWriter:
                 seed,
                 prompt_source_attempt_id,
                 experiment is not None,
+                edited_prompt=edited_prompt,
+                edited_prompt_sha256=edited_prompt_sha256,
             )
             if preview is not None
             else None
@@ -429,8 +446,12 @@ class ManualH3IntentWriter:
         seed: int | None,
         prompt_source_attempt_id: UUID | None,
         experimental: bool,
+        *,
+        edited_prompt: str | None = None,
+        edited_prompt_sha256: str | None = None,
     ) -> CompiledVideoPrompt:
-        """普通请求与基线臂照常编译；节奏臂从同组基线臂派生，不调用编译器。"""
+        """普通请求与基线臂照常编译；节奏臂从同组基线臂派生；编辑臂（§54）校验整段已编辑
+        提示词。后两者都不调用编译器。"""
         if experimental:
             require_experiment_source(source)
         if prompt_source_attempt_id is None:
@@ -447,11 +468,27 @@ class ManualH3IntentWriter:
                 or baseline.group_id != source.group_id
                 or baseline.generation_id != storyboard_generation_id
             ):
+                if edited_prompt is not None:
+                    raise DomainError(
+                        "experiment_prompt_source_not_found",
+                        "The prompt source attempt is not on this group and storyboard",
+                    )
                 raise DomainError(
                     "experiment_baseline_not_found",
                     "The baseline attempt is not on this group and storyboard",
                 )
             snapshot = dict(baseline.input_snapshot_json or {})
+        if edited_prompt is not None:
+            return derive_edited_variant_prompt(
+                source,
+                attempt_id=attempt_id,
+                idempotency_key=idempotency_key,
+                seed=seed,
+                prompt_source_attempt_id=prompt_source_attempt_id,
+                source_snapshot=snapshot,
+                edited_prompt=edited_prompt,
+                edited_prompt_sha256=edited_prompt_sha256 or "",
+            )
         return derive_cadence_variant_prompt(
             source,
             attempt_id=attempt_id,
@@ -651,10 +688,16 @@ class ManualH3IntentWriter:
             )
             input_snapshot["manual_request"] = request or {}
             if experiment is not None:
-                expected_strategy = (
-                    VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL_CADENCE_V1
-                    if experiment["arm"] == EXPERIMENT_ARM_CADENCE
-                    else VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL
+                expected_strategy = {
+                    EXPERIMENT_ARM_CADENCE: (
+                        VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL_CADENCE_V1
+                    ),
+                    EXPERIMENT_ARM_EDITED: (
+                        VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL_EDITED_V1
+                    ),
+                }.get(
+                    str(experiment["arm"]),
+                    VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL,
                 )
                 if compiled.strategy is not expected_strategy:
                     raise DomainError(

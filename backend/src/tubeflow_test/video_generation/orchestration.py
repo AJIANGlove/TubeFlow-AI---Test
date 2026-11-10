@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import logging
+import re
 from collections.abc import Callable
 from dataclasses import dataclass, replace
 from datetime import UTC, datetime
@@ -2983,17 +2984,59 @@ JITTER_CADENCE_AB_V1 = "jitter-cadence-ab-v1"
 EXPERIMENT_ARM_BASELINE = "baseline"
 EXPERIMENT_ARM_CADENCE = "cadence_v1"
 _CADENCE = VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL_CADENCE_V1
+# §54（2026-11-09 画面运动自然度测试）：编辑臂提交整段已编辑提示词，不调用编译器。
+PROMPT_EDIT_AB_V1 = "prompt-edit-ab-v1"
+EXPERIMENT_ARM_EDITED = "edited_v1"
+_EDITED = VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL_EDITED_V1
+# 编辑臂的来源尝试：任何已按 v4 单格合同编译或派生的尝试（生产、基线臂、节奏臂、编辑臂）。
+_EDITABLE_SOURCE_STRATEGIES = frozenset(
+    {
+        VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL.value,
+        _CADENCE.value,
+        _EDITED.value,
+    }
+)
+_VARIANT_LABEL = re.compile(r"[a-z0-9][a-z0-9_-]{0,47}")
+_SHA256_HEX = re.compile(r"[0-9a-f]{64}")
 
 
-def experiment_block(arm: str, prompt_source_attempt_id: UUID | None) -> dict[str, object]:
+def experiment_block(
+    arm: str,
+    prompt_source_attempt_id: UUID | None,
+    *,
+    variant_label: str | None = None,
+    edited_prompt_sha256: str | None = None,
+) -> dict[str, object]:
     """实验请求身份（写入快照 experiment 键，并参与幂等比较）。"""
+    edit_fields = (variant_label, edited_prompt_sha256)
     if arm == EXPERIMENT_ARM_BASELINE and prompt_source_attempt_id is None:
-        source_id = None
-    elif arm == EXPERIMENT_ARM_CADENCE and prompt_source_attempt_id is not None:
-        source_id = str(prompt_source_attempt_id)
-    else:
-        raise VideoRuleViolation("experiment_request_invalid")
-    return {"name": JITTER_CADENCE_AB_V1, "arm": arm, "prompt_source_attempt_id": source_id}
+        if edit_fields != (None, None):
+            raise VideoRuleViolation("experiment_request_invalid")
+        return {"name": JITTER_CADENCE_AB_V1, "arm": arm, "prompt_source_attempt_id": None}
+    if arm == EXPERIMENT_ARM_CADENCE and prompt_source_attempt_id is not None:
+        if edit_fields != (None, None):
+            raise VideoRuleViolation("experiment_request_invalid")
+        return {
+            "name": JITTER_CADENCE_AB_V1,
+            "arm": arm,
+            "prompt_source_attempt_id": str(prompt_source_attempt_id),
+        }
+    if (
+        arm == EXPERIMENT_ARM_EDITED
+        and prompt_source_attempt_id is not None
+        and variant_label is not None
+        and _VARIANT_LABEL.fullmatch(variant_label) is not None
+        and edited_prompt_sha256 is not None
+        and _SHA256_HEX.fullmatch(edited_prompt_sha256) is not None
+    ):
+        return {
+            "name": PROMPT_EDIT_AB_V1,
+            "arm": arm,
+            "prompt_source_attempt_id": str(prompt_source_attempt_id),
+            "variant_label": variant_label,
+            "edited_prompt_sha256": edited_prompt_sha256,
+        }
+    raise VideoRuleViolation("experiment_request_invalid")
 
 
 def is_experiment_attempt(attempt: PersistentAttempt) -> bool:
@@ -3053,6 +3096,59 @@ def derive_cadence_variant_prompt(
         _CADENCE,
         str(block.get("model") or ""),
         f"derived-from-attempt:{prompt_source_attempt_id}",
+        False,
+        expected.fingerprint,
+    )
+
+
+def derive_edited_variant_prompt(
+    source: AuthoritativeGroupInput,
+    *,
+    attempt_id: UUID,
+    idempotency_key: str,
+    seed: int | None,
+    prompt_source_attempt_id: UUID,
+    source_snapshot: dict[str, object],
+    edited_prompt: str,
+    edited_prompt_sha256: str,
+) -> CompiledVideoPrompt:
+    """编辑臂（§54）：整段已编辑提示词，按本尝试的编译输入以 v4 单格合同全量校验；不调用编译器。
+
+    来源尝试只提供血缘（同组、同故事板、同参考输入）与编译模型标签；seed 由请求显式给出，
+    可与来源不同（同一提示词换 seed 即对照）。提示词文本必须与请求中的 sha256 一致。
+    """
+    require_experiment_source(source)
+    block = source_snapshot.get("video_prompt")
+    if (
+        not isinstance(block, dict)
+        or block.get("strategy") not in _EDITABLE_SOURCE_STRATEGIES
+        or not isinstance(block.get("text"), str)
+    ):
+        raise VideoRuleViolation("experiment_prompt_source_invalid")
+    if seed is None:
+        raise VideoRuleViolation("experiment_request_invalid")
+    if (
+        source_snapshot.get("authority") != (source.authority_snapshot or {})
+        or source_snapshot.get("reference_input_sha256") != source.reference_input_sha256
+    ):
+        raise VideoRuleViolation("video_reference_input_changed")
+    if hashlib.sha256(edited_prompt.encode("utf-8")).hexdigest() != edited_prompt_sha256:
+        raise VideoRuleViolation("experiment_edited_prompt_hash_mismatch")
+    generation = _authorize(source, idempotency_key=idempotency_key, seed=seed)
+    expected = _compiler_input(source, generation, _EDITED, attempt_id)
+    if not isinstance(expected, SinglePanelPromptCompilerInput):
+        raise VideoRuleViolation("single_panel_reference_required")
+    try:
+        validate_single_panel_compiled_prompt(
+            edited_prompt, expected=expected, binding_inserted=True
+        )
+    except VideoPromptViolation as exc:
+        raise VideoRuleViolation(f"experiment_prompt_invalid: {exc}") from exc
+    return CompiledVideoPrompt(
+        edited_prompt,
+        _EDITED,
+        str(block.get("model") or ""),
+        f"edited-from-attempt:{prompt_source_attempt_id}",
         False,
         expected.fingerprint,
     )

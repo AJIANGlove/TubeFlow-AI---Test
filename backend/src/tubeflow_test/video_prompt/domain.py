@@ -54,6 +54,11 @@ class VideoPromptStrategy(StrEnum):
     TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL_CADENCE_V1 = (
         "tubeflow_storyboard_v4_single_panel_cadence_v1"
     )
+    # §54（2026-11-09 画面运动自然度测试）：实验臂提交的整段已编辑提示词，按 v4 单格合同全量
+    # 校验后提交。从不经编译器生成，不可经配置选用；只由手动 H3 的 edited_v1 实验臂使用。
+    TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL_EDITED_V1 = (
+        "tubeflow_storyboard_v4_single_panel_edited_v1"
+    )
 
 
 # §51 抖动 A/B 的变体句，逐字取自 Pending issues/2026-11-05/JITTER_SURVEY_20261105/README.md §2。
@@ -81,6 +86,7 @@ SINGLE_PANEL_STRATEGIES = frozenset(
         VideoPromptStrategy.TUBEFLOW_STORYBOARD_V3_SINGLE_PANEL_OPT_IN_V1,
         VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL,
         VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL_CADENCE_V1,
+        VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL_EDITED_V1,
     }
 )
 
@@ -89,7 +95,13 @@ V4_SINGLE_PANEL_STRATEGIES = frozenset(
     {
         VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL,
         VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL_CADENCE_V1,
+        VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL_EDITED_V1,
     }
+)
+
+# 只能由确定性派生得到、绝不能交给编译器生成的策略（§54）。
+NON_COMPILABLE_STRATEGIES = frozenset(
+    {VideoPromptStrategy.TUBEFLOW_STORYBOARD_V4_SINGLE_PANEL_EDITED_V1}
 )
 
 

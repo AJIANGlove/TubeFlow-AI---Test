@@ -17,6 +17,7 @@ import httpx
 from tubeflow_test.config import Settings
 from tubeflow_test.domain.errors import DomainError
 from tubeflow_test.video_prompt.domain import (
+    NON_COMPILABLE_STRATEGIES,
     CompiledVideoPrompt,
     SinglePanelPromptCompilerInput,
     VideoPromptCompilerInput,
@@ -80,6 +81,9 @@ class VideoPromptCompiler:
         repair_reason: str | None = None,
         context: Mapping[str, Any] | None = None,
     ) -> CompiledVideoPrompt:
+        if value.strategy in NON_COMPILABLE_STRATEGIES:
+            # §54：已编辑提示词只能由实验臂整段提交，不得调用 Provider 生成。
+            raise VideoPromptViolation("h3_prompt_strategy_not_compilable")
         system_prompt = build_system_prompt(
             value.strategy, duration_seconds=value.duration_seconds
         )
