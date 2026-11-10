@@ -1,0 +1,26 @@
+[2026-11-10T11:14:03.748748+00:00] step=g119-m2-second key=motion-r2-g119-m2-second dry_run=False
+[2026-11-10T11:14:04.259121+00:00] contract: {"available": true, "message": "Video service is available.", "status": "AVAILABLE"}
+[2026-11-10T11:14:04.349988+00:00] owner_id (from projects): fb294c02-5f32-4597-b1e9-f7348ac9734a; production_state=ACTIVE
+[2026-11-10T11:14:04.352659+00:00] group: seq=119 id=5d5b19d2-fab2-5bf6-bade-4808e92feff1 storyboard=3da5f3fc-9106-439f-8429-54c094d1d050
+[2026-11-10T11:14:04.352669+00:00] current video before: 137ab7a8-d205-4740-b57b-3768d3ddcf59
+[2026-11-10T11:14:04.405197+00:00] prompt source: {"attempt_id": "137ab7a8-d205-4740-b57b-3768d3ddcf59", "experiment": null, "generation_id": "3da5f3fc-9106-439f-8429-54c094d1d050", "group_id": "5d5b19d2-fab2-5bf6-bade-4808e92feff1", "model": "deepseek-v4-flash", "request_seed": 8248958064718409, "stage": "ARCHIVED", "strategy": "tubeflow_storyboard_v4_single_panel"}
+[2026-11-10T11:14:04.405249+00:00] source prompt: 4087 chars sha256=fadafbf2d85f7337aa62caf36d37211661db5ce2744733d7c6bec80f563ef339
+[2026-11-10T11:14:04.405263+00:00] seed: 20261110
+[2026-11-10T11:14:04.405342+00:00] edited prompt: 4498 chars sha256=78d2bb0f9b8ab6be54e1a88682c0b1c0e4186dc8531c8e4bc8e6e6841aa8b7fd
+[2026-11-10T11:14:04.405457+00:00] diff vs source: 12 lines
+DIFF --- source
+DIFF +++ edited
+DIFF @@ -16,3 +16,3 @@
+DIFF -Oil-painted illustration with chiaroscuro lighting, deep navy and amber-gold two-tone palette, one warm light source per scene (candle, oil lamp, moonlight, or the investigator's lantern), thick impasto brushwork and canvas texture, atmospheric haze, frame edges dissolving into darkness, mysterious and somber investigative mood, stable camera, natural motion blur, real-time movement speed.
+DIFF -[Shot 1] <Picture 2>: From a high angle above Lake Chichancanab, a long pale band of cracked exposed lakebed curves around the retreating dark water; evaporative haze drifts across the sediment, and the distant water surface recedes slowly as a faint band of pale sediment is revealed along the shore. Static camera, 0% movement.
+DIFF -[Shot 2] At 00:05.600, cut to <Picture 3>: At eye level in the southern Maya lowlands, a depleted reservoir lies beneath shadowed temple silhouettes under a single amber moonlit glow; the low waterline leaves the masonry edges exposed, and mist slides across the water surface as the pale stone rim emerges. Slow push-in of about 6%.
+DIFF +Oil-painted illustration with chiaroscuro lighting, deep navy and amber-gold two-tone palette, one warm light source per scene (candle, oil lamp, moonlight, or the investigator's lantern), thick impasto brushwork and canvas texture, atmospheric haze, frame edges dissolving into darkness, mysterious and somber investigative mood, natural motion blur, real-time movement speed.
+DIFF +[Shot 1] <Picture 2>: From a high angle above Lake Chichancanab, (S1) stands on the rocky ledge at the left with a lantern in one hand, looking out over a long pale band of cracked exposed lakebed that curves around the retreating dark water; the lantern flame wavers softly, the coat hem stirs in a light night wind, the branches at the left edge sway, thin clouds drift slowly past the moon, small ripples cross the dark water so the moonlit reflection shimmers, and evaporative haze drifts across the sediment, and the distant water surface recedes slowly as a faint band of pale sediment is revealed along the shore. Static camera, 0% movement.
+DIFF +[Shot 2] At 00:05.600, cut to <Picture 3>: At eye level in the southern Maya lowlands, a depleted reservoir lies beneath shadowed temple silhouettes under a single amber moonlit glow; the low waterline leaves the masonry edges exposed, and mist slides across the water surface as the pale stone rim emerges; thin clouds drift slowly across the moon, the treetops beyond the wall sway gently in the night wind, and faint ripples run across the shallow water. Slow push-in of about 6%.
+DIFF @@ -21 +21 @@
+DIFF -No storyboard grid, panel borders, split screen, captions, on-screen text or numbers, logos, watermarks, camera shake, jitter, morphing faces, warping hands, flickering textures, slow motion, extra people, duplicated characters.
+DIFF +No storyboard grid, panel borders, split screen, captions, on-screen text or numbers, logos, watermarks, morphing faces, warping hands, slow motion, extra people, duplicated characters.
+[2026-11-10T11:14:04.406988+00:00] active attempts on group: []
+[2026-11-10T11:14:06.981430+00:00] create() returned attempt_id=bb197cec-8089-461a-8abd-b1dbd9fcafcb
+READBACK [{"archive_stage": "NOT_STARTED", "attempt_id": "bb197cec-8089-461a-8abd-b1dbd9fcafcb", "error_code": null, "experiment": {"arm": "edited_v1", "edited_prompt_sha256": "78d2bb0f9b8ab6be54e1a88682c0b1c0e4186dc8531c8e4bc8e6e6841aa8b7fd", "name": "prompt-edit-ab-v1", "prompt_source_attempt_id": "137ab7a8-d205-4740-b57b-3768d3ddcf59", "variant_label": "m2"}, "idempotency_key": "motion-r2-g119-m2-second", "node_id": null, "prompt_md5": "b1909b67bc95f948657593e8893b4d58", "seed": 20261110, "stage": "CREATED", "strategy": "tubeflow_storyboard_v4_single_panel_edited_v1"}]
+[2026-11-10T11:14:07.023094+00:00] current video after: 137ab7a8-d205-4740-b57b-3768d3ddcf59

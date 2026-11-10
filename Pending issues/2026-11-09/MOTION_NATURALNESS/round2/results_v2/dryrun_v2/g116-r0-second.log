@@ -1,0 +1,13 @@
+[2026-11-10T07:43:34.557801+00:00] step=g116-r0-second-dryrun key=motion-r2-g116-r0-second-dryrun dry_run=True
+[2026-11-10T07:43:35.074798+00:00] contract: {"available": true, "message": "Video service is available.", "status": "AVAILABLE"}
+[2026-11-10T07:43:35.167062+00:00] owner_id (from projects): fb294c02-5f32-4597-b1e9-f7348ac9734a; production_state=ACTIVE
+[2026-11-10T07:43:35.170685+00:00] group: seq=116 id=6e714ebb-8150-51e6-83b8-574581f3915a storyboard=8f2cee0a-a85c-4ceb-a5b8-3deaa3e51b92
+[2026-11-10T07:43:35.170699+00:00] current video before: 4bb5c37b-eb46-4fb0-b4bf-fda6871b7eb5
+[2026-11-10T07:43:35.223644+00:00] prompt source: {"attempt_id": "4bb5c37b-eb46-4fb0-b4bf-fda6871b7eb5", "experiment": null, "generation_id": "8f2cee0a-a85c-4ceb-a5b8-3deaa3e51b92", "group_id": "6e714ebb-8150-51e6-83b8-574581f3915a", "model": "deepseek-v4-flash", "request_seed": 2253417698150749, "stage": "ARCHIVED", "strategy": "tubeflow_storyboard_v4_single_panel"}
+[2026-11-10T07:43:35.223697+00:00] source prompt: 3723 chars sha256=c287c4d6b5e7c2c96aed65fc6e1504bdcd397fca96ec93d3184ad552697d918a
+[2026-11-10T07:43:35.223704+00:00] seed: 20261110
+[2026-11-10T07:43:35.223714+00:00] edited prompt: 3723 chars sha256=c287c4d6b5e7c2c96aed65fc6e1504bdcd397fca96ec93d3184ad552697d918a
+[2026-11-10T07:43:35.223785+00:00] diff vs source: 0 lines (identical text)
+[2026-11-10T07:43:35.225571+00:00] active attempts on group: []
+[2026-11-10T07:43:36.151663+00:00] preview: reference_policy={"derivation": {"version": "crop-grid-v2"}, "strategy": "single_panel_v1"} panels=2 reference_input_sha256=ba5a6ccdda8316d966d357cbe69a15ed4b504aaf868be8cfed3299af0589be9b
+DRYRUN_OK {"edited_prompt_sha256": "c287c4d6b5e7c2c96aed65fc6e1504bdcd397fca96ec93d3184ad552697d918a", "group_id": "6e714ebb-8150-51e6-83b8-574581f3915a", "group_seq": 116, "identical_to_source": true, "model": "deepseek-v4-flash", "project_production_state": "ACTIVE", "prompt_source_attempt_id": "4bb5c37b-eb46-4fb0-b4bf-fda6871b7eb5", "receipt": "edited-from-attempt:4bb5c37b-eb46-4fb0-b4bf-fda6871b7eb5", "seed": 20261110, "storyboard_id": "8f2cee0a-a85c-4ceb-a5b8-3deaa3e51b92", "strategy": "tubeflow_storyboard_v4_single_panel_edited_v1"}

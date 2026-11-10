@@ -64,12 +64,12 @@ def main(argv: list[str]) -> int:
                 connection.execute(
                     text(
                         "select attempt_id::text as attempt_id, idempotency_key, node_id, stage, "
-                        "archive_stage, error_code, created_at, updated_at, input_snapshot_json, "
+                        "archive_stage, error_code, updated_at, input_snapshot_json, "
                         "request_json, probe_evidence_json, archived_asset_json, output_sha256 "
                         "from video_generation_attempts where group_id = cast(:g as uuid) and ("
                         "attempt_id = cast(:s as uuid) or (idempotency_key like 'motion-r2-%' and "
                         "input_snapshot_json -> 'experiment' ->> 'name' = 'prompt-edit-ab-v1')) "
-                        "order by created_at"
+                        "order by updated_at"
                     ),
                     {"g": group["group_id"], "s": group["source_attempt_id"]},
                 )
@@ -102,7 +102,9 @@ def main(argv: list[str]) -> int:
                     "stage": row["stage"],
                     "archive_stage": row["archive_stage"],
                     "error_code": row["error_code"],
-                    "created_at": str(row["created_at"]),
+                    # 表上没有 created_at 列（2026-11-10 实测）；用 updated_at 作时间戳，
+                    # 提交与终态时刻以 submit_v2 日志为准。
+                    "created_at": None,
                     "updated_at": str(row["updated_at"]),
                     "seed": seed,
                     "strategy": (snapshot.get("video_prompt") or {}).get("strategy"),

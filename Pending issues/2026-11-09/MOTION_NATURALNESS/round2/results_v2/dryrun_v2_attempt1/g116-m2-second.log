@@ -1,0 +1,9 @@
+[2026-11-10T07:43:09.878048+00:00] step=g116-m2-second-dryrun key=motion-r2-g116-m2-second-dryrun dry_run=True
+[2026-11-10T07:43:10.390571+00:00] contract: {"available": true, "message": "Video service is available.", "status": "AVAILABLE"}
+[2026-11-10T07:43:10.480110+00:00] owner_id (from projects): fb294c02-5f32-4597-b1e9-f7348ac9734a; production_state=ACTIVE
+[2026-11-10T07:43:10.482908+00:00] group: seq=116 id=6e714ebb-8150-51e6-83b8-574581f3915a storyboard=8f2cee0a-a85c-4ceb-a5b8-3deaa3e51b92
+[2026-11-10T07:43:10.482918+00:00] current video before: 4bb5c37b-eb46-4fb0-b4bf-fda6871b7eb5
+[2026-11-10T07:43:10.536029+00:00] prompt source: {"attempt_id": "4bb5c37b-eb46-4fb0-b4bf-fda6871b7eb5", "experiment": null, "generation_id": "8f2cee0a-a85c-4ceb-a5b8-3deaa3e51b92", "group_id": "6e714ebb-8150-51e6-83b8-574581f3915a", "model": "deepseek-v4-flash", "request_seed": 2253417698150749, "stage": "ARCHIVED", "strategy": "tubeflow_storyboard_v4_single_panel"}
+[2026-11-10T07:43:10.536081+00:00] source prompt: 3723 chars sha256=c287c4d6b5e7c2c96aed65fc6e1504bdcd397fca96ec93d3184ad552697d918a
+[2026-11-10T07:43:10.536087+00:00] seed: 20261110
+[2026-11-10T07:43:10.536141+00:00] ERROR FileNotFoundError code=None message=None text=[Errno 2] No such file or directory: '/tmp/r2/prompts/116_m2.txt'

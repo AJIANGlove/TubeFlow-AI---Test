@@ -1,0 +1,19 @@
+[2026-11-10T10:19:41.000048+00:00] step=g116-m1-second key=motion-r2-g116-m1-second dry_run=False
+[2026-11-10T10:19:41.509940+00:00] contract: {"available": true, "message": "Video service is available.", "status": "AVAILABLE"}
+[2026-11-10T10:19:41.620371+00:00] owner_id (from projects): fb294c02-5f32-4597-b1e9-f7348ac9734a; production_state=ACTIVE
+[2026-11-10T10:19:41.625247+00:00] group: seq=116 id=6e714ebb-8150-51e6-83b8-574581f3915a storyboard=8f2cee0a-a85c-4ceb-a5b8-3deaa3e51b92
+[2026-11-10T10:19:41.625267+00:00] current video before: 4bb5c37b-eb46-4fb0-b4bf-fda6871b7eb5
+[2026-11-10T10:19:41.680779+00:00] prompt source: {"attempt_id": "4bb5c37b-eb46-4fb0-b4bf-fda6871b7eb5", "experiment": null, "generation_id": "8f2cee0a-a85c-4ceb-a5b8-3deaa3e51b92", "group_id": "6e714ebb-8150-51e6-83b8-574581f3915a", "model": "deepseek-v4-flash", "request_seed": 2253417698150749, "stage": "ARCHIVED", "strategy": "tubeflow_storyboard_v4_single_panel"}
+[2026-11-10T10:19:41.680831+00:00] source prompt: 3723 chars sha256=c287c4d6b5e7c2c96aed65fc6e1504bdcd397fca96ec93d3184ad552697d918a
+[2026-11-10T10:19:41.680837+00:00] seed: 20261110
+[2026-11-10T10:19:41.680909+00:00] edited prompt: 3987 chars sha256=339183968e47fa764c3611d96c18ec4d4fe09c5f35d182a8b61dab1359b53826
+[2026-11-10T10:19:41.681000+00:00] diff vs source: 5 lines
+DIFF --- source
+DIFF +++ edited
+DIFF @@ -18 +18 @@
+DIFF -[Shot 1] <Picture 2>: On the coring boat at Lake Chichancanab, (S1) braces both hands on the winch line and leans back, drawing the long sediment core upward out of the water until the tube clears the surface and swings wet and dark beside the hull, then steadies it against the gunwale; small shadowed figures of the field team work near the stern in navy mist, the single amber lantern lighting the dripping tube. Static camera, 0% movement.
+DIFF +[Shot 1] <Picture 2>: On the coring boat at Lake Chichancanab, (S1) braces both hands on the winch line and leans back, drawing the long sediment core upward out of the water until the tube clears the surface and swings wet and dark beside the hull, then steadies it against the gunwale; the field team member standing at the left edge leans toward the rising tube and shifts weight to keep balance, and the field team member seated at the right writes in an open notebook, then glances up at the core; the small boat rocks gently under the pull of the line, and slow ripples spread across the dark lake water around the hull, the single amber lantern lighting the dripping tube. Static camera, 0% movement.
+[2026-11-10T10:19:41.683966+00:00] active attempts on group: []
+[2026-11-10T10:19:44.045621+00:00] create() returned attempt_id=ab19bf7b-5bec-4ee1-9aa1-a5da8f35be2a
+READBACK [{"archive_stage": "NOT_STARTED", "attempt_id": "ab19bf7b-5bec-4ee1-9aa1-a5da8f35be2a", "error_code": null, "experiment": {"arm": "edited_v1", "edited_prompt_sha256": "339183968e47fa764c3611d96c18ec4d4fe09c5f35d182a8b61dab1359b53826", "name": "prompt-edit-ab-v1", "prompt_source_attempt_id": "4bb5c37b-eb46-4fb0-b4bf-fda6871b7eb5", "variant_label": "m1"}, "idempotency_key": "motion-r2-g116-m1-second", "node_id": null, "prompt_md5": "9d5e1f90a4d2473898368454a572fb8c", "seed": 20261110, "stage": "CREATED", "strategy": "tubeflow_storyboard_v4_single_panel_edited_v1"}]
+[2026-11-10T10:19:44.087833+00:00] current video after: 4bb5c37b-eb46-4fb0-b4bf-fda6871b7eb5
