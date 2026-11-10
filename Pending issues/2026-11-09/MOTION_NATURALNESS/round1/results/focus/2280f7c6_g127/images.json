@@ -1,0 +1,85 @@
+[
+ {
+  "role": "character_1",
+  "asset_id": "2c68da16-6270-4ec5-a181-472d9ef6c7b1",
+  "error": "media_asset_not_found"
+ },
+ {
+  "role": "panel_shot1",
+  "asset_id": "802f14b6-776c-50ae-a062-868c8be62932",
+  "file": "panel_shot1.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   546,
+   459
+  ],
+  "original_bytes": 380204,
+  "original_sha256": "efeccf202d3a78db89975524c536a38bbe83e6b90fa99866e4fadfd15c77294b",
+  "sha256_matches_db": true
+ },
+ {
+  "role": "panel_shot2",
+  "asset_id": "0647f72a-3932-5c73-9e2a-e5e6faf6e421",
+  "file": "panel_shot2.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   542,
+   459
+  ],
+  "original_bytes": 394437,
+  "original_sha256": "fad2169df1fe4bcb913c5210240cbe26f9302a1ed15739f68f36938e216d4e8a",
+  "sha256_matches_db": true
+ },
+ {
+  "role": "panel_shot3",
+  "asset_id": "4ba4c799-0529-58a6-a417-676cdd03ee59",
+  "file": "panel_shot3.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   546,
+   459
+  ],
+  "original_bytes": 366763,
+  "original_sha256": "af20a5010a99a4c91f301a195095fc1bc1874d2f6eeb326d59dfd0218ebc8b60",
+  "sha256_matches_db": true
+ },
+ {
+  "role": "panel_shot4",
+  "asset_id": "31860cbe-ae92-55c9-b5c2-e97c66037d7b",
+  "file": "panel_shot4.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   546,
+   460
+  ],
+  "original_bytes": 408676,
+  "original_sha256": "4ccdca8b54c98323e66a6b35f54970d15091e40cbb1e8a887554bbf2f7c7c81c",
+  "sha256_matches_db": true
+ },
+ {
+  "role": "panel_shot5",
+  "asset_id": "eb36afeb-4d75-5bdb-914c-3d6a25847911",
+  "file": "panel_shot5.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   543,
+   460
+  ],
+  "original_bytes": 452228,
+  "original_sha256": "92f8d213016d822597602c031da2728af1dddc3988b1c229979fa3f927a97c2f",
+  "sha256_matches_db": true
+ },
+ {
+  "role": "storyboard",
+  "asset_id": "67dba0fb-6ee8-5da6-b7f4-973382ef43eb",
+  "file": "storyboard.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   1672,
+   941
+  ],
+  "original_bytes": 2180731,
+  "original_sha256": "5722f898a1552aa1c5a24b21f319a85b216b162fca3b6551d43fa9702ee35995",
+  "sha256_matches_db": true
+ }
+]

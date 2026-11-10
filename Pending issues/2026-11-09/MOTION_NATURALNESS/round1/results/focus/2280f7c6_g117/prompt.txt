@@ -1,0 +1,18 @@
+subject_definitions:
+visual_asset_bindings: Character reference 1 = <Picture 1> (identity reference only); Shot 1 panel reference = <Picture 2> (each shot renders only the content of its corresponding single-panel reference).
+- (S1): The investigator Lumen, the person in character reference 1; reproduce that person's face, hair, body, and clothing exactly as in that image.
+- Picture 2: The single-panel storyboard reference for Shot 1, used as the composition, action, and style reference for Shot 1 only.
+summary:
+An extreme close view of a sediment core specimen reveals pale gypsum crystals within a dry-season layer, advancing through the single-panel references in shot order.
+retention_analysis:
+- (S1) — fully_preserved: the same face, hair, body, and clothing as character reference 1 in every shot.
+- Picture 2 — shot_plan_reference_only: retain Shot 1 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+detailed_description:
+Oil-painting illustration with chiaroscuro lighting, a deep navy and amber gold palette, thick impasto brushstrokes, canvas grain, atmospheric haze and edges fading into darkness, stable camera, natural motion blur, real-time movement speed.
+[Shot 1] <Picture 2>: An extreme close view of a sediment core specimen, angular gypsum crystals embedded in one dry-season layer catching the single amber lantern glow; the crystals shift slightly in the light as fine dust settles around them, thick pigment and mist-softened darkness framing the specimen. Static camera, 0% movement.
+Maintain (S1)'s face, hair and clothing as character reference 1, the sediment layer geometry, the amber lantern light, the oil-painting style, the correct finger count and real-time body movement.
+No storyboard grid, panel borders, split screen, captions, on-screen text or numbers, logos, watermarks, camera shake, jitter, morphing faces, warping hands, flickering textures, slow motion, extra people, duplicated characters.
+overall_soundscape:
+Quiet museum room tone, a faint metallic tick of the lantern, soft settling of dry sediment, no voices.
+non_diegetic_music:
+N/A

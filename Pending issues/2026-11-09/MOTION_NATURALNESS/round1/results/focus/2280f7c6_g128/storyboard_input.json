@@ -1,0 +1,178 @@
+{
+ "kind": "GRID_SHEET",
+ "version": 1,
+ "provider": "grsai",
+ "input": {
+  "shots": [
+   {
+    "shot_id": "08a34417-7d0f-4a00-9990-fba94abc6c31",
+    "order": 1,
+    "scene": "Lake Chichancanab field station - notes desk",
+    "shot_size": "MEDIUM",
+    "camera_viewpoint": "EYE_LEVEL",
+    "subject_action_outcome": "Frame the aligned records beside a researcher’s handwritten comparison notes, with the final matching marks clearly visible. → The convergence feels compelling, not presented as absolute proof.",
+    "narrative_function": "Express strong scientific convergence while retaining the narration’s qualified analogy of a nearly closed case.",
+    "description": "The paired records and simple comparison notes form a quiet evidentiary still life; no verdict or courtroom imagery is shown. Amber lamplight catches the matching marks against the dark, painterly work surface.",
+    "semantic_event": "EXPLAIN_CAUSE",
+    "subject_focus": "PROCESS",
+    "time_relation": "TIMELESS",
+    "location_relation": "SAME_LOCATION"
+   },
+   {
+    "shot_id": "01f85fd7-933e-416e-98f4-e7357076c3e3",
+    "order": 2,
+    "scene": "Lake Chichancanab field station - table edge",
+    "shot_size": "WIDE",
+    "camera_viewpoint": "OBJECTIVE",
+    "subject_action_outcome": "Hold on a quiet, unoccupied section of the analysis table as the evidence lies just beyond the pool of light. → The pause creates space for the next statement without adding new evidence.",
+    "narrative_function": "Mark the narration’s transition before naming the conclusion.",
+    "description": "A brief visual pause: the edge of the two records and the dark tabletop remain still, with the single amber lamp fading into deep navy shadow.",
+    "semantic_event": "TRANSITION",
+    "subject_focus": "ENVIRONMENT",
+    "time_relation": "SAME_MOMENT",
+    "location_relation": "SAME_LOCATION"
+   },
+   {
+    "shot_id": "06b72972-465a-46c5-982d-ad1ea024476f",
+    "order": 3,
+    "scene": "Lake Chichancanab field station - evidence bench",
+    "shot_size": "CLOSE_UP",
+    "camera_viewpoint": "OVER_SHOULDER",
+    "subject_action_outcome": "Show the lake core’s closely spaced dry-period bands beside the stalagmite sample’s corresponding marks. → The shared dry-period signal is clearly foregrounded.",
+    "narrative_function": "Present drought as the conclusion supported by the converging archives.",
+    "description": "From behind the working surface, the records make the drought conclusion visible through their matching evidence. Keep the samples and instruments in view, lit by one warm lamp against shadowed surroundings.",
+    "semantic_event": "REVEAL_EVIDENCE",
+    "subject_focus": "OBJECT_OR_EVIDENCE",
+    "time_relation": "TIMELESS",
+    "location_relation": "SAME_LOCATION"
+   },
+   {
+    "shot_id": "3cc61943-9b31-424c-a78e-89a57b7cddd3",
+    "order": 4,
+    "scene": "Yok Balum Cave research site - stalagmite sampling area",
+    "shot_size": "WIDE",
+    "camera_viewpoint": "LOW_ANGLE",
+    "subject_action_outcome": "Cut to two separate archive samples, one from lake sediment and one from cave formation, each carrying a matching dry-period mark. → Both independent records visibly support the same dry-period conclusion.",
+    "narrative_function": "Reaffirm that the drought finding rests on two independent archives.",
+    "description": "The paired samples stand apart in two small pools of amber light within a dark, painterly composition, emphasizing separate origins while preserving their matching record.",
+    "semantic_event": "COMPARE",
+    "subject_focus": "MULTIPLE_SUBJECTS",
+    "time_relation": "TIMELESS",
+    "location_relation": "SCRIPT_SUPPORTED_NEW_LOCATION"
+   },
+   {
+    "shot_id": "617fd373-9c12-408d-bd4c-316e58ce91da",
+    "order": 5,
+    "scene": "Yok Balum Cave - stalagmite archive",
+    "shot_size": "CLOSE_UP",
+    "camera_viewpoint": "OVERHEAD",
+    "subject_action_outcome": "A close view isolates a marked rainfall range on a climate record beside the cave's stalagmite archive. → The archive visibly carries evidence of a substantial rainfall decline.",
+    "narrative_function": "Make the estimated rainfall reduction tangible as recorded evidence.",
+    "description": "Thick oil-painted strokes pick out the rainfall reduction on the cave archive, with a single amber lantern glow against deep navy shadow.",
+    "semantic_event": "REVEAL_EVIDENCE",
+    "subject_focus": "OBJECT_OR_EVIDENCE",
+    "time_relation": "SAME_MOMENT",
+    "location_relation": "SAME_LOCATION"
+   },
+   {
+    "shot_id": "f8901f40-3c9f-4e0a-93f4-d256479d8129",
+    "order": 6,
+    "scene": "Southern lowlands - city ruins",
+    "shot_size": "WIDE",
+    "camera_viewpoint": "HIGH_ANGLE",
+    "subject_action_outcome": "The view spans the southern lowlands' city ruins, with the dated collapse period set against the inferred dry interval. → The two periods appear to align across the landscape.",
+    "narrative_function": "Connect the rainfall reduction's timing with the cities' collapse.",
+    "description": "A broad, shadowed landscape links the dry interval to the southern cities' collapse without implying more precise timing than the evidence supports.",
+    "semantic_event": "COMPARE",
+    "subject_focus": "ENVIRONMENT",
+    "time_relation": "LATER",
+    "location_relation": "SCRIPT_SUPPORTED_NEW_LOCATION"
+   }
+  ],
+  "links": [
+   {
+    "shot_id": "08a34417-7d0f-4a00-9990-fba94abc6c31",
+    "sentence_id": "37598acf-6651-5b68-8307-043393c30f65"
+   },
+   {
+    "shot_id": "01f85fd7-933e-416e-98f4-e7357076c3e3",
+    "sentence_id": "95def70e-b233-58ea-aad7-49edbad399e6"
+   },
+   {
+    "shot_id": "06b72972-465a-46c5-982d-ad1ea024476f",
+    "sentence_id": "8132ef59-e899-588b-84fc-d09ea630ed3e"
+   },
+   {
+    "shot_id": "3cc61943-9b31-424c-a78e-89a57b7cddd3",
+    "sentence_id": "38d6bfa2-d4ab-5a64-90c8-3c0d70874bcd"
+   },
+   {
+    "shot_id": "617fd373-9c12-408d-bd4c-316e58ce91da",
+    "sentence_id": "7f4c6e54-8ce4-544c-8196-c2ac43063ada"
+   },
+   {
+    "shot_id": "f8901f40-3c9f-4e0a-93f4-d256479d8129",
+    "sentence_id": "c7e0fa8a-b632-5ff0-9bb5-d18d1abd3277"
+   }
+  ],
+  "prompt": "Generate exactly one storyboard image laid out as a strict grid of 2 rows and 3 columns of equal-sized panels. The panels are read left-to-right, top-to-bottom, and are separated by straight solid black gutters about 12 pixels wide. Do not draw white frames, borders, outlines or decorative lines around or inside the gutters; each panel's picture runs right up to the black gutter. Art style for every panel: 油画插画、明暗对照布光。深海军蓝+琥珀金双色基调。每个场景只有一个暖光源（蜡烛、油灯、月光、调查员在场时=他的提灯）。厚涂油画笔触和画布肌理、大气雾感、画面边缘渐隐入黑暗。神秘、阴郁、调查氛围。POV 场景里的历史人物大多用剪影或半明半暗的脸；常驻调查员=提灯头的 Lumen（见 IP 锁定）。不要写实、不要电影实拍感、不要明亮日光场景、不要现代物件、不要霓虹色。. Keep the same rendering medium, palette, lighting and texture consistent across all panels. Reference images 1 to 1 are the story characters. Whenever a character appears in a panel, render the same person as in the reference images with an identical face, hairstyle and clothing in every panel. Use the reference images only for identity: face, hairstyle, body type and signature clothing. Do not copy their pose, gesture, facial expression, framing, camera angle, background, scene layout or object positions. Design each panel's pose, expression and composition anew from its Action and Visual description; those panel instructions take priority over every non-identity feature of the reference images. A reference image that shows one character from several angles is still one person; never draw more copies of a character than the panel's action calls for. Panel 1 (row 1, column 1): MEDIUM, EYE_LEVEL. Scene: Lake Chichancanab field station - notes desk. Action: Frame the aligned records beside a researcher’s handwritten comparison notes, with the final matching marks clearly visible. → The convergence feels compelling, not presented as absolute proof.. Visual description: The paired records and simple comparison notes form a quiet evidentiary still life; no verdict or courtroom imagery is shown. Amber lamplight catches the matching marks against the dark, painterly work surface.. Panel 2 (row 1, column 2): WIDE, OBJECTIVE. Scene: Lake Chichancanab field station - table edge. Action: Hold on a quiet, unoccupied section of the analysis table as the evidence lies just beyond the pool of light. → The pause creates space for the next statement without adding new evidence.. Visual description: A brief visual pause: the edge of the two records and the dark tabletop remain still, with the single amber lamp fading into deep navy shadow.. Panel 3 (row 1, column 3): CLOSE_UP, OVER_SHOULDER. Scene: Lake Chichancanab field station - evidence bench. Action: Show the lake core’s closely spaced dry-period bands beside the stalagmite sample’s corresponding marks. → The shared dry-period signal is clearly foregrounded.. Visual description: From behind the working surface, the records make the drought conclusion visible through their matching evidence. Keep the samples and instruments in view, lit by one warm lamp against shadowed surroundings.. Panel 4 (row 2, column 1): WIDE, LOW_ANGLE. Scene: Yok Balum Cave research site - stalagmite sampling area. Action: Cut to two separate archive samples, one from lake sediment and one from cave formation, each carrying a matching dry-period mark. → Both independent records visibly support the same dry-period conclusion.. Visual description: The paired samples stand apart in two small pools of amber light within a dark, painterly composition, emphasizing separate origins while preserving their matching record.. Panel 5 (row 2, column 2): CLOSE_UP, OVERHEAD. Scene: Yok Balum Cave - stalagmite archive. Action: A close view isolates a marked rainfall range on a climate record beside the cave's stalagmite archive. → The archive visibly carries evidence of a substantial rainfall decline.. Visual description: Thick oil-painted strokes pick out the rainfall reduction on the cave archive, with a single amber lantern glow against deep navy shadow.. Panel 6 (row 2, column 3): WIDE, HIGH_ANGLE. Scene: Southern lowlands - city ruins. Action: The view spans the southern lowlands' city ruins, with the dated collapse period set against the inferred dry interval. → The two periods appear to align across the landscape.. Visual description: A broad, shadowed landscape links the dry interval to the southern cities' collapse without implying more precise timing than the evidence supports.. Do not draw any readable text anywhere in the image: no captions, panel numbers, labels, titles, words, letters, numbers, prices, currency signs, charts or tables with labels or figures, signboards with lettering, logos, watermarks or signatures. Show amounts, costs and comparisons through objects, gestures and expressions instead, such as a tall or short stack of coins, a thick or thin pile of bills, or a busy or empty shop. Each panel is one continuous camera view of a single moment in a single place, like a frame from a film. Never divide a panel into two halves or several parts: no split screen, side-by-side or before-and-after comparison, inset picture or picture-in-picture inside a panel. Do not draw diagrams, arrows, floating icons, symbols or other overlays; show every idea only through people, objects and places a camera could film.",
+  "prompt_safety": [
+   "sensational_wording"
+  ],
+  "character_assets": [
+   {
+    "ordinal": 1,
+    "character_image_id": "632b031e-f0ed-4d6a-9b66-280a3c0384fa",
+    "asset_id": "2c68da16-6270-4ec5-a181-472d9ef6c7b1",
+    "sha256": "e507047ae11ffe04fd9aeee010f7884b5542cd8f6e6b91ffeac13eebef25e740",
+    "media_type": "image/png",
+    "size_bytes": 2741029
+   }
+  ],
+  "style": "油画插画、明暗对照布光。深海军蓝+琥珀金双色基调。每个场景只有一个暖光源（蜡烛、油灯、月光、调查员在场时=他的提灯）。厚涂油画笔触和画布肌理、大气雾感、画面边缘渐隐入黑暗。神秘、阴郁、调查氛围。POV 场景里的历史人物大多用剪影或半明半暗的脸；常驻调查员=提灯头的 Lumen（见 IP 锁定）。不要写实、不要电影实拍感、不要明亮日光场景、不要现代物件、不要霓虹色。",
+  "provider": "grsai",
+  "model": "gpt-image-2.5",
+  "parameters": {
+   "aspect_ratio": "16:9",
+   "quality": "high"
+  },
+  "provider_idempotency_key": "defdbdcbf6eb563eab1d05f5c3eb2e2fba2f5b074b0dfaefc9bae142aa138cac",
+  "auto_attempt": 1,
+  "budget_round": 1,
+  "supersedes_generation_id": null,
+  "grid_layout_version": "grid-v2",
+  "shot_time_ranges": [
+   {
+    "order": 1,
+    "start_ms": 0,
+    "end_ms": 4080
+   },
+   {
+    "order": 2,
+    "start_ms": 4080,
+    "end_ms": 4960
+   },
+   {
+    "order": 3,
+    "start_ms": 4960,
+    "end_ms": 5920
+   },
+   {
+    "order": 4,
+    "start_ms": 5920,
+    "end_ms": 7920
+   },
+   {
+    "order": 5,
+    "start_ms": 7920,
+    "end_ms": 11360
+   },
+   {
+    "order": 6,
+    "start_ms": 11360,
+    "end_ms": 14640
+   }
+  ],
+  "shot_time_ranges_algorithm": "monotone-projection-v1"
+ }
+}

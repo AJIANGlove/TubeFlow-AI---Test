@@ -1,0 +1,34 @@
+subject_definitions:
+visual_asset_bindings: Character reference 1 = <Picture 1> (identity reference only); Shot 1 panel reference = <Picture 2>; Shot 2 panel reference = <Picture 3>; Shot 3 panel reference = <Picture 4>; Shot 4 panel reference = <Picture 5>; Shot 5 panel reference = <Picture 6>; Shot 6 panel reference = <Picture 7> (each shot renders only the content of its corresponding single-panel reference).
+- (S1): The researcher, the person in character reference 1; reproduce that person's face, hair, body, and clothing exactly as in that image.
+- Picture 2: The single-panel storyboard reference for Shot 1, used as the composition, action, and style reference for Shot 1 only.
+- Picture 3: The single-panel storyboard reference for Shot 2, used as the composition, action, and style reference for Shot 2 only.
+- Picture 4: The single-panel storyboard reference for Shot 3, used as the composition, action, and style reference for Shot 3 only.
+- Picture 5: The single-panel storyboard reference for Shot 4, used as the composition, action, and style reference for Shot 4 only.
+- Picture 6: The single-panel storyboard reference for Shot 5, used as the composition, action, and style reference for Shot 5 only.
+- Picture 7: The single-panel storyboard reference for Shot 6, used as the composition, action, and style reference for Shot 6 only.
+summary:
+Across a shadowed field station and a cave archive, aligned climate records quietly converge on one shared dry interval, advancing through the single-panel references in shot order.
+retention_analysis:
+- (S1) — fully_preserved: the same face, hair, body, and clothing as character reference 1 in every shot.
+- (S2) — fully_preserved: retain the notes desk, sampling bench, cave archive and southern lowland ruins with their single amber light source against deep navy shadow.
+- Picture 2 — shot_plan_reference_only: retain Shot 1 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+- Picture 3 — shot_plan_reference_only: retain Shot 2 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+- Picture 4 — shot_plan_reference_only: retain Shot 3 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+- Picture 5 — shot_plan_reference_only: retain Shot 4 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+- Picture 6 — shot_plan_reference_only: retain Shot 5 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+- Picture 7 — shot_plan_reference_only: retain Shot 6 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+detailed_description:
+Thick impasto oil-painting illustration, deep navy and amber gold two-tone palette, single warm lamp or lantern source, atmospheric haze, canvas texture, edges fading into darkness, stable camera, natural motion blur, real-time movement speed.
+[Shot 1] <Picture 2>: At the notes desk, two aligned record sheets and a handwritten comparison sheet rest under one amber lamp; (S1) leans in, taps the matching marks with one fingertip, then withdraws the hand and straightens slightly. Static camera, 0% movement.
+[Shot 2] At 00:04.080, cut to <Picture 3>: The unoccupied edge of the analysis table holds still, the record corners just beyond the pool of lamplight; a loose page corner lifts faintly and settles. Slow push-in of about 4%.
+[Shot 3] At 00:04.960, cut to <Picture 4>: From behind the working surface, (S1) slides the lake core sample alongside the stalagmite sample, sets it down, and aligns their marked bands with one finger. Slow pull-out of about 5%.
+[Shot 4] At 00:05.920, cut to <Picture 5>: In the cave sampling area, two separate archive samples sit in two small pools of amber light; dust drifts through the lantern beam and the nearest sample rests steady as the light wavers gently. Slow pan of about 10 degrees.
+[Shot 5] At 00:07.920, cut to <Picture 6>: Overhead on the cave archive, (S1)'s hands rotate the marked climate record slightly, trace along the flagged rainfall range, then release it flat. Static camera, 0% movement.
+[Shot 6] At 00:11.360, cut to <Picture 7>: High over the southern lowlands, ruined city structures recede into haze; a thin ground mist drifts across the stone, and beyond it the shadowed landscape holds still. Slow tilt of about 12 degrees.
+Maintain (S1)'s face, hair, body and clothing as character reference 1 in every shot, the desk and bench geometry, the cave archive layout, the single warm light source and deep navy shadow, the painterly oil style, the correct finger count and real-time body movement.
+No storyboard grid, panel borders, split screen, captions, on-screen text or numbers, logos, watermarks, camera shake, jitter, morphing faces, warping hands, flickering textures, slow motion, extra people, duplicated characters.
+overall_soundscape:
+Quiet field station room tone, a fingertip tapping paper, a page corner rustling, a sample set down on wood, faint cave drip and low air movement, distant wind over stone, no voices.
+non_diegetic_music:
+N/A

@@ -1,0 +1,128 @@
+===== docker-ps-before =====
+tubeflowai-test-web-1|79b37e6ce50f|Up 38 hours (healthy)
+tubeflowai-test-worker-1|79b37e6ce50f|Up 38 hours (healthy)
+tubeflowai-test-migrate-1|79b37e6ce50f|Exited (0) 38 hours ago
+tubeflow-contract-minio|14cea493d9a3|Up 3 days
+tubeflowai-test-mihomo-1|bac1a74de365|Up 4 days (healthy)
+tubeflow-contract-pg|postgres:17-alpine|Up 6 days
+kinestack-h3-clones-h3-engine-new-3-1|88c0df224d3a|Up 2 weeks (healthy)
+kinestack-h3-clones-h3-engine-new-2-1|88c0df224d3a|Up 2 weeks (healthy)
+kinestack-h3-clones-h3-engine-new-1-1|88c0df224d3a|Up 2 weeks (healthy)
+kinestack-worker-1|5858544a46ab|Up 5 weeks
+kinestack-server-1|5858544a46ab|Up 5 weeks (healthy)
+kinestack-web-1|e4213a7f6dd2|Up 5 weeks (healthy)
+kinestack-postgres-1|postgres:17-bookworm|Up 5 weeks (healthy)
+kinestack-fake-engine-1|9bf93a5f910e|Up 5 weeks (healthy)
+tubeflowai-test-temporal-1|temporalio/auto-setup:1.27|Up 5 weeks (healthy)
+tubeflowai-test-minio-init-1|a7fe349ef4bd|Exited (0) 38 hours ago
+tubeflowai-test-postgres-1|postgres:17-alpine|Up 5 weeks (healthy)
+tubeflowai-test-minio-1|14cea493d9a3|Up 5 weeks (healthy)
+===== docker-ps-after =====
+tubeflowai-test-web-1|7b5056d4a7d6|Up About a minute (healthy)
+tubeflowai-test-worker-1|7b5056d4a7d6|Up About a minute (healthy)
+tubeflowai-test-migrate-1|7b5056d4a7d6|Exited (0) About a minute ago
+tubeflow-contract-minio|14cea493d9a3|Up 3 days
+tubeflowai-test-mihomo-1|bac1a74de365|Up 4 days (healthy)
+tubeflow-contract-pg|postgres:17-alpine|Up 6 days
+kinestack-h3-clones-h3-engine-new-3-1|88c0df224d3a|Up 2 weeks (healthy)
+kinestack-h3-clones-h3-engine-new-2-1|88c0df224d3a|Up 2 weeks (healthy)
+kinestack-h3-clones-h3-engine-new-1-1|88c0df224d3a|Up 2 weeks (healthy)
+kinestack-worker-1|5858544a46ab|Up 5 weeks
+kinestack-server-1|5858544a46ab|Up 5 weeks (healthy)
+kinestack-web-1|e4213a7f6dd2|Up 5 weeks (healthy)
+kinestack-postgres-1|postgres:17-bookworm|Up 5 weeks (healthy)
+kinestack-fake-engine-1|9bf93a5f910e|Up 5 weeks (healthy)
+tubeflowai-test-temporal-1|temporalio/auto-setup:1.27|Up 5 weeks (healthy)
+tubeflowai-test-minio-init-1|a7fe349ef4bd|Exited (0) About a minute ago
+tubeflowai-test-postgres-1|postgres:17-alpine|Up 5 weeks (healthy)
+tubeflowai-test-minio-1|14cea493d9a3|Up 5 weeks (healthy)
+===== up.log =====
+time="2026-11-10T13:28:51+08:00" level=warning msg="volume \"tubeflowai-test_postgres_data\" already exists but was not created by Docker Compose. Use `external: true` to use an existing volume"
+time="2026-11-10T13:28:51+08:00" level=warning msg="volume \"tubeflowai-test_minio_data\" already exists but was not created by Docker Compose. Use `external: true` to use an existing volume"
+ Container tubeflowai-test-temporal-1 Running 
+ Container tubeflowai-test-mihomo-1 Running 
+ Container tubeflowai-test-postgres-1 Running 
+ Container tubeflowai-test-minio-1 Running 
+ Container tubeflowai-test-migrate-1 Recreate 
+ Container tubeflowai-test-migrate-1 Recreated 
+ Container tubeflowai-test-web-1 Recreate 
+ Container tubeflowai-test-worker-1 Recreate 
+ Container tubeflowai-test-web-1 Recreated 
+ Container tubeflowai-test-worker-1 Recreated 
+ Container tubeflowai-test-minio-1 Waiting 
+ Container tubeflowai-test-postgres-1 Waiting 
+ Container tubeflowai-test-postgres-1 Waiting 
+ Container tubeflowai-test-postgres-1 Healthy 
+ Container tubeflowai-test-postgres-1 Healthy 
+ Container tubeflowai-test-migrate-1 Starting 
+ Container tubeflowai-test-minio-1 Healthy 
+ Container tubeflowai-test-minio-init-1 Starting 
+ Container tubeflowai-test-migrate-1 Started 
+ Container tubeflowai-test-minio-init-1 Started 
+ Container tubeflowai-test-migrate-1 Waiting 
+ Container tubeflowai-test-minio-1 Waiting 
+ Container tubeflowai-test-minio-init-1 Waiting 
+ Container tubeflowai-test-temporal-1 Waiting 
+ Container tubeflowai-test-mihomo-1 Waiting 
+ Container tubeflowai-test-mihomo-1 Waiting 
+ Container tubeflowai-test-migrate-1 Waiting 
+ Container tubeflowai-test-minio-1 Waiting 
+ Container tubeflowai-test-minio-init-1 Waiting 
+ Container tubeflowai-test-temporal-1 Waiting 
+ Container tubeflowai-test-minio-init-1 Exited 
+ Container tubeflowai-test-minio-init-1 Exited 
+ Container tubeflowai-test-temporal-1 Healthy 
+ Container tubeflowai-test-temporal-1 Healthy 
+ Container tubeflowai-test-minio-1 Healthy 
+ Container tubeflowai-test-minio-1 Healthy 
+ Container tubeflowai-test-mihomo-1 Healthy 
+ Container tubeflowai-test-mihomo-1 Healthy 
+ Container tubeflowai-test-migrate-1 Exited 
+ Container tubeflowai-test-worker-1 Starting 
+ Container tubeflowai-test-migrate-1 Exited 
+ Container tubeflowai-test-web-1 Starting 
+ Container tubeflowai-test-worker-1 Started 
+ Container tubeflowai-test-web-1 Started 
+===== build log tail 40 =====
+#14 75.69 Collecting pydantic-core==2.50.4 (from pydantic>=2.9.0->fastapi<1,>=0.116->tubeflow-ai-test-backend==0.1.0)
+#14 75.72   Downloading https://pypi.tuna.tsinghua.edu.cn/packages/91/23/e0c6e3cd09a0ac809953fea698c816b9f03bf0b35b6820c9553e4f5d85a8/pydantic_core-2.50.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (2.3 MB)
+#14 77.08      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.3/2.3 MB 1.7 MB/s eta 0:00:00
+#14 77.60 Collecting cffi>=1.0.1 (from argon2-cffi-bindings->argon2-cffi<26,>=25->tubeflow-ai-test-backend==0.1.0)
+#14 77.63   Downloading https://pypi.tuna.tsinghua.edu.cn/packages/b1/db/dceb9dd5b231e1da801793f8acc9f3c52a7e1afe40bb1aae37e02b0faad5/cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (221 kB)
+#14 78.06 Collecting MarkupSafe>=2.0 (from Mako->alembic<2,>=1.16->tubeflow-ai-test-backend==0.1.0)
+#14 78.15   Downloading https://pypi.tuna.tsinghua.edu.cn/packages/4f/a7/aeedb5140afa41fc74c225e9184ab96723a6e873b6ee1c9fede7283456d8/markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+#14 78.20 Collecting pycparser (from cffi>=1.0.1->argon2-cffi-bindings->argon2-cffi<26,>=25->tubeflow-ai-test-backend==0.1.0)
+#14 78.26   Downloading https://pypi.tuna.tsinghua.edu.cn/packages/b6/ae/315bbeee126a769cbde43cf4908acb4b40408d8bf8bbf334dd7368d8dadf/pycparser-3.12-py3-none-any.whl (62 kB)
+#14 78.29 Building wheels for collected packages: tubeflow-ai-test-backend
+#14 78.29   Building wheel for tubeflow-ai-test-backend (pyproject.toml): started
+#14 78.53   Building wheel for tubeflow-ai-test-backend (pyproject.toml): finished with status 'done'
+#14 78.54   Created wheel for tubeflow-ai-test-backend: filename=tubeflow_ai_test_backend-0.1.0-py3-none-any.whl size=747589 sha256=d2cda3e8f1b06fd80d6d12b81e0292b1e39540626c4414cf20a66e7f89155a16
+#14 78.54   Stored in directory: /tmp/pip-ephem-wheel-cache-1hx6jy9n/wheels/54/1b/b7/aa63e25c8f14f4f2ae7b04e6097bdecb770e455c5c1ee0a600
+#14 78.54 Successfully built tubeflow-ai-test-backend
+#14 78.60 Installing collected packages: websockets, uvloop, urllib3, typing-extensions, types-protobuf, pyyaml, python-multipart, python-dotenv, pycryptodome, pycparser, psycopg-binary, protobuf, pillow, numpy, MarkupSafe, idna, httptools, h11, click, certifi, annotated-types, annotated-doc, uvicorn, typing-inspection, sqlalchemy, pydantic-core, psycopg, opentelemetry-api, opencv-python-headless, nexus-rpc, Mako, httpcore, cffi, anyio, watchfiles, temporalio, starlette, pydantic, httpx, argon2-cffi-bindings, alembic, pydantic-settings, fastapi, argon2-cffi, minio, tubeflow-ai-test-backend
+#14 84.35 Successfully installed Mako-1.4.3 MarkupSafe-3.0.4 alembic-1.20.1 annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.16.0 argon2-cffi-25.1.0 argon2-cffi-bindings-26.1.0 certifi-2026.10.23 cffi-2.1.1 click-8.5.1 fastapi-0.162.2 h11-0.16.0 httpcore-1.0.9 httptools-0.9.0 httpx-0.28.1 idna-3.20 minio-7.2.20 nexus-rpc-1.4.0 numpy-2.5.4 opencv-python-headless-5.0.0.93 opentelemetry-api-1.45.2 pillow-12.3.0 protobuf-7.36.2 psycopg-3.3.8 psycopg-binary-3.3.8 pycparser-3.12 pycryptodome-3.24.1 pydantic-2.14.3 pydantic-core-2.50.4 pydantic-settings-2.16.2 python-dotenv-1.2.4 python-multipart-0.0.33 pyyaml-6.0.3 sqlalchemy-2.1.8 starlette-1.10.0 temporalio-1.35.0 tubeflow-ai-test-backend-0.1.0 types-protobuf-7.35.1.20260906 typing-extensions-4.16.0 typing-inspection-0.4.5 urllib3-2.8.0 uvicorn-0.54.0 uvloop-0.23.0 watchfiles-1.3.0 websockets-17.4
+#14 84.35 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#14 85.26 
+#14 85.26 [notice] A new release of pip is available: 25.0.1 -> 26.3
+#14 85.26 [notice] To update, run: pip install --upgrade pip
+#14 DONE 85.5s
+
+#15 [11/12] RUN ffmpeg -version >/dev/null && ffprobe -version >/dev/null
+#15 DONE 0.4s
+
+#16 [12/12] RUN python -c "import cv2, numpy"
+#16 DONE 0.4s
+
+#17 exporting to image
+#17 exporting layers
+#17 exporting layers 13.0s done
+#17 exporting manifest sha256:8a7195fcccf9b4a328d0819540f8a73066b1eb2e361980f7bb875bfc22cb8f2d 0.0s done
+#17 exporting config sha256:5e5d191737680d3352fc47a60bdf086b8d833c4459c97ee3bc9a4c54f90c6b56 0.0s done
+#17 exporting attestation manifest sha256:a848772ef345f298652f114760acde0b3b9d80286f7c9f2a9354460340692091 0.0s done
+#17 exporting manifest list sha256:7b5056d4a7d66130614bbfd0244f97175684af82abec3dc26166611b85a68c0c 0.0s done
+#17 naming to docker.io/library/tubeflow-test:motion-edit-arm-20261109 done
+#17 unpacking to docker.io/library/tubeflow-test:motion-edit-arm-20261109
+#17 unpacking to docker.io/library/tubeflow-test:motion-edit-arm-20261109 2.1s done
+#17 DONE 15.2s
+===== build log size =====
+186 /home/edy/build-mea-20261109.log

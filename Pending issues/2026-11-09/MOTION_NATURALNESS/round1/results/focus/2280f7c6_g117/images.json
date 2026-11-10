@@ -1,0 +1,33 @@
+[
+ {
+  "role": "character_1",
+  "asset_id": "2c68da16-6270-4ec5-a181-472d9ef6c7b1",
+  "error": "media_asset_not_found"
+ },
+ {
+  "role": "panel_shot1",
+  "asset_id": "0265de03-faa8-5285-96d3-b567ccd98447",
+  "file": "panel_shot1.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   1666,
+   935
+  ],
+  "original_bytes": 2463793,
+  "original_sha256": "978d0b7aa4a5af191456cb8d566f31045492f8b6ed1c0c0760365b0680470ebd",
+  "sha256_matches_db": true
+ },
+ {
+  "role": "storyboard",
+  "asset_id": "74d5c25c-d566-582e-8497-08bd2434cb91",
+  "file": "storyboard.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   1672,
+   941
+  ],
+  "original_bytes": 2614274,
+  "original_sha256": "0f428a219cf1ba303c62918a1523f5a9e034ee09f9f78ffb5dbc51698b1edce1",
+  "sha256_matches_db": true
+ }
+]

@@ -1,0 +1,24 @@
+subject_definitions:
+visual_asset_bindings: Character reference 1 = <Picture 1> (identity reference only); Shot 1 panel reference = <Picture 2>; Shot 2 panel reference = <Picture 3>; Shot 3 panel reference = <Picture 4> (each shot renders only the content of its corresponding single-panel reference).
+- (S1): The street vendor, the person in character reference 1; reproduce that person's face, hair, body, and clothing exactly as in that image.
+- Picture 2: The single-panel storyboard reference for Shot 1, used as the composition, action, and style reference for Shot 1 only.
+- Picture 3: The single-panel storyboard reference for Shot 2, used as the composition, action, and style reference for Shot 2 only.
+- Picture 4: The single-panel storyboard reference for Shot 3, used as the composition, action, and style reference for Shot 3 only.
+summary:
+A street vendor calculates the per-item cost of a snack by examining ingredients and coins at the stall, advancing through the single-panel references in shot order.
+retention_analysis:
+- (S1) — fully_preserved: the same face, hair, body, and clothing as character reference 1 in every shot.
+- Picture 2 — shot_plan_reference_only: retain Shot 1 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+- Picture 3 — shot_plan_reference_only: retain Shot 2 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+- Picture 4 — shot_plan_reference_only: retain Shot 3 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+detailed_description:
+European two-dimensional hand-drawn animation, semi-realistic cartoon figures, vintage historical picture-book background, warm historical documentary style, low-saturation ochre palette, soft cel shading, fine hand-drawn lines, natural human proportions, subtle film grain, light paper texture, soft ambient light, hazy atmospheric perspective, cinematic composition, stable camera, natural motion blur, real-time movement speed.
+[Shot 1] <Picture 2>: At the street stall workbench with ingredients and paper bags laid out, (S1) picks up the dough in one hand, sets it down, then picks up the red bean filling and the oil bottle, turning each slightly before setting them back, and finally lifts a paper bag by its edge and places it beside the ingredients. Static camera, 0% movement.
+[Shot 2] At 00:06.560, cut to <Picture 3>: At the stall counter, viewed from a high angle, two clusters of coins sit beside an open ledger; (S1)'s hands slide a small portion of coins away from the larger pile toward the ledger, then separate the remaining coins into their own stack and pat them level. Slow push-in of about 6%.
+[Shot 3] At 00:10.640, cut to <Picture 4>: Inside the stall, in front of an empty sales record board, (S1) steps up to the board, lifts one hand toward it and lets the hand fall back to the side, then turns to look across the empty display shelves and shifts weight from one foot to the other. Static camera, 0% movement.
+Maintain (S1)'s face, hair, body and clothing as character reference 1, the stall workbench layout, the counter coin clusters, the empty record board and display shelves, the warm ochre light, the hand-drawn style, the correct finger count and real-time body movement in every shot.
+No storyboard grid, panel borders, split screen, captions, on-screen text or numbers, logos, watermarks, camera shake, jitter, morphing faces, warping hands, flickering textures, slow motion, extra people, duplicated characters.
+overall_soundscape:
+Quiet street-side stall ambience, dough and paper bag handled on a wooden surface, coins sliding and clicking against each other, a light footstep on the ground, no voices.
+non_diegetic_music:
+N/A

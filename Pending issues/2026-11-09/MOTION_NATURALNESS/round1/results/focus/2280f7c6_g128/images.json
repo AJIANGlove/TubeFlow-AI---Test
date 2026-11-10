@@ -1,0 +1,98 @@
+[
+ {
+  "role": "character_1",
+  "asset_id": "2c68da16-6270-4ec5-a181-472d9ef6c7b1",
+  "error": "media_asset_not_found"
+ },
+ {
+  "role": "panel_shot1",
+  "asset_id": "b37d8f68-e3eb-567b-b624-3bc248e18175",
+  "file": "panel_shot1.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   541,
+   455
+  ],
+  "original_bytes": 401283,
+  "original_sha256": "316a180ebfd9c8974003cedcb1d1b46600438d6b414ed57d3a246554fcd1d350",
+  "sha256_matches_db": true
+ },
+ {
+  "role": "panel_shot2",
+  "asset_id": "e6078fdc-94e4-5a4a-9573-600d427f7e13",
+  "file": "panel_shot2.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   540,
+   455
+  ],
+  "original_bytes": 333702,
+  "original_sha256": "6357d2350985d258192a7aaae845a1ef2df8fb8b320f1e3a764f0029d2375413",
+  "sha256_matches_db": true
+ },
+ {
+  "role": "panel_shot3",
+  "asset_id": "599ddfc8-f9ee-5bc4-aadf-da21b55cb6f1",
+  "file": "panel_shot3.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   541,
+   455
+  ],
+  "original_bytes": 400824,
+  "original_sha256": "6b1e6d60e3b407c079d9dd0cfbdfc3c7e5211b324d259db68c502a6720e87089",
+  "sha256_matches_db": true
+ },
+ {
+  "role": "panel_shot4",
+  "asset_id": "ab66d395-61fd-5ded-a6e5-56e43b2f64c4",
+  "file": "panel_shot4.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   541,
+   461
+  ],
+  "original_bytes": 387394,
+  "original_sha256": "cb5173ca34efc87b82a0b82bc060a6955ab623ae660ad02dd7003429a0510565",
+  "sha256_matches_db": true
+ },
+ {
+  "role": "panel_shot5",
+  "asset_id": "27fe35a6-bb5f-5c8c-81b8-34e8640cdfd3",
+  "file": "panel_shot5.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   540,
+   461
+  ],
+  "original_bytes": 436463,
+  "original_sha256": "d7bd0b66e77c48baf9318772eab0b796976dc9e09164c38658ba1f48b2b15ec1",
+  "sha256_matches_db": true
+ },
+ {
+  "role": "panel_shot6",
+  "asset_id": "41de8aca-415a-5f47-920b-7ad4becf2afb",
+  "file": "panel_shot6.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   541,
+   461
+  ],
+  "original_bytes": 372581,
+  "original_sha256": "30cf9a38684ce84b220dffca4b1eb6b1b4f4b01c2e682ec452dbb0d22374cc57",
+  "sha256_matches_db": true
+ },
+ {
+  "role": "storyboard",
+  "asset_id": "f02f1e29-b1e2-546f-92cb-ee8039ca27c2",
+  "file": "storyboard.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   1672,
+   941
+  ],
+  "original_bytes": 2557462,
+  "original_sha256": "e771ed7ecb3ce30ef46c8b9be71f45ef73f7c2e5b85fcfa63069333f30ab2ff1",
+  "sha256_matches_db": true
+ }
+]

@@ -1,0 +1,86 @@
+{
+ "kind": "GRID_SHEET",
+ "version": 1,
+ "provider": "grsai",
+ "input": {
+  "shots": [
+   {
+    "shot_id": "1f1cd28a-06b8-42c9-bd34-d878f429d8ed",
+    "order": 1,
+    "scene": "Lake Chichancanab - coring boat",
+    "shot_size": "MEDIUM",
+    "camera_viewpoint": "EYE_LEVEL",
+    "subject_action_outcome": "The geochemist and a small field team draw a long sediment core upward from the lakebed beside their boat. → A sediment core from Lake Chichancanab is recovered for analysis.",
+    "narrative_function": "Shows the 1995 field collection that produced the material for study.",
+    "description": "Oil-painted illustration: the core tube emerges wet and dark from Lake Chichancanab, illuminated only by one amber lantern on the boat; the people remain shadowed and indistinct amid navy mist.",
+    "semantic_event": "PERFORM_ACTION",
+    "subject_focus": "PRIMARY_SUBJECT",
+    "time_relation": "EARLIER",
+    "location_relation": "SAME_LOCATION"
+   },
+   {
+    "shot_id": "94a2b543-c6f2-4ae8-b251-33c2fee39679",
+    "order": 2,
+    "scene": "Cambridge University - geochemistry worktable",
+    "shot_size": "CLOSE_UP",
+    "camera_viewpoint": "OVERHEAD",
+    "subject_action_outcome": "A cut sediment core rests on a worktable, its distinct layers exposed under the geochemist's lantern. → The layered core presents a material record that can reveal dry conditions.",
+    "narrative_function": "Turns the field sample into physical evidence capable of preserving a climate record.",
+    "description": "Oil-painted illustration with canvas texture: a layered core lies across a dark worktable in a Cambridge University workspace, one amber lantern revealing pale bands within the otherwise navy-black room.",
+    "semantic_event": "REVEAL_EVIDENCE",
+    "subject_focus": "OBJECT_OR_EVIDENCE",
+    "time_relation": "LATER",
+    "location_relation": "SCRIPT_SUPPORTED_NEW_LOCATION"
+   }
+  ],
+  "links": [
+   {
+    "shot_id": "1f1cd28a-06b8-42c9-bd34-d878f429d8ed",
+    "sentence_id": "2a50a756-8c16-5dc7-b874-6066d8161cb2"
+   },
+   {
+    "shot_id": "94a2b543-c6f2-4ae8-b251-33c2fee39679",
+    "sentence_id": "1876200a-a62f-5616-b18c-00f4b6b3753c"
+   }
+  ],
+  "prompt": "Generate exactly one storyboard image laid out as a strict grid of 2 rows and 2 columns of equal-sized panels. The panels are read left-to-right, top-to-bottom, and are separated by straight solid black gutters about 12 pixels wide. Do not draw white frames, borders, outlines or decorative lines around or inside the gutters; each panel's picture runs right up to the black gutter. Panel 3 must stay completely black and empty. Panel 4 must stay completely black and empty. Art style for every panel: 油画插画、明暗对照布光。深海军蓝+琥珀金双色基调。每个场景只有一个暖光源（蜡烛、油灯、月光、调查员在场时=他的提灯）。厚涂油画笔触和画布肌理、大气雾感、画面边缘渐隐入黑暗。神秘、阴郁、调查氛围。POV 场景里的历史人物大多用剪影或半明半暗的脸；常驻调查员=提灯头的 Lumen（见 IP 锁定）。不要写实、不要电影实拍感、不要明亮日光场景、不要现代物件、不要霓虹色。. Keep the same rendering medium, palette, lighting and texture consistent across all panels. Reference images 1 to 1 are the story characters. Whenever a character appears in a panel, render the same person as in the reference images with an identical face, hairstyle and clothing in every panel. Use the reference images only for identity: face, hairstyle, body type and signature clothing. Do not copy their pose, gesture, facial expression, framing, camera angle, background, scene layout or object positions. Design each panel's pose, expression and composition anew from its Action and Visual description; those panel instructions take priority over every non-identity feature of the reference images. A reference image that shows one character from several angles is still one person; never draw more copies of a character than the panel's action calls for. Panel 1 (row 1, column 1): MEDIUM, EYE_LEVEL. Scene: Lake Chichancanab - coring boat. Action: The geochemist and a small field team draw a long sediment core upward from the lakebed beside their boat. → A sediment core from Lake Chichancanab is recovered for analysis.. Visual description: Oil-painted illustration: the core tube emerges wet and dark from Lake Chichancanab, illuminated only by one amber lantern on the boat; the people remain shadowed and indistinct amid navy mist.. Panel 2 (row 1, column 2): CLOSE_UP, OVERHEAD. Scene: Cambridge University - geochemistry worktable. Action: A cut sediment core rests on a worktable, its distinct layers exposed under the geochemist's lantern. → The layered core presents a material record that can reveal dry conditions.. Visual description: Oil-painted illustration with canvas texture: a layered core lies across a dark worktable in a Cambridge University workspace, one amber lantern revealing pale bands within the otherwise navy-black room.. Do not draw any readable text anywhere in the image: no captions, panel numbers, labels, titles, words, letters, numbers, prices, currency signs, charts or tables with labels or figures, signboards with lettering, logos, watermarks or signatures. Show amounts, costs and comparisons through objects, gestures and expressions instead, such as a tall or short stack of coins, a thick or thin pile of bills, or a busy or empty shop. Each panel is one continuous camera view of a single moment in a single place, like a frame from a film. Never divide a panel into two halves or several parts: no split screen, side-by-side or before-and-after comparison, inset picture or picture-in-picture inside a panel. Do not draw diagrams, arrows, floating icons, symbols or other overlays; show every idea only through people, objects and places a camera could film.",
+  "prompt_safety": [
+   "sensational_wording"
+  ],
+  "character_assets": [
+   {
+    "ordinal": 1,
+    "character_image_id": "632b031e-f0ed-4d6a-9b66-280a3c0384fa",
+    "asset_id": "2c68da16-6270-4ec5-a181-472d9ef6c7b1",
+    "sha256": "e507047ae11ffe04fd9aeee010f7884b5542cd8f6e6b91ffeac13eebef25e740",
+    "media_type": "image/png",
+    "size_bytes": 2741029
+   }
+  ],
+  "style": "油画插画、明暗对照布光。深海军蓝+琥珀金双色基调。每个场景只有一个暖光源（蜡烛、油灯、月光、调查员在场时=他的提灯）。厚涂油画笔触和画布肌理、大气雾感、画面边缘渐隐入黑暗。神秘、阴郁、调查氛围。POV 场景里的历史人物大多用剪影或半明半暗的脸；常驻调查员=提灯头的 Lumen（见 IP 锁定）。不要写实、不要电影实拍感、不要明亮日光场景、不要现代物件、不要霓虹色。",
+  "provider": "grsai",
+  "model": "gpt-image-2.5",
+  "parameters": {
+   "aspect_ratio": "16:9",
+   "quality": "high"
+  },
+  "provider_idempotency_key": "ff7888b42529eb9e84757e960d1b4ed6ae4b247e0340e02fa9f5df60dcc0198b",
+  "auto_attempt": 1,
+  "budget_round": 1,
+  "supersedes_generation_id": null,
+  "grid_layout_version": "grid-v2",
+  "shot_time_ranges": [
+   {
+    "order": 1,
+    "start_ms": 0,
+    "end_ms": 11040
+   },
+   {
+    "order": 2,
+    "start_ms": 11040,
+    "end_ms": 14480
+   }
+  ],
+  "shot_time_ranges_algorithm": "monotone-projection-v1"
+ }
+}

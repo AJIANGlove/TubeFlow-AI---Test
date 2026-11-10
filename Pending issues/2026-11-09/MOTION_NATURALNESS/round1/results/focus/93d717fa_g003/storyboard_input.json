@@ -1,0 +1,109 @@
+{
+ "kind": "GRID_SHEET",
+ "version": 1,
+ "provider": "grsai",
+ "input": {
+  "shots": [
+   {
+    "shot_id": "7d5bfc33-ca9e-45ef-bb08-df571fe32108",
+    "order": 1,
+    "scene": "노점 작업대 - 재료와 종이봉투가 놓인 자리",
+    "shot_size": "MEDIUM",
+    "camera_viewpoint": "EYE_LEVEL",
+    "subject_action_outcome": "작업대에 준비된 반죽, 팥, 기름, 종이봉투를 차례로 살펴본다. → 반죽과 팥, 기름, 봉투를 합친 비용이 한 개에 이백오십 원으로 계산된다.",
+    "narrative_function": "개당 재료비를 이루는 항목들을 구체적으로 보여 준다.",
+    "description": "작업대 위 재료와 포장용 봉투를 한눈에 담는다. 한 개를 만들고 포장하는 데 드는 비용을 가정해 합산하는 장면이다.",
+    "semantic_event": "EXPLAIN_CAUSE",
+    "subject_focus": "PROCESS",
+    "time_relation": "SAME_MOMENT",
+    "location_relation": "SAME_LOCATION"
+   },
+   {
+    "shot_id": "0d9ff082-97da-411a-8ece-807f2b6d6779",
+    "order": 2,
+    "scene": "노점 계산대 - 동전을 나누어 놓은 자리",
+    "shot_size": "CLOSE_UP",
+    "camera_viewpoint": "HIGH_ANGLE",
+    "subject_action_outcome": "판매 가격을 나타내는 동전 더미에서 재료비 몫을 덜어 내고 남은 동전을 따로 둔다. → 한 개를 팔 때 약 사백십칠 원이 남는다는 계산이 드러난다.",
+    "narrative_function": "판매가에서 재료비를 뺀 뒤 남는 개당 금액을 직관적으로 나타낸다.",
+    "description": "장부 옆에 두 무더기로 나뉜 동전을 보여 준다. 재료비를 제외한 나머지 몫을 따져 보는 가정의 계산이다.",
+    "semantic_event": "SHOW_CONSEQUENCE",
+    "subject_focus": "ABSTRACT_CONCEPT",
+    "time_relation": "LATER",
+    "location_relation": "SAME_LOCATION"
+   },
+   {
+    "shot_id": "b321e4ff-f0b1-447d-a2f7-24d57bf96b56",
+    "order": 3,
+    "scene": "노점 안쪽 - 비어 있는 판매 기록판 앞",
+    "shot_size": "WIDE",
+    "camera_viewpoint": "OBJECTIVE",
+    "subject_action_outcome": "텅 빈 판매 기록판 앞에서 노점 안쪽을 바라보며 하루 판매량을 가늠한다. → 판매량의 가정이 아직 정해지지 않은 상태가 강조된다.",
+    "narrative_function": "일일 판매량에 대한 질문을 시각적으로 열어 둔다.",
+    "description": "아직 채워지지 않은 기록판과 진열대를 함께 담는다. 하루 판매량은 정해진 사실이 아니라 이어질 계산을 위한 물음으로 남아 있다.",
+    "semantic_event": "EXPRESS_UNCERTAINTY",
+    "subject_focus": "ENVIRONMENT",
+    "time_relation": "SAME_MOMENT",
+    "location_relation": "SAME_LOCATION"
+   }
+  ],
+  "links": [
+   {
+    "shot_id": "7d5bfc33-ca9e-45ef-bb08-df571fe32108",
+    "sentence_id": "db6ea274-c7d1-50ff-be5f-8bef02f3a447"
+   },
+   {
+    "shot_id": "0d9ff082-97da-411a-8ece-807f2b6d6779",
+    "sentence_id": "9081d29b-101b-5cf5-aabc-60511d8dfbd2"
+   },
+   {
+    "shot_id": "b321e4ff-f0b1-447d-a2f7-24d57bf96b56",
+    "sentence_id": "1f35d188-79e6-5723-8c7f-8565eac93324"
+   }
+  ],
+  "prompt": "Generate exactly one storyboard image laid out as a strict grid of 2 rows and 2 columns of equal-sized panels. The panels are read left-to-right, top-to-bottom, and are separated by straight solid black gutters about 12 pixels wide. Do not draw white frames, borders, outlines or decorative lines around or inside the gutters; each panel's picture runs right up to the black gutter. Panel 4 must stay completely black and empty. Art style for every panel: 欧美二维手绘动画、半写实卡通人物、复古历史绘本背景、暖色历史科普纪录片风格、低饱和赭石配色、柔和赛璐璐阴影、细腻手绘线条、自然人物比例、轻微胶片颗粒、淡淡纸张纹理、柔和环境光、朦胧空气透视、电影级构图。避免3D渲染、照片写实、日式动漫、夸张大眼睛、高饱和色彩、文字和水印。. Keep the same rendering medium, palette, lighting and texture consistent across all panels. Reference images 1 to 1 are the story characters. Whenever a character appears in a panel, render the same person as in the reference images with an identical face, hairstyle and clothing in every panel. Use the reference images only for identity: face, hairstyle, body type and signature clothing. Do not copy their pose, gesture, facial expression, framing, camera angle, background, scene layout or object positions. Design each panel's pose, expression and composition anew from its Action and Visual description; those panel instructions take priority over every non-identity feature of the reference images. A reference image that shows one character from several angles is still one person; never draw more copies of a character than the panel's action calls for. Panel 1 (row 1, column 1): MEDIUM, EYE_LEVEL. Scene: 노점 작업대 - 재료와 종이봉투가 놓인 자리. Action: 작업대에 준비된 반죽, 팥, 기름, 종이봉투를 차례로 살펴본다. → 반죽과 팥, 기름, 봉투를 합친 비용이 한 개에 이백오십 원으로 계산된다.. Visual description: 작업대 위 재료와 포장용 봉투를 한눈에 담는다. 한 개를 만들고 포장하는 데 드는 비용을 가정해 합산하는 장면이다.. Panel 2 (row 1, column 2): CLOSE_UP, HIGH_ANGLE. Scene: 노점 계산대 - 동전을 나누어 놓은 자리. Action: 판매 가격을 나타내는 동전 더미에서 재료비 몫을 덜어 내고 남은 동전을 따로 둔다. → 한 개를 팔 때 약 사백십칠 원이 남는다는 계산이 드러난다.. Visual description: 장부 옆에 두 무더기로 나뉜 동전을 보여 준다. 재료비를 제외한 나머지 몫을 따져 보는 가정의 계산이다.. Panel 3 (row 2, column 1): WIDE, OBJECTIVE. Scene: 노점 안쪽 - 비어 있는 판매 기록판 앞. Action: 텅 빈 판매 기록판 앞에서 노점 안쪽을 바라보며 하루 판매량을 가늠한다. → 판매량의 가정이 아직 정해지지 않은 상태가 강조된다.. Visual description: 아직 채워지지 않은 기록판과 진열대를 함께 담는다. 하루 판매량은 정해진 사실이 아니라 이어질 계산을 위한 물음으로 남아 있다.. Do not draw any readable text anywhere in the image: no captions, panel numbers, labels, titles, words, letters, numbers, prices, currency signs, charts or tables with labels or figures, signboards with lettering, logos, watermarks or signatures. Show amounts, costs and comparisons through objects, gestures and expressions instead, such as a tall or short stack of coins, a thick or thin pile of bills, or a busy or empty shop. Each panel is one continuous camera view of a single moment in a single place, like a frame from a film. Never divide a panel into two halves or several parts: no split screen, side-by-side or before-and-after comparison, inset picture or picture-in-picture inside a panel. Do not draw diagrams, arrows, floating icons, symbols or other overlays; show every idea only through people, objects and places a camera could film.",
+  "prompt_safety": [
+   "sensational_wording"
+  ],
+  "character_assets": [
+   {
+    "ordinal": 1,
+    "character_image_id": "500c0519-94fe-448b-8410-15152629a6cd",
+    "asset_id": "7523c0ef-c2db-43f2-8ba3-d8a777ddcd5b",
+    "sha256": "ef4afa3b005a72393c9c036ff31c43387334ee3e86bf34785aee339797cc3bca",
+    "media_type": "image/png",
+    "size_bytes": 1843734
+   }
+  ],
+  "style": "欧美二维手绘动画、半写实卡通人物、复古历史绘本背景、暖色历史科普纪录片风格、低饱和赭石配色、柔和赛璐璐阴影、细腻手绘线条、自然人物比例、轻微胶片颗粒、淡淡纸张纹理、柔和环境光、朦胧空气透视、电影级构图。避免3D渲染、照片写实、日式动漫、夸张大眼睛、高饱和色彩、文字和水印。",
+  "provider": "grsai",
+  "model": "gpt-image-2.5",
+  "parameters": {
+   "aspect_ratio": "16:9",
+   "quality": "high"
+  },
+  "provider_idempotency_key": "8f90c0a6a7a483a167c54c0cbad12c4ebeec917b5e3db11039de1c700fde8936",
+  "auto_attempt": 1,
+  "budget_round": 2,
+  "supersedes_generation_id": null,
+  "grid_layout_version": "grid-v2",
+  "shot_time_ranges": [
+   {
+    "order": 1,
+    "start_ms": 0,
+    "end_ms": 6560
+   },
+   {
+    "order": 2,
+    "start_ms": 6560,
+    "end_ms": 10640
+   },
+   {
+    "order": 3,
+    "start_ms": 10640,
+    "end_ms": 12560
+   }
+  ],
+  "shot_time_ranges_algorithm": "monotone-projection-v1"
+ }
+}

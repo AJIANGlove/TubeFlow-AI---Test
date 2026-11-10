@@ -1,0 +1,109 @@
+{
+ "kind": "GRID_SHEET",
+ "version": 1,
+ "provider": "grsai",
+ "input": {
+  "shots": [
+   {
+    "shot_id": "aee36c99-7025-49ab-b714-a71bbeb99cb4",
+    "order": 1,
+    "scene": "Lake Chichancanab - exposed shoreline",
+    "shot_size": "WIDE",
+    "camera_viewpoint": "HIGH_ANGLE",
+    "subject_action_outcome": "A long, pale band of exposed lakebed curves around the retreating dark water, while a faint chronological band spans the distant surface to suggest the prolonged dry interval. → The landscape conveys an extended period of aridity centered roughly between 800 and 1000 CE.",
+    "narrative_function": "Establish the duration and historical window of the drought signal.",
+    "description": "Oil-painted illustration in deep navy and amber, viewed from high above Lake Chichancanab. One amber lantern glow at the shore catches cracked sediment and evaporative haze; heavy brushwork and canvas texture fade into black around the frame, with no text overlays.",
+    "semantic_event": "ESTABLISH_CONTEXT",
+    "subject_focus": "ENVIRONMENT",
+    "time_relation": "TIMELESS",
+    "location_relation": "SAME_LOCATION"
+   },
+   {
+    "shot_id": "a22a016b-3cc1-4758-b4ec-3db27a44e6e1",
+    "order": 2,
+    "scene": "southern Maya lowlands - abandoned reservoir beside city ruins",
+    "shot_size": "MEDIUM",
+    "camera_viewpoint": "EYE_LEVEL",
+    "subject_action_outcome": "A depleted reservoir lies beneath shadowed temple silhouettes, its low waterline leaving the masonry edges exposed. → The dry conditions are visually aligned with the collapse underway in the southern cities.",
+    "narrative_function": "Connect the climate interval to the regional crisis without claiming direct proof of cause.",
+    "description": "A somber oil-painted view of a southern lowland city reservoir under a single amber moonlit glow, with navy ruins receding into mist. Thick painted strokes, darkened edges, and a quiet investigative mood preserve the uncertainty of the connection.",
+    "semantic_event": "COMPARE",
+    "subject_focus": "ENVIRONMENT",
+    "time_relation": "SAME_MOMENT",
+    "location_relation": "SCRIPT_SUPPORTED_NEW_LOCATION"
+   },
+   {
+    "shot_id": "ae2f091b-bc46-42e7-9f7d-70a6270c0887",
+    "order": 3,
+    "scene": "Lake Chichancanab - sediment-coring station",
+    "shot_size": "CLOSE_UP",
+    "camera_viewpoint": "OVER_SHOULDER",
+    "subject_action_outcome": "Unidentified researchers' gloved hands lift a fresh sediment core from the lakebed and align it beside the earlier sample record. → The return to the same lake becomes a concrete renewed investigation.",
+    "narrative_function": "Show Hodell's team revisiting the original climate archive.",
+    "description": "Oil-painted close view from behind a field researcher, with the face fully hidden. A single amber lantern illuminates wet core layers, simple sampling tools, and drifting mist against a deep navy shoreline; coarse brush texture dissolves into darkness at the margins.",
+    "semantic_event": "PERFORM_ACTION",
+    "subject_focus": "PROCESS",
+    "time_relation": "LATER",
+    "location_relation": "SAME_LOCATION"
+   }
+  ],
+  "links": [
+   {
+    "shot_id": "aee36c99-7025-49ab-b714-a71bbeb99cb4",
+    "sentence_id": "facdf307-c7ad-5388-8942-720d0bed376a"
+   },
+   {
+    "shot_id": "a22a016b-3cc1-4758-b4ec-3db27a44e6e1",
+    "sentence_id": "774345a6-993b-5273-82e0-ecae55015681"
+   },
+   {
+    "shot_id": "ae2f091b-bc46-42e7-9f7d-70a6270c0887",
+    "sentence_id": "8c0ecc52-870c-57c7-bb21-a7567d766974"
+   }
+  ],
+  "prompt": "Generate exactly one storyboard image laid out as a strict grid of 2 rows and 2 columns of equal-sized panels. The panels are read left-to-right, top-to-bottom, and are separated by straight solid black gutters about 12 pixels wide. Do not draw white frames, borders, outlines or decorative lines around or inside the gutters; each panel's picture runs right up to the black gutter. Panel 4 must stay completely black and empty. Art style for every panel: 油画插画、明暗对照布光。深海军蓝+琥珀金双色基调。每个场景只有一个暖光源（蜡烛、油灯、月光、调查员在场时=他的提灯）。厚涂油画笔触和画布肌理、大气雾感、画面边缘渐隐入黑暗。神秘、阴郁、调查氛围。POV 场景里的历史人物大多用剪影或半明半暗的脸；常驻调查员=提灯头的 Lumen（见 IP 锁定）。不要写实、不要电影实拍感、不要明亮日光场景、不要现代物件、不要霓虹色。. Keep the same rendering medium, palette, lighting and texture consistent across all panels. Reference images 1 to 1 are the story characters. Whenever a character appears in a panel, render the same person as in the reference images with an identical face, hairstyle and clothing in every panel. Use the reference images only for identity: face, hairstyle, body type and signature clothing. Do not copy their pose, gesture, facial expression, framing, camera angle, background, scene layout or object positions. Design each panel's pose, expression and composition anew from its Action and Visual description; those panel instructions take priority over every non-identity feature of the reference images. A reference image that shows one character from several angles is still one person; never draw more copies of a character than the panel's action calls for. Panel 1 (row 1, column 1): WIDE, HIGH_ANGLE. Scene: Lake Chichancanab - exposed shoreline. Action: A long, pale band of exposed lakebed curves around the retreating dark water, while a faint chronological band spans the distant surface to suggest the prolonged dry interval. → The landscape conveys an extended period of aridity centered roughly between 800 and 1000 CE.. Visual description: Oil-painted illustration in deep navy and amber, viewed from high above Lake Chichancanab. One amber lantern glow at the shore catches cracked sediment and evaporative haze; heavy brushwork and canvas texture fade into black around the frame, with no text overlays.. Panel 2 (row 1, column 2): MEDIUM, EYE_LEVEL. Scene: southern Maya lowlands - abandoned reservoir beside city ruins. Action: A depleted reservoir lies beneath shadowed temple silhouettes, its low waterline leaving the masonry edges exposed. → The dry conditions are visually aligned with the collapse underway in the southern cities.. Visual description: A somber oil-painted view of a southern lowland city reservoir under a single amber moonlit glow, with navy ruins receding into mist. Thick painted strokes, darkened edges, and a quiet investigative mood preserve the uncertainty of the connection.. Panel 3 (row 2, column 1): CLOSE_UP, OVER_SHOULDER. Scene: Lake Chichancanab - sediment-coring station. Action: Unidentified researchers' gloved hands lift a fresh sediment core from the lakebed and align it beside the earlier sample record. → The return to the same lake becomes a concrete renewed investigation.. Visual description: Oil-painted close view from behind a field researcher, with the face fully hidden. A single amber lantern illuminates wet core layers, simple sampling tools, and drifting mist against a deep navy shoreline; coarse brush texture dissolves into darkness at the margins.. Do not draw any readable text anywhere in the image: no captions, panel numbers, labels, titles, words, letters, numbers, prices, currency signs, charts or tables with labels or figures, signboards with lettering, logos, watermarks or signatures. Show amounts, costs and comparisons through objects, gestures and expressions instead, such as a tall or short stack of coins, a thick or thin pile of bills, or a busy or empty shop. Each panel is one continuous camera view of a single moment in a single place, like a frame from a film. Never divide a panel into two halves or several parts: no split screen, side-by-side or before-and-after comparison, inset picture or picture-in-picture inside a panel. Do not draw diagrams, arrows, floating icons, symbols or other overlays; show every idea only through people, objects and places a camera could film.",
+  "prompt_safety": [
+   "sensational_wording"
+  ],
+  "character_assets": [
+   {
+    "ordinal": 1,
+    "character_image_id": "632b031e-f0ed-4d6a-9b66-280a3c0384fa",
+    "asset_id": "2c68da16-6270-4ec5-a181-472d9ef6c7b1",
+    "sha256": "e507047ae11ffe04fd9aeee010f7884b5542cd8f6e6b91ffeac13eebef25e740",
+    "media_type": "image/png",
+    "size_bytes": 2741029
+   }
+  ],
+  "style": "油画插画、明暗对照布光。深海军蓝+琥珀金双色基调。每个场景只有一个暖光源（蜡烛、油灯、月光、调查员在场时=他的提灯）。厚涂油画笔触和画布肌理、大气雾感、画面边缘渐隐入黑暗。神秘、阴郁、调查氛围。POV 场景里的历史人物大多用剪影或半明半暗的脸；常驻调查员=提灯头的 Lumen（见 IP 锁定）。不要写实、不要电影实拍感、不要明亮日光场景、不要现代物件、不要霓虹色。",
+  "provider": "grsai",
+  "model": "gpt-image-2.5",
+  "parameters": {
+   "aspect_ratio": "16:9",
+   "quality": "high"
+  },
+  "provider_idempotency_key": "03c7dd2abb78dee4f94aeb127cd906d4e53b89ec2351a13d9442eb6e4354cb74",
+  "auto_attempt": 1,
+  "budget_round": 1,
+  "supersedes_generation_id": null,
+  "grid_layout_version": "grid-v2",
+  "shot_time_ranges": [
+   {
+    "order": 1,
+    "start_ms": 0,
+    "end_ms": 5600
+   },
+   {
+    "order": 2,
+    "start_ms": 5600,
+    "end_ms": 8160
+   },
+   {
+    "order": 3,
+    "start_ms": 8160,
+    "end_ms": 10240
+   }
+  ],
+  "shot_time_ranges_algorithm": "monotone-projection-v1"
+ }
+}

@@ -1,0 +1,59 @@
+[
+ {
+  "role": "character_1",
+  "asset_id": "7523c0ef-c2db-43f2-8ba3-d8a777ddcd5b",
+  "error": "media_asset_not_found"
+ },
+ {
+  "role": "panel_shot1",
+  "asset_id": "86de09ff-733d-5a57-b985-3bfc7c8fe4d6",
+  "file": "panel_shot1.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   821,
+   458
+  ],
+  "original_bytes": 605586,
+  "original_sha256": "144871eebfcb3f84c48924434363c4325f83d24a7c8dd01b4da53ae98c498baf",
+  "sha256_matches_db": true
+ },
+ {
+  "role": "panel_shot2",
+  "asset_id": "8b8be309-398c-5679-8b5e-90593621c4ff",
+  "file": "panel_shot2.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   821,
+   458
+  ],
+  "original_bytes": 613390,
+  "original_sha256": "a36e5cbf17e0c165ff7984317e2a991a1804fca5ee9d2e973157bbf07ed884d6",
+  "sha256_matches_db": true
+ },
+ {
+  "role": "panel_shot3",
+  "asset_id": "4ff7c616-42ac-5ab4-acd1-1fb3027dd4a8",
+  "file": "panel_shot3.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   821,
+   458
+  ],
+  "original_bytes": 607958,
+  "original_sha256": "a4893dbb2415b90b55e7e09424d51d92c79dcad63b06969d157b8e990de4b240",
+  "sha256_matches_db": true
+ },
+ {
+  "role": "storyboard",
+  "asset_id": "ec337437-1997-5e22-b6a1-e47abcc3e75d",
+  "file": "storyboard.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   1672,
+   941
+  ],
+  "original_bytes": 2175456,
+  "original_sha256": "7dc257f87d0c4a2f66c1333e9fc5149457a921ac8d66d4429a4f9f417c02e4eb",
+  "sha256_matches_db": true
+ }
+]

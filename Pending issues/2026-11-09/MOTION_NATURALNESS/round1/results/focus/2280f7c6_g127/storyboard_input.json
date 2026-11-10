@@ -1,0 +1,155 @@
+{
+ "kind": "GRID_SHEET",
+ "version": 1,
+ "provider": "grsai",
+ "input": {
+  "shots": [
+   {
+    "shot_id": "051c3579-5594-4a6e-a371-4a81d5fad082",
+    "order": 1,
+    "scene": "Lake Chichancanab - exposed shoreline",
+    "shot_size": "WIDE",
+    "camera_viewpoint": "HIGH_ANGLE",
+    "subject_action_outcome": "A quiet view looks down across the low lake basin and pale exposed shore, isolated from the cave landscape far away. → The separate Yucatán setting establishes that this second archive comes from a different country and a different environment.",
+    "narrative_function": "Separates the lake evidence geographically from the cave record.",
+    "description": "Moody oil-painted landscape in deep navy and amber, a single moonlit reflection as the warm source, thick canvas brushwork, low mist over the waterless margin, and fading black edges.",
+    "semantic_event": "ESTABLISH_CONTEXT",
+    "subject_focus": "ENVIRONMENT",
+    "time_relation": "EARLIER",
+    "location_relation": "SCRIPT_SUPPORTED_NEW_LOCATION"
+   },
+   {
+    "shot_id": "f00d7434-fb83-42b7-bcbd-63529e1570fd",
+    "order": 2,
+    "scene": "Lake Chichancanab - sediment core detail",
+    "shot_size": "EXTREME_CLOSE_UP",
+    "camera_viewpoint": "OBJECTIVE",
+    "subject_action_outcome": "The finely banded lake sediment core is shown in close detail, its pale mineral-rich layers alternating with darker deposits under one amber oil lamp. → The core stands as a distinct archive that independently preserves the severe dry periods.",
+    "narrative_function": "Reveals the physical evidence from Hodell's lake record.",
+    "description": "Oil-painted close study with dense impasto marks along the sediment bands, deep navy surrounding shadow, one amber lamp source, drifting haze, canvas grain, and darkness swallowing the frame edges; no modern objects.",
+    "semantic_event": "REVEAL_EVIDENCE",
+    "subject_focus": "OBJECT_OR_EVIDENCE",
+    "time_relation": "SAME_MOMENT",
+    "location_relation": "SAME_LOCATION"
+   },
+   {
+    "shot_id": "eee4970a-fad5-4678-8461-24cb3bb06746",
+    "order": 3,
+    "scene": "separate archive studies - divided evidence field",
+    "shot_size": "MEDIUM",
+    "camera_viewpoint": "OVERHEAD",
+    "subject_action_outcome": "Two separated pools of amber light each isolate a different archive sample and its own handwritten field notes, with darkness preventing any shared workspace from forming between them. → The divided arrangement conveys that different research teams worked from different archives before arriving at the matching pattern.",
+    "narrative_function": "Underscores the independence of the two lines of evidence.",
+    "description": "Overhead oil-painted evidence still life in deep navy and amber, exactly two isolated warm pools treated as separate visual spaces, thick brushwork, canvas texture, misty darkness between the records, and no modern objects.",
+    "semantic_event": "REVEAL_EVIDENCE",
+    "subject_focus": "PROCESS",
+    "time_relation": "LATER",
+    "location_relation": "SCRIPT_SUPPORTED_NEW_LOCATION"
+   },
+   {
+    "shot_id": "62419b4a-8ec5-45bf-b689-4c257a58988d",
+    "order": 4,
+    "scene": "Lake Chichancanab field station - sample table",
+    "shot_size": "CLOSE_UP",
+    "camera_viewpoint": "HIGH_ANGLE",
+    "subject_action_outcome": "Place a lake-sediment core and a cave stalagmite sample side by side on a dark field table, each beside a different research instrument. → The two physical records are visibly distinct in origin and instrument.",
+    "narrative_function": "Make the independent sources and different methods legible without implying coordination between the researchers.",
+    "description": "Two separate climate archives occupy the frame: a lake core and a cave stalagmite sample, gathered with distinct instruments. Render as a moody oil-paint illustration with deep navy shadows, restrained amber light, and textured brushwork.",
+    "semantic_event": "COMPARE",
+    "subject_focus": "OBJECT_OR_EVIDENCE",
+    "time_relation": "TIMELESS",
+    "location_relation": "SCRIPT_SUPPORTED_NEW_LOCATION"
+   },
+   {
+    "shot_id": "e9d926d1-6c4f-47c0-97aa-249f53130510",
+    "order": 5,
+    "scene": "Lake Chichancanab field station - analysis table",
+    "shot_size": "EXTREME_CLOSE_UP",
+    "camera_viewpoint": "OVERHEAD",
+    "subject_action_outcome": "Show the separate lake-core and stalagmite records bearing matching bands that mark the same severe dry interval. → Matching evidence appears across the two separate archives.",
+    "narrative_function": "Visualize the shared result returned by independent records.",
+    "description": "The two records remain apart on the table, but their corresponding dark bands align across the gap. A single warm lamp pools over the evidence while the surrounding work surface recedes into navy shadow.",
+    "semantic_event": "REVEAL_EVIDENCE",
+    "subject_focus": "OBJECT_OR_EVIDENCE",
+    "time_relation": "TIMELESS",
+    "location_relation": "SAME_LOCATION"
+   }
+  ],
+  "links": [
+   {
+    "shot_id": "051c3579-5594-4a6e-a371-4a81d5fad082",
+    "sentence_id": "d6fbc307-fedd-506d-9008-efd01d61de4c"
+   },
+   {
+    "shot_id": "f00d7434-fb83-42b7-bcbd-63529e1570fd",
+    "sentence_id": "57b9176d-8b71-5764-a40a-83fcd938453e"
+   },
+   {
+    "shot_id": "eee4970a-fad5-4678-8461-24cb3bb06746",
+    "sentence_id": "067f2000-0fd3-525d-9dfc-1af653263699"
+   },
+   {
+    "shot_id": "62419b4a-8ec5-45bf-b689-4c257a58988d",
+    "sentence_id": "8882c204-3fc9-5ffc-bb38-a2ca8836a7b0"
+   },
+   {
+    "shot_id": "e9d926d1-6c4f-47c0-97aa-249f53130510",
+    "sentence_id": "a92236d3-aedf-5a51-b562-a2d8790ad833"
+   }
+  ],
+  "prompt": "Generate exactly one storyboard image laid out as a strict grid of 2 rows and 3 columns of equal-sized panels. The panels are read left-to-right, top-to-bottom, and are separated by straight solid black gutters about 12 pixels wide. Do not draw white frames, borders, outlines or decorative lines around or inside the gutters; each panel's picture runs right up to the black gutter. Panel 6 must stay completely black and empty. Art style for every panel: 油画插画、明暗对照布光。深海军蓝+琥珀金双色基调。每个场景只有一个暖光源（蜡烛、油灯、月光、调查员在场时=他的提灯）。厚涂油画笔触和画布肌理、大气雾感、画面边缘渐隐入黑暗。神秘、阴郁、调查氛围。POV 场景里的历史人物大多用剪影或半明半暗的脸；常驻调查员=提灯头的 Lumen（见 IP 锁定）。不要写实、不要电影实拍感、不要明亮日光场景、不要现代物件、不要霓虹色。. Keep the same rendering medium, palette, lighting and texture consistent across all panels. Reference images 1 to 1 are the story characters. Whenever a character appears in a panel, render the same person as in the reference images with an identical face, hairstyle and clothing in every panel. Use the reference images only for identity: face, hairstyle, body type and signature clothing. Do not copy their pose, gesture, facial expression, framing, camera angle, background, scene layout or object positions. Design each panel's pose, expression and composition anew from its Action and Visual description; those panel instructions take priority over every non-identity feature of the reference images. A reference image that shows one character from several angles is still one person; never draw more copies of a character than the panel's action calls for. Panel 1 (row 1, column 1): WIDE, HIGH_ANGLE. Scene: Lake Chichancanab - exposed shoreline. Action: A quiet view looks down across the low lake basin and pale exposed shore, isolated from the cave landscape far away. → The separate Yucatán setting establishes that this second archive comes from a different country and a different environment.. Visual description: Moody oil-painted landscape in deep navy and amber, a single moonlit reflection as the warm source, thick canvas brushwork, low mist over the waterless margin, and fading black edges.. Panel 2 (row 1, column 2): EXTREME_CLOSE_UP, OBJECTIVE. Scene: Lake Chichancanab - sediment core detail. Action: The finely banded lake sediment core is shown in close detail, its pale mineral-rich layers alternating with darker deposits under one amber oil lamp. → The core stands as a distinct archive that independently preserves the severe dry periods.. Visual description: Oil-painted close study with dense impasto marks along the sediment bands, deep navy surrounding shadow, one amber lamp source, drifting haze, canvas grain, and darkness swallowing the frame edges; no modern objects.. Panel 3 (row 1, column 3): MEDIUM, OVERHEAD. Scene: separate archive studies - divided evidence field. Action: Two separated pools of amber light each isolate a different archive sample and its own handwritten field notes, with darkness preventing any shared workspace from forming between them. → The divided arrangement conveys that different research teams worked from different archives before arriving at the matching pattern.. Visual description: Overhead oil-painted evidence still life in deep navy and amber, exactly two isolated warm pools treated as separate visual spaces, thick brushwork, canvas texture, misty darkness between the records, and no modern objects.. Panel 4 (row 2, column 1): CLOSE_UP, HIGH_ANGLE. Scene: Lake Chichancanab field station - sample table. Action: Place a lake-sediment core and a cave stalagmite sample side by side on a dark field table, each beside a different research instrument. → The two physical records are visibly distinct in origin and instrument.. Visual description: Two separate climate archives occupy the frame: a lake core and a cave stalagmite sample, gathered with distinct instruments. Render as a moody oil-paint illustration with deep navy shadows, restrained amber light, and textured brushwork.. Panel 5 (row 2, column 2): EXTREME_CLOSE_UP, OVERHEAD. Scene: Lake Chichancanab field station - analysis table. Action: Show the separate lake-core and stalagmite records bearing matching bands that mark the same severe dry interval. → Matching evidence appears across the two separate archives.. Visual description: The two records remain apart on the table, but their corresponding dark bands align across the gap. A single warm lamp pools over the evidence while the surrounding work surface recedes into navy shadow.. Do not draw any readable text anywhere in the image: no captions, panel numbers, labels, titles, words, letters, numbers, prices, currency signs, charts or tables with labels or figures, signboards with lettering, logos, watermarks or signatures. Show amounts, costs and comparisons through objects, gestures and expressions instead, such as a tall or short stack of coins, a thick or thin pile of bills, or a busy or empty shop. Each panel is one continuous camera view of a single moment in a single place, like a frame from a film. Never divide a panel into two halves or several parts: no split screen, side-by-side or before-and-after comparison, inset picture or picture-in-picture inside a panel. Do not draw diagrams, arrows, floating icons, symbols or other overlays; show every idea only through people, objects and places a camera could film.",
+  "prompt_safety": [
+   "sensational_wording"
+  ],
+  "character_assets": [
+   {
+    "ordinal": 1,
+    "character_image_id": "632b031e-f0ed-4d6a-9b66-280a3c0384fa",
+    "asset_id": "2c68da16-6270-4ec5-a181-472d9ef6c7b1",
+    "sha256": "e507047ae11ffe04fd9aeee010f7884b5542cd8f6e6b91ffeac13eebef25e740",
+    "media_type": "image/png",
+    "size_bytes": 2741029
+   }
+  ],
+  "style": "油画插画、明暗对照布光。深海军蓝+琥珀金双色基调。每个场景只有一个暖光源（蜡烛、油灯、月光、调查员在场时=他的提灯）。厚涂油画笔触和画布肌理、大气雾感、画面边缘渐隐入黑暗。神秘、阴郁、调查氛围。POV 场景里的历史人物大多用剪影或半明半暗的脸；常驻调查员=提灯头的 Lumen（见 IP 锁定）。不要写实、不要电影实拍感、不要明亮日光场景、不要现代物件、不要霓虹色。",
+  "provider": "grsai",
+  "model": "gpt-image-2.5",
+  "parameters": {
+   "aspect_ratio": "16:9",
+   "quality": "high"
+  },
+  "provider_idempotency_key": "0b77c0193337f84db1ce04ea49d6e650c14d724a49792da14c40c7bae3507531",
+  "auto_attempt": 1,
+  "budget_round": 1,
+  "supersedes_generation_id": null,
+  "grid_layout_version": "grid-v2",
+  "shot_time_ranges": [
+   {
+    "order": 1,
+    "start_ms": 0,
+    "end_ms": 1200
+   },
+   {
+    "order": 2,
+    "start_ms": 1200,
+    "end_ms": 2560
+   },
+   {
+    "order": 3,
+    "start_ms": 2560,
+    "end_ms": 3680
+   },
+   {
+    "order": 4,
+    "start_ms": 3680,
+    "end_ms": 12720
+   },
+   {
+    "order": 5,
+    "start_ms": 12720,
+    "end_ms": 14960
+   }
+  ],
+  "shot_time_ranges_algorithm": "monotone-projection-v1"
+ }
+}

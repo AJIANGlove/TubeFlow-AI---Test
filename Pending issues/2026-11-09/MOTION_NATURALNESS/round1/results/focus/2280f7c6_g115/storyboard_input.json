@@ -1,0 +1,178 @@
+{
+ "kind": "GRID_SHEET",
+ "version": 1,
+ "provider": "grsai",
+ "input": {
+  "shots": [
+   {
+    "shot_id": "5b27cdbb-fc01-4cc5-82db-0e309d8d2786",
+    "order": 1,
+    "scene": "analytical comparison - converging case strands",
+    "shot_size": "NON_SPATIAL",
+    "camera_viewpoint": "NON_SPATIAL",
+    "subject_action_outcome": "Three visual strands from the evidence groups converge toward the shared pressure on the rain-fed urban system, without selecting a winner. → The competing explanations remain credible and intertwined.",
+    "narrative_function": "Shows that all three explanations possess a plausible motive.",
+    "description": "A restrained oil-painted analytical composition in navy and amber: three separate case strands converge toward one vulnerable water-dependent city system, with the connections remaining suggestive rather than definitive.",
+    "semantic_event": "COMPARE",
+    "subject_focus": "ABSTRACT_CONCEPT",
+    "time_relation": "TIMELESS",
+    "location_relation": "NON_SPATIAL"
+   },
+   {
+    "shot_id": "04cb40d7-5a44-4b2f-ba27-27051444f7c4",
+    "order": 2,
+    "scene": "Tikal - reservoir basin beneath the monumental center",
+    "shot_size": "WIDE",
+    "camera_viewpoint": "HIGH_ANGLE",
+    "subject_action_outcome": "A broad, low reservoir lies below the shadowed mass of Tikal's urban center, leaving the question of which pressure matters most unresolved. → No single cause is yet visually declared decisive.",
+    "narrative_function": "Holds the central question open against the system at risk.",
+    "description": "A somber oil illustration of Tikal's reservoir basin and surrounding monumental center, lit only by a distant amber lantern glow; exposed banks and still water invite an unanswered comparison.",
+    "semantic_event": "EXPRESS_UNCERTAINTY",
+    "subject_focus": "PRIMARY_SUBJECT",
+    "time_relation": "SAME_MOMENT",
+    "location_relation": "SCRIPT_SUPPORTED_NEW_LOCATION"
+   },
+   {
+    "shot_id": "4b6b76ab-b48d-4292-b725-5b082ad50366",
+    "order": 3,
+    "scene": "Tikal - reservoir evidence reconstruction",
+    "shot_size": "MEDIUM",
+    "camera_viewpoint": "OVER_SHOULDER",
+    "subject_action_outcome": "A traced path leads from climate-record evidence toward the visibly diminished reservoir, indicating where the accumulated evidence points. → The investigation narrows toward water stress.",
+    "narrative_function": "Turns the open comparison into an evidence-led direction without claiming certainty beyond the record.",
+    "description": "Oil-painted analytical reconstruction: a climate archive trace and the reservoir are connected by a single amber-lit line across a dark field, while all surrounding details recede into navy-black haze.",
+    "semantic_event": "EXPLAIN_CAUSE",
+    "subject_focus": "PROCESS",
+    "time_relation": "LATER",
+    "location_relation": "SAME_LOCATION"
+   },
+   {
+    "shot_id": "7a112448-0cee-4abc-9c97-4e8dab516685",
+    "order": 4,
+    "scene": "Tikal - exposed reservoir banks",
+    "shot_size": "WIDE",
+    "camera_viewpoint": "EYE_LEVEL",
+    "subject_action_outcome": "The reservoir's receded waterline and dry stepped banks dominate the frame under a single warm lantern source. → Drought becomes the leading explanation in the visual argument.",
+    "narrative_function": "Names drought through its concrete effect on the rain-dependent city.",
+    "description": "A wide oil-painted view of drought at Tikal's reservoir: low water exposes dark basin walls beneath amber lantern light, with heavy brushwork, mist, and a blackened perimeter.",
+    "semantic_event": "ESTABLISH_CONTEXT",
+    "subject_focus": "ENVIRONMENT",
+    "time_relation": "SAME_MOMENT",
+    "location_relation": "SAME_LOCATION"
+   },
+   {
+    "shot_id": "94d05db3-e925-497f-ae1d-6b9defa9daf9",
+    "order": 5,
+    "scene": "Tikal - reservoir edge and climate evidence detail",
+    "shot_size": "EXTREME_CLOSE_UP",
+    "camera_viewpoint": "OBJECTIVE",
+    "subject_action_outcome": "A close view isolates layered climate-record material beside the marked low-water line, making the supporting case tangible. → The drought conclusion rests on multiple visible lines of evidence.",
+    "narrative_function": "Closes on the concrete evidence supporting drought's strong case.",
+    "description": "Extreme close oil-painted evidence view: pale climate-record layers and a sharply visible former waterline catch one amber lantern glow against deep navy darkness, with textured canvas grain.",
+    "semantic_event": "REVEAL_EVIDENCE",
+    "subject_focus": "OBJECT_OR_EVIDENCE",
+    "time_relation": "SAME_MOMENT",
+    "location_relation": "SAME_LOCATION"
+   },
+   {
+    "shot_id": "8c257032-abf0-4ed5-b658-bf96ca46f1c9",
+    "order": 6,
+    "scene": "Lake Chichancanab - lantern-lit shoreline",
+    "shot_size": "WIDE",
+    "camera_viewpoint": "HIGH_ANGLE",
+    "subject_action_outcome": "A lantern-lit view settles on Lake Chichancanab's dark, still shore, introducing the source of the drought investigation. → Lake Chichancanab is established as the starting point for the evidence trail.",
+    "narrative_function": "Opens the investigation at the climate archive where the evidence begins.",
+    "description": "Oil-painted illustration in deep navy and amber, with thick brushwork, canvas texture, mist, and black-fading edges; a single lantern casts warm light across the lake margin.",
+    "semantic_event": "TRANSITION",
+    "subject_focus": "ENVIRONMENT",
+    "time_relation": "EARLIER",
+    "location_relation": "SCRIPT_SUPPORTED_NEW_LOCATION"
+   }
+  ],
+  "links": [
+   {
+    "shot_id": "5b27cdbb-fc01-4cc5-82db-0e309d8d2786",
+    "sentence_id": "8f1e9985-2f2f-523b-b93d-7ec1be29dcdc"
+   },
+   {
+    "shot_id": "04cb40d7-5a44-4b2f-ba27-27051444f7c4",
+    "sentence_id": "9840cfc6-0fe6-565a-8446-90b2da5f7c03"
+   },
+   {
+    "shot_id": "4b6b76ab-b48d-4292-b725-5b082ad50366",
+    "sentence_id": "8b3a6545-735f-5a98-9bb5-c172c672a7a4"
+   },
+   {
+    "shot_id": "7a112448-0cee-4abc-9c97-4e8dab516685",
+    "sentence_id": "d6be3a0e-e80c-5cc1-9962-e7d269e7f330"
+   },
+   {
+    "shot_id": "94d05db3-e925-497f-ae1d-6b9defa9daf9",
+    "sentence_id": "4fa3db92-7e8c-57c5-8ea7-26bedfdf092f"
+   },
+   {
+    "shot_id": "8c257032-abf0-4ed5-b658-bf96ca46f1c9",
+    "sentence_id": "a0b1605e-7b42-53cc-8e06-dd7f78449603"
+   }
+  ],
+  "prompt": "Generate exactly one storyboard image laid out as a strict grid of 2 rows and 3 columns of equal-sized panels. The panels are read left-to-right, top-to-bottom, and are separated by straight solid black gutters about 12 pixels wide. Do not draw white frames, borders, outlines or decorative lines around or inside the gutters; each panel's picture runs right up to the black gutter. Art style for every panel: 油画插画、明暗对照布光。深海军蓝+琥珀金双色基调。每个场景只有一个暖光源（蜡烛、油灯、月光、调查员在场时=他的提灯）。厚涂油画笔触和画布肌理、大气雾感、画面边缘渐隐入黑暗。神秘、阴郁、调查氛围。POV 场景里的历史人物大多用剪影或半明半暗的脸；常驻调查员=提灯头的 Lumen（见 IP 锁定）。不要写实、不要电影实拍感、不要明亮日光场景、不要现代物件、不要霓虹色。. Keep the same rendering medium, palette, lighting and texture consistent across all panels. Reference images 1 to 1 are the story characters. Whenever a character appears in a panel, render the same person as in the reference images with an identical face, hairstyle and clothing in every panel. Use the reference images only for identity: face, hairstyle, body type and signature clothing. Do not copy their pose, gesture, facial expression, framing, camera angle, background, scene layout or object positions. Design each panel's pose, expression and composition anew from its Action and Visual description; those panel instructions take priority over every non-identity feature of the reference images. A reference image that shows one character from several angles is still one person; never draw more copies of a character than the panel's action calls for. Panel 1 (row 1, column 1): NON_SPATIAL, NON_SPATIAL. Scene: analytical comparison - converging case strands. Action: Three visual strands from the evidence groups converge toward the shared pressure on the rain-fed urban system, without selecting a winner. → The competing explanations remain credible and intertwined.. Visual description: A restrained oil-painted analytical composition in navy and amber: three separate case strands converge toward one vulnerable water-dependent city system, with the connections remaining suggestive rather than definitive.. Panel 2 (row 1, column 2): WIDE, HIGH_ANGLE. Scene: Tikal - reservoir basin beneath the monumental center. Action: A broad, low reservoir lies below the shadowed mass of Tikal's urban center, leaving the question of which pressure matters most unresolved. → No single cause is yet visually declared decisive.. Visual description: A somber oil illustration of Tikal's reservoir basin and surrounding monumental center, lit only by a distant amber lantern glow; exposed banks and still water invite an unanswered comparison.. Panel 3 (row 1, column 3): MEDIUM, OVER_SHOULDER. Scene: Tikal - reservoir evidence reconstruction. Action: A traced path leads from climate-record evidence toward the visibly diminished reservoir, indicating where the accumulated evidence points. → The investigation narrows toward water stress.. Visual description: Oil-painted analytical reconstruction: a climate archive trace and the reservoir are connected by a single amber-lit line across a dark field, while all surrounding details recede into navy-black haze.. Panel 4 (row 2, column 1): WIDE, EYE_LEVEL. Scene: Tikal - exposed reservoir banks. Action: The reservoir's receded waterline and dry stepped banks dominate the frame under a single warm lantern source. → Drought becomes the leading explanation in the visual argument.. Visual description: A wide oil-painted view of drought at Tikal's reservoir: low water exposes dark basin walls beneath amber lantern light, with heavy brushwork, mist, and a blackened perimeter.. Panel 5 (row 2, column 2): EXTREME_CLOSE_UP, OBJECTIVE. Scene: Tikal - reservoir edge and climate evidence detail. Action: A close view isolates layered climate-record material beside the marked low-water line, making the supporting case tangible. → The drought conclusion rests on multiple visible lines of evidence.. Visual description: Extreme close oil-painted evidence view: pale climate-record layers and a sharply visible former waterline catch one amber lantern glow against deep navy darkness, with textured canvas grain.. Panel 6 (row 2, column 3): WIDE, HIGH_ANGLE. Scene: Lake Chichancanab - lantern-lit shoreline. Action: A lantern-lit view settles on Lake Chichancanab's dark, still shore, introducing the source of the drought investigation. → Lake Chichancanab is established as the starting point for the evidence trail.. Visual description: Oil-painted illustration in deep navy and amber, with thick brushwork, canvas texture, mist, and black-fading edges; a single lantern casts warm light across the lake margin.. Do not draw any readable text anywhere in the image: no captions, panel numbers, labels, titles, words, letters, numbers, prices, currency signs, charts or tables with labels or figures, signboards with lettering, logos, watermarks or signatures. Show amounts, costs and comparisons through objects, gestures and expressions instead, such as a tall or short stack of coins, a thick or thin pile of bills, or a busy or empty shop. Each panel is one continuous camera view of a single moment in a single place, like a frame from a film. Never divide a panel into two halves or several parts: no split screen, side-by-side or before-and-after comparison, inset picture or picture-in-picture inside a panel. Do not draw diagrams, arrows, floating icons, symbols or other overlays; show every idea only through people, objects and places a camera could film.",
+  "prompt_safety": [
+   "sensational_wording"
+  ],
+  "character_assets": [
+   {
+    "ordinal": 1,
+    "character_image_id": "632b031e-f0ed-4d6a-9b66-280a3c0384fa",
+    "asset_id": "2c68da16-6270-4ec5-a181-472d9ef6c7b1",
+    "sha256": "e507047ae11ffe04fd9aeee010f7884b5542cd8f6e6b91ffeac13eebef25e740",
+    "media_type": "image/png",
+    "size_bytes": 2741029
+   }
+  ],
+  "style": "油画插画、明暗对照布光。深海军蓝+琥珀金双色基调。每个场景只有一个暖光源（蜡烛、油灯、月光、调查员在场时=他的提灯）。厚涂油画笔触和画布肌理、大气雾感、画面边缘渐隐入黑暗。神秘、阴郁、调查氛围。POV 场景里的历史人物大多用剪影或半明半暗的脸；常驻调查员=提灯头的 Lumen（见 IP 锁定）。不要写实、不要电影实拍感、不要明亮日光场景、不要现代物件、不要霓虹色。",
+  "provider": "grsai",
+  "model": "gpt-image-2.5",
+  "parameters": {
+   "aspect_ratio": "16:9",
+   "quality": "high"
+  },
+  "provider_idempotency_key": "1438224fa44fd548eb633049a2bf38dbc5fa1ba6bf82eccf3db254a48848aab1",
+  "auto_attempt": 1,
+  "budget_round": 1,
+  "supersedes_generation_id": null,
+  "grid_layout_version": "grid-v2",
+  "shot_time_ranges": [
+   {
+    "order": 1,
+    "start_ms": 0,
+    "end_ms": 2080
+   },
+   {
+    "order": 2,
+    "start_ms": 2080,
+    "end_ms": 4320
+   },
+   {
+    "order": 3,
+    "start_ms": 4320,
+    "end_ms": 9120
+   },
+   {
+    "order": 4,
+    "start_ms": 9120,
+    "end_ms": 10000
+   },
+   {
+    "order": 5,
+    "start_ms": 10000,
+    "end_ms": 12080
+   },
+   {
+    "order": 6,
+    "start_ms": 12080,
+    "end_ms": 13520
+   }
+  ],
+  "shot_time_ranges_algorithm": "monotone-projection-v1"
+ }
+}

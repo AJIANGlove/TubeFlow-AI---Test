@@ -1,0 +1,4 @@
+11c11
+< src\tubeflow_test\video_generation\persistence.py:914: error: "Result[*tuple[Any, ...]]" has no attribute "rowcount"  [attr-defined]
+---
+> src\tubeflow_test\video_generation\persistence.py:957: error: "Result[*tuple[Any, ...]]" has no attribute "rowcount"  [attr-defined]

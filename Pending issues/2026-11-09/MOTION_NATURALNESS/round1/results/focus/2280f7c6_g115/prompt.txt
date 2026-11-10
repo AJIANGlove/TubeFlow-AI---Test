@@ -1,0 +1,35 @@
+subject_definitions:
+visual_asset_bindings: Character reference 1 = <Picture 1> (identity reference only); Shot 1 panel reference = <Picture 2>; Shot 2 panel reference = <Picture 3>; Shot 3 panel reference = <Picture 4>; Shot 4 panel reference = <Picture 5>; Shot 5 panel reference = <Picture 6>; Shot 6 panel reference = <Picture 7> (each shot renders only the content of its corresponding single-panel reference).
+- (S1): The lantern-headed investigator Lumen, the person in character reference 1; reproduce that person's face, hair, body, and clothing exactly as in that image.
+- Picture 2: The single-panel storyboard reference for Shot 1, used as the composition, action, and style reference for Shot 1 only.
+- Picture 3: The single-panel storyboard reference for Shot 2, used as the composition, action, and style reference for Shot 2 only.
+- Picture 4: The single-panel storyboard reference for Shot 3, used as the composition, action, and style reference for Shot 3 only.
+- Picture 5: The single-panel storyboard reference for Shot 4, used as the composition, action, and style reference for Shot 4 only.
+- Picture 6: The single-panel storyboard reference for Shot 5, used as the composition, action, and style reference for Shot 5 only.
+- Picture 7: The single-panel storyboard reference for Shot 6, used as the composition, action, and style reference for Shot 6 only.
+summary:
+An oil-painted investigation in deep navy and amber traces converging drought evidence toward a rain-fed urban system, advancing through the single-panel references in shot order.
+retention_analysis:
+- (S1) — fully_preserved: the same face, hair, body, and clothing as character reference 1 in every shot.
+- (S2) — fully_preserved: the rain-dependent monumental center and reservoir basin of Tikal, with exposed banks and still water under a single warm source.
+- (S3) — fully_preserved: the dark still shoreline of Lake Chichancanab with its lantern-lit margin.
+- Picture 2 — shot_plan_reference_only: retain Shot 1 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+- Picture 3 — shot_plan_reference_only: retain Shot 2 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+- Picture 4 — shot_plan_reference_only: retain Shot 3 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+- Picture 5 — shot_plan_reference_only: retain Shot 4 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+- Picture 6 — shot_plan_reference_only: retain Shot 5 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+- Picture 7 — shot_plan_reference_only: retain Shot 6 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+detailed_description:
+Oil-painted illustration with chiaroscuro lighting, deep navy and amber palette, thick impasto brushwork, canvas texture, atmospheric mist, and edges fading into darkness, stable camera, natural motion blur, real-time movement speed.
+[Shot 1] <Picture 2>: In a dark analytical space, three separate evidence strands of painted amber light drift inward toward one vulnerable water-dependent city form, their connections remaining suggestive as the strands settle and dim slightly. Static camera, 0% movement.
+[Shot 2] At 00:02.080, cut to <Picture 3>: High above Tikal's reservoir basin, (S1) raises the lantern at the basin rim, casting warmth over the broad low water and exposed banks while thin mist slides across the monumental center in the background. Slow push-in of about 6%.
+[Shot 3] At 00:04.320, cut to <Picture 4>: Over the shoulder of (S1), a single amber-lit line extends from a climate archive trace across the dark field toward the visibly diminished reservoir, and (S1) tilts the lantern to follow the traced path as surrounding details recede. Slow tilt of about 10 degrees.
+[Shot 4] At 00:09.120, cut to <Picture 5>: At eye level, (S1) lowers the lantern toward the receded waterline, and the warm glow spreads over the dry stepped banks and dark basin walls as heavy mist drifts past the exposed stone. Slow pull-out of about 5%.
+[Shot 5] At 00:10.000, cut to <Picture 6>: In extreme close view, (S1)'s hand turns a layered climate-record fragment beside the marked low-water line, and the amber light catches the pale layers and former waterline edge before the hand comes to rest. Static camera, 0% movement.
+[Shot 6] At 00:12.080, cut to <Picture 7>: From a high angle over Lake Chichancanab, (S1) stands at the dark still shore and swings the lantern slowly across the lake margin, revealing the quiet water and black-fading edge with a soft ripple. Slow pan of about 8 degrees.
+Maintain (S1)'s face, hair, and clothing as character reference 1, the reservoir geometry, monumental center, lake margin, warm lantern light, navy-amber palette, oil-painted canvas texture, correct finger count, and real-time body movement.
+No storyboard grid, panel borders, split screen, captions, on-screen text or numbers, logos, watermarks, camera shake, jitter, morphing faces, warping hands, flickering textures, slow motion, extra people, duplicated characters.
+overall_soundscape:
+Quiet ambient room tone, soft lantern flame flicker, low wind over water, faint water lapping against stone, the subtle rasp of a hand on painted terrain, no voices.
+non_diegetic_music:
+N/A

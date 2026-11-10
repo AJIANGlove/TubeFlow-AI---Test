@@ -1,0 +1,40 @@
+subject_definitions:
+visual_asset_bindings: Character reference 1 = <Picture 1> (identity reference only); Shot 1 panel reference = <Picture 2>; Shot 2 panel reference = <Picture 3>; Shot 3 panel reference = <Picture 4>; Shot 4 panel reference = <Picture 5>; Shot 5 panel reference = <Picture 6> (each shot renders only the content of its corresponding single-panel reference).
+- (S1): The lantern-headed investigator, the person in character reference 1; reproduce that person's face, hair, body, and clothing exactly as in that image.
+- (S2): Lake Chichancanab, an exposed low lake basin with a pale waterless shore, low mist and a moonlit reflection.
+- (S3): A finely banded lake sediment core sample with pale mineral-rich layers alternating with darker deposits.
+- (S4): A divided evidence field of two separated records with handwritten field notes and darkness between them.
+- (S5): A dark field-station sample table holding a lake-sediment core and a cave stalagmite sample with separate research instruments.
+- (S6): A field-station analysis table where the two records lie apart under one warm lamp.
+- Picture 2: The single-panel storyboard reference for Shot 1, used as the composition, action, and style reference for Shot 1 only.
+- Picture 3: The single-panel storyboard reference for Shot 2, used as the composition, action, and style reference for Shot 2 only.
+- Picture 4: The single-panel storyboard reference for Shot 3, used as the composition, action, and style reference for Shot 3 only.
+- Picture 5: The single-panel storyboard reference for Shot 4, used as the composition, action, and style reference for Shot 4 only.
+- Picture 6: The single-panel storyboard reference for Shot 5, used as the composition, action, and style reference for Shot 5 only.
+summary:
+A dark oil-painted sequence moves from a separate lake setting through its sediment record to a divided evidence field, then gathers a lake core and a cave stalagmite on a field table before their matching bands align, advancing through the single-panel references in shot order.
+retention_analysis:
+- (S1) — fully_preserved: the same face, hair, body, and clothing as character reference 1 in every shot.
+- (S2) — fully_preserved: retain the low lake basin, the pale exposed shore, the low mist and the single moonlit reflection.
+- (S3) — fully_preserved: retain the fine banding, the pale mineral-rich layers and the darker deposits of the core.
+- (S4) — fully_preserved: retain the two isolated warm pools, the field notes and the darkness held between the records.
+- (S5) — fully_preserved: retain the dark table, the two distinct samples and their separate instruments.
+- (S6) — fully_preserved: retain the two records lying apart and the single warm lamp pool over the work surface.
+- Picture 2 — shot_plan_reference_only: retain Shot 1 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+- Picture 3 — shot_plan_reference_only: retain Shot 2 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+- Picture 4 — shot_plan_reference_only: retain Shot 3 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+- Picture 5 — shot_plan_reference_only: retain Shot 4 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+- Picture 6 — shot_plan_reference_only: retain Shot 5 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+detailed_description:
+Moody oil-painted illustration in deep navy and amber, single warm light source per scene, thick impasto brushwork on visible canvas grain, atmospheric haze, dark vignetted frame edges fading into black, chiaroscuro modeling with silhouetted or half-lit figures, stable camera, natural motion blur, real-time movement speed.
+[Shot 1] <Picture 2>: High above the low lake basin, the pale exposed shore stretches in a wide band, low mist drifts sluggishly over the waterless margin and the amber moonlit reflection trembles once on the still surface. Static camera, 0% movement.
+[Shot 2] At 00:01.200, cut to <Picture 3>: In close detail the banded sediment core lies under one amber oil lamp, the pale mineral-rich layers catching a soft sheen while drifting haze passes across the core and the outer shadow deepens. Slow push-in of about 6%.
+[Shot 3] At 00:02.560, cut to <Picture 4>: Viewed from overhead, two separated pools of amber light each hold a different archive sample and its own handwritten field notes; the mist between them thickens so no shared workspace forms. Static camera, 0% movement.
+[Shot 4] At 00:03.680, cut to <Picture 5>: On the dark field table a lake-sediment core is set down and a cave stalagmite sample is laid beside it, each next to a different research instrument, the amber light tightening around the objects as the surrounding surface recedes into navy shadow. Slow pull-out of about 5%.
+[Shot 5] At 00:12.720, cut to <Picture 6>: Overhead, the two records remain apart on the table while their corresponding dark bands settle into alignment across the gap, the warm lamp pool holding steady over the evidence as the rest of the work surface fades into shadow. Static camera, 0% movement.
+Maintain (S1)'s face, hair, body and clothing as character reference 1 in every shot, the lake basin and shore geometry, the sediment banding, the two isolated light pools, the two distinct samples and their instruments on the table, the deep navy and amber palette, the single warm source per scene, the oil-paint canvas texture and haze, the correct finger count and real-time body movement, and no readable text anywhere in frame.
+No storyboard grid, panel borders, split screen, captions, on-screen text or numbers, labels, charts, interfaces, logos, watermarks, camera shake, jitter, morphing faces, warping hands, flickering textures, slow motion, extra people, duplicated characters, neon colors, modern objects, bright daylight, or photographic realism.
+overall_soundscape:
+Low wind over a dry shoreline, faint lapping water, a soft hollow tap as a core is set on wood, a light scrape of stone on a table, distant muffled air of an empty station, no voices.
+non_diegetic_music:
+N/A

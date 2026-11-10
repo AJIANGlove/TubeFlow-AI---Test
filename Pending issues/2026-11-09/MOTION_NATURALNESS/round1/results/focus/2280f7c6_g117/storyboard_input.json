@@ -1,0 +1,63 @@
+{
+ "kind": "GRID_SHEET",
+ "version": 1,
+ "provider": "grsai",
+ "input": {
+  "shots": [
+   {
+    "shot_id": "0027fbcd-001b-4b47-a2c9-628c6a9f60c4",
+    "order": 1,
+    "scene": "Cambridge University - sediment core specimen",
+    "shot_size": "EXTREME_CLOSE_UP",
+    "camera_viewpoint": "OBJECTIVE",
+    "subject_action_outcome": "Pale gypsum crystals glint within one dry-season layer of the sediment core. → The crystals make the dry-condition signal visible in the core.",
+    "narrative_function": "Identifies the evaporation-formed mineral evidence behind the drought signal.",
+    "description": "Extreme oil-painted close view of angular gypsum crystals embedded in a sediment layer, caught by a single amber lantern; thick pigment, mist-softened darkness, and canvas grain surround the specimen.",
+    "semantic_event": "EXPLAIN_CAUSE",
+    "subject_focus": "OBJECT_OR_EVIDENCE",
+    "time_relation": "SAME_MOMENT",
+    "location_relation": "SAME_LOCATION"
+   }
+  ],
+  "links": [
+   {
+    "shot_id": "0027fbcd-001b-4b47-a2c9-628c6a9f60c4",
+    "sentence_id": "98f4dae4-c1c9-57ad-af08-f52d260a6fec"
+   }
+  ],
+  "prompt": "Generate exactly one storyboard image as a single full-frame panel with no grid lines. Art style for every panel: 油画插画、明暗对照布光。深海军蓝+琥珀金双色基调。每个场景只有一个暖光源（蜡烛、油灯、月光、调查员在场时=他的提灯）。厚涂油画笔触和画布肌理、大气雾感、画面边缘渐隐入黑暗。神秘、阴郁、调查氛围。POV 场景里的历史人物大多用剪影或半明半暗的脸；常驻调查员=提灯头的 Lumen（见 IP 锁定）。不要写实、不要电影实拍感、不要明亮日光场景、不要现代物件、不要霓虹色。. Keep the same rendering medium, palette, lighting and texture consistent across all panels. Reference images 1 to 1 are the story characters. Whenever a character appears in a panel, render the same person as in the reference images with an identical face, hairstyle and clothing in every panel. Use the reference images only for identity: face, hairstyle, body type and signature clothing. Do not copy their pose, gesture, facial expression, framing, camera angle, background, scene layout or object positions. Design each panel's pose, expression and composition anew from its Action and Visual description; those panel instructions take priority over every non-identity feature of the reference images. A reference image that shows one character from several angles is still one person; never draw more copies of a character than the panel's action calls for. Panel 1 (row 1, column 1): EXTREME_CLOSE_UP, OBJECTIVE. Scene: Cambridge University - sediment core specimen. Action: Pale gypsum crystals glint within one dry-season layer of the sediment core. → The crystals make the dry-condition signal visible in the core.. Visual description: Extreme oil-painted close view of angular gypsum crystals embedded in a sediment layer, caught by a single amber lantern; thick pigment, mist-softened darkness, and canvas grain surround the specimen.. Do not draw any readable text anywhere in the image: no captions, panel numbers, labels, titles, words, letters, numbers, prices, currency signs, charts or tables with labels or figures, signboards with lettering, logos, watermarks or signatures. Show amounts, costs and comparisons through objects, gestures and expressions instead, such as a tall or short stack of coins, a thick or thin pile of bills, or a busy or empty shop. Each panel is one continuous camera view of a single moment in a single place, like a frame from a film. Never divide a panel into two halves or several parts: no split screen, side-by-side or before-and-after comparison, inset picture or picture-in-picture inside a panel. Do not draw diagrams, arrows, floating icons, symbols or other overlays; show every idea only through people, objects and places a camera could film.",
+  "prompt_safety": [
+   "sensational_wording"
+  ],
+  "character_assets": [
+   {
+    "ordinal": 1,
+    "character_image_id": "632b031e-f0ed-4d6a-9b66-280a3c0384fa",
+    "asset_id": "2c68da16-6270-4ec5-a181-472d9ef6c7b1",
+    "sha256": "e507047ae11ffe04fd9aeee010f7884b5542cd8f6e6b91ffeac13eebef25e740",
+    "media_type": "image/png",
+    "size_bytes": 2741029
+   }
+  ],
+  "style": "油画插画、明暗对照布光。深海军蓝+琥珀金双色基调。每个场景只有一个暖光源（蜡烛、油灯、月光、调查员在场时=他的提灯）。厚涂油画笔触和画布肌理、大气雾感、画面边缘渐隐入黑暗。神秘、阴郁、调查氛围。POV 场景里的历史人物大多用剪影或半明半暗的脸；常驻调查员=提灯头的 Lumen（见 IP 锁定）。不要写实、不要电影实拍感、不要明亮日光场景、不要现代物件、不要霓虹色。",
+  "provider": "grsai",
+  "model": "gpt-image-2.5",
+  "parameters": {
+   "aspect_ratio": "16:9",
+   "quality": "high"
+  },
+  "provider_idempotency_key": "dcfe7fb478facf4dd8d43b1ed8e3c1fd641d9ebd1864757d91e9b3a8304bc047",
+  "auto_attempt": 1,
+  "budget_round": 1,
+  "supersedes_generation_id": null,
+  "grid_layout_version": "grid-v2",
+  "shot_time_ranges": [
+   {
+    "order": 1,
+    "start_ms": 0,
+    "end_ms": 5280
+   }
+  ],
+  "shot_time_ranges_algorithm": "monotone-projection-v1"
+ }
+}

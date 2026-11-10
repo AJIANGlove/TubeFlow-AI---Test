@@ -1,0 +1,74 @@
+{
+ "projects": {
+  "2280f7c6-f0c7-439a-8d82-71c52b588cbf": {
+   "title": "What Really Happened to the Maya Civilization?",
+   "groups": 163,
+   "groups_with_current_video": 163,
+   "groups_without_current_video": [],
+   "strategies": [
+    "tubeflow_storyboard_v4_single_panel"
+   ],
+   "distinct_visual_styles": 1
+  },
+  "93d717fa-e23c-4ee6-86dc-f5558088003b": {
+   "title": "겨울 석 달 붕어빵 노점, 정말 얼마나 남을까?",
+   "groups": 9,
+   "groups_with_current_video": 9,
+   "groups_without_current_video": [],
+   "strategies": [
+    "tubeflow_storyboard_v4_single_panel"
+   ],
+   "distinct_visual_styles": 1
+  }
+ },
+ "errors": [
+  {
+   "focus": "2280f7c6_g115",
+   "role": "character_1",
+   "asset_id": "2c68da16-6270-4ec5-a181-472d9ef6c7b1",
+   "error": "media_asset_not_found"
+  },
+  {
+   "focus": "2280f7c6_g116",
+   "role": "character_1",
+   "asset_id": "2c68da16-6270-4ec5-a181-472d9ef6c7b1",
+   "error": "media_asset_not_found"
+  },
+  {
+   "focus": "2280f7c6_g117",
+   "role": "character_1",
+   "asset_id": "2c68da16-6270-4ec5-a181-472d9ef6c7b1",
+   "error": "media_asset_not_found"
+  },
+  {
+   "focus": "2280f7c6_g119",
+   "role": "character_1",
+   "asset_id": "2c68da16-6270-4ec5-a181-472d9ef6c7b1",
+   "error": "media_asset_not_found"
+  },
+  {
+   "focus": "2280f7c6_g125",
+   "role": "character_1",
+   "asset_id": "2c68da16-6270-4ec5-a181-472d9ef6c7b1",
+   "error": "media_asset_not_found"
+  },
+  {
+   "focus": "2280f7c6_g127",
+   "role": "character_1",
+   "asset_id": "2c68da16-6270-4ec5-a181-472d9ef6c7b1",
+   "error": "media_asset_not_found"
+  },
+  {
+   "focus": "2280f7c6_g128",
+   "role": "character_1",
+   "asset_id": "2c68da16-6270-4ec5-a181-472d9ef6c7b1",
+   "error": "media_asset_not_found"
+  },
+  {
+   "focus": "93d717fa_g003",
+   "role": "character_1",
+   "asset_id": "7523c0ef-c2db-43f2-8ba3-d8a777ddcd5b",
+   "error": "media_asset_not_found"
+  }
+ ]
+}

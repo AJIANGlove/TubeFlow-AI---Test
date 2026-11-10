@@ -1,0 +1,46 @@
+[
+ {
+  "role": "character_1",
+  "asset_id": "2c68da16-6270-4ec5-a181-472d9ef6c7b1",
+  "error": "media_asset_not_found"
+ },
+ {
+  "role": "panel_shot1",
+  "asset_id": "9641d007-aaaf-5dd7-921a-b7f3633aab03",
+  "file": "panel_shot1.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   823,
+   463
+  ],
+  "original_bytes": 573602,
+  "original_sha256": "719f3a62d27fae6c139e7519769d0dbc845e3701e884677e6694495a3137e28a",
+  "sha256_matches_db": true
+ },
+ {
+  "role": "panel_shot2",
+  "asset_id": "bf284e9d-ee4c-51d1-a641-eb4f2ddc926f",
+  "file": "panel_shot2.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   822,
+   463
+  ],
+  "original_bytes": 603722,
+  "original_sha256": "f4c6fbccb8006e6a4e44ce4dea27505ae4f7bd2e15ffc2a87460b20ee5ea00e6",
+  "sha256_matches_db": true
+ },
+ {
+  "role": "storyboard",
+  "asset_id": "e95dbd87-f7ea-5c28-8609-8f483e57c53c",
+  "file": "storyboard.jpg",
+  "media_type": "image/png",
+  "original_size": [
+   1672,
+   941
+  ],
+  "original_bytes": 1403640,
+  "original_sha256": "283c3e441d0ae6c4aacad15e767f5219df8b941aed581119bda9e1ea5a9bc7bd",
+  "sha256_matches_db": true
+ }
+]

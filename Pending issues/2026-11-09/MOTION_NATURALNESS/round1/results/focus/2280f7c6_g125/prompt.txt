@@ -1,0 +1,25 @@
+subject_definitions:
+visual_asset_bindings: Character reference 1 = <Picture 1> (identity reference only); Shot 1 panel reference = <Picture 2>; Shot 2 panel reference = <Picture 3> (each shot renders only the content of its corresponding single-panel reference).
+- (S1): The investigator, the person in character reference 1; reproduce that person's face, hair, body, and clothing exactly as in that image.
+- (S2): A dark-field scientific visualization of an annual rainfall record rendered as an oil painting.
+- (S3): The southern Maya lowlands city precinct with plazas, reservoirs and rising stone structures.
+- Picture 2: The single-panel storyboard reference for Shot 1, used as the composition, action, and style reference for Shot 1 only.
+- Picture 3: The single-panel storyboard reference for Shot 2, used as the composition, action, and style reference for Shot 2 only.
+summary:
+A dark oil-painted visualization of a two-thousand-year annual rainfall record gives way to a wide high-angle view of a rain-fed Maya city precinct growing across the wet centuries, advancing through the single-panel references in shot order.
+retention_analysis:
+- (S1) — fully_preserved: the same face, hair, body, and clothing as character reference 1 in every shot.
+- (S2) — fully_preserved: retain the navy field, the fine amber annual marks and the layered sample texture beneath the data.
+- (S3) — fully_preserved: retain the plaza layout, the reflective reservoirs, the rising stone structures and the single amber break in the storm-dark sky.
+- Picture 2 — shot_plan_reference_only: retain Shot 1 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+- Picture 3 — shot_plan_reference_only: retain Shot 2 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+detailed_description:
+Oil painting illustration with chiaroscuro lighting, a deep navy and amber-gold palette, one warm light source per scene, thick impasto brushwork, canvas texture, atmospheric haze and edges fading into darkness, stable camera, natural motion blur, real-time movement speed.
+[Shot 1] <Picture 2>: On a dark navy field, thousands of fine amber annual marks settle into place one band at a time, resolving into a long wavering rainfall trace that spans two millennia, while the layered cave sample texture remains faintly visible beneath the data. Static camera, 0% movement.
+[Shot 2] At 00:04.240, cut to <Picture 3>: A high-angle view over the southern Maya lowlands precinct, where rain sheets across the plazas and reservoirs, reflective water ripples, and small construction activity continues at the rising stone structures in the distance under a single amber break in the storm-dark navy sky. Slow pan of about 10 degrees.
+Maintain (S1)'s face, hair, body and clothing as character reference 1, the navy-and-amber palette, the thick impasto texture, the single warm light source per scene, the scene geometry of the dark data field and the lowland precinct, consistent lighting and style, the correct finger count and real-time body movement.
+No storyboard grid, panel borders, split screen, captions, on-screen text or numbers, logos, watermarks, camera shake, jitter, morphing faces, warping hands, flickering textures, slow motion, extra people, duplicated characters.
+overall_soundscape:
+Low cavern-like room tone, a faint dry ticking as each annual band settles into the record, then a broad wash of rain over stone, water rippling in reservoirs, distant chisel strikes on masonry, no voices.
+non_diegetic_music:
+N/A
