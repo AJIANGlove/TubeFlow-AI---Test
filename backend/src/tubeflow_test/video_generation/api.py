@@ -118,19 +118,36 @@ class ManualH3Input(BaseModel):
     # §51（2026-11-05 用户决策）抖动 A/B 专用，缺省时行为不变。baseline：照常编译 v4 单格；
     # cadence_v1：复用 prompt_source_attempt_id（同组、同故事板、同 seed 的基线臂）的已编译
     # 提示词并插入一句运动节奏要求，不调用编译器。实验尝试不自动重提。
-    experiment_arm: Literal["baseline", "cadence_v1"] | None = None
+    # §54（2026-11-09 用户决策）画面运动自然度测试：edited_v1 提交整段已编辑提示词
+    # （edited_prompt，sha256 须一致），prompt_source_attempt_id 为同组、同故事板的 v4 单格
+    # 来源尝试；按 v4 单格合同全量校验，不调用编译器。
+    experiment_arm: Literal["baseline", "cadence_v1", "edited_v1"] | None = None
     prompt_source_attempt_id: UUID | None = None
+    edited_prompt: str | None = Field(default=None, min_length=1, max_length=20000)
+    edited_prompt_sha256: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
+    variant_label: str | None = Field(default=None, pattern=r"^[a-z0-9][a-z0-9_-]{0,47}$")
 
     @model_validator(mode="after")
     def _experiment_fields(self) -> ManualH3Input:
+        edit_fields = (self.edited_prompt, self.edited_prompt_sha256, self.variant_label)
         if self.experiment_arm is None:
             if self.prompt_source_attempt_id is not None:
                 raise ValueError("prompt_source_attempt_id requires experiment_arm")
+            if edit_fields != (None, None, None):
+                raise ValueError("edited prompt fields require the edited_v1 arm")
             return self
         if self.seed is None:
             raise ValueError("experiment arms require an explicit seed")
-        if (self.experiment_arm == "cadence_v1") != (self.prompt_source_attempt_id is not None):
-            raise ValueError("only the cadence_v1 arm takes prompt_source_attempt_id")
+        if (self.experiment_arm == "baseline") != (self.prompt_source_attempt_id is None):
+            raise ValueError("only the cadence_v1 and edited_v1 arms take prompt_source_attempt_id")
+        if self.experiment_arm == "edited_v1":
+            if None in edit_fields:
+                raise ValueError(
+                    "the edited_v1 arm requires edited_prompt, edited_prompt_sha256 and"
+                    " variant_label"
+                )
+        elif edit_fields != (None, None, None):
+            raise ValueError("edited prompt fields require the edited_v1 arm")
         return self
 
 
@@ -146,6 +163,9 @@ class ManualH3Writer(Protocol):
         seed: int | None = None,
         experiment_arm: str | None = None,
         prompt_source_attempt_id: UUID | None = None,
+        edited_prompt: str | None = None,
+        edited_prompt_sha256: str | None = None,
+        variant_label: str | None = None,
     ) -> UUID: ...
 
     def get(self, owner_id: UUID, attempt_id: UUID) -> PersistentAttempt | None: ...
@@ -201,6 +221,16 @@ def create_video_router(
                     idempotency_key=idempotency_key,
                     seed=body.seed,
                 )
+            elif body.experiment_arm != "edited_v1":
+                attempt_id = writer.create(
+                    owner_id=account.id,
+                    group_id=group_id,
+                    expected_storyboard_generation_id=body.expected_storyboard_generation_id,
+                    idempotency_key=idempotency_key,
+                    seed=body.seed,
+                    experiment_arm=body.experiment_arm,
+                    prompt_source_attempt_id=body.prompt_source_attempt_id,
+                )
             else:
                 attempt_id = writer.create(
                     owner_id=account.id,
@@ -210,6 +240,9 @@ def create_video_router(
                     seed=body.seed,
                     experiment_arm=body.experiment_arm,
                     prompt_source_attempt_id=body.prompt_source_attempt_id,
+                    edited_prompt=body.edited_prompt,
+                    edited_prompt_sha256=body.edited_prompt_sha256,
+                    variant_label=body.variant_label,
                 )
         except (DomainError, VideoRuleViolation) as exc:
             if isinstance(exc, VideoRuleViolation):

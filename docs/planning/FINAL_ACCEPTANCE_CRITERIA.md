@@ -722,3 +722,15 @@
 - [x] 部署按 §52 等待在途导演活动，记录两项计数与等待时刻。
   - 2026-11-08 部署机实测：镜像 `sha256:79b37e6ce50f…`（`director-shot-count-20261107`）构建完成；**15:38:02Z 首查即两项为 0**（`project_director_units` 的 `LEASED/SUBMITTING` = 0；运行中工作流 0、其中 pending `advance_project_director` = 0），**等待 0 分钟、只复查 1 次**；T_dep **15:38:14Z–15:38:27Z**，`migrate` 退出 0、`alembic 0047` 不变，web/worker healthy 于 15:40:02Z，`/health/live` 200、`/group-videos/contract` `available:true`。记录 `docs/DEPLOYMENT.md` §47、`Pending issues/2026-11-07/evidence/director_shot_count/deploy/README.md`。
 - [ ] 上线后首次出现 `director_output_shot_count_invalid` 的运行：重试时提示是否带上镜头数与上限、下一次是否通过（等自然发生，不为此调用 Provider；未验证）。
+
+## 51. 2026-11-09 已编辑提示词实验臂验收（USER_DECISIONS §54 第 2 项）
+
+- [x] Claude 云端工作区：策略 `tubeflow_storyboard_v4_single_panel_edited_v1` 属于 v4 单格策略集合（同一出口校验与代词规则），但不可编译——编译器在调用服务商之前拒绝（`h3_prompt_strategy_not_compilable`）；配置的策略白名单不含该值（单元测试）。
+- [x] Claude 云端工作区：实验身份 `prompt-edit-ab-v1` 含来源尝试、变体标签与提示词 sha256；标签或 sha256 格式不符、缺来源尝试、把编辑字段带到 baseline/cadence 臂一律拒绝；baseline 与 cadence 臂的身份结构不变；同幂等键换提示词、换标签或换臂视为另一请求（单元测试）。
+- [x] Claude 云端工作区：来源原文不改时，请求的提示词、参数、参考图与工作流与来源请求逐项相同；改了提示词并换 seed 时只有提示词与 seed 不同；来源可以是生产、基线臂、节奏臂或编辑臂尝试；来源策略不是 v4 单格、缺提示词、参考输入或权威快照变化、sha256 不符、缺 seed、提示词不过 v4 单格合同（绑定行、格位映射、跨镜引用、代词、必需措辞、配乐、长度）一律拒绝；只用于 crop-grid-v2 分组；编辑臂实验尝试不走 AUTO 路径（单元测试）。
+- [x] Claude 云端工作区：写入器按同组、同故事板的来源行校验已编辑提示词，全程不调用编译器；来源行不在本组或本故事板时拒绝；字段组合不符在任何读写之前拒绝；API 输入模型对 14 种畸形请求返回校验错误（单元测试）。
+  - 2026-11-09 实测：新增 `tests/unit/test_prompt_edit_ab.py` 57 条，在 Claude 云端工作区的替身环境（缺 FastAPI/SQLAlchemy/httpx 等，以替身模块代替，仅供纯逻辑测试）中 **55 passed、2 failed**；失败的 2 条是 HTTP 路由用例，原因是 TestClient 为替身，**未验证**，由测试机补跑。6 处关键守卫逐一改坏（编译器拦截、sha256 比对、合同校验、写入器分派、API 校验、参考输入比对），每处都使新测试多出至少 1 条失败。相关 40 个单元测试文件在 main 与分支上逐条结果相同（440 passed / 86 failed / 7 收集错误，失败与错误均由替身环境造成，两侧一致）。`ruff check` 只有 main 上已有的 2 条；`mypy`（缺失依赖按忽略处理）对 5 个改动文件归一化后与 main 逐条相同。
+- [ ] 测试机：单元（含新文件的 2 条 HTTP 用例与 `test_jitter_cadence_ab.py` 全部）、集成、`ruff check .`、`mypy src` 相对 main 无新增失败。
+- [ ] 部署按 §52 等待在途导演活动，记录两项计数与等待时刻；无迁移、不改 `.env`。
+- [ ] 部署机只读演练（不调用 Provider）：第 116、119 组以当前视频为来源、原文不改、`--dry-run` 得到 `DRYRUN_OK`，或如实记录拒绝码。
+- [ ] 第 2 轮 H3 对照：调用次数不超过用户确认的额度；每条尝试快照带 `experiment`（arm、来源、标签、sha256 正确）、策略为 `..._edited_v1`；提示词与提交文件 sha256 一致；没有以这些尝试为被取代对象的自动重提；两组当前视频前后不变。
