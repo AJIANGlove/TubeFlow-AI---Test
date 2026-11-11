@@ -1,0 +1,25 @@
+subject_definitions:
+visual_asset_bindings: Character reference 1 = <Picture 1> (identity reference only); Shot 1 panel reference = <Picture 2>; Shot 2 panel reference = <Picture 3> (each shot renders only the content of its corresponding single-panel reference).
+- (S1): The geochemist, the person in character reference 1; reproduce that person's face, hair, body, and clothing exactly as in that image.
+- (S2): A coring boat on Lake Chichancanab with wet sampling gear, a single amber lantern and dark navy mist around the hull.
+- (S3): A Cambridge University geochemistry worktable with cutting tools and a dark work surface lit by one amber lantern.
+- Picture 2: The single-panel storyboard reference for Shot 1, used as the composition, action, and style reference for Shot 1 only.
+- Picture 3: The single-panel storyboard reference for Shot 2, used as the composition, action, and style reference for Shot 2 only.
+summary:
+A geochemist and a small field team raise a sediment core from Lake Chichancanab, and the recovered core is then examined on a Cambridge worktable, advancing through the single-panel references in shot order.
+retention_analysis:
+- (S1) — fully_preserved: the same face, hair, body, and clothing as character reference 1 in every shot.
+- (S2) — fully_preserved: retain the boat layout, the wet coring gear, the single amber lantern and the navy mist.
+- (S3) — fully_preserved: retain the dark worktable, the cutting tools and the single amber lantern light.
+- Picture 2 — shot_plan_reference_only: retain Shot 1 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+- Picture 3 — shot_plan_reference_only: retain Shot 2 composition and style; never reproduce reference borders, captions, or unrelated panel content as image content.
+detailed_description:
+Oil-painted illustration with chiaroscuro lighting, deep navy and amber-gold palette, one warm light source per scene, thick impasto brushwork, canvas texture, atmospheric haze and edges fading into darkness, natural motion blur, real-time movement speed.
+[Shot 1] <Picture 2>: On the coring boat at Lake Chichancanab, (S1) grips the long wet sediment core tube with both hands, the tube already clear of the water and hanging upright in front of the body, lifts it a little higher with one steady pull, then lowers it to rest against the gunwale; the tube keeps the same length and shape the whole time, with water dripping from its lower end; the field team member standing at the left edge leans toward the tube and shifts weight to keep balance, and the field team member seated at the right writes in an open notebook, then glances up at the core; the small boat rocks gently with the shifting weight, and slow ripples spread across the dark lake water around the hull, the single amber lantern lighting the dripping tube. Static camera, 0% movement.
+[Shot 2] At 00:11.040, cut to <Picture 3>: In the Cambridge University geochemistry workspace, a cut sediment core lies across the dark worktable; (S1)'s hands enter frame, rotate the core a quarter turn on the table and set a cutting tool down beside it, revealing pale bands within the layered material under the amber lantern. Slow push-in of about 6%.
+Maintain (S1)'s face, hair, body and clothing as character reference 1 in every shot, the worktable layout, the sediment core tube's fixed length and shape, the single amber lantern light in each scene, the oil-painted canvas texture, the correct finger count and real-time body movement.
+No storyboard grid, panel borders, split screen, captions, on-screen text or numbers, logos, watermarks, morphing faces, warping hands, slow motion, extra people, duplicated characters.
+overall_soundscape:
+Lake water lapping against the boat hull, a winch line creaking under tension, water dripping from the rising core, a soft wooden knock as the tube meets the gunwale, then a quiet indoor room tone, a core tube turning on a worktop and a metal tool set down, no voices.
+non_diegetic_music:
+N/A

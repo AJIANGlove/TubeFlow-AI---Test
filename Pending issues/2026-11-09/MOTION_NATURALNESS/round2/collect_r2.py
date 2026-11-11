@@ -2,7 +2,8 @@
 """第 2 轮只读收集（web 容器内运行）：实验尝试的状态、指标与输出视频原文件。
 
 只读：数据库查询都在 READ ONLY 事务里；对象存储只 GET；不调用任何 Provider。
-实验尝试按 experiment.name = prompt-edit-ab-v1 且幂等键以 motion-r2- 开头自动找出；
+实验尝试按 experiment.name = prompt-edit-ab-v1 且幂等键以 spec 的 idempotency_prefixes
+（缺省 motion-r2-）开头自动找出；seed 名取 spec 的 seeds（缺省 second_seed）；
 另收两组生产来源尝试（spec.json 的 source_attempt_id）作对照。
 
 用法：OUT=/tmp/motion_r2 python collect_r2.py /tmp/spec.json
@@ -54,7 +55,11 @@ def main(argv: list[str]) -> int:
         secret_key=settings.minio_secret_key,
         secure=False,
     )
-    second = int(spec["second_seed"])
+    prefixes = spec.get("idempotency_prefixes", ["motion-r2-"])
+    if not prefixes or any(re.fullmatch(r"[a-z0-9-]{3,32}", p) is None for p in prefixes):
+        raise SystemExit(f"invalid idempotency_prefixes: {prefixes!r}")
+    key_filter = " or ".join(f"idempotency_key like '{p}%'" for p in prefixes)
+    seed_names = {int(v): k for k, v in spec.get("seeds", {"second": spec["second_seed"]}).items()}
     records: list[dict[str, Any]] = []
     errors: list[dict[str, Any]] = []
     with database.session() as connection:
@@ -67,7 +72,7 @@ def main(argv: list[str]) -> int:
                         "archive_stage, error_code, updated_at, input_snapshot_json, "
                         "request_json, probe_evidence_json, archived_asset_json, output_sha256 "
                         "from video_generation_attempts where group_id = cast(:g as uuid) and ("
-                        "attempt_id = cast(:s as uuid) or (idempotency_key like 'motion-r2-%' and "
+                        f"attempt_id = cast(:s as uuid) or (({key_filter}) and "
                         "input_snapshot_json -> 'experiment' ->> 'name' = 'prompt-edit-ab-v1')) "
                         "order by updated_at"
                     ),
@@ -89,7 +94,7 @@ def main(argv: list[str]) -> int:
                     which = (
                         "source"
                         if seed == group["source_seed"]
-                        else ("second" if seed == second else f"seed{seed}")
+                        else seed_names.get(seed, f"seed{seed}")
                     )
                     label = f"g{seq}_{variant}_{which}"
                 prompt = request.get("prompt")
