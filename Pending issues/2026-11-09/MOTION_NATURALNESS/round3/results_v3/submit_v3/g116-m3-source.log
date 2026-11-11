@@ -1,0 +1,26 @@
+[2026-11-11T02:43:27.014379+00:00] step=g116-m3-source key=motion-r3-g116-m3-source dry_run=False
+[2026-11-11T02:43:27.525452+00:00] contract: {"available": true, "message": "Video service is available.", "status": "AVAILABLE"}
+[2026-11-11T02:43:27.627971+00:00] owner_id (from projects): fb294c02-5f32-4597-b1e9-f7348ac9734a; production_state=ACTIVE
+[2026-11-11T02:43:27.631515+00:00] group: seq=116 id=6e714ebb-8150-51e6-83b8-574581f3915a storyboard=8f2cee0a-a85c-4ceb-a5b8-3deaa3e51b92
+[2026-11-11T02:43:27.631529+00:00] current video before: 4bb5c37b-eb46-4fb0-b4bf-fda6871b7eb5
+[2026-11-11T02:43:27.683713+00:00] prompt source: {"attempt_id": "4bb5c37b-eb46-4fb0-b4bf-fda6871b7eb5", "experiment": null, "generation_id": "8f2cee0a-a85c-4ceb-a5b8-3deaa3e51b92", "group_id": "6e714ebb-8150-51e6-83b8-574581f3915a", "model": "deepseek-v4-flash", "request_seed": 2253417698150749, "stage": "ARCHIVED", "strategy": "tubeflow_storyboard_v4_single_panel"}
+[2026-11-11T02:43:27.683766+00:00] source prompt: 3723 chars sha256=c287c4d6b5e7c2c96aed65fc6e1504bdcd397fca96ec93d3184ad552697d918a
+[2026-11-11T02:43:27.683772+00:00] seed: 2253417698150749
+[2026-11-11T02:43:27.683849+00:00] edited prompt: 4042 chars sha256=4e4c094a510a51162dbfa4bf785d65bcf83b2037d39ca7fa65469a33333b5b04
+[2026-11-11T02:43:27.683958+00:00] diff vs source: 12 lines
+DIFF --- source
+DIFF +++ edited
+DIFF @@ -17,2 +17,2 @@
+DIFF -Oil-painted illustration with chiaroscuro lighting, deep navy and amber-gold palette, one warm light source per scene, thick impasto brushwork, canvas texture, atmospheric haze and edges fading into darkness, stable camera, natural motion blur, real-time movement speed.
+DIFF -[Shot 1] <Picture 2>: On the coring boat at Lake Chichancanab, (S1) braces both hands on the winch line and leans back, drawing the long sediment core upward out of the water until the tube clears the surface and swings wet and dark beside the hull, then steadies it against the gunwale; small shadowed figures of the field team work near the stern in navy mist, the single amber lantern lighting the dripping tube. Static camera, 0% movement.
+DIFF +Oil-painted illustration with chiaroscuro lighting, deep navy and amber-gold palette, one warm light source per scene, thick impasto brushwork, canvas texture, atmospheric haze and edges fading into darkness, natural motion blur, real-time movement speed.
+DIFF +[Shot 1] <Picture 2>: On the coring boat at Lake Chichancanab, (S1) grips the long wet sediment core tube with both hands, the tube already clear of the water and hanging upright in front of the body, lifts it a little higher with one steady pull, then lowers it to rest against the gunwale; the tube keeps the same length and shape the whole time, with water dripping from its lower end; the field team member standing at the left edge leans toward the tube and shifts weight to keep balance, and the field team member seated at the right writes in an open notebook, then glances up at the core; the small boat rocks gently with the shifting weight, and slow ripples spread across the dark lake water around the hull, the single amber lantern lighting the dripping tube. Static camera, 0% movement.
+DIFF @@ -20,2 +20,2 @@
+DIFF -Maintain (S1)'s face, hair, body and clothing as character reference 1 in every shot, the boat and lake geometry, the worktable layout, the single amber lantern light in each scene, the oil-painted canvas texture, the correct finger count and real-time body movement.
+DIFF -No storyboard grid, panel borders, split screen, captions, on-screen text or numbers, logos, watermarks, camera shake, jitter, morphing faces, warping hands, flickering textures, slow motion, extra people, duplicated characters.
+DIFF +Maintain (S1)'s face, hair, body and clothing as character reference 1 in every shot, the worktable layout, the sediment core tube's fixed length and shape, the single amber lantern light in each scene, the oil-painted canvas texture, the correct finger count and real-time body movement.
+DIFF +No storyboard grid, panel borders, split screen, captions, on-screen text or numbers, logos, watermarks, morphing faces, warping hands, slow motion, extra people, duplicated characters.
+[2026-11-11T02:43:27.685818+00:00] active attempts on group: []
+[2026-11-11T02:43:30.041005+00:00] create() returned attempt_id=cf895e28-ce22-4c61-9b93-be3735a410d1
+READBACK [{"archive_stage": "NOT_STARTED", "attempt_id": "cf895e28-ce22-4c61-9b93-be3735a410d1", "error_code": null, "experiment": {"arm": "edited_v1", "edited_prompt_sha256": "4e4c094a510a51162dbfa4bf785d65bcf83b2037d39ca7fa65469a33333b5b04", "name": "prompt-edit-ab-v1", "prompt_source_attempt_id": "4bb5c37b-eb46-4fb0-b4bf-fda6871b7eb5", "variant_label": "m3"}, "idempotency_key": "motion-r3-g116-m3-source", "node_id": null, "prompt_md5": "2020362a97516b71df96abb41c92c8e8", "seed": 2253417698150749, "stage": "CREATED", "strategy": "tubeflow_storyboard_v4_single_panel_edited_v1"}]
+[2026-11-11T02:43:30.082952+00:00] current video after: 4bb5c37b-eb46-4fb0-b4bf-fda6871b7eb5

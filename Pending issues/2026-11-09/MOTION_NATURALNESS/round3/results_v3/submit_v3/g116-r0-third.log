@@ -1,0 +1,14 @@
+[2026-11-11T02:57:34.811143+00:00] step=g116-r0-third key=motion-r3-g116-r0-third dry_run=False
+[2026-11-11T02:57:35.324235+00:00] contract: {"available": true, "message": "Video service is available.", "status": "AVAILABLE"}
+[2026-11-11T02:57:35.426788+00:00] owner_id (from projects): fb294c02-5f32-4597-b1e9-f7348ac9734a; production_state=ACTIVE
+[2026-11-11T02:57:35.430629+00:00] group: seq=116 id=6e714ebb-8150-51e6-83b8-574581f3915a storyboard=8f2cee0a-a85c-4ceb-a5b8-3deaa3e51b92
+[2026-11-11T02:57:35.430640+00:00] current video before: 4bb5c37b-eb46-4fb0-b4bf-fda6871b7eb5
+[2026-11-11T02:57:35.484878+00:00] prompt source: {"attempt_id": "4bb5c37b-eb46-4fb0-b4bf-fda6871b7eb5", "experiment": null, "generation_id": "8f2cee0a-a85c-4ceb-a5b8-3deaa3e51b92", "group_id": "6e714ebb-8150-51e6-83b8-574581f3915a", "model": "deepseek-v4-flash", "request_seed": 2253417698150749, "stage": "ARCHIVED", "strategy": "tubeflow_storyboard_v4_single_panel"}
+[2026-11-11T02:57:35.484928+00:00] source prompt: 3723 chars sha256=c287c4d6b5e7c2c96aed65fc6e1504bdcd397fca96ec93d3184ad552697d918a
+[2026-11-11T02:57:35.484935+00:00] seed: 20261111
+[2026-11-11T02:57:35.484946+00:00] edited prompt: 3723 chars sha256=c287c4d6b5e7c2c96aed65fc6e1504bdcd397fca96ec93d3184ad552697d918a
+[2026-11-11T02:57:35.485021+00:00] diff vs source: 0 lines (identical text)
+[2026-11-11T02:57:35.486989+00:00] active attempts on group: []
+[2026-11-11T02:57:37.866284+00:00] create() returned attempt_id=dbc7131e-a491-4a16-96f4-016ea7424446
+READBACK [{"archive_stage": "NOT_STARTED", "attempt_id": "dbc7131e-a491-4a16-96f4-016ea7424446", "error_code": null, "experiment": {"arm": "edited_v1", "edited_prompt_sha256": "c287c4d6b5e7c2c96aed65fc6e1504bdcd397fca96ec93d3184ad552697d918a", "name": "prompt-edit-ab-v1", "prompt_source_attempt_id": "4bb5c37b-eb46-4fb0-b4bf-fda6871b7eb5", "variant_label": "r0"}, "idempotency_key": "motion-r3-g116-r0-third", "node_id": null, "prompt_md5": "ecbd682b0274aad02189a97b01d9e7b2", "seed": 20261111, "stage": "CREATED", "strategy": "tubeflow_storyboard_v4_single_panel_edited_v1"}]
+[2026-11-11T02:57:37.908254+00:00] current video after: 4bb5c37b-eb46-4fb0-b4bf-fda6871b7eb5
