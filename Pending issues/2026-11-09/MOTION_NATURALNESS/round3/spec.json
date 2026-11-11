@@ -1,0 +1,209 @@
+{
+  "note": "Round-3 pre-registered measurement spec (2026-11-10). Same regions as round 2; targets now carry fixed clean windows (window_s, seconds) guarded by frame correlation, because most H3 outputs change shots with a dissolve. regions_dx_px_s gives the signed horizontal residual flow (positive = to the right) for the wind-direction check.",
+  "pair_step_frames": 6,
+  "flow_width": 480,
+  "residual_threshold_px": 0.5,
+  "groups": {
+    "116": {
+      "group_id": "6e714ebb-8150-51e6-83b8-574581f3915a",
+      "source_attempt_id": "4bb5c37b-eb46-4fb0-b4bf-fda6871b7eb5",
+      "source_seed": 2253417698150749,
+      "planned_shots_ms": [
+        [
+          1,
+          0,
+          11040
+        ],
+        [
+          2,
+          11040,
+          14480
+        ]
+      ],
+      "targets": {
+        "1": {
+          "env": {
+            "crew_left": [
+              0.05,
+              0.18,
+              0.27,
+              0.8
+            ],
+            "crew_right": [
+              0.75,
+              0.4,
+              0.93,
+              0.85
+            ],
+            "hull": [
+              0.31,
+              0.83,
+              0.44,
+              0.98
+            ],
+            "water": [
+              0.71,
+              0.5,
+              0.79,
+              0.7
+            ]
+          },
+          "control": {
+            "protagonist": [
+              0.42,
+              0.03,
+              0.7,
+              0.95
+            ],
+            "treeline": [
+              0.72,
+              0.05,
+              1.0,
+              0.4
+            ]
+          },
+          "window_s": [
+            0.25,
+            7.5
+          ]
+        }
+      }
+    },
+    "119": {
+      "group_id": "5d5b19d2-fab2-5bf6-bade-4808e92feff1",
+      "source_attempt_id": "137ab7a8-d205-4740-b57b-3768d3ddcf59",
+      "source_seed": 8248958064718409,
+      "planned_shots_ms": [
+        [
+          1,
+          0,
+          5600
+        ],
+        [
+          2,
+          5600,
+          8160
+        ],
+        [
+          3,
+          8160,
+          10240
+        ]
+      ],
+      "targets": {
+        "1": {
+          "env": {
+            "water": [
+              0.3,
+              0.33,
+              0.72,
+              0.62
+            ],
+            "sky": [
+              0.25,
+              0.0,
+              0.95,
+              0.12
+            ],
+            "branches_left": [
+              0.0,
+              0.0,
+              0.17,
+              0.42
+            ]
+          },
+          "control": {
+            "figure": [
+              0.17,
+              0.43,
+              0.29,
+              0.78
+            ]
+          },
+          "window_s": [
+            0.25,
+            4.5
+          ]
+        },
+        "2": {
+          "env": {
+            "sky": [
+              0.1,
+              0.0,
+              0.36,
+              0.17
+            ],
+            "water": [
+              0.2,
+              0.62,
+              0.72,
+              0.74
+            ],
+            "trees_left": [
+              0.0,
+              0.0,
+              0.1,
+              0.45
+            ]
+          },
+          "control": {
+            "wall": [
+              0.2,
+              0.45,
+              0.6,
+              0.6
+            ]
+          },
+          "window_s": [
+            5.5,
+            7.0
+          ]
+        }
+      }
+    }
+  },
+  "second_seed": 20261110,
+  "arms": [
+    "r0",
+    "m2",
+    "m3"
+  ],
+  "tile_order": {
+    "116": [
+      "m2@second",
+      "m3@third",
+      "r0@third",
+      "m3@source",
+      "m2@source",
+      "m3@second"
+    ],
+    "119": [
+      "m3@second",
+      "r0@third",
+      "m2@source",
+      "m3@third",
+      "m2@second",
+      "m3@source"
+    ]
+  },
+  "seeds": {
+    "second": 20261110,
+    "third": 20261111
+  },
+  "idempotency_prefixes": [
+    "motion-r2-",
+    "motion-r3-"
+  ],
+  "wind": {
+    "119": {
+      "direction": "left_to_right",
+      "regions": [
+        "env:water",
+        "env:sky",
+        "env:branches_left",
+        "env:trees_left",
+        "control:figure"
+      ]
+    }
+  }
+}
