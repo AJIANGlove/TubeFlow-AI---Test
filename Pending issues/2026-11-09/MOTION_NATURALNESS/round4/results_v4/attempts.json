@@ -1,0 +1,583 @@
+{
+ "records": [
+  {
+   "label": "g119_production",
+   "group": "119",
+   "attempt_id": "137ab7a8-d205-4740-b57b-3768d3ddcf59",
+   "idempotency_key": "batch-75bbf810-2342-4e4d-b1e5-29fd888aa9f7-5d5b19d2-fab2-5bf6-bade-4808e92feff1",
+   "node_id": "h3-new-3",
+   "stage": "ARCHIVED",
+   "archive_stage": "COMPLETE",
+   "error_code": null,
+   "created_at": null,
+   "updated_at": "2026-11-07 14:41:43.651613+00:00",
+   "seed": 8248958064718409,
+   "strategy": "tubeflow_storyboard_v4_single_panel",
+   "experiment": null,
+   "prompt_sha256": "fadafbf2d85f7337aa62caf36d37211661db5ce2744733d7c6bec80f563ef339",
+   "output_sha256": "0e25bf016104f992c3ee329e48f46b4207733c2a98b071cf19d39222e4fc793c",
+   "motion_metrics": {
+    "hf": 0.092,
+    "cuts": 2,
+    "shots": [
+     {
+      "hf": 0.009,
+      "t0": 0.0,
+      "t1": 5.04,
+      "held_share": null,
+      "held_windows": 0,
+      "moving_windows": 0
+     },
+     {
+      "hf": 0.02,
+      "t0": 5.04,
+      "t1": 7.5,
+      "held_share": 0.0,
+      "held_windows": 0,
+      "moving_windows": 2
+     },
+     {
+      "hf": 0.165,
+      "t0": 7.5,
+      "t1": 10.83,
+      "held_share": 0.0,
+      "held_windows": 0,
+      "moving_windows": 4
+     }
+    ],
+    "frames": 260,
+    "status": "ok",
+    "algorithm": "motion-cadence-v1",
+    "reference": {
+     "held_notable": 0.2,
+     "jitter_shot_hf": 0.25
+    },
+    "held_share": 0.0,
+    "held_windows": 0,
+    "jitter_shots": 0,
+    "moving_windows": 6
+   },
+   "content_qc": {
+    "findings": [],
+    "algorithm": "content-qc-v1"
+   },
+   "probe_error_code": null,
+   "video_file": "g119_production.mp4",
+   "video_sha256": "0e25bf016104f992c3ee329e48f46b4207733c2a98b071cf19d39222e4fc793c",
+   "video_bytes": 2975902,
+   "video_sha256_matches_asset": true
+  },
+  {
+   "label": "g119_m3_source",
+   "group": "119",
+   "attempt_id": "f73a7998-4d13-48b4-a9ba-31b17f9108e9",
+   "idempotency_key": "motion-r3-g119-m3-source",
+   "node_id": "h3-new-3",
+   "stage": "ARCHIVED",
+   "archive_stage": "COMPLETE",
+   "error_code": null,
+   "created_at": null,
+   "updated_at": "2026-11-11 02:40:42.419501+00:00",
+   "seed": 8248958064718409,
+   "strategy": "tubeflow_storyboard_v4_single_panel_edited_v1",
+   "experiment": {
+    "arm": "edited_v1",
+    "name": "prompt-edit-ab-v1",
+    "variant_label": "m3",
+    "edited_prompt_sha256": "86ed6c60a9d20267e85da645b34b4fd11c74803a8454ab9dd488935a05403845",
+    "prompt_source_attempt_id": "137ab7a8-d205-4740-b57b-3768d3ddcf59"
+   },
+   "prompt_sha256": "86ed6c60a9d20267e85da645b34b4fd11c74803a8454ab9dd488935a05403845",
+   "output_sha256": "7597eb1c26da5dded54ca59d9d1f35ac865f74d9a9837d81140e2f1222073499",
+   "motion_metrics": {
+    "hf": 0.09,
+    "cuts": 2,
+    "shots": [
+     {
+      "hf": 0.031,
+      "t0": 0.0,
+      "t1": 5.04,
+      "held_share": null,
+      "held_windows": 0,
+      "moving_windows": 0
+     },
+     {
+      "hf": 0.02,
+      "t0": 5.04,
+      "t1": 7.54,
+      "held_share": 0.0,
+      "held_windows": 0,
+      "moving_windows": 6
+     },
+     {
+      "hf": 0.158,
+      "t0": 7.54,
+      "t1": 10.83,
+      "held_share": 0.0,
+      "held_windows": 0,
+      "moving_windows": 5
+     }
+    ],
+    "frames": 260,
+    "status": "ok",
+    "algorithm": "motion-cadence-v1",
+    "reference": {
+     "held_notable": 0.2,
+     "jitter_shot_hf": 0.25
+    },
+    "held_share": 0.0,
+    "held_windows": 0,
+    "jitter_shots": 0,
+    "moving_windows": 10
+   },
+   "content_qc": {
+    "findings": [],
+    "algorithm": "content-qc-v1"
+   },
+   "probe_error_code": null,
+   "video_file": "g119_m3_source.mp4",
+   "video_sha256": "7597eb1c26da5dded54ca59d9d1f35ac865f74d9a9837d81140e2f1222073499",
+   "video_bytes": 3053959,
+   "video_sha256_matches_asset": true
+  },
+  {
+   "label": "g119_m3_second",
+   "group": "119",
+   "attempt_id": "d380b156-b286-4f4b-8f9e-44ad7047974b",
+   "idempotency_key": "motion-r3-g119-m3-second",
+   "node_id": "h3-new-3",
+   "stage": "ARCHIVED",
+   "archive_stage": "COMPLETE",
+   "error_code": null,
+   "created_at": null,
+   "updated_at": "2026-11-11 02:45:47.420441+00:00",
+   "seed": 20261110,
+   "strategy": "tubeflow_storyboard_v4_single_panel_edited_v1",
+   "experiment": {
+    "arm": "edited_v1",
+    "name": "prompt-edit-ab-v1",
+    "variant_label": "m3",
+    "edited_prompt_sha256": "86ed6c60a9d20267e85da645b34b4fd11c74803a8454ab9dd488935a05403845",
+    "prompt_source_attempt_id": "137ab7a8-d205-4740-b57b-3768d3ddcf59"
+   },
+   "prompt_sha256": "86ed6c60a9d20267e85da645b34b4fd11c74803a8454ab9dd488935a05403845",
+   "output_sha256": "0ce664c08f2e6c563cc3304d534b5e3152ee74d10f2e4f04734ce105281c984d",
+   "motion_metrics": {
+    "hf": 0.076,
+    "cuts": 2,
+    "shots": [
+     {
+      "hf": 0.013,
+      "t0": 0.0,
+      "t1": 5.33,
+      "held_share": null,
+      "held_windows": 0,
+      "moving_windows": 0
+     },
+     {
+      "hf": 0.013,
+      "t0": 5.33,
+      "t1": 7.83,
+      "held_share": null,
+      "held_windows": 0,
+      "moving_windows": 0
+     },
+     {
+      "hf": 0.143,
+      "t0": 7.83,
+      "t1": 10.83,
+      "held_share": 0.0,
+      "held_windows": 0,
+      "moving_windows": 6
+     }
+    ],
+    "frames": 260,
+    "status": "ok",
+    "algorithm": "motion-cadence-v1",
+    "reference": {
+     "held_notable": 0.2,
+     "jitter_shot_hf": 0.25
+    },
+    "held_share": 0.0,
+    "held_windows": 0,
+    "jitter_shots": 0,
+    "moving_windows": 6
+   },
+   "content_qc": {
+    "findings": [],
+    "algorithm": "content-qc-v1"
+   },
+   "probe_error_code": null,
+   "video_file": "g119_m3_second.mp4",
+   "video_sha256": "0ce664c08f2e6c563cc3304d534b5e3152ee74d10f2e4f04734ce105281c984d",
+   "video_bytes": 3248234,
+   "video_sha256_matches_asset": true
+  },
+  {
+   "label": "g119_m3_third",
+   "group": "119",
+   "attempt_id": "85c39956-1f67-44e1-9ff8-171a6d156e87",
+   "idempotency_key": "motion-r3-g119-m3-third",
+   "node_id": "h3-new-3",
+   "stage": "ARCHIVED",
+   "archive_stage": "COMPLETE",
+   "error_code": null,
+   "created_at": null,
+   "updated_at": "2026-11-11 02:51:22.875765+00:00",
+   "seed": 20261111,
+   "strategy": "tubeflow_storyboard_v4_single_panel_edited_v1",
+   "experiment": {
+    "arm": "edited_v1",
+    "name": "prompt-edit-ab-v1",
+    "variant_label": "m3",
+    "edited_prompt_sha256": "86ed6c60a9d20267e85da645b34b4fd11c74803a8454ab9dd488935a05403845",
+    "prompt_source_attempt_id": "137ab7a8-d205-4740-b57b-3768d3ddcf59"
+   },
+   "prompt_sha256": "86ed6c60a9d20267e85da645b34b4fd11c74803a8454ab9dd488935a05403845",
+   "output_sha256": "bdce5034afd0334f45b00c56b6f0e130e86fe6e274e297e65c7d52b320a0d1e0",
+   "motion_metrics": {
+    "hf": 0.099,
+    "cuts": 2,
+    "shots": [
+     {
+      "hf": 0.039,
+      "t0": 0.0,
+      "t1": 5.04,
+      "held_share": null,
+      "held_windows": 0,
+      "moving_windows": 0
+     },
+     {
+      "hf": 0.018,
+      "t0": 5.04,
+      "t1": 7.67,
+      "held_share": 0.0,
+      "held_windows": 0,
+      "moving_windows": 7
+     },
+     {
+      "hf": 0.175,
+      "t0": 7.67,
+      "t1": 10.83,
+      "held_share": 0.0,
+      "held_windows": 0,
+      "moving_windows": 5
+     }
+    ],
+    "frames": 260,
+    "status": "ok",
+    "algorithm": "motion-cadence-v1",
+    "reference": {
+     "held_notable": 0.2,
+     "jitter_shot_hf": 0.25
+    },
+    "held_share": 0.0,
+    "held_windows": 0,
+    "jitter_shots": 0,
+    "moving_windows": 12
+   },
+   "content_qc": {
+    "findings": [],
+    "algorithm": "content-qc-v1"
+   },
+   "probe_error_code": null,
+   "video_file": "g119_m3_third.mp4",
+   "video_sha256": "bdce5034afd0334f45b00c56b6f0e130e86fe6e274e297e65c7d52b320a0d1e0",
+   "video_bytes": 3104847,
+   "video_sha256_matches_asset": true
+  },
+  {
+   "label": "g119_r0_third",
+   "group": "119",
+   "attempt_id": "ef7ce9ea-e601-4c98-b859-60c395db7236",
+   "idempotency_key": "motion-r3-g119-r0-third",
+   "node_id": "h3-new-3",
+   "stage": "ARCHIVED",
+   "archive_stage": "COMPLETE",
+   "error_code": null,
+   "created_at": null,
+   "updated_at": "2026-11-11 02:55:52.961898+00:00",
+   "seed": 20261111,
+   "strategy": "tubeflow_storyboard_v4_single_panel_edited_v1",
+   "experiment": {
+    "arm": "edited_v1",
+    "name": "prompt-edit-ab-v1",
+    "variant_label": "r0",
+    "edited_prompt_sha256": "fadafbf2d85f7337aa62caf36d37211661db5ce2744733d7c6bec80f563ef339",
+    "prompt_source_attempt_id": "137ab7a8-d205-4740-b57b-3768d3ddcf59"
+   },
+   "prompt_sha256": "fadafbf2d85f7337aa62caf36d37211661db5ce2744733d7c6bec80f563ef339",
+   "output_sha256": "d22d2675bc1323e1b2584620c38466770bfe7ded5efca6b4902656cd4ddac600",
+   "motion_metrics": {
+    "hf": 0.11,
+    "cuts": 2,
+    "shots": [
+     {
+      "hf": 0.011,
+      "t0": 0.0,
+      "t1": 5.04,
+      "held_share": null,
+      "held_windows": 0,
+      "moving_windows": 0
+     },
+     {
+      "hf": 0.016,
+      "t0": 5.04,
+      "t1": 7.5,
+      "held_share": 0.0,
+      "held_windows": 0,
+      "moving_windows": 6
+     },
+     {
+      "hf": 0.197,
+      "t0": 7.5,
+      "t1": 10.83,
+      "held_share": 0.0,
+      "held_windows": 0,
+      "moving_windows": 6
+     }
+    ],
+    "frames": 260,
+    "status": "ok",
+    "algorithm": "motion-cadence-v1",
+    "reference": {
+     "held_notable": 0.2,
+     "jitter_shot_hf": 0.25
+    },
+    "held_share": 0.0,
+    "held_windows": 0,
+    "jitter_shots": 0,
+    "moving_windows": 11
+   },
+   "content_qc": {
+    "findings": [],
+    "algorithm": "content-qc-v1"
+   },
+   "probe_error_code": null,
+   "video_file": "g119_r0_third.mp4",
+   "video_sha256": "d22d2675bc1323e1b2584620c38466770bfe7ded5efca6b4902656cd4ddac600",
+   "video_bytes": 3075729,
+   "video_sha256_matches_asset": true
+  },
+  {
+   "label": "g119_m4_second",
+   "group": "119",
+   "attempt_id": "41dc72d9-2861-4289-8647-27511f150881",
+   "idempotency_key": "motion-r4-g119-m4-second",
+   "node_id": "h3-new-2",
+   "stage": "ARCHIVED",
+   "archive_stage": "COMPLETE",
+   "error_code": null,
+   "created_at": null,
+   "updated_at": "2026-11-13 03:10:49.820063+00:00",
+   "seed": 20261110,
+   "strategy": "tubeflow_storyboard_v4_single_panel_edited_v1",
+   "experiment": {
+    "arm": "edited_v1",
+    "name": "prompt-edit-ab-v1",
+    "variant_label": "m4",
+    "edited_prompt_sha256": "8237492eb94b200bdc138a90672b9063d44588735356a0ddf961be4251d98a10",
+    "prompt_source_attempt_id": "137ab7a8-d205-4740-b57b-3768d3ddcf59"
+   },
+   "prompt_sha256": "8237492eb94b200bdc138a90672b9063d44588735356a0ddf961be4251d98a10",
+   "output_sha256": "4eb77425ef331f7a72aed5943fdaa17a687ba05249330314d28914537e4f3e2a",
+   "motion_metrics": {
+    "hf": 0.065,
+    "cuts": 2,
+    "shots": [
+     {
+      "hf": 0.014,
+      "t0": 0.0,
+      "t1": 5.33,
+      "held_share": null,
+      "held_windows": 0,
+      "moving_windows": 0
+     },
+     {
+      "hf": 0.011,
+      "t0": 5.33,
+      "t1": 7.83,
+      "held_share": null,
+      "held_windows": 0,
+      "moving_windows": 0
+     },
+     {
+      "hf": 0.123,
+      "t0": 7.83,
+      "t1": 10.83,
+      "held_share": 0.0,
+      "held_windows": 0,
+      "moving_windows": 5
+     }
+    ],
+    "frames": 260,
+    "status": "ok",
+    "algorithm": "motion-cadence-v1",
+    "reference": {
+     "held_notable": 0.2,
+     "jitter_shot_hf": 0.25
+    },
+    "held_share": 0.0,
+    "held_windows": 0,
+    "jitter_shots": 0,
+    "moving_windows": 6
+   },
+   "content_qc": {
+    "findings": [],
+    "algorithm": "content-qc-v1"
+   },
+   "probe_error_code": null,
+   "video_file": "g119_m4_second.mp4",
+   "video_sha256": "4eb77425ef331f7a72aed5943fdaa17a687ba05249330314d28914537e4f3e2a",
+   "video_bytes": 3245440,
+   "video_sha256_matches_asset": true
+  },
+  {
+   "label": "g119_m4_third",
+   "group": "119",
+   "attempt_id": "219c7095-dcc4-4b45-82c0-c6e397160a13",
+   "idempotency_key": "motion-r4-g119-m4-third",
+   "node_id": "h3-new-2",
+   "stage": "ARCHIVED",
+   "archive_stage": "COMPLETE",
+   "error_code": null,
+   "created_at": null,
+   "updated_at": "2026-11-13 03:15:53.149007+00:00",
+   "seed": 20261111,
+   "strategy": "tubeflow_storyboard_v4_single_panel_edited_v1",
+   "experiment": {
+    "arm": "edited_v1",
+    "name": "prompt-edit-ab-v1",
+    "variant_label": "m4",
+    "edited_prompt_sha256": "8237492eb94b200bdc138a90672b9063d44588735356a0ddf961be4251d98a10",
+    "prompt_source_attempt_id": "137ab7a8-d205-4740-b57b-3768d3ddcf59"
+   },
+   "prompt_sha256": "8237492eb94b200bdc138a90672b9063d44588735356a0ddf961be4251d98a10",
+   "output_sha256": "946ebd008f87f1f811729d7c2aa423afa13bc6d89cac865c11cc45ab02f44a22",
+   "motion_metrics": {
+    "hf": 0.092,
+    "cuts": 2,
+    "shots": [
+     {
+      "hf": 0.021,
+      "t0": 0.0,
+      "t1": 5.04,
+      "held_share": null,
+      "held_windows": 0,
+      "moving_windows": 0
+     },
+     {
+      "hf": 0.016,
+      "t0": 5.04,
+      "t1": 7.67,
+      "held_share": 0.0,
+      "held_windows": 0,
+      "moving_windows": 8
+     },
+     {
+      "hf": 0.168,
+      "t0": 7.67,
+      "t1": 10.83,
+      "held_share": 0.0,
+      "held_windows": 0,
+      "moving_windows": 5
+     }
+    ],
+    "frames": 260,
+    "status": "ok",
+    "algorithm": "motion-cadence-v1",
+    "reference": {
+     "held_notable": 0.2,
+     "jitter_shot_hf": 0.25
+    },
+    "held_share": 0.0,
+    "held_windows": 0,
+    "jitter_shots": 0,
+    "moving_windows": 12
+   },
+   "content_qc": {
+    "findings": [],
+    "algorithm": "content-qc-v1"
+   },
+   "probe_error_code": null,
+   "video_file": "g119_m4_third.mp4",
+   "video_sha256": "946ebd008f87f1f811729d7c2aa423afa13bc6d89cac865c11cc45ab02f44a22",
+   "video_bytes": 3100691,
+   "video_sha256_matches_asset": true
+  },
+  {
+   "label": "g119_m4_source",
+   "group": "119",
+   "attempt_id": "5e5a599d-bbab-4025-87bf-f1bfcb1b4c50",
+   "idempotency_key": "motion-r4-g119-m4-source",
+   "node_id": "h3-new-2",
+   "stage": "ARCHIVED",
+   "archive_stage": "COMPLETE",
+   "error_code": null,
+   "created_at": null,
+   "updated_at": "2026-11-13 03:20:58.023264+00:00",
+   "seed": 8248958064718409,
+   "strategy": "tubeflow_storyboard_v4_single_panel_edited_v1",
+   "experiment": {
+    "arm": "edited_v1",
+    "name": "prompt-edit-ab-v1",
+    "variant_label": "m4",
+    "edited_prompt_sha256": "8237492eb94b200bdc138a90672b9063d44588735356a0ddf961be4251d98a10",
+    "prompt_source_attempt_id": "137ab7a8-d205-4740-b57b-3768d3ddcf59"
+   },
+   "prompt_sha256": "8237492eb94b200bdc138a90672b9063d44588735356a0ddf961be4251d98a10",
+   "output_sha256": "49a3e6834ec926e3f5ea0efd89f82001f8d75252478b0a3037ed11879aa05cb8",
+   "motion_metrics": {
+    "hf": 0.104,
+    "cuts": 2,
+    "shots": [
+     {
+      "hf": 0.017,
+      "t0": 0.0,
+      "t1": 5.08,
+      "held_share": null,
+      "held_windows": 0,
+      "moving_windows": 0
+     },
+     {
+      "hf": 0.019,
+      "t0": 5.08,
+      "t1": 7.54,
+      "held_share": 0.0,
+      "held_windows": 0,
+      "moving_windows": 4
+     },
+     {
+      "hf": 0.187,
+      "t0": 7.54,
+      "t1": 10.83,
+      "held_share": 0.0,
+      "held_windows": 0,
+      "moving_windows": 5
+     }
+    ],
+    "frames": 260,
+    "status": "ok",
+    "algorithm": "motion-cadence-v1",
+    "reference": {
+     "held_notable": 0.2,
+     "jitter_shot_hf": 0.25
+    },
+    "held_share": 0.0,
+    "held_windows": 0,
+    "jitter_shots": 0,
+    "moving_windows": 9
+   },
+   "content_qc": {
+    "findings": [],
+    "algorithm": "content-qc-v1"
+   },
+   "probe_error_code": null,
+   "video_file": "g119_m4_source.mp4",
+   "video_sha256": "49a3e6834ec926e3f5ea0efd89f82001f8d75252478b0a3037ed11879aa05cb8",
+   "video_bytes": 3044528,
+   "video_sha256_matches_asset": true
+  }
+ ],
+ "errors": []
+}
