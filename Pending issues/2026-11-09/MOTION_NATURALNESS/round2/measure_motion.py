@@ -11,6 +11,10 @@
   4) 每个区域：残差速度 = 区域内 |残差光流| 的均值，换算成「960 宽画面上的像素/秒」
      （×(960/480)×(fps/6)）；另给区域内残差 > 0.5 px 的像素占比，以及区域内残差光流的平均水平
      分量（带正负号，正 = 向右，同单位），用于检查风向是否一致。
+  5) 若目标给了 anchor（静止参照区，例如岩石；第 4 轮起），另给 regions_dx_anchor_px_s：
+     各区域原始光流水平分量的中位数减去参照区的中位数（不经仿射扣除——云、雾整体漂移时，
+     仿射会把一部分漂移当成镜头运动，使静止物体显得反向移动，2026-11-12 已核实），
+     以及 regions_dx_p90_px_s：区域内 |水平分量| 的 90 分位，衡量来回摆动的幅度。
 
 用法：python measure_motion.py --spec spec.json --group 116 --label g116_m1_source video.mp4
 """
@@ -148,6 +152,9 @@ def measure(path: str, spec: dict, group: str) -> dict:
         speeds: dict[str, list[float]] = {n: [] for n in names}
         shares: dict[str, list[float]] = {n: [] for n in names}
         drift: dict[str, list[float]] = {n: [] for n in names}
+        anchor = regions.get("anchor")
+        anchored: dict[str, list[float]] = {n: [] for n in names}
+        swing: dict[str, list[float]] = {n: [] for n in names}
         camera: list[float] = []
         for i in range(a, b - step, step):
             flow = cv2.calcOpticalFlowFarneback(
@@ -176,6 +183,11 @@ def measure(path: str, spec: dict, group: str) -> dict:
                 drift[name].append(
                     float(residual_flow[box(region, flow_w, flow_h)][..., 0].mean()) * scale
                 )
+                if anchor is not None:
+                    raw_dx = flow[box(region, flow_w, flow_h)][..., 0]
+                    base = float(np.median(flow[box(anchor, flow_w, flow_h)][..., 0]))
+                    anchored[name].append((float(np.median(raw_dx)) - base) * scale)
+                    swing[name].append(float(np.percentile(np.abs(raw_dx - base), 90)) * scale)
         env = [float(np.mean(v)) for n, v in speeds.items() if n.startswith("env:") and v]
         result["targets"][shot] = {
             "segment_s": segment,
@@ -187,6 +199,10 @@ def measure(path: str, spec: dict, group: str) -> dict:
                 n: round(float(np.mean(v)), 3) for n, v in shares.items() if v
             },
             "regions_dx_px_s": {n: round(float(np.mean(v)), 2) for n, v in drift.items() if v},
+            "regions_dx_anchor_px_s": {
+                n: round(float(np.mean(v)), 2) for n, v in anchored.items() if v
+            },
+            "regions_dx_p90_px_s": {n: round(float(np.mean(v)), 2) for n, v in swing.items() if v},
             "env_score": round(float(np.median(env)), 2) if env else None,
         }
     return result

@@ -1,0 +1,141 @@
+{
+  "note": "Round-4 pre-registered spec (2026-11-12). Group 119 only. Same windows as round 3; shot 1 adds the coat hem and uses the rock ledge as a static anchor for horizontal drift (regions_dx_anchor_px_s), because the affine residual makes static objects appear to move against strong cloud drift. Shot 2 uses the wall as anchor (the push-in is not removed by this; report only).",
+  "pair_step_frames": 6,
+  "flow_width": 480,
+  "residual_threshold_px": 0.5,
+  "groups": {
+    "119": {
+      "group_id": "5d5b19d2-fab2-5bf6-bade-4808e92feff1",
+      "source_attempt_id": "137ab7a8-d205-4740-b57b-3768d3ddcf59",
+      "source_seed": 8248958064718409,
+      "planned_shots_ms": [
+        [
+          1,
+          0,
+          5600
+        ],
+        [
+          2,
+          5600,
+          8160
+        ],
+        [
+          3,
+          8160,
+          10240
+        ]
+      ],
+      "targets": {
+        "1": {
+          "env": {
+            "water": [
+              0.3,
+              0.33,
+              0.72,
+              0.62
+            ],
+            "sky": [
+              0.25,
+              0.0,
+              0.95,
+              0.12
+            ],
+            "branches_left": [
+              0.0,
+              0.0,
+              0.17,
+              0.42
+            ],
+            "coat_hem": [
+              0.17,
+              0.62,
+              0.3,
+              0.8
+            ]
+          },
+          "control": {
+            "figure": [
+              0.17,
+              0.43,
+              0.29,
+              0.78
+            ]
+          },
+          "window_s": [
+            0.25,
+            4.5
+          ],
+          "anchor": [
+            0.0,
+            0.8,
+            0.3,
+            1.0
+          ]
+        },
+        "2": {
+          "env": {
+            "sky": [
+              0.1,
+              0.0,
+              0.36,
+              0.17
+            ],
+            "water": [
+              0.2,
+              0.62,
+              0.72,
+              0.74
+            ],
+            "trees_left": [
+              0.0,
+              0.0,
+              0.1,
+              0.45
+            ]
+          },
+          "control": {
+            "wall": [
+              0.2,
+              0.45,
+              0.6,
+              0.6
+            ]
+          },
+          "window_s": [
+            5.5,
+            7.0
+          ],
+          "anchor": [
+            0.2,
+            0.45,
+            0.6,
+            0.6
+          ]
+        }
+      }
+    }
+  },
+  "second_seed": 20261110,
+  "seeds": {
+    "second": 20261110,
+    "third": 20261111
+  },
+  "idempotency_prefixes": [
+    "motion-r3-",
+    "motion-r4-"
+  ],
+  "arms": [
+    "m3",
+    "m4"
+  ],
+  "tile_order": {
+    "119": [
+      "m3@third",
+      "m4@source",
+      "m3@source",
+      "m4@third",
+      "m3@second",
+      "m4@second"
+    ]
+  }
+}
